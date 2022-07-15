@@ -5,95 +5,6 @@
     <meta charset="UTF-8">
     <title></title>
     <script>
-        //正則
-        //1.查詢a
-        //var re=new RegExp('a');
-        //var re=/a/;//同上
-        //var str='abcd';
-        //alert(str.search(re));//0
-
-        //2.i忽略大小寫
-        //var re=new RegExp('a','i');
-        //var re=/a/i;//同上
-        //var str='Abcd';
-        //alert(str.search(re));//search字位置0
-
-        //3.\d數字[0-9]
-        //var re=/\d+/g;
-        //g找全部,\d\d找兩位數字,\d找一位數字,+有多少返回多少
-        //var str='Abcd 12 55 zgzvvzz55';
-        //alert(str.match(re));//match所有匹配都返回出來
-
-        //替換replace---------------------------------------------------
-        //var str='abc aaa dfg';
-        //alert(str.replace('a','0'));//replace替換
-
-        //replace方法的第二个参数可以使用美元符号$，用来指代所替换的内容。
-        //$& 指代匹配的子字符串。
-        //$` 指代匹配结果前面的文本。
-        //$' 指代匹配结果后面的文本。
-        //$n 指代匹配成功的第n组内容，n是从1开始的自然数。
-        //$$ 指代美元符号$。
-        //'hello world'.replace(/(\w+)\s(\w+)/, '$2 $1')
-        // "world hello"
-
-        //'abc'.replace('b', '[$`-$&-$\']')
-        // "a[a-b-c]c"
-
-        //5.替換
-        //var str='abc aaa dfg';
-        //var re=/a/g;
-        //alert(str.replace(re,'0'));//replac替換
-
-        //match---------------------------------------------------
-        //6.方括號裡的任一個數都可成立
-        //var str='apc bpc cpc dpc';
-        //var re=/[ab]pc/g;
-        //alert(str.match(re));
-
-        //7.方括號加-是範圍
-        //var str='apc bpc cpc dpc';
-        //var re=/[a-c]pc/g;
-        //alert(str.match(re));
-
-        //8.方括號加^是排除
-        //var str='apc bpc cpc dpc';
-        //var re=/[^a-c]pc/g;
-        //alert(str.match(re));
-
-        //9.轉意字符
-        //\d數字[0-9]
-        //\w英文,數字,下划線[a-z 0-9 _]
-        //\s空白符
-        //\D[^0-9]
-        //\W[^a-z 0-9 _]
-        //\S非空白字符
-        //.任意字符
-        //\b 匹配词的边界。
-        //\B 匹配非词边界，即在词的内部。
-
-
-        //点字符(c和t之间包含任意一个字符的情况)
-        ///c.t/ //cat、c2t、c-t但是不匹配coot
-
-        //选择符（|）OR
-        ///11|22/.test('911') // true
-
-        //位置字符
-        //^ 表示字符串的开始位置
-        //$ 表示字符串的结束位置
-        //从开始位置到结束位置只有test
-        ///^test$/.test('test') // true
-        ///^test$/.test('test test') // false
-
-        //如果方括号内没有其他字符，即只有[^]，就表示匹配一切字符而点号（.）是不包括换行符的。
-        //var s = 'Please yes\nmake my day!';
-        //s.match(/yes.*day/) // null
-        //s.match(/yes[^]*day/) // [ 'yes\nmake my day']
-
-        //连字符（-）
-        // [1-31]//不代表1到31，只代表1到3。
-
 
         //匹配词的边界(“world”的词首必须独立)
         // \s的例子
@@ -114,28 +25,6 @@
         ///.*/.exec(html)[0]// "<b>Hello</b>"
         ///[\S\s]*/.exec(html)[0] // "<b>Hello</b>\n<i>world!</i>"
 
-
-        //10.量詞,個數
-        //\cX 表示Ctrl-[X]，其中的X是A-Z之中任一个英文字母，用来匹配控制字符。
-        //[\b] 匹配退格键(U+0008)，不要与\b混淆。
-        //\n 匹配换行键。
-        //\r 匹配回车键。
-        //\t 匹配制表符tab（U+0009）。
-        //\v 匹配垂直制表符（U+000B）。
-        //\f 匹配换页符（U+000C）。
-        //\0 匹配null字符（U+0000）。
-        //\xhh 匹配一个以两位十六进制数（\x00-\xFF）表示的字符。
-        //\uhhhh 匹配一个以四位十六进制数（\u0000-\uFFFF）表示的unicode字符。
-        //{n}//{n}出現n次
-        //[1-9]\d{7}//第一位1-9其中一個數字,後面七位0-9數字(電話)
-        //{n,m}//最少n次最多m次
-        //[1-9]\d{4,10}//最少四到十位數字(qq號是五到十一位數字)
-        //{1,} //最少1次最多不限
-        //{0,1} //最少0次最多1次
-        //+ //最少1次最多不限
-        //? //最少0次最多1次
-        //* //最少0次最多不限
-        //m//会识别换行符
 
 
         //会识别换行符
@@ -198,11 +87,7 @@
         //var m = 'abd'.match(/b(?!c)/);
         //m // ['b']
 
-        //  /i (忽略大小写)
-        //  /g (全文查找出现的所有匹配字符)
-        //  /m (多行查找)
-        //  /gi(全文查找、忽略大小写)
-        //  /ig(全文查找、忽略大小写)
+       
         //g多次匹配
         //index：整个模式匹配成功的开始位置（从0开始计数）。
         //lastIndex：返回下一次开始搜索的位置。该属性可读写，但是只在设置了g修饰符时有意义。
@@ -240,11 +125,6 @@
         //}// bbb// b
 
 
-        //match方法对字符串进行正则匹配，返回匹配结果。
-        //var s = 'abba';
-        //var r = /a/g;
-        //s.match(r) // ["a", "a"]
-        //r.exec(s) // ["a"]
 
 
         //11.固定電話
@@ -254,13 +134,6 @@
         //()是分組,？可以有也可沒有
 
 
-        //12. test(),返回 true，否则返回 false。
-        //var patt = /e/;
-        //patt.test("The best things in life are free!");//true
-
-
-        //13. exec(),返回数组，否则返回null。
-        ///e/.exec("The best things in life are free!");//["e"]
 
         //14.QQ(5-15位,不能以0開頭,全是數字)
         //charCodeAt=字值
@@ -268,23 +141,16 @@
         if (qq.length >= 5 && qq.length <= 15) {
             if (qq.charCodeAt(0) != 48) {
                 if (!isNaN(qq)) {
-                    alert('合法')
+                    console.log('合法')
                 } else {
-                    alert('有數字以外')
+                    console.log('有數字以外')
                 }
             } else {
-                alert('0開頭')
+                console.log('0開頭')
             }
         } else {
-            alert('長度錯誤')
+            console.log('長度錯誤')
         }
-
-
-
-        //正則
-        var qq = '212000';
-        var reg = /[1-9][0-9]{4,14}/;
-        reg.test(qq);
 
 
 
@@ -378,9 +244,9 @@
                 //英文數字下划線＠英文數字.英文
                 var re = /^\w+@[a-z0-9]+\.[a-z]+$/i;
                 if (re.test(otxt1.value)) {
-                    alert('ok');
+                    console.log('ok');
                 } else {
-                    alert('errol');
+                    console.log('errol');
                 }
             }
         }

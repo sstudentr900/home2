@@ -1,126 +1,141 @@
-<h2>element select</h2>
-<pre>
-    <code class="language-js">
-        document.querySelector('li').closest('ul')                   //往上查找
-        document.getElementById('id');                               //選擇ID
-        document.getElementByClassName('class');                     //選擇class(只選第一個)
-        document.getElementByTagName('div');                         //標籤選擇
-        document.querySelector('#btn');                              //ID選擇
-        document.querySelectorAll('.btnclass');                      //class選擇(選全部)
-
-
-        var oli = document.getElementById('ul');
-        console.log(oli.nodeName)                                     //ul,名稱
-        console.log(oli.nodeType)                                     //1,節點類型
-        console.log(oli.nodeValue)                                    //null,節點值
-    </code>
-</pre>
-<h2>select data-</h2>
-<pre>
-    <code class="language-js">
-        //1.
-        document.querySelector('[data-foo]').dataset.foo;  
-
-        //2.
-        document.querySelector('.class').dataset.foo;
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/customPrism.css">
+        <link rel="stylesheet" href="../css/prism.css">
+        <script src="../js/prism.js"></script>
         
-        //3.
-        list.addEventListener('click', function(e){
-            console.log(e.target.dataset.foo);   //dataset 取出 foo 的值
-            console.log(e.target.nodeName);      //nodeName 為 'LI'
-        }, false);                     
-</pre>
-<h2>element create</h2>
-<pre>
-    <code class="language-js">
-        document.createElement("p");                                  //建新的元素
-        document.createTextNode("这是一个新段落");                     //建內文
-    </code>
-</pre>
-<h2>element remove</h2>
-<pre>
-    <code class="language-html">
-        &lt;ul class="innerHTML"&gt;
-            &lt;li&gt;1&lt;/li&gt;
-            &lt;li&gt;2&lt;/li&gt;
-            &lt;li&gt;3&lt;/li&gt;
-            &lt;li&gt;4&lt;/li&gt;
-            &lt;li&gt;5&lt;/li&gt;
-        &lt;/ul&gt;
-    </code>
-</pre>
-<pre>
-    <code class="language-js">
-        document.querySelector("ul").innerHTML = '';
-        document.querySelector("ul").textContent = '';
-        document.querySelector("ul").replaceChildren()      //()內只能放字串
-    </code>
-</pre>
-<p>removeChild删除元素</p>
-<pre>
-    <code class="language-js">
-        var parent=document.getElementById("div1");
-        var child=document.getElementById("p1");
-        parent.removeChild(child);
-    </code>
-</pre>
-<h2>element add</h2>
-<p>appendChild()加入節點</p>
-<pre>
-    <code class="language-js">
-        const div = document.createElement("div");
-        const p = document.createElement("p");
-        div.appendChild(p);
-        //
-        console.log(div.outerHTML);
-        &lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;
-    </code>
-</pre>
-<p>replaceWith()取代節點</p>
-<pre>
-    <code class="language-js">
-        const div = document.createElement("div");
-        const p = document.createElement("p");
-        div.appendChild(p);
-        const span = document.createElement("span");
-        p.replaceWith(span);
-        //
-        console.log(div.outerHTML);
-        &lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
-    </code>
-</pre>
-<p>replaceChild()取代節點</p>
-<pre>
-    <code class="language-js">
-        const div = document.createElement("div");
-        const p = document.createElement("p");
-        div.appendChild(p);
-        const span = document.createElement("span");
-        div.replaceChild(span,p);
-        //
-        &lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
-    </code>
-</pre>
-<h2>insertAdjacentHTML()插入節點</h2>
-<ol>
-    <li>beforeBegin：在 element 前插入</li>
-    <li>afterBegin：在 element 裡的第一個子元素前插入</li>
-    <li>beforeEnd：在 element 裡的最後一個子元素後面插入</li>
-    <li>afterEnd：在 element 後插入</li>
-</ol>
-<pre>
-    <code class="language-js">
-        let div = document.createElement("div");
-        let html = "<p>My new paragraph.</p>";
-        div.insertAdjacentHTML("beforeend", html);
-        //
-        &lt;div&gt;&lt;p&gt;My new paragraph.&lt;/p&gt;&lt;/div&gt;
-    </code>
-</pre>
-<hr>
-<h2>參考</h2>
-<ul>
-    <li>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/closest" target="_blank">Element.closest()</a>
-    </li>
-</ul>
+    </head>
+    <body id="program">
+        <h2>element select</h2>
+        <pre>
+            <code class="language-js">
+                document.querySelector('li').closest('ul')                   //往上查找
+                document.getElementById('id');                               //選擇ID
+                document.getElementByClassName('class');                     //選擇class(只選第一個)
+                document.getElementByTagName('div');                         //標籤選擇
+                document.querySelector('#btn');                              //ID選擇
+                document.querySelectorAll('.btnclass');                      //class選擇(選全部)
+
+
+                var oli = document.getElementById('ul');
+                console.log(oli.nodeName)                                     //ul,名稱
+                console.log(oli.nodeType)                                     //1,節點類型
+                console.log(oli.nodeValue)                                    //null,節點值
+            </code>
+        </pre>
+        <h2>get data-</h2>
+        <pre>
+            <code class="language-js">
+                //1.
+                document.querySelector('[data-foo]').dataset.foo;  
+
+                //2.
+                document.querySelector('.class').dataset.foo;
+                
+                //3.
+                list.addEventListener('click', function(e){
+                    console.log(e.target.dataset.foo);   //dataset 取出 foo 的值
+                    console.log(e.target.nodeName);      //nodeName 為 'LI'
+                }, false);
+            </code>
+        </pre>
+        <h2>element create</h2>
+        <pre>
+            <code class="language-js">
+                document.createElement("p");                                  //建新的元素
+                document.createTextNode("这是一个新段落");                     //建內文
+            </code>
+        </pre>
+        <h2>element remove</h2>
+        <pre>
+            <code class="language-html">
+                &lt;ul class="innerHTML"&gt;
+                    &lt;li&gt;1&lt;/li&gt;
+                    &lt;li&gt;2&lt;/li&gt;
+                    &lt;li&gt;3&lt;/li&gt;
+                    &lt;li&gt;4&lt;/li&gt;
+                    &lt;li&gt;5&lt;/li&gt;
+                &lt;/ul&gt;
+            </code>
+        </pre>
+        <pre>
+            <code class="language-js">
+                document.querySelector("ul").innerHTML = '';
+                document.querySelector("ul").textContent = '';
+                document.querySelector("ul").replaceChildren()      //()內只能放字串
+            </code>
+        </pre>
+        <p>removeChild删除元素</p>
+        <pre>
+            <code class="language-js">
+                var parent=document.getElementById("div1");
+                var child=document.getElementById("p1");
+                parent.removeChild(child);
+            </code>
+        </pre>
+        <h2>element add</h2>
+        <p>appendChild()加入節點</p>
+        <pre>
+            <code class="language-js">
+                const div = document.createElement("div");
+                const p = document.createElement("p");
+                div.appendChild(p);
+                //
+                console.log(div.outerHTML);
+                &lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;
+            </code>
+        </pre>
+        <p>replaceWith()取代節點</p>
+        <pre>
+            <code class="language-js">
+                const div = document.createElement("div");
+                const p = document.createElement("p");
+                div.appendChild(p);
+                const span = document.createElement("span");
+                p.replaceWith(span);
+                //
+                console.log(div.outerHTML);
+                &lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+            </code>
+        </pre>
+        <p>replaceChild()取代節點</p>
+        <pre>
+            <code class="language-js">
+                const div = document.createElement("div");
+                const p = document.createElement("p");
+                div.appendChild(p);
+                const span = document.createElement("span");
+                div.replaceChild(span,p);
+                //
+                &lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+            </code>
+        </pre>
+        <h2>insertAdjacentHTML()插入節點</h2>
+        <ol>
+            <li>beforeBegin：在 element 前插入</li>
+            <li>afterBegin：在 element 裡的第一個子元素前插入</li>
+            <li>beforeEnd：在 element 裡的最後一個子元素後面插入</li>
+            <li>afterEnd：在 element 後插入</li>
+        </ol>
+        <pre>
+            <code class="language-js">
+                let div = document.createElement("div");
+                let html = "<p>My new paragraph.</p> ";
+                div.insertAdjacentHTML("beforeend", html);
+                //
+                &lt;div&gt;&lt;p&gt;My new paragraph.&lt;/p&gt;&lt;/div&gt;
+            </code>
+        </pre>
+        <hr>
+        <h4>參考</h4>
+        <ul>
+            <li>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/closest" target="_blank">Element.closest()</a>
+            </li>
+        </ul>
+    </body>
+</html>

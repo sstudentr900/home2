@@ -2,52 +2,57 @@
     max-width: 920px;
     margin: auto;
 }
-#program h1{
-    font-size: 2.2rem;
+#program h1,
+#program h2,
+#program h3,
+#program h4{
     font-weight: bold;
+    font-size: 28px;
     color: var(--title);
-    margin: 24px 0;
+    
 }
+/* #program h1{
+    font-size: 2.2rem;
+    margin: 24px 0;
+} */
 #program h2:nth-child(1){
     margin-top: 0;
 }
 #program h2{
-    font-weight: bold;
-    font-size: 1.65rem;
-    /* padding-bottom: 0.3rem; */
-    /* border-bottom: 1px solid var(--solid); */
-    color: var(--title);
-    margin: 22px 0;
+    margin: 52px 0 28px;
 }
 #program h3{
-    font-size: 26px;
-    font-weight: bold;
-    color: var(--title);
+    font-size: 22px;
+    margin: 32px 0 22px;
+}
+#program h4{
+    font-size: 18px;
+    margin: 32px 0 0;
 }
 #program p{
+    font-size: 15px;
     line-height: 1.7;
     color: var(--text);
     margin: 16px 0;
     letter-spacing: 1px;
 }
-#program p code{
-    /* color: var(--black);
-    padding: 0.25rem 0.5rem;
-    margin: 0 3px;
-    font-size: .85em;
-    background-color: #eee;
-    border-radius: 3px;
-    overflow-wrap: break-word; */
+#program code{
     font-weight: bold;
     color: var(--title);
     padding: 3px;
-    /* border-bottom: 1px solid #7dd3fc; */
 }
+/* #program b{
+    line-height: 1.7;
+    color: var(--title);
+    margin: 16px 0;
+    letter-spacing: 1px;
+    font-weight: bold;
+} */
 #program a{
     line-height: 1.7;
 }
 #program pre{
-    margin-bottom: 32px;
+    margin-bottom: 64px;
 }
 #program pre[class*=language-] {
     background: #1e293b;
@@ -59,8 +64,8 @@
     box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
 }
 #program pre[class*=language-] code{
-    margin-left: -50px;
-    width: calc(100% + 50px);
+    margin-left: -120px;
+    width: calc(100% + 120px);
     
 }
 #program hr{
@@ -75,15 +80,32 @@
     height: auto;
 }
 #program ol{
-    margin: 16px 0;
+    margin: 24px 0;
 }
 #program ol li{
     color: var(--text);
     line-height: 1.5;
+}
+#program p span,
+#program ol li span{
+    color: var(--blue);
+    padding: 0 5px;
 }
 #program ul{
     margin-bottom: 120px;
 }
 #program ul a{
     color: var(--blue);
+}
+/*單獨頁*/
+body#program{
+    padding: 60px 20px;
+}
+body#program ul a{
+    text-decoration: none;
+    color: rgb(32 171 253);
+}
+body#program ul{
+    list-style: none;
+    padding: 0;
 }

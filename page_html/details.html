@@ -1,64 +1,78 @@
-<h2>Details</h2>
-<p>html寫法:</p>
-<pre>
-    <code class="language-html">
-        &lt;details&gt;
-            &lt;summary&gt;Details&lt;/summary&gt;
-            Something small enough to escape casual notice.
-        &lt;/details&gt;
-    </code>
-</pre>
-<p>小圖變小箭頭</p>
-<pre>
-    <code class="language-css">
-        summary {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: #e2e8f0;
-        }
-        summary::-webkit-details-marker,
-        summary::marker {
-            display: none;
-            content: " ";
-        }
-        summary::after {
-            content: '';
-            width: 0;
-            height: 0;
-            display: inline-block;
-            border-style: solid;
-            border-width: 4px 0 4px 4px;
-            border-color: transparent transparent transparent #e2e8f0;
-        }
-        details[open]>summary::after {
-            transform: rotate(90deg);
-        }
-    </code>
-</pre>
-<p>js寫open</p>
-<pre>
-    <code class="language-js">
-        document.getElementById("myDetails").open = true;
-    </code>
-</pre>
-<p>js寫toggle</p>
-<pre>
-    <code class="language-js">
-        details.addEventListener("toggle", event => {
-            if (details.open) {
-              /* the element was toggled open */
-            } else {
-              /* the element was toggled closed */
-            }
-        });
-    </code>
-</pre>
-<hr>
-<h2>參考</h2>
-<ul>
-    <li>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details" target="_blank">The Details disclosure element</a>
-    </li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/customPrism.css">
+        <link rel="stylesheet" href="../css/prism.css">
+        <script src="../js/prism.js"></script>
+        
+    </head>
+    <body id="program">
+        <h2>Details</h2>
+        <p>html寫法:</p>
+        <pre>
+            <code class="language-html">
+                &lt;details&gt;
+                    &lt;summary&gt;Details&lt;/summary&gt;
+                    Something small enough to escape casual notice.
+                &lt;/details&gt;
+            </code>
+        </pre>
+        <p>小圖變小箭頭</p>
+        <pre>
+            <code class="language-css">
+                summary {
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    color: #e2e8f0;
+                }
+                summary::-webkit-details-marker,
+                summary::marker {
+                    display: none;
+                    content: " ";
+                }
+                summary::after {
+                    content: '';
+                    width: 0;
+                    height: 0;
+                    display: inline-block;
+                    border-style: solid;
+                    border-width: 4px 0 4px 4px;
+                    border-color: transparent transparent transparent #e2e8f0;
+                }
+                details[open]>summary::after {
+                    transform: rotate(90deg);
+                }
+            </code>
+        </pre>
+        <p>js寫open</p>
+        <pre>
+            <code class="language-js">
+                document.getElementById("myDetails").open = true;
+            </code>
+        </pre>
+        <p>js寫toggle</p>
+        <pre>
+            <code class="language-js">
+                details.addEventListener("toggle", event => {
+                    if (details.open) {
+                    /* the element was toggled open */
+                    } else {
+                    /* the element was toggled closed */
+                    }
+                });
+            </code>
+        </pre>
+        <hr>
+        <h4>參考</h4>
+        <ul>
+            <li>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details" target="_blank">The Details disclosure element</a>
+            </li>
+        </ul>
+    </body>
+</html>

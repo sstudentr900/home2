@@ -1,141 +1,167 @@
-<h2>location</h2>
-<p>取得URL<code>http://www.111cn.net:80/test/test.htm?ver=1.0&id=6#imhere</code></p>
-<pre>
-    <code class="language-js">
-        window.location 
-        document.location
-        location
-        document.URL          //取得URL
-        window.location.href  //取得URL
-    </code>
-</pre>
-<p>URL解析</p>
-<pre>
-    <code class="language-js">
-        location.hostname  返回http://www.111cn.net
-        location.pathname  返回/test/test.htm
-        location.search    返回?ver=1.0&id=6#imhere
-        location.href      返回完整路徑
-        location.port      返回 80
-        location.protocol  返回http:
-        location.host      返回www.111cn.net:80
-        location.hash      返回#imhere
-    </code>
-</pre>
-<p>URL解析search</p>
-<pre>
-    <code class="language-js">
-        const queryString = window.location.search; //?ver=1.0&id=6
-        const urlParams = new URLSearchParams(queryString);
-        const product = urlParams.get('ver') //1.0
-        const color = urlParams.get('id') //6
-    </code>
-</pre>
-<h2>自己寫get</h2>
-<pre>
-    <code class="language-js">
-        function $_GET(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/customPrism.css">
+        <link rel="stylesheet" href="../css/prism.css">
+        <script src="../js/prism.js"></script>
+        
+    </head>
+    <body id="program">
+        <h2>location</h2>
+        <p>取得URL
+            <code>http://www.111cn.net:80/test/test.htm?ver=1.0&id=6#imhere</code>
+        </p>
+        <pre>
+            <code class="language-js">
+                window.location 
+                document.location
+                location
+                document.URL          //取得URL
+                window.location.href  //取得URL
+            </code>
+        </pre>
+        <p>URL解析</p>
+        <pre>
+            <code class="language-js">
+                location.hostname  返回http://www.111cn.net
+                location.pathname  返回/test/test.htm
+                location.search    返回?ver=1.0&id=6#imhere
+                location.href      返回完整路徑
+                location.port      返回 80
+                location.protocol  返回http:
+                location.host      返回www.111cn.net:80
+                location.hash      返回#imhere
+            </code>
+        </pre>
+        <p>URL解析search</p>
+        <pre>
+            <code class="language-js">
+                const queryString = window.location.search; //?ver=1.0&id=6
+                const urlParams = new URLSearchParams(queryString);
+                const product = urlParams.get('ver') //1.0
+                const color = urlParams.get('id') //6
+            </code>
+        </pre>
+        <h2>自己寫get</h2>
+        <pre>
+            <code class="language-js">
+                function $_GET(name) {
+                    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
                     results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
+                    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+                }
 
-        //用法
-        $_GET('輸入名稱');
-    </code>
-</pre>
-<h2>hash應用</h2>
-<p>html寫法:</p>
-<pre>
-    <code class="language-html">
-        &lt;button onclick="setArchor()"&gt;1&lt;/button&gt;
-        &lt;button onclick="setArchor2()"&gt;2&lt;/button&gt;
-        &lt;div style="height:1000px;"&gt;&lt;/div&gt;&lt;a name="page_one"&gt;one&lt;/a&gt;
-        &lt;div style="height:1000px;"&gt;&lt;/div&gt;&lt;a name="page_two"&gt;two&lt;/a&gt;
-        &lt;div style="height:1000px;"&gt;&lt;/div&gt;
-    </code>
-</pre>
-<p>js寫法:</p>
-<pre>
-    <code class="language-js">
-        function setArchor() {
-            location.hash = 'page_one';
-        }
+                //用法
+                $_GET('輸入名稱');
+            </code>
+        </pre>
+        <h2>hash應用</h2>
+        <p>html寫法:</p>
+        <pre>
+            <code class="language-html">
+                &lt;button onclick="setArchor()"&gt;1&lt;/button&gt;
+                &lt;button onclick="setArchor2()"&gt;2&lt;/button&gt;
+                &lt;div style="height:1000px;"&gt;&lt;/div&gt;&lt;a name="page_one"&gt;one&lt;/a&gt;
+                &lt;div style="height:1000px;"&gt;&lt;/div&gt;&lt;a name="page_two"&gt;two&lt;/a&gt;
+                &lt;div style="height:1000px;"&gt;&lt;/div&gt;
+            </code>
+        </pre>
+        <p>js寫法:</p>
+        <pre>
+            <code class="language-js">
+                function setArchor() {
+                    location.hash = 'page_one';
+                }
 
-        function setArchor2() {
-            location.hash = 'page_two';
-        }
-    </code>
-</pre>
-<h2>location(頁面跳轉)</h2>
-<p><code>assign</code>當從A頁面逛到B頁面後，在B頁面執行了location.assign到(C頁面),會再B時把網址導向C，所以當我點上一頁時就是回到B</p>
-<p><code>replace</code>當從A頁面逛到B頁面後，在B頁面執行了location.replace到(C頁面),會把當前的網址從B換成C，所以當我點上一頁時就是回到A</p>
-<pre>
-    <code class="language-js">
-        //window跳頁
-        location.assign('http://XXX');   // history會記錄  
-        location.replace('http://XXX');  // history不會記錄
-        location.reload();               //重加載頁面,會抓取緩存
-        location.reload(true);           //從服務端重新加載
+                function setArchor2() {
+                    location.hash = 'page_two';
+                }
+            </code>
+        </pre>
+        <h2>location(頁面跳轉)</h2>
+        <ol>
+            <li>
+                <code>assign</code>當從A頁面逛到B頁面後，在B頁面執行了location.assign到(C頁面),會再B時把網址導向C，所以當我點上一頁時就是回到B
+            </li>
+            <li>
+                <code>replace</code>當從A頁面逛到B頁面後，在B頁面執行了location.replace到(C頁面),會把當前的網址從B換成C，所以當我點上一頁時就是回到A
+            </li>
+        </ol>
+        <pre>
+            <code class="language-js">
+                //window跳頁
+                location.assign('http://XXX');   // history會記錄  
+                location.replace('http://XXX');  // history不會記錄
+                location.reload();               //重加載頁面,會抓取緩存
+                location.reload(true);           //從服務端重新加載
 
-        //頁面跳轉
-        location="http://example.com";
-        location.href="http://example.com";
-    </code>
-</pre>
-<hr>
-<h2>參考</h2>
-<ul>
-    <li>
-        <a href="https://expect7.pixnet.net/blog/post/65830318" target="_blank">如何頁面轉跳的幾個方法</a>
-        <a href="https://www.delftstack.com/zh-tw/howto/javascript/javascript-change-url/#%E4%BD%BF%E7%94%A8-pushstate-%E6%96%B9%E6%B3%95%E9%80%9A%E9%81%8E-javascript-%E4%BF%AE%E6%94%B9-url" target="_blank">JavaScript 中修改 URL</a>
-    </li>
-</ul>
-<h2>history(更新歷史記錄不是跳轉)</h2>
-<p><code>replaceState</code>更新當前歷史記錄的URL而不是創造一個新的</p>
-<p><code>pushState</code>將當前URL更新為新歷史紀錄</p>
-<pre>
-    <code class="language-js">
-        history.replaceState(data, title ,url)
-        window.history.replaceState({ page: "1" }, "title", "/url.html");
-        window.history.pushState({ page: "1" }, "title", "/url.html");
-        history.back()      //往上一步移動
-        history.forward()   //往下一步移動
-        history.go(-1);     //移動到特定的歷史紀錄
-        history.length;     //總共瀏覽了幾個網頁
-    </code>
-</pre>
-<h2>上一頁/下一頁 監聽</h2>
-<p>歷史紀錄被更動執行popstate 事件</p>
-<pre>
-    <code class="language-js">
-        window.addEventListener('popstate', function(event) {
-            ajax(page);
-        });
+                //頁面跳轉
+                location="http://example.com";
+                location.href="http://example.com";
+            </code>
+        </pre>
+        <hr>
+        <h4>參考</h4>
+        <ul>
+            <li>
+                <a href="https://expect7.pixnet.net/blog/post/65830318" target="_blank">如何頁面轉跳的幾個方法</a>
+                <a href="https://www.delftstack.com/zh-tw/howto/javascript/javascript-change-url/#%E4%BD%BF%E7%94%A8-pushstate-%E6%96%B9%E6%B3%95%E9%80%9A%E9%81%8E-javascript-%E4%BF%AE%E6%94%B9-url" target="_blank">JavaScript 中修改 URL</a>
+            </li>
+        </ul>
+        <h2>history(更新歷史記錄不是跳轉)</h2>
+        <ol>
+            <li>
+                <code>replaceState</code>更新當前歷史記錄的URL而不是創造一個新的
+            </li>
+            <li>
+                <code>pushState</code>將當前URL更新為新歷史紀錄
+            </li>
+        </ol>
+        <pre>
+            <code class="language-js">
+                history.replaceState(data, title ,url)
+                window.history.replaceState({ page: "1" }, "title", "/url.html");
+                window.history.pushState({ page: "1" }, "title", "/url.html");
+                history.back()      //往上一步移動
+                history.forward()   //往下一步移動
+                history.go(-1);     //移動到特定的歷史紀錄
+                history.length;     //總共瀏覽了幾個網頁
+            </code>
+        </pre>
+        <h2>上一頁/下一頁 監聽</h2>
+        <p>歷史紀錄被更動執行popstate 事件</p>
+        <pre>
+            <code class="language-js">
+                window.addEventListener('popstate', function(event) {
+                    ajax(page);
+                });
 
-        window.onpopstate = function(event){
-
-        }
-    </code>
-</pre>
-<h2>讀取目前的 state</h2>
-<pre>
-    <code class="language-js">
-        var currentState = history.state;
-    </code>
-</pre>
-<hr>
-<h2>參考</h2>
-<ul>
-    <li>
-        <a href="http://coolnuanfeng.github.io/history" target="_blank">history 实现无刷新更改url和页面内容</a>
-    </li>
-    <li>
-        <a href="http://www.zhangxinxu.com/study/201306/ajax-page-html5-history-api.html?area=huangpu" target="_blank">HTML5 history API与ajax分页实例页面</a>
-    </li>
-    <li>
-        <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/History_API" target="_blank">操控瀏覽器歷史紀錄</a>
-    </li>
-</ul>
-
+                window.onpopstate = function(event){..}
+            </code>
+        </pre>
+        <h2>讀取目前的 state</h2>
+        <pre>
+            <code class="language-js">
+                var currentState = history.state;
+            </code>
+        </pre>
+        <hr>
+        <h4>參考</h4>
+        <ul>
+            <li>
+                <a href="http://coolnuanfeng.github.io/history" target="_blank">history 实现无刷新更改url和页面内容</a>
+            </li>
+            <li>
+                <a href="http://www.zhangxinxu.com/study/201306/ajax-page-html5-history-api.html?area=huangpu" target="_blank">HTML5 history API与ajax分页实例页面</a>
+            </li>
+            <li>
+                <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/History_API" target="_blank">操控瀏覽器歷史紀錄</a>
+            </li>
+        </ul>
+    </body>
+</html>
+    

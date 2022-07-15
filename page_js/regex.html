@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/customPrism.css">
+        <link rel="stylesheet" href="../css/prism.css">
+        <script src="../js/prism.js"></script>
+    </head>
+    <body id="program">
+        <h2>正規表示法 Regular Expression (Regex)</h2>
+        <p>轉意字符</p>
+        <pre>
+            <code class="language-js">
+                \d              數字[0-9]
+                \w              英文,數字,下划線[a-z 0-9 _]
+                \s              空白符
+                \D              [^0-9]
+                \W              [^a-z 0-9 _]
+                \S              非空白字符
+                .               任意字符
+                \b              匹配词的边界。
+                \B              匹配非词边界，即在词的内部。
+                g               找全部
+                \d\d            找兩位數字
+                \d              找一位數字
+                +               有多少返回多少
+                \cX             表示Ctrl-[X]，其中的X是A-Z之中任一个英文字母，用来匹配控制字符。
+                [\b]            匹配退格键(U+0008)，不要与\b混淆。
+                \n              匹配换行键。
+                \r              匹配回车键。
+                \t              匹配制表符tab（U+0009）。
+                \v              匹配垂直制表符（U+000B）。
+                \f              匹配换页符（U+000C）。
+                \0              匹配null字符（U+0000）。
+                \xhh            匹配一个以两位十六进制数（\x00-\xFF）表示的字符。
+                \uhhhh          匹配一个以四位十六进制数（\u0000-\uFFFF）表示的unicode字符。
+                {n}             出現n次
+                [1-9]\d{7}      第一位1-9其中一個數字,後面七位0-9數字(電話)
+                {n,m}           最少n次最多m次
+                \d{4,10}        最少四到十位數字(qq號是五到十一位數字)
+                {1,}            最少1次最多不限
+                {0,1}           最少0次最多1次
+                +               最少1次最多不限
+                ?               最少0次最多1次
+                *               最少0次最多不限
+                m               会识别换行符
+                /i              忽略大小写
+                /g              全文查找出现的所有匹配字符
+                /m              多行查找
+                /gi             全文查找、忽略大小写
+                /ig             全文查找、忽略大小写
+            </code>
+        </pre>
+        <p>字串函數</p>
+        <pre>
+            <code class="language-js">
+                search()     字串的位置
+                match()      匹配返回內容，否则返回null
+                replace()    替換
+                test()       匹配返回true，否则返回 false
+                exec()       匹配返回数组，否则返回 null
+            </code>
+        </pre>
+        <p>返回true<span>test</span></p>
+        <pre>
+            <code class="language-js">
+                var qq = '212000';
+                var reg = /[0-9]{4,14}/;
+                reg.test(qq); //true
+            </code>
+        </pre>
+        <p>返回数组<span>exec</span></p>
+        <pre>
+            <code class="language-js">
+                /e/.exec("The best things in life are free!"); 
+                //[0: "e",groups: undefined,index: 2,input: "The best things in life are free!"]
+            </code>
+        </pre>
+        <p>替換<span>replace</span></p>
+        <pre>
+            <code class="language-js">
+                var str='abc aaa dfg';
+                var re=/a/g;
+                alert(str.replace(re,'0')); //0bc 000 dfg
+            </code>
+        </pre>
+        <p>返回匹配內容<span>match</span></p>
+        <pre>
+            <code class="language-js">
+                var s = 'abba';
+                var r = /a/g;
+                s.match(r) // ["a", "a"]
+                r.exec(s) // ["a"]
+            </code>
+        </pre>
+        <p>查詢<span>a</span></p>
+        <pre>
+            <code class="language-js">
+                var re=new RegExp('a');
+                var re=/a/;  //同上
+                var str='abcd';
+                console.log(str.search(re)); //0
+            </code>
+        </pre>
+        <p>忽略大小寫<span>i</span></p>
+        <pre>
+            <code class="language-js">
+                var re=new RegExp('a','i');
+                var re=/a/i;  //同上
+                var str='Abcd';
+                console.log(str.search(re)); //0
+            </code>
+        </pre>
+        <p>數字0-9<span>\d</span></p>
+        <pre>
+            <code class="language-js">
+                var re=/\d+/g;
+                var str='Abcd 12 55 zgzvvzz55';
+                console.log(str.match(re));  // ['12', '55', '55']
+            </code>
+        </pre>
+        <p>方括號裡的任一個數都可成立<span>[]</span></p>
+        <pre>
+            <code class="language-js">
+                var str='apc bpc cpc dpc';
+                var re=/[ab]pc/g;
+                console.log(str.match(re));  //['apc', 'bpc']
+            </code>
+        </pre>
+        <p>範圍符<span>[-]</span></p>
+        <pre>
+            <code class="language-js">
+                var str='apc bpc cpc dpc';
+                var re=/[a-c]pc/g;
+                console.log(str.match(re)); //['apc', 'bpc', 'cpc']
+
+                //不代表1到31，只代表1到3。
+                [1-31]
+            </code>
+        </pre>
+        <p>排除符<span>[^]</span></p>
+        <pre>
+            <code class="language-js">
+                var str='apc bpc cpc dpc';
+                var re=/[^a-c]pc/g;
+                console.log(str.match(re)); //['dpc']
+            </code>
+        </pre>
+        <p>任意字符<span>.</span></p>
+        <pre>
+            <code class="language-js">
+                var str='catctc-t';
+                var re=/c.t/g;
+                console.log(str.match(re)); //['cat', 'c-t']
+
+                //[^]表示匹配一切字符
+                //(.)是不包括换行符的
+                var s = 'Please yes\nmake my day!';
+                s.match(/yes.*day/g)     // null
+                s.match(/yes[^]*day/g)   // [ 'yes\nmake my day']
+            </code>
+        </pre>
+        <p>選擇符<span>|</span></p>
+        <pre>
+            <code class="language-js">
+                var str='911 119 12231';
+                var re=/11|22/g;
+                console.log(str.match(re)); //['11', '11', '22']
+                console.log(re.test(str));  //true
+            </code>
+        </pre>
+        <p>位置字符<span>^,$</span></p>
+        <pre>
+            <code class="language-js">
+                // ^ 表示字符串的开始位置
+                // $ 表示字符串的结束位置
+                // 开始位置到结束位置只有test
+                /^test$/.test('test')        // true
+                /^test$/.test('test test')   // false
+            </code>
+        </pre>
+        <hr>
+        <h4>參考</h4>
+        <ul>
+            <li>
+                <a href="https://www.fooish.com/regex-regular-expression/" target="_blank">正規表示法 Regular Expression (Regex)</a>
+            </li>
+        </ul>
+    <body>
+</html>
