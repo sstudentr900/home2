@@ -18,14 +18,12 @@
                 .then((response) => {
                     //成功結果處理
 
-
                     //資料轉換
                     console.log(response.json());      //把資料轉成JSON格式
                     console.log(response.text());      //把資料轉成text格式(變成純字串)
                     console.log(response.blob());      //把資料轉成Blob物件
                     console.log(response.formData());  //把資料轉成FormData物件
                     console.log(response.formData());  //把資料轉成二進制數組
-
 
                     //找不到該網址跳頁到index
                     if(response.ok) return response.text();

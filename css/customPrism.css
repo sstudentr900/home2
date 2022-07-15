@@ -36,11 +36,11 @@
     margin: 16px 0;
     letter-spacing: 1px;
 }
-#program code{
+/* #program code{
     font-weight: bold;
     color: var(--title);
     padding: 3px;
-}
+} */
 /* #program b{
     line-height: 1.7;
     color: var(--title);

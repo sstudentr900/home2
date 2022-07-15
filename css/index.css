@@ -114,10 +114,10 @@ ul {
     list-style: none;
 }
 h4 {
-    line-height: 1.6;
+    line-height: 2;
 }
 p {
-    line-height: 1.4;
+    line-height: 1.6;
 }
 .flex {
     display: flex;
@@ -156,7 +156,7 @@ body.dark .index_top{
 .index_top .log a:hover,
 .index_top .log a{
     color: var(--title);
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     letter-spacing: 2px;
 }
@@ -226,12 +226,14 @@ body.dark .index_top .link .dark svg:nth-child(2){
     display: flex;
     justify-content: center;
     color: var(--text2);
+    font-size: 12px;
 }
 .index_footer .text+.text{
     margin-top: 10px;
 }
 .index_footer .text a{
     color: var(--title);
+    font-size: 15px;
 }
 .index_footer .text a:hover{
     color: var(--blue);
