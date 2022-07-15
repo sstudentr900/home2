@@ -1,0 +1,404 @@
+<style>
+    /*page_about**************/
+    .page_about {
+        padding: 0 20px 40px;
+        user-select: none;
+    }
+
+    .page_about .index_content {
+        max-width: 680px;
+        margin: auto;
+        flex-direction: column;
+    }
+
+    .page_about .index_content>div {
+        width: 100%;
+        margin-top: 24px;
+    }
+
+    .page_about .title {
+        background: rgb(15, 23, 42);
+        color: #fff;
+        padding: 10px 20px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+    body.dark .page_about .title{
+        background-color: rgb(34 46 72);
+    }
+    .page_about h4 {
+        font-size: 18px;
+        margin: 0;
+        color: var(--title);
+    }
+
+    .page_about h3 {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .page_about p {
+        font-size: 14px;
+        margin: 0;
+        color: var(--text);
+    }
+
+    .page_about .centent {
+        border: 1px solid var(--solid);
+        /* background: #fff; */
+        background-color: rgb(248 250 252);
+        padding: 40px;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+    body.dark .page_about .centent{
+        background-color: rgb(26 35 56);
+    }
+    .page_about .centent li+li {
+        margin-top: 25px;
+    }
+
+    .page_about .centent .date {
+        width: 220px;
+    }
+
+    .page_about .centent .text h4 {
+        color: var(--title);
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    .page_about .centent .text p+p {
+        margin-top: 2px;
+    }
+
+    .page_about .info {
+        padding: 20px 40px 0 0;
+    }
+
+    .page_about .info .flex {
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .page_about .info p {
+        font-size: 16px;
+        /* font-weight: bold; */
+    }
+
+    /* .page_about .info .left li+li {
+        margin-top: 8px;
+    } */
+
+    .page_about .info .right {
+        text-align: center;
+    }
+
+    .page_about .info .right .img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #dedede;
+        margin-bottom: 10px;
+    }
+
+    .page_about .info .right .img img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: auto;
+    }
+
+    .page_about .Talent .centent {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .page_about .Talent .centent li {
+        padding: 5px 10px;
+    }
+
+    .page_about .Talent .centent li+li {
+        margin-top: 0;
+    }
+
+    .page_about .Talent .centent li p {
+        font-size: 16px;
+    }
+
+    @media (max-width: 560px) {
+        .page_about .title {
+            text-align: center;
+        }
+
+        .page_about .flex {
+            display: block;
+        }
+
+        .page_about .info {
+            padding: 20px 0 0;
+        }
+
+        .page_about .info .flex {
+            display: flex;
+            flex-wrap: wrap-reverse;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .page_about .info .flex .left {
+            width: 100%;
+        }
+    }
+</style>
+<div class="page_about">
+    <div class="index_content">
+        <div class="info">
+            <div class="flex">
+                <div class="left">
+                    <ul>
+                        <li>
+                            <p>姓名：金育祥</p>
+                        </li>
+                        <!-- <li>
+                            <p>聯絡電話：0968513187</p>
+                        </li> -->
+                        <li>
+                            <p>line帳號：boyinginline</p>
+                        </li>
+                        <li>
+                            <p>電子信箱：sstudentr900@gmail.com</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <div class="img">
+                        <img src="https://i.imgur.com/xOOv0Aj.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="education">
+            <div class="title">
+                <h3>學歷</h3>
+            </div>
+            <div class="centent flex">
+                <div class="date">
+                    <h4>2005/06 ～ 2009/06</h4>
+                </div>
+                <div class="text">
+                    <h4>私立高苑科技大學(畢業)</h4>
+                    <p>科系名稱：資訊傳播(四技)</p>
+                </div>
+            </div>
+        </div>
+        <div class="experience">
+            <div class="title">
+                <h3>經歷</h3>
+            </div>
+            <ul class="centent">
+                <li>
+                    <div class="flex">
+                        <div class="date">
+                            <h4>2015/05 ～ 仍在職</h4>
+                        </div>
+                        <div class="text">
+                            <h4>明郅資訊</h4>
+                            <p>職務類別：前後端工程師</p>
+                            <p>工作地點：台南市安平區</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="date">
+                            <h4>2013/07 ～ 2015/05</h4>
+                        </div>
+                        <div class="text">
+                            <h4>安普國際資訊有限公司</h4>
+                            <p>職務類別：網頁設計師</p>
+                            <p>工作地點：台南市中西區</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="date">
+                            <h4>2011/03 ～ 2013/06</h4>
+                        </div>
+                        <div class="text">
+                            <h4>永新行</h4>
+                            <p>職務類別：多媒體動畫設計師</p>
+                            <p>工作地點：台南市安平區</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="Talent">
+            <div class="title">
+                <h3>技能專長</h3>
+            </div>
+            <ul class="centent">
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>html5</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>css3</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>Bootstrap</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>javaScript</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>vue</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>php</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>Laravel</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>mysql</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>python</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>photoshop</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex">
+                        <div class="text">
+                            <p>Illustration</p>
+                        </div>
+                        <div class="points">
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                            <div class="point"></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

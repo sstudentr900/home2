@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>表格內容動態篩選</title>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+       $("#condition").keyup(function(){
+	      $("table tbody tr")
+					.hide()
+					.filter(":contains('"+( $(this).val() )+"')")
+					.show();
+               console.log(":contains('"+( $(this).val() )+"')");
+	   }).keyup();
+  })
+</script>
+</head>
+<body>
+<div>
+<br/>
+篩選：
+<input id="condition" />
+<br/>
+</div>
+   <table>
+   <thead>
+      <tr>
+         <th>
+            No
+         </th>
+         <th>
+            Language
+         </th>
+         <th>
+            Price
+         </th></tr>
+  </thead>    
+      <tbody>
+      <tr>
+         <td>
+            001
+         </td>
+         <td>
+            C#
+         </td>
+         <td>
+            1000
+         </td>
+      </tr>
+      <tr>
+         <td>
+            002
+         </td>
+         <td>
+            Java
+         </td>
+         <td>
+            1000
+         </td>
+      </tr>
+      <tr>
+         <td>
+            003
+         </td>
+         <td>
+            C
+         </td>
+         <td>
+            900
+         </td>
+      </tr>
+      <tr>
+         <td>
+            004
+         </td>
+         <td>
+            C++
+         </td>
+         <td>
+            1000
+         </td>
+      </tr>
+      <tr>
+         <td>
+            005
+         </td>
+         <td>
+            PHP
+         </td>
+         <td>
+            1000
+         </td>
+      </tr>
+      <tr>
+         <td>
+            006
+         </td>
+         <td>
+            Perl
+         </td>
+         <td>
+            900
+         </td>
+      </tr>
+      <tr>
+         <td>
+            007
+         </td>
+         <td>
+            PASCAL
+         </td>
+         <td>
+            800
+         </td>
+      </tr>
+      <tr>
+         <td>
+            008
+         </td>
+         <td>
+            Basic
+         </td>
+         <td>
+            500
+         </td>
+      </tr>
+      </tbody>
+   </table>
+</body>
+</html>

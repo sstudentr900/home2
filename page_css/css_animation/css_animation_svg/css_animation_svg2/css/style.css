@@ -1,0 +1,163 @@
+svg {
+  display: block;
+  margin: 2rem auto;
+  width: 75%;
+}
+@media screen and (min-width: 768px) {
+  svg {
+    margin-top: 2rem;
+    width: 50%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  svg {
+    margin-top: 3rem;
+  }
+}
+
+.cls-1 {
+  fill: #d8568b;
+}
+
+.cls-2 {
+  fill: #d9d9fe;
+}
+
+.cls-3,
+.cls-4 {
+  fill: none;
+  stroke: #494982;
+  stroke-linecap: round;
+  stroke-width: 2px;
+}
+
+.cls-3 {
+  stroke-linejoin: round;
+}
+
+.cls-4 {
+  stroke-miterlimit: 10;
+}
+
+.cls-5 {
+  fill: #494982;
+}
+
+#floatingIsland {
+  animation: hideshow 4s ease-in;
+}
+
+#Turbine {
+  animation: rotate 8s linear infinite 2s;
+  transform-origin: 145px 92.5px;
+}
+
+.cloud {
+  stroke-linejoin: round;
+}
+.cloud-1 {
+  animation: moveRight 10.5s linear infinite 2s;
+}
+.cloud-2 {
+  animation: moveRight 9s linear infinite 2s;
+}
+.cloud-3 {
+  animation: moveRight 10s linear infinite 3.5s;
+}
+.cloud-4 {
+  animation: moveRight 11.5s linear infinite 0.5s;
+}
+.cloud-5 {
+  animation: moveRight 10s linear infinite 2.5s;
+}
+.cloud-6 {
+  animation: moveRight 11.5s linear infinite 1.5s;
+}
+.cloud-7 {
+  animation: moveRight 10.5s linear infinite 1.5s;
+}
+.cloud-8 {
+  animation: moveRight 10.5s linear infinite 3.5s;
+}
+
+.water path {
+  stroke-linejoin: round;
+}
+.water .drop {
+  stroke-linejoin: round;
+}
+.water .drop-1 {
+  animation: fall 2.5s linear infinite 0.4s;
+}
+.water .drop-2 {
+  animation: fall 3s linear infinite 0.4s;
+}
+.water .drop-3 {
+  animation: fall 3.5s linear infinite 0.5s;
+}
+.water .drop-4 {
+  animation: fall 3.5s linear infinite 0.2s;
+}
+.water .drop-5 {
+  animation: fall 2s linear infinite 0.5s;
+}
+.water .drop-6 {
+  animation: fall 2.5s linear infinite 0.1s;
+}
+.water .drop-7 {
+  animation: fall 2s linear infinite 0.2s;
+}
+.water .drop-8 {
+  animation: fall 3s linear infinite 0.2s;
+}
+
+@keyframes hideshow {
+  from {
+    opacity: 0;
+    transform: translatey(-15em);
+  }
+  to {
+    opacity: 1;
+    transform: translatey(0);
+  }
+}
+@keyframes moveRight {
+  0%,
+  10% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    transform: translateX(10em);
+    opacity: 0;
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
+@keyframes fall {
+  0%,
+  10% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    transform: translateY(11em);
+    opacity: 0;
+  }
+}

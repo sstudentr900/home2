@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+	//1.
+//	window.onload=function(){
+//	    var pic=document.getElementById('pic');
+//	    var link=document.getElementById('link');
+//	    console.log(pic.src);//絕對路徑,完整路徑
+//	    console.log(link.href);//絕對路徑,完整路徑
+//	}
+
+	//2.
+//	window.onload=function(){
+//	    var next=document.getElementById('next');
+//	    var prev=document.getElementById('prev');
+//	    var pic=document.getElementById('pic');
+//	    var n=1;
+//	    next.onclick=function(){
+//		n++;
+//		if(n>4) {
+//		    n=1;
+//		}
+//		pic.src="img/"+n+".jpg"
+//	    }
+//	    prev.onclick=function(){
+//		n--;
+//		if(n<1) {
+//		    n=4;
+//		}
+//		pic.src="img/"+n+".jpg"
+//	    }
+//	}
+
+	//3.
+	window.onload=function(){
+		var next=document.getElementById('next');
+		var prev=document.getElementById('prev');
+		var pic=document.getElementById('pic');
+		var img=['1','2','3','4']
+		var n=0;
+		next.onclick=function(){
+			n++;
+			if(n>img.length-1) {
+				n=0;
+			}
+			pic.src="img/"+img[n]+".jpg"
+		}
+		prev.onclick=function(){
+			n--;
+			if(n<0) {
+				n=img.length-1;
+			}
+			pic.src="img/"+img[n]+".jpg"
+		}
+	}
+    </script>
+</head>
+<body>
+<input id="next" type="button" value="上一張"/>
+<input id="prev" type="button" value="下一張"/>
+<img id="pic" src="img/1.jpg" alt="" />
+<a id="link" href="img/1.jpg"></a>
+
+<!--//死連結-->
+<a href="javascript:void(alert('Warning!!!'))">点我!</a>
+<a href="javascript:void(0)">点我!</a>
+</body>
+</html>

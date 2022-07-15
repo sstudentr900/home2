@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>https://www.oxxostudio.tw/articles/201908/js-skill-tips.html</title>
+</head>
+
+<body>
+    <script>
+        const text = '大家好，我叫做{{name}}，今年{{age}}歲，我是{{sex}}，很高興來到這裡';
+        const obj = {
+        name: 'oxxo',
+        age: 18,
+        sex: '男生'
+        };
+        const result = text.replace(/{{(.*?)}}/g, e => {
+        return obj[e.replace(/{|}/g,'')];
+        });
+    </script>
+</body>
+
+</html>

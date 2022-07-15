@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<video id="video1" preload="" autoplay="" loop="" poster="poster.png">
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+</video>
+<button class="btn" onclick="volume(-.1)">小聲</button>
+<button class="btn" onclick="playPause()">播放</button>
+<button class="btn" onclick="volume(.1)">大聲</button>
+
+<script>
+    var myVideo = document.getElementById("video1");
+    myVideo.volume = 0.5;
+    function playPause() {
+        if (myVideo.paused)
+            myVideo.play();
+        else
+            myVideo.pause();
+    }
+    function volume(value){
+        var vol = myVideo.volume;
+        console.log(vol);
+        vol += value;
+        //  test for range 0 - 1 to avoid exceptions
+        if (vol >= 0 && vol <= 1) {
+            // if valid value, use it
+            myVideo.volume = vol;
+        } else {
+            // otherwise substitute a 0 or 1
+            myVideo.volume = (vol < 0) ? 0 : 1;
+        }
+    }
+</script>
+</body>
+</html>

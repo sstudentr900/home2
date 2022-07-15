@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+    <style>
+	html,
+	body {
+	    margin: 0;
+	    padding: 0;
+	    font-family: Helvetica, Arial, sans-serif;
+	}
+
+	article {
+	    width: 700px;
+	    max-width: 90%;
+	    max-width: calc(100% - 40px);
+	    margin: 0 auto;
+	}
+
+	p {
+	    font-size: 1.2em;
+	}
+
+	header h1 {
+	    font-size: 70px;
+	    color: green;
+	    padding: 0;
+	    margin: 0;
+	    text-align: center;
+	}
+
+	@media all and (min-width: 30em) {
+	    header h1 {
+		font-size: 130px;
+	    }
+	}
+
+	@media all and (min-width: 70em) {
+	    header h1 {
+		font-size: 200px;
+	    }
+	}
+
+	@supports (mix-blend-mode: screen) {
+	    header {
+		padding: 0;
+		background-image: url(https://justmarkup.com/iceland/img/l/DSCF3732.JPG);
+		background-repeat: no-repeat;
+		background-size: cover;
+		width: 100%;
+		min-height: 56vw;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	    }
+	    header h1 {
+		color: rgba(55,255,255,0.8);
+		mix-blend-mode: screen;
+		line-height: 0.4;
+	    }
+	    @media all and (min-width: 70em) {
+		header {
+		    min-height: auto;
+		    height: 80vh;
+		}
+	    }
+	}
+    </style>
+</head>
+<body>
+<header>
+    <h1>Ice<br>land</h1>
+</header>
+<article>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, molestiae provident laudantium consequatur natus ut, sequi, numquam maiores dolor illum eos quibusdam laboriosam saepe nostrum iusto sint corporis distinctio, voluptatum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, molestiae provident laudantium consequatur natus ut, sequi, numquam maiores dolor illum eos quibusdam laboriosam saepe nostrum iusto sint corporis distinctio, voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, molestiae provident laudantium consequatur natus ut, sequi, numquam maiores dolor illum eos quibusdam laboriosam saepe nostrum iusto sint corporis distinctio, voluptatum.</p>
+</article>
+</body>
+</html>

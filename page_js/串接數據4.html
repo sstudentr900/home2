@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>https://css-tricks.com/html-templates-via-javascript-template-literals/</title>
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            padding: 2rem;
+        }
+
+        button {
+            margin-top: 2rem;
+        }
+
+        .author {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <button>Get Another</button>
+    <script>
+        //https://css-tricks.com/html-templates-via-javascript-template-literals/
+        //https://medium.com/@tforward/get-html-to-the-dom-fast-with-js-template-literals-insertadjacenthtml-24b8aa4e8807
+        //https://stackoverflow.com/questions/50763016/how-to-render-html-inside-template-literals
+        //https://ithelp.ithome.com.tw/articles/10192949
+        function displayQuote(data) {
+            return `
+                <h1>Quotes on Design</h1>
+                    <div class="quote">
+                    ${[data.content]}
+                    <span class="author">- ${[data.title]}</span>
+                    <a href="${[data.link]}">(link)</a>
+                </div>
+            `;
+        }
+
+        function getQuote() {
+            let app = document.querySelector('#app')
+            app.innerHTML='';
+            app.insertAdjacentHTML('beforeend',displayQuote({
+                'content':'content',
+                'title':'title',
+                'link':'link',
+            }))
+        }
+
+        document.querySelector("button").addEventListener("click", function() {
+            getQuote();
+        });
+
+        getQuote();
+    </script>
+</body>
+</html>

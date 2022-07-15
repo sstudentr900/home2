@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        //包成函數
+        function loadscript(url){
+            var script=document.createElement('script');
+            script.type='text/javascript';
+            script.src=url;
+            var head=document.getElementsByTagName('head')[0];
+            head.appendChild(script);
+        }
+
+        //動態執行JS
+        var flag=true;
+        if(flag){
+            var script=document.createElement('script');
+            script.type='text/javascript';
+            script.src='js/jq_plugin.js';
+            var head=document.getElementsByTagName('head')[0];
+            head.appendChild(script);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        //this 當前方法屬於誰她就是誰
+        //函數原本型態是window
+        function fn1() {
+            console.log(this); //window
+        }
+        window.show = function() {
+            alert(this);
+        }
+        show(); //window
+
+        oDiv.onclick = function() {
+            alert(this); //this指的是oDiv
+        }
+
+
+        //https://ithelp.ithome.com.tw/articles/10249940
+        //addEventListener需要用傳統函式
+        btn.addEventListener('click', () => {
+            console.log(this) //window
+        })
+        btn.addEventListener('click', function() {
+            console.log(this) //btn
+        })
+
+
+        //https://pjchender.dev/javascript/js-arrow-function
+        var button = document.querySelector('button');
+        var arrowFn = () => {
+            // 建立 function 時 this 指 Window
+            console.log(this.constructor.name); // 執行 function 時 this 指 Window
+        };
+        var fn = function() {
+            // 建立 function 時 this 指 Window
+            console.log(this.constructor.name); // 執行 function 時 this 指 HTMLButtonElement
+        };
+
+        button.addEventListener('click', arrowFn);
+
+
+        //对象的方法
+        var obj = {
+            foo: function() {
+                console.log(this);
+            }
+        };
+        obj.foo(); // obj
+
+
+        //arrow
+        var obj = {
+            foo: () => console.log(this)
+        }
+        obj.foo(); // window
+
+
+        //只要函数被赋给另一个变量，this的指向就会变。
+        var A = {
+            name: '张三',
+            describe: function() {
+                return '姓名：' + this.name;
+            }
+        }
+        var name = '李四';
+        var f = A.describe;
+        f(); // "姓名：李四"
+
+
+        //4forEach数组处理方法中的this
+        var o = {
+            v: 'hello',
+            p: ['a1', 'a2'],
+            f: function f() {
+                this.p.forEach(function(item) {
+                    console.log(this.v + ' ' + item);
+                });
+            }
+        }
+        o.f(); // undefined a1// undefined a2.
+
+
+        //4-1.使用中间变量
+        var o = {
+            v: 'hello',
+            p: ['a1', 'a2'],
+            f: function f() {
+                var that = this;
+                this.p.forEach(function(item) {
+                    console.log(that.v + ' ' + item);
+                });
+            }
+        }
+        o.f(); // hello a1// hello a2
+
+
+        //4-2.另一种方法是将this当作foreach方法的第二个参数，固定它的运行环境。
+        var o = {
+            v: 'hello',
+            p: ['a1', 'a2'],
+            f: function f() {
+                this.p.forEach(function(item) {
+                    console.log(this.v + ' ' + item);
+                }, this);
+            }
+        }
+        o.f(); // hello a1// hello a2
+
+
+        //5-2.閉包this指向window
+        var name = 'window';
+        var obj = {
+            name: 'obj',
+            fun: function() {
+                return function() {
+                    return this.name;
+                }
+            }
+        }
+        obj.fun()() //window
+
+        //5-3.閉包this指向obj
+        var name = 'window';
+        var obj = {
+            name: 'obj',
+            fun: function() {
+                var t = this;
+                return function() {
+                    return t.name;
+                }
+            }
+        }
+        obj.fun()() //obj
+
+        //5-3.同上
+        var name = 'window';
+        var obj = {
+            name: 'obj',
+            fun: (function() {
+                var t = this;
+                return function() {
+                    return t.name;
+                }
+            }).call(obj)
+        }
+        obj.fun() //obj
+
+        //5-3.閉包this指向obj
+        var name = 'window';
+        var obj = {
+            name: 'obj',
+            fun: function() {
+                return () => this.name;
+            }
+        }
+        obj.fun()() //obj
+
+
+        //5-4.call
+        var name = 'window';
+        var obj = {
+            name: 'obj',
+            fun: function() {
+                return function() {
+                    return this.name;
+                }
+            }
+        }
+        obj.fun().call(obj) //obj
+
+        //5-5.call
+        var name = 'window';
+        var obj = {
+            name: 'obj',
+            fun: function() {
+                return function() {
+                    return this.name;
+                }.call(this)
+            }
+        }
+        obj.fun() //obj
+
+
+        // https://ithelp.ithome.com.tw/articles/10267920
+        var demo = '全域變數';
+
+        function callDemo() {
+            console.log(this.demo);
+        }
+        var obj4 = {
+            demo: '物件2',
+            callDemo() {
+                console.log(this.demo);
+            },
+            innerObj: {
+                demo: '內層物件',
+                callDemo,
+            },
+            fuA() {
+                callDemo();
+            },
+        }
+        obj4.fuA(); //全域變數
+        obj4.callDemo(); //物件2
+        obj4.innerObj.callDemo(); //全域變數
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jq_basis_on</title>
+</head>
+
+<body>
+
+    <button class="add">add</button>
+    <script>
+        // monitorEvents(object[, events])方法监听特定对象上发生的特定事件。当这种情况发生时，会返回一个Event对象，包含该事件的相关信息。unmonitorEvents方法用于停止监听。
+        // monitorEvents(window, "resize");//单个事件
+        // monitorEvents(window, ["resize", "scroll"])//多个事件
+
+
+        // 当用户点击鼠标时:onclick() ,“dblclick”
+        // 当网页已加载时: onload() 
+        // 当图像已加载时: onunload() 
+        // 当鼠标移动到元素上时: onmouseover()、onmouseout()、onmousedown()、onmouseup(),”mousedown”, “mouseup”, “mousemove”, “mouseover”, “mouseout”, “mousewheel”
+        // 当输入字段被改变时:onchange() 
+        // HTML表单:onfocus() 
+        // 当用户触发按键时: ”keydown”, “keyup”, “keypress”, “textInput”
+        // touch：”touchstart”, “touchmove”, “touchend”, “touchcancel”
+        // control：”resize”, “scroll”, “zoom”, “focus”, “blur”, “select”, “change”, “submit”, “reset”
+
+
+
+        document.addEventListener("click", function(e) {
+            if (e.target.matches('.newBtn')) {
+                alert("这里是新添加的元素触发的事件");
+            }
+        });
+
+
+
+        //5.js
+        document.addEventListener("click", function(e) {
+            e.target.className.split(' ').forEach(function(v, i) {
+                if (v == 'newBtn') {
+                    alert("这里是新添加的元素触发的事件");
+                }
+            })
+        });
+
+
+        //3.js
+        var newTH = document.createElement('th');
+        newTH.addEventListener('click', function() {
+            console.log(12);
+        });
+        var table = document.getElementById('content');
+        table.appendChild(newTH);
+
+
+        //4.js
+        var newTH = document.createElement('th');
+        newTH.onclick = function() {
+            this.parentElement.removeChild(this);
+        };
+
+        var table = document.getElementById('content');
+        table.appendChild(newTH);
+    </script>
+</body>
+
+</html>

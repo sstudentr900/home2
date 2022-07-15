@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+	.active{background: yellow;}
+	#div1 div{width: 200px; height: 200px; background: #eee; display: none;}
+    </style>
+    <script>
+	//原代碼改面像對象
+	window.onload=function(){
+		var abtn = document.getElementsByTagName('input');
+		var div = document.getElementsByTagName('div');
+		for(var i=0; i<abtn.length; i++){
+			abtn[i].index = i;
+			abtn[i].onclick = function(){
+				for(i=0;i<abtn.length;i++){
+					abtn[i].className = '';
+					div[i].style.display='none';
+				}
+				div[this.index].style.display='block';
+				this.className = 'active';
+			}
+		}
+	}
+
+
+	//1.把函數放外面
+	//2.變量變全局
+	//3.onload變構造
+	//4.全局變屬性
+	//5.函數變方法
+	window.onload=function(){
+		var otab=new tab('div1')
+	}
+	function tab(id){
+		var odiv=document.getElementById(id);
+		this.abtn = odiv.getElementsByTagName('input');
+		this.div =odiv.getElementsByTagName('div');
+		var _this=this;
+		for(var i=0; i< this.abtn.length; i++){
+			this.abtn[i].index = i;
+			this.abtn[i].onclick = function(){
+				_this.tab(this);
+			};
+		}
+	}
+	tab.prototype.tab=function(obtn){
+		console.log(this);
+		for(i=0;i< this.abtn.length;i++){
+			this.abtn[i].className = '';
+			this.div[i].style.display='none';
+		}
+		this.div[obtn.index].style.display='block';
+		obtn.className = 'active';
+	}
+    </script>
+</head>
+<body>
+<div id="div1">
+<input type="button" class="active" value="1"/>
+<input type="button"  value="2"/>
+<input type="button"  value="3"/>
+<div style = "display: block;">111</div>
+<div >222</div>
+<div >333</div>
+</div>
+</body>
+</html>

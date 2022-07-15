@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_bsis_function-good</title>
+</head>
+
+<body>
+    <script>
+        //物件轉字串-----------------------------------------------------------------------------------------------
+        var Person = function(name, age) {
+            this.name = name
+            this.age = age
+        }
+
+        //console 需 toString 才換顯示  物件轉字串
+        Person.prototype.toString = function() {
+            return this.name
+        }
+        var a = new Person('aa', 55)
+        console.log('this' + a)
+
+
+
+        //count方法用于计数，输出它被调用了多少次------------------------------------------------------------------
+        function greet(user) {
+            console.count();
+            return 'hi ' + user;
+        }
+
+        greet('bob')
+            //  : 1
+            // "hi bob"
+
+        greet('alice')
+            //  : 2
+            // "hi alice"
+
+        greet('bob')
+            //  : 3
+            // "hi bob"
+
+
+
+        //    console.dir(arr);//顯示數組
+
+
+        //dir方法用来对一个对象进行检查（inspect）-----------------------------------------------------------------------------------------------
+        console.log({
+                f1: 'foo',
+                f2: 'bar'
+            }) // Object {f1: "foo", f2: "bar"}
+        console.dir({
+                f1: 'foo',
+                f2: 'bar'
+            })
+            // Object
+            //   f1: "foo"
+            //   f2: "bar"
+            //   __proto__: Object
+
+
+
+
+        //time用于计时-----------------------------------------------------------------------------------------------
+        // console.time('Array initialize');
+        // var array = new Array(1000000);
+        // for (var i = array.length - 1; i >= 0; i--) {
+        //     array[i] = new Object();
+        // };
+        // console.timeEnd('Array initialize');
+        // Array initialize: 1914.481ms
+
+
+
+        //debugger作用是设置断点。如果有正在运行的除错工具，程序运行到debugger语句时会自动停下----------------------------------------------------
+        for (var i = 0; i < 5; i++) {
+            console.log(i);
+            if (i === 2) debugger;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<title>Document</title>
+			<style>
+				div{
+					width: 50%;
+				}
+				div.aa {
+				   overflow: hidden;
+				   white-space: nowrap;
+				   text-overflow:ellipsis;
+				}
+				div.bb {
+				    display: -webkit-box!important;
+				     overflow: hidden;
+				     text-overflow:ellipsis;
+				     word-break:break-all;
+				     -webkit-box-orient:vertical;
+				     -webkit-line-clamp:2;
+				}
+			</style>
+		</head>
+		<body>
+			<p>單行</p>
+			<div class="aa">如何讓你遇見我如何讓你遇見我如何讓你遇見我如何讓你遇見我</div>
+			<br/>
+			<br/>
+			<p>多行</p>
+			<div class="bb">11111111111111111111111111111111111111111aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1111111</div>
+			<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+			  <script>
+			    $(function() {
+			      $("body").on("mouseenter", ".aa", function() {
+			        if (!this.title) this.title = $(this).text();
+			      });
+			    });
+			  </script>
+		</body>
+		</html>		

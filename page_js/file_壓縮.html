@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>https://segmentfault.com/a/1190000023486410</title>
+    <style>
+        img {
+            /* max-width: 200px; */
+        }
+    </style>
+</head>
+
+<body>
+    <input type="file" name="" id="imgfile">
+    <br>
+    <img id="origin">
+    <br>
+    <img id="output">
+    <script>
+        function file2DataUrl(blob, callback) {
+            var reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onload = function(e) {
+                callback(e.target.result);
+            }
+        }
+
+        function canvas2BlobX(canvas, callback, quality, type) {
+            canvas.toBlob(function(blob) {
+                callback(blob);
+            }, type || 'image/jpeg', quality || 0.8);
+        }
+
+        function canvas2Blob(canvas, callback, quality, type) {
+            canvas.toBlob(function(blob) {
+                callback(blob);
+            }, type || 'image/jpeg', quality || 0.8);
+        }
+
+        function image2Canvas(image) {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            canvas.width = image.naturalWidth;
+            canvas.height = image.naturalHeight;
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            return canvas;
+        }
+
+        function file2Image(file, callback) {
+            var image = new Image();
+            var url = URL.createObjectURL(file);
+            image.onload = function() {
+                callback(image);
+                URL.revokeObjectURL(url);
+            };
+            image.src = url;
+        }
+
+        function SimpleImageCompressor(options) {
+            // options = Object.assign({}, defaultOptions, options);
+            this.options = options;
+            this.file = options.file;
+            this.init = function() {
+                // var _this = this;
+                var file = this.file;
+                var options = this.options;
+                var isFunc = function(fn) {
+                    return typeof fn === 'function';
+                };
+                var isImageType = function(value) {
+                    return /^image\//.test(value);
+                };
+
+                if (!file || !isImageType(file.type)) {
+                    console.error('请上传图片文件!');
+                    return;
+                }
+
+                if (!isImageType(options.mimeType)) {
+                    options.mimeType = file.type;
+                }
+
+                file2Image(file, function(img) {
+                    var canvas = image2Canvas(img);
+                    file.width = img.naturalWidth;
+                    file.height = img.naturalHeight;
+                    options.beforeCompress(file);
+
+                    // canvas2Blob(canvas, function(blob) {
+                    //     blob.width = canvas.width;
+                    //     blob.height = canvas.height;
+                    //     console.log(blob.size)
+                    //     options.success(blob);
+                    // }, options.quality, options.mimeType)
+
+                    //壓縮圖片
+                    var maxsize = 65894;
+                    var loopTime = 10;
+                    (async function loop() {
+                        for (let i = 1; i < loopTime; i++) {
+                            var quality = ((loopTime - i) * 0.1).toFixed(1) * 1
+                            await new Promise(resolve => canvas2Blob(canvas, function(blob) {
+                                blob.width = canvas.width;
+                                blob.height = canvas.height;
+                                console.log(i, quality, blob.size, '>=' + maxsize)
+                                if (i == loopTime - 1) {
+                                    console.log('檔案太大')
+                                } else if (blob.size >= maxsize) {
+                                    resolve()
+                                } else {
+                                    console.log(blob)
+                                    options.success(blob);
+                                }
+                            }, quality, options.mimeType))
+                        }
+                    })()
+                })
+            }
+            this.init();
+        }
+
+        document.getElementById('imgfile').onchange = function() {
+            var [file] = this.files
+            var options = {
+                file: file,
+                quality: 0.6,
+                mimeType: 'image/jpeg',
+                // 压缩前回调
+                beforeCompress: function(result) {
+                    console.log('压缩之前图片尺寸大小: ', result.size);
+                    console.log('mime 类型: ', result.type);
+                    // 将上传图片在页面预览
+                    file2DataUrl(result, function(url) {
+                        document.getElementById('origin').src = url;
+                    })
+                },
+                // 压缩成功回调
+                success: function(result) {
+                    // console.log('压缩之后图片尺寸大小: ', result.size);
+                    // console.log('mime 类型: ', result.type);
+                    // console.log('压缩率： ', (result.size / file.size * 100).toFixed(2) + '%');
+
+                    // 生成压缩后图片在页面展示
+                    file2DataUrl(result, function(url) {
+                        document.getElementById('output').src = url;
+                    })
+
+                    // 上传到远程服务器
+                    // SimpleImageCompressor.upload('/upload.png', result);
+                }
+            };
+
+            new SimpleImageCompressor(options);
+        }
+    </script>
+</body>
+
+</html>

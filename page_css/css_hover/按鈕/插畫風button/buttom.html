@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.box-link {
+	position: relative;
+	display: inline-block;
+	padding: 16px 25px 16px 29px;
+	font-size: .96em;
+	color: #fff;
+	background: url('red-texture.png') repeat center center / 70px 70px;
+	border-radius: 40px;
+	}
+	span {
+		z-index: 10;
+		position: relative;
+	}
+	.box-link:after {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		border-radius: 40px;
+		background: #1a1a1d;
+		bottom: 2px; top: 2px; right: 2px; left: 2px;
+		transition:.18s cubic-bezier(.62,.02,.34,1);
+	}
+	.box-link:hover:after {
+			bottom: 4px; top: 4px; right: 4px; left: 4px;
+	}
+</style>
+<body>
+	<a class="start-experience box-link red" href="#"><span>Explore <i>the</i> exhibition</span></a>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+	@import url("https://fonts.googleapis.com/css?family=Work+Sans:400,700");
+	body {
+	    font-family: "Work Sans", Arial, sans-serif;
+	}
+
+	.head {
+	    text-align: center;
+	    margin: 1rem 0;
+	}
+
+	.title {
+	    font-size: 5rem;
+	    font-weight: 700;
+	    margin: 0;
+	}
+
+	.subtitle {
+	    color: #777;
+	    font-size: 14px;
+	    font-weight: 300;
+	    margin: 0;
+	}
+
+	/*--- */
+	.cub {
+	    position: fixed;
+	    top: 50%;
+	    left: 50%;
+	    -webkit-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+	}
+
+	.body {
+	    position: relative;
+	    width: 200px;
+	    height: 200px;
+	    background-color: #1d9cb9;
+	    border-radius: 50%;
+	    overflow: hidden;
+	    z-index: 1;
+	}
+	.body:after, .body:before {
+	    content: "";
+	    position: absolute;
+	    top: 30px;
+	    left: -100px;
+	    width: 200px;
+	    height: 200px;
+	    background-color: #07475f;
+	    border-radius: 50%;
+	}
+	.body:before {
+	    left: auto;
+	    right: -100px;
+	}
+
+	.chest {
+	    position: absolute;
+	    top: 100px;
+	    left: 0;
+	    width: 200px;
+	    height: 100px;
+	    background-color: #07475f;
+	}
+
+	.fur {
+	    position: absolute;
+	    top: 150px;
+	    left: 50%;
+	    -webkit-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+	    display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    z-index: 10;
+	}
+	.fur:not(.mask):nth-child(odd) .fur-dot {
+	    background-color: #1d9cb9;
+	}
+	.fur.mask {
+	    top: 140px;
+	    z-index: 11;
+	}
+	.fur.mask .fur-dot {
+	    background-color: #07475f;
+	}
+	.fur.two {
+	    top: 160px;
+	    z-index: 9;
+	}
+	.fur.three {
+	    top: 170px;
+	    z-index: 8;
+	}
+	.fur .fur-dot {
+	    width: 20px;
+	    height: 20px;
+	    background-color: #82d0d0;
+	    border-radius: 50%;
+	}
+
+	.ears {
+	    position: relative;
+	}
+
+	.ear {
+	    position: absolute;
+	    top: 31px;
+	    width: 0;
+	    height: 0;
+	    border: 10px solid #82d0d0;
+	    border-width: 28px 30px;
+	}
+	.ear__left {
+	    left: -20px;
+	    border-color: #82d0d0 #82d0d0 transparent transparent;
+	    -webkit-transform: rotate(10deg);
+	    transform: rotate(10deg);
+	}
+	.ear__right {
+	    right: -20px;
+	    border-color: #82d0d0 transparent transparent #82d0d0;
+	    -webkit-transform: rotate(-10deg);
+	    transform: rotate(-10deg);
+	}
+
+	.eye {
+	    position: absolute;
+	    top: 60px;
+	    width: 60px;
+	    height: 60px;
+	    border-radius: 50%;
+	    background-color: #e5e2d2;
+	    z-index: 4;
+	}
+	.eye:after {
+	    content: "";
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    width: 35px;
+	    height: 35px;
+	    border-radius: 50%;
+	    border: 4px solid #000;
+	    border-color: transparent transparent #000;
+	    -webkit-transform: translate(-50%, -30px);
+	    transform: translate(-50%, -30px);
+	}
+	.eye__left {
+	    left: 15px;
+	}
+	.eye__right {
+	    right: 15px;
+	}
+
+	.beak {
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+	    transform: translate(-50%, -50%) rotate(45deg);
+	    border: 10px solid #fcbd58;
+	    border-color: #fcbd58 #bd8c36 #bd8c36 #fcbd58;
+	    z-index: 5;
+	}
+
+	.cheeks {
+	    position: relative;
+	}
+
+	.cheek {
+	    position: absolute;
+	    top: 130px;
+	    width: 40px;
+	    height: 40px;
+	    border-radius: 50%;
+	    background-color: #f16033;
+	    z-index: 6;
+	}
+	.cheek__left {
+	    left: -10px;
+	}
+	.cheek__right {
+	    right: -10px;
+	}
+
+	.wing {
+	    position: absolute;
+	    top: 120px;
+	}
+	.wing__left {
+	    left: -70px;
+	}
+	.wing__left .feather {
+	    border-bottom-left-radius: 20px;
+	}
+	.wing__left .feather.two {
+	    margin-left: 30px;
+	}
+	.wing__left .feather.three {
+	    margin-left: 60px;
+	}
+	.wing__right {
+	    right: -70px;
+	}
+	.wing__right .feather {
+	    border-bottom-right-radius: 20px;
+	}
+	.wing__right .feather.two {
+	    margin-right: 30px;
+	}
+	.wing__right .feather.three {
+	    margin-right: 60px;
+	}
+	.wing .feather {
+	    width: 140px;
+	    height: 25px;
+	    background-color: #82d0d0;
+	}
+	.wing .feather.two {
+	    width: 110px;
+	}
+	.wing .feather.three {
+	    width: 80px;
+	}
+
+    </style>
+</head>
+<body>
+<div class="head">
+    <h1 class="title">Owl Cub</h1>
+    <h4 class="subtitle">Daily CSS Images :: Day 01</h4>
+</div>
+<div class="cub">
+    <div class="head">
+	<div class="ears">
+	    <div class="ear ear__left"></div>
+	    <div class="ear ear__right"></div>
+	</div>
+	<div class="eyes">
+	    <div class="eye eye__left"></div>
+	    <div class="eye eye__right"></div>
+	</div>
+	<div class="beak"></div>
+    </div>
+    <div class="body">
+	<div class="chest"></div>
+	<div class="fur mask">
+	    <div class="fur-dot"></div>
+	    <div class="fur-dot"></div>
+	    <div class="fur-dot"></div>
+	    <div class="fur-dot"></div>
+	</div>
+	<div class="fur one">
+	    <div class="fur-dot"></div>
+	    <div class="fur-dot"></div>
+	    <div class="fur-dot"></div>
+	</div>
+	<div class="fur two">
+	    <div class="fur-dot"></div>
+	    <div class="fur-dot"></div>
+	</div>
+	<div class="fur three">
+	    <div class="fur-dot"></div>
+	</div>
+	<div class="cheeks">
+	    <div class="cheek cheek__left"></div>
+	    <div class="cheek cheek__right"></div>
+	</div>
+    </div>
+    <div class="wings">
+	<div class="wing wing__left">
+	    <div class="feather one"></div>
+	    <div class="feather two"></div>
+	    <div class="feather three"></div>
+	</div>
+	<div class="wing wing__right">
+	    <div class="feather one"></div>
+	    <div class="feather two"></div>
+	    <div class="feather three"></div>
+	</div>
+    </div>
+</div>
+</body>
+</html>

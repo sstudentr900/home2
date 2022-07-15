@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    .a{
+        display: -webkit-flex;
+        /*flex-direction: column;*/
+    }
+    .c{
+        flex:1;
+        color: #fff;
+        background-color: #666;
+        height: 500px;
+        border: 1px solid #aaa;
+        justify-content: center;
+        align-items: center;
+        display: -webkit-flex;
+    }
+    .d{
+        flex:1;
+        color: #fff;
+        background-color: #666;
+        height: 500px;
+        border: 1px solid #aaa;
+        display: -webkit-flex;
+    }
+    .b{
+        width: 150px;
+        margin-right: 10px;
+        color: #fff;
+        background-color: #666;
+        height: 500px;
+        border: 1px solid #aaa;
+    }
+    .b_one{
+        width: 50px;
+        height: 50px;
+        background-color: #9f1006;
+    }
+    .d_one{
+        width: 250px;
+        height: 150px;
+        background-color: #9f1006;
+        align-self: flex-end;
+    }
+    .aa{
+        -webkit-flex-wrap:wrap;
+        display: -webkit-flex;
+    }
+    .bb{
+       width: 500px;
+    height: 200px;
+        background-color: #999;
+        margin-right: 10px;
+        margin-top: 20px;
+    }
+</style>
+<body>
+<div class="a">
+    <div class="b"></div>
+    <div class="c">
+        <div class="b_one"></div>
+    </div>
+    <div class="d">
+        <div class="d_one">
+        </div>
+    </div>
+</div>
+<div class="aa">
+    <div class="bb"></div>
+    <div class="bb"></div>
+    <div class="bb"></div>
+    <div class="bb"></div>
+    <div class="bb"></div>
+    <div class="bb"></div>
+</div>
+</body>
+</html>

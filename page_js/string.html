@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_bsis-string</title>
+</head>
+
+<body>
+    <script>
+        //string template-------------------------------------------------------------------------------------
+        //http://javascript.ruanyifeng.com/
+        //https://www.youtube.com/watch?v=pr7JFQaAYjg
+        //https://ithelp.ithome.com.tw/articles/10222207
+
+        //``
+        // const sql = `SELECT *FROM TABLE WHERE NAME='${name}'`
+
+        //``接在函式名稱後面，直接變成傳入函式的參數
+        let tmp = 'apple,banana,candy,dock,element'
+        let arr1 = tmp.split(',')
+        let arr2 = tmp.split `,` // 省了兩個字元！
+
+        //strin--------------------------------------------------------------------------------
+        //字符串分行會報錯
+        //var x = "Hello
+        //World!";
+
+
+        //使用反斜杠就不會報錯--------------------------------------------------------------------------------
+        //var x = "Hello \
+        //World!";
+
+
+        //字串--------------------------------------------------------------------------------
+        //alert('abc'+12+5+'abc')//abc125abc
+        //alert('abc'+(12+5)+'abc')//abc17abc,()是優先算
+        var one = 1;
+        var two = 2;
+        var three = '3';
+        var result = one + two + three; // 会得到 "33" 而非 "123"
+
+
+        //转义--------------------------------------------------------------------------------
+        //    var x = 'It\'s alright';
+        //    var y = "He is called \"Johnny\"";
+        //    \'	单引号
+        //    \"	双引号
+        //    \\	反斜杠
+        //    \n	换行
+        //    \r	回车
+        //    \t	tab(制表符)
+        //    \b	退格符
+        //    \f	换页符
+
+
+        //數字转换为字符串--------------------------------------------------------------------------------
+        //String(100 - 23);//123
+        //(100 - 23).toString();//77
+        //[1,2,3,4].toString();//'1,2,3'
+
+
+        //日期转换为字符串--------------------------------------------------------------------------------
+        //String(Date());
+
+
+        //if自动转换类型--------------------------------------------------------------------------------
+        //var a=5;
+        //var b='5'
+        //alert(a==b);//true轉換類型比較
+        //alert(a===b);//false不轉換類型比較
+
+
+        //減法會自動轉換--------------------------------------------------------------------------------
+        //var a='5';
+        //var b='5'
+        //alert(a-b);//0減法會自動轉換
+        //alert(a+b);//55加法不會自動轉換
+
+
+        //null自動轉換--------------------------------------------------------------------------------
+        //5 + null    // 返回 5         null 转换为 0
+        //"5" + null  // 返回"5null"   null 转换为 "null"
+
+
+        //字串查找search,大小寫必須相符--------------------------------------------------------------------------------
+        //var str = "test String";
+        //str.search("Str");//5
+        //str.search("str");//-1
+
+
+        //match 傳回字串內相符的字,大小寫必須相符--------------------------------------------------------------------------------
+        //var str = "test String";
+        //alert(str.match("TEST"));//null
+        //alert(str.match("Str"));//Str
+        //()選擇範圍 (.)任意字 (*)重複 (?)最小次數 
+        // var a = '88<h2>aaaa</h2>66'.match(/<h2>(.*?)<\/h2>/);//<h2>aaaa</h2> 
+
+
+        //尋找某字串在字串內的位置,indexOf(尋找的字串,開始尋找的位置)--------------------------------------------------------------------------------
+        //var str = "test String";
+        //alert(str.indexOf("Str"));//5
+        //alert(str.indexOf("Str",6));//-1
+        //alert(str.indexOf("Str",4));//5
+
+
+        //從後往前找某字串在字串內的位置,lastIndexOf (尋找的字串,開始尋找的位置)--------------------------------------------------------------------------------
+        //var str = "test String";
+        //alert(str.lastIndexOf("Str"));//5
+        //alert(str.lastIndexOf("Str",2));//-1
+        //alert(str.lastIndexOf("Str",10));//5
+
+
+        //字串取代(replace),小寫必須相符　--------------------------------------------------------------------------------
+        //var str = "test String";
+        //alert(str.replace("string", "Text"));//test String
+        //alert(str.replace("String", "Text"));//test Text
+        //replace
+        // 'hello world'.replace('world', 'js')
+        //replace regex
+        // "a.b.c".replace(/\./g, '_'); //'a_b_c'
+
+
+        //傳回字串內某位置的字元(charAt),位置由0開始--------------------------------------------------------------------------------
+        //1.
+        //var str = "test String";
+        //alert(str.charAt(3));//t
+        //alert(str.charAt(7));//r
+        //2.索引位置来访问字符串
+        // var carname = 'Volvo XC60';
+        //carname[7]//c
+
+
+        //傳回字串內某位置區間的字串(substring & substr)--------------------------------------------------------------------------------
+        //substring(開始位置,結束位置不算進),substr(開始位置,字串長度)
+        //alert("0123456789".substring(4,6))//45
+        //alert("0123456789".substr(4,6))//456789
+
+
+        //取得切割字串(slice(開始位置,結束位置(不含该位置)))--------------------------------------------------------------------------------
+        //var str = "test String";
+        //alert(str.slice(5));//String
+        //alert(str.slice(0,4));//test
+        // "abcd".slice(0, 2); //'ab'
+
+
+        //substr()--------------------------------------------------------------------------------
+        //"Hello world!".substr(2,3)//llo
+        //"abcd".substr(0, 2); //'ab'
+
+
+        //分割字串(split(分割字串, 分割後各字串的字元數)),字符串转为数组--------------------------------------------------------------------------------
+        //"test String.split(""); //t,e,s,t, ,S,t,r,i,n,g
+        //"test String.split(" ",4); //test,String
+        //'aaa/bbb'.split('/')[0]; //aaa
+
+        //迴圈
+        var str = 'hello';
+        //forEach
+        Array.prototype.forEach.call(str, function(elem, i) {
+            console.log(i + ':' + elem);
+            // 0:h
+            // 1:e
+            // 2:l
+            // 3:l
+            // 4:o
+        });
+
+        //split
+        str.split('').forEach((elem, i) => {
+            console.log(i + ':' + elem);
+            // 0:h
+            // 1:e
+            // 2:l
+            // 3:l
+            // 4:o
+        });
+
+
+        //組合字串(concat)--------------------------------------------------------------------------------
+        //var strA = "test ";
+        //var strB = "String";
+        //alert(str1.concat(str2));
+        //2.
+        var one = 1;
+        var two = 2;
+        var three = '3';
+        var result = ''.concat(one, two, three); // 得到 "123"
+
+
+        //變更英文字大小寫
+        //var str = "test String";
+        //alert(str.toUpperCase());//TEST STRING
+        //alert(str.toLowerCase());//test string
+
+
+        //localeCompare方法用于比较两个字符串。它返回一个整数，如果小于0，表示第一个字符串小于第二个字符串；如果等于0，表示两者相等；如果大于0，表示第一个字符串大于第二个字符串。
+        //'apple'.localeCompare('banana')// -1
+        //'apple'.localeCompare('apple')// 0
+        //'B' > 'a' // false
+
+
+        //字串转成数字---------------------------------------------------------
+        var one = '1';
+        var two = '2';
+        var numberOne = Number(one); // 1
+        var numberTwo = parseInt(two); // 2
+        var numberthree = +one; // 1
+
+
+        //判斷字串---------------------------------------------------------
+        //http://kwcheng0119.pixnet.net/blog/post/47225252-javascript---%E5%88%A4%E6%96%B7%E5%AD%97%E4%B8%B2%E4%B8%AD%E6%98%AF%E5%90%A6%E5%90%AB%E6%9C%89%E6%9F%90%E5%80%8Bsubstring
+        if (pcnname.match('aggr') != null) {}
+        if (pcnname.indexOf('aggr') != -1) {}
+        if ('gs://www'.startsWith('gs://')) {}
+
+
+        //https://ithelp.ithome.com.tw/articles/10245184
+        const luggage = [
+            ['Original Cabin', 'Classic Cabin', 'Original Trunk S'],
+            ['Essential Cabin', 'Original Check-in M', 'Classic Check-in M'],
+            ['Original Trunk S', 'Hybrid Cabin S'],
+        ]
+
+        const allLuggage = [].concat(...luggage)
+        console.log(allLuggage)
+
+        const result = allLuggage.filter((item) => {
+            return item.match(/Cabin/g)
+        })
+
+        console.log(result) //["Original Cabin", "Classic Cabin", "Essential Cabin", "Hybrid Cabin S"]
+
+
+        //清除空白---------------------------------------------------------
+        //trim()//去除字符串两边的空白
+        //'  hello world  '.trim()// "hello world"
+
+        String.prototype.trim = function() {
+            return this.replace(/^\s+/, '').replace(/\s+$/, '');
+        }
+        var str = '\t\n test string  '.trim();
+        console.log(str == 'test string');
+    </script>
+
+</body>
+
+</html>

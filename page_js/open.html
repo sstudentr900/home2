@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //window.open(URL,name,specs,replace)
+        //開窗口
+        window.onload = function() {
+            var obtn = document.getElementById('btn');
+            obtn.onclick = function() {
+                window.open('http://yahoo.com.tw'); //另開頁
+                open('http://yahoo.com.tw', '_blank'); //另開頁
+                open('http://yahoo.com.tw', 'bb'); //命名都在同一頁
+                open('http://yahoo.com.tw', '_parent'); //當前顯示頁面
+                //第三參數用來設置窗口屬性
+                open('http://yahoo.com.tw', '_parent', 'width=300,height=300');
+            }
+        }
+
+        //開窗口賦予值
+        window.onload = function() {
+            var otext = document.getElementById('text1');
+            var obtn = document.getElementById('btn2');
+            obtn.onclick = function() {
+                //document.write('sdr');
+                var on = window.open('about:blank');
+                on.document.write(otext.value);
+            }
+        }
+
+        //關閉
+        window.onload = function() {
+            var obtn = document.getElementById('btn3');
+            obtn.onclick = function() {
+                window.close();
+            }
+        }
+
+        //窗口位置
+        var x = window.screenX || window.screenLeft;
+        var y = window.screenY || window.screenTop;
+        //IE==screenTop,火狐==screenY
+
+        //窗口大小(不包括工具栏和滚动条)
+        //	var w=window.innerWidth
+        //		|| document.documentElement.clientWidth
+        //		|| document.body.clientWidth;
+        //	var h=window.innerHeight
+        //		|| document.documentElement.clientHeight
+        //		|| document.body.clientHeight;
+        //IE==document.documentElement.clientWidth;
+        //IE==document.body.clientWidth;
+
+        //outerWidth(包括工具栏和滚动条)
+
+        //範例
+        var myWindow;
+
+        function openWin() {
+            myWindow = window.open('', 'aa', 'width=200,height=100');
+            //        myWindow.document.write("<p>这是我的窗口</p>");
+            //        myWindow.focus();
+            //        myWindow.opener.document.write("<p>这个是源窗口!</p>");
+            //        myWindow.document.write("<p>窗口名称为: " + myWindow.name + "</p>");
+            //        window.scrollBy(100,100);//滚动100个像素
+            window.pageXOffset(80); //窗口显示位置;
+            window.pageYOffset(80);
+        }
+        console.log(openWin());
+        myWindow.close(); //關閉窗口
+        //向opener窗口写文本（父窗口）
+        //myWindow.name--aa
+
+
+
+
+        //alert
+        window.alert(); //完整方式
+
+        //確認框
+        if (confirm('退出嗎')) {
+            alert('退出')
+        } else {
+            alert('不退出')
+        }
+
+        //輸入框,第二位參數是默認值
+        var a = prompt('你的名子', 'aa');
+        alert(a);
+
+        //顯示打印
+        print();
+
+        //顯示查找
+        find();
+    </script>
+</head>
+
+<body style="height: 2000px;">
+    <!--開窗口-->
+    <input id="btn" type="button" value="開窗口" />
+    <!--//開窗口賦予值-->
+    <textarea name="text" id="text1" cols="10" rows="40"></textarea><br/>
+    <input id="btn2" type="button" value="運行" />
+    <!--//關閉-->
+    <input id="btn3" type="button" value="關閉" />
+</body>
+
+</html>

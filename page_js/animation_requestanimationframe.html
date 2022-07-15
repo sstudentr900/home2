@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_basis_requestAnimationFrame</title>
+    <style>
+        #div {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div"></div>
+    <script>
+        function fadeIn(el) {
+            el.style.opacity = 0;
+
+            var last = +new Date();
+            var tick = function() {
+                el.style.opacity = +el.style.opacity + (new Date() - last) / 400;
+                last = +new Date();
+
+                if (+el.style.opacity < 1) {
+                    (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
+                }
+            };
+
+            tick();
+        }
+        var obj = document.getElementById('div');
+        fadeIn(obj);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        /*物件導向*/
+        var Person = function(name, gender, obj) {
+            this.name = name
+            this.gender = gender
+            this.object = obj
+            this.greeting = function() {
+                console.log('hellow,Im ' + this.name)
+            }
+            this.hello = function(person) {
+                console.log(person.name, this.name)
+            }
+            this.give = function(person) {
+                person.object = this.object
+                this.object = null
+            }
+        }
+        var person1 = new Person('john', 'male', 'banner')
+        var person2 = new Person('marry', 'female', 'null')
+        person1.hello(person2)
+        person1.give(person2)
+
+        //------------------------------------------------------------------------------------------------
+
+        //构造函数(new)
+        //函数体内部使用了this关键字，代表了所要生成的对象实例。
+        //生成对象的时候，必需用new命令，调用Vehicle函数。
+        //1.
+        //var myFunction = new Function("a", "b", "return a * b");
+        //myFunction(4, 3);//12
+        //// 等同于
+        //
+        //function add(x, y) {
+        //    return (x + y);
+        //}
+
+        //2.
+        //var foo = new Function(
+        //        'return "hello world"'
+        //);
+        //
+        //// 等同于
+        //
+        //function foo() {
+        //    return 'hello world';
+        //}
+        //// 等同于
+        //var foo = Function(
+        //        'return "hello world"'
+        //);
+
+        //3.
+        //function myFunction(arg1, arg2) {
+        //    this.firstName = arg1;
+        //    this.lastName  = arg2;
+        //}
+        //var x = new myFunction("John","Doe");
+        //x.firstName;// 返回 "John"
+
+        //new
+        //new命令的作用，就是执行构造函数，返回一个实例对象。
+        //var Vehicle = function (p) {
+        //    this.price = p;
+        //};
+        //var v = new Vehicle(500);
+        //var v = new Vehicle;//可以带括号，也可以不带括号
+
+        //避免出现不使用new命令、直接调用构造函数的情况
+        //var Vehicle = function (){
+        //    this.price = 1000;
+        //};
+        //var v = Vehicle();
+        //v.price// Uncaught TypeError: Cannot read property 'price' of undefined
+
+        //建構函數
+        function person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        var person = new person('andy', 27);
+        console.log(person.name); //andy
+
+        //預設值
+        function Person(name, age) {
+            this.name = name || 'person';
+            this.age = age || 18;
+        }
+        var p1 = new Person('andy', 27);
+        //p1.name = andy
+        var p2 = new Person();
+        //p2.name = person
+
+
+        //------------------------------------------------------------------------------------------------
+        //https://hahow.in/courses/586fae97a8aae907000ce721/discussions?item=5a706e51e77921001e62562d
+        //繼承(prototype)
+        var Person = function(name, age) {
+            this.name = name
+            this.age = age
+        }
+        Person.prototype.sayHello = function() {
+            console.log("Hello, I'm " + this.name)
+        }
+        Person.prototype.getHtml = function() {
+            return `<div class='person'>
+            <img src='https://openclipart.org/image/2400px/svg_to_png/202776/pawn.png'>
+            <h3> Person: ${this.name}<br>Age: ${this.age} years old </h3></div>`
+        }
+
+        // var Mary = new Person('Mary',40)
+        // Mary.sayHello()
+        // $("body").append(Mary.getHtml())
+
+        var Worker = function(name, age, work) {
+            Person.call(this, name, age) //呼叫母類初始
+            this.work = work //自訂額外屬性
+        }
+        Worker.prototype = Object.create(Person.prototype) //繼承父類
+        Worker.prototype.constructor = Worker.constructor //函數不會往父類找尋
+        Worker.prototype.sayWork = function() {
+            console.log(
+                `Hello, my name is ${this.name}, my work is ${this.work}`
+            )
+        }
+        Worker.prototype.getHtml = function() {
+            var html = ""
+            html += `
+            <div class='person worker'>
+                <img src='https://www.iconexperience.com/_img/g_collection_png/standard/512x512/worker.png'>
+                <h3> Worker: ${this.name}<br>Age: ${this.age} years old    </h3>
+                <h4> Work: ${this.work} </h4>
+            </div>
+                    `
+            return html
+        }
+
+        var John = new Worker("John", 22, "Engineer")
+        John.sayHello()
+        John.sayWork()
+        $("body").append(John.getHtml())
+
+        Worker.prototype.toString = function() {
+            return "[Worker] " + this.name
+        }
+        console.log(John + "")
+
+
+        ////prototype////
+        //每new一次就會使用toString函數性能較差
+        // function person(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.toString = function() {
+        //         return '[' + this.name + ',' + this.age + ']';
+        //     }
+        // }
+
+        //把toString函數分出去性能較優
+        // function person2(name, age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // person2.prototype.toString = function() {
+        //     return '[' + this.name + ',' + this.age + ']';
+        // }
+        // var p1 = new person2('andy', 27);
+        // console.log(p1.toString()); // [Justin, 35]
+    </script>
+</body>
+
+</html>

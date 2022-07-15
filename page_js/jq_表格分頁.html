@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>᭸ᅅв</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+</head>
+<body>
+	<table cellpadding="0" cellspacing="0" border="0">
+     <thead>
+            <tr>
+                <th>no </th><th>lan </th><th>time </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>c001</td><td>C#</td><td>80</td>
+            </tr>
+            <tr>
+                <td>c002</td><td>Java</td><td>70</td>
+            </tr>
+            <tr>
+                <td>c003</td><td>PHP</td><td>60</td>
+            </tr>
+            <tr>
+                <td>c004</td><td>Perl</td><td>50</td>
+            </tr>
+        </tbody>
+</table>
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		var $table = $('table');
+		var currentPage = 0;  //
+		var pageSize = 2;  //
+		//
+		$table.bind('paging', function()
+		{
+			$table.find('tbody tr').hide()
+				.slice(currentPage * pageSize, (currentPage + 1) * pageSize).show();
+		});
+		var sumRows = $table.find('tbody tr').length; 
+		var sumPages = Math.ceil(sumRows/pageSize);       
+		var $pager = $('<div class="page"></div>');  
+		for( var pageindex = 0; pageindex < sumPages; pageindex++ )
+		{
+			
+			$('<a href="#" ><span>'+ (pageindex+1) +'</span></a>')
+				.bind("click", { "newPage": pageindex }, function(event) 
+				{           
+					currentPage = event.data["newPage"];                  
+					$table.trigger("paging");             
+				})
+			   .appendTo($pager);          
+			$pager.append("  ");
+		}
+		$pager.insertAfter($table);    
+		
+		$table.trigger("paging");    
+		  
+	});
+	</script>
+</body>
+</html>

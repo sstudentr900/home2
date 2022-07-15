@@ -1,0 +1,40 @@
+- @cards = [6, 3, 10, 8, 1, 5, 2, 4, 7, 6, 8, 1, 9, 2, 3, 4, 5, 9, 7, 10];
+
+%form
+  %input{:id=>"randomize",
+  :checked=>"checked",
+  :type=>"checkbox"}
+  %label{:class=>"start-game",
+  :for=>"randomize"}
+    %span{:class=>"start-title"}
+      Click to start game
+  - (1..@cards.length/2).each do |x|
+    %input{:type=>"checkbox",
+    :class=>"cardpair-checkbox",
+    :id=>"cardpair#{x}"}
+  - (1..@cards.length/2).each do |x|
+    %div{:class=>"cardpair-hash",
+    :id=>"cardpairHash#{x}"}
+  - (0..@cards.length-1).each do |x|
+    %div{:class=>"card-hashtarget",
+    :name=>"card",
+    :id=>"cardhash#{x}"}
+  - (0..@cards.length-1).each do |x|
+    %div{:class=>"card-misstarget",
+    :name=>"card",
+    :id=>"misshash#{x}"}
+  %ul{:class=>"card-grid"}
+    - (@cards).each_with_index do |cardpair, index|
+      %li{:class=>"cardpair#{cardpair} card card#{index}"}
+        %a{:class=>"card-pair-miss",
+        :href=>"#misshash#{index}"}
+        %a{:class=>"card-back",
+        :href=>"#cardhash#{index}"}
+        %div{:class=>"card-front",
+        :for=>"cardpair#{cardpair}"}
+        %a{:class=>"card-pair-link",
+        :href=>"#cardpairHash#{cardpair}"}
+  - (@cards).each do |cardpair|
+    %label{:class=>"card-pair-label",
+     :for=>"cardpair#{cardpair}"}
+      #{cardpair}

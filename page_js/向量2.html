@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="mycanvas"></canvas>
+    <script>
+        var Vector = function(x, y) {
+            this.x = x
+            this.y = y
+        }
+        Vector.prototype.toString = function(v) {
+            //conso.log
+            return "(" + this.x + "," + this.y + ")"
+        }
+        Vector.prototype.set = function(x, y) {
+            this.x = x
+            this.y = y
+            return this
+        }
+        Vector.prototype.add = function(v) {
+            return new Vector(this.x + v.x, this.y + v.y)
+        }
+        Vector.prototype.sub = function(v) {
+            return new Vector(this.x - v.x, this.y - v.y)
+        }
+        Vector.prototype.mul = function(s) {
+            return new Vector(this.x * s, this.y * s)
+        }
+        Vector.prototype.length = function(s) {
+            return Math.sqrt(this.x * this.x + this.y * this.y)
+        }
+        Vector.prototype.equal = function(v) {
+            return (this.x == v.x) && (this.y == v.y)
+        }
+        Vector.prototype.clone = function() {
+            return new Vector(this.x, this.y)
+        }
+        Vector.prototype.move = function(x, y) {
+            this.x += x
+            this.y += y
+            return this
+        }
+        Vector.prototype.angle = function() {
+            return Math.atan2(this.y, this.x)
+        }
+
+        var canvas = document.getElementById('mycanvas')
+        var ctx = canvas.getContext('2d')
+        ww = canvas.width = window.innerWidth
+        wh = canvas.height = window.innerHeight
+
+        function drawVector(v, trans) {
+            ctx.beginPath()
+            ctx.moveTo(0, 0)
+            ctx.save()
+            ctx.rotate(v.angle(), 10)
+            ctx.fillText(v, v.length() / 2, 10)
+            ctx.lineTo(v.length(), 0)
+            ctx.lineTo(v.length() - 5, -4)
+            ctx.lineTo(v.length() - 5, 4)
+            ctx.lineTo(v.length(), 0)
+            ctx.strokeStyle = 'black'
+            ctx.lineWidth = 3
+            ctx.stroke()
+            ctx.restore()
+            if (trans) {
+                ctx.translate(v.x, v.y)
+            }
+        }
+
+        function draw() {
+            var v1 = new Vector(250, 0)
+            var v2 = new Vector(0, 200)
+            var v3 = v1.add(v2).mul(-1)
+            ctx.translate(ww / 2, wh / 2)
+            drawVector(v1, true)
+            drawVector(v2, true)
+            drawVector(v3, true)
+        }
+
+        draw()
+    </script>
+</body>
+
+</html>

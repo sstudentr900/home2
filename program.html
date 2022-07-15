@@ -1,0 +1,405 @@
+<style>
+    /*page_program**************/
+    .page_program{
+        padding: 20px 10px 40px;
+        user-select: none;
+    }
+    .page_program ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .page_program li {
+        width: 25%;
+        position: relative;
+        /* overflow: hidden; */
+        cursor: pointer;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .page_program li .out {
+        border: 1px solid var(--solid);
+        border-radius: 6px;
+        overflow: hidden;
+        /* transition: box-shadow 0.25s ease-out; */
+        /* background: #fff; */
+        /* background: #f8f8fc; */
+        /* background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='%23f1f5f9'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e"); */
+        /* background-color: rgb(248 250 252); */
+        height: 100%;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+        transition: box-shadow .3s;
+    }
+    body.dark .page_program li .out {
+        background-color: rgb(26 35 56);
+    }
+
+    /* .page_program li .out:hover {
+        transform: scale(1.05,1.05);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+    } */
+
+    .page_program li .text {
+        padding: 15px 15px 0 15px;
+        text-align: left;
+        color: var(--text);
+        /* min-height: 70px; */
+    }
+
+    .page_program li:hover .text {
+        opacity: 1;
+        transition: opacity 0.8s 0.3s;
+    }
+
+    .page_program li .text h4 {
+        margin: 0;
+        font-size: 18px;
+        color: var(--title);
+        font-weight: bold;
+    }
+
+    .page_program li .text p {
+        word-wrap: break-word;
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .page_program li .link {
+        /* border-top: 1px solid #dedede; */
+        padding: 8px 0 15px;
+        margin: 0 15px;
+        display: flex;
+    }
+
+    .page_program li .link a {
+        color: var(--button-text);
+        padding: 8px 14px;
+        font-size: 12px;
+        background: var(--button-bg);
+        box-sizing: border-box;
+        line-height: 1.2;
+        border-radius: 4px;
+        /* transition: 0.25s ease-out; */
+    }
+
+    /* .page_program li .link a:hover {
+        background: var(--blue);
+    } */
+
+    .page_program li .link a+a {
+        margin-left: 10px;
+        background: var(--button2-bg);
+        border: 1px solid var(--button2-solid);
+        color: var(--button2-text);
+    }
+
+    .page_program li .link a+a:hover {
+        background: var(--button2-bg-hover);
+        border: 1px solid var(--button2-solid-hover);
+        /* border: 1px solid var(--blue); */
+        color: var(--button2-text-hover);
+    }
+
+    .page_program li .img {
+        /* border-bottom: 1px solid #dedede; */
+        /* height: 160px; */
+        overflow: hidden;
+        position: relative;
+        font-size: 0;
+    }
+
+    .page_program li img {
+        /* position: absolute; */
+        width: 100%;
+        /* top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); */
+    }
+
+    @media (max-width: 1300px) {
+        .page_program li {
+            width: 33.333%;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .page_program li {
+            width: 50%;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .page_program li {
+            width: 100%;
+        }
+    }
+</style>
+<div class="page_program">
+    <div class="index_content">
+        <ul>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://i.imgur.com/el3zvtt.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>明郅資訊</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、JavaScript、AJAX
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版、RWD、Email
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../mjapp" target="_blank">前往此網頁</a>
+                        <a href="https://github.com/sstudentr900/mjapp" target="_blank">觀看原始碼</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://imgur.com/BUvRQdt.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>明郅資訊後台</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、AJAX、php、mysql
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版、文章發布上下架、後台登入
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="https://damp-hamlet-39499.herokuapp.com/" target="_blank">前往此網頁</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://imgur.com/FLqCHT2.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>Valeno</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、Vue Cli、mockAPI
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../valeno_vue/dist" target="_blank">前往此網頁</a>
+                        <a href="https://github.com/sstudentr900/valeno_vue" target="_blank">觀看原始碼</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://i.imgur.com/FZBribP.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>Racecourse</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、JavaScript
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版、RWD
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../horse" target="_blank">前往此網頁</a>
+                        <a href="https://github.com/sstudentr900/horse" target="_blank">觀看原始碼</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://imgur.com/2c4xtxx.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>kid</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、JavaScript
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版、RWD
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../kid" target="_blank">前往此網頁</a>
+                        <a href="https://github.com/sstudentr900/kid" target="_blank">觀看原始碼</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://i.imgur.com/Xkhkna2.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>明郅資訊2</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、JavaScript、AJAX
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版、RWD
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../mjapp2" target="_blank">前往此網頁</a>
+                        <a href="https://github.com/sstudentr900/mjapp2" target="_blank">觀看原始碼</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://i.imgur.com/3o3tSFt.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>國豐當舖</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、JavaScript
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版、RWD
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../loan" target="_blank">前往此網頁</a>
+                        <a href="https://github.com/sstudentr900/loan" target="_blank">觀看原始碼</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://i.imgur.com/NgSO1XY.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>維加斯</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、JavaScript
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版、RWD
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../vegas03" target="_blank">前往此網頁</a>
+                        <a href="https://github.com/sstudentr900/vegas03" target="_blank">觀看原始碼</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://i.imgur.com/wbFRpBn.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>ibow</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、JavaScript
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版、RWD
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../ibow" target="_blank">前往此網頁</a>
+                        <!---->
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://i.imgur.com/FwoxXUt.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>貼圖一版</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、JavaScript
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版、RWD
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../textures" target="_blank">前往此網頁</a>
+                        <a href="https://github.com/sstudentr900/textures" target="_blank">觀看原始碼</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://i.imgur.com/28yq63x.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>搶紅包</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、JavaScript
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../game_red" target="_blank">前往此網頁</a>
+                        <a href="https://github.com/sstudentr900/game_red" target="_blank">觀看原始碼</a>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="out">
+                    <div class="img">
+                        <img src="https://i.imgur.com/llrlu8T.jpg">
+                    </div>
+                    <div class="text">
+                        <h4>跑跑</h4>
+                        <p>
+                            <b>使用工具 :</b>
+                            HTML5、CSS3、JavaScript
+                        </p>
+                        <p>
+                            <b>製作內容 :</b>
+                            設計、切版
+                        </p>
+                    </div>
+                    <div class="link">
+                        <a href="../game_run" target="_blank">前往此網頁</a>
+                        <a href="https://github.com/sstudentr900/game_run" target="_blank">觀看原始碼</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

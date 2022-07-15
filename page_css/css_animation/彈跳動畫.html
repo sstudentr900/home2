@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+ul {
+    list-style: none;
+}
+
+li {
+    border: 1px solid #eee;
+    float: left;
+        width: 200px;
+    height: 200px;
+}
+
+.box{
+  position:relative; 
+}
+.box:before{
+  content:'';
+  position:absolute;
+  z-index:2;
+  top:60px;
+  left:50px;
+  width:50px;
+  height:50px;
+  background:#c00;
+  border-radius:2px;
+  transform: rotate(45deg);
+  -webkit-animation:box .8s infinite ; 
+}
+@-webkit-keyframes box{
+  0%{
+    top:50px;
+  }
+  20%{
+    border-radius:2px;
+  }
+  50%{
+    top:80px; 
+    border-bottom-right-radius:25px;
+  }
+  80%{
+    border-radius:2px;
+  }
+  100%{
+    top:50px;
+  }
+}
+.box:after{
+  content:'';
+  position:absolute;
+  z-index:1;
+  top:128px;
+  left:52px;
+  width:44px;
+  height:3px;
+  background:#eaeaea;
+  border-radius:100%;
+  -webkit-animation:shadow .8s infinite ; 
+}
+@-webkit-keyframes shadow{
+  0%,100%{
+    left:54px;
+    width:40px;
+    background:#eaeaea;
+  }
+  50%{
+    top:126px;
+    left:50px;
+    width:50px;
+    height:7px;
+    background:#eee;
+  }
+}
+
+.box2{
+  position:relative;
+  
+}
+.box2:before{
+  content:'';
+  position:absolute;
+  z-index:2;
+  top:60px;
+  left:50px;
+  width:50px;
+  height:50px;
+  background:#c00;
+  border-radius:0;
+  transform: rotate(45deg);
+  -webkit-animation:box2 .5s infinite ; 
+}
+@-webkit-keyframes box2{
+  0%{
+    top:50px;
+    transform: rotate(90deg);
+  }
+  20%{
+    border-radius:2px;
+  }
+  50%{
+    top:80px; 
+    transform: rotate(45deg);
+    border-bottom-right-radius:25px;
+  }
+  80%{
+    border-radius:2px;
+  }
+  100%{
+    top:50px;
+    transform: rotate(0deg);
+  }
+}
+.box2:after{
+  content:'';
+  position:absolute;
+  z-index:1;
+  top:128px;
+  left:52px;
+  width:44px;
+  height:3px;
+  background:#eaeaea;
+  border-radius:100%;
+  -webkit-animation:shadow .5s infinite ; 
+}
+@-webkit-keyframes shadow{
+  0%,100%{
+    left:54px;
+    width:40px;
+    background:#eaeaea;
+  }
+  50%{
+    top:126px;
+    left:50px;
+    width:50px;
+    height:7px;
+    background:#eee;
+  }
+}
+</style>
+
+<body>
+    <ul>
+        <li>
+            <div class="box"></div>
+        </li>
+        <li>
+        	<div class="box2"></div>
+        </li>
+    </ul>
+</body>
+
+</html>

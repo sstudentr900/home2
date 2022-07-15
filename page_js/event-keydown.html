@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+    <script>
+        //	1看鍵值
+        //	document.onkeydown=function(ev){
+        //	    var oevent=ev||event;
+        //	    alert(oevent.keyCode);
+        //}
+    </script>
+
+
+    <div id="div1" style="width: 100px;height: 100px;background: #ccc;position: absolute;"></div>
+    <script>
+        //鍵盤控制DIV
+        document.onkeydown = function(er) {
+            var oevent = er || event;
+            var odiv = document.getElementById('div1');
+            if (oevent.keyCode == 37) { //按左建
+                odiv.style.left = odiv.offsetLeft - 10 + 'px';
+            } else if (oevent.keyCode == 39) { //按右建
+                odiv.style.left = odiv.offsetLeft + 10 + 'px';
+            }
+        }
+    </script>
+
+
+    <!-- ctrl+enter鍵 -->
+    <textarea name="text1" id="text1" cols="30" rows="10"></textarea><br/>
+    <input id="text2" type="text" />
+    <input type="button" id="btn1" value="留言" />
+    <script>
+        window.onload = function() {
+            var obtn = document.getElementById('btn1');
+            var otext1 = document.getElementById('text1');
+            var otext2 = document.getElementById('text2');
+            obtn.onclick = function() {
+                otext1.value += otext2.value + '\n';
+                otext2.value = '';
+            }
+            otext2.onkeydown = function(ev) {
+                var oevent = ev || event;
+                if (oevent.ctrlKey && oevent.keyCode == 13) { //ctrl+enter鍵
+                    otext1.value += otext2.value + '\n';
+                    otext2.value = '';
+                }
+            }
+        }
+    </script>
+    <!--ctrl+enter-->
+    <!--http://stackoverflow.com/questions/1684196/ctrlenter-jquery-in-textarea-->
+    <script>
+        if ((event.keyCode == 10 || event.keyCode == 13) && (event.ctrlKey || event.metaKey)) {
+
+        }
+    </script>
+
+
+    <!--鍵盤有keycode和which差別-->
+    <!--keycode-->
+    <input type="text" id="KeyEvent" name="KeyEvent" value="" onkeypress="CheckMO();" />
+    <script type="text/javascript">
+        function ChkKey() {
+            kc = event.keyCode;
+            if (kc == 13) {
+                alert("您所輸入的按鍵為Enter");
+            }
+        }
+    </script>
+
+
+    <!--which-->
+    <!--https://api.jquery.com/event.which/-->
+    <script>
+        $("#whichkey").on("keydown", function(event) {
+            $("#log").html(event.type + ": " + event.which);
+        });
+    </script>
+
+
+
+    <!--複合鍵的判斷 -->
+    <!--http://erichuang223.blogspot.tw/2011/06/javascript_9712.html-->
+    <input type="text" id="KeyEvent2" name="KeyEvent" value="" onkeypress="getKeyValue(e);" />
+    <script>
+        function getKeyValue(e) {
+            s1.innerHTML = "";
+            if (event.shiftKey && event.keyCode != 16)
+                s1.innerHTML = "Shift一起被按下";
+            else if (event.ctrlKey && event.keyCode != 17)
+                s1.innerHTML = "Ctrl一起被按下";
+            else if (event.altKey && event.keyCode != 18)
+                s1.innerHTML = "Alt一起被按下";
+            s2.innerHTML = "鍵值 = " + event.keyCode;
+        }
+        //      document.body.onkeydown = getKeyValue;
+        //      event.ctrlKey 長按ctrl
+        //      event.keyCode 鍵號
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        a {
+            display: block;
+            background-color: #aaa;
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--1＿html寫法-->
+    <!--<a href="https://www.google.com/images/spin-32.gif" download="https://www.google.com/images/spin-32.gif">Download file</a>-->
+
+    <script>
+        //2.
+        fetch('http://somehost/somefile.zip').then(res => res.blob().then(blob => {
+            var a = document.createElement('a');
+            var url = window.URL.createObjectURL(blob);
+            var filename = 'myfile.zip';
+            a.href = url;
+            a.download = filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }));
+
+        //3.
+        var a = document.createElement('a');
+        var filename = 'myfile.zip';
+        a.href = 'http://yahoo.cpm.tw';
+        a.download = filename;
+        a.click();
+        var body = document.getElementsByTagName('body')[0];
+        body.appendChild(a);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
+        // var today = new Date();
+        // var dd = String(today.getDate()).padStart(2, '0');
+        // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        // var yyyy = today.getFullYear();
+        // today = yyyy + '-' + mm + '-' + dd;
+        // console.log(today);
+
+        // var today = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+        // console.log(today);
+
+
+
+        //前一天
+        var setDate = new Date();
+        setDate.setDate(setDate.getDate() - 1);
+        console.log(setDate.toISOString().slice(0, 10));
+
+
+
+        //https://pjchender.github.io/2017/12/27/js-javascript-date-time-method-%E6%97%A5%E6%9C%9F%E6%99%82%E9%96%93/
+
+        // 將取得的 timestamp 轉成可讀的時間
+        // var nowTime = 1513598707
+        // let date = new Date(nowTime * 1000)
+        // dataValues = [
+        // date.getFullYear(),
+        //     date.getMonth() + 1,
+        //     date.getDate(),
+        //     date.getHours(),
+        //      date.getMinutes(),
+        //     date.getSeconds(),
+        // ];
+        // console.log(dataValues);
+
+
+
+        //UTC世界協調時間(year,month,day,hour,minute,second)
+        // var utc = 1479772800000 //utc
+        // console.log(new Date(utc)) //台北標準時間
+        // console.log(new Date(utc).toLocaleString()) //2016/11/22
+        // console.log(new Date('2016-11-22').toLocaleString() == new Date(utc).toLocaleString())
+    </script>
+</body>
+
+</html>

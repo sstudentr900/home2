@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>https://hahow.in/courses/586fae97a8aae907000ce721/discussions?item=5a1e1755a2c4b000589dda23</title>
+    <style>
+        html {
+            background-color: #37382F;
+            background-image: url(https://2017.awiclass.monoame.com/img/form_ground.svg);
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: 0 80%;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        form {
+            background-color: #3d3e36;
+            color: white;
+            padding: 30px 100px;
+            display: flex;
+            flex-direction: column;
+            min-width: 300px;
+            letter-spacing: 1px;
+            border-bottom: 5px solid #DFFF47;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+        }
+        
+        form img {
+            width: 120px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        form>* {
+            margin-bottom: 15px;
+        }
+        
+        form h2 {
+            font-weight: normal;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        form input,
+        form textarea,
+        form select {
+            padding: 8px 15px;
+            font-size: 14px;
+            border-radius: 0;
+            opacity: 0.9;
+            outline: none;
+        }
+        
+        form input::-webkit-input-placeholder,
+        form textarea::-webkit-input-placeholder,
+        form select::-webkit-input-placeholder {
+            color: rgba(55, 56, 47, 0.4);
+        }
+        
+        form input:-ms-input-placeholder,
+        form textarea:-ms-input-placeholder,
+        form select:-ms-input-placeholder {
+            color: rgba(55, 56, 47, 0.4);
+        }
+        
+        form input::-ms-input-placeholder,
+        form textarea::-ms-input-placeholder,
+        form select::-ms-input-placeholder {
+            color: rgba(55, 56, 47, 0.4);
+        }
+        
+        form input::placeholder,
+        form textarea::placeholder,
+        form select::placeholder {
+            color: rgba(55, 56, 47, 0.4);
+        }
+        
+        form .recommand {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        
+        form .recommand label {
+            margin-right: 40px;
+            margin-left: 5px;
+        }
+        
+        form select,
+        form input[type='radio'] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        form input[type='radio'] {
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        
+        form input[type='radio']:checked {
+            background-color: #DFFF47;
+        }
+        
+        form button {
+            background-color: transparent;
+            padding: 8px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        form button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <form action="https://2017.awiclass.monoame.com/api/demo/bafeedck" method="post">
+        <img src="https://2017.awiclass.monoame.com/img/form_leaf.svg" />
+        <h2>請幫助我們變得更好</h2>
+        <input name="name" placeholder="你的名子" />
+        <select name="option">
+          <option value="" disabled="disabled" selected="selected">使用產品</option>
+          <option value="2">白毫烏龍</option>
+          <option value="3">茉莉綠茶</option>
+          <option value="4">伯爵紅茶</option>
+        </select>
+        <textarea name="comment" placeholder="使用心得" rows="8"></textarea>
+        <div class="recommand">
+            <input type="radio" name="recommand" value="yes" />
+            <label>會推薦給朋友</label>
+            <input type="radio" name="recommand" value="no" />
+            <label>不推薦</label>
+        </div>
+        <input type="hidden" name="json" value="" />
+        <div class="feedback"></div>
+        <button>送出意見  </button>
+        <button class="ajaxbtn">送出意見(AJAX) </button>
+    </form>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script>
+        var result = $("[name='option']").val()
+        console.log(result)
+            // -----------------------------------------
+        $('.ajaxbtn').click(function(evt) {
+            evt.preventDefault()
+            console.log('ajax送出')
+            post()
+        })
+
+        function post() {
+            //serialize();->title=frank&count=3
+            //serializeArray();->[{name:'title',value:'dd'}]
+            var data = $('form').serializeArray()
+            console.log(data)
+            data.find((obj) => obj.name == 'json').value = 'true'
+            console.log(data.find((obj) => obj.name == 'json').value = 'true')
+            $.ajax({
+                url: 'https://2017.awiclass.monoame.com/api/demo/feedback',
+                method: "post",
+                data: data,
+                success: function(res) {
+                    console.log('ajax result:')
+                    console.log(res)
+                    $('.feedback').text(res.response)
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

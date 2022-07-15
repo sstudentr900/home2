@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //https://ithelp.ithome.com.tw/articles/10195896--------------------------------------------------------------------------------
+        //bind 加入參數
+        function add(a, b) {
+            return a + b;
+        }
+        var add1 = add.bind(null, 1);
+        console.log(add1(2)); // 3
+        console.log(add1(4)); // 5
+
+        //傳統this
+        var foo = {
+            bar: 1,
+            eventBind: function() {
+                var _this = this;
+                $('.someClass').on('click', function(event) {
+                    console.log(_this.bar); //1
+                });
+            }
+        }
+
+        //改變this位置
+        var foo = {
+            bar: 1,
+            eventBind: function() {
+                $('.someClass').on('click', function(event) {
+                    console.log(this.bar); //1
+                }.bind(this));
+            }
+        }
+
+        //bind()
+        var counter = {
+            count: 0,
+            inc: function() {
+                this.count++;
+            }
+        };
+        //func是在全局环境中运行的，这时inc内部的this指向顶层对象window，所以counter.count是不会变的，反而创建了一个全局变量count。因为window.count原来等于undefined，进行递增运算后undefined++就等于NaN。
+        var func = counter.inc;
+        func();
+        counter.count // 0
+        count // NaN
+
+        //解决这个问题，可以使用this方法，将inc内部的this绑定到counter对象。
+        var func = counter.inc.bind(counter);
+        func();
+        counter.count // 1
+
+        //bind方法将inc方法内部的this，绑定到obj对象。结果调用func函数以后，递增的就是obj内部的count属性。
+        var obj = {
+            count: 100
+        };
+        var func = counter.inc.bind(obj);
+        func();
+        obj.count // 101
+
+        //bind比call方法和apply方法更进一步的是，除了绑定this以外，还可以绑定原函数的参数-------------------------------------------------------
+        var add = function(x, y) {
+            return x * this.m + y * this.n;
+        }
+        var obj = {
+            m: 2,
+            n: 2
+        };
+        var newAdd = add.bind(obj, 5);
+        newAdd(5) // 20
+            //上面代码中，bind方法除了绑定this对象，还将add函数的第一个参数x绑定成5，然后返回一个新函数newAdd，这个函数只要再接受一个参数y就能运行了。
+
+
+
+        //bind方法每运行一次，就返回一个新函数，这会产生一些问题。比如，监听事件的时候-------------------------------------------------------
+        //element.addEventListener('click', o.m.bind(o));
+        //正确的方法
+        //var listener = o.m.bind(o);
+        //element.addEventListener('click', listener);
+
+
+        //use strict 结合回调函数使用-------------------------------------------------------
+        //var counter = {
+        //    count: 0,
+        //    inc: function () {
+        //	        'use strict';
+        //	        this.count++;
+        //    }
+        //};
+        //function callIt(callback) {
+        //    callback();
+        //}
+        ////錯誤
+        //callIt(counter.inc)// TypeError: Cannot read property 'count' of undefined
+        ////修改
+        //callIt(counter.inc.bind(counter));
+        //counter.count // 1
+
+
+
+        //https://ithelp.ithome.com.tw/articles/10249601--------------------------------------------------------------------------------
+        var num = 999
+
+        var obj = {
+            num: 10
+        }
+
+        function showNum(a, b) {
+            console.log(this.num, a, b)
+        }
+
+        //this是window，回傳是在全域的num
+        showNum(20, 30) //999,20,30
+
+        //call方法
+        //會立即執行
+        //this是obj，回傳是obj的num
+        showNum.call(obj, 20, 30) //10,20,30
+
+        //apply方法
+        //傳入函式參數為陣列
+        //會立即執行
+        showNum.apply(obj, [20, 30]) //10,20,30
+
+
+        //bind方法
+        //不會自動執行，需要被呼叫
+        var newNum = showNum.bind(obj, 20, 30);
+        newNum() //10,20,30
+        newNum(2000, 3000) //不能再次傳入参數,最後回傳結果仍然是 10,20,30
+
+
+        //严格模式(strict mode)下, 在调用函数时第一个参数会成为 this 的值
+        //非严格模式(non-strict mode)下, 如果第一个参数的值是 null 或 undefined, 它将使用全局对象替代。
+        showNum.call(); //this是window，回傳是在全域的num //999, 10, 20
+        showNum.call(null, 10, 20); //this是window，回傳是在全域的num //999, 10, 20
+        showNum.call(undefined, 10, 20); //this是window，回傳是在全域的num //999, 10, 20
+        showNum.call(window, 10, 20); //this是window，回傳是在全域的num //999, 10, 20
+        showNum.call(obj) === obj; // true
+
+
+        //apply傳入參數為陣列，call 則為逐項傳入--------------------------------------------------------------------------------
+        //參考 https://medium.com/schaoss-blog/%E4%B8%80%E6%AC%A1%E6%90%9E%E6%87%82%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%A9%A6%E6%9C%80%E6%84%9B%E5%95%8F%E7%9A%84-apply-bind-call-708f57518776
+
+        let str = '12345'
+        Array.prototype.map.apply(str, [c => c ** 2]);
+        // [1, 4, 9, 16, 25 ]
+        Array.prototype.map.call(str, c => c ** 3);
+        // [1, 8, 27, 64, 125 ]
+
+
+        //參數相加-------------------------------------------------------------------------------
+        //參考 https://ithelp.ithome.com.tw/articles/10195896
+        //Array.from()： ES6 的語法，他的功能是 把類陣列物件轉換成陣列
+        var list = [1, 5, 8];
+
+        function add() {
+            return Array.from(arguments).reduce(function(sum, num) {
+                return sum + num;
+            });
+        }
+        console.log(add.call(null, 1, 2)); // 3
+        console.log(add.apply(null, list)); // 14
+
+
+        //簡易 Polyfill-------------------------------------------------------------------------------
+        //參考 https://ithelp.ithome.com.tw/articles/10195896
+        function bind(t, callback) {
+            console.log(t, callback)
+            var outerArgs = Array.from(arguments).slice(2);
+            console.log(outerArgs)
+            return function() {
+                var innerArgs = Array.from(arguments);
+                return callback.apply(t, outerArgs.concat(innerArgs));
+            }
+        }
+
+        function add() {
+            return Array.from(arguments).reduce(function(sum, num) {
+                return sum + num;
+            });
+        }
+
+        var addWithBind = bind(null, add, 1, 5);
+        console.log(addWithBind(8)); // 14
+
+
+        //apply() 找出数组最大元素--------------------------------------------------------------------------------
+        var a = [10, 2, 4, 15, 9];
+        Math.max.apply(null, a)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

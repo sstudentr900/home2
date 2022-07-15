@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+	//ID會重複
+	window.onload=function(){
+	    var otab=document.getElementById('tab1');
+	    var obtn=document.getElementById('btn1');
+	    var oname=document.getElementById('name');
+	    var oage=document.getElementById('age');
+	    var oldcolor = '';
+
+//	   alert( otab.getElementsByTagName('tbody')[0].getElementsByTagName('tr')[1].getElementsByTagName('td')[1].innerHTML);
+//	}
+	    //tBodies 表單
+	    //rows 幾行
+	    for(var i = 0; i<otab.tBodies[0].rows.length;i++){
+		otab.tBodies[0].rows[i].onmouseover=function(){
+		    oldcolor = this.style.background;
+		    this.style.background='green';
+		}
+		otab.tBodies[0].rows[i].onmouseout=function(){
+		    this.style.background=oldcolor;
+		}
+
+		if(i%2){
+		    otab.tBodies[0].rows[i].style.background='';
+		}else{
+		    otab.tBodies[0].rows[i].style.background='#ccc';
+		}
+
+	    }
+
+	    obtn.onclick=function(){
+		var otr = document.createElement('tr');
+		var otd = document.createElement('td');
+		//增加
+		otd.innerHTML=otab.tBodies[0].rows.length+1;
+		otr.appendChild(otd);
+
+		var otd = document.createElement('td');
+		otd.innerHTML=oname.value;
+		otr.appendChild(otd);
+
+		var otd = document.createElement('td');
+		otd.innerHTML=oage.value;
+		otr.appendChild(otd);
+
+		//刪除
+		var otd = document.createElement('td');
+		otd.innerHTML='<a href="javascript:;">刪除</a>' ;
+		otr.appendChild(otd);
+
+		otd.getElementsByTagName('a')[0].onclick=function(){
+		    otab.tBodies[0].removeChild(this.parentNode.parentNode);
+		}
+
+		otab.tBodies[0].appendChild(otr);
+
+	    }
+
+	}
+
+	//2刪除解決ID重複
+	window.onload=function(){
+	    var otab=document.getElementById('tab1');
+	    var obtn=document.getElementById('btn1');
+	    var oname=document.getElementById('name');
+	    var oage=document.getElementById('age');
+	    var id=otab.tBodies[0].rows.length+1;
+	    var oldcolor = '';
+
+	    //tBodies 表單
+	    //rows 幾行
+	    for(var i = 0; i<otab.tBodies[0].rows.length;i++){
+		otab.tBodies[0].rows[i].onmouseover=function(){
+		    oldcolor = this.style.background;
+		    this.style.background='green';
+		}
+		otab.tBodies[0].rows[i].onmouseout=function(){
+		    this.style.background=oldcolor;
+		}
+
+		if(i%2){
+		    otab.tBodies[0].rows[i].style.background='';
+		}else{
+		    otab.tBodies[0].rows[i].style.background='#ccc';
+		}
+
+	    }
+
+	    obtn.onclick=function(){
+		var otr = document.createElement('tr');
+		var otd = document.createElement('td');
+		//增加
+		otd.innerHTML=id++;
+		otr.appendChild(otd);
+
+		var otd = document.createElement('td');
+		otd.innerHTML=oname.value;
+		otr.appendChild(otd);
+
+		var otd = document.createElement('td');
+		otd.innerHTML=oage.value;
+		otr.appendChild(otd);
+
+		//刪除
+		var otd = document.createElement('td');
+		otd.innerHTML='<a href="javascript:;">刪除</a>' ;
+		otr.appendChild(otd);
+
+		otd.getElementsByTagName('a')[0].onclick=function(){
+		    otab.tBodies[0].removeChild(this.parentNode.parentNode);
+		}
+
+		otab.tBodies[0].appendChild(otr);
+
+	    }
+
+	}
+    </script>
+</head>
+<body>
+姓名:<input id="name" type="text"/>
+年齡:<input id="age" type="text"/>
+<input id='btn1' type="button" value="增加"/>
+<table id="tab1" border="1" width="500">
+    <thead>
+	<td>ID</td>
+	<td>姓名</td>
+	<td>年齡</td>
+	<td>操作</td>
+    </thead>
+    <tbody>
+	<tr>
+	    <td>1</td>
+	    <td>a</td>
+	    <td>9</td>
+	    <td></td>
+	</tr>
+	<tr>
+	    <td>2</td>
+	    <td>h</td>
+	    <td>8</td>
+	    <td></td>
+	</tr>
+	<tr>
+	    <td>3</td>
+	    <td>s</td>
+	    <td>3</td>
+	    <td></td>
+	</tr>
+	<tr>
+	    <td>4</td>
+	    <td>d</td>
+	    <td>5</td>
+	    <td></td>
+	</tr>
+	<tr>
+	    <td>5</td>
+	    <td>f</td>
+	    <td>4</td>
+	    <td></td>
+	</tr>
+    </tbody>
+</table>
+</body>
+</html>

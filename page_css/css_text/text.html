@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+h1 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 2.5em;
+    line-height: 1.5em;
+    letter-spacing: -0.05em;
+    margin-bottom: 20px;
+    padding: .1em 0;
+    color: #444;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+h1:before,
+h1:after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    height: 1px;
+    vertical-align: middle;
+    background: #f0f0f0;
+}
+
+h1:before {
+    left: -.5em;
+    margin: 0 0 0 -50%;
+}
+
+h1:after {
+    left: .5em;
+    margin: 0 -50% 0 0;
+}
+
+h1 > span {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+h2 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 2.1em;
+    line-height: 1.4em;
+    letter-spacing: normal;
+    margin-bottom: 20px;
+    padding: .1em 0;
+    color: #444;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+}
+
+p {
+    display: block;
+    font-size: 1.35em;
+    line-height: 1.5em;
+    margin-bottom: 22px;
+}
+
+p.first:first-letter,
+.dropcap {
+    float: left;
+    font-size: 4.8em;
+    padding: 2px;
+    font-family: Georgia, Tahoma, sans-serif;
+    margin-right: 10px;
+    line-height: 0.35em;
+}
+
+p.altdrop:first-letter,
+.dropcap-alt {
+    float: left;
+    background: #434343;
+    color: #fff;
+    font-size: 2.2em;
+    padding: 10px 14px;
+    margin-right: 8px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.pull {
+    display: block;
+    float: right;
+    width: 28%;
+    padding: 16px;
+    margin-bottom: 1.25em;
+    background: #edefec;
+    color: #656565;
+    font-style: italic;
+    font-size: 1.65em;
+    line-height: 1.55em;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+blockquote {
+    color: #909090;
+    font-size: 1.35em;
+    line-height: 1.5em;
+    font-style: italic;
+    border-left: 5px solid #ab9f5c;
+    padding: 12px 20px;
+    margin-left: 20px;
+    margin-bottom: 30px;
+    quotes: none;
+}
+
+.fancyamp {
+    font-family: 'Gabriela', 'Trebuchet MS', serif;
+    font-size: 1.6em;
+}
+
+a {
+    color: #639f3b;
+    text-decoration: none;
+}
+
+a:hover {
+    background: #baff90;
+    color: #3c5331;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    padding: 1px 2px;
+    margin: 0 -2px;
+    z-index: 99999;
+    text-decoration: none;
+}
+
+.highlight {
+    background: #ffffaa;
+    padding: 1px 2px;
+}
+
+.notice {
+    display: block;
+    padding: 12px 20px;
+    background: #fff5af;
+    color: #a79b44;
+    text-shadow: 1px 1px 0 #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+</style>
+
+<body>
+	<a href="http://designshack.net/articles/css/drop-caps-and-other-paragraph-text-effects-using-css3/">link</a>
+    <h1>Stylish CSS-Only Paragraph Effects</h1>
+    <p class="first">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ornare vehicula felis adipiscing euismod. Mauris vestibulum vel odio tincidunt molestie. Suspendisse vestibulum, justo <span class="highlight">non tempor gravida</span>, lectus eros auctor metus, eu congue eros turpis eget nunc.</p>
+    <p class="pull">Vestibulum felis lacus, ornare et enim vitae, tincidunt fringilla odio.</p>
+    <p class="bigger">Nulla vel nisl ut risus malesuada volutpat ac id nunc. Vestibulum felis lacus, ornare et enim vitae, tincidunt fringilla odio. Maecenas varius felis in elit ornare, dignissim faucibus felis lobortis. </p>
+    <p>Vivamus et dolor massa. Suspendisse mattis vestibulum arcu, ullamcorper vestibulum sapien auctor ac. Nulla dignissim, nulla ut cursus ultricies, nisi libero rutrum nisl, et luctus sem nibh nec dolor. Maecenas <a href="#">pulvinar convallis</a> erat, a convallis neque aliquet vitae.</p>
+    <p>Proin in turpis non tellus ultricies porta. Vestibulum ac urna adipiscing, posuere tellus at, <span class="fancyamp">&</span> mollis tortor.</p>
+    <blockquote>Quisque dictum, mi convallis tempus viverra, leo dolor convallis turpis, tincidunt tincidunt nunc lorem sit amet quam. In augue sapien, gravida non eros at, accumsan fermentum est. Maecenas malesuada tempus orci, in pellentesque tellus sodales sit amet.</blockquote>
+    <p class="notice"><strong>Notice:</strong> Quisque vestibulum blandit magna, non varius lectus consequat et. Sed elementum dui elit, sit amet venenatis massa faucibus tempus.</p>
+    <p><span class="dropcap-alt">N</span>ulla tristique aliquet sem, sed accumsan tellus. Phasellus dictum velit et quam pulvinar commodo. Vestibulum gravida ipsum malesuada nisl varius, ac <a href="#">feugiat sapien volutpat</a>. Fusce a nibh ac dui sagittis elementum. Vestibulum augue risus, semper a sollicitudin sit amet, consequat vel sapien. Nunc commodo elit eu turpis lobortis sollicitudin.</p>
+    <p class="first bigger">In sollicitudin felis ac massa suscipit accumsan. Praesent tempus justo viverra eleifend congue. Praesent blandit sollicitudin orci, sed tincidunt arcu adipiscing vitae.</p>
+    </div>
+</body>
+
+</html>

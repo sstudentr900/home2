@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_bsis_function-good</title>
+</head>
+
+<body>
+    <script>
+        //fadeOut
+        function fadeOut(el, ms) {
+            if (ms) {
+                el.style.transition = 'opacity ' + ms + 'ms';
+                el.addEventListener(
+                    'transitionend',
+                    function(event) {
+                        // el.style.display='none';
+                    }, false
+                )
+            }
+            el.style.opacity = '0';
+        }
+
+        function fadeIn(el, ms) {
+            el.style.display = 'block';
+            el.style.opacity = '0';
+            if (ms) {
+                var opacity = 0;
+                var time = setInterval(function() {
+                    opacity += 50 / ms;
+                    if (opacity >= 1) {
+                        clearInterval(time);
+                        opacity = 1;
+                    }
+                    el.style.opacity = opacity;
+                }, 50);
+            } else {
+                el.style.opacity = 1;
+            }
+        }
+    </script>
+</body>
+
+</html>

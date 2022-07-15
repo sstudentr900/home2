@@ -1,0 +1,33 @@
+.cloud {
+  border: 1px solid #333;
+  position: relative;
+  width: 200px;
+  height: 100px;
+}
+
+.round {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(200, 200, 200, 0.5);
+  border-radius: 50%;
+  left: 0;
+  bottom: 0;
+}
+.round:nth-child(2) {
+  top: 10px;
+  left: 30px;
+}
+.round:nth-child(3) {
+  top: 0;
+  left: 60px;
+}
+.round:nth-child(4) {
+  top: 10px;
+  left: 90px;
+}
+.round:nth-child(5) {
+  top: 10;
+  left: auto;
+  right: 0;
+}

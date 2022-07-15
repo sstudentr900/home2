@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	.textured-type{
+		font-size: 180px;
+		background: url('t.png') center center repeat;
+		background-size: 80px 60px;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation:scratchy 0.253s linear forwards infinite;
+	}
+	@keyframes scratchy {
+		0% {
+			background-position: 0 0;
+		}
+		25% {
+			background-position: 0 0;
+		}
+		26% {
+			background-position: 20px -20px;
+		}
+		50% {
+			background-position: 20px -20px;
+		}
+		51% {
+			background-position: 40px -40px;
+		}
+		75% {
+			background-position: 40px -40px;
+		}
+		76% {
+			background-position: 60px -60px;
+		}
+		99% {
+			background-position: 60px -60px;
+		}
+		100% {
+			background-position: 0 0;
+		}
+	}
+</style>
+<body style="background-color:#333;">
+	<p class="textured-type">
+        30 species. 30 pieces. <span>1 fragmented survival.</span>
+    </p>
+</body>
+</html>

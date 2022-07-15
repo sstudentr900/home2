@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--//1.-->
+<style>
+    #div{width: 100px;height: 100px;border: 1px solid black;}
+    .box{background: red;}
+    #div1,#div2{width: 200px; height: 200px;background: red;
+    }
+    #div2.aaa{
+	background: blue;
+    }
+</style>
+<input type="button" value="01" onclick="tored()"/>
+<input type="button" value="02" onclick="togreen()"/>
+<div id="div"></div>
+<!--//取得樣式-->
+<input id="btn1" type="button" value="button">
+<div id="div1"></div>
+<div id="div2" class="aaa"></div>
+<script>
+    //style 行間樣是
+    //className 增加CLASS
+    //	function tored(){
+    //	    var odiv = document.getElementById('div');
+    //	    odiv.className='box';
+    //	}
+    //	function togreen(){
+    //	    var odiv = document.getElementById('div');
+    //	    odiv.style.background='green';
+    //        odiv.style.cssText='width:200px;hieght:200px';
+    //	}
+
+    //增加CALSS樣式
+    //    window.onload = function() {
+    //        var odiv2 = document.getElementById('div2');
+    //        odiv2.className='aaa bbb ddd';
+    ////        hasClass(odiv2, 'aa');
+    //        addClass(odiv2, 'aa');
+    //        function hasClass(element, cName) {
+    ////            alert(element.className.match(/aaa/));//不能放變數
+    //            //!!變boolean
+    ////            alert(!!element.className.match(new RegExp('(\\s|^)'+cName+'(\\s|$)')));
+    //            return(!!element.className.match(new RegExp('(\\s|^)'+cName+'(\\s|$)')));
+    //        }
+    //        function addClass(element, cName) {
+    //            if(!hasClass(element, cName) ){
+    //                element.className+=''+cName;
+    //            }
+    //        }
+    //        //刪除樣式
+    //        function delClass(element, cName) {
+    //            if(!hasClass(element, cName) ){
+    //                element.className = elementclassName.replace(new RegExp('(\\s|^)'+cName+'(\\s|$)'),' ');
+    //            }
+    //        }
+    //
+    //    }
+
+    //禁用樣式
+    //    window.onload = function() {
+    //        var aa=document.getElementsByTagName('style')[0];
+    //        aa.disabled=true
+    //    }
+
+
+    //取得計算後樣式
+    //style 是當前樣式能取的值也只在當前樣式裡
+    //currentStyle 計算後的樣式只在IE用
+    //getComputedStyle 計算後的樣式給火狐用和IE8以上
+    //	function getstyle(obj,attr){
+    //	    if(obj.currentStyle){
+    //		    return obj.currentStyle[attr];
+    //	    }else{
+    //		    return getComputedStyle(obj,false)[attr];
+    //	    }
+    //	}
+    //	function css(){
+    //	    if(arguments.length==2){
+    //		    return getstyle(arguments[0],arguments[1]);
+    //	    }else if(arguments.length==3){
+    //            //style行間CSS
+    //            arguments[0].style[arguments[1]]=arguments[2];
+    //	    }
+    //	}
+    //	window.onload = function(){
+    //	    var obtn = document.getElementById('btn1');
+    //	    var odiv = document.getElementById('div1');
+    //	    obtn.onclick=function(){
+    //            css(odiv,'background','green');
+    //            alert(css(odiv,'width'));
+    //            alert(odiv.offsetWidth);
+    //            alert(getComputedStyle(odiv,false).width);
+    //	    }
+    //	}
+
+
+    //取得計算樣式(padding會計算)
+    window.onload=function(){
+	var div2 = document.getElementById('div2');
+	div2.clientWidth;
+    }
+
+    //取得原本樣式
+    window.onload=function(){
+	var sheet=document.styleSheets[0];
+	var rules=sheet.cssRules||sheet.rules;
+	var rule=rules[0];
+	console.log(rule.style.width);
+    }
+
+    //內連http://www.w3schools.com/jsref/met_element_setattribute.asp
+    element.setAttribute("style", "background-color: red;");
+
+    //參考資料
+    //http://www.jianshu.com/p/0260cddff86a
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <style>
+        #program{
+            padding: 60px 20px;
+        }
+        #program ul a{
+            text-decoration: none;
+            color: rgb(32 171 253);
+        }
+        #program ul{
+            list-style: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body id="program">
+    <h2>使用 https 加载 Blade 资源 Load Blade assets with https in Laravel</h2>
+    <p>asset()</p>
+    <pre>
+        <code class="language-php">
+            &lt;link href="{{ asset('css/baapp.css')}}" rel="stylesheet" type="text/css"&gt;
+        </code>
+    </pre>
+    <p>URL::asset() 使用當前（HTTP 或 HTTPS）生成 URL：</p>
+    <pre>
+        <code class="language-php">
+            $url = asset('img/photo.jpg');
+            &lt;link href="{{ URL::asset('css/baapp.css')}}" rel="stylesheet" type="text/css"&gt;
+        </code>
+    </pre>
+    <p>secure_asset() 使用 HTTPS 生成 URL：</p>
+    <pre>
+        <code class="language-php">
+            echo secure_asset('foo/bar.zip', $title, $attributes = []);
+            &lt;link href="{{ secure_asset('css/baapp.css')}}" rel="stylesheet" type="text/css"&gt;
+        </code>
+    </pre>
+    <hr>
+    <h2>參考</h2>
+    <ul>
+        <li>
+            <a href="https://stackoverflow.com/questions/34378122/load-blade-assets-with-https-in-laravel" target="_blank">assets https</a>
+        </li>
+    </ul>
+    <h2>不支持POST(The POST method is not supported for this route. Supported methods: GET, HEAD. Laravel)</h2>
+    <p>注意URL斜線是否重複(https://XXX//XXX)</p>
+    <hr>
+    <h2>參考</h2>
+    <ul>
+        <li>
+            <a href="https://stackoverflow.com/questions/55178647/the-post-method-is-not-supported-for-this-route-supported-methods-get-head-l" target="_blank">The POST method is not supported for this route. Supported methods: GET, HEAD. Laravel</a>
+        </li>
+    </ul>
+</body>
+</html>

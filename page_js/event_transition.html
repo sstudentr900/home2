@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .transition {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,0,0,1);
+            transition: transform 1s 1s;
+        }
+
+        .transition.active {
+            transform: rotate(90deg);
+            background: rgba(255,0,0,1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- https://www.kirupa.com/html5/the_transitionend_event.htm -->
+    <div class="transition">Hover over me</div>
+    <script>
+        window.onload = function(){
+            const transition = document.querySelector('.transition');
+            transition.classList.add('active')
+            transition.addEventListener('transitionend', (e) => {
+                //transition 需填名稱不然會跑好幾次
+                console.log(e.propertyName);
+            });
+        }
+    </script>
+</body>
+
+</html>

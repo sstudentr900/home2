@@ -1,0 +1,11 @@
+div::after {
+    font-family: "FontCCwork";
+    content: "\e956";
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    font-size: 24px;
+    color: #bdbdbd;
+    opacity: 0;
+}

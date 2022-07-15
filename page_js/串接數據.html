@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>https://hahow.in/courses/586fae97a8aae907000ce721/discussions?item=5a1e1755a2c4b000589dda1e</title>
+    <style>
+        html,
+        body {
+            font-family: "微軟正黑體";
+        }
+        
+        .highlight {
+            background-color: yellow;
+            padding: 2px 5px;
+        }
+        
+        ul#books {
+            display: flex;
+        }
+        
+        ul#books li {
+            list-style: none;
+            padding: 10px;
+        }
+        
+        ul#fruits {
+            background-color: #eee;
+            padding: 10px;
+        }
+        
+        ul#fruits li {
+            background-color: #fff;
+            list-style: none;
+            display: inline-block;
+            padding: 20px 40px;
+            margin: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: 0.5s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        ul#fruits li:hover {
+            -webkit-transform: translate(-5px, -5px);
+            transform: translate(-5px, -5px);
+        }
+        
+        ul#fruits li .discountTag {
+            background-color: #f24;
+            color: white;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 2px 20px;
+            -webkit-transform: rotate(45deg) translate(20px, -10px);
+            transform: rotate(45deg) translate(20px, -10px);
+        }
+        
+        .fruit {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        
+        .fruit.lemon {
+            background-color: yellow;
+        }
+        
+        .fruit.guava {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul id="books"></ul>
+    <ul id="fruits"></ul>
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script> -->
+    <script>
+        console.clear()
+
+        // jq---------------------------------------------------------------
+        // var bookdatas = [{
+        //     name: "達文西密碼",
+        //     description: "　哈佛大學的宗教符號學教授羅柏‧蘭登到巴黎出差的深夜， 突然接到一通緊急電話，通知他羅浮宮年高德邵的館長遭人謀殺，就在博物館內，屍體旁邊留下了一個令人困惑的密碼。蘭登與法國美女密碼專家 Sophie Neveu 在整理分析謎團的過程中，驚訝地發現在達文西的作品中藏有一連串的線索。這些線索人人可見，卻被畫家巧妙地偽裝，加以隱藏。",
+        //     price: 350,
+        //     discount: 0.79
+        // }, {
+        //     name: "天使與魔鬼",
+        //     description: "　《天使與魔鬼》是《達文西密碼》的「前傳」，是哈佛大學符號學家羅柏?蘭登首度登場的小說，描述蘭登羅浮宮那趟重要造訪的一年前，發生於梵蒂岡城的冒險故事，一場異教與信仰、宗教與科學的戰爭。",
+        //     price: 360,
+        //     discount: 0.79
+        // }, {
+        //     name: "失落的符號",
+        //     description: "《失落的符號》堪稱神乎其技之作－－在真實世界的符號、祕密、未知事實的迷宮裡進行著一場死亡競賽……一切都在丹．布朗筆下迄今最凶惡的歹徒監控下。",
+        //     price: 399,
+        //     discount: 0.79
+        // }, ]
+
+        // function highlightText(text, word) {
+        //     var replaceRegExp = new RegExp("(" + word + ")", "g")
+        //     return text.replace(replaceRegExp, "<span class='highlight'>$1</span>")
+        // }
+
+        // function showBook(book) {
+        //     var item = $("<li>")
+        //     var price = parseInt(book.price * book.discount)
+        //     var textHighlighted = highlightText(book.description.slice(0, 50), "迷宮")
+        //     item.append("<h2>" + book.name + "</h2>")
+        //     item.append("<p>" + textHighlighted + "</p>")
+        //     item.append("<h3>價錢: " + price + "元</h3>")
+        //     $("ul#books").append(item)
+        // }
+
+        // for (var i = 0; i < bookdatas.length; i++) {
+        //     showBook(bookdatas[i])
+        // }
+
+
+        // jq---------------------------------------------------------------
+        // function generateItem(name, price, eng, discount) {
+        //     return {
+        //         name: name,
+        //         price: price,
+        //         type: "normal",
+        //         eng: eng,
+        //         discount: discount
+        //     }
+        // }
+
+        // var itemdatas = [
+        //     generateItem("蘋果", 300, 'apple', 0.8),
+        //     generateItem("檸檬", 400, 'lemon', 0.5),
+        //     generateItem("芭樂", 200, 'guava', 0.8),
+        // ]
+
+        // function getItemHtml(item) {
+        //     var result = $("<li>")
+        //     var fruitHtml = "<div class='fruit " + item.eng + "'></div>"
+        //     var flavor = ""
+        //     if (item.name == "蘋果") {
+        //         flavor = "(甜)"
+        //     }
+        //     var discountTag = ""
+        //     if (item.discount <= 0.5) {
+        //         discountTag = "<div class='discountTag'>特價！</div>"
+        //     }
+        //     result.append("<h3>" + item.name + flavor + "</h3>")
+        //     result.append(fruitHtml)
+        //     result.append("<h4>" + item.price * item.discount + "元</h4>")
+        //     result.append(discountTag)
+        //     return result
+        // }
+
+        // function printItems(items) {
+        //     for (var i = 0; i < items.length; i++) {
+        //         var itemHtml = getItemHtml(items[i])
+        //         $("ul#fruits").append(itemHtml)
+        //     }
+        // }
+
+        // printItems(itemdatas)
+
+
+        // function getTotalPrice(items) {
+        //     var total = 0
+        //     for (var i = 0; i < items.length; i++) {
+        //         total += items[i].price * items[i].discount
+        //     }
+        //     return parseInt(total)
+        // }
+
+        // console.log("總價：" + getTotalPrice(itemdatas))
+        // console.log("書籍總價：" + getTotalPrice(bookdatas))
+
+
+        //js--------------------------------------------------------------
+        function generateIteme(name, price, eng, discount) {
+            return {
+                'name': name,
+                'price': price,
+                'eng': eng,
+                'discount': discount,
+            }
+        }
+        var itemdatas = [
+            generateIteme('蘋果', 300, 'apple', 0.8),
+            generateIteme('檸檬', 400, 'lemon', 0.5),
+            generateIteme('芭樂', 200, 'guava', 0.8),
+        ]
+
+        function getItemHtml(item) {
+            var result = document.createElement('li')
+            var flavor = ''
+            if (item.name == '蘋果') {
+                flavor = '(甜)'
+            }
+            var discountTag = ''
+            if (item.discount <= 0.5) {
+                discountTag = "<div class='discountTag'>特價!</div>"
+            }
+            // result.innerHTML += "<h3>" + item.name + flavor + "</h3>"
+            // result.innerHTML += "<div class='fruit '" + item.eng + "'></div>"
+            // result.innerHTML += "<h4>" + item.price * item.discount + "元<h4>"
+            // result.innerHTML += discountTag
+
+            //es6 標籤模板
+            result.innerHTML = `
+                <h3>${item.name+flavor}<h3>
+                <div class='fruit ${item.eng}'></div>
+                <h4>${item.price * item.discount}元<h4>
+                ${discountTag}
+            `
+            return result
+
+        }
+
+        function printItems(items) {
+            for (var i = 0; i < items.length; i++) {
+                var itemHtml = getItemHtml(items[i])
+                document.querySelector('#fruits').appendChild(itemHtml)
+            }
+        }
+        printItems(itemdatas)
+    </script>
+</body>
+
+</html>

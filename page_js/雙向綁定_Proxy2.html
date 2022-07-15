@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div id="app"></div>
+
+<body>
+    <script>
+        const handler = {
+            set(obj, prop, value) {
+                if (prop === "count") {
+                    if (value < 0) {
+                        throw new Error("The count seems invalid");
+                    }
+                }
+                obj[prop] = value;
+
+                // run diff algorithm and patch
+                // the difference to real DOM
+                const vNewApp = creathtml(obj);
+                console.log()
+                    // const patch = diff(vApp, vNewApp);
+                    // $rootEl = patch($rootEl);
+                    // vApp = vNewApp;
+
+                return true;
+            }
+        };
+        let data = {
+            count: 0
+        };
+        data = new Proxy(data, handler);
+
+        function creathtml(o) {
+            var button = document.createElement('button')
+            button.setAttribute('id', 'btn')
+            button.innerText = 'btn'
+            button.addEventListener("click", () => {
+                const newCount = Math.floor(Math.random() * 10);
+                console.log(newCount)
+                data.count = newCount;
+            });
+            var div = document.createElement('div')
+            div.setAttribute('id', 'app')
+            div.appendChild(button)
+            Array.from({
+                length: o.count
+            }, () => {
+                var img = document.createElement('img')
+                img.setAttribute('src', 'https://i.imgur.com/4AiXzf8.jpg')
+                div.appendChild(img)
+            })
+            document.getElementById("app").replaceWith(div)
+                // return div
+        }
+        creathtml(data)
+            // const button = document.getElementById("btn");
+            // button.addEventListener("click", () => {
+            //     const newCount = Math.floor(Math.random() * 10);
+            //     console.log(newCount)
+            //     data.count = newCount;
+            // });
+    </script>
+
+</body>
+
+</html>

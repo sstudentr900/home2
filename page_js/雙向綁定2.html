@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <input type="text" id="inp">
+            <p id="showText"></p>
+        </div>
+        <script>
+        //https://www.itread01.com/content/1548413783.html
+        //https://ithelp.ithome.com.tw/articles/10201357
+        　
+        let obj = {} // 空殼，取值與設定值的過程會被 defineProperty 介入
+        let _obj = {} // 存放實際值的地方
+
+        Object.defineProperty(obj, "newProp", {　　　　
+            set: function(newVal) {　　　　　　
+                document.getElementById("inp").value = newVal;　　　　　　
+                document.getElementById("showText").innerHTML = newVal;　　　　
+                _obj.newProp = newVal
+            },
+            　　　　
+            get: function() {　　　　　　
+                return _obj.newProp;　　　　
+            },
+            　　
+        })　　
+        document.addEventListener("keyup", function(e) {　　　　
+            obj.newProp = e.target.value;　　
+            console.log(_obj)
+        })
+        </script>
+    </body>
+</html>

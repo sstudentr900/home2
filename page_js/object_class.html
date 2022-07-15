@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_basis_object</title>
+</head>
+
+<body>
+    <script>
+        //https://ithelp.ithome.com.tw/articles/10223556
+        //es5
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.hello = function() {
+            console.log(`Hello ${this.name}.`)
+        }
+        var p1 = new Person('Gary', 27);
+        // p1.hello() // Hello Gary.
+        // console.dir(p1);
+        //prototype 
+        function Engineer(name, skill) {
+            Person.call(this, name)
+            this.skill = skill
+        }
+        Engineer.prototype = Object.create(Person.prototype) //繼承父類
+        Engineer.prototype.constructor = Engineer //constructor 指定
+        Engineer.prototype.hello2 = function() {
+            console.log(`Engineer,Hello ${this.name}.`)
+        }
+
+        let e1 = new Engineer('Alice', 'JavaScript')
+            // console.dir(e1);
+            // e1.hello() // Hello Alice.
+            // console.log(e1.skill) // JavaScript
+            // Object.getPrototypeOf(e1) // Person {constructor: ƒ}
+
+
+        //es6 constructor
+        class Person2 {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            say() {
+                console.log(`Hello ${this.name}.`)
+            }
+        }
+        let p2 = new Person2('andy', 27);
+        console.dir(p2);
+        // p2.say();
+
+        //extends,super
+        class Engineer2 extends Person2 {
+            constructor(name, skill) {
+                super(name);
+                this.skill = skill
+            }
+            skillFn() {
+                console.log(`skill:${this.skill},${this.name}`);
+            }
+        }
+        let e2 = new Engineer2('Alice', 'JavaScript');
+        console.dir(e2);
+        // e2.say()
+        // e2.skillFn()
+
+
+        //使用 subclass
+        //https://pjchender.dev/javascript/js-class
+        class Person {
+            constructor({
+                name,
+                age = 18
+            } = {}) {
+                this.name = name;
+                this.age = age;
+            }
+
+            dance() {
+                console.log('old dance');
+            }
+        }
+        class Student extends Person {
+            constructor({
+                name,
+                age,
+            } = {}) {
+                // 因為這是 extends from Person，所以我們必須要在為 instance 賦值前，
+                // 在 Student constructor 裡面呼叫 super function，
+                // 呼叫 super function 的意思就是呼叫 Person 的 constructor function。
+                super({
+                    name,
+                    age
+                });
+                this.name = name;
+                this.age = age;
+            }
+
+            // 也就是說，subclass 是可以覆蓋 superclass 的 method
+            // dance() {
+            //     super.dance(); // 呼叫 Person 的 dance method
+            // }
+            dance() {
+                const dances = ['lyrical', 'tap', 'ballet', 'jaz'];
+                console.log(
+                    `${this.name} is doing the ${dances[Math.floor(Math.random() * dances.length)]}!`,
+                );
+            }
+        }
+        let stevenJ = new Student({
+            name: 'Steven',
+            age: 22
+        });
+        stevenJ.dance();
+
+
+        //設定預設值
+        //https://pjchender.dev/javascript/js-class
+        class Person {
+            constructor({
+                name,
+                age = 18
+            } = {}) {
+                this.name = name;
+                this.age = age;
+            }
+        }
+
+        let Aaron = new Person({
+            name: 'Aaron'
+        });
+        let Jackson = new Person({
+            name: 'Jackson',
+            age: 24
+        });
+        console.log(Aaron); // Person {name: "Aaron", age: 18}
+        console.log(Jackson); // Person {name: "Jackson", age: 24}
+
+
+        //Static 靜態方法
+        class Car {
+            constructor(type) {
+                this.type = type
+            }
+            static carHorn(type) {
+                return `我可以駕駛${type}`
+            }
+        }
+        console.log(Car.carHorn('電動車')) //我可以駕駛電動車
+
+
+        //在 static 中使用 this
+        //https://pjchender.dev/javascript/js-class
+        class Bird {
+            constructor({
+                    color = 'red'
+                } = {}) {
+                    this.color = color;
+                }
+                // 使用 static 以建立 static method，裡面用 this
+            static changeColor(color) {
+                // this 原本指稱的是所建立的 Bird 這個 Class
+                // 但在呼叫這個方法時，使用了 call() 把 this 改成了指定的 instance
+                this.color = color;
+            }
+        }
+        let redBird = new Bird();
+        console.log(redBird.color); // red
+        // redBird.changeColor('blue')    // redBird.changeColor is not a function
+        Bird.changeColor.call(redBird, 'blue');
+        console.log(redBird.color); // blue
+
+
+        //在 static 中不使用 this
+        //https://pjchender.dev/javascript/js-class
+        class Bird {
+            constructor({
+                color = 'red'
+            } = {}) {
+                this.color = color;
+            }
+
+            static changeColor(bird, color) {
+                // this 原本指稱的是所建立的 Bird 這個 Class
+                bird.color = color;
+            }
+        }
+        let redBird = new Bird();
+        console.log(redBird.color); // red
+        // redBird.changeColor('blue')    // redBird.changeColor is not a function
+        Bird.changeColor(redBird, 'blue');
+        console.log(redBird.color); // blue
+
+
+        //get 取值 set 設定值
+        class Person3 {
+            constructor(f, b) {
+                this.fr = f
+                this.ba = b
+            }
+            sayHello() {
+                console.log("hello I'm " + this.ba)
+            }
+            get fullname() {
+                return this.fr + " " + this.ba
+            }
+            set nameChange(nv) {
+                this.fr = nv.split(' ')[0]
+                this.ba = nv.split(' ')[1]
+            }
+
+        }
+        var person3 = new Person3('wu', 'majer')
+        person3.sayHello() //majer
+        person3.nameChange = 'ch fr' //set ->ch fr
+        person3.sayHello() //fr
+        var aa = person3.fullname
+        console.log(aa)
+
+
+        //Setter 和 Getter
+        //https://pjchender.dev/javascript/js-class
+        class Person {
+            constructor({
+                firstName,
+                lastName,
+                country = 'Taiwan'
+            } = {}) {
+                this.firstName = firstName;
+                this.lastName = lastName;
+                this.country = country;
+            }
+
+            //  getter method
+            get name() {
+                return this.firstName + ' ' + this.lastName;
+            }
+
+            //  setter method
+            set name(input) {
+                [this.firstName, this.lastName] = input.split(' ');
+            }
+        }
+        let aaron = new Person({
+            firstName: 'Aaron',
+            lastName: 'Chen'
+        });
+        console.log(aaron.name); // 使用 getter method，Aaron Chen
+        aaron.name = 'Peter Chen'; // 使用 setter method
+        console.log(aaron.name); // Peter Chen
+
+
+        //Static and public/private properties
+        //https://pjchender.dev/javascript/js-class
+        class FakeMath {
+            // `PI` 是一個靜態的公開屬性
+            // `PI` is a static public property.
+            static PI = 22 / 7; // Close enough.
+
+            // `#totallyRandomNumber` 是一個靜態的私有屬性
+            static# totallyRandomNumber = 4;
+
+            // `#computeRandomNumber` 是一個靜態的私有方法
+            static# computeRandomNumber() {
+                return FakeMath.#totallyRandomNumber;
+            }
+
+            // `random` 是一個靜態的公開方法 (ES2015 syntax)
+            // that consumes `#computeRandomNumber`.
+            static random() {
+                console.log('I heard you like random numbers…');
+                return FakeMath.#computeRandomNumber();
+            }
+        }
+        FakeMath.PI;
+        // → 3.142857142857143
+        FakeMath.random();
+        // logs 'I heard you like random numbers…'
+        // → 4
+        FakeMath.#totallyRandomNumber;
+        // → SyntaxError
+        FakeMath.#computeRandomNumber();
+        // → SyntaxError
+
+
+
+
+        //https://ithelp.ithome.com.tw/articles/10249020
+        //defineProperty 定義物件屬性特徵
+    </script>
+</body>
+
+</html>

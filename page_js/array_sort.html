@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function() {
+            var oul1 = document.getElementById('ul1');
+            var obtn = document.getElementById('btn1');
+            obtn.onclick = function() {
+                var ali = oul1.getElementsByTagName('li');
+
+                console.log(ali)
+                    // console.log(ali instanceof Array);
+                var arr = [];
+                for (var i = 0; i < ali.length; i++) {
+                    arr[i] = ali[i];
+                }
+                // console.log(arr)
+                // console.log(ali instanceof Array);
+
+                arr.sort(function(a, b) {
+                    //console.log(a);
+                    var a1 = a.innerHTML;
+                    var b1 = b.innerHTML;
+                    console.log(a1);
+                    return a1 - b1;
+                });
+
+                console.log(arr)
+                    // console.log(arr)
+                for (var i = 0; i < arr.length; i++) {
+                    console.log(oul1)
+                    console.log(arr[i])
+                    oul1.appendChild(arr[i]);
+                }
+            }
+
+        };
+    </script>
+</head>
+
+<body>
+    <input id='btn1' type="button" value="排序" />
+    <ul id="ul1">
+        <li>12</li>
+        <li>55</li>
+        <li>2</li>
+        <li>89</li>
+    </ul>
+</body>
+
+</html>

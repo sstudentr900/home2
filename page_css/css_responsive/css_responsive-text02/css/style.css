@@ -1,0 +1,108 @@
+/* // Calculations
+// Unitless for flexibility
+
+// Define base viewport for calculations
+$base-viewport: 1100;
+
+// Define base font size (at base viewport)
+$font-size-at-base-viewport: 17;
+
+// Define minimum computed font size in pixels
+$min-font-size: 13;
+
+// Define maximum computed font size in pixels
+$max-font-size: 26;
+
+@function base-font-size() {
+	@return ($font-size-at-base-viewport / $base-viewport) * 100;
+}
+
+@function breakpoint-for-fontsize($n) {
+    @return ($n / base-font-size()) * 100;
+}
+
+html {
+	font-size: base-font-size() * 1vw;
+}
+
+body {
+    background: #fafafa;
+    color: #222;
+    font-family: "Georgia", serif;
+    margin: 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.3;
+    text-align: justify;
+    text-rendering: optimizeLegibility;
+    hyphens: manual;
+}
+
+h1 {
+	font-size: 2rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+}
+
+section {
+  // Setting the measure here
+  max-width: 33em;
+  margin: 0 auto;
+}
+
+// Minimum font size
+@media screen and (max-width: breakpoint-for-fontsize($min-font-size) * 1px) {
+	html {
+		font-size: $min-font-size * 1px;
+	}
+}
+
+// Maximum font size
+@media screen and (min-width: breakpoint-for-fontsize($max-font-size) * 1px) {
+	html {
+		font-size: $max-font-size * 1px;
+	}
+} */
+
+
+
+html {
+  font-size: 1.54545vw;
+}
+
+body {
+  background: #fafafa;
+  color: #222;
+  font-family: "Georgia", serif;
+  margin: 0 1.5rem;
+  font-size: 1rem;
+  line-height: 1.3;
+  text-align: justify;
+  text-rendering: optimizeLegibility;
+  hyphens: manual;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+section {
+  max-width: 33em;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 841.17647px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 1682.35294px) {
+  html {
+    font-size: 26px;
+  }
+}

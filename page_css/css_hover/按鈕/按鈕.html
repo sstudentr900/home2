@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Chapter 04-01 &#xB7; jQuery 最高の教科書</title>
+</head>
+<body>
+<style type="text/css">
+    #buttons1{
+    display: block;
+    float: left;
+    width: 224px;
+    height: 80px;
+    margin: 20px;
+    padding: 0;
+    font-size: 16px;
+    letter-spacing: 0.15em;
+    color: #ebc000;
+    background-color: #ddd;
+    border: none;
+    border-radius: 20px;
+     position: relative;
+}
+#buttons1 .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    transition: width .2s linear;
+}
+#buttons1 span span {
+    display: block;
+    width: 224px;
+    height: 80px;
+    line-height: 80px;
+    color: #fff;
+    background-color: #ae5e9b;
+    border-radius: 20px;
+}
+#buttons1:hover .bg{
+    width: 100%;
+}
+</style>
+            <button  id="buttons1">Lark<span class="bg"><span>Lark</span></span></button>
+        
+</body>
+</html>

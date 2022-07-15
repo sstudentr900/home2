@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 5000px;
+            margin: 0;
+        }
+        h2{
+            font-size: 60px;
+            margin: 0;
+        }
+        .item.active h2{
+            color: red;
+        }
+        .item{
+            margin-top: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="item"><h2>item</h2></div>
+    <script>
+        let ticking = false;
+        const item = document.querySelector(".item")
+
+        function doSomething(scrollPos) {
+            // const moveToNextAt = (item.offsetTop) + (item.clientHeight / 2);
+            const moveToNextAt = (item.offsetTop) - (item.clientHeight / 2);
+            console.log('moveToNextAt',moveToNextAt)
+            console.log('scrollY',window.scrollY)
+            if (window.scrollY > moveToNextAt) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        }
+
+        document.addEventListener('scroll', function(e) {
+            // lastKnownScrollPosition = window.scrollY;
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    // doSomething(lastKnownScrollPosition);
+                    doSomething();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>

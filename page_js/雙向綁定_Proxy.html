@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Todo app with proxy reflect
+        <ul class="js-bound-todolistul"></ul>
+    </h1>
+    <input class="textInput" />
+    <button class="addTodo">add</button>
+    <script>
+        //https://medium.com/%E6%89%8B%E5%AF%AB%E7%AD%86%E8%A8%98/using-proxy-to-monitor-object-e57af6326d73
+        //https://blog.techbridge.cc/2018/05/27/js-proxy-reflect/
+        /***********************
+         *** data binding part **
+         ************************/
+        let todoData = [];
+
+        let todoDataProxy = new Proxy(todoData, {
+            set: (target, property, value) => {
+                console.log(todoListNode, target, property, value)
+                Reflect.set(target, property, value);
+                console.log(todoListNode, target, property, value)
+                if (property === 'length') {
+                    return true;
+                }
+                todoListNode.render(value);
+                return true;
+            },
+            deleteProperty: (target, property) => {
+                console.log(target, property)
+                Reflect.deleteProperty(target, property);
+                console.log(target, property)
+                target.splice(property, 1);
+                todoListNode.remove(property);
+                console.log(target, property)
+                return true;
+            }
+        });
+
+
+        // template render logic start
+        const todoListNode = document.querySelector('.js-bound-todolistul');
+
+        todoListNode.dataTemplate = [];
+        todoListNode.remove = function remove(index) {
+            this.dataTemplate.splice(index, 1);
+            this.innerHTML = this.dataTemplate.join('');
+        };
+        todoListNode.render = function render(data) {
+            const newDataTemplate = `
+                <li>
+                ${data}
+                <button data-todo=${data}>remove</button>
+                </li>
+            `;
+            this.dataTemplate.push(newDataTemplate);
+            this.innerHTML = this.dataTemplate.join('');
+        };
+
+        todoDataProxy.push('test2');
+        // template render logic end
+
+        /***************************
+         *** data binding part end **
+         ****************************/
+
+
+        /*************************
+         *** other logics block ***
+         **************************/
+
+        const inputNode = document.querySelector('.textInput');
+        const buttonNode = document.querySelector('.addTodo');
+        inputNode.addEventListener('keyup', e => {
+            console.log(e.keyCode)
+            if (e.keyCode === 13) {
+                todoDataProxy.push(e.target.value);
+                e.target.value = '';
+            }
+            console.log(todoData)
+        });
+
+        buttonNode.addEventListener('click', e => {
+            if (inputNode.value) {
+                todoDataProxy.push(inputNode.value);
+                inputNode.value = '';
+            }
+        });
+
+        todoListNode.addEventListener('click', e => {
+            console.log(e.target.nodeName)
+            if (e.target.nodeName === 'BUTTON') {
+                const removedTodoItem = e.target.dataset.todo;
+                console.log(todoDataProxy, removedTodoItem)
+                const removedItemIndex = todoDataProxy.findIndex(todo => todo === removedTodoItem);
+                console.log(removedItemIndex)
+                delete todoDataProxy[removedItemIndex];
+            }
+        });
+
+        /*****************************
+         *** other logics block end ***
+         ******************************/
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="gb2312">
+    <title></title>
+    <style>
+    	a.link {
+		    text-decoration: none;
+		    width: 150px;
+		    display: inline-block;
+		    color: #000;
+		}
+		a.link::before {
+		        content: '';
+		        display: block;
+		        position: relative;
+		        top: 27px;
+			    left: 0;
+			    height: 2px;
+			    width: 113px;
+		        background-color: #000;
+		       /* transition: all .7s cubic-bezier(.23, 1, .32, 1);*/
+		        -webkit-animation: Link-Animation 1.2s infinite;
+		        -moz-animation: Link-Animation 1.2s infinite;
+		        -o-animation: Link-Animation 1.2s infinite;
+		        animation: Link-Animation 1.2s infinite;
+		    }
+		    
+			@-webkit-keyframes Link-Animation {
+			    0% {
+			        -webkit-transform-origin: left top;
+			        -ms-transform-origin: left top;
+			        transform-origin: left top;
+			        -webkit-transform: scale(0, 1);
+			        -ms-transform: scale(0, 1);
+			        transform: scale(0, 1)
+			    }
+			    
+			    40% {
+			        -webkit-transform-origin: left top;
+			        -ms-transform-origin: left top;
+			        transform-origin: left top;
+			        -webkit-transform: scale(1, 1);
+			        -ms-transform: scale(1, 1);
+			        transform: scale(1, 1)
+			    }
+			    
+			    60% {
+			        -webkit-transform-origin: right top;
+			        -ms-transform-origin: right top;
+			        transform-origin: right top;
+			        -webkit-transform: scale(1, 1);
+			        -ms-transform: scale(1, 1);
+			        transform: scale(1, 1)
+			    }
+			    
+			    100% {
+			        webkit-transform-origin: right top;
+			        -ms-transform-origin: right top;
+			        transform-origin: right top;
+			        -webkit-transform: scale(0, 1);
+			        -ms-transform: scale(0, 1);
+			        transform: scale(0, 1)
+			    }
+			}
+			@-moz-keyframes Link-Animation {
+			    0% {
+			        -webkit-transform-origin: left top;
+			        -ms-transform-origin: left top;
+			        transform-origin: left top;
+			        -webkit-transform: scale(0, 1);
+			        -ms-transform: scale(0, 1);
+			        transform: scale(0, 1)
+			    }
+			    
+			    40% {
+			        -webkit-transform-origin: left top;
+			        -ms-transform-origin: left top;
+			        transform-origin: left top;
+			        -webkit-transform: scale(1, 1);
+			        -ms-transform: scale(1, 1);
+			        transform: scale(1, 1)
+			    }
+			    
+			    60% {
+			        -webkit-transform-origin: right top;
+			        -ms-transform-origin: right top;
+			        transform-origin: right top;
+			        -webkit-transform: scale(1, 1);
+			        -ms-transform: scale(1, 1);
+			        transform: scale(1, 1)
+			    }
+			    
+			    100% {
+			        webkit-transform-origin: right top;
+			        -ms-transform-origin: right top;
+			        transform-origin: right top;
+			        -webkit-transform: scale(0, 1);
+			        -ms-transform: scale(0, 1);
+			        transform: scale(0, 1)
+			    }
+			}
+			@-o-keyframes Link-Animation {
+			    0% {
+			        -webkit-transform-origin: left top;
+			        -ms-transform-origin: left top;
+			        transform-origin: left top;
+			        -webkit-transform: scale(0, 1);
+			        -ms-transform: scale(0, 1);
+			        transform: scale(0, 1)
+			    }
+			    
+			    40% {
+			        -webkit-transform-origin: left top;
+			        -ms-transform-origin: left top;
+			        transform-origin: left top;
+			        -webkit-transform: scale(1, 1);
+			        -ms-transform: scale(1, 1);
+			        transform: scale(1, 1)
+			    }
+			    
+			    60% {
+			        -webkit-transform-origin: right top;
+			        -ms-transform-origin: right top;
+			        transform-origin: right top;
+			        -webkit-transform: scale(1, 1);
+			        -ms-transform: scale(1, 1);
+			        transform: scale(1, 1)
+			    }
+			    
+			    100% {
+			        webkit-transform-origin: right top;
+			        -ms-transform-origin: right top;
+			        transform-origin: right top;
+			        -webkit-transform: scale(0, 1);
+			        -ms-transform: scale(0, 1);
+			        transform: scale(0, 1)
+			    }
+			}
+			@keyframes Link-Animation {
+			    0% {
+			        -webkit-transform-origin: left top;
+			        -ms-transform-origin: left top;
+			        transform-origin: left top;
+			        -webkit-transform: scale(0, 1);
+			        -ms-transform: scale(0, 1);
+			        transform: scale(0, 1)
+			    }
+			    
+			    40% {
+			        -webkit-transform-origin: left top;
+			        -ms-transform-origin: left top;
+			        transform-origin: left top;
+			        -webkit-transform: scale(1, 1);
+			        -ms-transform: scale(1, 1);
+			        transform: scale(1, 1)
+			    }
+			    
+			    60% {
+			        -webkit-transform-origin: right top;
+			        -ms-transform-origin: right top;
+			        transform-origin: right top;
+			        -webkit-transform: scale(1, 1);
+			        -ms-transform: scale(1, 1);
+			        transform: scale(1, 1)
+			    }
+			    
+			    100% {
+			        webkit-transform-origin: right top;
+			        -ms-transform-origin: right top;
+			        transform-origin: right top;
+			        -webkit-transform: scale(0, 1);
+			        -ms-transform: scale(0, 1);
+			        transform: scale(0, 1)
+			    }
+			}
+    </style>
+</head>
+
+<body>
+    <a class="link" href="mailto:contact@andreaamayaporras.com" target="_blank">Je suis disponible</a>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_basis_jsonp</title>
+</head>
+
+<body>
+    <script>
+        //1.jq-getJSON||page.js----------------------------------------------------------------------------------------------------
+        //callback=>是要執行函數 ?=>JQ自訂 {}=>傳入參數
+        // var data = $.getJSON("http://www.mj-app.com.tw/V3/?act=dream&callback=?",{firstname:"Jeff"});
+        //成功得到資料
+        // data.success(function( msg ) {
+        //   console.log(msg);
+        // });
+        //取得資料失敗
+        // data.error(function( msg ) {
+        //   console.log('error');
+        // });
+
+        //1.getJSON .php
+        //抓取callback的值  echo XXX({})
+        //echo $_GET['callback'].'('.json_encode($Return).')';
+
+
+
+
+
+        //jq-ajax||page.js----------------------------------------------------------------------------------------------------
+        // $.ajax({
+        //      type: "get",
+        //      url: "http://www.mj-app.com.tw/?act=dream&callback=?",
+        //      dataType: "jsonp",//指定以jsonp方式執行
+        //      success: function(res){
+        //         console.log(res);
+        //      },
+        //      error: function(){
+        //       console.log('error');
+        //      }
+        //  });
+
+        //ajax .php
+        //echo $_GET['callback'].'('.json_encode($Return).')';
+
+
+
+        //js||page.js----------------------------------------------------------------------------------------------------
+        function mycallback(data) {
+            console.log(data);
+        }
+
+        function requestServerCall(url) {
+            var body = document.body;
+            var script = document.createElement("script");
+            script.type = 'text/javascript';
+            script.setAttribute("src", url);
+            body.appendChild(script);
+            body.removeChild(script);
+        }
+        //請求完執行的函數mycallback
+        requestServerCall("./php/transfer.php?act=dream&callback=mycallback");
+    </script>
+</body>
+
+</html>

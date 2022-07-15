@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+	main {
+	    display: flex;
+	    margin-bottom: 20px;
+	    background: #666;
+	}
+
+	section {
+	    flex-grow: 1;
+	    background: #888;
+	}
+
+	aside {
+	    flex-basis: 150px;
+	    flex-shrink: 0;
+	    background: #aaa;
+	    /*flex: 2 1 auto;   (<flex-grow> | <flex-shrink> | <flex-basis>) */
+	}
+    </style>
+</head>
+<body>
+<main>
+    <section>rest</section>
+    <aside>150px</aside>
+</main>
+
+<main>
+    <aside>150px</aside>
+    <section>rest</section>
+    <aside>150px</aside>
+</main>
+</body>
+</html>

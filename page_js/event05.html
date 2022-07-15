@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_bsis_function-good</title>
+</head>
+
+<body>
+    <a href="https://blog.techbridge.cc/2017/07/15/javascript-event-propagation/">DOM 的事件傳遞機制：捕獲與冒泡</a>
+    <h4>eventPhase 顯示數字</h4>
+    <p>捕獲 = true = CAPTURING_PHASE = 1;</p>
+    <p>目標 = AT_TARGET = 2;</p>
+    <p>冒泡 = false BUBBLING_PHASE = 3;</p>
+    <h4>stopPropagation 取消事件傳遞</h4>
+    <h4>stopImmediatePropagation 同一個層級取消事件傳遞</h4>
+    <pre>
+        const get = (id) => document.getElementById(id)
+        const $list = get('list')
+        $list.addEventListener("click", (e) => {
+            console.log('list', e.eventPhase)
+            e.stopPropagation();
+        }, false)
+    </pre>
+    <hr>
+    <h4>實際應用</h4>
+    <ul id="list">
+        <li data-index="1">1</li>
+        <li data-index="2">2</li>
+        <li data-index="3">3</li>
+    </ul>
+    <pre>
+        document.getElementById('list').addEventListener('click', (e) => {
+            console.log(e.target.getAttribute('data-index'));
+        })
+    </pre>
+    <hr>
+    <h4>頁面上所有的元素停用</h4>
+    <p>preventDefault 取消瀏覽器的預設行為</p>
+    <pre>
+        window.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        }, true)
+    </pre>
+    <hr>
+    <h4>第一個被執行的事件</h4>
+    <pre>
+        window.addEventListener('click', (e) => {
+            console.log(e.target);
+        }, true)
+    </pre>
+</body>
+
+</html>

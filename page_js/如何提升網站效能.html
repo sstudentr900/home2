@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://ithelp.ithome.com.tw/articles/10225482">如何提升網站效能</a>
+    <p>css,js,img 壓縮</p>
+    <p>SPA</p>
+    <p>例如佔流量最大宗的圖檔，我們可以透過 Web API 的 Intersection Observer，建立一個觀察者，當圖檔區塊即將進入視窗時，替換掉圖檔的 src 屬性，達到圖片延遲加載（lazy loading）的目的。</p>
+    <p>Web Storage</p>
+    <p>當瀏覽器讀到 script 時，便會 暫停解析 DOM 立刻開始下載 script 的資源</p>
+    <p>defer 意旨為延遲 瀏覽器會繼續解析、渲染畫面，而不會因為需要載入script內的資源而卡在那邊等；實際上的執行時間，會在 DOMContentLoaded 執行之前，由上到下的依照擺放順序觸發。</p>
+    <p>async 與 defer 相同的是會在背景執行下載，但不同的是當下載完成會馬上暫停 DOM 解析（若尚未解析完的話），並開始執行 JavaScript。也因為下載完成後會立即執行，加上 async 屬性後，就無法保證執行順序了。</p>
+    <p>動態建立的script，預設就會是非同步載入；但可以透過屬性設定將它關閉</p>
+    <p>requestAnimationFrame 取代 setTimeout、setInterval</p>
+</body>
+</html>

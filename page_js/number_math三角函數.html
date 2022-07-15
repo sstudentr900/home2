@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 拍=180度 -->
+    <!--座標轉換角度  θ=atan2(y,x) -->
+    <!--角度轉換座標  x=R*cos(θ) y=R*sin(θ) -->
+    <script>
+        // 座標算半徑  R=Math.sqrt(x*x+y*y)
+        var x = 12;
+        var y = 5;
+        var R = Math.sqrt(x * x + y * y)
+        console.log(R); //13
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            (function(win) {
+                var util = {};
+                var defaultOptions = {
+                    quality: 0.8,
+                };
+                function compressor(options) {
+                    this.options = Object.assign({}, defaultOptions, options);
+                    console.log('compressor',this.options)
+                    this.init();
+                }
+                var _proto = compressor.prototype;
+                win.compressor = compressor;
+
+                _proto.init = function() {
+                    console.log('init',this.options)
+                    console.log('init',this.options.success)
+                    this.options.success(this.options)
+                }
+
+                // compressor.file2DataUrl = function(value,callback) {
+                //     console.log('file2DataUrl',value)
+                //     callback(value);
+                // }
+
+                util.file2DataUrl = function(value,callback) {
+                    console.log('file2DataUrl',value)
+                    callback(value);
+                }
+
+                for (var key in util) {
+                    if (util.hasOwnProperty(key)) {
+                        compressor[key] = util[key];
+                    }
+                }
+            })(window)
+            var options = {
+                a:'b',
+                success: function(result){
+                    console.log('success');
+                    console.log(compressor)
+                    compressor.file2DataUrl(result,function(){
+                        console.log()
+                    })
+                }
+            }
+            new compressor(options)
+        </script>
+    </body>
+</html>

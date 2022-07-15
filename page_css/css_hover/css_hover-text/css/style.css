@@ -1,0 +1,46 @@
+h2{
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+}
+h2:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform-origin: right 0;
+    transform: scaleX(0);
+    transition: transform 0.3s,transform-origin 0.1s;
+    background: #2356a6;
+    z-index: -1;
+}
+h2:hover:after{
+    transform-origin: left 0;
+    transform: scaleX(1);
+    transition: transform-origin 0s, transform 0.3s, color 0.15s 0.15s;
+   
+}
+h2:hover{
+   transition: color 0.15s 0.3s;
+   color: white;
+}
+a{
+    text-decoration: none;
+    display: inline;
+    background-image: linear-gradient(to bottom, transparent 20%, currentColor 21%);
+    background-position: 0 1em;
+    background-repeat: no-repeat;
+    background-size: 0% 6px;
+    transition: background-size 0.5s ease-in-out 0.2s;
+}
+a:hover{
+    background-size: 100% 6px;
+    transition-delay: 0s;
+}
+
+
+
+

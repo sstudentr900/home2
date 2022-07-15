@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_basis_offsetTop</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .text {
+            outline: 1px solid #888;
+        }
+        
+        .a,
+        .b {
+            height: 100vh;
+            background: #eee;
+        }
+        
+        .b {
+            background: #aaa;
+        }
+        
+        .padding {
+            padding: 60px;
+        }
+        
+        .margin {
+            margin: 60px;
+        }
+        
+        .felx {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="a">
+        <div class="padding">
+            <div class="margin">
+                <div class="text">
+                    <offsetTop>on css in relative </offsetTop>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="b">
+        <div class="felx">
+            <div class="padding">
+                <div class="margin">
+                    <div class="text">
+                        <11111111111111111111111></11111111111111111111111>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log(document.querySelectorAll('.felx .text')[0].offsetTop)
+    </script>
+</body>
+
+</html>

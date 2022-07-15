@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_basis_requestAnimationFrame</title>
+
+
+    <style>
+        #menu {
+            width: 300px;
+            height: 300px;
+            background: red;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <div class="active" id="menu"></div>
+
+    <script>
+        function fadeIn(el, n, s) {
+            var start = window.performance.now();
+            var icur = Math.round(el.style.opacity) || 0;
+            var speed = n - icur;
+            // console.log('icur ' + icur);
+            // console.log('n '+ n);
+            // console.log('speed '+ speed);
+            var tick = function() {
+                var now = window.performance.now() - start;
+                console.log(now);
+                //等速
+                el.style.opacity = icur + ((now / s).toFixed(2)) * speed;
+                if (now < s) {
+                    (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 24);
+                }
+            }
+            tick();
+        }
+        // fadeIn(目標,透明度,幾秒);
+        var menu = document.getElementById('menu');
+        menu.addEventListener('click', function(event) {
+            if (this.classList.contains('active')) {
+                this.classList.remove('active');
+                fadeIn(menu, 0, 10000);
+            } else {
+                this.classList.add('active');
+                fadeIn(menu, 1, 10000);
+            }
+
+        })
+    </script>
+
+
+
+
+
+</body>
+
+</html>

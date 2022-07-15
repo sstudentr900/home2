@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+<title>表格展開與折疊</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <script type="text/javascript">
+  $(document).ready(function(){
+	$('.titletr').toggle(function(){
+ 		$('#desc'+this.id).css("display","block");
+		},function(){
+		 $('#desc'+this.id).css("display","none");
+	});
+
+	});
+  </script>
+
+  <style type="text/css">
+  .titletr{
+	cursor:hand;
+  }
+
+  </style>
+
+</head>
+
+<body>
+
+<h3>表格行的展開與折疊</h3>
+
+<table border="1">
+
+<tr class="titletr" id="one"><td>jQuery</td></tr>
+
+<tr id="descone" style="display:none"><td>
+
+ jQuery 是一個JavaScript 庫，它有助於簡化JavaScript? 以及Asynchronous JavaScript + XML (Ajax) 寫程式。
+
+</td>
+
+</tr>
+
+<tr class="titletr" id="two"><td>Javascript</td></tr>
+
+<tr id="desctwo" style="display:none"><td>
+
+JavaScript是一種基於物件和事件驅動的用戶端指令稿語系。 JavaScript最初的設計是為了檢驗HTML表單輸入的正確性。 
+</td>
+
+</tr>
+
+</table> 
+
+</body>
+
+</html>
+

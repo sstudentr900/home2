@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //	xxxx.com/a.html;
+        //	xxxx.com/b.html;//網址同樣是同個域別,cookie同一個
+
+        //	cccc.com/a.html;
+        //	yyyy.com/b.html;//網址不同同網頁不同域別,cookie不同個
+
+
+
+        //1cookie
+        //1-1
+        //	var odate = new Date();
+        //	odate.setDate(odate.getDate()+30);
+        //	alert(odate.getFullYear()+'-'+(odate.getMonth()+1)+'-'+odate.getData());
+        //1-2
+        //	var odate = new Date();
+        //	odate.setDate(odate.getDate()+30);
+        //	document.cookie='user=blue;expires='+odate;
+        //	document.cookie='pass=aaa';
+        //	alert(document.cookie);
+
+
+
+        //2打包函數
+        //	function setcookie(name,value,iday){
+        //	    var odate = new Date();
+        //	    odate.setDate(odate.getDate()+iday);
+        //	    document.cookie=name+'='+value+'; expires='+odate;
+        //	}
+        //	function getcookie(name){
+        //	    var arr = document.cookie.split('; ');
+        //	    var i =0;
+        //	    for(i=0;i<arr.length;i++){
+        //		var arr2=arr[i].split('=');
+        //		if(arr2[0]==name){
+        //		    return arr2[1]
+        //		}
+        //	    }
+        //	    return '';
+        //	}
+        //	function removecookie(name){
+        //	    setcookie(name,'1',-1);//-1是時間過期
+        //	}
+        //	setcookie('aa','aa',10);
+        //	console.log(getcookie('user'));
+        //	console.log(document.cookie);
+
+
+        //3範例
+        function setcookie(name, value, iday) {
+            var odate = new Date();
+            odate.setDate(odate.getDate() + iday);
+            document.cookie = name + '=' + value + ';expires=' + odate;
+        }
+
+        function getcookie(name) {
+            var arr = document.cookie.split('; ');
+            var i = 0;
+            for (i = 0; i < arr.length; i++) {
+                var arr2 = arr[i].split('=');
+                if (arr2[0] == name) {
+                    return arr2[1]
+                }
+            }
+            return '';
+        }
+
+        function removecookie(name) {
+            setcookie(name, '1', -1); //-1是時間過期
+        }
+
+        window.onload = function() {
+            var of = document.getElementById('forml');
+            var ouser = document.getElementsByName('user')[0];
+            var obtnclear = document.getElementsByTagName('a')[0];
+            of.onsubmit = function() {
+                setcookie('user', ouser.value, 30);
+            }
+            ouser.value = getcookie('user');
+            obtnclear.onclick = function() {
+                removecookie('user');
+                ouser.value = '';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form id="forml" action="">
+        用戶名：<input type="text" name="user" /> 密碼 <input type="password" />
+        <input type="submit" value="登入" />
+        <a href="javascript:;">清除紀錄</a>
+    </form>
+</body>
+
+</html>

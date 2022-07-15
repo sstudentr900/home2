@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script  type="text/javascript" src="js/jq_plugin.js"></script>
+    <style type="text/css">
+        div { width: 50px; height: 50px; margin: 20px; }
+    </style>
+</head>
+<body>
+<div id="square1" style="background-color: Blue;">
+</div>
+<div id="square2" style="background-color: Red;">
+</div>
+<script>
+
+    //1.單(多)調用
+//    $(function() {
+//        $("#square1").jump();
+//        $("#square2").shake();
+//    });
+
+
+    //單(多)調用+傳參數
+//    $(function() {
+//        $("#square1").click(function() {
+//            $(this).jump({
+//                movement: 30,
+//                duration: 500,
+//                oncomplete: function() { alert("DONE!"); }
+//            });
+//        });
+//        $("#square2").click(function() {
+//            $(this).shake({ movement: 40, duration: 200 });
+//        });
+//    });
+
+
+    //2.後面可在接jq
+    $(function() {
+        $("#square2").click(function() {
+            $(this).jump({
+                movement: 30,
+                duration: 500,
+                oncomplete: function() { alert("DONE!");}
+            }).after("<span>SPAN</span>");
+        });
+    });
+</script>
+</body>
+</html>

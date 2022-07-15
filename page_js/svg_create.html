@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    window.onload=function(){
+	var svg=document.getElementById('svg');
+//	創建svg標籤line
+	var line = document.createElementNS('http://www.w3.org/2000/svg','line');
+	line.setAttribute('x1',50);
+	line.setAttribute('y1',50);
+	line.setAttribute('x2',350);
+	line.setAttribute('y2',350);
+	line.setAttribute('stroke','red');
+	line.setAttribute('stroke-width',2);
+	svg.appendChild(line);
+	//circle
+	var rect = creatSvgElement('rect',{
+	    'x':150,'y':150,'width':150,'height':150,'fill':'blue'
+	});
+	svg.appendChild(rect);
+    }
+    function creatSvgElement(tagName,attrs){
+	var element = document.createElementNS('http://www.w3.org/2000/svg',tagName);
+	for(var name in attrs){
+	    element.setAttribute(name,attrs[name]);
+	}
+	return element;
+    }
+</script>
+<svg id="svg" width="640" height="480" style="border:1px solid #000"></svg>
+</body>
+</html>

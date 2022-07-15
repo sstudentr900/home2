@@ -1,0 +1,9 @@
+div{
+/*不被選擇*/
+/*   禁选文字 */
+  user-select: none;
+/*   火狐浏览器 */
+  -moz-user-select: none;
+/*   IE */
+  -ms-user-select: none;
+}

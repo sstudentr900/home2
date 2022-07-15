@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    //    window.onload=function() {
+    //	var obtn = document.getElementById('btn1');
+    //	obtn.onclick=function(){
+    ////	    var oAjax=new XMLHttpRequest();//是一個對象,
+    ////	    var oAjax=new ActiveXObject('Microsoft.XMLHTTP');//IE
+    //	    //1.創建ajax
+    //	    var oAjax=null;
+    //	    if(window.XMLHttpRequest){
+    //		oAjax=new XMLHttpRequest();
+    //	    }else{
+    //		oAjax=new ActiveXObject('Microsoft.XMLHTTP');//IE6
+    //	    }
+    //	    //2.連接服務器
+    //	    //用來解決緩存
+    ////	    oAjax.open('GET','./date/1.txt?t='+new Date().getTime(),true);
+    //
+    //	    //open(方法,url,是否異步)
+    //	    oAjax.open('GET','./date/1.txt',true);
+    //	    //3.發送請求
+    //	    oAjax.send();
+    //	    //4.反回訊息
+    //	    oAjax.onreadystatechange=function(){
+    //		//請求狀態 0還沒調open 1以調用send 2以完成send 3正在解析內容 4完成
+    //		//alert(oAjax.readyState);
+    //		if(oAjax.readyState==4){
+    //		    //200成功  404文件錯誤
+    //		    //alert(oAjax.status);
+    //		    if(oAjax.status==200){
+    //			alert('成功:'+oAjax.responseText);
+    //		    }else{
+    //			alert('失敗:');
+    //		    }
+    //		}
+    //	    }
+    //	}
+    //    }
+
+
+
+    //    //Promise
+    //    window.onload=function(){
+    //	var obtn=document.getElementById('btn1');
+    //	obtn.onclick=function(){
+    //	    var URL='./date/1.txt';
+    //	    getURL(URL).then(function (value){
+    //		console.log(value);
+    //	    }).catch(function (error){
+    //		console.log(error);
+    //	    })
+    //	}
+    //	function getURL(URL){
+    //	    return new Promise(function(resolve,reject){
+    //		var req=new XMLHttpRequest();
+    //		req.open('GET',URL,true);
+    //		req.send();
+    //		req.onload=function(){
+    //		    if(req.status==200){
+    //			resolve(req.responseText);
+    //		    }else{
+    //			reject(new Error(req.statusText));
+    //		    }
+    //		};
+    //	    });
+    //	}
+    //    }
+    //
+
+    //    //同步
+    //    function onReady(fn) {
+    //	var readyState = document.readyState;
+    //	if (readyState === 'interactive' || readyState === 'complete') {
+    //	    fn();
+    //	} else {
+    //	    window.addEventListener('DOMContentLoaded', fn);
+    //	}
+    //    }
+    //    onReady(function () {
+    //	console.log('DOM fully loaded and parsed');
+    //    });
+    //    console.log('==Starting==');
+    //
+    //    //Promise只能使用异步调用方式
+    //    function onReadyPromise() {
+    //	return new Promise(function (resolve, reject) {
+    //	    var readyState = document.readyState;
+    //	    if (readyState === 'interactive' || readyState === 'complete') {
+    //		resolve();
+    //	    } else {
+    //		window.addEventListener('DOMContentLoaded', resolve);
+    //	    }
+    //	});
+    //    }
+    //    onReadyPromise().then(function () {
+    //	console.log('DOM fully loaded and parsed');
+    //    });
+    //    console.log('==Starting==');
+
+
+    //跨域请求
+    var xhr = new XMLHttpRequest();
+    var url = 'http://localhost:8078/json/ShopUserLogin';
+
+    function crossDomainRequest() {
+        document.getElementById("content").innerHTML = "开始……";
+        if (xhr) {
+            xhr.open('POST', url, true);
+            xhr.onreadystatechange = handler;
+            xhr.send();
+        } else {
+            document.getElementById("content").innerHTML = "不能创建 XMLHttpRequest";
+        }
+    }
+
+    function handler(evtXHR) {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                var response = xhr.responseText;
+                document.getElementById("content").innerHTML = "结果：" + response;
+            } else {
+                document.getElementById("content").innerHTML = "不允许跨域请求。";
+            }
+        } else {
+            document.getElementById("content").innerHTML += "<br/>执行状态 readyState：" + xhr.readyState;
+        }
+    }
+</script>
+
+<body>
+    <input id="btn1" type="button" value="讀取文件" />
+    <input type='button' value='开始测试' onclick='crossDomainRequest()' />
+    <div id="content"></div>
+</body>
+
+</html>

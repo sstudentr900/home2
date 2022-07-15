@@ -1,0 +1,7 @@
+p:nth-child(1) {
+  color: #84ff01;
+}
+
+p:nth-child(even) {
+  color: red;
+}

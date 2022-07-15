@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link id="li" rel="stylesheet" href="css1.css"/>
+    <script>
+	function skin1(){
+		var ol = document.getElementById('li');
+		ol.href='css2.css';
+	}
+	function skin2(){
+		var ol = document.getElementById('li');
+		ol.href='css1.css';
+	}
+    </script>
+</head>
+<body>
+<input type="button" value="01" onclick="skin1()"/>
+<input type="button" value="02" onclick="skin2()"/>
+</body>
+</html>

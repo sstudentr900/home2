@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        //childNodes 子節點
+        //nodeType 判斷節點類型
+        //childNodes.nodeType==1--->元素節點（有標籤）
+        //childNodes.nodeType==2--->屬性節點
+        //childNodes.nodeType==3--->文本節點（文字）
+        //	window.onload=function(){
+        //	    var oul = document.getElementById('ull');
+        //	    for(var i =0; i<oul.childNodes.length;i++){
+        //		if(oul.childNodes[i].nodeType==1){//兼容火狐
+        //		    oul.childNodes[i].style.background='red';
+        //		}
+        //	    }
+        //	}
+        //chidren是childNodes的進化版不需判斷
+        //	window.onload=function(){
+        //	    var oul = document.getElementById('ull');
+        //	    //alert(oul.children.length)
+        //	    for(var i =0; i<oul.children.length;i++){
+        //		oul.children[i].style.background='red';
+        //	    }
+        //	}
+
+
+
+        //parentNode 父節點
+        //	window.onload=function(){
+        //	    var a= document.getElementsByTagName('a');
+        //	    for(var i =0; i<a.length;i++){
+        //		a[i].onclick=function(){
+        //			this.parentNode.style.display='none'
+        //		}
+        //	    }
+        //	}
+
+
+
+        //offsetParent 查找relative
+        //	window.onload=function(){
+        //	    var a= document.getElementsByTagName('a');
+        //	    for(var i =0; i<a.length;i++){
+        //		a[i].onclick=function(){
+        //		    this.parentNode.style.display='none'
+        //		}
+        //	    }
+        //	}
+
+
+
+        //firstchild 第一個子節點
+        //	window.onload = function(){
+        //	    var oul = document.getElementById('ull');
+        //	    //oul.firstChild.style.background='red';//IE
+        //	    //oul.firstElementChild.style.background='red';//火狐
+        //	    var of = oul.firstElementChild || oul.firstChild;//IE和火狐
+        //	    of.style.background='red';
+        //	}
+
+
+
+        //previousSibling 兄弟節點
+        //	window.onload = function(){
+        //	    var oul = document.getElementById('li');
+        //	    oul.previousSibling.style.background='red';//IE
+        //	    oul.previousElementSibling.style.background='red';//火狐
+        //	    var of = oul.previousSibling || oul.previousElementSibling;//IE和火狐
+        //	    of.style.background='red';
+        //	}
+
+
+
+        //屬性節點
+        window.onload = function() {
+            var oul = document.getElementById('ull');
+            console.log(oul.attributes['title'].nodeValue);
+            console.log(oul.attributes[0].nodName); //從後面返回名稱
+        }
+
+
+
+        //元素節點
+        //常量                          說明                nodeType值
+        //	ELEMENT_NODE                    元素                1
+        //	ATTRIBUTE_NODE                  屬性                2
+        //	TEXT_NODE                       文本                3
+        //	CDATA_SECTION_NODE              CDATA               4
+        //	DOCUMENT_FRAGMENT_NODE          實體參考            5
+        //	ENTITY_NODE　　　　　　　　　　　實體               6
+        //	PROCESSING_INSTRUCTION_NODE　　　處理指令           7
+        //	COMMENT_NODE　　　　　　　　　　注釋　　            8
+        //	DOCUMENT_NODE　　　　　　　　　　文檔根             9
+        //	OCUMENT_TYPE_NODE　　　　　　　　doctype            10
+        //	DOCUMENT_FRAGMENT_NODE           文檔片段           11
+        //	NOTATION_NODE                    符號               12
+
+        window.onload = function() {
+            var div = document.getElementById('ull');
+            if (div.nodeType == Node.ELEMENT_NODE) {
+                alert('元素節點');
+            }
+            if (div.children[0].nodeType == Node.TEXT_NODE) {
+                alert('文本節點');
+            }
+        }
+
+        //Node不支持IE8以下
+        if (typeof Node == 'undefined') {
+            window.Node = {
+                ELEMENT_NODE: 1,
+                TEXT_NODE: 3
+            }
+        }
+
+
+
+
+        //	document.documentElement.nodeName//獲取HTML
+        //	document.body.nodeName//獲取body
+        //	document.doctype.nodeName//doctype(not:ie8)
+        //	document.childNodes[0]//doctype(IE8)
+        //	document.images//所有圖片集合
+
+
+        //給值
+        //	window.onload = function(){
+        //	    var otxt = document.getElementById('text1');
+        //	    //1
+        //	    otxt.value='123';
+        //	    //2
+        //	    otxt['value']='abc';
+        //	    //3
+        //	    otext.setAttribute('value','aaaa');
+        //	    //4
+        //	    alert(setAttribute('id'));
+        //	}
+    </script>
+</head>
+
+<body>
+    <ul id="ull" title="44">
+        <li><a href="javascript:;">刪除</a></li>
+        <li><a href="javascript:;">刪除</a></li>
+        <li><a href="javascript:;">刪除</a></li>
+        <li><a href="javascript:;">刪除</a></li>
+    </ul>
+
+    <!--//offsetParent 父節點-->
+    <!--<div id="div1" style="width: 100px; height: 100px; background: red; position: relative; margin: 100px;">-->
+    <!--<div id="div2" onclick="alert(this.offsetParent.id)" style="width: 100px; height: 100px; background: yellow; position: absolute;left: 100px;top:100px;"></div>-->
+    <!--</div>    -->
+
+    <!--//firstchild-->
+    <!--<ul id="ull">-->
+    <!--<li></li>-->
+    <!--<li></li>-->
+    <!--<li id="li"></li>-->
+    <!--<li></li>-->
+    <!--</ul>-->
+
+    <!--//給值-->
+    <!--<input type="text" id="text1"/>-->
+
+
+</body>
+
+</html>

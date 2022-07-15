@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            *, *:before, *::after {
+                box-sizing: border-box;
+            }
+
+            body {
+                color: #222;
+                text-align: center;
+                background-color: #f2f2f2;
+                min-height: 100vh;
+                overflow: hidden;
+            }
+
+            section {
+                height: 100vh;
+                position: relative;
+            }
+            section:nth-of-type(1) {
+                background-color: #2d314a;
+            }
+            section:nth-of-type(2) {
+                background-color: #3c91b6;
+            }
+            section:nth-of-type(3) {
+                background-color: #6fc7bb;
+            }
+            section:nth-of-type(4) {
+                background-color: #e59780;
+            }
+            section h1 {
+                font-size: 3em;
+                color: #fff;
+                padding-top: 5vh;
+                margin-top: 0;
+                opacity: 0.7;
+            }
+            section h1 span {
+                font: italic 300 1rem/1.5 calibri;
+                display: block;
+                opacity: 0.5;
+            }
+            section p {
+                color: #fff;
+                font-size: 5rem;
+                margin: 0;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <h1>
+                Full Page Scroll
+                <span># Section 1</span>
+            </h1>
+            <p>1</p>
+        </section>
+        <section>
+            <h1>
+                Full Page Scroll
+                <span># Section 2</span>
+            </h1>
+            <p>2</p>
+        </section>
+        <section>
+            <h1>
+                Full Page Scroll
+                <span># Section 3</span>
+            </h1>
+            <p>3</p>
+        </section>
+        <section>
+            <h1>
+                Full Page Scroll
+                <span># Section 4</span>
+            </h1>
+            <p>4</p>
+        </section>
+        <script src="https://nds.genericsoftware.in/parent/js/jquery-1.8.2.min.js"></script>
+        <script>
+            const $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body'),
+                $section = $('section');
+
+            var numOfPages = $section.length - 1, //取得section的數量
+                curPage = 0, //初始頁
+                scrollLock = false;
+
+            function scrollPage() {
+                //滑鼠滾動
+                $(document).on("mousewheel DOMMouseScroll", function(e) {
+                    if (scrollLock) return;
+                    if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0)
+                        navigateUp();
+                    else
+                        navigateDown();
+                });
+                //鍵盤上下鍵
+                $(document).on("keydown", function(e) {
+                    if (scrollLock) return;
+                    if (e.which === 38)
+                        navigateUp();
+                    else if (e.which === 40)
+                        navigateDown();
+                });
+            }
+
+            function pagination() {
+                scrollLock = true;
+                $body.stop().animate({
+                    scrollTop: $section.eq(curPage).offset().top
+                }, 1000, 'swing', function(){
+                    scrollLock = false;
+                });
+            };
+
+            function navigateUp () {
+                if (curPage === 0) return;
+                curPage--;
+                pagination();
+            };
+
+            function navigateDown() {
+                if (curPage === numOfPages) return;
+                curPage++;
+                pagination();
+            };
+
+
+            $(function() {
+                scrollPage();
+            });
+        </script>
+    </body>
+</html>

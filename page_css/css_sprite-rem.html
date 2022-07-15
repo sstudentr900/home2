@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>移动端适配之雪碧图(sprite)背景图片定位 https://www.jianshu.com/p/d3b19968a4c2</title>
+
+    <style>
+        html {
+            font-size: 80px;
+        }
+        
+        .test-sprites {
+            margin-top: 30px;
+        }
+        
+        .test-sprites ul {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .test-sprites li {
+            width: 0.48rem;
+            height: 0.7rem;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            margin-left: 0.3rem;
+            float: left;
+            background: transparent url("http://nos.netease.com/edu-image/9BC0742AEB1A0B756EFC71B9DF77E452.png") 0 -0.02rem no-repeat;
+            background-size: 10.72rem 4.42rem;
+        }
+        
+        .test-sprites .icon2 {
+            width: 0.74rem;
+            height: 0.64rem;
+            background-position: -1.88rem -0.05rem;
+        }
+        
+        .test-sprites .icon3 {
+            width: 0.71rem;
+            height: 0.74rem;
+            background-position: -3.91rem -0.02rem;
+        }
+        
+        .test-sprites .icon4 {
+            width: 0.72rem;
+            height: 0.73rem;
+            background-position: -5.91rem -0.03rem;
+        }
+        
+        .test-sprites .icon5 {
+            width: 0.73rem;
+            height: 0.73rem;
+            background-position: -7.92rem -0.01rem;
+        }
+        
+        .test-sprites .icon6 {
+            width: 0.67rem;
+            height: 0.57rem;
+            background-position: -9.96rem -0.08rem;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+    <div class="test-sprites">
+        <ul class="f-cb">
+            <li class="icon1"></li>
+            <li class="icon2"></li>
+            <li class="icon3"></li>
+            <li class="icon4"></li>
+            <li class="icon5"></li>
+            <li class="icon6"></li>
+        </ul>
+    </div>
+
+
+
+</body>
+
+</html>

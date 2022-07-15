@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_bsis_ function</title>
+</head>
+
+<body>
+    <script>
+        //立刻執行的函式寫法就稱為IIFE
+        var hello2 = function(name) {
+            console.log('hello2')
+            return 'Hello ' + name
+        }('Simon');
+        console.log(hello2);
+
+        //https://blog.csdn.net/weixin_34362875/article/details/85733985?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-85733985-blog-51388500.pc_relevant_antiscanv3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-85733985-blog-51388500.pc_relevant_antiscanv3&utm_relevant_index=1
+        //匿名自我调用的函数
+        // (function(i) {
+        //     var x = "Hello!!"; // 我将调用自己
+        // })(i);
+        //和上面一樣
+        // !function(i) {
+        //     var x = "Hello!!"; // 我将调用自己
+        // }(i);
+    </script>
+</body>
+
+</html>

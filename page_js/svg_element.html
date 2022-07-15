@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    window.onload=function(){
+	var svg=document.getElementById('svg');
+	svg.addEventListener('mousedown',mousedownSvg);
+    }
+    function mousedownSvg(e){
+	var x = e.clientX;
+	var y = e.clientY;
+	//get svg info
+	var bounding = this.getBoundingClientRect();
+	x = x-bounding.left;
+	y = y-bounding.top;
+	var line  = creatSvgElement('line',{
+	    'x1':x,'y1':y,'x2':x,'y2':y,'stroke':'red','stroke-width':2
+	});
+	svg.appendChild(line);
+
+	//mousemove
+	var drag = function(e){
+	    line.setAttribute('x2', e.clientX-bounding.left);
+	    line.setAttribute('y2', e.clientY-bounding.top);
+	};
+	//mouseup
+	var drop = function(){
+	    document.removeEventListener('mousemove',drag);
+	    document.removeEventListener('mouseup',drag);
+	}
+	document.addEventListener('mousemove',drag);
+	document.addEventListener('mouseup',drop);
+    }
+    function mousedownRect(e){
+	var x = e.clientX;
+	var y = e.clientY;
+	//get svg info
+	var bounding = this.getBoundingClientRect();
+	x -=bounding.left;
+	y -=bounding.top;
+	//circle
+	var rect = creatSvgElement('rect',{
+	    'x':x,'y':y,'width':150,'height':150,'fill':'blue'
+	});
+	svg.appendChild(rect);
+    }
+    function creatSvgElement(tagName,attrs){
+	var element = document.createElementNS('http://www.w3.org/2000/svg',tagName);
+	for(var name in attrs){
+	    element.setAttribute(name,attrs[name]);
+	}
+	return element;
+    }
+</script>
+<svg id="svg" width="640" height="480" style="border:1px solid #000"></svg>
+</body>
+</html>

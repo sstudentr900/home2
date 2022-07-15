@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_basis_object</title>
+</head>
+
+<body>
+    <script>
+        //object寫法--------------------------------------------------------------------------------
+        //bad
+        // var person = new object();
+        // person.name = 'andy';
+
+        //good
+        var person = {
+            name: 'andy',
+            students: [{
+                name: 'kk'
+            }, {
+                name: 'bb'
+            }],
+        }
+
+
+        //object方法--------------------------------------------------------------------------------
+        var person = {
+            speak: function() {
+                console.log('hello');
+            }
+        }
+        var person = {
+            speak() {
+                console.log('hello');
+            }
+        }
+
+
+
+        //ES6 解構賦值--------------------------------------------------------------------------------------------------------------
+        //https://ithelp.ithome.com.tw/articles/10214721
+        let restaurant = {
+            name: '那一天義法餐館',
+            chef: '阿華師',
+            menu: {
+                duck: '法式櫻桃鴨胸',
+                pig: '噶瑪蘭黑豚',
+                rice: '檸檬奶油煙燻鮭魚燉飯'
+            }
+        };
+
+        // 以前的寫法
+        // let name = restaurant.name //那一天義法餐館
+        // let chef = restaurant.chef //阿華師
+
+        //解構賦值的寫法
+        // let {
+        //     name,
+        //     chef
+        // } = restaurant //name 那一天義法餐館 //chef 阿華師
+        // let {
+        //     duck,
+        //     pig
+        // } = restaurant.menu //duck 法式櫻桃鴨胸 //pig 噶瑪蘭黑豚
+
+
+        //https://ithelp.ithome.com.tw/articles/10247031
+        //重新賦予變數名稱為x和y
+        // const {name:x, age:y} = {
+        //     name: 'Tom',
+        //     age: 18
+        // } 
+        // x = Tom, y = 18
+
+
+        //餘運算子
+        const {
+            name,
+            age,
+            city,
+            ...rest
+        } = {
+            name: 'Tom',
+            age: 18,
+            gender: 'male',
+            city: 'Taipei',
+            pet: 'dog'
+        }
+        //name = Tom
+        //age = 18
+        //city = Taipei
+        //rest = {gender: "male", pet: "dog"}
+
+
+        //混合陣列和物件
+        const user = {
+            name: 'Amy',
+            age: 30,
+            pet: ['cat', 'dog', 'bird', 'fish']
+        }
+        const {
+            name: x,
+            age: y,
+            pet: [val1, , val3]
+        } = user
+        console.log(x, y, val1, val3) //Amy, 30, cat, bird
+
+
+        //預設變數的值
+        let [name = 'Fiona', age = 24] = ['David']
+        //name = David, age = 24
+
+        //object 屬性名稱可以是表達式--------------------------------------------------------------------------------
+        let id = 0;
+        const users = {
+            [`user${++id}`]: id,
+            [`user${++id}`]: id,
+            [`user${++id}`]: id,
+        };
+        console.log(users); // {user1: 1, user2: 2, user3: 3}
+
+        //es6 物件相加--------------------------------------------------------------------------------
+        //bad
+        var person = {
+            name: 'Andy',
+        };
+        var newperson = {
+            age: 21,
+        };
+        var obj = Object.assign({}, person, newperson);
+        console.log(obj);
+
+        //god
+        const person2 = {
+            name: 'Andy',
+        };
+        const newPerson = {
+            ...person2,
+            age: 21,
+        };
+        console.log(newPerson);
+
+
+        //数组对象合并--------------------------------------------------------------------------------
+        [].concat.call({
+            a: 1
+        }, {
+            b: 2
+        }); // [{ a: 1 }, { b: 2 }]
+        [].concat.call({
+            a: 1
+        }, [2]); // [{a: 1}, 2]
+        [2].concat({
+            a: 1
+        }); // [2, {a: 1}]
+
+
+        // object取值--------------------------------------------------------------------------------------------------------------
+        var ab = [{
+            name: 'kk'
+        }, {
+            name: 'bb'
+        }];
+        console.log(ab[0].name);
+
+        var ef = {
+            name: 'kk',
+            items: [
+                555,
+                444
+            ]
+        };
+        console.log(ef.items[0]);
+
+        var gh = {
+            name: 'kk',
+            items: [{
+                name: 'aa'
+            }, {
+                name: 'bb'
+            }]
+        };
+        console.log(gh.items[0].name);
+
+
+        // keys(object)方法返回一个数组，包含特定对象的所有键名。
+        // values(object)方法返回一个数组，包含特定对象的所有键值。
+        var o = {
+            'p1': 'a',
+            'p2': 'b'
+        };
+        Object.keys(o); // ["p1", "p2"]
+        Object.values(o); // ["a", "b"]
+        Object.entries(o); //[[p1:a],[p2:b]]
+
+
+        //https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
+        // keys
+        var obj = {
+            2: 'a',
+            1: 'b',
+            0: 'c'
+        };
+        console.log(Object.keys(obj)); // console: ['0', '1', '2']
+
+        // keys會自動排序
+        var obj = {
+            2: 'a',
+            1: 'b',
+            0: 'c'
+        };
+        console.log(Object.keys(obj)); // console: ['0', '1', '2']
+
+        //values
+        let object = {
+            a: 1,
+            b: 2,
+            c: 3
+        };
+        console.log(Object.values(object)); // [1, 2, 3]
+
+        //entries
+        let object2 = {
+            a: 1,
+            b: 2,
+            c: 3
+        };
+
+        //entries forEach
+        console.log(Object.entries(object2)); // [["a", 1],["b", 2],["c", 3]]
+        Object.entries(object2).forEach(([key, value]) => {
+            console.log(key, value);
+            // a 1
+            // b 2
+            // c 3
+        });
+
+        //entries for
+        for (const [key, value] of Object.entries(object2)) {
+            console.log(key, value);
+            // a 1
+            // b 2
+            // c 3
+        }
+
+        //entries for
+        //https://titangene.github.io/article/javascript-object-keys-values-entries.html
+        let items = {
+            width: 16,
+            height: 9
+        };
+        for (const key in items) {
+            console.log(key, items[key]);
+        }
+
+
+        //delete 單個物件移除其中一個--------------------------------------------------------------------------------
+        var someArray = {
+            a: "1",
+            b: "1"
+        };
+        delete someArray.b; // or delete person["age"]; 
+        console.log(someArray) //{a: "1"}
+
+
+        //filter多個物件移除其中一個--------------------------------------------------------------------------------
+        // https://stackoverflow.com/questions/10024866/remove-object-from-array-using-javascript
+        var someArray = [{
+            i: "1"
+        }, {
+            i: "2"
+        }, {
+            i: "3"
+        }];
+        var filtered = someArray.filter(function(el) {
+            return el.i != "2";
+        });
+        console.log(filtered) //[{i: "1"},{i: "3"}]
+        console.log(someArray) //[{i: "1"},{i: "2"},{i: "3"}]
+
+
+        //sort--------------------------------------------------------------------------------
+        var someArray = [{
+            name: "张三",
+            age: 30
+        }, {
+            name: "李四",
+            age: 24
+        }, {
+            name: "王五",
+            age: 28
+        }];
+        someArray.sort(function(o1, o2) {
+            return o1.age - o2.age;
+        })
+        console.log('someArray', someArray)
+
+
+        //find--------------------------------------------------------------------------------
+        var s = [{
+            "name": "001"
+        }, {
+            "name": "002"
+        }, {
+            "name": "003"
+        }];
+        var a = s.find(function(c) {　　
+            return c.name == '001'
+        })
+        console.log(a) //{name: '001'}
+
+
+        //findIndex 陣列中的索引位置-------------------------------------------------------
+        var toolMan = [{
+            "name": "001"
+        }, {
+            "name": "002"
+        }, {
+            "name": "003"
+        }];
+        var daddy = toolMan.findIndex(el => el.name == '001')
+        console.log(daddy) //1
+
+        // 刪除元素
+        toolMan.splice(daddy, 1);
+
+
+
+
+
+        //資料複製------------------------------------------------------------------------------------------------
+        //https://ithelp.ithome.com.tw/articles/10269367
+        //error記憶體位置是同一個
+        var user = {
+            name: 'Mary',
+            age: 30
+        }
+        var userCopy = user; //拷貝user物件的地址
+        userCopy.age = 20;
+        console.log(user.age); //20
+        console.log(userCopy.age); //20
+
+
+
+        //淺層拷貝Object.assign,{...}(無法複製物件裡的物件)
+        const person = {
+            name: '小王',
+            obj: {},
+        }
+        const person4 = Object.assign({}, person);
+        const person5 = {...person
+        };
+        console.log(person === person4, person === person5);
+        person4.obj.age = 16;
+        person4.name = 'fd';
+        console.log(person, person4, person5)
+
+
+        //深層拷貝{obj: {}} JSON.parse(JSON.stringify())
+        var a = {
+            name: 'a',
+            obj: {}
+        }
+
+        function data(param) {
+            const newData = JSON.parse(JSON.stringify(param));
+            return newData;
+        }
+        var b = data(a);
+        b.obj.age = 16;
+        console.log(a === b);
+        console.log(a, b)
+
+        //map拷貝
+        var user = [{
+            name: 'Mary',
+            age: 30
+        }]
+        var userChanged = user.map(function(person) {
+            var newPerson = {
+                name: person.name,
+                age: person.age + 10
+            };
+
+            return newPerson
+        })
+        console.log(userChanged.age) //40
+        console.log(user.age) //30
+
+        //deepCopy------------------------------------------------------------------------------------------------
+        //https://ithelp.ithome.com.tw/articles/10223178
+        function deepCopy(obj, cache = new WeakMap()) {
+            // 基本型別 & function
+            if (obj === null || typeof obj !== 'object') return obj
+                // Date 及 RegExp
+            if (obj instanceof Date || obj instanceof RegExp) return obj.constructor(obj)
+                // 檢查快取
+            if (cache.has(obj)) return cache.get(obj)
+
+            // 使用原物件的 constructor
+            const copy = new obj.constructor()
+
+            // 先放入 cache 中
+            cache.set(obj, copy)
+                // 取出所有一般屬性 & 所有 key 為 symbol 的屬性
+            ;
+            [...Object.getOwnPropertyNames(obj), ...Object.getOwnPropertySymbols(obj)].forEach(key => {
+                copy[key] = deepCopy(obj[key], cache)
+            })
+
+            return copy
+        }
+
+
+        //總數--------------------------------------------------------------------------
+        let fruits = {
+            apple: 2,
+            banana: 3,
+            orange: 1
+        };
+        const fruitsToatl = Object.values(fruits).reduce((accumulator, fruitcount) => {
+            console.log(accumulator, fruitcount)
+            return accumulator + fruitcount
+        })
+        console.log(fruitsToatl) //6
+
+
+        //更改資料結構--------------------------------------------------------------------------
+        let fruitBasket = Object.entries(fruits).map(([fruitName, fruitCount]) => {
+            return {
+                name: fruitName,
+                count: fruitCount
+            }
+        })
+        console.log(fruitBasket);
+        // [
+        //   {name: "apple", count: 2},
+        //   {name: "banana", count: 3},
+        //   {name: "orange", count: 1}
+        // ]
+
+        //跳出迴圈 some()--------------------------------------------------------------------------
+        Object.entries(fruits).some(([validKey, validValue]) => {
+            if (validValue == 2) {
+                return true; //true跳出整个迴圈
+            };
+        })
+
+        //跳出迴圈 every()--------------------------------------------------------------------------
+        Object.entries(fruits).every(([validKey, validValue]) => {
+            if (validValue == 2) {
+                return false; //false跳出整个迴圈
+            };
+        })
+
+
+
+        //new map--------------------------------------------------------------------------
+        //https://medium.com/appworks-school/javascript-map-%E7%89%A9%E4%BB%B6%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B-2e5511b7a580
+
+
+
+        //Symbol -------------------------------------------------------------------------------
+        //https://ithelp.ithome.com.tw/articles/10239947
+
+        //確保不會蓋掉之前的屬性
+        let user = {
+            name: 'Tom',
+            age: 23,
+            birthday: 'Aug 11',
+            id4: 111
+        }
+        const id4 = Symbol("id")
+        user[id4] = 222
+
+        //值可以相等
+        Symbol.for("id4");
+    </script>
+</body>
+
+</html>

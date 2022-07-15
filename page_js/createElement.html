@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        /*1*/
+        window.onload = function() {
+            var obtn = document.getElementById('btn1');
+            var oul = document.getElementById('ull');
+            obtn.onclick = function() {
+                var istart = new Date().getTime();
+                for (var i = 0; i < 10000; i++) {
+                    var oli = document.createElement('li');
+                    oul.appendChild(oli);
+                }
+                alert(new Date().getTime() - istart);
+            }
+        }
+
+        /*文檔碎片*/
+        //	window.onload=function(){
+        //	    var obtn= document.getElementById('btn1');
+        //	    var oul= document.getElementById('ull');
+        //	    obtn.onclick=function(){
+        //		var istart = new Date().getTime();
+        //		var g = document.createDocumentFragment()
+        //		for(var i=0;i<10000;i++){
+        //		    var oli=document.createElement('li');
+        //		    g.appendChild(oli);
+        //		}
+        //		oul.appendChild(g);
+        //		alert(new Date().getTime()-istart);
+        //	    }
+        //	}
+    </script>
+</head>
+
+<body>
+    <input id="btn1" type="button" value="發送" />
+    <ul id="ull"></ul>
+</body>
+
+</html>

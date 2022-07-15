@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //Window Navigator,警告数据可被浏览器使用者更改
+        //	浏览器代号: navigator.appCodeName
+        //	浏览器名称(不準確): navigator.appName
+        //	浏览器版本: navigator.appVersion
+        //	启用Cookies: navigator.cookieEnabled
+        //	硬件平台: navigator.platform
+        //	用户代理: navigator.userAgent
+        //	用户代理语言: navigator.systemLanguage
+
+        //browserdetect.js
+
+        //	浏览器安裝插件:navigator.plugins(ie不支持)
+        for (var i = 0; i < navigator.plugins.length; i++) {
+            document.write('插件名' + navigator.plugins[i].name + '<br>');
+            document.write('插件內容' + navigator.plugins[i].description + '<br>');
+        }
+
+        //	判斷有無此插件(非IE)
+        function hasplugins(name) {
+            var name = name.toLowerCase();
+            for (var i = 0; i < navigator.plugins.length; i++) {
+                if (navigator.plugins[i].name.toLowerCase().indexOf(name) > -1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        //	hasplugins('Flash');
+
+        //	判斷有無此插件(IE)
+        function hasIEPlugin() {
+            try {
+                new ActiveXObject('shockwaveFlash.shockwaveFlash');
+                //判斷有無FLASH控件
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+
+        //	hasIEPlugin();
+
+        //通用瀏覽器
+        function has() {
+            var boo = hasplugins('flash');
+            if (!boo) {
+                boo = hasIEPlugin();
+            }
+            return boo;
+        }
+        has();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

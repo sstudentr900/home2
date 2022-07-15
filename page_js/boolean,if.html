@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_basis_ boolean</title>
+    <script>
+        //Object.is() ------------------------------------------------------------------------
+        //https://ithelp.ithome.com.tw/articles/10217627
+        Object.is(4,4) // 回傳 true 或 false
+
+
+        //其中一個(||=或)------------------------------------------------------------------------
+        //ev 是 true, 否则返回 event
+        var oevent = ev || event;
+
+        //1.
+        if (!foo) {
+            // 如果 foo = undefined 或 null
+            foo = 10;
+        }
+        // 可以写成下面这样
+        foo = foo || 10;
+
+
+        //??------------------------------------------------------------------------
+        //https://ithelp.ithome.com.tw/articles/10243261
+        //在??的世界中，只要不是null或undefined，條件就能成立。
+        //??會返回第一個defined的值
+        let price = 0;
+        console.log(price || 100); //100
+        console.log(price ?? 100); //0
+
+
+        //&&------------------------------------------------------------------------
+        var callback = 1; //callback有值
+        callback && callback + 1; //2
+        var callback; //callback沒有值
+        callback && callback + 1; //undefined;
+
+        //1.
+        if (foo == 10) {
+            doSomething();
+        }
+        // 可以写成下面这样
+        foo == 10 && doSomething();
+
+
+        //array if--------------------------------------------------------------------------------------
+        var foo = 20
+        if (foo == 1 || foo == 22 || foo == 43 || foo == 51 || foo == 63 || foo == 83) {
+            doSomething();
+        }
+        //这样写很冗长，可以改成这样：
+        if ([1, 22, 43, 51, 63, 83].indexOf(foo) != -1) {
+            doSomething();
+        }
+
+        //~arr -1轉0
+        let arr = ['apple', 'banana', 'candy']
+        if (~arr.indexOf('dock')) {
+            console.log('有')
+        } else {
+            console.log('沒有')
+        }
+
+
+        //浮点數容易錯------------------------------------------------------------------------
+        var x = 0.1;
+        var y = 0.2;
+        var z = x + y // z 的结果为 0.3
+        if (z == 0.3) // 返回 false
+
+        //改成整數
+            var z = (x * 10 + y * 10) / 10; // z 的结果为 0.3
+
+
+        //一元------------------------------------------------------------------------
+        //!
+
+        //二元
+        //!=
+
+        //三元運算
+        var n = 45;
+        n % 2 == 0 ? alert('雙數') : alert('單數');
+
+
+        //每調用一次變一次boolean,(=!)------------------------------------------------------------------------
+        var clicked = true;
+        for (var i = 0; i < 2; i++) {
+            if (clicked) {
+                console.log(clicked);
+                clicked = !clicked;
+            } else if (!clicked) {
+                console.log(clicked);
+            }
+        }
+
+
+        //array null------------------------------------------------------------------------
+        // [] == 0
+
+        //空数组,和空对象都是true------------------------------------------------------------------------
+        //true  => '0',[]
+        //false　=>  0,-1,空字串'',null,undefined,NaN 
+
+        Boolean([]) //true
+        Boolean({}) //true
+        Boolean(0) //false
+        Boolean('') //false
+        Boolean(null) //false
+        Boolean(undefined) //false
+        Boolean(NaN) //false
+
+        //https://ithelp.ithome.com.tw/articles/10241908------------------------------------------------------------------------
+        // [] == ![] //true
+        // ! 的優先級比等號==高，所以會先把 ![] 轉成布林值false 。
+        // []==false，false會是等於0，所以會變成[]==0。
+        // []轉成基本值，用([]).toString()轉成 ""，把""轉成數字是0
+
+        //{} == !{} //false
+        // 先把!{}轉為布林值false
+        // 把false轉為0，程式碼會變成{}==0
+        // 物件與數字作對比時，會被嘗試用({}).toString()或({}).valueOf()，轉為原生值，再去跟數字作對比
+
+        // [] == [] //false
+        // {} == {} //false
+        // 被存放到不同的記憶體位置裏，兩者各有不同的地址，所以會回傳false。
+
+        //https://ithelp.ithome.com.tw/articles/10242544
+        //  10 == '10' //true   =>  Number("10")=>10 
+        // '10' == true //false
+        // 10 == true //false
+        // false == 0 //true  => Number(false)=>0 
+        // true == 1 //true   => Number(true)=>1 
+        // true == 'true' //false  => Number('true')=>NaN
+        // false == 'false' //false
+        // [] == 0 //true  =>  [].toString()  =>  ''==0
+        // [] == '' //true    
+        // [''] == 0 //true
+        // [0] == 0 //true
+        // [0] == '' //false
+
+        let c = {}
+        let d = c
+        c === d // true
+
+        //NaN
+        NaN == NaN // false
+        NaN === NaN // false
+
+        //number
+        isNaN(1); //fals
+        isNaN('a'); //true
+
+
+        //
+        null == undefined // true
+
+        //undefind
+        var h;
+        typeof h; //undefined
+
+        //轉型
+        console.log('6' + 2) //62
+
+        //會轉類型
+        var x = 10;
+        var y = "10";
+        console.log(x == y); //true
+
+        //不會轉類型
+        var x = 10;
+        var y = "10";
+        console.log(x === y);
+
+
+        var x = 100;
+        var y = '100';
+        console.log(x != y); //false
+        console.log(x !== y); //true
+
+
+
+        //typeof------------------------------------------------------------------------------
+        typeof 1; //number
+        typeof 'hello'; //string
+        typeof 'false'; //boolean
+        typeof []; //object
+        typeof {}; //object
+        typeof null; //object
+        typeof undefined; //undefined
+    </script>
+</head>
+
+<body></body>
+
+</html>

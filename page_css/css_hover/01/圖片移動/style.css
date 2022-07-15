@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* 
+CSS By Away
+http://www.dfuns.idv.tw
+ */
+ 
+*{ padding:0; margin:0; font:13px/1.5em Arial, Helvetica, sans-serif;}
+body{ padding:20px; background:#FCEDB6 url(images/bg.jpg) repeat-x;}
+.wrap{ width:964px; margin:auto;}
+.header{ background:url(images/logo.png); width:420px; height:75px; margin:0 auto 20px; text-indent:-9999px;}
+.mask{ height:180px; overflow:hidden; border:solid 1px #999; float:left; margin:-1px 0 0 -1px;}
+.boxWrap{
+	width: 240px;
+	-moz-transition:margin-top .5s ease-out;
+	-webkit-transition:margin-top .5s ease-out;
+	-o-transition:margin-top .5s ease-out;
+	-ms-transition:margin-top .5s ease-out;
+}
+.boxWrap:hover{ margin-top:-179px;}
+.boxWrap h1{ font-size:17px; color:#000;}
+.box1, .box2{ padding:10px; background-color:#EEE; color:#666; height:160px;}
+.box2{ margin-top: -1px; position:relative;}
+.box2 p{ margin-bottom:.5em;}
+.box2 a{ box-shadow:0 0 5px #999; position:absolute; left:70px; bottom:10px; text-decoration:none; color:#FFF; display:block; border: solid 1px #69F; background-color:#6CF; border-radius:3px; width:100px; text-align:center;}
+.box2 a:hover{ box-shadow:0 0 5px #666; background-color:#6BF;}

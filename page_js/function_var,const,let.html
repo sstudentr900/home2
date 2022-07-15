@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>javascript_bsis ES6</title>
+</head>
+
+<body>
+    <script>
+        //作用域---------------------------------------------------------------------------------
+        //var不存在塊集作用域,if() for()
+        function fun() {
+            for (var i = 0; i <= 3; i++) {
+                console.log(i);
+            }
+            console.log(i) //4
+            var i;
+            console.log(i); //undefined
+        }
+        fun();
+
+
+
+        //var命令只能在函数内部声明，在其他区块中声明，一律都是全局变量。
+        //if (true) {
+        //    var x = 5;
+        //}
+        //console.log(x);  // 5
+
+        //函数本身也是一个值，也有自己的作用域。它的作用域与变量一样，就是其声明时所在的作用域，与其运行时所在的作用域无关。
+        // var a = 1;
+        // var x = function () {
+        //     console.log(a);//1
+        // };
+        // function f() {
+        //     var a = 2;
+        //     x();
+        // }
+        // f() // 1
+
+
+
+        //http://javascript.ruanyifeng.com/
+        //https://www.youtube.com/watch?v=pr7JFQaAYjg
+        //當函數裡面沒有X會往外找X
+        var x = 10;
+
+        function func() {
+            console.log(x);
+        }
+        func(); //10
+
+
+        //當函數裡面有var會已裡面var為主
+        var x = 10;
+
+        function func() {
+            console.log(x); //undefined
+            var x = 20;
+            console.log(x); //20
+        }
+        func();
+
+
+        //let const
+        //http://es6.ruanyifeng.com/
+        //let(更好的var),const(值不再改變)
+        //es5
+        var a = 1;
+        //es6
+        let b = 2;
+        const c = 3;
+    </script>
+</body>
+
+</html>

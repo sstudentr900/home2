@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+	@import url(https://fonts.googleapis.com/css?family=Lato:400,700,300);
+	html {
+	    font-size: 2vh;
+	}
+
+	.exp-header,
+	.exp-footer, .exp-main, .exp-location, .exp-details, .exp-card, .exp-card.-info > *, .exp-image, .exp-image > img, .exp-facts, .exp-facts > .exp-dots, .exp-gallery > img {
+	    -webkit-transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+	    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+	}
+
+	#explore {
+	    height: 96vh;
+	    width: 54vh;
+	    background: -webkit-linear-gradient(#7d8393, #414757);
+	    background: linear-gradient(#7d8393, #414757);
+	    overflow: hidden;
+	    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.4);
+	}
+
+	@-webkit-keyframes inactive-location-top {
+	    100% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+	    }
+	}
+
+	@keyframes inactive-location-top {
+	    100% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+	    }
+	}
+	[id^="golden"]:target ~ #explore .exp-location:not([data-location="golden"]) {
+	    -webkit-transform: translateY(-24vh);
+	    transform: translateY(-24vh);
+	    opacity: 0;
+	    z-index: -1;
+	}
+	[id^="golden"]:target ~ #explore .exp-location:not([data-location="golden"]) *,
+	[id^="golden"]:target ~ #explore .exp-location:not([data-location="golden"]) * > * {
+	    -webkit-transition-delay: 5s !important;
+	    transition-delay: 5s !important;
+	}
+
+	[id^="alamo"]:target ~ #explore .exp-location:not([data-location="alamo"]) {
+	    -webkit-transform: translateY(24vh);
+	    transform: translateY(24vh);
+	    opacity: 0;
+	    z-index: -1;
+	}
+	[id^="alamo"]:target ~ #explore .exp-location:not([data-location="alamo"]) *,
+	[id^="alamo"]:target ~ #explore .exp-location:not([data-location="alamo"]) * > * {
+	    /*-webkit-transition-delay: 5s !important;*/
+	    /*transition-delay: 5s !important;*/
+	}
+
+	.route {
+	    display: none;
+	}
+
+	.route:target ~ #explore {
+	    -webkit-transform: translateY(0);
+	    transform: translateY(0);
+	}
+	.route:target ~ #explore .exp-header {
+	    -webkit-transform: translateY(-120%);
+	    transform: translateY(-120%);
+	}
+	.route:target ~ #explore .exp-footer {
+	    -webkit-transform: translateY(100%);
+	    transform: translateY(100%);
+	}
+	.route:target ~ #explore .exp-main {
+	    -webkit-transform: translateY(0);
+	    transform: translateY(0);
+	}
+	.route:target ~ #explore .exp-location {
+	    -webkit-transform: scale(1) translateY(0);
+	    transform: scale(1) translateY(0);
+	}
+	.route:target ~ #explore .exp-location > .exp-image {
+	    -webkit-transform: scale(1);
+	    transform: scale(1);
+	    pointer-events: auto;
+	}
+	.route:target ~ #explore .exp-location > .exp-details {
+	    opacity: 1;
+	    -webkit-transform: translateX(0) translateY(32.4vh);
+	    transform: translateX(0) translateY(32.4vh);
+	}
+	.route:target ~ #explore .exp-location .exp-card.-title {
+	    -webkit-transform: scale(1);
+	    transform: scale(1);
+	    pointer-events: none;
+	    cursor: default;
+	}
+	.route:target ~ #explore .exp-location .exp-card.-info {
+	    -webkit-transform: translateX(27vh);
+	    transform: translateX(27vh);
+	    -webkit-transition-delay: 0.125s;
+	    transition-delay: 0.125s;
+	}
+	.route:target ~ #explore .exp-location .exp-card.-info > * {
+	    -webkit-transform: translateY(0);
+	    transform: translateY(0);
+	    opacity: 1;
+	    -webkit-transition-delay: 0.5s;
+	    transition-delay: 0.5s;
+	}
+	.route:target ~ #explore .exp-location > .exp-facts {
+	    -webkit-transform: translateY(0);
+	    transform: translateY(0);
+	    opacity: 1;
+	    -webkit-transition-delay: 1s;
+	    transition-delay: 1s;
+	}
+	.route:target ~ #explore .exp-location .exp-dots {
+	    -webkit-transform: translateY(0);
+	    transform: translateY(0);
+	    opacity: 1;
+	    -webkit-transition-delay: 1s;
+	    transition-delay: 1s;
+	}
+
+	[id*="explore-details"]:target ~ #explore .exp-location .exp-gallery > img {
+	    -webkit-transition-delay: 0;
+	    transition-delay: 0;
+	}
+
+	#golden-explore-gallery:target ~ #explore .exp-location > .exp-image {
+	    -webkit-transform: translateY(32.4vh) scaleY(1.5);
+	    transform: translateY(32.4vh) scaleY(1.5);
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location > .exp-image > img {
+	    -webkit-transform: scaleY(0.75);
+	    transform: scaleY(0.75);
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location > .exp-image,
+	#golden-explore-gallery:target ~ #explore .exp-location > .exp-image > img {
+	    -webkit-transition-delay: 0.5s;
+	    transition-delay: 0.5s;
+	    -webkit-transition-duration: 0.75s;
+	    transition-duration: 0.75s;
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-card.-title {
+	    -webkit-animation: gallery-title 1.5s cubic-bezier(0.645, 0.045, 0.355, 1) both;
+	    animation: gallery-title 1.5s cubic-bezier(0.645, 0.045, 0.355, 1) both;
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-card.-info {
+	    opacity: 0;
+	    -webkit-transform: translateY(3rem) translateX(100%);
+	    transform: translateY(3rem) translateX(100%);
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-facts {
+	    opacity: 0;
+	    -webkit-transform: translateY(3rem);
+	    transform: translateY(3rem);
+	    -webkit-transition-delay: 0s;
+	    transition-delay: 0s;
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-gallery:hover > img {
+	    -webkit-transition-delay: 0s !important;
+	    transition-delay: 0s !important;
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-gallery > img {
+	    opacity: 0.4;
+	    -webkit-transform: translateY(0);
+	    transform: translateY(0);
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-gallery > img:nth-child(1) {
+	    -webkit-transition-delay: 1.125s;
+	    transition-delay: 1.125s;
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-gallery > img:nth-child(2) {
+	    -webkit-transition-delay: 1.25s;
+	    transition-delay: 1.25s;
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-gallery > img:nth-child(3) {
+	    -webkit-transition-delay: 1.375s;
+	    transition-delay: 1.375s;
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-gallery > img:nth-child(4) {
+	    -webkit-transition-delay: 1.5s;
+	    transition-delay: 1.5s;
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-gallery > img.-active, #golden-explore-gallery:target ~ #explore .exp-location .exp-gallery > img:hover {
+	    opacity: 1;
+	}
+	#golden-explore-gallery:target ~ #explore .exp-location .exp-gallery > img:hover {
+	    -webkit-transition-delay: 0s;
+	    transition-delay: 0s;
+	}
+
+	@-webkit-keyframes gallery-title {
+	    33% {
+		opacity: 0;
+		-webkit-transform: translateY(3rem);
+		transform: translateY(3rem);
+	    }
+	    66% {
+		animation-timing-funtion: step-end;
+		background-color: transparent;
+	    }
+	    67% {
+		-webkit-animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+		animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+		background-color: transparent;
+		-webkit-transform: translateY(-59.4vh);
+		transform: translateY(-59.4vh);
+		opacity: 0;
+	    }
+	    100% {
+		opacity: 1;
+		background-color: transparent;
+		-webkit-transform: translateY(-32.4vh);
+		transform: translateY(-32.4vh);
+	    }
+	}
+
+	@keyframes gallery-title {
+	    33% {
+		opacity: 0;
+		-webkit-transform: translateY(3rem);
+		transform: translateY(3rem);
+	    }
+	    66% {
+		animation-timing-funtion: step-end;
+		background-color: transparent;
+	    }
+	    67% {
+		-webkit-animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+		animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+		background-color: transparent;
+		-webkit-transform: translateY(-59.4vh);
+		transform: translateY(-59.4vh);
+		opacity: 0;
+	    }
+	    100% {
+		opacity: 1;
+		background-color: transparent;
+		-webkit-transform: translateY(-32.4vh);
+		transform: translateY(-32.4vh);
+	    }
+	}
+	.exp-header,
+	.exp-footer {
+	    -webkit-transition-duration: 0.25s;
+	    transition-duration: 0.25s;
+	    -webkit-transition-delay: 0.25s;
+	    transition-delay: 0.25s;
+	    height: 9vh;
+	    z-index: 2;
+	    font-size: 120%;
+	    color: white;
+	    font-weight: 700;
+	}
+
+	.exp-header {
+	    background-color: #5d6373;
+	    position: absolute;
+	    width: 100%;
+	    top: 0;
+	    left: 0;
+	    line-height: 9vh;
+	    padding-left: 1.5rem;
+	}
+
+	.exp-footer {
+	    width: 100%;
+	    padding: 0 2rem;
+	    display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -webkit-box-orient: horizontal;
+	    -webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	    flex-direction: row;
+	    -webkit-box-align: center;
+	    -ms-flex-align: center;
+	    align-items: center;
+	    -webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	    justify-content: space-between;
+	}
+
+	.exp-dots {
+	    -ms-flex-preferred-size: 5rem;
+	    flex-basis: 5rem;
+	    display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -webkit-box-orient: horizontal;
+	    -webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	    flex-direction: row;
+	    -ms-flex-pack: distribute;
+	    justify-content: space-around;
+	    -webkit-box-align: center;
+	    -ms-flex-align: center;
+	    align-items: center;
+	    height: 9vh;
+	}
+
+	.exp-dot {
+	    height: 1rem;
+	    width: 1rem;
+	    border-radius: 50%;
+	    border-style: solid;
+	    border-width: 0.25rem;
+	    border-color: rgba(255, 255, 255, 0.3);
+	}
+	.exp-dot.-active {
+	    background-color: white;
+	    border-color: white;
+	}
+
+	.exp-menu {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    height: 9vh;
+	    width: 9vh;
+	    background-color: #454b5b;
+	    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+	}
+	.exp-menu:before {
+	    content: '';
+	    width: 1.3rem;
+	    height: 0.25vh;
+	    position: absolute;
+	    background-color: white;
+	    top: calc(9vh / 2 - 0.5rem);
+	    left: calc(9vh / 2 - 0.75rem);
+	    box-shadow: 0.25rem 0.5rem 0 white, 0 1rem 0 white;
+	}
+
+	.exp-footer {
+	    background-color: #252a37;
+	    position: absolute;
+	    width: 100%;
+	    bottom: 0;
+	    left: 0;
+	}
+
+	.exp-main {
+	    height: calc(100% - 18vh);
+	    -webkit-transform: translateY(9vh);
+	    transform: translateY(9vh);
+	    position: absolute;
+	    width: 100%;
+	}
+
+	.exp-location {
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    height: 96vh;
+	    width: 100%;
+	    -webkit-transform-origin: 50% 50%;
+	    transform-origin: 50% 50%;
+	}
+	.exp-location > .exp-details {
+	    opacity: 0.8;
+	}
+	.exp-location > .exp-image {
+	    pointer-events: none;
+	    -webkit-transform: translateY(calc(3.3vh));
+	    transform: translateY(calc(3.3vh));
+	}
+	.exp-location:nth-child(1) {
+	    -webkit-transform: scale(0.9);
+	    transform: scale(0.9);
+	}
+	.exp-location:nth-child(1) > .exp-details {
+	    -webkit-transform: translateY(calc(6vh)) translateX(0);
+	    transform: translateY(calc(6vh)) translateX(0);
+	}
+	.exp-location:nth-child(1) .exp-card.-title {
+	    background-color: #7b71be;
+	    -webkit-transform-origin: left 50%;
+	    transform-origin: left 50%;
+	}
+	.exp-location:nth-child(2) {
+	    -webkit-transform: scale(0.9) translateY(39vh);
+	    transform: scale(0.9) translateY(39vh);
+	}
+	.exp-location:nth-child(2) > .exp-details {
+	    -webkit-transform: translateY(calc(6vh)) translateX(calc(27vh));
+	    transform: translateY(calc(6vh)) translateX(calc(27vh));
+	}
+	.exp-location:nth-child(2) .exp-card.-title {
+	    background-color: #39A0ED;
+	    -webkit-transform-origin: right 50%;
+	    transform-origin: right 50%;
+	}
+
+	.exp-details {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	}
+
+	.exp-card {
+	    display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    -webkit-box-orient: vertical;
+	    -webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	    flex-direction: column;
+	    -webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	    justify-content: center;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 27vh;
+	    height: 27vh;
+	    padding: 2rem;
+	    text-decoration: none;
+	}
+	.exp-card.-title {
+	    z-index: 2;
+	    color: white;
+	    -webkit-transform: scale(1.3);
+	    transform: scale(1.3);
+	}
+	.exp-card.-info {
+	    background-color: white;
+	}
+	.exp-card.-info > * {
+	    -webkit-transform: translateY(1rem);
+	    transform: translateY(1rem);
+	    opacity: 0;
+	}
+	.exp-card.-info > .subheading {
+	    color: #999;
+	}
+
+	.exp-image {
+	    width: 100%;
+	    height: 32.4vh;
+	    overflow: hidden;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	}
+	.exp-image > img {
+	    width: 100%;
+	}
+
+	.exp-facts {
+	    position: absolute;
+	    left: 0;
+	    padding: 2rem;
+	    height: calc(96vh - 32.4vh - 27vh);
+	    top: 59.4vh;
+	    opacity: 0;
+	    -webkit-transform: translateY(1rem);
+	    transform: translateY(1rem);
+	    color: white;
+	    background-color: transparent;
+	}
+	.exp-facts > .heading {
+	    font-size: 100%;
+	    font-weight: 700;
+	    text-transform: uppercase;
+	    margin-bottom: 0.5rem;
+	}
+	.exp-facts > .paragraph {
+	    font-size: 120%;
+	    font-weight: 300;
+	    line-height: 1.5;
+	}
+	.exp-facts > .exp-dots {
+	    width: 5rem;
+	    position: absolute;
+	    bottom: 0;
+	    left: calc(50% - 2.5rem);
+	    -webkit-transform: translateY(100%);
+	    transform: translateY(100%);
+	    opacity: 0;
+	}
+
+	.exp-gallery {
+	    height: auto;
+	    width: 54vh;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    padding: 2rem 1rem;
+	    position: absolute;
+	    bottom: 0;
+	    left: 0;
+	}
+	.exp-gallery > img {
+	    height: 13.5vh;
+	    width: 13.5vh;
+	    display: inline-block;
+	    margin-left: 1rem;
+	    -webkit-transform: translateY(100%);
+	    transform: translateY(100%);
+	    opacity: 0;
+	    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+	}
+
+	.heading {
+	    font-size: 200%;
+	    font-weight: 400;
+	}
+	.heading:first-child {
+	    margin-top: 0;
+	}
+	.heading.-h2 {
+	    margin-bottom: 0.5rem;
+	}
+
+	.subheading {
+	    font-size: 100%;
+	    font-weight: 300;
+	}
+
+	.route:target ~ #explore .exp-location > .exp-image[href]:before, .exp-card.-title:before {
+	    content: '';
+	    width: 3rem;
+	    height: 3rem;
+	    position: absolute;
+	    top: 1rem;
+	    right: 1rem;
+	    border: 0.5rem solid white;
+	    border-radius: 50%;
+	    z-index: 2;
+	    opacity: 0;
+	    -webkit-animation: pulse 1.5s 3s infinite;
+	    animation: pulse 1.5s 3s infinite;
+	    pointer-events: none;
+	}
+
+	.route:target ~ #explore .exp-location .exp-card.-title, #golden-explore-gallery:target ~ #explore .exp-location > .exp-image {
+	    cursor: default;
+	}
+	.route:target ~ #explore .exp-location .exp-card.-title:before, #golden-explore-gallery:target ~ #explore .exp-location > .exp-image:before {
+	    display: none;
+	}
+
+	@-webkit-keyframes pulse {
+	    from {
+		-webkit-transform: scale(0.5);
+		transform: scale(0.5);
+		opacity: 0;
+		-webkit-animation-timing-function: ease-in;
+		animation-timing-function: ease-in;
+	    }
+	    25% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+		-webkit-animation-timing-function: ease-out;
+		animation-timing-function: ease-out;
+	    }
+	    50%,
+	    to {
+		-webkit-transform: scale(1.2);
+		transform: scale(1.2);
+		opacity: 0;
+	    }
+	}
+
+	@keyframes pulse {
+	    from {
+		-webkit-transform: scale(0.5);
+		transform: scale(0.5);
+		opacity: 0;
+		-webkit-animation-timing-function: ease-in;
+		animation-timing-function: ease-in;
+	    }
+	    25% {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+		-webkit-animation-timing-function: ease-out;
+		animation-timing-function: ease-out;
+	    }
+	    50%,
+	    to {
+		-webkit-transform: scale(1.2);
+		transform: scale(1.2);
+		opacity: 0;
+	    }
+	}
+	.meta {
+	    -ms-flex-preferred-size: calc(80% - 54vh);
+	    flex-basis: calc(80% - 54vh);
+	    font-size: 1.2rem;
+	    font-weight: 300;
+	}
+	.meta p,
+	.meta a {
+	    color: rgba(255, 255, 255, 0.7);
+	}
+	.meta h1 {
+	    font-size: 3rem;
+	    line-height: 1.2;
+	    font-weight: 300;
+	    color: white;
+	}
+	.meta p {
+	    line-height: 1.4;
+	}
+	.meta a:hover {
+	    color: rgba(255, 255, 255, 0.7);
+	}
+	@media (max-width: 750px) {
+	    .meta {
+		display: none;
+	    }
+	}
+
+	body {
+	    display: -webkit-box;
+	    display: -ms-flexbox;
+	    display: flex;
+	    padding: 0 calc(50% - 450px) !important;
+	    -webkit-box-orient: horizontal;
+	    -webkit-box-direction: normal;
+	    -ms-flex-direction: row;
+	    flex-direction: row;
+	    -webkit-box-align: center;
+	    -ms-flex-align: center;
+	    align-items: center;
+	    -ms-flex-pack: distribute;
+	    justify-content: space-around;
+	    font-family: Lato, sans-serif;
+	    background: -webkit-linear-gradient(#98a2ad, #88909b);
+	    background: linear-gradient(#98a2ad, #88909b);
+	    overflow: hidden;
+	    background-position: center center;
+	    background-size: contain;
+	    background-repeat: no-repeat;
+	}
+
+	html,
+	body {
+	    width: 100%;
+	    height: 100%;
+	    margin: 0;
+	    padding: 0;
+	}
+
+	*,
+	*:before,
+	*:after {
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    user-select: none;
+	    box-sizing: border-box;
+	    position: relative;
+	}
+
+    </style>
+</head>
+<body>
+<div class="route" id="golden-explore-details"></div>
+<div class="route" id="golden-explore-gallery"></div>
+<div class="route" id="alamo-explore-details"></div>
+<div id="explore">
+    <header class="exp-header">
+	<span>Top Attractions</span>
+	<div class="exp-menu"></div>
+    </header>
+    <main class="exp-main">
+	<div class="exp-location" data-location="alamo">
+	    <div class="exp-image">
+		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/Screen_Shot_2015-10-25_at_10.51.48_PM.png" alt="" />
+	    </div>
+	    <div class="exp-details">
+		<a href="#alamo-explore-details" class="exp-card -title">
+		    <h1 class="heading -h1">Alamo Square</h1>
+		    <div class="subheading">San Francisco, CA</div>
+		</a>
+		<div class="exp-card -info">
+		    <h1 class="heading -h2">1984</h1>
+		    <div class="subheading">Created</div>
+		    <h1 class="heading -h2">5,617</h1>
+		    <div class="subheading">Population</div>
+		</div>
+	    </div>
+	    <div class="exp-facts">
+		<div class="heading">Facts</div>
+		<p class="paragraph">The Alamo Square neighborhood is characterized by Victorian architecture that was left largely untouched by the urban renewal projects in other parts of the Western Addition.</p>
+		<div class="exp-dots">
+		    <div class="exp-dot -active"></div>
+		    <div class="exp-dot"></div>
+		    <div class="exp-dot"></div>
+		</div>
+	    </div>
+	</div>
+	<div class="exp-location" data-location="golden">
+	    <a href="#golden-explore-gallery" class="exp-image">
+		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/Screen_Shot_2015-10-25_at_4.26.33_PM.png" alt="" />
+	    </a>
+	    <div class="exp-details">
+		<a href="#golden-explore-details" class="exp-card -title">
+		    <h1 class="heading -h1">Golden Gate</h1>
+		    <div class="subheading">San Francisco, CA</div>
+		</a>
+		<div class="exp-card -info">
+		    <h1 class="heading -h2">1937</h1>
+		    <div class="subheading">Opened</div>
+		    <h1 class="heading -h2">8,980'</h1>
+		    <div class="subheading">Total Length</div>
+		</div>
+	    </div>
+	    <div class="exp-facts">
+		<div class="heading">Facts</div>
+		<p class="paragraph">Business was so good, the city constructed the Oakland Bay Bridge and the Golden Gate Bridge during the Great Depression.</p>
+		<div class="exp-dots">
+		    <div class="exp-dot -active"></div>
+		    <div class="exp-dot"></div>
+		    <div class="exp-dot"></div>
+		</div>
+	    </div>
+	    <div class="exp-gallery">
+		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/Screen_Shot_2015-10-25_at_10.03.34_PM.png" alt="" class="-active" />
+		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/Screen_Shot_2015-10-25_at_10.04.25_PM.png" alt="" />
+		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/Screen_Shot_2015-10-25_at_10.05.30_PM.png" alt="" />
+		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/181794/Screen_Shot_2015-10-25_at_10.04.00_PM.png" alt="" />
+	    </div>
+	</div>
+    </main>
+    <footer class="exp-footer">
+	<div>All Cities</div>
+	<div class="exp-dots">
+	    <div class="exp-dot -active"></div>
+	    <div class="exp-dot"></div>
+	    <div class="exp-dot"></div>
+	</div>
+	<div>Next</div>
+    </footer>
+</div>
+<div class="meta">
+    <h1>CSS-only Exploration App Concept</h1>
+    <p>
+	Dribbble Rework<br />
+	Original Shot by <a href="https://dribbble.com/shots/2311820-Exploring" target="_blank">Dejan Markovic</a>
+    </p>
+    <p>
+	Click the pulsating tiles and photo to see the effect.<br>
+	You can also go <strong>back</strong> in your browser to navigate between scenes.
+    </p>
+    <p>
+	Works best in Chrome and Safari. Works <em>okay</em> in Firefox. <br>
+	It also works on mobile devices.
+    </p>
+</div>
+</body>
+</html>

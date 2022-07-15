@@ -1,0 +1,23 @@
+<h2>async_defer</h2>
+<ol>
+    <li>defer 適合用在需要等待 DOM 完成後才能被執行的 JS，後者多個 JS 檔彼此之間有相依性的情況。</li>
+    <li>async 適合用在各 script 間的 JS 檔沒有相依的情況下使用，例如 Ads、GA 等等。</li>
+</ol>
+<h2>defer 和 body script 的不同</h2>
+<p>差別是該 JS 檔開始被下載的時間點，如果是 defer 的話這隻 JS 檔很早就開始被「下載」，直到 DOM 完全建置好後（但會在 DOMContentLoaded 事件前）才被「執行」；但把 script 放到 body 的最後，則是要等這段語法被解析到時才會開始「下載」JS 檔，接著立即執行。</p>
+<pre>
+    <code class="language-js">
+        &lt;script src="demo1.js" defer&gt;&lt;/script&gt;
+
+        &lt;body&gt;
+            &lt;script src="demo.js"&gt;&lt;script&gt;
+        &lt;body&gt;
+    </code>
+</pre>
+<hr>
+<h2>參考</h2>
+<ul>
+    <li>
+        <a href="https://pjchender.dev/javascript/js-async-defer" target="_blank">Async, defer attributes</a>
+    </li>
+</ul>

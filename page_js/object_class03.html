@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+	//1.對象
+	//1-1
+//	var obj = new Object();
+//	obj.name='blue';
+//	obj.qq='21345';
+//	obj.showName=function(){
+//	    alert(this.name);
+//	}
+//	obj.showQQ=function(){
+//	    alert(this.qq);
+//	}
+//	obj.showName();
+//	obj.showQQ();
+
+
+	//1-2(是a的簡寫)
+//	var obj={
+//	    name:'blue',
+//	    qq:'21345',
+//	    showName:function(){alert(this.name)},
+//	    showQQ:function(){alert(this.qq)}
+//	}
+//	obj.showName();
+//	obj.showQQ();
+
+
+	//1-3方法添加到对象
+//	function person(firstname,lastname,age,eyecolor){
+//	    this.firstname=firstname;
+//	    this.lastname=lastname;
+//	    this.age=age;
+//	    this.eyecolor=eyecolor;
+//	    this.changeName=changeName;
+//	    function changeName(name){
+//		this.lastname=name;
+//	    }
+//	}
+//	myMother=new person("Sally","Rally",48,"green");
+//	console.log(myMother.lastname);//Rally
+//	myMother.changeName("Doe");
+//	console.log(myMother.lastname);//Doe
+
+
+
+
+	//2.構造函數(缺點沒有new 函數重複)
+//	function createPerson(name,qq){
+//	    //原料
+//	    var obj = new Object();
+//	    //加工
+//	    obj.name=name;
+//	    obj.qq=qq;
+//	    obj.showName=function(){
+//		alert(this.name);
+//	    }
+//	    obj.showQQ=function(){
+//		alert(this.qq);
+//	    }
+//	    //出廠
+//	    return obj;
+//	}
+//	var obj=createPerson('blue','21345');
+//	obj.showName();
+//	obj.showQQ();
+//	var obj2=createPerson('aaa','5555');
+//	obj2.showName();
+//	obj2.showQQ();
+//	//呼叫的函數事不同一個
+//	alert(obj2.showName==obj.showName);//false
+
+
+
+
+	//3.对象构造器(函數前面加了NEW)
+	//new = 系統自己加var obj=new object();2.return obj;這兩個
+	//3-1
+//	function fff(){
+//	    alert(this);
+//	}
+//	fff();//window
+//	new fff();//obj 新new出來的對象
+
+
+	//3-2
+//	function createPerson(name,qq){
+//	    //系統自己加的
+//	    //var this = new Object();
+//	    this.name=name;
+//	    this.qq=qq;
+//	    this.showName=function(){
+//		alert(this.name);
+//	    }
+//	    this.showQQ=function(){
+//		alert(this.qq);
+//	    }
+//	    //系統自己加的
+//	    //return this;
+//	}
+//	var obj=new createPerson('blue','21345');
+//	obj.showName();
+
+
+	//3-3面向對像範例
+	//	function a(){
+	//	    this.abc=12;
+	//	}
+	//	a.prototype.show=function(){
+	//	    alert(this.abc);
+	//	}
+	//	var obj=new a();
+	//	obj.show();
+
+
+	//3-4面向對像範例
+	//	function person(firstname,lastname,age,eyecolor){
+	//	    this.firstname=firstname;
+	//	    this.lastname=lastname;
+	//	    this.age=age;
+	//	    this.eyecolor=eyecolor;
+	//	}
+	//	myFather=new person("John","Doe",50,"blue");
+	//	console.log(myFather.firstname + " is " + myFather.age + " years old.");
+
+
+	//3-5.Boolean prototype 构造器
+//	Boolean.prototype.myColor=function(){
+//	    if (this.valueOf()==true){
+//		this.color="green";
+//	    }
+//	    else{
+//		this.color="red";
+//	    }
+//	    console.log(this.valueOf());
+//	}
+//	function myFunction(){
+//	    var a = new Boolean(1);
+//	    a.myColor();
+//	   return a.color;
+//	}
+//	myFunction();
+//
+//	function myColor(a){
+//	    if (a.valueOf()==true){
+//		this.color="green";
+//	    }
+//	    else{
+//		this.color="red";
+//	    }
+//	}
+//	myFather = new myColor(1);
+//	console.log(myFather.color)
+
+
+
+	//4.原型
+	//行間不同的,構造加屬性
+//	function createPerson(name,qq){
+//	    this.name=name;
+//	    this.qq=qq;
+//	}
+//	//class相同的,原型加方法
+//	createPerson.prototype.showName=function(){
+//	    alert(this.name);
+//	}
+//	createPerson.prototype.showQQ=function(){
+//	    alert(this.qq);
+//	}
+//	var obj=new createPerson('blue','21345');
+//	var obj2=new createPerson('aaa','5555');
+//	obj.showName();
+//	obj.showQQ();
+//	obj2.showName();
+//	obj2.showQQ();
+//	//呼叫的函數事同一個
+//	alert(obj2.showName==obj.showName);//ture
+
+
+	//4-1
+	//類別 = String(像是class)
+	//對象 = trim(事件名)
+	//prototype=原型
+//	String.prototype.trim=function(){
+//	    return this.replace(/^\s+|\s+$/g,'');
+//	}
+//	var str=' dd ll rr ertg  ';
+//	alert('('+str.trim()+')');
+
+
+	//4-2.
+//	var arr1=new Array(12,22,34,25);
+//	var arr2=new Array(12,24,33,1);
+//	arr1.sum=function(){//行間樣式,給一個(arr1.sum)
+//	    var result=0;
+//	    for(var i =0;i<this.length;i++){
+//		result+=this[i];
+//	    }
+//	    return result;
+//	}
+//	alert(arr1.sum());
+//	alert(arr2.sum());//無法求出和
+
+
+	//4-3.
+//	var arr1=new Array(12,22,34,25);
+//	var arr2=new Array(12,24,33,1);
+//	Array.prototype.sum=function(){//class,給一組（Array）
+//	    var result=0;
+//	    for(var i =0;i<this.length;i++){
+//		result+=this[i];
+//	    }
+//	    return result;
+//	}
+//	alert(arr1.sum());
+//	alert(arr2.sum());
+
+
+	//4-４
+//	function aa(){
+//	    this.a=12;
+//	    var _this=this;
+//	    //定時器調用的this是window
+//	    //setInterval(this.show,1000);
+//	    setInterval(function () {
+//		_this.show();
+//	    },1000);
+//	}
+//	aa.prototype.show=function(){
+//	    alert(this.a);
+//	};
+//	var obj=new aa();
+//	obj.show();
+
+
+	//4-5優先級
+//	Array.prototype.a=12;//class
+//	var arr=[1,2,3];
+//	alert(arr.a); //12
+//	arr.a=5;//行間樣式
+//	alert(arr.a); //5
+//	delete arr.a; //刪掉屬性
+//	alert(arr.a); //12
+
+
+
+	//5.joson面向對向,不適合多個對象
+//	var json={
+//	    name:'blue',
+//	    qq:'233',
+//	    showName:function(){
+//		alert(this.name)
+//	    },
+//	    showQQ:function(){
+//		alert(this.qq)
+//	    }
+//	};
+//	json.showName();
+//	json.showQQ();
+
+
+
+	//6.json命名空間,針對重複名子的函數都能使用
+//	var a={};
+//	a.common={};
+//	a.fx={};
+//	a.site={};
+//	a.common.getuser=function(){
+//	    alert('11')
+//	};
+//	a.site.getuser=function(){
+//	    alert('22')
+//	};
+//	a.common.getuser();
+//	a.site.getuser();
+
+
+
+	//7.繼承
+	//7-1
+//	function show(){
+//	    alert(this);
+//	}
+//	show();//this=window
+//	show.call();//window,show()=show.call(),call()是簡寫
+//	function show(a,b){
+//	    alert(this);
+//	}
+//	show.call('abc');//this=abc
+
+
+	//7-2
+//	function a(){
+//	    //a屬性
+//	    this.abc=12;
+//	}
+//	//a方法
+//	a.prototype.show=function(){
+//	    alert(this.abc);
+//	}
+//
+//	function b(){
+//	    //b繼承a屬性
+//	    a.call(this);
+//	}
+//	//b繼承a原型
+//	b.prototype=a.prototype;
+//
+//	var obj=new b();
+//	obj.show();//使用a方法
+//	alert(obj.abc);//顯示a屬性
+
+
+	//7-3引用問題
+//	var arr1=[1,2,3];
+//	var arr2=arr1;//用等號會出像引用問題
+//	arr2.push(4);
+//	alert('1|'+ arr1);//1,2,3,4
+//	alert('2|'+ arr2);//1,2,3,4
+//	//解決引用
+//	var arr1=[1,2,3];
+//	var arr2=[];
+//	for(var i in arr1){
+//	    arr2[i]=arr1[i];
+//	}
+//	arr2.push(4);
+//	alert('1|'+ arr1);//1,2,3
+//	alert('2|'+ arr2);//1,2,3,4
+
+
+	//7-4
+//	function a(){
+//	    //a屬性
+//	    this.abc=12;
+//	}
+//	//a方法
+//	a.prototype.show=function(){
+//	    alert(this.abc);
+//	}
+//
+//	function b(){
+//	    //b繼承a屬性
+//	    a.call(this);
+//	}
+//	//b繼承a原型
+//	for(var i in a.prototype){
+//	    b.prototype[i]=a.prototype[i]
+//	}
+//	b.prototype.fn=function(){
+//	    alert(8888);
+//	}
+//	var objB=new b();
+//	var objA=new a();
+//	objB.fn();
+////	objA.fn();//objA找不到fn()
+//	objB.show();
+//	objA.show();
+
+
+	//7-5
+	//繼承:從父上繼承一些方法屬性子類又有一些自己的特性
+//	function Person(name,sex){
+//	    this.name=name;
+//	    this.sex=sex;
+//	}
+//	Person.prototype.show= function () {
+//	    alert(this.name);
+//	}
+//	Person.prototype.showsex= function () {
+//	    alert(this.sex);
+//	}
+//	function work(name,sex,job){
+//	    Person.call(this,name,sex);
+//	    this.job=job;
+//	}
+//	//	1.引用  會影響父級
+//	//	work.prototype= Person.prototype;
+//	//	2. 修改至不影響父級
+//	for(var i in Person.prototype){
+//	    work.prototype[i]=Person.prototype[i];
+//	}
+//
+//	work.prototype.showjob=function(){
+//	    alert(this.job);
+//	}
+//	var op1=new Person('aa','11');
+//	var op2=new work('bb','22','99');
+//	op1.show();
+//	op1.showsex();
+//	op1.showjob();
+//	op2.show();
+//	op2.showsex();
+//	op2.showjob();
+
+	//面向对象(oop)
+	var stu = new Object(); //對象
+	stu.name = 'aa'; //屬性
+	stu.study = function() { //方法
+		alert(this.name);
+	}
+	stu.name;
+	stu.study();
+
+
+	//工廠
+	function F(name, age) {
+		var stu = new Object();
+		stu.name = name;
+		stu.study = function() {
+			alert(this.name);
+		}
+		return stu;
+	}
+
+	function B(name, age) {
+		this.name = name;
+		this.age = age;
+		this.study = function() {
+			alert(this.name);
+		}
+	}
+	var f = F('kk');
+	var b = new B('bb', 18);
+	f.study();
+	alert(typeof f) //object
+	alert(f instanceof F) //false
+	alert(f.study == b.study) //false
+
+
+
+	//構造
+	function F(name, age) {
+		this.name = name;
+		this.age = age;
+		this.study = function() {
+			alert(this.name);
+		}
+	}
+	var f = new F('kk', 22);
+	var b = new F('bb', 18);
+	f.study();
+	alert(typeof f) //object
+	alert(f instanceof F) //true
+	alert(f.study == b.study) //false
+
+
+
+
+	//原形 prototype
+	var obj = {
+		name: 'ff',
+		country: 'gg'
+	}
+
+	function F(name, age) {
+		this.name = name;
+		this.age = age;
+	}
+	F.prototype = obj;
+	var f = new F('kk', 22);
+	var b = new F('bb', 18);
+	alert(f.country);
+	alert(b.country);
+	alert(f.__proto__); //object
+	//判斷一個對象是否指向構造函數對象
+	F.prototype.isPrototypeOf(f); //true
+	//優先使用原形裡的值
+	f.name; //kk
+	//刪除
+	delete f.name;
+	f.name; //ff
+	//判斷有沒有值
+	//1.
+	f.hasOwnProperty('name');
+	//2.
+	'name' in f;
+
+
+	//範例
+	//var Calculator = function (decimalDigits, tax) {
+	//    this.decimalDigits = decimalDigits;
+	//    this.tax = tax;
+	//};
+	//Calculator.prototype = {
+	//    add: function (x, y) {
+	//	return x + y;
+	//    },
+	//
+	//    subtract: function (x, y) {
+	//	return x - y;
+	//    }
+	//};
+	//alert((new Calculator()).add(1, 3));
+
+
+	//範例
+	Calculator.prototype = function() {
+		add = function(x, y) {
+				return x + y;
+			},
+			subtract = function(x, y) {
+				return x - y;
+			}
+		return {
+			add: add,
+			subtract: subtract
+		}
+	}();
+	alert((new Calculator()).add(11, 3));
+
+
+	//範例
+	function animal() {
+		this.species = '動物';
+	}
+
+	function Cat(name, color) {
+		this.name = name;
+		this.color = color;
+	}
+
+	//1.用構造
+	//function Cat(name,color){
+	//    animal.call(this);
+	//    this.name=name;
+	//    this.color=color;
+	//}
+	//var cat1=new Cat('大毛','yellow');
+	//alert(cat1.species);
+
+	//2.prototype
+	Cat.prototype = new animal(); //指向animal
+	//Cat.prototype.constructor = Cat;//指向Cat
+	console.log(Cat.prototype.constructor == Cat); //true
+	var cat1 = new Cat('大毛', 'yellow');
+	alert(cat1.species);
+	console.log(cat1.constructor == Cat.prototype.constructor); //true
+	console.log(cat1.constructor == animal); //true
+
+	//3.prototype
+	function animal() {}
+	animal.prototype.species = '動物';
+	Cat.prototype = animal.prototype;
+	Cat.prototype.constructor = Cat;
+	var cat1 = new Cat("大毛", "黄色");
+	alert(cat1.species); // 动物
+	alert(animal.prototype.constructor);
+
+	//4.F空对象
+	function extend(Child, Parent) {
+		var F = function() {};
+		F.prototype = Parent.prototype;
+		Child.prototype = new F();
+		Child.prototype.constructor = Child;
+		Child.uber = Parent.prototype;
+	}
+	extend(Cat, animal);
+	var cat1 = new Cat("大毛", "黄色");
+	alert(cat1.species); // 动物
+
+
+
+
+	//函数作为方法调用
+	//var myObject = {
+	//    firstName:"John",
+	//    lastName: "Doe",
+	//    fullName: function () {
+	//	return this.firstName + " " + this.lastName;
+	//    }
+	//}
+	//myObject.fullName();         // 返回 "John Doe"
+
+
+
+	//方法,屬於一個對象(arr)
+	//var arr=[1,2,3]
+	//arr.aaa = function (){
+	//    alert(12)
+	//}
+	//arr.aaa();//12
+
+
+	//7.私有變量公共函數
+	function show() {
+		var num = '我'; //私有變量
+		function text() { //私有函數
+			return '是局部'
+		}
+		this.text = function() { //公共函數
+			return num + text();
+		}
+	}
+	var s = new show();
+	s.text();
+
+
+	//7.1私有變量被所有對象共享
+	(function() {
+		var country = ''; //私有變量
+		//全局
+		person = function(value) {
+			country = value;
+		}
+		person.prototype.set = function(c) {
+			country = c;
+		}
+		person.prototype.get = function(c) {
+			return country
+		}
+	})();
+	var ren = new person('usa');
+	person.get();
+
+
+	//7.2塊集作用域+字面量對象訪問私有變量
+	var obj = (function() {
+		var name = '樟山';
+
+		function show() {
+			return '我愛'
+		}
+		return {
+			go: function() {
+				return name + show();
+			}
+		}
+	})();
+	obj.go();
+
+
+	//7.3塊集作用域+構造函數
+	function Test() {};
+	var obj = (function() {
+		var name = '樟山';
+
+		function show() {
+			return '我愛'
+		}
+		var t = new Test();
+		t.go = function() {
+			return name + show();
+		}
+		return t;
+	})();
+	obj.go();
+
+
+	//封装对象的私有属性和私有方法
+	function Person(name) {
+		var _age;
+
+		function setAge(n) {
+			_age = n;
+		}
+
+		function getAge() {
+			return _age;
+		}
+
+		return {
+			name: name,
+			getAge: getAge,
+			setAge: setAge
+		};
+	}
+	var p1 = Person('张三');
+	p1.setAge(25); //25
+	var p2 = p1.getAge(); //25
+	console.log(p2)
+
+
+
+	//7-6.構造(constructor)
+    //1.
+    function stud(name,age){
+        this.name=name;
+        this.age=age;
+        this.study=function(){
+            alert(this.name,this.age)
+        }
+    }
+    var stu=new stud('aa',15);
+    alert(stu.constructor);//構造是function stud(name,age){}
+
+    //2.
+    var obj={
+        country:'中國'
+    }
+    function stud(name,age){
+        this.name=name;
+        this.age=age;
+        this.study=function(){
+            alert(this.name,this.age)
+        }
+    }
+    stud.prototype=obj;
+    var stu=new stud('aa',15);
+    alert(stu.constructor);//構造會變obj
+
+    //3.
+    var obj={
+        constructor:stu,//強制構造為stu
+        country:'中國'
+    }
+    function stud(name,age){
+        this.name=name;
+        this.age=age;
+        this.study=function(){
+            alert(this.name,this.age)
+        }
+    }
+    stud.prototype=obj;
+    var stu=new stud('aa',15);
+    alert(stu.constructor);//function stud(name,age){}
+
+    //4.
+    function stud(name,age){
+        this.name=name;
+        this.age=age;
+        this.study=function(){
+            alert(this.name,this.age)
+        }
+    }
+    var stu=new stud('aa',15);
+    alert(stu.constructor);
+    stud.prototype.country='中國';//添加屬性
+
+
+//構造+原型
+    function stu(name,age){
+        this.name=name;
+        this.age=age;
+        this.family=['aa','bb'];
+    }
+    stu.prototype={
+        fun:function(){
+            return this.name;
+        },
+        fun1:function(){
+            return this.age;
+        }
+    }
+    var stu1=new stu('qq',20);
+    stu1.family.push('gg');
+    alert(stu1.family);
+    stu1.fun();
+    stu1.fun1();
+    var stu2=new stu('ss',25);
+    alert(stu2.family);
+
+
+    //動態原型
+    function stu(name,age){
+        this.name=name;
+        this.age=age;
+        this.family=['aa','bb'];
+
+        if(typeof this.fun!='function'){//判斷初始化有調用將不再重複
+            stu.prototype.fun=function(){
+                return this.name;
+            }
+        }
+
+    }
+    var stu1=new stu('qq',20);
+    stu1.fun();
+    var stu2=new stu('gg',20);
+    stu2.fun();
+
+
+    //工廠+構造
+    function stu(name,age){
+        var obj=new Object();
+        obj.name=name;
+        obj.age=age;
+        obj.fun=function(){
+            return this.name;
+        }
+        return obj;
+    }
+    var stu=new stu('aa',5);
+    stu.fun();
+
+
+    //不用news
+    function stu(name,age){
+        var obj=new Object();
+        obj.name=name;
+        obj.fun=function(){
+            return name;
+        }
+        return obj;
+    }
+    var stu = stu('aa',5);
+    stu.fun();
+
+
+    //字串自訂屬性,容易命名衝突
+    String.prototype.myStr=function(){
+	return this+'字串'
+    }
+    var a='hello';
+    a.myStr();
+
+
+    //繼承
+	function box(){
+	    this.name='lee';
+	}
+	function Desk(){
+	    this.age=100;
+	}
+	Desk.prototype=new box();
+	var desk=new Desk();
+//	console.log(desk.age);
+//	console.log(desk.name);
+	function table(){
+	    this.level='bbbb';
+	}
+	table.prototype=new Desk();
+	var t=new table();
+	console.log(t.name);
+//	alert(desk instanceof Desk);//true
+	alert(desk instanceof table);//false,因父不能在子類後
+
+
+	//對象冒充
+	function test(age){
+	    this.family=['aa','bb'];
+	    this.age=age;
+	}
+	function util(age){
+	    test.call(this,age);
+	}
+	var u =new util(24);
+//	alert(u.age);
+	u.family.push('cc');
+	alert(u.family);//aa,bb,cc
+	var uu =new util(25);
+	alert(uu.family);//aa,bb
+
+
+	//8.
+	// 8-1改寫面向對範例
+//	window.onload=function(){
+//	    var odiv=document.getElementById('div1');
+//	    odiv.onmousedown=function(ev){
+//		var oevent=ev||event;
+//		var divx=oevent.clientX-odiv.offsetLeft;
+//		var divy=oevent.clientY-odiv.offsetTop;
+//
+//		document.onmousemove=function(ev){
+//		    var oevent=ev||event;
+//		    odiv.style.left=oevent.clientX-divx+'px';
+//		    odiv.style.top=oevent.clientY-divy+'px';
+//		};
+//		document.onmouseup=function(){
+//		    document.onmousemove=null;
+//		    document.onmouseup=null;
+//		}
+//	    }
+//	}
+
+
+	//8-2
+	//1.把函數放外面
+	//2.變量變全局
+	//3.onload變構造
+	//4.全局變屬性
+	//5.函數變方法
+//	window.onload=function(){
+//	    new drag('div1');
+//	}
+	function drag(id){
+	    var _this=this;
+	    console.log(_this);
+	    this.divx=0;
+	    this.divy=0;
+	    this.odiv=document.getElementById(id);
+	    this.odiv.onmousedown=function(ev){
+		_this.fndown(ev);
+		//文字會被選中
+		return false;
+	    };
+	}
+	drag.prototype.fndown = function (ev){
+	    var _this=this;
+	    console.log(_this);
+	    var oevent=ev||event;
+	    this.divx=oevent.clientX-this.odiv.offsetLeft;
+	    this.divy=oevent.clientY-this.odiv.offsetTop;
+	    document.onmousemove=function(ev){
+		_this.fnmove(ev);
+	    };
+	    document.onmouseup=function(){
+		_this.fnup();
+	    };
+	}
+	drag.prototype.fnmove = function (ev){
+	    var oevent=ev||event;
+	    this.odiv.style.left=oevent.clientX-this.divx+'px';
+	    this.odiv.style.top=oevent.clientY-this.divy+'px';
+	};
+	drag.prototype.fnup =function(){
+	    document.onmousemove=null;
+	    document.onmouseup=null;
+	}
+
+
+	//8-3繼承drag
+	function limit(id){
+	    drag.call(this,id);
+	}
+	for(var i in drag.prototype){
+	    limit.prototype[i]=drag.prototype[i];
+	}
+	//對limit限制範圍
+	limit.prototype.fnmove = function (ev){
+	    var oevent=ev||event;
+	    var l=oevent.clientX-this.divx;
+	    var t=oevent.clientY-this.divy;
+
+	    if(l<0){
+		console.log(i);
+		l = 0;
+	    }else if(l>document.documentElement.clientWidth-this.odiv.offsetWidth){
+		l=document.documentElement.clientWidth-this.odiv.offsetWidth;
+	    }
+	    if(t<0){
+		t = 0;
+	    }else if(t>document.documentElement.clientHeight-this.odiv.offsetHeight){
+		t=document.documentElement.clientHeight-this.odiv.offsetHeight;
+	    }
+	    this.odiv.style.left=l+'px';
+	    this.odiv.style.top=t+'px';
+	};
+
+	window.onload=function(){
+	    new drag('div1');
+	    new limit('div2');
+	}
+    </script>
+</head>
+<body>
+<!--8.範例-->
+<div id="div1" style="width: 300px;height: 300px;background: #ffff00;position: absolute;">1</div>
+<div id="div2" style="width: 300px;height: 300px;background: green;position: absolute;">2</div>
+</body>
+</html>

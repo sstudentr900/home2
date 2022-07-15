@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_bsis closure</title>
+</head>
+
+<body>
+    <script>
+        //https://ithelp.ithome.com.tw/articles/10220329----------------------------------------------------
+        //透過閉包讓 function 能夠有 private 變數
+        //閉包是子函數可以使用父函數的局部變量
+        //闭包的最大用处有两个，一个是可以读取函数内部的变量，另一个就是让这些变量始终保持在内存中，即闭包可以使得它诞生环境一直存在
+        //0.錯誤
+        for (var i = 1; i <= 5; i++) {
+            setTimeout(function() {
+                console.log(i)
+            }, 1000 * i)
+        }
+        //1.傳直
+        for (var i = 1; i <= 5; i++) {
+            setTimeout(function(x) {
+                console.log(x)
+            }, 1000 * i, i)
+        }
+        //2.IIFE
+        for (var i = 1; i <= 5; i++) {
+            (function(x) {
+                setTimeout(() => {
+                    console.log(x)
+                }, 1000 * x);
+            })(i)
+        }
+        //3.let
+        for (let i = 1; i <= 5; i++) {
+            setTimeout(function() {
+                console.log(i)
+            }, 1000 * i)
+        }
+
+
+        //https://ithelp.ithome.com.tw/articles/10220557----------------------------------------------------
+        //2-1 private變數
+        //function add() {
+        //    var counter = 0;
+        //    return counter += 1;
+        //}
+        //add();
+        //add();
+        //add();// 本意是想输出 3, 但事与愿违，输出的都是 1 !
+
+
+        var add = (function() {
+            var counter = 0;
+            return () => counter += 1;
+        })();
+        add();
+        add();
+        add(); // 计数器为 3
+
+        
+        //2-2 缺點是全局变量
+        //var counter = 0;
+        //function add() {
+        //    return counter += 1;
+        //}
+        //add();
+        //add();
+        //add();// 计数器现在为 3
+
+        function add(num) {
+            var y = 10;
+            return function(x = 0) {
+                return num + x + y
+            }
+        }
+        let addFn = add(5)
+        console.log(addFn(8))
+
+
+        //https://ithelp.ithome.com.tw/articles/10242580----------------------------------------------------------------
+        //記憶體釋放的驗證
+    </script>
+</body>
+
+</html>

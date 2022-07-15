@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_is-web</title>
+
+    <style>
+        .test_area {
+            border: 1px solid #ccc;
+            min-height: 120px;
+            _height: 120px;
+            padding: 5px;
+            border-radius: .3em;
+            box-shadow: inset 1px 2px 2px rgba(0, 0, 0, .1);
+        }
+        
+        .test_button {
+            display: inline-block;
+            width: 82px;
+            height: 30px;
+            background: url(./all_iconbtn.png) 0 -30px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- //js -->
+    <div class="test_box">
+        <div id="testArea" class="test_area" contenteditable="true"></div>
+        <div class="test_operate">
+            <a title="发布微博按钮" id="testButton" class="test_button test_button_disabled">發部</a>
+        </div>
+    </div>
+
+
+
+    <!-- jq -->
+    <p id='aa'>111111</p>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        //http://www.zhangxinxu.com/wordpress/2011/12/css3-pointer-events-none-javascript/
+        // js
+        var supportsPointerEvents = (function() {
+            var dummy = document.createElement('_');
+
+            if (!('pointerEvents' in dummy.style)) return false;
+            dummy.style.pointerEvents = 'auto';
+            dummy.style.pointerEvents = 'x';
+
+            document.body.appendChild(dummy);
+            var r = getComputedStyle(dummy).pointerEvents === 'auto';
+            document.body.removeChild(dummy);
+            return r;
+        })();
+
+        var oArea = document.getElementById("testArea"),
+            oButton = document.getElementById("testButton");
+
+        oArea.onkeyup = function() {
+            var length = this.innerHTML.length;
+            if (length == 0 || length > 140) {
+                oButton.className = "test_button test_button_disabled";
+                oButton.removeAttribute("href");
+            } else {
+                oButton.className = "test_button";
+                oButton.href = "javascript:";
+            }
+        };
+
+        oButton.onclick = function() {
+            //如果支持CSS3 pointer-events，CSS自动判定是否执行点击事件，脚本这边可以无顾忌执行弹出
+            //如果不支持CSS3 pointer-events
+            //通过按钮状态判定是否弹出
+            if (supportsPointerEvents || (!supportsPointerEvents && this.href)) {
+                alert("发送成功");
+            }
+            return false;
+        };
+
+
+
+        // jq
+        function noPointerEvents(element) {
+            $(element).bind('click mouseover', function(evt) {
+                this.style.display = 'none';
+                var x = evt.pageX,
+                    y = evt.pageY,
+                    under = document.elementFromPoint(x, y);
+                this.style.display = '';
+                evt.stopPropagation();
+                evt.preventDefault();
+                $(under).trigger(evt.type);
+            });
+        }
+        noPointerEvents('#aa');
+    </script>
+
+</body>
+
+</html>

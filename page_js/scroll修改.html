@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 5000px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://blog.csdn.net/bigbear00007/article/details/102615665">防止监听scroll 事件影响页面性能</a>
+    <script>
+        (function(){
+            var throttle = function(type,name,obj){
+                var obj = obj || window;
+                var runing = false;
+                var fun = function(){
+                    if(runing)return;
+                    runing= true;
+                    requestAnimationFrame(()=>{
+                        obj.dispatchEvent(new CustomEvent(name));
+                        runing = false;
+                    })
+                }
+                obj.addEventListener(type,fun)
+            }
+            throttle('scroll','optimizedScroll')
+        })()
+        window.addEventListener('optimizedScroll', function(){
+            console.log('optimizedScroll')
+        }, false);
+    </script>
+</body>
+</html>

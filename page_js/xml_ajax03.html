@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_basis_XMLHttpRequest</title>
+    <script>
+        //1--------------------------------------------------------------------------
+        function get(url) {
+            return new Promise((resolve, reject) => {
+                // 定義 Http request
+                var req = new XMLHttpRequest();
+                req.open('GET', url);
+                req.onload = function() {
+                    if (req.status == 200) {
+                        // 使用 resolve 回傳成功的結果，也可以在此直接轉換成 JSON 格式
+                        resolve(JSON.parse(req.response));
+                    } else {
+                        // 使用 reject 自訂失敗的結果
+                        reject(new Error(req))
+                    }
+                };
+                req.send();
+            });
+        }
+
+        // 往後的 HTTP 直接就能透過 get 函式取得
+        get('https://jsonplaceholder.typicode.com/todos/1')
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((res) => {
+                console.error(res)
+            })
+
+
+        //3--------------------------------------------------------------------------
+        function get2(obj) {
+            var type = obj.type || 'POST';
+            return new Promise(function(resolve, reject) {
+                var fd = new FormData(obj.el);
+                var xhr = new XMLHttpRequest();
+                xhr.open(type, obj.url, true);
+                xhr.onload = function() {
+                    resolve(JSON.parse(xhr.responseText))
+                };
+                xhr.onerror = function() {
+                    reject(JSON.parse(xhr.statusText))
+                };
+                xhr.send(fd);
+            });
+        };
+        get2({
+            url: './php/transfer.php?act=dream'
+        }).then(function(data) {
+            console.log(data)
+        })
+
+        //--------------------------------------------------------------------------
+
+        //4.
+        function ajax(o) {
+            var u = o.u || location.protocol + '//' + location.hostname + location.pathname,
+                m = o.m || 'post',
+                d = o.d || '', //form id
+                a = o.a || ''; //add value=>{name:value}
+            return new Promise(function(resolve, reject) {
+                var fd = new FormData(d);
+                if (a) {
+                    for (var key in a) {
+                        fd.append(key, a[key]);
+                    }
+                }
+                var xhr = new XMLHttpRequest();
+                xhr.open(m, u, true);
+                xhr.onload = function() {
+                    resolve(JSON.parse(xhr.responseText))
+                };
+                xhr.onerror = function() {
+                    reject(JSON.parse(xhr.statusText))
+                };
+                xhr.send(fd);
+            });
+        };
+        ajax({
+            a: {
+                'dataName': 'dataValue'
+            }
+        }).then(function(data) {
+            console.log(data)
+        })
+    </script>
+</head>
+
+<body></body>
+
+</html>

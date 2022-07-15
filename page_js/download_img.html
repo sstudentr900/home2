@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var link = document.createElement('a')
+        link.textContent = 'download image';
+        link.addEventListener("click",function(ev){
+            link.href = canvas.toDataURL();
+            link.download = 'aa.png'
+        })
+        document.body.appendChild(link);
+    </script>
+    <a href="https://jsfiddle.net/codepo8/V6ufG/2/">參考</a>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+	* {
+	    box-sizing: border-box;
+	}
+
+	html {
+	    box-sizing: border-box;
+	    height: 100%;
+	    font-smoothing: antialiased;
+	    text-rendering: optimizeLegibility;
+	    font-size: 0.8rem;
+	}
+	@media screen and (min-width: 20rem) {
+	    html {
+		font-size: calc(0.8rem + 1.2 * ((100vw - 20rem) / 30));
+	    }
+	}
+	@media screen and (min-width: 48rem) {
+	    html {
+		font-size: 2rem;
+	    }
+	}
+
+	body {
+	    line-height: 1.5rem;
+	    padding: 1.5rem 0;
+	    margin: 0 auto;
+	    background-image: linear-gradient(rgba(200, 50, 50, 0.25) 1px, transparent 1px);
+	    background-size: 1px 1.5rem;
+	    width: 20rem;
+	}
+
+	p {
+	    line-height: 1.5rem;
+	    margin-bottom: 1.5rem;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+	    font-weight: 700;
+	    margin-bottom: 1.5rem;
+	}
+
+	h1 {
+	    font-size: 2rem;
+	    line-height: 2rem;
+	    margin-top: calc((1.5rem - 2rem) + 1.5rem);
+	}
+
+	h2 {
+	    font-size: 1.5rem;
+	    line-height: 1.5rem;
+	    margin-top: calc((1.5rem - 1.5rem) + 1.5rem*2);
+	}
+
+	h3 {
+	    font-size: 1.25rem;
+	    line-height: 1.25rem;
+	    margin-top: calc((1.5rem - 1.25rem) + 1.5rem*2);
+	}
+
+	h4 {
+	    font-size: 1rem;
+	    line-height: 1rem;
+	    margin-top: calc((1.5rem - 1rem) + 1.5rem*2);
+	}
+
+	h5 {
+	    font-size: 0.875rem;
+	    line-height: 0.875rem;
+	    margin-top: calc((1.5rem - 0.875rem) + 1.5rem*2);
+	}
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Fluid Vertical Rhythm</h1>
+    <p>This is an example of fluid type that maintains vertical rhythm. I'll try and find the time to write it up in detail soon.</p>
+    <p>If the lines seem to glitch out ocasionally it's not because the vertical rhythm is broken. I think it's because of the way the browser rounds. The height of the gradient background that draws the lines on the body element is only rounded once, whereas real line hight is rounded on a per element basis. This adds up by the time you get to the bottom of the page. No idea how to fix it!</p>
+
+
+    <h2>Fluid Vertical Rhythm</h2>
+    <p>This is an example of fluid type that maintains vertical rhythm. I'll try and find the time to write it up in detail soon.</p>
+    <p>If the lines seem to glitch out ocasionally it's not because the vertical rhythm is broken. I think it's because of the way the browser rounds. The height of the gradient background that draws the lines on the body element is only rounded once, whereas real line hight is rounded on a per element basis. This adds up by the time you get to the bottom of the page. No idea how to fix it!</p>
+
+
+
+    <h3>Fluid Vertical Rhythm</h3>
+    <p>This is an example of fluid type that maintains vertical rhythm. I'll try and find the time to write it up in detail soon.</p>
+    <p>If the lines seem to glitch out ocasionally it's not because the vertical rhythm is broken. I think it's because of the way the browser rounds. The height of the gradient background that draws the lines on the body element is only rounded once, whereas real line hight is rounded on a per element basis. This adds up by the time you get to the bottom of the page. No idea how to fix it!</p>
+
+
+
+    <h4>Fluid Vertical Rhythm</h4>
+    <p>This is an example of fluid type that maintains vertical rhythm. I'll try and find the time to write it up in detail soon.</p>
+    <p>If the lines seem to glitch out ocasionally it's not because the vertical rhythm is broken. I think it's because of the way the browser rounds. The height of the gradient background that draws the lines on the body element is only rounded once, whereas real line hight is rounded on a per element basis. This adds up by the time you get to the bottom of the page. No idea how to fix it!</p>
+
+
+</div>
+</body>
+</html>

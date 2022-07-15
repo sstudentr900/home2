@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        //https://blog.csdn.net/qdmoment/article/details/98213994
+        //https://ithelp.ithome.com.tw/articles/10246325
+        function creatImage(blob) {
+            var body = document.querySelector("body");
+            var image = new Image();
+            image.src = URL.createObjectURL(blob);
+            image.onload = () => URL.revokeObjectURL(image.src);
+            body.append(image)
+        }
+
+        function fetchFnX() {
+            fetch('img/slide01.jpg', {}).then(response => {
+                return response.blob();
+            }).then(imageBlob => {
+                creatImage(imageBlob)
+            })
+        }
+        // fetchFnX()
+
+        function xml2() {
+            //创建XMLHttpRequest对象
+            var xhr = new XMLHttpRequest();
+            //配置请求方式、请求地址以及是否同步
+            xhr.open('POST', 'file_blob2.php', true);
+            //设置请求结果类型为blob
+            xhr.responseType = 'blob';
+            //请求成功回调函数
+            xhr.onload = function(e) {
+                if (this.status == 200) { //请求成功
+                    creatImage(this.response)
+                }
+            };
+            xhr.send();
+        }
+        // xml2()
+
+        function fetchFn() {
+            fetch('file_blob2.php', {}).then(response => {
+                return response.blob();
+            }).then(imageBlob => {
+                creatImage(imageBlob)
+            })
+        }
+        // fetchFn()
+
+
+        function fetchFn2() {
+            fetch('file_blob.php', {}).then(response => {
+                return response.json();
+            }).then(json => {
+                console.log(json.data)
+                json.data.forEach(el => {
+                    fetchFn()
+
+                })
+            })
+        }
+        // fetchFn2()
+    </script>
+</body>
+
+</html>

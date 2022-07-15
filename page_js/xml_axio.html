@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //https://ithelp.ithome.com.tw/articles/10253259-------------------------------------------------------------------------------------------------------
+        const x = axios('https://randomuser.me/api/');
+        x.then((response) => console.log(x)); //Promise {<fulfilled>: {…}}
+
+        axios('https://randomuser.me/api/')
+        .then( (response) => console.log(response))
+        .catch( (error) => console.log(error));
+
+
+       //GET請求
+       //1.
+        axios.get('https://randomuser.me/api/')
+            .then( (response) => console.log(response))
+            .catch( (error) => console.log(error));
+        //2.
+        axios({
+            method: 'get',
+            url: 'https://randomuser.me/api/?gender=female&nat=us'
+        })
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+
+        //POST請求
+        //1.
+        axios.post('https://hexschool-tutorial.herokuapp.com/api/signup',{
+            email: 'javascriptBasics@gmail.com',
+            password: '1234'
+        })
+        .then( (response) => console.log(response))
+        .catch( (error) => console.log(error));
+        //2.
+        axios({
+            method: 'post',
+            url: 'https://hexschool-tutorial.herokuapp.com/api/signup',
+            //API要求的資料
+            data: {
+                email: 'alysa@gmail.com',
+                password: '11223344'
+            }
+        })
+        .then( (response) => console.log(response))
+
+
+        //params ?gender=female&nat=us
+        axios.get('https://randomuser.me/api/?gender=female&nat=us')
+        .then((response) => console.log(response)) //得出來的是類似Response的物件，裏面的data才是我們想抓的資料
+        .catch((error) => console.log(error))
+
+        axios.get('https://randomuser.me/api/',{
+            //URL参數放在params屬性裏面
+            params: {
+                gender: 'female',
+                nat: 'us'
+            }
+        })
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error))
+
+
+        //同時發出多個請求
+        function getUserFemale(){
+            return axios.get('https://randomuser.me/api/?gender=female&nat=us')
+        };
+        function getUserMale(){
+            return axios.get('https://randomuser.me/api/?gender=male&nat=us')
+        };
+        Promise.all([getUserFemale(),getUserMale()])
+            .then( (response) => {
+                const femaleUser = response[0];
+                const maleUser = response[1];
+                console.log(femaleUser);
+                console.log(maleUser);
+            })
+
+
+        //用.create方法
+        const uuid = xxxxxx;
+        const token = xxxxxx;
+        //新增一個變數叫HexSchool api，它是一個axios實體物件。
+        //我們在裏面設定config物件，讓我們之後可以重用
+        const apiHexSchool = axios.create({
+            baseURL: `https://course-ec-api.hexschool.io/api/${uuid}`,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "Authorization": `Bearer ${token}`,
+            }
+        })
+        //新增商品到後台。在.post()裏第一個参數，只需放入URL後面的部分
+        const addProduct_backend = data => apiHexSchool.post('/admin/ec/product',data);
+        addProduct_backend(data)
+            .then( (response) => console.log(response))
+            .catch( (error) => console.log(error));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //document是網頁最上面的父節點
+        //event事件對象
+        window.onload = function() {
+            document.onclick = function(ev) {
+                //1.
+                if (ev) {
+                    alert(ev.clientX); //火狐
+                } else {
+                    alert(event.clientX); //IE
+                }
+
+                //2.
+                var a = ev || event;
+                alert(a.clientX)
+            }
+        }
+
+        //注意:不要使用 "on" 前缀。 例如，使用 "click" ,而不是使用 "onclick"。
+        window.onload = function() {
+            var obtn1 = document.getElementById('btn1');
+
+            //attachEvent IE7事件綁定
+            //	    obtn1.attachEvent('onclick',function(){
+            //	    })
+
+            //addEventListener(事件名,函數,false) FF
+            //	    obtn1.addEventListener('click',function(){
+            //	    },false)
+
+            //各瀏覽兼容
+            //	    if(attachEvent){
+            //		    obtn1.attachEvent('onclick',function(){
+            //			alert(12);
+            //		})
+            //	    }else{
+            //		    obtn1.addEventListener('click',function(){
+            //			alert(12);
+            //		},false)
+            //	    }
+
+            //包涵數,各瀏覽兼容
+            //	    function myaddevent(obj,ev,fn){
+            //		if(obj.attachEvent){
+            //		    obj.attachEvent('on'+ev,fn);
+            //		}else{
+            //		    obtn1.addEventListener(ev,fn,false)
+            //		}
+            //	    }
+            //	    myaddevent(obtn1,'click',function(){
+            //		alert(12)
+            //	    })
+
+
+
+            //1.元素中添加事件
+            element.addEventListener("click", myFunction);
+
+            function myFunction() {
+                alert("Hello World!");
+            }
+
+
+            //2.Window 对象
+            window.addEventListener("resize", function() {
+                document.getElementById("demo").innerHTML = sometext;
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" id="btn1" value="button" />
+</body>
+
+</html>

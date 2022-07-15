@@ -1,0 +1,150 @@
+html,body
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+  height: 100%
+  overflow: hidden
+  
+.form
+  z-index: 100
+.scenes
+  width: 650px
+  height: 550px
+  display: flex
+  position: relative
+.scene
+  position: absolute
+  width: 650px
+  
+  [data-name*="island"]
+    opacity: 0
+    transform: translateY(30px)
+    transition: 0.5s
+  [data-name="island_1"]
+    transition-delay: 0.1s
+  [data-name="island_2"]
+    transition-delay: 0.3s
+  [data-name="island_3"]
+    transition-delay: 0.5s
+  
+  &.active
+    [data-name*="island"]
+      opacity: 1
+      transform: translateY(0px)
+  
+@keyframes drag
+  0%
+    transform: rotate(0deg)
+  80%
+    transform: rotate(0deg)
+  85%
+    transform: rotate(10deg)
+  90%
+    transform: rotate(-6deg)
+  95%
+    transform: rotate(3deg)
+  100%
+    transform: rotate(0deg)
+
+rect[data-name="hidden"]
+  opacity: 0 
+  fill: transparent
+  
+g[data-name="sign"]
+  animation: drag 2s infinite
+  transform-origin: center bottom
+  
+g[data-name*="trigger"]
+  cursor: pointer
+  &:hover
+    g[data-name="sign"]
+      animation: flash 1s infinite
+    
+g[data-name="trigger_door_man"]
+  &:hover
+    g[data-name="trigger_door_man"]
+      transform-origin: center bottom
+      animation: drag 2s infinite
+      
+@keyframes bake_cookie_locus
+  1%
+    opacity: 0
+  2%
+    opacity: 1
+  10%
+    opacity: 1
+  11%
+    opacity: 0
+  100%
+    opacity: 0
+
+@keyframes now_cookie
+  0%
+    opacity: 1
+  49%
+    opacity: 1
+  50%
+    opacity: 0
+  90%
+    opacity: 0
+  91%
+    opacity: 1
+
+
+@keyframes bake_cookie
+  40%
+    transform: rotate(5deg)
+  50%
+    transform: rotate(-10deg)
+  70%
+    transform: rotate(-12deg)
+  90%
+    transform: rotate(-10deg)
+  100%
+    transform: rotate(5deg)
+    
+g[data-name="trigger_cookie"]
+  &:hover
+    g[data-name="cookie1"]
+      animation: 2s bake_cookie_locus -1s infinite both
+    g[data-name="cookie2"]
+      animation: 2s bake_cookie_locus -0.8s infinite both
+    g[data-name="cookie3"]
+      animation: 2s bake_cookie_locus -0.6s infinite both
+    [data-name="cookie4"]
+      animation: 2s bake_cookie_locus -0.4s infinite both
+      
+    
+      
+    [data-name="now_cookie"]
+      transform-origin: left center
+      animation: now_cookie 2s infinite 0s both
+    [data-name="man_upper"]
+      transform-origin: left bottom
+      animation: bake_cookie 2s infinite -0.2s
+      
+    [data-name="hand"]
+      transform-origin: left center
+      animation: drag 2s infinite -1s
+      
+    [data-name="child"]
+      transform-origin: left center
+      animation: jump 2s infinite -1s
+      
+    [data-name="mother"]
+      transform-origin: left bottom
+      animation: drag 5s infinite
+      
+@keyframes jump
+  0%
+    transform: translateY(0px)
+  50%
+    transform: translateY(0px)
+  51%
+    transform: translateY(0px)
+  75%
+    transform: translateY(-10px)
+  100%
+    transform: translateY(0px)
+  

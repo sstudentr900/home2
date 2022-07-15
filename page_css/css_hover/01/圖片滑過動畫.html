@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<meta name="description" content="description">
+ 
+<title>Image Hovers</title>
+ 
+<style>
+    * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+
+  margin: 0; padding: 0;
+}
+
+body {
+  background: #333;
+}
+
+.header {
+  height: 25px;
+  background: #111;
+  color: #fff;
+  text-align: center;
+  font: 11px/25px Helvetica, Arial, sans-serif;
+}
+
+.header a {
+  color: #eee;
+}
+
+.header a:hover {
+  text-decoration: none;
+}
+
+
+/*PIC*/
+.pic {
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+  margin: 20px;
+  border: 10px solid white;
+
+  -webkit-box-shadow: 5px 5px 5px #111;
+  box-shadow: 5px 5px 5px #111;
+  float: left;
+}
+
+.pic:hover {
+  cursor: pointer;
+}
+
+/*GROW*/
+.grow img {
+  height: 300px;
+  width: 300px;
+
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.grow img:hover {
+  width: 400px;
+  height: 400px;
+}
+
+/*SHRINK*/
+.shrink img {
+  height: 400px;
+  width: 400px;
+
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.shrink img:hover {
+  width: 300px;
+  height: 300px;
+}
+
+/*BLUR*/
+.blur img {
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+.blur img:hover {
+  -webkit-filter: blur(5px);
+}
+
+/*TILT*/
+.tilt {
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+
+.tilt:hover {
+  -webkit-transform: rotate(-10deg);
+     -moz-transform: rotate(-10deg);
+       -o-transform: rotate(-10deg);
+      -ms-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+}
+
+/*MORPH*/
+.morph {
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+          transition: all 0.5s ease;
+}
+
+.morph:hover {
+  border-radius: 50%;
+  -webkit-transform: rotate(360deg);
+     -moz-transform: rotate(360deg);
+       -o-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+/*SIDEPAN*/
+.sidepan img {
+  margin-left: 0px;
+  -webkit-transition: margin 1s ease;
+     -moz-transition: margin 1s ease;
+       -o-transition: margin 1s ease;
+      -ms-transition: margin 1s ease;
+          transition: margin 1s ease;
+}
+
+.sidepan img:hover {
+  margin-left: -200px;
+}
+
+/*VERTPAN*/
+.vertpan img {
+  margin-top: 0px;
+  -webkit-transition: margin 1s ease;
+     -moz-transition: margin 1s ease;
+       -o-transition: margin 1s ease;
+      -ms-transition: margin 1s ease;
+          transition: margin 1s ease;
+}
+
+.vertpan img:hover {
+  margin-top: -200px;
+}
+
+/*FOCUS*/
+.focus {
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+.focus:hover {
+  border: 70px solid #000;
+  border-radius: 50%;
+}
+
+/*B&W*/
+.bw {
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+.bw:hover {
+  -webkit-filter: grayscale(100%);
+}
+
+/*DARKEN*/
+.brighten img {
+  -webkit-filter: brightness(-65%);
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+
+.brighten img:hover {
+  -webkit-filter: brightness(0%);
+}
+</style>
+ 
+</head>
+ 
+<body>
+
+  <div class="header">Image Hover Effects - <a href="http://designshack.net/?p=36895">Return to Design Shack</a></div>
+
+  <div class="grow pic">
+    <img src="http://lorempixel.com/400/400/people/9" alt="girl">
+  </div>
+
+  <div class="shrink pic">
+    <img src="http://lorempixel.com/400/400/nightlife/4" alt="city">
+  </div>
+
+  <div class="sidepan pic">
+    <img src="http://lorempixel.com/600/300/sports/8" alt="kick">
+  </div>
+
+  <div class="vertpan pic">
+    <img src="http://lorempixel.com/300/600/sports/5" alt="climb">
+  </div>
+
+  <div class="tilt pic">
+    <img src="http://lorempixel.com/300/300/transport/5" alt="">
+  </div>
+
+  <div class="morph pic">
+    <img src="http://lorempixel.com/300/300/nature/5" alt="">
+  </div>
+
+  <div class="focus pic">
+    <img src="http://lorempixel.com/300/300/sports/1" alt="">
+  </div>
+
+  <div class="blur pic">
+    <img src="http://lorempixel.com/300/300/transport/2" alt="plane">
+  </div>
+
+  <div class="bw pic">
+    <img src="http://lorempixel.com/300/300/nature/2" alt="sea">
+  </div>
+
+  <div class="brighten pic">
+    <img src="http://lorempixel.com/300/300/technics/2" alt="sea">
+  </div>
+ 
+</body>
+</html>

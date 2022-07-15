@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //数据类型
+        //在 JavaScript 中有 5 种不同的数据类型：
+        //string
+        //number
+        //boolean
+        //object
+        //null
+        //undefined
+        //3 种对象类型：
+        //Object
+        //Array
+        //function
+        //2 个不包含任何值的数据类型：
+        //null
+        //undefined
+        //合成类型
+        //data
+
+
+
+        //typeof运算符(判断基本类型是什么类型)
+        //1.
+        //typeof 123 // "number"
+        //2.
+        //function f() {}
+        // typeof f // "function"
+        //3.
+        //typeof undefined// "undefined"
+        //4.没有var声明报错
+        // v  //v is not defined
+        // typeof v  // "undefined"(放在typeof后面，就不报错了)
+        //5.判断语句
+        //if (typeof v === "undefined") {}
+        //6.
+        //typeof window // "object"
+        //typeof "John"                // 返回 string
+        //typeof 3.14                  // 返回 number
+        //typeof NaN                    // 返回 number
+        //typeof false                 // 返回 boolean
+        //typeof [1,2,3,4]             // 返回 object
+        //typeof {name:'John', age:34} // 返回 object
+        //typeof new Date()             // 返回 object
+        //typeof undefined             // undefined
+        //typeof null                  // object
+        //typeof a                      // 'undefined'
+
+
+        //在函数体内部判断this关键字是否为构造函数Fubar的实例
+        function Fubar(foo, bar) {
+            if (this instanceof Fubar) {
+                this._foo = foo;
+                this._bar = bar;
+            } else {
+                return new Fubar(foo, bar);
+            }
+        }
+
+
+
+        //null和undefined
+        //null === undefined           // false
+        //null == undefined            // true
+
+        //2.测试对象是否存在
+        //null 用于对象, undefined 用于变量，属性和方法。
+        //if (typeof myObj !== "undefined" && myObj !== null)
+
+        //4.undefined 是一个没有设置值的变量
+        var i;
+        i // undefined
+
+        //5.调用函数时，应该提供的参数没有提供，该参数等于undefined
+        function f(x) {
+            return x;
+        }
+        f() // undefined
+
+
+        //6.对象没有赋值的属性
+        var o = new Object();
+        o.p // undefine
+
+        //7.函数没有返回值时，默认返回undefined
+        function f() {}
+        f() // undefined
+
+        //8.
+        //Number(undefined) // NaN是說這不是數字
+        //5 + undefined // NaN
+        //NaN和NaN是不等於要用isNaN檢視是否為ture
+
+
+
+
+        //throw语句的作用是中断程序执行，抛出一个意外或错误。
+        //1-1
+        //throw "Error！";
+        //throw 42;
+        //throw {toString: function() { return "Error!"; } };
+        //1.2
+        //Throw 语句
+        //	function myFunction(){
+        //	    try{
+        //		var x=document.getElementById("demo").value;
+        //		if(x=="")    throw "值为空";
+        //		if(isNaN(x)) throw "不是数字";
+        //		if(x>10)     throw "太大";
+        //		if(x<5)      throw "太小";
+        //	    }
+        //	    catch(err){
+        //		var y=document.getElementById("mess");
+        //		y.innerHTML="错误：" + err + "。";
+        //	    }
+        //	}
+        //	<input id="demo" type="text">
+        //	<button type="button" onclick="myFunction()">测试输入</button>
+        //	<p id="mess"></p>
+
+
+
+        //進制
+        var a = 23; //10進制(0,1,2,3,4,5,6,7,8,9)
+        var b = 010; //8進制,開頭是0(0,1,2,3,4,5,6,7,10,11)
+        alert(b) //8
+        var c = 0x10; //16進制,開頭是0x(0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f,10)
+        alert(c) //16
+            //2進制( 0, 1,10,11,100,101,110,111,1000,1001,1010,1011,1100,1101,1110,1111,100000)
+            //8進制( 0, 1, 2, 3, 4,  5,  6,  7,  10,  11,  12,  13,  14,  15,  16,   17,  20)
+            //10進制(0, 1, 2, 3, 4,  5,  6,  7,   8,   9,  10,  11,  12,  13,  14,   15,  16)
+            //16進制(0, 1, 2, 3, 4,  5,  6,  7,   8,   9,  a,    b,   c,   d,   e,   f,   10)
+
+        //8進制是3個2進制表示為1位,3位最大2進制111,8進制是7
+        //16進制是4個2進制表示為1位,4位最大2進制1111,16進制是f
+        //10進制轉成2進制=110
+        //2  |6   0
+        //2  |3   1
+        //2  |1   1
+        //   0
+        //2進制轉成10進制   110
+        //0*2(0)+1*2(1)+1*2(2)=6
+
+
+
+        //Error对象
+        //1.
+        var err = new Error('出错了');
+        err.message // "出错了"
+            //2.
+        if (error.name) {
+            console.log(error.name + ": " + error.message);
+        }
+        //message：错误提示信息
+        //name：错误名称（非标准属性）
+        //3.自定义错误
+        //function UserError(message) {
+        //    this.message = message || "默认信息";
+        //    this.name = "UserError";
+        //}
+        //UserError.prototype = new Error();
+        //UserError.prototype.constructor = UserError;
+        //new UserError("这是自定义的错误！");
+
+
+
+        //JavaScript的原生错误类型
+        //1.SyntaxError是解析代码时发生的语法错误。
+        //2.ReferenceError是引用一个不存在的变量时发生的错误。
+        //3.RangeError是当一个值超出有效范围时发生的错误。主要有几种情况，一是数组长度为负数，二是Number对象的方法参数超出范围，以及函数堆栈超过最大值。
+        //4.TypeError是变量或参数不是预期类型时发生的错误。比如，对字符串、布尔值、数值等原始类型的值使用new命令，就会抛出这种错误，因为new命令的参数应该是一个构造函数。，调用对象不存在的方法，会抛出TypeError错误。
+        //5.URIError是URI相关函数的参数不正确时抛出的错误，主要涉及encodeURI()、decodeURI()、encodeURIComponent()、decodeURIComponent()、escape()和unescape()这六个函数。
+        //6.eval函数没有被正确执行时，会抛出EvalError错误。该错误类型已经不再在ES5中出现了，只是为了保证与以前代码兼容，才继续保留。
+
+
+
+
+        //變量
+        //不允許數字開頭,關鍵字保留字
+
+
+
+        //命名規範
+        //	axx=數組(array)
+        //	bxx=布耳值
+        //	fxx=符點
+        //	fnxx=函數
+        //	ixx=整數
+        //	oxx=對象
+        //	rexx=正則
+        //	sxx=字符串
+        //	vxx=變量
+        //2.大駝峰 Date
+        //3.小駝峰 getElenmentById
+
+
+
+        //運算符
+        //var s = 256;//算幾分幾秒
+        //alert(parseInt(s/60)+'分'+s%60+'秒');
+
+        console.log("aa\"bb\""); //aa"bb"
+        console.log("aa'bb'"); //aa'bb'
+        console.log("aa\n'bb'"); //aa 'bb',迴車
+        console.log("aa\t'bb'"); //aa 'bb',空白鍵
+        console.log("aa\\'bb'"); //aa\'bb'
+
+        //赋值运算符
+        // i=i+1  等同于  i+=1  等同于  i++
+        //var i=1;
+        //i++; i=1;//後加1
+        //++i; i=2;//先加1
+
+        //比较运算符
+        // ==等于  ===绝对等于（两边操作数相等且类型相同时返回true）
+
+        //逻辑运算符
+        // && 與且兩個成立
+        // || 或　其中成立
+
+        //判斷位數
+        //	var n =45;
+        //	if(n>9 && n<100){
+        //	    alert('兩位數');
+        //	}else{
+        //	    alert('單位數');
+        //	}
+
+        var a = 5,
+            b = 6;
+        console.log(a < 1 && ++b > 5) //左邊為false右邊不執行
+        console.log(b) //6
+
+        console.log(3 && 6) //6
+        console.log(0 && 6) //0//左邊為false右邊不執行
+
+
+
+        //constructor 返回所有 JavaScript 变量的构造函数
+        //1.
+        //"John".constructor                 // 返回函数 String()  { [native code] }
+        //(3.14).constructor                 // 返回函数 Number()  { [native code] }
+        //false.constructor                  // 返回函数 Boolean() { [native code] }
+        //[1,2,3,4].constructor              // 返回函数 Array()   { [native code] }
+        //{name:'John', age:34}.constructor  // 返回函数 Object()  { [native code] }
+        //new Date().constructor             // 返回函数 Date()    { [native code] }
+        //function () {}.constructor         // 返回函数 Function(){ [native code] }
+        //2.
+        //var test=new Array();
+        //console.log(test.constructor);//Array
+
+
+
+        //URI編碼
+        //"http://www.yahoo.com.tw?name="+encodeURI('李四')//UTF-8
+        //"http://www.yahoo.com.tw?name="+encodeURI('//李四')//不會編碼特殊符號
+        //"http://www.yahoo.com.tw?name="+encodeURIComponent('//李四')編碼特殊符號
+        //解碼
+        //var s =encodeURI('李四');
+        //var ss =decodeURI(s);
+        //var a =encodeURIComponent('//李四');
+        //var aa =decodeURIComponent(a);
+
+
+
+        //Date 对象方法
+        //var d = new Date();
+        //d.getDate();一个月中的某一天 (1 ~ 31)。
+        //d.getDay();一周中的某一天 (0 ~ 6)。
+        //d.getFullYear();返回年份。
+        //d.getHours();返回小时 (0 ~ 23)。
+        //d.getMilliseconds();返回毫秒(0 ~ 999)。
+        //d.getMinutes();返回分钟 (0 ~ 59)。
+        //d.getMonth();返回月份 (0 ~ 11)。
+        //d.getSeconds();返回秒数 (0 ~ 59)。
+        //d.getTime();返回 1970 年 1 月 1 日至今的毫秒数。
+        //d.toDateString();日期部分转换为字符串。
+        //d.toJSON();jSON 数据格式返回日期字符串。
+        //d.toLocaleDateString();日期转换为字符串。2016/9/28 下午9:13:38
+        //d.toLocaleTimeString();下午9:13:40
+        //d.toLocaleString();2016/9/28 下午9:15:17
+
+        //Date會有兼融問題
+        //new Date(1000);//1970,1,1,08:00:01,1000是毫秒＝１秒
+        //new Date('4/14/2008');//內部使用Date.parse()轉換
+        //Date.parse('1/1/1970 08:00:00')//0
+
+        //UTC(世界統一時間)//(年分,月份(0-12),日期(1-31),小時(0-23),分鐘,秒,毫秒)//小時要減8
+        //Date.UTC(1970,0,1,0,0,0)==Date.parse('1/1/1970 08:00:00')//0
+
+        //创建日期
+        //new Date() // 当前日期和时间
+        //new Date(milliseconds) //返回从 1970 年 1 月 1 日至今的毫秒数
+        //new Date(dateString)
+        //new Date(year, month, day, hours, minutes, seconds, milliseconds)
+        //var today = new Date()
+        //var d1 = new Date("October 13, 1975 11:13:00")
+        //var d2 = new Date(79,5,24)
+        //var d3 = new Date(79,5,24,11,33,0)
+
+        //当前日期和时间
+        //var today = new Date();
+        //console.log(today);
+
+        //獲取年份
+        //var d = new Date();
+        //console.log(d.getFullYear());
+
+        //日期和时间转换成字符串
+        //var d = new Date();
+        //console.log(d.toUTCString());
+
+        //设置日期
+        //var myDate=new Date();
+        //myDate.setFullYear(2010,0,14);
+
+        //设置为 5 天后
+        //var myDate=new Date();
+        //myDate.setDate(myDate.getDate()+5);
+
+        //两个日期比较
+        //var x=new Date();
+        //x.setFullYear(2100,0,14);
+        //var today = new Date();
+        //if (x>today) {alert("今天是2100年1月14日之前");}
+        //else {alert("今天是2100年1月14日之后");}
+
+        //显示今天周几
+        //function myFunction(){
+        //    var d = new Date();
+        //    var weekday=new Array(7);
+        //    weekday[0]="周日";
+        //    weekday[1]="周一";
+        //    weekday[2]="周二";
+        //    weekday[3]="周三";
+        //    weekday[4]="周四";
+        //    weekday[5]="周五";
+        //    weekday[6]="周六";
+        //    console.log(weekday[d.getDay()]);
+        //}
+        //myFunction();
+
+        //顯示時間
+        //function startTime(){
+        //    var today=new Date();
+        //    var h=today.getHours();
+        //    var m=today.getMinutes();
+        //    var s=today.getSeconds();// 在小于10的数字钱前加一个‘0’
+        //    m=checkTime(m);
+        //    s=checkTime(s);
+        //    console.log(h+":"+m+":"+s);
+        //    t=setTimeout(function(){startTime()},500);
+        //}
+        //function checkTime(i){
+        //    if (i<10){
+        //	i="0" + i;
+        //    }
+        //    return i;
+        //}
+        //startTime();
+
+        //顯示時間
+        //var myVar=setInterval(function(){myTimer()},1000);
+        //function myTimer(){
+        //    var d=new Date();
+        //    var t=d.toLocaleTimeString();//目前時區時間的字串值。
+        //    console.log(t);
+        //}
+        //停止計時
+        //myStopFunction();
+        //function myStopFunction(){
+        //    clearInterval(myVar);
+        //}
+
+
+
+        //Object
+        //Object作为构造函数使用时，可以接受一个参数。如果该参数是一个对象，则直接返回这个对象；如果是一个原始类型的值，则返回该值对应的包装对象。
+        //var o1 = {a: 1};
+        //var o2 = new Object(o1);
+        //o1 === o2 // true
+        //new Object(123) instanceof Number // true
+        //注意，通过new Object()的写法生成新对象，与字面量的写法o = {}是等价的。
+
+        //Object对象上面部署一个方法
+        //Object.print = function(o){ console.log(o) };
+        //var o = new Object();
+        //Object.print(o);// Object
+
+        //Object.prototype对象
+        //Object.prototype.print = function(){ console.log(this)};
+        //var o = new Object();
+        //o.print() // Object
+
+        //Object函数可以将各种值转为对应的构造函数生成的对象。
+        //Object(true) // 等同于 new Boolean(true)
+        //Object(1) // 等同于 new Number(1)
+        //Object('foo') // 等同于 new String('foo')
+
+        //Object方法的参数是一个对象，它总是返回原对象。
+        //var arr = [];
+        //Object(arr) // 返回原数组
+        //Object(arr) === arr // true
+        //var obj = {};
+        //Object(obj) // 返回原对象
+        //Object(obj) === obj // true
+        //var fn = function () {};
+        //Object(fn) // 返回原函数
+        //Object(fn) === fn // true
+
+        //判断变量是否为对象的函数。
+        //function isObject(value) {
+        //    return value === Object(value);
+        //}
+        //isObject([]) // true
+        //isObject(true) // false
+
+        //Object 对象的方法
+        //var o = {
+        //    p1: 123,
+        //    p2: 456
+        //};
+        //Object.keys(o)// ["p1", "p2"]
+        //Object.getOwnPropertyNames(o)// ["p1", "p2"]
+        //var a = ["Hello", "World"];
+        //Object.keys(a)// ["0", "1"]
+        //Object.getOwnPropertyNames(a)// ["0", "1", "length"]
+
+        //Object对象的实例方法
+        //valueOf方法的作用是返回一个对象的“值”，默认情况下返回对象本身。
+        //var o = new Object();
+        //o.valueOf() === o // true
+        //範例
+        //var o = new Object();
+        //1 + o // "1[object Object]"
+        ////
+        //var o = new Object();
+        //o.valueOf = function (){
+        //    return 2;
+        //};
+        //1 + o // 3
+
+        //toString方法的作用是返回一个对象的字符串形式，默认情况下返回类型字符串
+        //1.
+        //var o = new Object();
+        //o.toString = function () {
+        //    return 'hello';
+        //};
+        //o + ' ' + 'world' // "hello world"
+        //2.
+        //[1, 2, 3].toString() // "1,2,3"
+        //'123'.toString() // "123"
+        //(function () {
+        //    return 123;
+        //}).toString()
+        //// "function () {
+        ////   return 123;
+        //// }"
+        //(new Date()).toString()// "Tue May 10 2016 09:11:31 GMT+0800 (CST)"
+        //3.
+        //var type = function (o){
+        //    var s = Object.prototype.toString.call(o);
+        //    return s.match(/\[object (.*?)\]/)[1].toLowerCase();
+        //};
+        //type({}); // "object"
+        //type([]); // "array"
+        //type(5); // "number"
+        //type(null); // "null"
+        //type(); // "undefined"
+        //type(/abcd/); // "regex"
+        //type(new Date()); // "date"
+
+
+
+        //Number
+        //Math（算数） 对象
+        //Math.abs()：绝对值
+        //Math.ceil()：向上取整
+        //Math.floor()：向下取整
+        //Math.max()：最大值
+        //Math.min()：最小值
+        //Math.pow()：指数运算
+        //Math.sqrt()：平方根
+        //Math.log()：自然对数
+        //Math.exp()：e的指数
+        //Math.round()：四舍五入
+        //Math.random()：随机数
+        //Math.round(2.5)//3
+        //Math.random();//一个随机数(0-1);
+        //Math.max(5,10);//10,返回5到10之间的最大值
+        //Math.min(5,10)
+        //abs(-7.25)//绝对值7.25
+        //整数（不使用小数点或指数计数法）最多为 15 位。
+        //小数的最大位数是 17，但是浮点运算并不总是 100% 准确：
+        //var x = 0.2+0.1; // 输出结果为 0.30000000000000004
+
+        //如果前缀为 0，则 JavaScript 会把数值常量解释为八进制数，如果前缀为 0 和 "x"，则解释为十六进制数。
+        //var y = 0377;
+        //var z = 0xFF;
+
+        //数字为十进制显示,toString() 方法 输出16进制、8进制、2进制。
+        //var myNumber=128;
+        //myNumber.toString(16);   // 16进制返回 80
+        //myNumber.toString(8);    // 8进制返回 200
+        //myNumber.toString(2);    // 2进制返回 10000000
+
+        //无穷大（Infinity）
+        //myNumber=2;
+        //while (myNumber!=Infinity){
+        //    myNumber=myNumber*myNumber;
+        //    console.log(myNumber +'<BR>');
+        //}
+
+        //字符串转换为数字
+        //Number("")        // 返回 0
+
+        //日期转换为数字
+        //d = new Date();
+        //Number(d)          // 返回 1404568027739
+        //5-1
+        //d = new Date();
+        //d.getTime()        // 返回 1404568027739
+
+        //parseInt字符裡提取數字
+        //var a = '12px';
+        //parseInt(a)+1;//13
+
+        //parseFloat字符轉小數或數字
+        //var c = '2.5';
+        //parseFloat(c);//2.5
+
+        //isNaN
+        //var b = 'abd';
+        //alert(parseInt(b));//NaN=不是數字
+        //alert(isNaN(b));//true,isNaN檢視是否為NaN
+        //NaN和NaN是不等於要用isNaN檢視
+
+        //eval
+        //var c = '55-5';//eval計算字符數值變數字
+        //alert(eval(c));//50
+        //
+        //var e='alert("abc")';
+        //eval(e);
+        //
+        //var f='function show(){alert("abc");}';
+        //eval(f);
+        //show();
+
+        //自定义方法
+        //Number.prototype.add = function (x) {
+        //    return this + x;
+        //};
+        //(8).add(2) // 10
+
+
+
+
+
+        //基本類型變量
+        var str = 'hello';
+        str.name = 'lisi';
+        str.fun = function() {
+            alert(name);
+        }
+        alert(str.name) //undefined
+
+        //對象變量
+        var str = new string('hello');
+        str.name = 'lisi';
+        str.fun = function() {
+            alert(name);
+        }
+        alert(str.name) //lisi
+
+
+        //自定义方法
+        //String.prototype.double = function () {
+        //    return this.valueOf() + this.valueOf();
+        //};
+        //'abc'.double()// abcabc
+        //
+        //Number.prototype.double = function () {
+        //    return this.valueOf() + this.valueOf();
+        //};
+        //(123).double()// 246
+    </script>
+    </body>
+
+</html>

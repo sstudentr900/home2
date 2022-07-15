@@ -1,0 +1,5 @@
+#app.scenes
+  .form
+    label 場景顯示
+      input(type="checkbox" v-model="active") 
+  .scene(v-html="scene_door" v-bind:class="active?'active':''")

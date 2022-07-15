@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="signup">
+        <input type="text" id='a'>
+        <input type="text" id='b'>
+    </form>
+    <script>
+        const debounce = (fn, delay = 500) => {
+            let timeoutId;
+
+            //args 傳遞input屬性(e)
+            return (...args) => {
+                console.log(args)
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
+                timeoutId = setTimeout(() => {
+                    fn.apply(null, args)
+                }, delay);
+            };
+
+            //no args
+            // return () => {
+            //     if (timeoutId) {
+            //         clearTimeout(timeoutId);
+            //     }
+            //     timeoutId = setTimeout(() => {
+            //         fn()
+            //     }, delay);
+            // };
+        };
+
+        document.querySelector('#signup').addEventListener('input', debounce(function(e) {
+            console.log('input', e.target.id)
+        }));
+    </script>
+</body>
+
+</html>

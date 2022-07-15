@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>css_game</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <form>
+  <input checked='checked' id='randomize' type='checkbox'>
+  <label class='start-game' for='randomize'>
+    <span class='start-title'>
+      Click to start game
+    </span>
+  </label>
+  <input class='cardpair-checkbox' id='cardpair1' type='checkbox'>
+  <input class='cardpair-checkbox' id='cardpair2' type='checkbox'>
+  <input class='cardpair-checkbox' id='cardpair3' type='checkbox'>
+  <input class='cardpair-checkbox' id='cardpair4' type='checkbox'>
+  <input class='cardpair-checkbox' id='cardpair5' type='checkbox'>
+  <input class='cardpair-checkbox' id='cardpair6' type='checkbox'>
+  <input class='cardpair-checkbox' id='cardpair7' type='checkbox'>
+  <input class='cardpair-checkbox' id='cardpair8' type='checkbox'>
+  <input class='cardpair-checkbox' id='cardpair9' type='checkbox'>
+  <input class='cardpair-checkbox' id='cardpair10' type='checkbox'>
+  <div class='cardpair-hash' id='cardpairHash1'></div>
+  <div class='cardpair-hash' id='cardpairHash2'></div>
+  <div class='cardpair-hash' id='cardpairHash3'></div>
+  <div class='cardpair-hash' id='cardpairHash4'></div>
+  <div class='cardpair-hash' id='cardpairHash5'></div>
+  <div class='cardpair-hash' id='cardpairHash6'></div>
+  <div class='cardpair-hash' id='cardpairHash7'></div>
+  <div class='cardpair-hash' id='cardpairHash8'></div>
+  <div class='cardpair-hash' id='cardpairHash9'></div>
+  <div class='cardpair-hash' id='cardpairHash10'></div>
+  <div class='card-hashtarget' id='cardhash0' name='card'></div>
+  <div class='card-hashtarget' id='cardhash1' name='card'></div>
+  <div class='card-hashtarget' id='cardhash2' name='card'></div>
+  <div class='card-hashtarget' id='cardhash3' name='card'></div>
+  <div class='card-hashtarget' id='cardhash4' name='card'></div>
+  <div class='card-hashtarget' id='cardhash5' name='card'></div>
+  <div class='card-hashtarget' id='cardhash6' name='card'></div>
+  <div class='card-hashtarget' id='cardhash7' name='card'></div>
+  <div class='card-hashtarget' id='cardhash8' name='card'></div>
+  <div class='card-hashtarget' id='cardhash9' name='card'></div>
+  <div class='card-hashtarget' id='cardhash10' name='card'></div>
+  <div class='card-hashtarget' id='cardhash11' name='card'></div>
+  <div class='card-hashtarget' id='cardhash12' name='card'></div>
+  <div class='card-hashtarget' id='cardhash13' name='card'></div>
+  <div class='card-hashtarget' id='cardhash14' name='card'></div>
+  <div class='card-hashtarget' id='cardhash15' name='card'></div>
+  <div class='card-hashtarget' id='cardhash16' name='card'></div>
+  <div class='card-hashtarget' id='cardhash17' name='card'></div>
+  <div class='card-hashtarget' id='cardhash18' name='card'></div>
+  <div class='card-hashtarget' id='cardhash19' name='card'></div>
+  <div class='card-misstarget' id='misshash0' name='card'></div>
+  <div class='card-misstarget' id='misshash1' name='card'></div>
+  <div class='card-misstarget' id='misshash2' name='card'></div>
+  <div class='card-misstarget' id='misshash3' name='card'></div>
+  <div class='card-misstarget' id='misshash4' name='card'></div>
+  <div class='card-misstarget' id='misshash5' name='card'></div>
+  <div class='card-misstarget' id='misshash6' name='card'></div>
+  <div class='card-misstarget' id='misshash7' name='card'></div>
+  <div class='card-misstarget' id='misshash8' name='card'></div>
+  <div class='card-misstarget' id='misshash9' name='card'></div>
+  <div class='card-misstarget' id='misshash10' name='card'></div>
+  <div class='card-misstarget' id='misshash11' name='card'></div>
+  <div class='card-misstarget' id='misshash12' name='card'></div>
+  <div class='card-misstarget' id='misshash13' name='card'></div>
+  <div class='card-misstarget' id='misshash14' name='card'></div>
+  <div class='card-misstarget' id='misshash15' name='card'></div>
+  <div class='card-misstarget' id='misshash16' name='card'></div>
+  <div class='card-misstarget' id='misshash17' name='card'></div>
+  <div class='card-misstarget' id='misshash18' name='card'></div>
+  <div class='card-misstarget' id='misshash19' name='card'></div>
+  <ul class='card-grid'>
+    <li class='cardpair6 card card0'>
+      <a class='card-pair-miss' href='#misshash0'></a>
+      <a class='card-back' href='#cardhash0'></a>
+      <div class='card-front' for='cardpair6'></div>
+      <a class='card-pair-link' href='#cardpairHash6'></a>
+    </li>
+    <li class='cardpair3 card card1'>
+      <a class='card-pair-miss' href='#misshash1'></a>
+      <a class='card-back' href='#cardhash1'></a>
+      <div class='card-front' for='cardpair3'></div>
+      <a class='card-pair-link' href='#cardpairHash3'></a>
+    </li>
+    <li class='cardpair10 card card2'>
+      <a class='card-pair-miss' href='#misshash2'></a>
+      <a class='card-back' href='#cardhash2'></a>
+      <div class='card-front' for='cardpair10'></div>
+      <a class='card-pair-link' href='#cardpairHash10'></a>
+    </li>
+    <li class='cardpair8 card card3'>
+      <a class='card-pair-miss' href='#misshash3'></a>
+      <a class='card-back' href='#cardhash3'></a>
+      <div class='card-front' for='cardpair8'></div>
+      <a class='card-pair-link' href='#cardpairHash8'></a>
+    </li>
+    <li class='cardpair1 card card4'>
+      <a class='card-pair-miss' href='#misshash4'></a>
+      <a class='card-back' href='#cardhash4'></a>
+      <div class='card-front' for='cardpair1'></div>
+      <a class='card-pair-link' href='#cardpairHash1'></a>
+    </li>
+    <li class='cardpair5 card card5'>
+      <a class='card-pair-miss' href='#misshash5'></a>
+      <a class='card-back' href='#cardhash5'></a>
+      <div class='card-front' for='cardpair5'></div>
+      <a class='card-pair-link' href='#cardpairHash5'></a>
+    </li>
+    <li class='cardpair2 card card6'>
+      <a class='card-pair-miss' href='#misshash6'></a>
+      <a class='card-back' href='#cardhash6'></a>
+      <div class='card-front' for='cardpair2'></div>
+      <a class='card-pair-link' href='#cardpairHash2'></a>
+    </li>
+    <li class='cardpair4 card card7'>
+      <a class='card-pair-miss' href='#misshash7'></a>
+      <a class='card-back' href='#cardhash7'></a>
+      <div class='card-front' for='cardpair4'></div>
+      <a class='card-pair-link' href='#cardpairHash4'></a>
+    </li>
+    <li class='cardpair7 card card8'>
+      <a class='card-pair-miss' href='#misshash8'></a>
+      <a class='card-back' href='#cardhash8'></a>
+      <div class='card-front' for='cardpair7'></div>
+      <a class='card-pair-link' href='#cardpairHash7'></a>
+    </li>
+    <li class='cardpair6 card card9'>
+      <a class='card-pair-miss' href='#misshash9'></a>
+      <a class='card-back' href='#cardhash9'></a>
+      <div class='card-front' for='cardpair6'></div>
+      <a class='card-pair-link' href='#cardpairHash6'></a>
+    </li>
+    <li class='cardpair8 card card10'>
+      <a class='card-pair-miss' href='#misshash10'></a>
+      <a class='card-back' href='#cardhash10'></a>
+      <div class='card-front' for='cardpair8'></div>
+      <a class='card-pair-link' href='#cardpairHash8'></a>
+    </li>
+    <li class='cardpair1 card card11'>
+      <a class='card-pair-miss' href='#misshash11'></a>
+      <a class='card-back' href='#cardhash11'></a>
+      <div class='card-front' for='cardpair1'></div>
+      <a class='card-pair-link' href='#cardpairHash1'></a>
+    </li>
+    <li class='cardpair9 card card12'>
+      <a class='card-pair-miss' href='#misshash12'></a>
+      <a class='card-back' href='#cardhash12'></a>
+      <div class='card-front' for='cardpair9'></div>
+      <a class='card-pair-link' href='#cardpairHash9'></a>
+    </li>
+    <li class='cardpair2 card card13'>
+      <a class='card-pair-miss' href='#misshash13'></a>
+      <a class='card-back' href='#cardhash13'></a>
+      <div class='card-front' for='cardpair2'></div>
+      <a class='card-pair-link' href='#cardpairHash2'></a>
+    </li>
+    <li class='cardpair3 card card14'>
+      <a class='card-pair-miss' href='#misshash14'></a>
+      <a class='card-back' href='#cardhash14'></a>
+      <div class='card-front' for='cardpair3'></div>
+      <a class='card-pair-link' href='#cardpairHash3'></a>
+    </li>
+    <li class='cardpair4 card card15'>
+      <a class='card-pair-miss' href='#misshash15'></a>
+      <a class='card-back' href='#cardhash15'></a>
+      <div class='card-front' for='cardpair4'></div>
+      <a class='card-pair-link' href='#cardpairHash4'></a>
+    </li>
+    <li class='cardpair5 card card16'>
+      <a class='card-pair-miss' href='#misshash16'></a>
+      <a class='card-back' href='#cardhash16'></a>
+      <div class='card-front' for='cardpair5'></div>
+      <a class='card-pair-link' href='#cardpairHash5'></a>
+    </li>
+    <li class='cardpair9 card card17'>
+      <a class='card-pair-miss' href='#misshash17'></a>
+      <a class='card-back' href='#cardhash17'></a>
+      <div class='card-front' for='cardpair9'></div>
+      <a class='card-pair-link' href='#cardpairHash9'></a>
+    </li>
+    <li class='cardpair7 card card18'>
+      <a class='card-pair-miss' href='#misshash18'></a>
+      <a class='card-back' href='#cardhash18'></a>
+      <div class='card-front' for='cardpair7'></div>
+      <a class='card-pair-link' href='#cardpairHash7'></a>
+    </li>
+    <li class='cardpair10 card card19'>
+      <a class='card-pair-miss' href='#misshash19'></a>
+      <a class='card-back' href='#cardhash19'></a>
+      <div class='card-front' for='cardpair10'></div>
+      <a class='card-pair-link' href='#cardpairHash10'></a>
+    </li>
+  </ul>
+  <label class='card-pair-label' for='cardpair6'>
+    6
+  </label>
+  <label class='card-pair-label' for='cardpair3'>
+    3
+  </label>
+  <label class='card-pair-label' for='cardpair10'>
+    10
+  </label>
+  <label class='card-pair-label' for='cardpair8'>
+    8
+  </label>
+  <label class='card-pair-label' for='cardpair1'>
+    1
+  </label>
+  <label class='card-pair-label' for='cardpair5'>
+    5
+  </label>
+  <label class='card-pair-label' for='cardpair2'>
+    2
+  </label>
+  <label class='card-pair-label' for='cardpair4'>
+    4
+  </label>
+  <label class='card-pair-label' for='cardpair7'>
+    7
+  </label>
+  <label class='card-pair-label' for='cardpair6'>
+    6
+  </label>
+  <label class='card-pair-label' for='cardpair8'>
+    8
+  </label>
+  <label class='card-pair-label' for='cardpair1'>
+    1
+  </label>
+  <label class='card-pair-label' for='cardpair9'>
+    9
+  </label>
+  <label class='card-pair-label' for='cardpair2'>
+    2
+  </label>
+  <label class='card-pair-label' for='cardpair3'>
+    3
+  </label>
+  <label class='card-pair-label' for='cardpair4'>
+    4
+  </label>
+  <label class='card-pair-label' for='cardpair5'>
+    5
+  </label>
+  <label class='card-pair-label' for='cardpair9'>
+    9
+  </label>
+  <label class='card-pair-label' for='cardpair7'>
+    7
+  </label>
+  <label class='card-pair-label' for='cardpair10'>
+    10
+  </label>
+</form>
+  
+  
+
+</body>
+
+</html>

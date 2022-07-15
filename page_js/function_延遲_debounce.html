@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 5000px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="https://www.cnblogs.com/coco1s/p/5499469.html">高性能滚动 scroll 及页面渲染优化</a>
+    <a href="https://blog.csdn.net/bigbear00007/article/details/102615665">防止监听scroll 事件影响页面性能</a>
+    <script>
+        //節流（Throttling） 先執行,1秒後才執行
+        function throttle(func=onScrolla(), wait=1000){
+            var time = Date.now();
+            // console.log('94',time);
+            return function() {
+                // console.log('96',time,wait,Date.now(),time+wait-Date.now());
+                if((time+wait-Date.now())<0) {
+                    func();
+                    time = Date.now();
+                    // console.log('100',time);
+                }
+            }
+        }
+        
+        
+        
+        //防抖（Debouncing） 1秒後才執行
+        function debounce(func=onScrolla(), wait=1000) {
+            let timeout;
+            return function() {
+                clearTimeout(timeout); //清除定时器
+                timeout = setTimeout(func, wait); //操作 handler
+            };
+        };
+        
+        
+        
+        //優化scroll (requestAnimationFrame)
+        function raf(func=onScrolla()){
+            var ticking = false;
+            return function() {
+                if(!ticking) {
+                    requestAnimationFrame(()=>{
+                        func();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+        }
+
+
+        function onScrolla(){
+            var i = 0;
+            return ()=>{
+                console.log(i++)
+                return i;
+            }
+        }
+
+        // window.addEventListener('scroll', throttle(), false);
+        // window.addEventListener('scroll', debounce(), false);
+        window.addEventListener('scroll', raf(), false);
+    </script>
+</body>
+</html>

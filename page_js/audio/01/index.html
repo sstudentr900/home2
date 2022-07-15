@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_sound_switch</title>
+</head>
+
+<body>
+    <div class="sound">click</div>
+    <script>
+        function soundBg() {
+            var url = "https://awiclass.monoame.com/pianosound/set/1.wav",
+                song = new Audio(url),
+                obj = document.querySelectorAll('.sound')[0];
+            song.play();
+            song.loop = true;
+            song.volume = 0.2;
+            obj.addEventListener('click', function() {
+                if (this.classList.contains('active')) {
+                    this.classList.remove('active');
+                    song.pause();
+                } else {
+                    this.classList.add('active');
+                    song.play();
+                }
+            })
+            window.addEventListener('load', function() {
+                song.play();
+            })
+        }
+        soundBg();
+    </script>
+</body>
+
+</html>

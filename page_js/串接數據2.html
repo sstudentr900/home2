@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>https://ithelp.ithome.com.tw/articles/10188008</title>
+</head>
+
+<body>
+    <script>
+        //01
+        var todos = {};
+
+        function addTodo(item) {
+            todos[item.id] = item;
+            var className = 'todo-' + item.id + (item.isCompleted ? ' completed' : '');
+            $('.todos').append(
+                `<div class="todo ${className}" data-id="${item.id}">
+                    ${item.name}
+                    </div>`;
+            )
+        }
+
+        function removeTodo(id) {
+            delete todos[id];
+            $('.todo-' + id).remove();
+        }
+
+        function editTodo(id, name) {
+            todos[id].name = name;
+            $('.todo-' + id).text(name);
+        }
+
+        function setCompleted(id) {
+            todos[id].completed = true;
+            $('.todo-' + id).addClass('completed');
+        }
+
+
+
+
+
+        //02
+        var todos = {};
+
+        function addTodo(item) {
+            todo[item.id] = item;
+            reset();
+        }
+
+        function removeTodo(id) {
+            delete todos[id];
+            reset();
+        }
+
+        function editTodo(id, name) {
+            todos[id].name = name;
+            reset();
+        }
+
+        function setCompleted(id) {
+            todos[id].completed = true;
+            reset();
+        }
+
+        function reset() {
+            $('.todos').empty();
+            for (var id in todos) {
+                var item = todos[id];
+
+                var className = 'todo-' + item.id + (item.isCompleted ? ' completed' : '');
+                $('.todos').append(
+                    `<div class="todo ${className}" data-id="${item.id}">
+                    ${item.name}
+                </div>`;
+                )
+            }
+        }
+    </script>
+</body>
+
+</html>

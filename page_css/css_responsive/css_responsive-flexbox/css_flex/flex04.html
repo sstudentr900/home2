@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+	form {
+	    width: 400px;
+	}
+
+	p {
+	    display: flex;
+	}
+
+	label {
+	    margin-right: 10px;
+	}
+
+	input, select {
+	    flex-grow: 1;
+	}
+    </style>
+</head>
+<body>
+<form action="#">
+    <p>
+	<label for="name">Text Input:</label>
+	<input type="text" name="name" id="name" placeholder="John Smith" />
+    </p>
+
+    <p>
+	<label for="name">Another Text Input:</label>
+	<input type="text" name="name" id="name" placeholder="John Smith" />
+    </p>
+
+    <p>
+	<label for="name">What about a select?:</label>
+	<select name='options'>
+	    <option value='option-1'>Option 1</option>
+	    <option value='option-2'>Option 2</option>
+	    <option value='option-3'>Option 3</option>
+	</select>
+    </p>
+
+    <p>
+	<button>Submit</button>
+    </p>
+</form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function() {
+            var odiv = document.getElementsByTagName('div');
+            document.onmousemove = function(ev) {
+                var oevent = ev || event;
+                for (var i = odiv.length - 1; i > 0; i--) {
+                    console.log(i);
+                    odiv[i].style.left = odiv[i - 1].style.left;
+                    odiv[i].style.top = odiv[i - 1].style.top;
+                    //		    console.log(odiv[i].style.top)
+                }
+
+                odiv[0].style.left = oevent.clientX + 'px';
+                odiv[0].style.top = oevent.clientY + 'px';
+            }
+
+        }
+    </script>
+</head>
+
+<body style="height: 2000px;">
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+    <div style="width:10px; height: 10px; background: red; position: absolute;"></div>
+</body>
+
+</html>

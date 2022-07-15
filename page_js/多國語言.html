@@ -1,0 +1,107 @@
+<html>
+
+<head>
+    <title>多國語言測試...</title>
+</head>
+<body>
+<!--1.-->
+<!--http://www.blueshop.com.tw/board/FUM20041006152641OLG/BRD20100707120530MNB.html-->
+<button onclick="chg_lan(0)">taiwan</button>
+<button onclick="chg_lan(1)">chain</button>
+<button onclick="chg_lan(2)">japan</button>
+<button onclick="chg_lan(3)">korean</button>
+<button onclick="chg_lan(4)">Vietnam</button><hr>
+<hr>
+<table border="1" width="100%" id="table1">
+    <tr>
+        <td><span id="L0"></span></td>
+    </tr>
+    <tr>
+        <td><span id="L1"></span></td>
+    </tr>
+    <tr>
+        <td><span id="L2"></span></td>
+    </tr>
+    <tr>
+        <td><span id="L3"></span></td>
+    </tr>
+</table>
+<script>
+    //all language
+
+    //taiwan
+    L_taiwan = new Array();
+    L_taiwan[0] = "這是範例網頁，您可以在這裡預覽及測試網站翻譯工具。";
+    L_taiwan[1] = "試試看變更以上設定並且按一下[預覽並試用！]按鈕看看效果。";
+    L_taiwan[2] = "舉例來說，您選取要翻譯的語言後，下拉式選單中就會反應這個變更。";
+    L_taiwan[3] = "好好享受吧！";
+
+    //chain
+    L_chain = new Array();
+    L_chain[0] = "这是范例网页，您可以在这里预览及测试网站翻译工具。";
+    L_chain[1] = "试试看变更以上设定并且按一下[预览并试用！ ] 按钮看看效果。";
+    L_chain[2] = "举例来说，您选取要翻译的语言后，下拉式选单中就会反应这个变更。";
+    L_chain[3] = "好好享受吧！";
+
+    //japan
+    L_japan = new Array();
+    L_japan[0] = "これはサンプルページは、プレビューできますし、テストのWeb翻訳ツールです。";
+    L_japan[1] = " [プレビュー]を上記の設定をクリックして変更して試してみてください！ ]ボタンは、効果を確認する。";
+    L_japan[2] = " たとえば、あなたは、ドロップダウンメニューがこの変化に対応する翻訳する言語を選択します。";
+    L_japan[3] = " をお楽しみください！";
+
+    //korean
+    L_korean = new Array();
+    L_korean[0] = "이것은 샘플 페이지, 당신은 할 수 미리보기 및 테스트 웹 번역 도구입니다.";
+    L_korean[1] = "[미리보기를 클릭 위의 설정을 변경하고 시도하십시오! ] 버튼을 클릭하면 효과를 볼 수 있습니다.";
+    L_korean[2] = "예를 들어, 당신은, 드롭 다운 메뉴에서 해당 변경에 응답할 것입니다 번역될 언어를 선택하십시오.";
+    L_korean[3] = "즐거운 시간 되십시오!";
+
+    //Vietnam
+    L_vietnam = new Array();
+    L_vietnam[0] = "Đây là một trang mẫu, nơi bạn có thể xem trước và dịch thử nghiệm các công cụ web.";
+    L_vietnam[1] = "Hãy thử thay đổi các thiết lập ở trên vào [Xem và thử! ] Button để xem hiệu quả.";
+    L_vietnam[2] = "Ví dụ, bạn chọn ngôn ngữ cần dịch, các trình đơn thả xuống sẽ đáp ứng với thay đổi này.";
+    L_vietnam[3] = "Thưởng thức!";
+</script>
+<script>
+    function chg_lan(lan_index){
+        var myLangArray;
+        switch(lan_index) {
+            //必須要有language.js才行...
+            case 1:
+                myLangArray = L_chain;
+                break;
+            case 2:
+                myLangArray = L_japan;
+                break;
+            case 3:
+                myLangArray = L_korean;
+                break;
+            case 4:
+                myLangArray = L_vietnam;
+                break;
+            default : //taiwan
+                myLangArray = L_taiwan;
+                break;
+
+        }
+
+        //將各個文字, 填入指定位置...
+        document.getElementById('L0').innerHTML = myLangArray[0];
+        document.getElementById('L1').innerHTML = myLangArray[1];
+        document.getElementById('L2').innerHTML = myLangArray[2];
+        document.getElementById('L3').innerHTML = myLangArray[3];
+    }
+    //預設為 中文
+    chg_lan(0);
+</script>
+
+<!--2.引入jQuery.i18n.properties -->
+<!--http://www.slideshare.net/amostsai/ss-14072717-->
+<!--https://www.ibm.com/developerworks/cn/web/1305_hezj_jqueryi18n/-->
+
+<!--3.google-->
+<!--https://sofree.cc/google-website-translate/-->
+</body>
+</html>
