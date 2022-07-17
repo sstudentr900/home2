@@ -45,7 +45,7 @@ function creatMainHtml(url,obj){
         if(response.ok) return response.text();
     }).then(function(oldText) {
         let text = oldText;
-        console.log(text.includes('<body id="program">'))
+        // console.log(text.includes('<body id="program">'))
         if(text.includes('<body id="program">')){
             text = oldText.split('<body id="program">')[1].split("</body>")[0];
         }

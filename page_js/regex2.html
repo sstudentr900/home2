@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        //匹配词的边界(“world”的词首必须独立)
+        // \s的例子
+        ///\s\w*/.exec('hello world') // [" world"]
+
+        // \b的例子
+        ///\bworld/.test('hello world') // true
+        ///\bworld/.test('hello-world') // true
+        ///\bworld/.test('helloworld') // false
+
+        // \B的例子
+        ///\Bworld/.test('hello-world') // false
+        ///\Bworld/.test('helloworld') // true
+
+
+        //正则表达式遇到换行符（\n）就会停止匹配。
+        //var html = "<b>Hello</b>\n<i>world!</i>";
+        ///.*/.exec(html)[0]// "<b>Hello</b>"
+        ///[\S\s]*/.exec(html)[0] // "<b>Hello</b>\n<i>world!</i>"
+
+
+
+        //会识别换行符
+        ///world$/.test('hello world\n') // false
+        ///world$/m.test('hello world\n') // true
+
+
+        //圆括号（即含有“组匹配”），则返回的数组会包括多个成员。第一个成员是整个匹配成功的结果，后面的成员就是圆括号对应的匹配成功的组。
+        //1.
+        var s = '_x_x';
+        var r = /_(x)/;
+        r.exec(s) // ["_x", "x"]
+
+        //2.匹配分组
+       
+
+        //3.
+        //var tagName = /<([^>]+)>[^<]*<\/\1>/;
+        //tagName.exec("<b>bold</b>")[1]// 'b'
+
+        //4.
+        //var html = '<b class="hello">Hello</b><i>world</i>';
+        //var tag = /<(\w+)([^>]*)>(.*?)<\/\1>/g;
+        //var match = tag.exec(html);
+        //match[1] // "b"
+        //match[2] // "class="hello""
+        //match[3] // "Hello"
+
+
+        //\n引用括号匹配的内容，n是从1开始的自然数，表示对应顺序的括号。
+        //'abcabc'.match(/(.)b(.)/);//["abc", "a", "c"]
+        //'abcabc'.match(/(.)b(.)\1/);//["abca", "a", "c"]
+        //'abcabc'.match(/(.)b(.)\1b\2/);//["abcabc", "a", "c"]
+
+
+        //g多次匹配
+        //index：整个模式匹配成功的开始位置（从0开始计数）。
+        //lastIndex：返回下一次开始搜索的位置。该属性可读写，但是只在设置了g修饰符时有意义。
+        //var r = /a(b+)a/g;
+
+        //var a1 = r.exec('_abbba_aba_');
+        //a1 // ['abbba', 'bbb']
+        //a1.index // 1
+        //r.lastIndex // 6
+
+        //var a2 = r.exec('_abbba_aba_');
+        //a2 // ['aba', 'b']
+        //a2.index // 7
+        //r.lastIndex // 10
+
+        //var a3 = r.exec('_abbba_aba_');
+        //a3 // null
+        //a3.index // TypeError: Cannot read property 'index' of null
+        //r.lastIndex // 0
+
+        //var a4 = r.exec('_abbba_aba_');
+        //a4 // ['abbba', 'bbb']
+        //a4.index // 1
+        //r.lastIndex // 6
+        //连续用了四次exec方法，前三次都是从上一次匹配结束的位置向后匹配。当第三次匹配结束以后，整个字符串已经到达尾部，正则对象的lastIndex属性重置为0，意味着第四次匹配将从头开始。
+
+
+        //循环完成全部匹配
+        //var r = /a(b+)a/g;
+        //var s = '_abbba_aba_';
+        //while(true) {
+        //    var match = r.exec(s);
+        //    if (!match) break;
+        //    console.log(match[1]);
+        //}// bbb// b
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
