@@ -160,6 +160,16 @@ body.dark .index_top{
     font-weight: bold;
     letter-spacing: 2px;
 }
+.index_top .log a {
+    display: flex;
+    align-items: baseline;
+}
+.index_top .log a svg{
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    color: var(--blue);
+}
 /* body.dark .index_top .log{
     color: var(--blue);
 } */

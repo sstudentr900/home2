@@ -116,7 +116,7 @@ body#program ul{
     list-style: none;
     padding: 0;
 }
-/*code-demo*/
+/*codeDemo*/
 #program .codeDemo{
     overflow: auto;
     resize: horizontal;
