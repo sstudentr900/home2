@@ -25,7 +25,14 @@
 }
 #program h3{
     font-size: 22px;
-    margin: 32px 0 22px;
+    margin: 62px 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#program h3 a{
+    color: var(--blue);
+    font-size: 15px;
 }
 #program h4{
     font-size: 18px;
