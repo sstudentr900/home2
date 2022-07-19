@@ -30,7 +30,6 @@
         <pre>
             npm run build
         </pre>
-   
         <h2>目錄</h2>
         <ol>
             <li>public : 任何靜態檔都可以放在這，不會經過 webpack 打包</li>
