@@ -74,6 +74,9 @@ footer, header, hgroup, menu, nav, section {
     --button2-text-hover: var(--black2);
     --button2-solid-hover: var(--black2);
 }
+html{
+    scroll-behavior: smooth;
+}
 body {
     line-height: 1;
     font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
@@ -84,7 +87,6 @@ body {
 body.dark{
     background: var(--black);
 }
-
 ol, ul {
     list-style: none;
 }
@@ -148,6 +150,7 @@ p {
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
+    user-select: none;
 }
 body.dark .index_top{
     background-color: rgb(15 23 42/.75);
@@ -191,7 +194,7 @@ body.dark .index_top{
 }
 
 .index_top li+li {
-    margin-left: 24px;
+    margin-left: 20px;
 }
 .index_top .content{
     display: flex;
@@ -219,6 +222,10 @@ body.dark .index_top{
 .index_top .link a:hover{
     color: var(--grey4);
 }
+.index_top .link a svg{
+    width: 20px;
+    height: 20px;
+}
 .index_top .link .dark svg:nth-child(2){
     display: none;
 }
@@ -228,6 +235,29 @@ body.dark .index_top .link .dark svg:nth-child(1){
 body.dark .index_top .link .dark svg:nth-child(2){
     display: block;
 }
+/*gotopbtn*/
+.index_gotopbtn{
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    background: var(--blue);
+    bottom: 20px;
+    right: 25px;
+    text-align: center;
+    line-height: 48px;
+    font-size: 22px;
+    z-index: 99;
+}
+.index_gotopbtn svg{
+    width: 22px;
+    height: 22px;
+    color: white;
+}
+/*index_main*/
+.index_main{
+    min-height: 100vh;
+}
+/*index_footer*/
 .index_footer{
     padding: 30px 20px;
     user-select: none;

@@ -18,12 +18,20 @@
         <li>
             <code>getItem</code>儲存資料
         </li>
+        <li>
+            <code>removeItem</code>清除
+        </li>
+        <li>
+            <code>clear</code>清除全部
+        </li>
     </ol>
     <pre>
         <code class="language-js">
             var str = 'Tom';
             localStorage.setItem('myName',str);
             localStorage.getItem('myName');
+            localStorage.removeItem("myName");
+            localStorage.clear();
         </code>
     </pre>
     <h2>JSON.parse、JSON.stringify 來編譯資料</h2>

@@ -118,7 +118,7 @@
             <code>replaceState</code>更新當前歷史記錄的URL而不是創造一個新的
         </li>
         <li>
-            <code>pushState</code>將當前URL更新為新歷史紀錄
+            <code>pushState</code>更新當前URL和更新歷史紀錄為新歷史紀錄
         </li>
     </ol>
     <pre>
@@ -132,8 +132,8 @@
             history.length;     //總共瀏覽了幾個網頁
         </code>
     </pre>
-    <h2>上一頁/下一頁 監聽</h2>
-    <p>歷史紀錄被更動執行popstate 事件</p>
+    <h2>popstate 觸發事件</h2>
+    <p>調用history.pushState()或者history.replaceState()不會觸發popstate事件. popstate事件只會在瀏覽器上下頁、 href #、history.back()、history.forward()、history.go()</p>
     <pre>
         <code class="language-js">
             window.addEventListener('popstate', function(event) {

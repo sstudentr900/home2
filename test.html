@@ -9,6 +9,41 @@
     <script src="../js/prism.js"></script>
 </head>
 <body id="program">
+    <style>
+    .container {
+        max-height: 80vh;
+        overflow-y: scroll;
+        border: 1px solid gray;
+        scroll-snap-type: y mandatory;
+    }
+    ul{
+        padding: 0 40px;
+    }
+    li {
+        scroll-snap-align: start;
+        border-bottom: 1px solid #333;
+        padding: 1rem;
+        height: 50vh;
+        font-size: 1.2rem;
+        color: white;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: #666;
+        margin-bottom: 20px;
+    }
+    </style>
+    <div class="container">
+        <ul class="scroller">
+            <li>This is a list item</li>
+            <li>This is a list item</li>
+            <li>This is a list item</li>
+            <li>This is a list item</li>
+            <li>This is a list item</li>
+            <li>This is a list item</li>
+        </ul>
+    </div>
     <pre>
         <code class="language-markup">
         <script type="prism-html-markup">

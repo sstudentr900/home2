@@ -52,12 +52,18 @@ function creatMainHtml(url,obj){
         let main = document.querySelector(obj);
         main.innerHTML='';
         main.insertAdjacentHTML('afterbegin', text);
+        localStorage.setItem('nowUrl',window.location.search)
     })
 }
+function ifLocalStorageUrl(){
+    if(localStorage.getItem('nowUrl')!=getSearch().search)return true;
+    else return false;
+} 
 function pageStudyMain(){
-    let class1 = getSearch().class1
-    let class2 = getSearch().class2
-    let class3 = getSearch().class3
+    let srarch = getSearch();
+    let class1 = srarch.class1
+    let class2 = srarch.class2
+    let class3 = srarch.class3
     let url = 'page_js/xml_fetch';
     if(class1&&class2&&!class3){
         url = class1+'/'+class2;
@@ -104,6 +110,7 @@ function pageTopNav(obj){
 
 }
 function pageNav(obj,navActiveFn,mainFn,ifClick=true){
+    
     let links = document.querySelectorAll(obj);
 
     //navActiveFn
@@ -112,11 +119,6 @@ function pageNav(obj,navActiveFn,mainFn,ifClick=true){
         navActiveFn(el)
     })
 
-
-    //mainHtml f5 
-    mainFn()
-
-
     //nav click
     if(ifClick){
         links.forEach((el)=>{
@@ -124,20 +126,25 @@ function pageNav(obj,navActiveFn,mainFn,ifClick=true){
                 //history
                 let linkUrl = this.getAttribute('data-url');
                 history.pushState('', '' ,linkUrl)
+                //不相同網址才更新
+                if(ifLocalStorageUrl()){
+                    //nav active
+                    links.forEach((el)=>{
+                        el.classList.remove('active');
+                    })
+                    this.classList.add('active')
 
-                //nav active
-                links.forEach((el)=>{
-                    el.classList.remove('active');
-                })
-                this.classList.add('active')
-
-                //chageHtml
-                mainFn()
+                    //chageMainHtml
+                    mainFn()
+                }
             })
         })
     }
+
+    //chageMainHtml f5 
+    mainFn()
 }
-function styleToggle(){
+function bodyStyle(){
     //style
     let body = document.querySelector('body')
     if(!localStorage.getItem('style')){
@@ -158,17 +165,20 @@ function styleToggle(){
             localStorage.setItem('style','dark')
         }
     })
-
-
+}
+function start(){
+    bodyStyle()
     //top nav
     pageNav('.index_top [data-url]',pageTopNav,pageMain)
     
-    //上下頁
+    //瀏覽器上下頁、 href #、history.back()、history.forward()、history.go()觸發
     window.onpopstate = function(event) {
-        // console.log('onpopstate',document.location,event);
-        pageNav('.index_top [data-url]',pageTopNav,pageMain,false)
+        //不相同網址才更新
+        if(ifLocalStorageUrl()){
+            pageNav('.index_top [data-url]',pageTopNav,pageMain,false)
+        }
     };
 }
 // window.onload=function(){
-    styleToggle()
+    start()
 // }

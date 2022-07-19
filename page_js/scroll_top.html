@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    
+</head>
+<body id="program">
+    <h2>go top</h2>
+    <p>使用window.scrollTo()</p>
+    <pre>
+        <code class="language-js">
+            button.addEventListener("click", function() {
+                window.scrollTo({
+                    top: 0, 
+                    behavior: 'smooth' //平滑滚动
+                })
+            });
+        </code>
+    </pre>
+    <p>requestAnimationFrame</p>
+    <pre>
+        <code class="language-js">
+            utton.addEventListener('click',function(){
+                let cb = ()=>{
+                    if(document.documentElement.scrollTop===0){
+                        //满足条件，不再递归调用
+                        return;
+                    } else {
+                        let speed = 40 //每个帧内滚动条移动的距离
+                        document.documentElement.scrollTop -= speed
+                        //不满足条件，再次调用cb
+                        requestAnimationFrame(cb)
+                    }
+                }
+                requestAnimationFrame(cb)
+            }
+        </code>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+        <li>
+            <a href="https://expect7.pixnet.net/blog/post/65830318" target="_blank">如何頁面轉跳的幾個方法</a>
+            <a href="https://www.delftstack.com/zh-tw/howto/javascript/javascript-change-url/#%E4%BD%BF%E7%94%A8-pushstate-%E6%96%B9%E6%B3%95%E9%80%9A%E9%81%8E-javascript-%E4%BF%AE%E6%94%B9-url" target="_blank">JavaScript 中修改 URL</a>
+        </li>
+    </ul>
+    <h2>history(更新歷史記錄不是跳轉)</h2>
+    <ol>
+        <li>
+            <code>replaceState</code>更新當前歷史記錄的URL而不是創造一個新的
+        </li>
+        <li>
+            <code>pushState</code>更新當前URL和更新歷史紀錄為新歷史紀錄
+        </li>
+    </ol>
+    <pre>
+        <code class="language-js">
+            history.replaceState(data, title ,url)
+            window.history.replaceState({ page: "1" }, "title", "/url.html");
+            window.history.pushState({ page: "1" }, "title", "/url.html");
+            history.back()      //往上一步移動
+            history.forward()   //往下一步移動
+            history.go(-1);     //移動到特定的歷史紀錄
+            history.length;     //總共瀏覽了幾個網頁
+        </code>
+    </pre>
+    <h2>popstate 觸發事件</h2>
+    <p>調用history.pushState()或者history.replaceState()不會觸發popstate事件. popstate事件只會在瀏覽器上下頁、 href #、history.back()、history.forward()、history.go()</p>
+    <pre>
+        <code class="language-js">
+            window.addEventListener('popstate', function(event) {
+                ajax(page);
+            });
+
+            window.onpopstate = function(event){..}
+        </code>
+    </pre>
+    <h2>讀取目前的 state</h2>
+    <pre>
+        <code class="language-js">
+            var currentState = history.state;
+        </code>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+        <li>
+            <a href="https://juejin.cn/post/6844903925473083405" target="_blank">平滑滚动的实现</a>
+        </li>
+        <li>
+            <a href="https://www.zhangxinxu.com/wordpress/2017/01/share-a-animation-algorithm-js/" target="_blank">scroll</a>
+        </li>
+        <li>
+            <a href="https://www.zhangxinxu.com/wordpress/2018/10/scroll-behavior-scrollintoview-%E5%B9%B3%E6%BB%91%E6%BB%9A%E5%8A%A8/" target="_blank">页面滚动平滑</a>
+        </li>
+    </ul>
+</body>
+</html>
+    

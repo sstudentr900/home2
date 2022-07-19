@@ -14,23 +14,33 @@
             font-size: 60px;
             margin: 0;
         }
-        .item.active h2{
+        .active h2{
             color: red;
         }
         .item{
-            margin-top: 500px;
+            margin-top: 100px;
+        }
+        .item2{
+            padding-top: 200px;
         }
     </style>
 </head>
 <body>
     <div class="item"><h2>item</h2></div>
+    <div class="item2"><h2>item2</h2></div>
     <script>
+        // let lastKnownScrollPosition = 0;
         let ticking = false;
-        const item = document.querySelector(".item")
+        let item = document.querySelector('.item')
+        let item2 = document.querySelector('.item2')
 
         function doSomething(scrollPos) {
-            // const moveToNextAt = (item.offsetTop) + (item.clientHeight / 2);
-            const moveToNextAt = (item.offsetTop) - (item.clientHeight / 2);
+            // console.log('當前滾動數值',scrollPos,window.scrollY)
+            console.log('當前滾動數值',window.scrollY)
+            console.log('item與頂部距離',item.offsetTop)
+            console.log('item2與頂部距離',item2.offsetTop)
+
+            const moveToNextAt = (item.offsetTop) - (item.clientHeight / 2); //頂部距離-(item/2)
             console.log('moveToNextAt',moveToNextAt)
             console.log('scrollY',window.scrollY)
             if (window.scrollY > moveToNextAt) {
