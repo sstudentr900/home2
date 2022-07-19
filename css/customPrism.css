@@ -19,20 +19,24 @@
     margin-top: 0;
 }
 #program h2{
-    margin: 52px 0 28px;
+    margin: 62px 0 28px;
     border-left: 4px solid var(--blue);
     padding-left: 15px;
 }
 #program h3{
     font-size: 22px;
     margin: 62px 0 22px;
+}
+#program h2,
+#program h3{
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
+#program h2 a,
 #program h3 a{
     color: var(--blue);
-    font-size: 15px;
+    font-size: 18px;
+    margin-left: 10px;
 }
 #program h4{
     font-size: 18px;
