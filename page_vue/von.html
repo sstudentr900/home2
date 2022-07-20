@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/customPrism.css">
+        <link rel="stylesheet" href="../css/customPrism.css">
+        <link rel="stylesheet" href="../css/prism.css">
+        <script src="../js/prism.js"></script>
+    </head>
+    <body id="program">
+        <h2>「@」v-on：監聽事件</h2>
+        <h3>事件修飾符</h3>
+        <ol>
+            <li>capture 以捕獲形式觸發事件</li>
+            <li>stop  => stopPropagation 停止觸發上層 DOM 元素事件。</li>
+            <li>prevent => preventDefault 阻擋預設行為</li>
+            <li>self  => 只有觸發此 DOM 元素本身才會觸發 self 事件。</li>
+            <li>once  => 此事件只觸發一次。</li>
+            <li>passive => 無視 prevent 功能。</li>
+            <li>capture  => 會優先觸發。</li>
+        </ol>
+
+        <h3>指定事件只觸發一次(@click.once)</h3>
+        <pre>
+            <code class="language-markup">
+            <script type="prism-html-markup">
+                <button type="button" @click="clicks += 1">Click it!</button>
+                <button type="button" @click.once="clicks += 1">Click it!(只會被觸發一次)</button>
+            </script>
+            </code>
+        </pre>
+
+        <h3>prevent 阻擋預設行為 event.preventDefault()</h3>
+        <pre>
+            <code class="language-markup">
+            <script type="prism-html-markup">
+                <form v-on:submit.prevent="onSubmit">
+            </script>
+            </code>
+        </pre>
+
+        <h2>@input事件是实时监控的，每次输入都会调用</h2>
+        <ol>
+            <li>@keyup.enter需要点击回车键触发</li>
+            <li>@change</li>
+            <li>@blur</li>
+        </ol>
+        <h3>一般在元件內的input使用v-model</h3>
+        <pre>
+            <code class="language-markup">
+            <script type="prism-html-markup">
+                <input type="text" v-model="inputText" />
+            </script>
+            </code>
+        </pre>
+        
+        <h3>@input監聽表單元素的即時變化</h3>
+        <pre>
+            <code class="language-markup">
+            <script type="prism-html-markup">
+                <input type="text" :value="inputText"  @input="inputText = $event.target.value" /> 
+            </script>
+            </code>
+        </pre>
+        
+        <h3>@change監聽值改變</h3>
+        <pre>
+            <code class="language-markup">
+            <script type="prism-html-markup">
+                <input type="text" :value="inputText"  @change="inputText = $event.target.value" />
+            </script>
+            </code>
+        </pre>
+
+        <h2>「:」<span>v-bind</span>：綁定 attribute</h2>
+        <pre>
+            <code class="language-markup">
+            <script type="prism-html-markup">
+                <button type="button" :disabled="isUnclickable" @click="disabled">
+                    Cannot click!
+                </button>
+            </script>
+            </code>
+        </pre>
+
+        <h2>綁定 class</h2>
+        <pre>
+            <code class="language-markup">
+            <script type="prism-html-markup">
+                <p :class="{color_red : is_class}">class</p>
+            </script>
+            </code>
+        </pre>
+        <h4>參考</h4>
+        <ul>
+            <li>
+                <a href="https://ithelp.ithome.com.tw/articles/10268431">簡寫好用一直用－v-on、v-bind</a>
+            </li>
+        </ul>
+    </body>
+</html>
