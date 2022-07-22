@@ -1,126 +1,117 @@
 <style>
-    /*page_study**************/
-    .page_study {
-        /* user-select: none; */
-        /* align-items: flex-start; */
-        position: relative;
-    }
-    .page_study .nav {
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        width: 17rem;
-        top: 64px;
-        /* left: max(0px, calc(50% - 40rem)); */
-        left: 0;
-        padding: 20px 30px 20px 20px;
-        overflow-y: auto;
-        border-right: 1px solid var(--solid);
-        overscroll-behavior: contain;
-    }
-    /*scrollbar-------------------------------------- ---------------*/
-    .page_study .nav::-webkit-scrollbar {
-        width: 6px;
-    }
-    .page_study .nav::-webkit-scrollbar-track {
-        background: var(--scrollbar-track);
-    }
-    .page_study .nav::-webkit-scrollbar-thumb {
-        background: var(--scrollbar-thumb);
-    }
-    .page_study .nav::-webkit-scrollbar-thumb:hover {
-        background: var(--scrollbar-thumb);
-    }
-    .page_study .nav a {
-        padding: 0.4rem 0;
-        color: var(--text);
-    }
-    .page_study .nav a:hover {
-        text-decoration: underline;
-    }
-    .page_study .nav a.active {
-        color: var(--blue);
-    }
-    .page_study .nav summary {
-        cursor: pointer;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: var(--title);
-    }
-    .page_study .nav summary::-webkit-details-marker,
-    .page_study .nav summary::marker {
-        display: none;
-        content: " ";
-    }
-    .page_study .nav summary::after {
-        content: '';
-        width: 0;
-        height: 0;
-        display: inline-block;
-        border-style: solid;
-        border-width: 4px 0 4px 4px;
-        border-color: transparent transparent transparent var(--icon);
-    }
-    .page_study .nav details[open]>summary::after {
-        transform: rotate(90deg);
-    }
-    .page_study .nav>ul>li {
-        margin: 0.5rem 0;
-    }
-    .page_study .nav>ul>li>details {
-        margin: 0.75rem 0;
-    }
-    .page_study .nav>ul>li>details>summary {
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-    }
+  /*page_study**************/
+  .page_study {
+      /* user-select: none; */
+      /* align-items: flex-start; */
+      position: relative;
+  }
+  .page_study .nav {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      width: 17rem;
+      top: 64px;
+      /* left: max(0px, calc(50% - 40rem)); */
+      left: 0;
+      padding: 20px 30px 20px 20px;
+      overflow-y: auto;
+      border-right: 1px solid var(--solid);
+      overscroll-behavior: contain;
+  }
+  /*scrollbar-------------------------------------- ---------------*/
+  .page_study .nav::-webkit-scrollbar {
+      width: 6px;
+  }
+  .page_study .nav::-webkit-scrollbar-track {
+      background: var(--scrollbar-track);
+  }
+  .page_study .nav::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+  }
+  .page_study .nav::-webkit-scrollbar-thumb:hover {
+      background: var(--scrollbar-thumb);
+  }
+  .page_study .nav a {
+      padding: 0.4rem 0;
+      color: var(--text);
+  }
+  .page_study .nav a:hover {
+      text-decoration: underline;
+  }
+  .page_study .nav a.active {
+      color: var(--blue);
+  }
+  .page_study .nav summary {
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--title);
+  }
+  .page_study .nav summary::-webkit-details-marker,
+  .page_study .nav summary::marker {
+      display: none;
+      content: " ";
+  }
+  .page_study .nav summary::after {
+      content: '';
+      width: 0;
+      height: 0;
+      display: inline-block;
+      border-style: solid;
+      border-width: 4px 0 4px 4px;
+      border-color: transparent transparent transparent var(--icon);
+  }
+  .page_study .nav details[open]>summary::after {
+      transform: rotate(90deg);
+  }
+  .page_study .nav>ul>li {
+      margin: 0.5rem 0;
+  }
+  .page_study .nav>ul>li>details {
+      margin: 0.75rem 0;
+  }
+  .page_study .nav>ul>li>details>summary {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+  }
 
-    .page_study .nav ul ul {
-        padding-left: 0.75rem;
-    }
+  .page_study .nav ul ul {
+      padding-left: 0.75rem;
+  }
 
-    .page_study .nav ul ul details {
-        padding: 0.4rem 0;
-        color: var(--grey);
-    }
-    .page_study .nav ul ul ul {
-        padding-top: 6px;
-    }
-    .page_study .content {
-        /* flex: 1; */
-        padding: 40px 40px 0;
-        margin-left: 17rem;
-    }
-    .page_study .content .index_footer{
-        padding: 30px 0;
-    }
-    .page_study .main{
-        min-height: calc(100vh - 65px - 40px - 101px);
-    }
+  .page_study .nav ul ul details {
+      padding: 0.4rem 0;
+      color: var(--grey);
+  }
+  .page_study .nav ul ul ul {
+      padding-top: 6px;
+  }
+  .page_study .content {
+      /* flex: 1; */
+      padding: 40px 40px 0;
+      margin-left: 17rem;
+  }
+  .page_study .content .index_footer{
+      padding: 30px 0;
+  }
+  .page_study .main{
+      min-height: calc(100vh - 65px - 40px - 101px);
+  }
 </style>
 <div class="page_study">
-    <div class="nav">
-        <ul>
+  <div class="nav">
+    <ul>
+      <li>
+        <details>
+          <summary>Javascript</summary>
+          <ul>
             <li>
-                <details>
-                    <summary>Javascript</summary>
-                    <ul>
-                        <li><a data-url="?page=study&class1=page_js&class2=attributes">attributes</a></li>
-                        <li><a data-url="?page=study&class1=page_js&class2=async_defer">async_defer</a></li>
-                        <li><a data-url="?page=study&class1=page_js&class2=classList">classList</a></li>
-                        <li><a data-url="?page=study&class1=page_js&class2=data_concatenation">data_concatenation</a></li>
-                        <li><a data-url="?page=study&class1=page_js&class2=element">element</a></li>
-                        <li><a data-url="?page=study&class1=page_js&class2=location_history">location_history</a></li>
-                        <li><a data-url="?page=study&class1=page_js&class2=localStorage">localStorage</a></li>
-                        <li><a data-url="?page=study&class1=page_js&class2=regex">Regex 正規表示法</a></li>
-                        <li><a data-url="?page=study&class1=page_js&class2=scroll_top">scroll_top</a></li>
-                        <li><a data-url="?page=study&class1=page_js&class2=xml_fetch">xml_fetch</a></li>
-                    </ul>
-                </details>
+              <a data-url="?page=study&class1=page_js&class2=attributes">attributes</a>
             </li>
             <li>
+<<<<<<< HEAD
                 <details>
                     <summary>Vue</summary>
                     <ul>
@@ -139,54 +130,133 @@
                         <li><a data-url="?page=study&class1=page_vue&class2=function5">for</a></li> -->
                     </ul>
                 </details>
+=======
+              <a data-url="?page=study&class1=page_js&class2=async_defer">async_defer</a>
+>>>>>>> 8c2150b011dc147d57d5fe8f15ebfc51deb43392
             </li>
             <li>
-                <details>
-                    <summary>Css</summary>
-                    <ul>
-                        <li><a data-url="?page=study&class1=page_css&class2=basis">basis</a></li>
-                        <li><a data-url="?page=study&class1=page_css&class2=error">error</a></li>
-                        <li><a data-url="?page=study&class1=page_css&class2=svg_color">svg_color</a></li>
-                        <li><a data-url="?page=study&class1=page_css&class2=svg_public">svg_public</a></li>
-                        <li><a data-url="?page=study&class1=page_css&class2=scroll">scroll</a></li>
-                        <li><a data-url="?page=study&class1=page_css&class2=scroll_top">scroll_top</a></li>
-                        <li><a data-url="?page=study&class1=page_css&class2=text_limit">text_limit</a></li>
-                    </ul>
-                </details>
+              <a data-url="?page=study&class1=page_js&class2=classList">classList</a>
             </li>
             <li>
-                <details>
-                    <summary>Html</summary>
-                    <ul>
-                        <li><a data-url="?page=study&class1=page_html&class2=basis">basis</a></li>
-                        <li><a data-url="?page=study&class1=page_html&class2=details">Details</a></li>
-                        <li><a data-url="?page=study&class1=page_html&class2=emmet">emmet</a></li>
-                    </ul>
-                </details>
+              <a data-url="?page=study&class1=page_js&class2=data_concatenation">data_concatenation</a>
             </li>
             <li>
-                <details>
-                    <summary>Git</summary>
-                    <ul>
-                        <!-- <li><a data-url="?page=study&class1=page_git&class2=svg_color">basis</a></li>
+              <a data-url="?page=study&class1=page_js&class2=element">element</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_js&class2=location_history">location_history</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_js&class2=localStorage">localStorage</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_js&class2=regex">Regex 正規表示法</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_js&class2=scroll_top">scroll_top</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_js&class2=xml_fetch">xml_fetch</a>
+            </li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Vue</summary>
+          <ul>
+            <li>
+              <a data-url="?page=study&class1=page_vue&class2=tutorial">basis</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_vue&class2=route">route</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_vue&class2=scoped">scoped</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_vue&class2=install">vue cli安裝</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_vue&class2=von">v-on</a>
+            </li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Css</summary>
+          <ul>
+            <li>
+              <a data-url="?page=study&class1=page_css&class2=animation">animation</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_css&class2=basis">basis</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_css&class2=error">error</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_css&class2=svg_color">svg_color</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_css&class2=svg_public">svg_public</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_css&class2=scroll">scroll</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_css&class2=scroll_top">scroll_top</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_css&class2=load">load</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_css&class2=text_limit">text_limit</a>
+            </li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Html</summary>
+          <ul>
+            <li>
+              <a data-url="?page=study&class1=page_html&class2=basis">basis</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_html&class2=details">Details</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_html&class2=emmet">emmet</a>
+            </li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Git</summary>
+          <ul>
+            <!-- <li><a data-url="?page=study&class1=page_git&class2=svg_color">basis</a></li>
                         <li><a data-url="?page=study&class1=page_git&class2=svg_color1">creatHome</a></li>
-                        <li><a data-url="?page=study&class1=page_git&class2=svg_color2">gitignore</a></li> -->
-                    </ul>
-                </details>
-            </li>
+                        <li><a data-url="?page=study&class1=page_git&class2=svg_color2">gitignore</a></li> --></ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>GitHub</summary>
+          <ul>
             <li>
-                <details>
-                    <summary>GitHub</summary>
-                    <ul>
-                        <li><a data-url="?page=study&class1=page_github&class2=basis">如何逛 GitHub</a></li>
-                    </ul>
-                </details>
+              <a data-url="?page=study&class1=page_github&class2=basis">如何逛 GitHub</a>
             </li>
-            <li>
-                <details>
-                    <summary>Laravel</summary>
-                    <ul>
-                        <!-- <li><a data-url="?page=study&class1=page_laravel&class2=artisan">artisan</a></li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Laravel</summary>
+          <ul>
+            <!-- <li><a data-url="?page=study&class1=page_laravel&class2=artisan">artisan</a></li>
                         <li><a data-url="?page=study&class1=page_laravel&class2=error">error</a></li>
                         <li><a data-url="?page=study&class1=page_laravel&class2=install">install</a></li>
                         <li><a data-url="?page=study&class1=page_laravel&class2=tool_ngrok">ngrok(外網連接)</a></li>
@@ -195,82 +265,84 @@
                         <li><a data-url="?page=study&class1=page_laravel&class2=svg_color6">plugin_綠界</a></li>
                         <li><a data-url="?page=study&class1=page_laravel&class2=svg_color7">router</a></li>
                         <li><a data-url="?page=study&class1=page_laravel&class2=svg_color8">sql</a></li>
-                        <li><a data-url="?page=study&class1=page_laravel&class2=svg_color9">validator</a></li> -->
-                    </ul>
-                </details>
+                        <li><a data-url="?page=study&class1=page_laravel&class2=svg_color9">validator</a></li> --></ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Mysql</summary>
+          <ul>
+            <li>
+              <a data-url="?page=study&class1=page_mysql&class2=coding">編碼差異</a>
             </li>
             <li>
-                <details>
-                    <summary>Mysql</summary>
-                    <ul>
-                        <li><a data-url="?page=study&class1=page_mysql&class2=coding">編碼差異</a></li>
-                        <li><a data-url="?page=study&class1=page_mysql&class2=error">error</a></li>
-                    </ul>
-                </details>
+              <a data-url="?page=study&class1=page_mysql&class2=error">error</a>
             </li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Linux</summary>
+          <ul>
+            <!-- <li><a data-url="?page=study&class1=page_linux#&class2=install">安裝</a></li> --></ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Xampp</summary>
+          <ul>
             <li>
-                <details>
-                    <summary>Linux</summary>
-                    <ul>
-                        <!-- <li><a data-url="?page=study&class1=page_linux#&class2=install">安裝</a></li> -->
-                    </ul>
-                </details>
+              <a data-url="?page=study&class1=page_xampp&class2=url">路由修改</a>
             </li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Vscode</summary>
+          <ul>
             <li>
-                <details>
-                    <summary>Xampp</summary>
-                    <ul>
-                        <li><a data-url="?page=study&class1=page_xampp&class2=url">路由修改</a></li>
-                    </ul>
-                </details>
+              <a data-url="?page=study&class1=page_vscode&class2=basis">basis</a>
             </li>
-            <li>
-                <details>
-                    <summary>Vscode</summary>
-                    <ul>
-                        <li><a data-url="?page=study&class1=page_vscode&class2=basis">basis</a></li>
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>google</summary>
-                    <ul>
-                        <!-- <li><a data-url="?page=study&class1=page_google&class2=svg_color">安裝</a></li>
-                        <li><a data-url="?page=study&class1=page_google&class2=svg_color1">sql</a></li> -->
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>Heroku</summary>
-                    <ul>
-                        <!-- <li><a data-url="?page=study&class1=page_heroku&class2=svg_color">安裝</a></li>
-                        <li><a data-url="?page=study&class1=page_heroku&class2=svg_color1">sql</a></li> -->
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>c#</summary>
-                    <ul>
-                        <!-- <li><a data-url="?page=study&class1=page_c#&class2=svg_color">安裝</a></li>
-                        <li><a data-url="?page=study&class1=page_c#&class2=svg_color1">sql</a></li> -->
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>unity</summary>
-                    <ul>
-                        <!-- <li><a data-url="?page=study&class1=page_unity#&class2=svg_color">安裝</a></li>
-                        <li><a data-url="?page=study&class1=page_unity#&class2=svg_color1">sql</a></li> -->
-                    </ul>
-                </details>
-            </li>
-        </ul>
-    </div>
-    <div class="content">
-        <div class="main" id="program"></div>
-    </div>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>google</summary>
+          <ul>
+            <!-- <li><a data-url="?page=study&class1=page_google&class2=svg_color">安裝</a></li>
+                        <li><a data-url="?page=study&class1=page_google&class2=svg_color1">sql</a></li> --></ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Heroku</summary>
+          <ul>
+            <!-- <li><a data-url="?page=study&class1=page_heroku&class2=svg_color">安裝</a></li>
+                        <li><a data-url="?page=study&class1=page_heroku&class2=svg_color1">sql</a></li> --></ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>c#</summary>
+          <ul>
+            <!-- <li><a data-url="?page=study&class1=page_c#&class2=svg_color">安裝</a></li>
+                        <li><a data-url="?page=study&class1=page_c#&class2=svg_color1">sql</a></li> --></ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>unity</summary>
+          <ul>
+            <!-- <li><a data-url="?page=study&class1=page_unity#&class2=svg_color">安裝</a></li>
+                        <li><a data-url="?page=study&class1=page_unity#&class2=svg_color1">sql</a></li> --></ul>
+        </details>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="main" id="program"></div>
+  </div>
 </div>

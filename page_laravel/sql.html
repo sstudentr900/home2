@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+  </head>
+  <body id="program">
+    <h2>basis</h2>
+    <ol>
+      <li>data::select('id','name')         //顯示那些</li>
+      <li>data::where('id','1')             //查詢</li>
+      <li>data::orderBy('id','desc')        //排序</li>
+      <li>data::offset(0)                   //從哪里开始</li>
+      <li>data::limit(10)                   //查询多少数据</li>
+      <li>data::skip(0)                     //從哪里开始</li>
+      <li>data::take(10)                    //查询多少数据</li>
+      <li>data::count()                     //數量</li>
+    </ol>
+    <h2>讀取(Read)</h2>
+    <ol>
+      <li>all() 讀取全部資料</li>
+      <li>find() 輸入primary key 讀取該資料</li>
+      <li>where() where用法就比較需要注意了，他跟原生sql語法差不多用法，裏面都是放置判斷式，不同點於find()是，他後面需要加上first()或是get(),例如：</li>
+    </ol>
+    <pre>
+      <code class="language-php">
+        //1.
+        Users::find('1');
+
+        //2.
+        Users::where('id','1')->first();
+      </code>
+    </pre>
+    <h2>新增(Create)</h2>
+    <pre>
+      <code class="language-php">
+        //1.
+        $user = new Users;   
+        $user->title = "Default Title";
+        $user->content = "Example Content";
+        $user->save();
+
+        //2.
+        Users::create(['title'=>'Default Title' , 'content'=>'Example Content']);
+      </code>
+    </pre>
+    <h2>更新(Update)</h2>
+    <pre>
+      <code class="language-php">
+        //1.
+        $user = Users::find(2);
+        $user->title = "New Title";
+        $user->update();
+
+        //2.
+        Users::find('2')->update(['title'=>'New Title']);
+
+        //3.更新特定欄位
+        Users::where('id', 1)
+        ->where('destination', 'San Diego')
+        ->update(['delayed' => 1]);
+      </code>
+    </pre>
+    <h2>updateOrCreate 和 updateOrInsert 的区别</h2>
+    <p>存在即更新，反之则创建 updateOrCreate 方法使用的是 Eloquent ORM 操作的数据库（支持自动添加创建和更新时间），updateOrInsert 方法使用的是查询构造器（不可以自动添加创建和更新时间）</p>
+    <p>第一個指示匹配條件，第二個用於指定要更新的字段</p>
+    <pre>
+      <code class="language-php">
+        $newUser = \App\UserInfo::updateOrCreate([
+            //Add unique field combo to match here
+            //For example, perhaps you only want one entry per user:
+            'user_id'   => Auth::user()->id,
+        ],[
+            'about'     => $request->get('about'),
+            'sec_email' => $request->get('sec_email'),
+            'gender'    => $request->get("gender"),
+            'country'   => $request->get('country'),
+            'dob'       => $request->get('dob'),
+            'address'   => $request->get('address'),
+            'mobile'    => $request->get('cell_no')
+        ]);
+      </code>
+    </pre>
+    <h2>刪除(Update)</h2>
+    <pre>
+      <code class="language-php">
+        //1.
+        Users::find('2')->delete();
+
+        //2.
+        Users::destroy('2');
+      </code>
+    </pre>
+    <h2>判斷有無值</h2>
+    <pre>
+      <code class="language-php">
+        $data = data_bacarousel::where('release','y')->get();
+        if(count($data)){
+          abort(404);
+        }
+      </code>
+    </pre>
+    <h2>列印EloquentSQL語法</h2>
+    <pre>
+      <code class="language-php">
+        //引入
+        use Illuminate\Support\Facades\DB;
+
+        //啟用紀錄SQL語法
+        DB::enableQueryLog();
+
+        //使用SQL
+        dataName::create($input);
+
+        //取得目前使用過的SQL語法
+        Log::notice(print_r(DB::getQueryLog(), true));
+      </code>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10246143" target="_blank">laravel Eloquent</a>
+      </li>
+      <li>
+        <a href="https://blog.csdn.net/u010324331/article/details/82698211" target="_blank">updateOrCreate 和 updateOrInsert 的区别</a>
+      </li>
+      <li>
+        <a href="https://stackoverflow.com/questions/42695943/laravel-updateorcreate-method" target="_blank">laravel updateOrCreate method</a>
+      </li>
+    </ul>
+  </body>
+</html>

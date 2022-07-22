@@ -292,8 +292,25 @@ body#program>ul {
   background: #1e293b;
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
 }
+<<<<<<< HEAD
 
 #program>.flex-center {
   display: flex;
   justify-content: center;
 }
+=======
+#program .flex-center {
+    display: flex;
+    justify-content: center;
+}
+/**/
+.codeDemo{
+    overflow: auto;
+    resize: horizontal;
+    padding: 1.5rem;
+    background: #1e293b;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+    display: flex;
+    justify-content: center;
+}
+>>>>>>> 8c2150b011dc147d57d5fe8f15ebfc51deb43392
