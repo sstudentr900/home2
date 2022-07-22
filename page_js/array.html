@@ -1,567 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
-    <title>javascript_array</title>
-</head>
-
-<body>
-    <!-- https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter -->
-    <script>
-        //Array宣告數組
-        // var arr = new Array(2);
-        // var arr = Array(2);
-        //var arr1=new Array('a','b','c');
-        //var arr1=['a','b','c']; 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //解構
+          const list9 = [{
+              name: 'Eva'
+          }, {
+              name: 'Carrie',
+              num: 23
+          }, {
+              name: 'Olivia'
+          }]
+          list9.forEach(({
+              name,
+              num = 'unknown'
+          }) => console.log(`Hi I'm ${name}. My number is ${num}.`));
+          //Hi I'm Eva. My number is unknown.
+          //Hi I'm Carrie. My number is 23.
+          //Hi I'm Olivia. My number is unknown.
+
+          
+          //toString数组转为字串---------------------------------------------------------------
+          var a7 = [1, 2, 3];
+          a7.toString() // "1,2,3"
+
+          var a6 = [1, 2, 3, [4, [5, 2, 1], 6]];
+          a6.toString() // "1,2,3,4,5,6"
+
+
+          //join数组转为字串 ---------------------------------------------------------------
+          var a8 = [1, 2, 3, 4];
+          a8.join(' ') // '1 2 3 4'
+          a8.join(' | ') // "1 | 2 | 3 | 4"
+          a8.join() // "1,2,3,4"
+
+          // 2.
+          Array.prototype.join.call('hello', '-') // "h-e-l-l-o"
+
+          // 3.对象
+          var obj = {
+              0: 'a',
+              1: 'b',
+              length: 2
+          };
+          Array.prototype.join.call(obj, '-') // 'a-b'
+
+          //concat合并array(原陣列會被改變回傳的是被連結後的結果)--------------------------------------------------------
+          var arr = ['60', '22', '90'];
+          var arr2 = ['5', '3', '9'];
+          var kai = ["Robin"];
+          console.log(arr.concat(arr2));
+          console.log(arr.concat(arr2, kai)); //多個
+          [1, 2, 3].concat(4, 5, 6); // [1, 2, 3, 4, 5, 6]
+          // 等同于
+          [1, 2, 3].concat(4, [5, 6])[1, 2, 3].concat([4], [5, 6]);
+
+
+          //数组合并对象
+          [].concat.call({
+              a: 1
+          }, {
+              b: 2
+          }); // [{ a: 1 }, { b: 2 }]
+          [].concat.call({
+              a: 1
+          }, [2]); // [{a: 1}, 2]
+          [2].concat({
+              a: 1
+          }); // [2, {a: 1}]
+
+
+          //複製陣列不變原陣列---------------------------------------------------------------------------------------
+          //[1] == [1] //false
+          //bad
+          var a0 = [1, 2, 3];
+          var b0 = a0;
+          b0.push(4);
+          //a = [1,2,3,4]
+          //b = [1,2,3,4]
+          //god
+          var a1 = [1, 2, 3];
+          var b1 = a1.slice();
+          b1.push(4);
+          //a=[1,2,3]
+          //b=[1,2,3,2]
+
+
+          //https://ithelp.ithome.com.tw/articles/10214412
+          let today = ['沙拉', '水煮雞胸'];
+          let tomorrow = [...today];
+          console.log(tomorrow); // ['沙拉','水煮雞胸']
+          //today===tomorrow //false
+
 
 
-        //名錯誤寫法(字作为索引)--------------------------------------------------------------------------
-        // var person = [];
-        // person["firstName"] = "John";
-        // person["lastName"] = "Doe";
-        // person["age"] = 46;
-        // var x = person.length;         // person.length 返回 0
-        // var y = person[0];             // person[0] 返回 undefined
-
-
-        //isArray判斷是否為陣列(array)--------------------------------------------------------------------------
-        Array.isArray([]); // true
-        Array.isArray([1]); // true
-        Array.isArray(new Array()); // true
-        Array.isArray(); // false
-        Array.isArray({}); // false
-        Array.isArray(null); // false
-        Array.isArray(undefined); // false
-
-
-        //判斷陣列為空 arry is empty--------------------------------------------------------------------------
-        //https://www.freecodecamp.org/news/check-if-javascript-array-is-empty-or-not-with-length/
-        //[].length === 0 //true
-
-        // []==''
-
-
-        // 選取---------------------------------------------------------------
-        var arr = [1, 2, 3];
-        arr.a = 12; //a是屬性,屬於一個對像(arr)
-        console.log(arr); //[1, 2, 3, a: 12]
-        console.log(arr[0]); //[1]
-        // console.log(arr[arr.length-1]); //選取最後一個 5
-
-
-        //陣列的解構賦值
-        //https://ithelp.ithome.com.tw/articles/10214766
-        // let exGirl = ['蘋蘋', '欣欣', '雯雯', '綺綺'];
-        // let [one, two, three, fore] = exGirl;
-
-        //https://ithelp.ithome.com.tw/articles/10247031
-        const [cityA, cityB] = ['Hong Kong', 'Taipei']
-        //cityA = Hong Kong, cityB = Taipei
-
-        //遇到空的變數，這些值也會跳過
-        // let exGirl = ['蘋蘋', '欣欣', '雯雯', '綺綺'];
-        // let [one, , three, fore] = exGirl;
-        // one='蘋蘋'
-        // three='雯雯'
-        // fore='綺綺'
-
-        //剩餘參數
-        // let exGirl = ['蘋蘋', '欣欣', '雯雯', '綺綺'];
-        // let [one, two, ...other] = exGirl;
-        // console.log(other) // other = ['雯雯','綺綺']  
-
-        //預設值
-        // let exGirl = ['蘋蘋', '欣欣', '雯雯', '綺綺'];
-        // let [one, two, three, fore, five = "月月"] = exGirl;
-        // console.log(five) // five = 月月
-
-        //變數交換
-        // var one = '蘋蘋';
-        // var two = '欣欣';
-
-        // [one, two] = [two, one];
-        // console.log(one); // one = 欣欣
-        // console.log(two); // two = 蘋蘋
-
-
-        //字串拆解
-        let please = '格幫我買飲料';
-        [a, b, c, d, e, f] = please;
-        // a=格 b=幫 c=我 d=買 e=飲 f=料
-
-
-        //多維陣列
-        const [a3, [b, [c, d]]] = [1, [2, [
-            [3, 4], 5
-        ]]];
-        //a = 1, b = 2, c = [3,4], d = 5
-
-
-        //清空数组---------------------------------------------------------------
-        //1.
-        var list = [1, 2, 3, 4];
-        list = [];
-
-        //2.
-        var list = [1, 2, 3, 4];
-        list.length = 0;
-
-
-        //删掉最后两个元素
-        var list = [1, 2, 3, 4];
-        list.length = list.length - 2;
-
-
-        //lastIndexOf從後面計算數組位置---------------------------------------------------------------
-        var b4 = [3, 5, 17, 6]
-        b4.lastIndexOf(1); //數組位置(從後面計算)
-
-
-        //indexOf() 該值位置---------------------------------------------------------------
-        var a5 = ['a', 'b', 'c'];
-        a5.indexOf('b') // 1
-        a5.indexOf('y') // -1
-
-        //indexOf() 第二个参数，表示搜索的开始位置。
-        a5.indexOf('a', 1) // -1
-
-
-        //toString数组转为字串---------------------------------------------------------------
-        var a7 = [1, 2, 3];
-        a7.toString() // "1,2,3"
-
-        var a6 = [1, 2, 3, [4, [5, 2, 1], 6]];
-        a6.toString() // "1,2,3,4,5,6"
-
-
-        //join数组转为字串 ---------------------------------------------------------------
-        var arr = ['jack', 'john', 'may', 'su', 'ada'];
-        var str = arr.join('、');
-
-        var a8 = [1, 2, 3, 4];
-        a8.join(' ') // '1 2 3 4'
-        a8.join(' | ') // "1 | 2 | 3 | 4"
-        a8.join() // "1,2,3,4"
-
-        // 2.
-        Array.prototype.join.call('hello', '-') // "h-e-l-l-o"
-
-        // 3.对象
-        var obj = {
-            0: 'a',
-            1: 'b',
-            length: 2
-        };
-        Array.prototype.join.call(obj, '-') // 'a-b'
-
-
-        //concat合并array(原陣列會被改變回傳的是被連結後的結果)--------------------------------------------------------
-        var arr = ['60', '22', '90'];
-        var arr2 = ['5', '3', '9'];
-        var kai = ["Robin"];
-        console.log(arr.concat(arr2));
-        console.log(arr.concat(arr2, kai)); //多個
-        [1, 2, 3].concat(4, 5, 6); // [1, 2, 3, 4, 5, 6]
-        // 等同于
-        [1, 2, 3].concat(4, [5, 6])[1, 2, 3].concat([4], [5, 6]);
-
-
-        //数组合并对象
-        [].concat.call({
-            a: 1
-        }, {
-            b: 2
-        }); // [{ a: 1 }, { b: 2 }]
-        [].concat.call({
-            a: 1
-        }, [2]); // [{a: 1}, 2]
-        [2].concat({
-            a: 1
-        }); // [2, {a: 1}]
-
-
-        //從頭新增(array會改變)---------------------------------------------------------------
-        b.unshift(7);
-
-
-        //從尾新增push---------------------------------------------------------------
-        var arr = ['60', '22', '90'];
-        var arr2 = ['5', '3', '9'];
-        arr.push(4, 5, 6);
-
-        //apply
-        Array.prototype.push.apply(arr, arr2);
-        arr.push.apply(arr, arr2)
-
-
-        //shift從頭獲取值(array會改變)---------------------------------------------------------------
-        var a9 = ['a', 'b', 'c'];
-        a9.shift() // 'a'
-        a9 // ['b', 'c']
-
-
-        //pop從後取值(array會改變)---------------------------------------------------------------
-        a.pop();
-
-
-        //從後取值(原陣列不會被改變 (non-mutating) 而是回傳新陣列)---------------------------------------------------------------
-        var f = a[a.length - 1];
-        var g = a.at(-1);
-
-        //複製陣列不變原陣列---------------------------------------------------------------------------------------
-        //[1] == [1] //false
-        //bad
-        var a0 = [1, 2, 3];
-        var b0 = a0;
-        b0.push(4);
-        //a = [1,2,3,4]
-        //b = [1,2,3,4]
-        //god
-        var a1 = [1, 2, 3];
-        var b1 = a1.slice();
-        b1.push(4);
-        //a=[1,2,3]
-        //b=[1,2,3,2]
-
-
-        //https://ithelp.ithome.com.tw/articles/10214412
-        let today = ['沙拉', '水煮雞胸'];
-        let tomorrow = [...today];
-        console.log(tomorrow); // ['沙拉','水煮雞胸']
-        //today===tomorrow //false
-
-
-        //includes()--------------------------------------------------------------------
-        ['1', '2', '4'].includes('1'); //true
-
-
-        //slice(array不會改變)---------------------------------------------------------------
-        var a2 = ['a', 'b', 'c'];
-        a2.slice(0) // ["a", "b", "c"]
-        a2.slice(1) // ["b", "c"]
-        a2.slice(1, 2) // ["b"]
-        a2.slice(2, 6) // ["c"]
-        a2.slice() // ["a", "b", "c"]
-
-        //负数，则表示倒数计算的位置。
-        a2.slice(-2) // ["b", "c"]
-        a2.slice(-2, -1) // ["b"]
-
-
-        //splice刪取範圍(array會改變)---------------------------------------------------------------
-        var str = ['2', '5', '8', '7', '6', '3'];
-        str.splice(2, 3); //(2=8,3=876)//['2','5','3']
-
-        //插入
-        var str = ['2', '5', '8', '7', '6', '3'];
-        str.splice(2, 0, 'a', 'b', 'c'); //(2=5,0=刪除0個,加入a)
-
-        //替換
-        var str = ['2', '5', '8', '7', '6', '3'];
-        str.splice(2, 2, 'a', 'b'); //(2=5,2=刪除5和8,加入a,b)
-
-        //删掉最后两个元素---------------------------------------------------------------
-        array.length = array.length - 2;
-
-        //sort按照对应字符串的字典顺序排序---------------------------------------------------------------
-        var arr = ["Ba", "Or", "Ap", "Ma"].sort(); //Ap,Ba,Ma,Or
-        [4, 3, 2, 1].sort(); //[1, 2, 3, 4]
-
-        //2.(數字大小排序)
-        var arr = ['60', '22', '90'];
-        arr.sort(function(num1, num2) {
-            return num1 - num2 //小到大排序(數字)
-            return num2 - num1 //大到小排序(數字)
-        });
-        alert(arr);
-
-        //obj 排序
-        var arr = [{
-            name: 'Edward',
-            value: 21
-        }, {
-            name: 'Sharpe',
-            value: 37
-        }, ];
-
-        function compareObj(a, b) {
-            return a.value - b.value;
-        }
-        arr.sort(compareObj);
-        console.log(arr);
-
-
-        //数组中的最大最小值---------------------------------------------------------------
-        //bad
-        Math.max(1, 2, 3, 4); // 4
-        Math.min(1, 2, 3, 4); // 1
-        //good
-        var numbers = [1, 2, 3, 4];
-        Math.max.apply(null, numbers); // 4
-        Math.min.apply(null, numbers); // 1
-
-
-        // 可以用來篩選陣列小值---------------------------------------------------------------
-        let minX = arr.reduce((pre, cur) => {
-            return pre.x < cur.x ? pre.x : cur.x;
-        });
-
-
-        //反转排序---------------------------------------------------------------
-        ['60', '22', '90'].reverse(); // ['90', '22', '60']
-
-
-        ////find比對到符合条件不再比對-------------------------------------------------------
-        var number = ['1', '2', '3', '4', '5'];
-        var result3 = number.find(function(number) {
-            return number > 1
-        })
-
-
-        //自訂finda
-        if (!Array.prototype.finda) {
-            Array.prototype.finda = function(callback) {
-                console.log(this.filter(callback));
-                return callback && (this.filter(callback) || [])[0];
-            };
-        }
-
-        //obj find
-        var s = [{
-            "name": "001"
-        }, {
-            "name": "002"
-        }, {
-            "name": "003"
-        }];
-        var a = s.find(function(c) {　　
-            return c.name == '001'
-        })
-        console.log(a) //{name: '001'}
-
-
-        //刪除array -------------------------------------------------------
-        var toolMan = [{
-            "name": "001"
-        }, {
-            "name": "002"
-        }, {
-            "name": "003"
-        }];
-        var daddy = toolMan.findIndex(el => el.name == '001');//findIndex 陣列中的索引位置
-        console.log(daddy); //1
-
-        // 刪除元素
-        toolMan.splice(daddy, 1);
-
-
-        //filter检查全部数组返回符合条件元素---------------------------------------------------------------
-        //移除数组中的重复元素
-        var originArr = [2, 'a', 2, 'a'];
-        var deduped = originArr.filter(function(el, i, arr) {
-            // console.log('arr', arr)
-            // console.log('el', el)
-            // console.log('indexOf', arr.indexOf(el))
-            // console.log('i', i)
-            return arr.indexOf(el) === i; //陣列中的位置
-        });
-        console.log(deduped); // [2, 'a']
-
-
-        //indexOf() 該值位置---------------------------------------------------------------
-        var a = ['a', 'b', 'c'];
-        a.indexOf('b'); // 1
-        a.indexOf('y'); // -1
-
-        //indexOf() 第二个参数，表示搜索的开始位置。
-        a.indexOf('a', 1); // -1
-
-
-        //every检查全部数组符合条件返回boolean-------------------------------------------------------
-        var number = ['1', '2', '3', '4', '5'];
-        var result4 = number.every(function(number) {
-            return number > 0; //true
-        })
-
-
-        //some检查数组符合条件返回boolen且不再檢查-------------------------------------------------------
-        var number = ['1', '2', '3', '4', '5'];
-        var result5 = number.some(function(number) {
-            return number > 5; //false
-        })
-
-
-        //includes檢驗陣列中是否包含 target 這個 element，有的話回傳 true---------------------------------------------------------------
-        arr.includes(target, fromIndex)
-
-
-
-        //链式使用-------------------------------------------------------
-        var users = [{
-            name: 'tom',
-            email: 'tom@example.com'
-        }, {
-            name: 'peter',
-            email: 'peter@example.com'
-        }];
-        users.map(function(user) {
-                return user.email;
-            })
-            .filter(function(email) {
-                return /^t/.test(email);
-            })
-            .forEach(alert); // 弹出tom@example.com
-
-
-        //Array创建remove array---------------------------------------------------------------
-        Array.prototype.indexOf = function(val) {
-            for (var i = 0; i < this.length; i++) {
-                if (this[i] == val) return i;
-            }
-            return -1;
-        };
-
-        Array.prototype.remove = function(val) {
-            var index = this.indexOf(val);
-            if (index > -1) {
-                this.splice(index, 1);
-            }
-        };
-
-        var emp = ['abs', 'dsf', 'sdf', 'fd'];
-        emp.remove('fd');
-        console.log(emp);
-
-        //Array创建新方法(toUpperCase)-------------------------------------------------------
-        Array.prototype.myUcase = function() {
-            for (i = 0; i < this.length; i++) {
-                this[i] = this[i].toUpperCase();
-            }
-        }
-
-        function myFunction() {
-            var fruits = ["Banana", "Orange", "Apple", "Mango"];
-            fruits.myUcase();
-            console.log(fruits);
-        }
-        myFunction();
-
-
-        //去除陣列中重複的元素---------------------------------------------------------------
-        var originArr = [2, 'a', 2, 'a'];
-        var deduped = originArr.filter(function(el, i, arr) {
-            // console.log('arr', arr)
-            // console.log('el', el)
-            // console.log('indexOf', arr.indexOf(el))
-            // console.log('i', i)
-            return arr.indexOf(el) === i;
-        });
-        console.log(deduped); // [2, 'a']
-
-        //去除陣列中重複的元素 new Set
-        let arr = ['aaron', 'po', 'aaron', 'po', 'chung'];
-        let arrKeepUniqueElements = [...new Set(arr)];
-
-
-        // 把二维数组扁平化---------------------------------------------------------------
-        var myArray = [
-            [0, 8],
-            [1, 2, 3],
-            [4, 9]
-        ]
-        var myNewArray = [];
-        for (var i = 0; i < myArray.length; ++i) {
-            for (var j = 0; j < myArray[i].length; ++j) {
-                myNewArray.push(myArray[i][j]);
-            }
-        }
-        console.log(myNewArray);
-
-        //2.
-        var myNewArray = myArray.reduce(function(prev, curr) {
-            return prev.concat(curr);
-        });
-        // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-        //3.
-        var myNewArray = [].concat.apply([], myArray);
-        // [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-
-        //es6 arry展開
-        let numbers2 = [1, 2, 3];
-        let newNumbers = [...numbers2, 4]; //新的array
-        console.log(newNumbers);
-
-
-        //把陣列傳入函式做運算---------------------------------------------------------------
-        function count(breakfast, lunch, dinner) {
-            return breakfast + lunch + dinner;
-        }
-        var price = [10, 50, 20];
-
-        console.log(count(...price)); // 80
-
-
-        //array-雙指針---------------------------------------------------------
-        var arr = [3, 3, 3, 4, 2, 2, 2, 4];
-        var i = 0;
-        var j = 1;
-        var result = [];
-        while (i < 8) {
+          //slice(array不會改變)---------------------------------------------------------------
+          var a2 = ['a', 'b', 'c'];
+          a2.slice(0) // ["a", "b", "c"]
+          a2.slice(1) // ["b", "c"]
+          a2.slice(1, 2) // ["b"]
+          a2.slice(2, 6) // ["c"]
+          a2.slice() // ["a", "b", "c"]
+
+          //负数，则表示倒数计算的位置。
+          a2.slice(-2) // ["b", "c"]
+          a2.slice(-2, -1) // ["b"]
+
+
+          
+          // 可以用來篩選陣列小值---------------------------------------------------------------
+          let minX = arr.reduce((pre, cur) => {
+              return pre.x < cur.x ? pre.x : cur.x;
+          });
+
+
+          //数组中的最大最小值---------------------------------------------------------------
+          //bad
+          Math.max(1, 2, 3, 4); // 4
+          Math.min(1, 2, 3, 4); // 1
+          //good
+          var numbers = [1, 2, 3, 4];
+          Math.max.apply(null, numbers); // 4
+          Math.min.apply(null, numbers); // 1
+
+
+          
+          //把陣列傳入函式做運算---------------------------------------------------------------
+          function count(breakfast, lunch, dinner) {
+              return breakfast + lunch + dinner;
+          }
+          var price = [10, 50, 20];
+
+          console.log(count(...price)); // 80
+
+
+          //Array创建新方法(toUpperCase)-------------------------------------------------------
+          Array.prototype.myUcase = function() {
+              for (i = 0; i < this.length; i++) {
+                  this[i] = this[i].toUpperCase();
+              }
+          }
+
+          function myFunction() {
+              var fruits = ["Banana", "Orange", "Apple", "Mango"];
+              fruits.myUcase();
+              console.log(fruits);
+          }
+          myFunction();
+
+
+          // 把二维数组扁平化---------------------------------------------------------------
+          var myArray = [
+              [0, 8],
+              [1, 2, 3],
+              [4, 9]
+          ]
+          var myNewArray = [];
+          for (var i = 0; i < myArray.length; ++i) {
+              for (var j = 0; j < myArray[i].length; ++j) {
+                  myNewArray.push(myArray[i][j]);
+              }
+          }
+          console.log(myNewArray);
+
+          //2.
+          var myNewArray = myArray.reduce(function(prev, curr) {
+              return prev.concat(curr);
+          });
+          // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+          //3.
+          var myNewArray = [].concat.apply([], myArray);
+          // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+          //es6 arry展開
+          let numbers2 = [1, 2, 3];
+          let newNumbers = [...numbers2, 4]; //新的array
+          console.log(newNumbers);
+
+
+          //array-雙指針---------------------------------------------------------
+          var arr = [3, 3, 3, 4, 2, 2, 2, 4];
+          var i = 0;
+          var j = 1;
+          var result = [];
+          while (i < 8) {
             if (arr[i] == arr[j]) {
-                j++;
+              j++;
             } else {
-                if (j - i >= 3) {
-                    for (var m = i; m < j; m++) {
-                        result.push(m);
-                    }
-                }
-                i = j;
-                j++;
-
+              if (j - i >= 3) {
+                  for (var m = i; m < j; m++) {
+                      result.push(m);
+                  }
+              }
+              i = j;
+              j++;
             }
-        }
-        console.log(result);
+          }
+          console.log(result);
 
-
-        //從陣列中隨機抽取一個元素（sample element in array）---------------------------------------------------------
-        //https://pjchender.dev/javascript/js-array
-        var rand = myArray[Math.floor(Math.random() * myArray.length)];
-
-
-        //建立一個長度為 n 且內容相同的陣列---------------------------------------------------------
-        //https://pjchender.dev/javascript/js-array
-        Array(_length_).fill(_element_);
-        Array(10).fill('ele');
-        // [ 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele' ]
-
-
-        //建立一個元素從 1 ~ n 的陣列---------------------------------------------------------
-        //https://pjchender.dev/javascript/js-array
-        Array(5); // [empty × 5]
-        [...Array(5)]; // [undefined, undefined, undefined, undefined, undefined]
-        [...Array(5).keys()]; // [0, 1, 2, 3, 4]
-        Array(5).keys(); // Array Iterator {}
-        let array1to8 = Array.from({
-            length: 5
-        }, (val, index) => index + 1); // [1, 2, 3, 4, 5]
-        let array1to10 = Array.from(new Array(5), (val, index) => index + 1); // [1, 2, 3, 4, 5]
-
-
-
-        //test---------------------------------------------------------------
-        //unshift push                            放入值
-        //shift pop  slice splice                 取值
-        //indexOf concat split join tostring  
-        //sort reverse                            排序
-        //find                                    查找值->返回值
-        //filter                                  查找值->返回新數組
-        //map                                     執行數組->返回新數組
-        //reduce                                  加總
-        //every some                              返回booblea
-    </script>
-</body>
-
+          
+          //arguments 使用foreach--------------------------------------------------------
+          //https://www.casper.tw/javascript/2017/12/26/javascript-array/
+          const callAll = function() {
+              console.log(arguments);
+              let thisPeople = [...arguments];
+              // arguments.forEach is not a function
+              thisPeople.forEach((arg) => {
+                  console.log(arg)
+              });
+          }
+          callAll(1, 2, 3);
+        </script>
+      </xmp>
+    </pre>
+  </body>
 </html>

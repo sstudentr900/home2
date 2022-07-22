@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //清空数组---------------------------------------------------------------
+          //1.
+          var list = [1, 2, 3, 4];
+          list = [];
+
+          //2.
+          var list = [1, 2, 3, 4];
+          list.length = 0;
+
+
+          //删掉最后两个元素
+          var list = [1, 2, 3, 4];
+          list.length = list.length - 2;
+
+          //splice刪取範圍(array會改變)---------------------------------------------------------------
+          var str = ['2', '5', '8', '7', '6', '3'];
+          str.splice(2, 3); //(2=8,3=876)//['2','5','3']
+
+          //插入
+          var str = ['2', '5', '8', '7', '6', '3'];
+          str.splice(2, 0, 'a', 'b', 'c'); //(2=5,0=刪除0個,加入a)
+
+          //替換
+          var str = ['2', '5', '8', '7', '6', '3'];
+          str.splice(2, 2, 'a', 'b'); //(2=5,2=刪除5和8,加入a,b)
+
+
+          //remove array(Array创建)---------------------------------------------------------------
+          Array.prototype.indexOf = function(val) {
+              for (var i = 0; i < this.length; i++) {
+                  if (this[i] == val) return i;
+              }
+              return -1;
+          };
+
+          Array.prototype.remove = function(val) {
+              var index = this.indexOf(val);
+              if (index > -1) {
+                  this.splice(index, 1);
+              }
+          };
+
+          var emp = ['abs', 'dsf', 'sdf', 'fd'];
+          emp.remove('fd');
+          console.log(emp);
+
+          //remove array -------------------------------------------------------
+          var toolMan = [{
+              "name": "001"
+          }, {
+              "name": "002"
+          }, {
+              "name": "003"
+          }];
+          var daddy = toolMan.findIndex(el => el.name == '001');//findIndex 陣列中的索引位置
+          console.log(daddy); //1
+
+          // 刪除元素
+          toolMan.splice(daddy, 1);
+        </script>
+      </xmp>
+    </pre>
+  </body>
+</html>

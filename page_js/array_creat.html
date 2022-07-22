@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //Array宣告數組
+          var arr = new Array(2);
+          var arr = Array(2);
+          var arr1=new Array('a','b','c');
+          var arr1=['a','b','c']; 
+
+
+          //名錯誤寫法(字作为索引)----------------------------------------------------------
+          // var person = [];
+          // person["firstName"] = "John";
+          // person["lastName"] = "Doe";
+          // person["age"] = 46;
+          // var x = person.length;         // person.length 返回 0
+          // var y = person[0];             // person[0] 返回 undefined
+
+
+          //isArray判斷是否為陣列(array)----------------------------------------------------
+          Array.isArray([]); // true
+          Array.isArray([1]); // true
+          Array.isArray(new Array()); // true
+          Array.isArray(); // false
+          Array.isArray({}); // false
+          Array.isArray(null); // false
+          Array.isArray(undefined); // false
+
+
+          //判斷陣列為空 arry is empty-------------------------------------------------------
+          //https://www.freecodecamp.org/news/check-if-javascript-array-is-empty-or-not-with-length/
+          //[].length === 0 //true
+
+          // []==''
+
+          
+          //includes檢驗陣列中是否包含 target 這個 element，有的話回傳 true--------------
+          ['1', '2', '4'].includes('1'); //true
+          
+
+
+          //建立一個長度為 n 且內容相同的陣列---------------------------------------------------------
+          //https://pjchender.dev/javascript/js-array
+          Array(_length_).fill(_element_);
+          Array(10).fill('ele');
+          // [ 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele' ]
+
+
+          //建立一個元素從 1 ~ n 的陣列---------------------------------------------------------
+          //https://pjchender.dev/javascript/js-array
+          Array(5); // [empty × 5]
+          [...Array(5)]; // [undefined, undefined, undefined, undefined, undefined]
+          [...Array(5).keys()]; // [0, 1, 2, 3, 4]
+          Array(5).keys(); // Array Iterator {}
+          let array1to8 = Array.from({
+              length: 5
+          }, (val, index) => index + 1); // [1, 2, 3, 4, 5]
+          let array1to10 = Array.from(new Array(5), (val, index) => index + 1); // [1, 2, 3, 4, 5]
+        </script>
+      </xmp>
+    </pre>
+  </body>
+</html>

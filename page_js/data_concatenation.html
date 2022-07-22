@@ -1,117 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/customPrism.css">
     <link rel="stylesheet" href="../css/prism.css">
-     <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-<body id="program">
-    <span id="productCount"></span>
-    <input type="text" id="title">
-    <input type="text" id="price">
-    <input type="text" id="origin_price">
-    <button id="addProduct">addProduct</button>
-    <button id="clearAll">clearAll</button>
-    <table id="productList"></table>
-    <script>
-        let productData = []
-        let addBtn = document.getElementById('addProduct');
-        let clearall = document.getElementById('clearAll');
-        let clearindex = document.getElementById('productList');
-        let productTitle = document.getElementById('title');
-        let productPrice = document.getElementById('origin_price');
-        let Price = document.getElementById('price');
-        let Count = document.getElementById('productCount');
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <span id="productCount"></span>
+        <input type="text" id="title">
+        <input type="text" id="price">
+        <input type="text" id="origin_price">
+        <button id="addProduct">addProduct</button>
+        <button id="clearAll">clearAll</button>
+        <table id="productList"></table>
+        <script>
+          let productData = []
+          let addBtn = document.getElementById('addProduct');
+          let clearall = document.getElementById('clearAll');
+          let clearindex = document.getElementById('productList');
+          let productTitle = document.getElementById('title');
+          let productPrice = document.getElementById('origin_price');
+          let Price = document.getElementById('price');
+          let Count = document.getElementById('productCount');
 
-        //資料處理
-        function addProduct(){
+          //資料處理
+          function addProduct(){
             const timeStamp = Math.floor(Date.now());
             if (document.getElementById('title').value.trim() !== '') {
-                productData.push({
-                    id: timeStamp,
-                    title: document.getElementById('title').value.trim(),
-                    origin_price: parseInt(document.getElementById('origin_price').value) || 0,
-                    price: parseInt(document.getElementById('price').value) || 0,
-                    is_enabled: false,
-                });
-                
-                renderPage(productData);
-                //空字串清空資料
-                productTitle.value = '';
-                productPrice.value = '';
-                Price.value = '';
+              productData.push({
+                id: timeStamp,
+                title: document.getElementById('title').value.trim(),
+                origin_price: parseInt(document.getElementById('origin_price').value) || 0,
+                price: parseInt(document.getElementById('price').value) || 0,
+                is_enabled: false,
+              });
+              
+              renderPage(productData);
+              //空字串清空資料
+              productTitle.value = '';
+              productPrice.value = '';
+              Price.value = '';
             }
-        };
-        addBtn.addEventListener('click', addProduct);
+          };
+          addBtn.addEventListener('click', addProduct);
 
 
-        // 資料全部刪除
-        function clearAll(e){
+          // 資料全部刪除
+          function clearAll(e){
             e.preventDefault();
             productData = [];
             renderPage(productData);
-        };
-        clearall.addEventListener('click', clearAll);
+          };
+          clearall.addEventListener('click', clearAll);
 
 
-        function productList(e){
+          function productList(e){
             const action = e.target.dataset.action;
             const id = e.target.dataset.id;
             if (action === 'remove') {
-                let newIndex = 0;
-                productData.forEach((item, key) => {
-                    if (id == item.id) {
-                        newIndex = key;
-                    }
-                })
-                productData.splice(newIndex, 1);
+              let newIndex = 0;
+              productData.forEach((item, key) => {
+                if (id == item.id) {
+                  newIndex = key;
+                }
+              })
+              productData.splice(newIndex, 1);
 
             } else if (action === 'complete') {
-                productData.forEach((item) => {
-                    if (id == item.id) {
-                        item.is_enabled = !item.is_enabled;
-                    }
-                })
+              productData.forEach((item) => {
+                if (id == item.id) {
+                  item.is_enabled = !item.is_enabled;
+                }
+              })
             }
-
             renderPage(productData);
-        }
-        clearindex.addEventListener('click' ,productList)
+          }
+          clearindex.addEventListener('click' ,productList);
 
 
-        // 渲染畫面
-        function renderPage(data){
+          // 渲染畫面
+          function renderPage(data){
             let str = '';
             productData.forEach((item) => {
-                str += `
-                <tr>
-                    <td>${item.title}</td>
-                    <td width="120">
-                    ${item.origin_price}
-                    </td>
-                    <td width="120">
-                    ${item.price}
-                    </td>
-                    <td width="100">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="is_enabled" ${item.is_enabled? 'checked': ''} data-action="complete" data-id="${item.id}">
-                        <label class="form-check-label" for="is_enabled">${item.is_enabled? '啟用' : '未啟用'}</label>
-                    </div>
-                    </td>
-                    <td width="120">
-                    <button type="button" class="btn btn-sm btn-danger move" data-action="remove" data-id="${item.id}"> 刪除 </button>
-                    </td>
-                </tr>`;
+              str += `
+              <tr>
+                <td>${item.title}</td>
+                <td width="120">
+                ${item.origin_price}
+                </td>
+                <td width="120">
+                ${item.price}
+                </td>
+                <td width="100">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="is_enabled" ${item.is_enabled? 'checked': ''} data-action="complete" data-id="${item.id}">
+                    <label class="form-check-label" for="is_enabled">${item.is_enabled? '啟用' : '未啟用'}</label>
+                </div>
+                </td>
+                <td width="120">
+                <button type="button" class="btn btn-sm btn-danger move" data-action="remove" data-id="${item.id}"> 刪除 </button>
+                </td>
+              </tr>`;
             })
             clearindex.innerHTML = str;
             Count.textContent = data.length;
-        }
-
-        renderPage(productData);
-    </script>
-<body>
-</html>
+          }
+          renderPage(productData);
+        </script>
+      </xmp>
+    </pre>
+    <body>
+    </html>

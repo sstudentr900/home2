@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //find比對到符合条件不再比對-------------------------------------------------------
+          var number = ['1', '2', '3', '4', '5'];
+          var result3 = number.find(function(number) {
+              return number > 1
+          })
+
+
+          //自訂finda
+          if (!Array.prototype.finda) {
+              Array.prototype.finda = function(callback) {
+                  console.log(this.filter(callback));
+                  return callback && (this.filter(callback) || [])[0];
+              };
+          }
+
+          //obj find
+          var s = [{
+              "name": "001"
+          }, {
+              "name": "002"
+          }, {
+              "name": "003"
+          }];
+          var a = s.find(function(c) {　　
+              return c.name == '001'
+          })
+          console.log(a) //{name: '001'}
+
+
+          //filter检查全部数组返回符合条件元素---------------------------------------------------------------
+          //移除数组中的重复元素
+          var originArr = [2, 'a', 2, 'a'];
+          var deduped = originArr.filter(function(el, i, arr) {
+              // console.log('arr', arr)
+              // console.log('el', el)
+              // console.log('indexOf', arr.indexOf(el))
+              // console.log('i', i)
+              return arr.indexOf(el) === i; //陣列中的位置
+          });
+          console.log(deduped); // [2, 'a']
+
+          //去除陣列中重複的元素 new Set
+          let arr = ['aaron', 'po', 'aaron', 'po', 'chung'];
+          let arrKeepUniqueElements = [...new Set(arr)];
+
+
+          //選出2倍數
+          var number = ['1', '2', '3', '4', '5'];
+          number.filter(function(element, index) {
+              return element % 2 == 0;
+          })
+
+
+          //返回不一樣陣列的值
+          const without = (array, filtered) => array.filter(n => n != filtered);
+
+          //map不會改變原本的陣列內容，根据函数结果返回一个新数组---------------------------------------------------------------
+          var number = [1, 2, 3];
+          var numbers = number.map(function(n) {
+              return n + 1;
+          }); // [2, 3, 4]
+          console.log(numbers); // [1, 2, 3]
+
+
+          //2.传入三个参数，分别是当前成员、当前位置和数组本身。
+          [1, 2, 3].map(function(elem, index, arr) {
+              return elem * index;
+          }); // [0, 2, 6]
+
+
+          //3.用来遍历字符串的每个字符
+          var upper = function(x) {
+              return x.toUpperCase();
+          };
+          [].map.call('abc', upper); // [ 'A', 'B', 'C' ]
+          'abc'.split('').map(upper); // [ 'A', 'B', 'C' ]
+
+
+          //4.第二个参数
+          var arr = ['a', 'b', 'c'];
+          [1, 2].map(function(e) {
+                  return this[e];
+              }, arr) // ['b', 'c']
+
+          //5.数组的空位
+          var f = function(n) {
+              return n + 1
+          };
+          [1, undefined, 2].map(f); // [2, NaN, 3]
+          [1, null, 2].map(f); // [2, 1, 3]
+          [1, 2].map(f); // [2, , 3]
+
+
+          //every检查全部数组符合条件返回boolean-------------------------------------------------------
+          var number = ['1', '2', '3', '4', '5'];
+          var result4 = number.every(function(number) {
+              return number > 0; //true
+          })
+
+
+          //some检查数组符合条件返回boolen且不再檢查-------------------------------------------------------
+          var number = ['1', '2', '3', '4', '5'];
+          var result5 = number.some(function(number) {
+              return number > 5; //false
+          })
+
+          
+          // reduce-------------------------------------------------------
+          // accumulator：累加器
+          // currentValue：當前元素
+          // currentIndex：當前元素的索引（選擇性）
+          // array: 呼叫 reduce() 方法的陣列（選擇性）
+          // arr.reduce((accumulator,currentValue,currentIndex,array)=>{});
+
+          //數字計算
+          var number = ['1', '2', '3', '4', '5'];
+          var total = number.reduce(function(total, num) {
+              // console.log(total,num)
+              return total + num
+          }, 0)
+
+          //字串
+          var total2 = number.reduce(function(total, num) {
+              // console.log(total,num)
+              return total + num
+          }, "")
+
+
+          var datas = [{
+              n: 1
+          }, {
+              n: 2
+          }]
+          var total3 = datas.reduce(function(total, num) {
+              // console.log(total,num)
+              return total + num.n
+          }, "")
+
+
+          //自訂
+          Array.prototype.sum = function() {
+              return this.reduce(function(partial, value) {
+                  return partial + value;
+              })
+          };
+          [3, 4, 5, 6, 10].sum() // 28
+
+
+          //链式使用-------------------------------------------------------
+          var users = [{
+              name: 'tom',
+              email: 'tom@example.com'
+          }, {
+              name: 'peter',
+              email: 'peter@example.com'
+          }];
+          users.map(function(user) {
+                  return user.email;
+              })
+              .filter(function(email) {
+                  return /^t/.test(email);
+              })
+              .forEach(alert); // 弹出tom@example.com
+        </script>
+      </xmp>
+    </pre>
+    <h3>範例</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          let list = [{
+              firstName: 'Noah',
+              lastName: 'M.',
+              country: 'Switzerland',
+              continent: 'Europe',
+              age: 19,
+              language: 'JavaScript'
+          }, {
+              firstName: 'Maia',
+              lastName: 'S.',
+              country: 'Tahiti',
+              continent: 'Oceania',
+              age: 28,
+              language: 'JavaScript'
+          }, {
+              firstName: 'Shufen',
+              lastName: 'L.',
+              country: 'Taiwan',
+              continent: 'Asia',
+              age: 35,
+              language: 'HTML'
+          }, {
+              firstName: 'Sumayah',
+              lastName: 'M.',
+              country: 'Tajikistan',
+              continent: 'Asia',
+              age: 30,
+              language: 'CSS'
+          }];
+
+
+          //查找有Europe和JavaScript(filter)---------------------------------------------------------------
+          //https://ithelp.ithome.com.tw/articles/10245828
+          //1.
+          let result = list.filter((person) => {
+              return person.continent === 'Europe' && person.language === 'JavaScript'
+          })
+          console.log(result);
+
+          //2.
+          let result2 = list.filter(({
+              continent,
+              language
+          }) => continent == "Europe" && language === 'JavaScript').length;
+          console.log(result2);
+
+          //3.計算
+          let result12 = list.reduce((acc, {
+              continent,
+              language
+          }) => continent === 'Europe' && language === 'JavaScript' ? acc + 1 : acc, 0);
+          console.log(result12);
+
+
+          //增加物件(map)---------------------------------------------------------------
+          //1.會改到list
+          // let result5 = list.map(el => {
+          //     el.greetObj = `Hi ${el.firstName}, what do you like the most about ${el.language}?`;
+          //     return el;
+          // })
+          // console.log(list, result5);
+
+
+          //2.
+          let result4 = list.map(el => {
+              return {...el,
+                  greeting: `Hi ${el.firstName}, what do you like the most about ${el.language}?`
+              };
+          })
+          console.log(list, result4);
+
+
+          //3.
+          let result6 = list.map(el => ({...el,
+              greeting: `Hi ${el.firstName}, what do you like the most about ${el.language}?`
+          }))
+          console.log(list, result6);
+
+
+          //查找有該值(find)---------------------------------------------------------------
+          //https://ithelp.ithome.com.tw/articles/10246455
+          const getFirstPython = list =>
+              (val => val ? `${val.firstName}, ${val.country}` : `There will be no Python developers`)
+              (list.find(val => val.language === `Python`));
+
+
+          //{ C: 2, JavaScript: 1, Ruby: 1 }---------------------------------------------------------------    
+          //1.
+          let result7 = {};
+          list.map(el => {
+              return el.language
+          }).forEach(el => {
+              if (result7[el]) {
+                  result7[el] += 1
+              } else {
+                  result7[el] = 1
+              }
+          })
+          console.log(list, result7);
+
+          //2.
+          let result8 = {};
+          list.forEach(({
+              language
+          }) => result8[language] = (result8[language] || 0) + 1)
+          console.log(list, result8);
+
+          //3.hasOwnProperty 檢查物件裏是否已經有該屬性
+          var result9 = {};
+          list.forEach(x => {
+              let p = [x.language];
+              result9.hasOwnProperty(p) ? result9[p]++ : result9[p] = 1;
+          });
+
+          //找出age最大---------------------------------------------------------------  
+          //1. 
+          let result10 = list.reduce((a, b) => a.age >= b.age ? a : b);
+          result10 = list.filter(dev => dev.age === result10.age)
+          console.log(result10)
+
+          //2.
+          let result11 = Math.max(...list.map(person => person.age));
+          result11 = list.filter(dev => dev.age === result11.age)
+          console.log(result11)
+        </script>
+      </xmp>
+    </pre>
+  </body>
+</html>

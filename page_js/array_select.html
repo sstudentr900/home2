@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          // 選取---------------------------------------------------------------
+          var arr = [1, 2, 3];
+          arr.a = 12; //a是屬性,屬於一個對像(arr)
+          console.log(arr); //[1, 2, 3, a: 12]
+          console.log(arr[0]); //[1]
+          console.log(arr[arr.length-1]); //選取最後一個 5
+
+
+          //從陣列中隨機抽取一個元素（sample element in array）---------------------------------------------------------
+          //https://pjchender.dev/javascript/js-array
+          var rand = myArray[Math.floor(Math.random() * myArray.length)];
+
+
+          //lastIndexOf從後面計算數組位置---------------------------------------------------------------
+          var b4 = [3, 5, 17, 6]
+          b4.lastIndexOf(1); //數組位置(從後面計算)
+
+
+          //indexOf() 該值位置---------------------------------------------------------------
+          var a5 = ['a', 'b', 'c'];
+          a5.indexOf('b') // 1
+          a5.indexOf('y') // -1
+
+          //indexOf() 第二个参数，表示搜索的开始位置。
+          a5.indexOf('a', 1) // -1
+
+      
+
+          //unshift從頭新增(array會改變)---------------------------------------------------------------
+          b.unshift(7);
+
+
+          //push從尾新增(array會改變)---------------------------------------------------------------
+          var arr = ['60', '22', '90'];
+          arr.push(4, 5, 6);
+
+          //apply
+          Array.prototype.push.apply(arr, arr2);
+          arr.push.apply(arr, arr2)
+
+
+          //shift從頭獲取值(array會改變)---------------------------------------------------------------
+          var a9 = ['a', 'b', 'c'];
+          a9.shift() // 'a'
+          a9 // ['b', 'c']
+
+
+          //pop從後取值(array會改變)---------------------------------------------------------------
+          a.pop();
+
+
+          //從後取值(原陣列不會被改變 (non-mutating) 而是回傳新陣列)---------------------------------------------------------------
+          var f = a[a.length - 1];
+          var g = a.at(-1);
+        </script>
+      </xmp>
+    </pre>
+  </body>
+</html>

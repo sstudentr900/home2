@@ -1,54 +1,94 @@
 <!DOCTYPE html>
-<html>
-
-<head lang="en">
+<html lang="en">
+  <head>
     <meta charset="UTF-8">
-    <title></title>
-    <script>
-        window.onload = function() {
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //sort按照对应字符串的字典顺序排序---------------------------------------------------------------
+          var arr = ["Ba", "Or", "Ap", "Ma"].sort(); //Ap,Ba,Ma,Or
+          [4, 3, 2, 1].sort(); //[1, 2, 3, 4]
+
+          //2.(數字大小排序)
+          var arr = ['60', '22', '90'];
+          arr.sort(function(num1, num2) {
+              return num1 - num2 //小到大排序(數字)
+              return num2 - num1 //大到小排序(數字)
+          });
+          alert(arr);
+
+          //obj 排序
+          var arr = [{
+              name: 'Edward',
+              value: 21
+          }, {
+              name: 'Sharpe',
+              value: 37
+          }, ];
+
+          function compareObj(a, b) {
+              return a.value - b.value;
+          }
+          arr.sort(compareObj);
+          console.log(arr);
+          
+          //反转排序---------------------------------------------------------------
+          ['60', '22', '90'].reverse(); // ['90', '22', '60']
+        </script>
+      </xmp>
+    </pre>
+    <h3>範例</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <ul id="ul1">
+          <li>12</li>
+          <li>55</li>
+          <li>2</li>
+          <li>89</li>
+        </ul>
+        <input id="btn1" type="button" value="排序">
+        <script>
+          window.onload = function() {
             var oul1 = document.getElementById('ul1');
             var obtn = document.getElementById('btn1');
             obtn.onclick = function() {
-                var ali = oul1.getElementsByTagName('li');
+              var ali = oul1.getElementsByTagName('li');
 
-                console.log(ali)
-                    // console.log(ali instanceof Array);
-                var arr = [];
-                for (var i = 0; i < ali.length; i++) {
-                    arr[i] = ali[i];
-                }
-                // console.log(arr)
-                // console.log(ali instanceof Array);
+              console.log(ali)
+                  // console.log(ali instanceof Array);
+              var arr = [];
+              for (var i = 0; i < ali.length; i++) {
+                  arr[i] = ali[i];
+              }
+              // console.log(arr)
+              // console.log(ali instanceof Array);
 
-                arr.sort(function(a, b) {
-                    //console.log(a);
-                    var a1 = a.innerHTML;
-                    var b1 = b.innerHTML;
-                    console.log(a1);
-                    return a1 - b1;
-                });
+              arr.sort(function(a, b) {
+                  //console.log(a);
+                  var a1 = a.innerHTML;
+                  var b1 = b.innerHTML;
+                  console.log(a1);
+                  return a1 - b1;
+              });
 
-                console.log(arr)
-                    // console.log(arr)
-                for (var i = 0; i < arr.length; i++) {
-                    console.log(oul1)
-                    console.log(arr[i])
-                    oul1.appendChild(arr[i]);
-                }
+              // console.log(arr)
+              for (var i = 0; i < arr.length; i++) {
+                console.log(oul1)
+                console.log(arr[i])
+                oul1.appendChild(arr[i]);
+              }
             }
-
-        };
-    </script>
-</head>
-
-<body>
-    <input id='btn1' type="button" value="排序" />
-    <ul id="ul1">
-        <li>12</li>
-        <li>55</li>
-        <li>2</li>
-        <li>89</li>
-    </ul>
-</body>
-
+          };
+        </script>
+      </xmp>
+    </pre>
+  </body>
 </html>

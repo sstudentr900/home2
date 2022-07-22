@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //switch-------------------------------------------------------------------
+          //1.
+          //	var name = 'abc';
+          //	var sex = '男'
+          //	switch(sex){
+          //	    case '男':
+          //		    alert(name+'先生,你好');
+          //		break;
+          //	    case '女':
+          //		alert(name+'女士,你好');
+          //		break;
+          //	    default://匹配不存在
+          //		alert(name+'你好');
+          //	}
+
+          //2. x不同類型不會轉類型
+          //	var x = 10;
+          //	switch(x) {
+          //	    case "10": alert("Hello");
+          //	}
+
+          //3.case後邊的值可以是常量,變量,表達式
+          var x = 16;
+          switch (true) {
+              case x > 11 && x <= 22:
+                  alert("Hello");
+                  break;
+              default:
+                  alert(name + '你好');
+          }
+
+
+          //for-------------------------------------------------------------------
+          //1.
+          for (var i = 0; i < 5; i++) {
+              if (i < 2) {
+                  continue;
+              } else if (i > 3) {
+                  break;
+              }
+              console.log(i); //2 3
+          }
+          //break 整個循環中斷
+          //continue 本次循環中斷
+
+          //3.
+          var i = 0,
+              len = cars.length;
+          for (; i < len;) {
+              document.write(cars[i] + "<br>");
+              i++;
+          }
+
+
+          //loop
+          //https://stackoverflow.com/questions/40328932/javascript-es6-promise-for-loop
+          // const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+          // (async function loop() {
+          //     for (let i = 0; i < 10; i++) {
+          //         await delay(Math.random() * 1000);
+          //         console.log(i);
+          //     }
+          // })();
+
+
+
+          //for_of(value)--------------------------------------------------------------------------------------------------------------------------------------
+          let youtuber = ['洋蔥人', 'howhow', 'fred吃上癮', '啾啾鞋', '黃大謙'];
+          for (let name of youtuber) {
+              console.log(name);
+          }
+
+
+          //for_In(obj Value)--------------------------------------------------------------------------------------------------------------------------------------
+          var person = {
+              fname: "John",
+              lname: "Doe",
+              age: 25
+          };
+
+          for (x in person) {
+              console.log(person[x]);
+              //John
+              //Doe
+              //25
+          }
+
+
+
+          //while 循环--------------------------------------------------------------------------------------------------------------------------------------
+          var x = '',
+              i = 0;
+          while (i < 5) {
+              x = x + "The number is " + i + "<br>";
+              i++; //等同i=i+1等同i+=i
+          }
+          console.log(x);
+
+
+          //while,for
+          var i;
+          i = 3;
+          while (i < 5) {
+              console.log(i);
+              i++
+          }
+
+          var i
+          i = 3;
+          for (; i < 5;) {
+              console.log(i)
+              i++
+          }
+
+          //do/while 循环--------------------------------------------------------------------------------------------------------------------------------------
+          var x = "",
+              i = 0;
+          do {
+              x = x + "该数字为 " + i + "<br>";
+              i++;
+          }
+          while (i < 5);
+          console.log(x);
+
+
+          //forEach-------------------------------------------------------------------------------------------------------------------------------------
+          //forEach()三个参数，分别是当前位置的值、当前位置的编号和整个数组。
+          [2, 5, 9].forEach((element, index, array) => {
+              console.log('[' + index + '] = ' + element);
+          }); // [0] = 2// [1] = 5// [2] = 9
+
+
+          //2.第二个参数
+          var out = [];
+          [1, 2, 3].forEach(function(elem) {
+              this.push(elem * elem);
+          }, out);
+          out // [1, 4, 9]
+
+          //forEach支援IE
+          window.onload = function() {
+              //forEach支援IE
+              if (window.NodeList && !NodeList.prototype.forEach)
+                  NodeList.prototype.forEach = Array.prototype.forEach
+              document.querySelectorAll('li').forEach(function(item, i) {
+                  console.log(item, i)
+              })
+          }
+
+          //forEach方法会跳过空元素，但是不会跳过undefined。因此，遍历内部元素的时候，会得到不同的结果。
+          var a = ['a', , 'b'];
+
+          function print(i) {
+              console.log(i);
+          }
+          a.forEach(print);
+          // a
+          // b
+          Array.apply(null, a).forEach(print);
+          // a
+          // undefined
+          // b
+
+
+
+          //跳出迴圈--------------------------------------------------------------------------------
+          //for跳出迴圈
+          for (var i = 1; i <= 10; i++) {
+              if (i == 8) { //等于8跳出
+                  break;
+              }
+              console.log(i)
+          }
+
+          //ES6中 for of 跳出迴圈(使用break)
+          let arr = [1, 2, 3, 4, 5]
+          for (val of arr) {
+              if (val > 3) {
+                  break;
+              }
+              console.log("val===>", val) //1 23
+          }
+
+          //跳出當前，進入新的循環
+          for (var i = 1; i <= 10; i++) {
+              if (i == 8) { //等于8跳出
+                  continue;
+              }
+              console.log(i)
+          }
+
+          //every() 
+          let list = [1, 2, 3, 4, 5];
+          list.every((value, index) => {
+              if (value > 3) {
+                  console.log(value)
+                  return false; //false跳出整个迴圈
+              } else {
+                  console.log(value)
+                  return true; //true進入下一次迴圈
+              }
+
+          });
+
+          //some()
+          let list3 = [1, 2, 3, 4, 5];
+          list3.some((value, index) => {
+              if (value === 3) {
+                  return true; //true跳出整个迴圈
+              }
+              console.log(value) // 1 2
+          });
+
+          //foreach try catch 挑出迴圈
+          try {
+              var array = [1, 2, 3, 4, 5, 6];
+              //第3次，结束迴圈
+              array.forEach((value) => {
+                  console.log("value---->", value);
+                  if (value > 3) {
+                      throw new Error("抛出异常跳出")
+                  }
+              });
+          } catch (e) {
+              console.log(e)
+          };
+
+          //array_fibonacci-------------------------------------------------------------------------------
+          //https://www.delftstack.com/zh-tw/howto/javascript/javascript-fibonacci/
+          function fiboncciFn(number) {
+            var fibonacci = [];
+            fibonacci[0] = 0;
+            fibonacci[1] = 1;
+            for (var i = 2; i <= number; i++) {
+              fibonacci[i] = fibonacci[i - 2] + fibonacci[i - 1];
+              // console.log(i, fibonacci[i - 2], fibonacci[i - 1], fibonacci[i - 2] + fibonacci[i - 1])
+              // 2 0 1 1
+              // 3 1 1 2
+              // 4 1 2 3
+              // 5 2 3 5
+              // console.log(fibonacci)
+            }
+            console.log(fibonacci);
+          }
+          fiboncciFn(10)
+        </script>
+      </xmp>
+    </pre>
+  </body>
+</html>

@@ -1,98 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //from---------------------------------------------------------------
+          //https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/from
 
-<body>
-    <script>
-        //from---------------------------------------------------------------
-        //https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/from
-
-        //字串產生陣列
-        Array.from('foo'); //["f", "o", "o"]
-
-
-
-        //數組的增加
-        Array.from([1, 2, 3], x => x + x); //[2, 4, 6]
-        //類數組的每一項乘以2
-        Array.from({
-            '0': 10,
-            '1': 15,
-            length: 2
-        }, value => value * 2); // => [20, 30]
+          //字串產生陣列
+          Array.from('foo'); //["f", "o", "o"]
 
 
 
-        //
-        Array.from([1, 2, 3]).reduce(function(sum, num) {
-            console.log(sum, num)
-            return sum + num;
-        }); //6
+          //數組的增加
+          Array.from([1, 2, 3], x => x + x); //[2, 4, 6]
+          //類數組的每一項乘以2
+          Array.from({
+              '0': 10,
+              '1': 15,
+              length: 2
+          }, value => value * 2); // => [20, 30]
 
 
 
-
-        //將類數組轉換成數組
-        function sumArguments() {
-            return Array.from(arguments).reduce((sum, num) => sum + num);
-        }
-        sumArguments(1, 2, 3); // => 6
+          //
+          Array.from([1, 2, 3]).reduce(function(sum, num) {
+              console.log(sum, num)
+              return sum + num;
+          }); //6
 
 
 
 
-        //克隆一個數組
-        const numbers = [3, 6, 9];
-        const numbersCopy = Array.from(numbers);
-        numbers === numbersCopy; // => false
+          //將類數組轉換成數組
+          function sumArguments() {
+              return Array.from(arguments).reduce((sum, num) => sum + num);
+          }
+          sumArguments(1, 2, 3); // => 6
 
 
 
 
-        //使用值填充數組
-        const length = 3;
-        const init = 0;
-        //1.
-        const result = Array.from({
-            length
-        }, () => init);
-        console.log(result); // => [0, 0, 0]
+          //克隆一個數組
+          const numbers = [3, 6, 9];
+          const numbersCopy = Array.from(numbers);
+          numbers === numbersCopy; // => false
 
-        //2.
-        const result2 = Array(length).fill(init); // => [0, 0, 0]
 
-        //3.生成一個數組
-        Array.from({
-                length: 5
-            }, (_, index) => index) //[0, 1, 2, 3, 4]
-            //使用箭頭函
-        var a = [
-                String(`Current count:`),
-                ...Array.from({
-                    length: 5
-                }, (v, i) => i)
-            ]
-            // [0, 1, 2, 3, 4]
-        console.log(a)
 
-        //將 array-like 的 Node List 轉成 Array---------------------------------------------------------------
-        //https://pjchender.dev/javascript/js-array
-        function toArray(value) {
-            if (Array.isArray(value)) {
-                return value;
-            } else if (Array.from) {
-                return Array.from(value);
-            } else {
-                return [].slice.call(value);
-            }
-        }
-    </script>
 
-</body>
+          //使用值填充數組
+          const length = 3;
+          const init = 0;
+          //1.
+          const result = Array.from({
+              length
+          }, () => init);
+          console.log(result); // => [0, 0, 0]
 
+          //2.
+          const result2 = Array(length).fill(init); // => [0, 0, 0]
+
+          //3.生成一個數組
+          Array.from({
+                  length: 5
+              }, (_, index) => index) //[0, 1, 2, 3, 4]
+              //使用箭頭函
+          var a = [
+                  String(`Current count:`),
+                  ...Array.from({
+                      length: 5
+                  }, (v, i) => i)
+              ]
+              // [0, 1, 2, 3, 4]
+          console.log(a)
+
+          //將 array-like 的 Node List 轉成 Array---------------------------------------------------------------
+          //https://pjchender.dev/javascript/js-array
+          function toArray(value) {
+              if (Array.isArray(value)) {
+                  return value;
+              } else if (Array.from) {
+                  return Array.from(value);
+              } else {
+                  return [].slice.call(value);
+              }
+          }
+        </script>
+      </xmp>
+    </pre>
+  </body>
 </html>

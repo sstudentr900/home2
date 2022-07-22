@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/customPrism.css">
     <link rel="stylesheet" href="../css/prism.css">
-     <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    
-</head>
-<body id="program">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
     <h2>async_defer</h2>
     <ol>
-        <li>defer 適合用在需要等待 DOM 完成後才能被執行的 JS，後者多個 JS 檔彼此之間有相依性的情況。</li>
-        <li>async 適合用在各 script 間的 JS 檔沒有相依的情況下使用，例如 Ads、GA 等等。</li>
+      <li>defer 會等到 DOM 準備好後（但 DOMContentLoaded 事件發生前）才加以執行</li>
+      <li>async 會在該 JS 檔下載完成後，就會馬上被執行，例如 Ads、GA 等等。</li>
     </ol>
     <h2>defer VS. body script</h2>
     <p>defer 的 JS 檔很早就開始被「下載」，直到 DOM 完全建置好後（但會在 DOMContentLoaded 事件前）才被「執行」；但把 script 放到 body 的最後，則是要等這段語法被解析到時才會開始「下載」JS 檔，接著立即執行。</p>
-    <pre>
-        <code class="language-js">
-            //defer
-            &lt;script src="demo1.js" defer&gt;&lt;/script&gt;
-
-            //body script
-            &lt;body&gt;
-                &lt;script src="demo.js"&gt;&lt;script&gt;
-            &lt;body&gt;
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        //defer
+        <script src="demo1.js" defer></script>
+        //body script
+        <body>
+          <script src="demo.js"><script>
+        <body>
+      </xmp>
     </pre>
     <hr>
     <h4>參考</h4>
     <ul>
-        <li>
-            <a href="https://pjchender.dev/javascript/js-async-defer" target="_blank">Async, defer attributes</a>
-        </li>
+      <li>
+        <a href="https://pjchender.dev/javascript/js-async-defer" target="_blank">Async, defer attributes</a>
+      </li>
     </ul>
-<body>
+  </body>
 </html>
