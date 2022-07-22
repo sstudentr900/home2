@@ -1,90 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/customPrism.css">
-        <link rel="stylesheet" href="../css/prism.css">
-        <script src="../js/prism.js"></script>
-        
-    </head>
-    <body id="program">
-        <h2>Laravel安裝</h2>
-        <p>cmd執行下列命令來安裝Laravel</p>
-        <pre>
-            <code class="language-php">
-                composer global require "laravel/installer"
-            </code>
-        </pre>
-        <p>建立專案</p>
-        <ol>
-            <li>LaravelBlog 檔案名稱</li>
-            <li>create-project 創建專案</li>
-            <li>--prefer-dist 當有可用的包時，從 dist 安裝</li>
-        </ol>
-        <pre>
-            <code class="language-php">
-                composer create-project --prefer-dist laravel/laravel LaravelBlog
-            </code>
-        </pre>
-        <p>啟動專案serve</p>
-        <pre>
-            <code class="language-php">
-                cd LaravelBlog
-                php artisan serve
-            </code>
-        </pre>
-        <p>npm 安裝</p>
-        <pre>
-            <code class="language-php">
-                npm install
-            </code>
-        </pre>
-        <p>composer 安裝</p>
-        <pre>
-            <code class="language-php">
-                composer install
-            </code>
-        </pre>
-        <p>即時更新請看mix</p>
-        <h2>專案架構介紹</h2>
-        <pre>
-            <code class="language-php">
-                - app/
-                - Console/
-                    - Commands/   #Laravel的命令檔案
-                    - Kernel.php  #Laravel的排程
-                - Http/
-                    - Controller/ #控制器
-                    - Middleware/ #中介層
-                - bootstrap/      #放有laravel的快取
-                - config/         #各種參數設定
-                - database/       #資料庫相關的東西，例如migrations
-                    - migrations/ #資料庫相關migration檔案
-                - node_modules/   #專案套件的安裝目錄
-                - public/         #對外公開的目錄
-                - resources/      #放置前端的檔案，view
-                    - js/         #Js原始檔案所在目錄
-                    - lang/       #語系檔案所在目錄
-                    - sass/       #SASS/SCSS檔案所在目錄
-                    - views/      #前端模板所在目錄
-                - route/          #路由器，設定路由的地方   
-                - storage/        #放置log、上傳的檔案 
-                - tests/          #放置測試檔案
-                - vendor/         #Composer套件安裝目錄
-                - .env            #環境變數設定檔案
-                - composer.json #Composer套件安裝清單
-                - package.json #專案套件安裝清單
-            </code>
-        </pre>
-        <img src="https://imgur.com/eQYMSAd.png" alt="">
-        <hr>
-        <h4>參考</h4>
-        <ul>
-            <li>
-                <a href="https://dotblogs.com.tw/SmallFish/2020/09/18/075203" target="_blank">在Windows安裝Laravel及建立專案</a>
-            </li>
-        </ul>
-    </body>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+   <script src="../js/prism.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>Laravel安裝</h2>
+  <p>cmd執行下列命令來安裝Laravel</p>
+  <pre class="prettyprint">
+    <xmp>
+      composer global require "laravel/installer"
+    </xmp>
+  </pre>
+  <p>建立專案</p>
+  <ol>
+    <li>LaravelBlog 檔案名稱</li>
+    <li>create-project 創建專案</li>
+    <li>--prefer-dist 當有可用的包時，從 dist 安裝</li>
+  </ol>
+  <pre class="prettyprint">
+    <xmp>
+      composer create-project --prefer-dist laravel/laravel LaravelBlog
+    </xmp>
+  </pre>
+  <p>啟動專案serve</p>
+  <pre class="prettyprint">
+    <xmp>
+      cd LaravelBlog
+      php artisan serve
+    </xmp>
+  </pre>
+  <p>npm 安裝</p>
+  <pre class="prettyprint">
+    <xmp>
+      npm install
+    </xmp>
+  </pre>
+  <p>composer 安裝</p>
+  <pre class="prettyprint">
+    <xmp>
+      composer install
+    </xmp>
+  </pre>
+  <p>即時更新請看mix</p>
+  <h2>專案架構介紹</h2>
+  <pre class="prettyprint">
+    <xmp>
+      - app/
+      - Console/
+      - Commands/ #Laravel的命令檔案
+      - Kernel.php #Laravel的排程
+      - Http/
+      - Controller/ #控制器
+      - Middleware/ #中介層
+      - bootstrap/ #放有laravel的快取
+      - config/ #各種參數設定
+      - database/ #資料庫相關的東西，例如migrations
+      - migrations/ #資料庫相關migration檔案
+      - node_modules/ #專案套件的安裝目錄
+      - public/ #對外公開的目錄
+      - resources/ #放置前端的檔案，view
+      - js/ #Js原始檔案所在目錄
+      - lang/ #語系檔案所在目錄
+      - sass/ #SASS/SCSS檔案所在目錄
+      - views/ #前端模板所在目錄
+      - route/ #路由器，設定路由的地方
+      - storage/ #放置log、上傳的檔案
+      - tests/ #放置測試檔案
+      - vendor/ #Composer套件安裝目錄
+      - .env #環境變數設定檔案
+      - composer.json #Composer套件安裝清單
+      - package.json #專案套件安裝清單
+    </xmp>
+  </pre>
+  <img src="https://imgur.com/eQYMSAd.png" alt="">
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://dotblogs.com.tw/SmallFish/2020/09/18/075203" target="_blank">在Windows安裝Laravel及建立專案</a>
+    </li>
+  </ul>
+</body>
+
 </html>

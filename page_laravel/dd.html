@@ -7,31 +7,32 @@
     <link rel="stylesheet" href="../css/customPrism.css">
     <link rel="stylesheet" href="../css/prism.css">
     <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
     <h2>dd()</h2>
     <p>Dump and Die</p>
-    <pre>
-      <code class="language-php">
+    <pre class="prettyprint">
+      <xmp>
         $methods = PaymentMethod::all();
-                dd($methods);
-      </code>
+        dd($methods);
+      </xmp>
     </pre>
     <h2>var_dump() and die()</h2>
-    <pre>
-      <code class="language-php">
+    <pre class="prettyprint">
+      <xmp>
         $methods = PaymentMethod::all();
-                var_dump($methods);
-                die();
-      </code>
+        var_dump($methods);
+        die();
+      </xmp>
     </pre>
     <h2>print_r()</h2>
-    <pre>
-      <code class="language-php">
+    <pre class="prettyprint">
+      <xmp>
         $methods = PaymentMethod::all();
-                print_r($methods);
-                die();
-      </code>
+        print_r($methods);
+        die();
+      </xmp>
     </pre>
     <hr>
     <h4>參考</h4>

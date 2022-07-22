@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/customPrism.css">
   <link rel="stylesheet" href="../css/prism.css">
-   <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
 
 <body id="program">
@@ -119,21 +119,6 @@
   <p>清除config緩存=>php artisan optimize:clear</p>
   <h2>'mix' 不是內部或外部命令、可執行的程式或批次檔。</h2>
   <p>npm install</p>
-  <h2>https http</h2>
-  <p>app/providers/AppServiceProvider</p>
-  <pre class="prettyprint">
-    <xmp>
-      //引入UrlGenerator
-      use Illuminate\Routing\UrlGenerator;
-
-      public function boot(UrlGenerator $url)
-      {
-        //本地端使用http
-        $http_type = (URL()->full() == 'http://localhost:3000' ? 'http' : 'https');
-        $url->forceScheme($http_type);
-      }
-    </xmp>
-  </pre>
 </body>
 
 </html>

@@ -1,103 +1,122 @@
 <style>
   /*page_study**************/
   .page_study {
-      /* user-select: none; */
-      /* align-items: flex-start; */
-      position: relative;
+    /* user-select: none; */
+    /* align-items: flex-start; */
+    position: relative;
   }
+
   .page_study .nav {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      width: 17rem;
-      top: 64px;
-      /* left: max(0px, calc(50% - 40rem)); */
-      left: 0;
-      padding: 20px 30px 20px 20px;
-      overflow-y: auto;
-      border-right: 1px solid var(--solid);
-      overscroll-behavior: contain;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 17rem;
+    top: 64px;
+    /* left: max(0px, calc(50% - 40rem)); */
+    left: 0;
+    padding: 20px 30px 20px 20px;
+    overflow-y: auto;
+    border-right: 1px solid var(--solid);
+    overscroll-behavior: contain;
   }
+
   /*scrollbar-------------------------------------- ---------------*/
   .page_study .nav::-webkit-scrollbar {
-      width: 6px;
+    width: 6px;
   }
+
   .page_study .nav::-webkit-scrollbar-track {
-      background: var(--scrollbar-track);
+    background: var(--scrollbar-track);
   }
+
   .page_study .nav::-webkit-scrollbar-thumb {
-      background: var(--scrollbar-thumb);
+    background: var(--scrollbar-thumb);
   }
+
   .page_study .nav::-webkit-scrollbar-thumb:hover {
-      background: var(--scrollbar-thumb);
+    background: var(--scrollbar-thumb);
   }
+
   .page_study .nav a {
-      padding: 0.4rem 0;
-      color: var(--text);
+    padding: 0.4rem 0;
+    color: var(--text);
   }
+
   .page_study .nav a:hover {
-      text-decoration: underline;
+    text-decoration: underline;
   }
+
   .page_study .nav a.active {
-      color: var(--blue);
+    color: var(--blue);
   }
+
   .page_study .nav summary {
-      cursor: pointer;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: var(--title);
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--title);
   }
+
   .page_study .nav summary::-webkit-details-marker,
   .page_study .nav summary::marker {
-      display: none;
-      content: " ";
+    display: none;
+    content: " ";
   }
+
   .page_study .nav summary::after {
-      content: '';
-      width: 0;
-      height: 0;
-      display: inline-block;
-      border-style: solid;
-      border-width: 4px 0 4px 4px;
-      border-color: transparent transparent transparent var(--icon);
+    content: '';
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border-style: solid;
+    border-width: 4px 0 4px 4px;
+    border-color: transparent transparent transparent var(--icon);
   }
+
   .page_study .nav details[open]>summary::after {
-      transform: rotate(90deg);
+    transform: rotate(90deg);
   }
+
   .page_study .nav>ul>li {
-      margin: 0.5rem 0;
+    margin: 0.5rem 0;
   }
+
   .page_study .nav>ul>li>details {
-      margin: 0.75rem 0;
+    margin: 0.75rem 0;
   }
+
   .page_study .nav>ul>li>details>summary {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
   }
 
   .page_study .nav ul ul {
-      padding-left: 0.75rem;
+    padding-left: 0.75rem;
   }
 
   .page_study .nav ul ul details {
-      padding: 0.4rem 0;
-      color: var(--grey);
+    padding: 0.4rem 0;
+    color: var(--grey);
   }
+
   .page_study .nav ul ul ul {
-      padding-top: 6px;
+    padding-top: 6px;
   }
+
   .page_study .content {
-      /* flex: 1; */
-      padding: 40px 40px 0;
-      margin-left: 17rem;
+    /* flex: 1; */
+    padding: 40px 40px 0;
+    margin-left: 17rem;
   }
-  .page_study .content .index_footer{
-      padding: 30px 0;
+
+  .page_study .content .index_footer {
+    padding: 30px 0;
   }
-  .page_study .main{
-      min-height: calc(100vh - 65px - 40px - 101px);
+
+  .page_study .main {
+    min-height: calc(100vh - 65px - 40px - 101px);
   }
 </style>
 <div class="page_study">
@@ -109,30 +128,6 @@
           <ul>
             <li>
               <a data-url="?page=study&class1=page_js&class2=attributes">attributes</a>
-            </li>
-            <li>
-<<<<<<< HEAD
-                <details>
-                    <summary>Vue</summary>
-                    <ul>
-                        <li><a data-url="?page=study&class1=page_vue&class2=tutorial">basis</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=props_emit">props_emit</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=route">route</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=scoped">scoped</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=install">vue cli安裝</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=von">v-on</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=vif">v-if</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=vfor">v-for</a></li>
-                        <!--<li><a data-url="?page=study&class1=page_vue&class2=function1">lifecycle</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=function2">von</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=function3">vif</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=function4">components</a></li>
-                        <li><a data-url="?page=study&class1=page_vue&class2=function5">for</a></li> -->
-                    </ul>
-                </details>
-=======
-              <a data-url="?page=study&class1=page_js&class2=async_defer">async_defer</a>
->>>>>>> 8c2150b011dc147d57d5fe8f15ebfc51deb43392
             </li>
             <li>
               <a data-url="?page=study&class1=page_js&class2=classList">classList</a>
@@ -168,6 +163,7 @@
             <li>
               <a data-url="?page=study&class1=page_vue&class2=tutorial">basis</a>
             </li>
+            <li><a data-url="?page=study&class1=page_vue&class2=props_emit">props_emit</a></li>
             <li>
               <a data-url="?page=study&class1=page_vue&class2=route">route</a>
             </li>
@@ -179,6 +175,12 @@
             </li>
             <li>
               <a data-url="?page=study&class1=page_vue&class2=von">v-on</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_vue&class2=vif">v-if</a>
+            </li>
+            <li>
+              <a data-url="?page=study&class1=page_vue&class2=vfor">v-for</a>
             </li>
           </ul>
         </details>
@@ -239,7 +241,8 @@
           <ul>
             <!-- <li><a data-url="?page=study&class1=page_git&class2=svg_color">basis</a></li>
                         <li><a data-url="?page=study&class1=page_git&class2=svg_color1">creatHome</a></li>
-                        <li><a data-url="?page=study&class1=page_git&class2=svg_color2">gitignore</a></li> --></ul>
+                        <li><a data-url="?page=study&class1=page_git&class2=svg_color2">gitignore</a></li> -->
+          </ul>
         </details>
       </li>
       <li>
@@ -256,16 +259,16 @@
         <details>
           <summary>Laravel</summary>
           <ul>
-            <!-- <li><a data-url="?page=study&class1=page_laravel&class2=artisan">artisan</a></li>
-                        <li><a data-url="?page=study&class1=page_laravel&class2=error">error</a></li>
-                        <li><a data-url="?page=study&class1=page_laravel&class2=install">install</a></li>
-                        <li><a data-url="?page=study&class1=page_laravel&class2=tool_ngrok">ngrok(外網連接)</a></li>
-                        <li><a data-url="?page=study&class1=page_laravel&class2=svg_color4">error</a></li>
-                        <li><a data-url="?page=study&class1=page_laravel&class2=svg_color5">mix</a></li>
-                        <li><a data-url="?page=study&class1=page_laravel&class2=svg_color6">plugin_綠界</a></li>
-                        <li><a data-url="?page=study&class1=page_laravel&class2=svg_color7">router</a></li>
-                        <li><a data-url="?page=study&class1=page_laravel&class2=svg_color8">sql</a></li>
-                        <li><a data-url="?page=study&class1=page_laravel&class2=svg_color9">validator</a></li> --></ul>
+            <li><a data-url="?page=study&class1=page_laravel&class2=artisan">artisan</a></li>
+            <li><a data-url="?page=study&class1=page_laravel&class2=dd">dd</a></li>
+            <li><a data-url="?page=study&class1=page_laravel&class2=error">error</a></li>
+            <li><a data-url="?page=study&class1=page_laravel&class2=file_download">file_download</a></li>
+            <li><a data-url="?page=study&class1=page_laravel&class2=install">install</a></li>
+            <li><a data-url="?page=study&class1=page_laravel&class2=img">img</a></li>
+            <li><a data-url="?page=study&class1=page_laravel&class2=sql">sql</a></li>
+            <li><a data-url="?page=study&class1=page_laravel&class2=tool_ngrok">tool_ngrok</a></li>
+            <li><a data-url="?page=study&class1=page_laravel&class2=uuid">uuid</a></li>
+          </ul>
         </details>
       </li>
       <li>
@@ -285,7 +288,8 @@
         <details>
           <summary>Linux</summary>
           <ul>
-            <!-- <li><a data-url="?page=study&class1=page_linux#&class2=install">安裝</a></li> --></ul>
+            <!-- <li><a data-url="?page=study&class1=page_linux#&class2=install">安裝</a></li> -->
+          </ul>
         </details>
       </li>
       <li>
@@ -313,7 +317,8 @@
           <summary>google</summary>
           <ul>
             <!-- <li><a data-url="?page=study&class1=page_google&class2=svg_color">安裝</a></li>
-                        <li><a data-url="?page=study&class1=page_google&class2=svg_color1">sql</a></li> --></ul>
+                        <li><a data-url="?page=study&class1=page_google&class2=svg_color1">sql</a></li> -->
+          </ul>
         </details>
       </li>
       <li>
@@ -321,7 +326,8 @@
           <summary>Heroku</summary>
           <ul>
             <!-- <li><a data-url="?page=study&class1=page_heroku&class2=svg_color">安裝</a></li>
-                        <li><a data-url="?page=study&class1=page_heroku&class2=svg_color1">sql</a></li> --></ul>
+                        <li><a data-url="?page=study&class1=page_heroku&class2=svg_color1">sql</a></li> -->
+          </ul>
         </details>
       </li>
       <li>
@@ -329,7 +335,8 @@
           <summary>c#</summary>
           <ul>
             <!-- <li><a data-url="?page=study&class1=page_c#&class2=svg_color">安裝</a></li>
-                        <li><a data-url="?page=study&class1=page_c#&class2=svg_color1">sql</a></li> --></ul>
+                        <li><a data-url="?page=study&class1=page_c#&class2=svg_color1">sql</a></li> -->
+          </ul>
         </details>
       </li>
       <li>
@@ -337,7 +344,8 @@
           <summary>unity</summary>
           <ul>
             <!-- <li><a data-url="?page=study&class1=page_unity#&class2=svg_color">安裝</a></li>
-                        <li><a data-url="?page=study&class1=page_unity#&class2=svg_color1">sql</a></li> --></ul>
+                        <li><a data-url="?page=study&class1=page_unity#&class2=svg_color1">sql</a></li> -->
+          </ul>
         </details>
       </li>
     </ul>
