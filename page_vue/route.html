@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,78 +10,75 @@
     <link rel="stylesheet" href="../css/prism.css">
     <script src="../js/prism.js"></script>
   </head>
+
   <body id="program">
     <h2>router-link</h2>
     <h3>
       <span>to</span> 導向指定的目標路由
     </h3>
-    <pre>
-      <code class="language-markup">
-        <script type="prism-html-markup">
-          <!-- 字串 -->
-          <router-link to="/" tag="li">Home</router-link>
+    <pre class="prettyprint">
+      <xmp>
+        <!-- 字串 -->
+        <router-link to="/" tag="li">Home</router-link>
 
-          <!-- 物件 -->
-          //name為路由的名稱
-          //params為path的值
-          //query為?後的值
-          :to="{ name: 'user', params: { userId: 123 },query:{k:12}}">
+        <!-- 物件 -->
+        <!-- name為路由的名稱 -->
+        <!-- params為path的值 -->
+        <!-- query為?後的值 -->
+        :to="{ name: 'user', params: { userId: 123 },query:{k:12}}"
 
-          <!-- 指定路徑 -->
-          @click="$router.push('/member/profile')
+        <!-- 指定路徑 -->
+        @click="$router.push('/member/profile')
 
-          <!-- 指定路由名稱 -->
-          @click="$router.push({ name: 'Profile'})
-        </script>
-      </code>
+        <!-- 指定路由名稱 -->
+        @click="$router.push({ name: 'Profile'})
+      </xmp>
     </pre>
 
     <h3>tag 渲染標籤</h3>
     <p>點擊的路由class名=>.router-link-exact-active 和 .router-link-active</p>
-    <pre>
-      <code class="language-markup">
-        <script type="prism-html-markup">
-          //template
-          <router-link to="/" tag="li">Home</router-link>
+    <pre class="prettyprint">
+      <xmp>
+        //template
+        <router-link to="/" tag="li">Home</router-link>
 
-          //render
-          <li>Home</li>
-        </script>
-      </code>
+        //render
+        <li>Home</li>
+      </xmp>
     </pre>
 
     <h2>冒號「:」動態路由</h2>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         const router = new VueRouter({
           routes: [
-              { 
+            { 
               path: 'member/:userName',
-                  component: member
+              component: member
             }
           ]
         })
 
         //template
         $route.params.userName
-      </code>
+      </xmp>
     </pre>
 
     <h2>取得路由</h2>
     <h3>取得path</h3>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         //url
         /search
 
         //template
         $route.path=>'/search'
-      </code>
+      </xmp>
     </pre>
 
     <h3>取得params</h3>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         //url
         /search/key
 
@@ -92,12 +90,12 @@
 
         //template
         $route.params.keyword=> key
-      </code>
+      </xmp>
     </pre>
 
     <h3>params不給值須寫成?</h3>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         //methods
         this.$router.push({
           params:{key:''||undefined},
@@ -108,12 +106,12 @@
           //加問號是用在可傳可不傳params,否則上一頁會錯誤
           path: '/search/:key?',
         }
-      </code>
+      </xmp>
     </pre>
 
     <h3>取得query</h3>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         //url
         ?k=b
 
@@ -127,13 +125,13 @@
         $route.query.k=>b
 
         
-      </code>
+      </xmp>
     </pre>
 
     <h2>路由傳 props</h2>
     <h3>對象寫法</h3>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         //router
         {
           path: '...'
@@ -148,12 +146,12 @@
         export default {
           props: ['a']
         }
-      </code>
+      </xmp>
     </pre>
 
     <h3>函數寫法</h3>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         //router
         {
           path: '...'
@@ -170,13 +168,13 @@
         export default {
           props: ['params','query']
         }
-      </code>
+      </xmp>
     </pre>
 
     <h2>路由傳 meta</h2>
     <p>改變template顯示</p>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         //router
         {
           path: '/home'
@@ -190,45 +188,45 @@
 
         //meta
         v-show="$route.meta"
-      </code>
+      </xmp>
     </pre>
 
     <h2>轉址(redirect)</h2>
     <p>將/a 轉頁到 /b</p>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         //router
         const router = new VueRouter({
           routes: [
             { path: '/a', redirect: '/b' }
           ]
         })
-      </code>
+      </xmp>
     </pre>
 
     <h2>別名(alias)</h2>
     <p>和轉址差異在於，轉址是 URL 會被替換；而別名像是替路由再取另個名字，但網址列看到的 URL 不會被替換</p>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         const router = new VueRouter({
           routes: [
             { path: '/a', alias: '/b' }
           ]
         })
-      </code>
+      </xmp>
     </pre>
 
     <h2>push() replace()</h2>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         this.$router.push('/'); //可以返回上一頁
         this.$router.replace('/'); //不會向history留下紀錄
-      </code>
+      </xmp>
     </pre>
 
     <h2>巢狀路由，區分層級</h2>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         const routes = [
           ...
           {
@@ -248,7 +246,7 @@
             ],
           },
         ];
-      </code>
+      </xmp>
     </pre>
 
     <h2>history路由模式</h2>
@@ -256,11 +254,11 @@
       <li>HTML 5 的 pushState() 和 replaceState() (History API)</li>
       <li>onpopstate 事件監聽</li>
     </ol>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         history.pushState(state [,title][,url]); // 歷史記錄中增加一條記錄
         history.replaceState(state [,title][,url]); // 修改目前的歷史紀錄
-      </code>
+      </xmp>
     </pre>
 
     <h2>hash路由模式</h2>
@@ -272,14 +270,14 @@
 
     <h2>路由守衛(Navigation Guards)</h2>
     <ol>
-      <li>beforeEach          進入新的路由前(全域)</li>
-      <li>beforeResolve       路由跳轉前觸發(全域)但是時間點會晚於beforeEach</li>
-      <li>afterEach           路由跳轉結束後才會觸發(全域)</li>
-      <li>beforeEnter         不是全域只能在 route 物件內註冊</li>
+      <li>beforeEach 進入新的路由前(全域)</li>
+      <li>beforeResolve 路由跳轉前觸發(全域)但是時間點會晚於beforeEach</li>
+      <li>afterEach 路由跳轉結束後才會觸發(全域)</li>
+      <li>beforeEnter 不是全域只能在 route 物件內註冊</li>
       <li>單一元件內的分別是beforeRouteEnter,beforeRouteUpdate,beforeRouteLeave</li>
     </ol>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         //router.js (全域)
         router.beforeEach((to, from, next) => {
           if(token){
@@ -288,12 +286,12 @@
             沒有登入
           }
         })
-      </code>
+      </xmp>
     </pre>
 
     <h3>beforeEnter 進入新的路由前</h3>
-    <pre>
-      <code class="language-js">
+    <pre class="prettyprint">
+      <xmp>
         //router.js
         {
           path: '/routerName',
@@ -308,9 +306,9 @@
             }
           }
         },
-      </code>
+      </xmp>
     </pre>
-    
+
     <h4>參考</h4>
     <ul>
       <li>
@@ -323,13 +321,15 @@
         <a href="https://ithelp.ithome.com.tw/articles/10278056"> Vue Router</a>
       </li>
       <li>
-        <a href="https://www.youtube.com/watch?v=QENGUJK9ecc&list=PLmOn9nNkQxJEFpabd412vGw_k7-lHlJOP&index=8"> 路由传递参数</a>
+        <a href="https://www.youtube.com/watch?v=QENGUJK9ecc&list=PLmOn9nNkQxJEFpabd412vGw_k7-lHlJOP&index=8">
+          路由传递参数</a>
       </li>
       <li>
         <a href="https://book.vue.tw/CH4/4-4-navigation-guards.html">路由守衛</a>
       </li>
     </ul>
   </body>
+
 </html>
 <!-- <script>
     export default {

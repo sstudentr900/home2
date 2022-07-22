@@ -1,141 +1,299 @@
-#program{
-    max-width: 920px;
-    margin: auto;
+/*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
+.prettyprint {
+  /* background: #1d1f21; */
+  font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+  border: 0 !important;
+  background: #1e293b;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+  overflow: auto;
+  border-radius: 0.3em;
+  line-height: 1.4;
+  font-size: 16px;
 }
-#program h1,
-#program h2,
-#program h3,
-#program h4{
-    font-weight: bold;
-    font-size: 28px;
-    color: var(--title);
-    
+.prettyprint span{
+  line-height: 1.4;
 }
-/* #program h1{
+.prettyprint xmp{
+  margin: 0;
+}
+.prettyprint .pln {
+  color: #e6e9ed;
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+.prettyprint ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #656d78;
+}
+
+.prettyprint li.L0,
+.prettyprint li.L1,
+.prettyprint li.L2,
+.prettyprint li.L3,
+.prettyprint li.L4,
+.prettyprint li.L5,
+.prettyprint li.L6,
+.prettyprint li.L7,
+.prettyprint li.L8,
+.prettyprint li.L9 {
+  padding-left: 1em;
+  background-color: #2f3640;
+  list-style-type: decimal;
+}
+
+@media screen {
+
+  /* string content */
+
+  .prettyprint .str {
+    color: #ffce54;
+  }
+
+  /* keyword */
+
+  .prettyprint .kwd {
+    color: #4fc1e9;
+  }
+
+  /* comment */
+
+  .prettyprint .com {
+    color: #656d78;
+  }
+
+  /* type name */
+
+  .prettyprint .typ {
+    color: #4fc1e9;
+  }
+
+  /* literal value */
+
+  .prettyprint .lit {
+    color: #ac92ec;
+  }
+
+  /* punctuation */
+
+  .prettyprint .pun {
+    color: #e6e9ed;
+  }
+
+  /* lisp open bracket */
+
+  .prettyprint .opn {
+    color: #e6e9ed;
+  }
+
+  /* lisp close bracket */
+
+  .prettyprint .clo {
+    color: #e6e9ed;
+  }
+
+  /* markup tag name */
+
+  .prettyprint .tag {
+    color: #ed5565;
+  }
+
+  /* markup attribute name */
+
+  .prettyprint .atn {
+    color: #a0d468;
+  }
+
+  /* markup attribute value */
+
+  .prettyprint .atv {
+    color: #ffce54;
+  }
+
+  /* declaration */
+
+  .prettyprint .dec {
+    color: #ac92ec;
+  }
+
+  /* variable name */
+
+  .prettyprint .var {
+    color: #e6e9ed;
+  }
+
+  /* function name */
+
+  .prettyprint .fun {
+    color: #e6e9ed;
+  }
+}
+
+#program {
+  max-width: 920px;
+  margin: auto;
+}
+
+#program>h1,
+#program>h2,
+#program>h3,
+#program>h4 {
+  font-weight: bold;
+  font-size: 28px;
+  color: var(--title);
+
+}
+
+/* #program>h1{
     font-size: 2.2rem;
     margin: 24px 0;
 } */
-#program h2:nth-child(1){
-    margin-top: 0;
+#program>h2:nth-child(1) {
+  margin-top: 0;
 }
-#program h2{
-    margin: 62px 0 28px;
-    border-left: 4px solid var(--blue);
-    padding-left: 15px;
+
+#program>h2 {
+  margin: 62px 0 28px;
+  border-left: 4px solid var(--blue);
+  padding-left: 15px;
 }
-#program h3{
-    font-size: 22px;
-    margin: 62px 0 22px;
+
+#program>h3 {
+  font-size: 22px;
+  margin: 62px 0 22px;
 }
-#program h2,
-#program h3{
-    display: flex;
-    align-items: center;
+
+#program>h2,
+#program>h3 {
+  display: flex;
+  align-items: center;
 }
-#program h2 a,
-#program h3 a{
-    color: var(--blue);
-    font-size: 18px;
-    margin-left: 10px;
+
+#program>h2 a,
+#program>h3 a {
+  color: var(--blue);
+  font-size: 18px;
+  margin-left: 10px;
 }
-#program h4{
-    font-size: 18px;
-    margin: 32px 0 0;
+
+#program>h4 {
+  font-size: 18px;
+  margin: 32px 0 0;
 }
-#program p{
-    font-size: 15px;
-    line-height: 1.7;
-    color: var(--text);
-    margin: 16px 0;
-    letter-spacing: 1px;
+
+#program>p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 16px 0;
+  letter-spacing: 1px;
 }
-/* #program code{
+
+/* #program>code{
     font-weight: bold;
     color: var(--title);
     padding: 3px;
 } */
-/* #program b{
+/* #program>b{
     line-height: 1.7;
     color: var(--title);
     margin: 16px 0;
     letter-spacing: 1px;
     font-weight: bold;
 } */
-#program a{
-    line-height: 1.7;
+#program>a {
+  line-height: 1.7;
 }
-#program pre{
-    margin-bottom: 64px;
+
+#program>pre {
+  margin-bottom: 64px;
 }
-#program pre[class*=language-] {
-    background: #1e293b;
-    display: flex;
+
+#program>pre[class*=language-] {
+  background: #1e293b;
+  display: flex;
 
 }
-:root body.dark #program pre[class*=language-] {
-    background: #1e293b;
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+
+:root body.dark #program>pre[class*=language-] {
+  background: #1e293b;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
 }
-#program pre[class*=language-] code{
+
+/* #program>pre[class*=language-] code{
     margin-left: -60px;
     width: calc(100% + 60px);
     
-}
-/* #program  code[class*=language-],
-#program  pre[class*=language-]{
+} */
+/* #program> code[class*=language-],
+#program> pre[class*=language-]{
     font-family: inherit;
 } */
-#program hr{
-    border-color: var(--solid);
-    border-bottom: none;
-    border-left: none;
-    border-right: none;
-    margin: 30px 0 40px;
+#program>hr {
+  border-color: var(--solid);
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  margin: 30px 0 40px;
 }
-#program img{
-    width: 100%;
-    height: auto;
+
+#program>img {
+  width: 100%;
+  height: auto;
 }
-#program ol{
-    margin: 24px 0;
+
+#program>ol {
+  margin: 24px 0;
 }
-#program ol li{
-    color: var(--text);
-    line-height: 1.5;
+
+#program>ol li {
+  color: var(--text);
+  line-height: 1.5;
 }
-#program h2 span,
-#program p span,
-#program ol li span{
-    color: var(--blue);
-    padding: 0 5px;
+
+#program>h2 span,
+#program>p span,
+#program>ol li span {
+  color: var(--blue);
+  padding: 0 5px;
 }
-#program ul{
-    margin-bottom: 120px;
+
+#program>ul {
+  margin-bottom: 120px;
 }
-#program ul a{
-    color: var(--blue);
+#program>ul li{
+  line-height: 1.5;
 }
+#program>ul a {
+  color: var(--blue);
+
+}
+
 /*單獨頁*/
-body#program{
-    padding: 60px 20px;
+body#program>{
+  padding: 60px 20px;
 }
-body#program ul a{
-    text-decoration: none;
-    color: rgb(32 171 253);
+
+body#program>ul a {
+  text-decoration: none;
+  color: rgb(32 171 253);
 }
-body#program ul{
-    list-style: none;
-    padding: 0;
+
+body#program>ul {
+  list-style: none;
+  padding: 0;
 }
+
 /*codeDemo*/
-#program .codeDemo{
-    overflow: auto;
-    resize: horizontal;
-    padding: 1.5rem;
-    background: #1e293b;
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
+#program>.codeDemo {
+  overflow: auto;
+  resize: horizontal;
+  padding: 1.5rem;
+  background: #1e293b;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
 }
-#program .flex-center {
-    display: flex;
-    justify-content: center;
+
+#program>.flex-center {
+  display: flex;
+  justify-content: center;
 }

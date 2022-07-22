@@ -73,7 +73,8 @@ function pageStudyMain(){
     }
     if(url){
         creatMainHtml(url,'.page_study .main').then(()=>{
-            Prism.highlightAll();//ajax後執行Prism
+            PR.prettyPrint()
+            Prism.highlightAll();//執行Prism
             creatFooterHtml('.page_study .main')
         })
     }
