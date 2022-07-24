@@ -1,167 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/customPrism.css">
     <link rel="stylesheet" href="../css/prism.css">
-     <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    
-</head>
-<body id="program">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
     <h2>element select</h2>
-    <pre>
-        <code class="language-js">
-            document.querySelector('li').closest('ul')                   //往上查找
-            document.getElementById('id');                               //選擇ID
-            document.getElementByClassName('class');                     //選擇class(只選第一個)
-            document.getElementByTagName('div');                         //標籤選擇
-            document.querySelector('#btn');                              //ID選擇
-            document.querySelectorAll('.btnclass');                      //class選擇(選全部)
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          document.querySelector('li').closest('ul')                   //往上查找
+          document.getElementById('id');                               //選擇ID
+          document.getElementByClassName('class');                     //選擇class(只選第一個)
+          document.getElementByTagName('div');                         //標籤選擇
+          document.querySelector('#btn');                              //ID選擇
+          document.querySelectorAll('.btnclass');                      //class選擇(選全部)
 
 
-            var oli = document.getElementById('ul');
-            console.log(oli.nodeName)                                     //ul,名稱
-            console.log(oli.nodeType)                                     //1,節點類型
-            console.log(oli.nodeValue)                                    //null,節點值
-        </code>
+          var oli = document.getElementById('ul');
+          console.log(oli.nodeName)                                     //ul,名稱
+          console.log(oli.nodeType)                                     //1,節點類型
+          console.log(oli.nodeValue)                                    //null,節點值
+        </script>
+      </xmp>
     </pre>
     <h2>get data-</h2>
-    <pre>
-        <code class="language-js">
-            //1.
-            document.querySelector('[data-foo]').dataset.foo;  
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //1.
+          document.querySelector('[data-foo]').dataset.foo;  
 
-            //2.
-            document.querySelector('.class').dataset.foo;
-            
-            //3.
-            list.addEventListener('click', function(e){
-                console.log(e.target.dataset.foo);   //dataset 取出 foo 的值
-                console.log(e.target.nodeName);      //nodeName 為 'LI'
-            }, false);
-        </code>
+          //2.
+          document.querySelector('.class').dataset.foo;
+          
+          //3.
+          list.addEventListener('click', function(e){
+              console.log(e.target.dataset.foo);   //dataset 取出 foo 的值
+              console.log(e.target.nodeName);      //nodeName 為 'LI'
+          }, false);
+        </script>
+      </xmp>
     </pre>
     <h2>element create</h2>
-    <pre>
-        <code class="language-js">
-            document.createElement("p");                                  //建新的元素
-            document.createTextNode("这是一个新段落");                     //建內文
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          document.createElement("p");                                  //建新的元素
+          document.createTextNode("这是一个新段落");                     //建內文
+        </script>
+      </xmp>
     </pre>
     <h2>element remove</h2>
-    <pre>
-        <code class="language-html">
-            &lt;ul class="innerHTML"&gt;
-                &lt;li&gt;1&lt;/li&gt;
-                &lt;li&gt;2&lt;/li&gt;
-                &lt;li&gt;3&lt;/li&gt;
-                &lt;li&gt;4&lt;/li&gt;
-                &lt;li&gt;5&lt;/li&gt;
-            &lt;/ul&gt;
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        <ul class="innerHTML">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ul>
+      </xmp>
     </pre>
-    <pre>
-        <code class="language-js">
-            document.querySelector("ul").innerHTML = '';
-            document.querySelector("ul").textContent = '';
-            document.querySelector("ul").replaceChildren()      //()內只能放字串
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        document.querySelector("ul").innerHTML = '';
+        document.querySelector("ul").textContent = '';
+        document.querySelector("ul").replaceChildren()      //()內只能放字串
+        </script>
+      </xmp>
     </pre>
     <p>removeChild删除元素</p>
-    <pre>
-        <code class="language-js">
-            var parent=document.getElementById("div1");
-            var child=document.getElementById("p1");
-            parent.removeChild(child);
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        var parent=document.getElementById("div1");
+        var child=document.getElementById("p1");
+        parent.removeChild(child);
+        </script>
+      </xmp>
     </pre>
     <h2>element add</h2>
     <p>innerHTML() 可放string</p>
     <p>appendChild() 只能放入節點不能放string</p>
-    <pre>
-        <code class="language-js">
-            const div = document.createElement("div");
-            const p = document.createElement("p");
-            div.appendChild(p);
-            //
-            console.log(div.outerHTML);
-            &lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        const div = document.createElement("div");
+        const p = document.createElement("p");
+        div.appendChild(p);
+        //
+        console.log(div.outerHTML);
+        <div><p></p></div>
+        </script>
+      </xmp>
     </pre>
     <p>replaceWith() 取代節點</p>
-    <pre>
-        <code class="language-js">
-            const div = document.createElement("div");
-            const p = document.createElement("p");
-            div.appendChild(p);
-            const span = document.createElement("span");
-            p.replaceWith(span);
-            //
-            console.log(div.outerHTML);
-            &lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        const div = document.createElement("div");
+        const p = document.createElement("p");
+        div.appendChild(p);
+        const span = document.createElement("span");
+        p.replaceWith(span);
+        //
+        console.log(div.outerHTML);
+        <div><span></span></div>
+        </script>
+      </xmp>
     </pre>
     <p>replaceChild() 取代節點</p>
-    <pre>
-        <code class="language-js">
-            const div = document.createElement("div");
-            const p = document.createElement("p");
-            div.appendChild(p);
-            const span = document.createElement("span");
-            div.replaceChild(span,p);
-            //
-            &lt;div&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        const div = document.createElement("div");
+        const p = document.createElement("p");
+        div.appendChild(p);
+        const span = document.createElement("span");
+        div.replaceChild(span,p);
+        //
+        <div><span></span></div>
+        </script>
+      </xmp>
     </pre>
     <h2>insertAdjacentHTML()插入節點</h2>
     <ol>
-        <li>beforeBegin：在 element 前插入</li>
-        <li>afterBegin：在 element 裡的第一個子元素前插入</li>
-        <li>beforeEnd：在 element 裡的最後一個子元素後面插入</li>
-        <li>afterEnd：在 element 後插入</li>
+      <li>beforeBegin：在 element 前插入</li>
+      <li>afterBegin：在 element 裡的第一個子元素前插入</li>
+      <li>beforeEnd：在 element 裡的最後一個子元素後面插入</li>
+      <li>afterEnd：在 element 後插入</li>
     </ol>
-    <pre>
-        <code class="language-js">
-            let div = document.createElement("div");
-            let html = "&lt;p&gt;My new paragraph.&lt;/p&gt;";
-            div.insertAdjacentHTML("beforeend", html);
-            //
-            &lt;div&gt;&lt;p&gt;My new paragraph.&lt;/p&gt;&lt;/div&gt;
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        let div = document.createElement("div");
+        let html = "<p>My new paragraph.</p>";
+        div.insertAdjacentHTML("beforeend", html);
+        //
+        <div><p>My new paragraph.</p></div>
+        </script>
+      </xmp>
     </pre>
     <h2>element clone</h2>
-    <pre>
-        <code class="language-html">
-            &lt;ul&gt;
-                &lt;li&gt;1&lt;/li&gt;
-                &lt;li&gt;2&lt;/li&gt;
-            &lt;/ul&gt;
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        <ul>
+          <li>1</li>
+          <li>2</li>
+        </ul>
+      </xmp>
     </pre>
-    <pre>
-        <code class="language-js">
-            var ul = document.querySelector('li'); //node
-            var li = document.querySelectorAll('li'); //nodeList
-            for (var i = 0; i < li.length; i++) {
-                ul.appendChild(li[i].cloneNode(true))
-            }  
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        var ul = document.querySelector('li'); //node
+        var li = document.querySelectorAll('li'); //nodeList
+        for (var i = 0; i < li.length; i++) {
+            ul.appendChild(li[i].cloneNode(true))
+        }
+        </script>
+      </xmp>
     </pre>
     <h2>element width</h2>
-    <pre>
-        <code class="language-html">
-            element.offsetWidth
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        element.offsetWidth
+      </xmp>
+    </pre>
+    <h2> appendChild 後消失</h2>
+    <p>append 上去的是一個已存在的 node 時，它會做的是搬移，而非複製。</p>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+          .demo-1 {
+              display: flex;
+              flex-wrap: wrap;
+          }
+          
+          .block {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background: lightblue;
+              margin: 30px;
+              width: 300px;
+              height: 300px;
+          }
+          
+          .inner {
+              width: 200px;
+              height: 200px;
+              background: green;
+          }
+        </style>
+        <button id="appendNode">appendChild</button>
+        <div class="demo-1">
+          <div class="block block-1"></div>
+          <div class="block block-2"></div>
+          <div class="block block-3"></div>
+        </div>
+        <script>
+          // STEP1: 利用 document.createElement 建立 DOM Element
+          let innerElement = document.createElement('div')
+          innerElement.classList.add('inner')
+  
+          // // STEP2: 分別選擇各個 block
+          const block1 = document.querySelector('.block-1')
+          const block2 = document.querySelector('.block-2')
+          const block3 = document.querySelector('.block-3')
+  
+          let i = 0
+          const buttonAppend = document.querySelector('#appendNode')
+          buttonAppend.addEventListener('click', function() {
+              console.log(i);
+              //複製
+              //true 深層複製(裡面內容也會複製)
+              let cloneElement = innerElement.cloneNode(true);
+              if (i === 0) {
+                  block1.appendChild(cloneElement);
+              } else if (i === 1) {
+                  block2.appendChild(cloneElement);
+              } else {
+                  block3.appendChild(cloneElement);
+              }
+              i = (i + 1) % 3 // i 會在 0 ~ 2 之間依序循環
+          })
+        </script>
+      </xmp>
     </pre>
     <hr>
     <h4>參考</h4>
     <ul>
-        <li>
-            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/closest" target="_blank">Element.closest()</a>
-        </li>
+      <li>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/closest" target="_blank">Element.closest()</a>
+      </li>
+      <li>
+        <a href="https://pjchender.blogspot.com/2017/06/js-node-element-appenchild-disappear.html" target="_blank">Element 在 appendChild 後消失</a>
+      </li>
     </ul>
-</body>
+  </body>
 </html>

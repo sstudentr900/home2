@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,8 @@
             margin: 0;
         }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <a href="https://www.cnblogs.com/coco1s/p/5499469.html">高性能滚动 scroll 及页面渲染优化</a>
     <a href="https://blog.csdn.net/bigbear00007/article/details/102615665">防止监听scroll 事件影响页面性能</a>
     <script>
@@ -29,6 +29,7 @@
                 }
             }
         }
+        window.addEventListener('scroll', throttle(), false);
         
         
         
@@ -40,6 +41,7 @@
                 timeout = setTimeout(func, wait); //操作 handler
             };
         };
+        window.addEventListener('scroll', debounce(), false);
         
         
         
@@ -56,8 +58,6 @@
                 }
             }
         }
-
-
         function onScrolla(){
             var i = 0;
             return ()=>{
@@ -65,10 +65,7 @@
                 return i;
             }
         }
-
-        // window.addEventListener('scroll', throttle(), false);
-        // window.addEventListener('scroll', debounce(), false);
         window.addEventListener('scroll', raf(), false);
     </script>
-</body>
+  </body>
 </html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>arrow</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //當你在宣告時若沒有傳入值，必須放空括號。
+          const callMe4 = () => {
+            console.log('Max!');
+          }
+
+          //當只有一個傳入值
+          const callMe5 = name => {
+            console.log(name);
+          }
+
+          //單一運算後直接回傳時
+          const callMe6 = num => console.log(name);
+
+          //在箭頭函式中沒有 bind()，且 apply() 及 call() 傳入的 this 值會被忽略
+        </script>
+      </xmp>
+    </pre>
+    <h2>立刻執行的函式寫法就稱為IIFE</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+            var hello2 = function(name) {
+              console.log('hello2')
+              return 'Hello ' + name
+            }('Simon');
+            console.log(hello2);
+
+            //匿名自我调用的函数
+            (function(i) {
+                var x = "Hello!!"; // 我将调用自己
+            })(i);
+
+            //和上面一樣
+            !function(i) {
+                var x = "Hello!!"; // 我将调用自己
+            }(i);
+        </script>
+      </xmp>
+    </pre>
+    <h2>callback(把函數當參數傳入)</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          function shout(a) {
+              console.log('hello',a);
+          }
+
+          function counToSeven(cd) {
+              let a = 'a'
+              // cd?cd():'';//執行   
+              // cd&&cd();//同上 
+              cd&&cd.call(this,a);//傳遞參數
+          }
+          counToSeven(shout);
+        </script>
+      </xmp>
+    </pre>
+    <h2>函數傳遞參數</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //函數傳遞參數(用object較好)
+        function person(obj) {
+            console.log(obj.name);
+            console.log(obj.age);
+        }
+        var data = {
+            name: 'andy',
+            age: '27'
+        };
+        person(data);
+        //'andy'
+        //'27'
+
+        //es5
+        function Person(name, age) {
+            this.name = name || 'person';
+            this.age = age || 18;
+        }
+        //es6
+        function Person(name = 'person', age = 18) {
+            this.name = name;
+            this.age = age;
+        }
+
+        //ES6 其餘參數 直接傳入剩餘未定的變數內容
+        //https://ithelp.ithome.com.tw/articles/10241916
+        const callMore = (a, ...args) => {
+            console.log(args);//['b','c']
+        }
+        callMore('a', 'b', 'c');
+
+
+        //arguments轉成數組apply
+        function show(){
+          var args=Array.prototype.concat.apply([1,2,3], arguments);
+          console.log(args);
+        }
+        show(1,2,3,4);//[1, 2, 3, 1, 2, 3, 4]
+
+        //arguments轉成數組
+        function show(){
+          var args=Array.prototype.slice.apply(arguments);
+          console.log(args);
+        }
+        show(1,2,3,4);//[1, 2, 3, 4]
+
+        //arguments轉成數組
+        var args = [];
+        for (var i = 0; i < arguments.length; i++) {
+          args.push(arguments[i]);
+        }
+
+        //arguments轉成數組[...arguments]
+        //https://www.casper.tw/javascript/2017/12/26/javascript-array/
+        const callAll = function() {
+          // console.log(arguments);
+          let thisPeople = [...arguments];
+        }
+        callAll(1, 2, 3);
+
+
+        //arguments轉成數組Array.from(arguments)
+        function sumArguments() {
+              return Array.from(arguments).reduce((sum, num) => sum + num);
+          }
+          sumArguments(1, 2, 3); // => 6
+
+
+        //解構
+        function greet({
+            name,
+            greet = 'Nice to meet you'
+        }) {
+            console.log(`${greet}, ${name}`)
+        }
+        //1.
+        greet({
+            name: 'Katy',
+            greet: 'Hi'
+        }); //Hi, Katy
+        //2.    
+        greet({
+            name: 'John'
+        }); //Nice to meet you, John
+        //3.
+        greet({}); //Nice to meet you, undefined
+        //4.
+        greet({
+            greet: 'Good morning'
+        }); //Good morning, undefined
+        </script>
+      </xmp>
+    </pre>
+    <h2>阻止函數運行</h2>
+    <p>use strict</p>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //return沒有打分號(;)會自動分號
+        function fn() {
+            return //
+            '小明'
+        }
+        console.log(fn())
+        </script>
+      </xmp>
+    </pre>
+    <h2>不能在条件语句中声明函数</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //1.不合法的但能够运行
+        if (true) {
+          function x() {}
+        }
+        x();
+        //2.
+        if (true) {
+          var f = function () {};
+        }
+        f() // undefined
+        //3.
+        try {
+          function x() {}
+        } catch(e) {
+          console.log(e);
+        }
+        </script>
+      </xmp>
+    </pre>
+    <h2>1 is not a function 的錯誤，如果要避免此錯誤就需要使用分號將其隔開</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        var a = 1 // 分號隔在哪都好，隔開就對了
+        ;
+        (function() {
+            console.log(2)
+        })()
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://blog.csdn.net/weixin_34362875/article/details/85733985?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-85733985-blog-51388500.pc_relevant_antiscanv3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-85733985-blog-51388500.pc_relevant_antiscanv3&utm_relevant_index=1" target="_blank">js函数前加分号和感叹号是什么意思</a>
+      </li>
+    </ul>
+  </body>
+</html>

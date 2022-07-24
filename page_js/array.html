@@ -139,19 +139,6 @@
           let newNumbers = [...numbers2, 4]; //新的array
           console.log(newNumbers);//[1, 2, 3, 4]
 
-                    
-          //arguments 使用foreach--------------------------------------------------------
-          //https://www.casper.tw/javascript/2017/12/26/javascript-array/
-          const callAll = function() {
-            console.log(arguments);
-            let thisPeople = [...arguments];
-            // arguments.forEach is not a function
-            thisPeople.forEach((arg) => {
-                console.log(arg)
-            });
-          }
-          callAll(1, 2, 3);
-
 
           //Array创建新方法(toUpperCase)-------------------------------------------------------
           Array.prototype.myUcase = function() {

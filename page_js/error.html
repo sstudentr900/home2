@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Error</h2>
+    <ol>
+      <li>RangeError(超過範圍)</li>
+      <li>ReferenceError(找不到變數：拼錯字)</li>
+      <li>SyntaxError(語法錯誤)</li>
+      <li>TypeError（找不到函式）</li>
+      <li>URIError 當使用 encodeURI() 或 decodeURI() 的方法，但確有給了不合法的 URI 時會拋出這個錯誤</li>
+      <li>EvalError</li>
+    </ol>
+    <h2>Error 客製化例外情況</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var error = new Error('error message');
+          console.log(error); // Error: error message
+        </script>
+      </xmp>
+    </pre>
+    <h2>throw</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          throw 'Error2'; // String type
+          throw 42; // Number type
+          throw true; // Boolean type
+        </script>
+      </xmp>
+    </pre>
+    <h2>try 和 catch</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          try {
+              //在这里运行代码
+              throw 'error'
+          } catch (e) {
+              //处理错误
+              console.log('錯誤輸出')
+          } finally {
+              //完成執行
+              console.log('任何情況都錯誤輸出')
+          }
+        </script>
+      </xmp>
+    </pre>
+    <h2>foreach try catch 挑出迴圈</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          try {
+            var array = [1, 2, 3, 4, 5, 6];
+            //第3次，结束迴圈
+            array.forEach((value) => {
+              console.log("value---->", value);
+              if (value > 3) {
+                throw new Error("抛出异常跳出")
+              }
+            });
+          } catch (e) {
+            console.log(e)
+          };
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://pjchender.dev/javascript/js-error-handling" target="_blank">Error Handling</a>
+      </li>
+    </ul>
+  </body>
+</html>

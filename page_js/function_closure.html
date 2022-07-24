@@ -1,87 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
-    <title>js_bsis closure</title>
-</head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>閉包</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var counter = 0;
+          function add() {
+            return counter += 1;
+          }
+          add();
+          add();
+          add();// 计数器现在为 3
 
-<body>
-    <script>
-        //https://ithelp.ithome.com.tw/articles/10220329----------------------------------------------------
-        //透過閉包讓 function 能夠有 private 變數
-        //閉包是子函數可以使用父函數的局部變量
-        //闭包的最大用处有两个，一个是可以读取函数内部的变量，另一个就是让这些变量始终保持在内存中，即闭包可以使得它诞生环境一直存在
-        //0.錯誤
-        for (var i = 1; i <= 5; i++) {
-            setTimeout(function() {
-                console.log(i)
-            }, 1000 * i)
-        }
-        //1.傳直
-        for (var i = 1; i <= 5; i++) {
-            setTimeout(function(x) {
-                console.log(x)
-            }, 1000 * i, i)
-        }
-        //2.IIFE
-        for (var i = 1; i <= 5; i++) {
-            (function(x) {
-                setTimeout(() => {
-                    console.log(x)
-                }, 1000 * x);
-            })(i)
-        }
-        //3.let
-        for (let i = 1; i <= 5; i++) {
-            setTimeout(function() {
-                console.log(i)
-            }, 1000 * i)
-        }
-
-
-        //https://ithelp.ithome.com.tw/articles/10220557----------------------------------------------------
-        //2-1 private變數
-        //function add() {
-        //    var counter = 0;
-        //    return counter += 1;
-        //}
-        //add();
-        //add();
-        //add();// 本意是想输出 3, 但事与愿违，输出的都是 1 !
-
-
-        var add = (function() {
-            var counter = 0;
-            return () => counter += 1;
-        })();
-        add();
-        add();
-        add(); // 计数器为 3
-
-        
-        //2-2 缺點是全局变量
-        //var counter = 0;
-        //function add() {
-        //    return counter += 1;
-        //}
-        //add();
-        //add();
-        //add();// 计数器现在为 3
-
-        function add(num) {
+          function add(num) {
             var y = 10;
-            return function(x = 0) {
-                return num + x + y
-            }
-        }
-        let addFn = add(5)
-        console.log(addFn(8))
-
-
-        //https://ithelp.ithome.com.tw/articles/10242580----------------------------------------------------------------
-        //記憶體釋放的驗證
-    </script>
-</body>
-
+            return (x = 0) => num + x + y;
+          }
+          //1.
+          let addFn = add(5)
+          console.log(addFn(8))//23
+          //2.
+          console.log(add(5).call(null,8))//23
+          //3.
+          console.log(add(5)(8))//23
+        </script>
+      </xmp>
+    </pre>
+    <h2>請寫出間隔一秒印出 1, 2, 3, 4, 5 的程式碼</h2>
+    <ol>
+      <li>透過閉包讓 function 能夠有 private 變數</li>
+      <li>閉包是子函數可以使用父函數的局部變量</li>
+      <li>闭包的最大用处有两个，一个是可以读取函数内部的变量，另一个就是让这些变量始终保持在内存中，即闭包可以使得它诞生环境一直存在</li>
+    </ol>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //0.錯誤
+          for (var i = 1; i <= 5; i++) {
+              setTimeout(function() {
+                  console.log(i)//6,6,6
+              }, 1000 * i)
+          }
+          //1.傳直
+          for (var i = 1; i <= 5; i++) {
+              setTimeout(function(x) {
+                  console.log(x)
+              }, 1000 * i, i)
+          }
+          //2.IIFE
+          for (var i = 1; i <= 5; i++) {
+              (function(x) {
+                  setTimeout(() => {
+                      console.log(x)
+                  }, 1000 * x);
+              })(i)
+          }
+          //3.let
+          for (let i = 1; i <= 5; i++) {
+              setTimeout(function() {
+                  console.log(i)
+              }, 1000 * i)
+          }
+        </script>
+      </xmp>
+    </pre>
+    <h2>記憶體釋放的驗證</h2>
+    <p>https://ithelp.ithome.com.tw/articles/10242580</p>
+    <pre class="prettyprint">
+      <xmp>
+        <script></script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10220329" target="_blank">請寫出間隔一秒印出 1, 2, 3, 4, 5 的程式碼</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10220557" target="_blank">什麼是閉包</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10242580" target="_blank">記憶體釋放的驗證</a>
+      </li>
+    </ul>
+  </body>
 </html>
