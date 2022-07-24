@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>集合（Set）</h2>
+    <p>Set 的特色是有 has() 這個方法，可以快速判斷該 Set 中是否包含某個元素，重點不是讓我們把 Set 中的元素取出來用。</p>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          const obj = {
+            foo: 'bar',
+          };
+          const mySet = new Set();
+          mySet.add(1); // [1]
+          mySet.add(5); // [1, 5]
+          mySet.add(5); // [1, 5]，重複的元素不會被加進去，依然是
+          mySet.add(obj); // [ 1, 5, { foo: 'bar' } ]
+
+          mySet.has(5); // true
+          mySet.has(obj); // true
+          mySet.has({
+            foo: 'bar',
+          }); // false
+
+          mySet.delete(5); // true，刪除成功
+          mySet.delete(2); // false，刪除失敗
+          mySet.delete(obj); // true，刪除成功
+          mySet.size; //1 看看 set 中有多少元素
+
+          // for ... of
+          mySet.entries(); // [key, value] 內容相同
+          mySet.values(); // 和 mySet.keys 得到相同的內容
+          mySet.keys(); // 和 mySet.values 得到相同的內容
+
+          mySet.forEach((item) => console.log('item', item));
+          mySet.clear(); //全刪
+        </script>
+      </xmp>
+    </pre>
+    <h3>陣列與集合間轉換</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          // Set 轉成 Array
+          let SetToArray = [...classroom]; // Array.from(classroom);
+
+          // Array 轉成 Set
+          let ArrayToSet = new Set(SetToArray);
+        </script>
+      </xmp>
+    </pre>
+    <h3>過濾陣列中重複的元素</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          const arr = [1, 1, 3, 5, 5, 7];
+          const arrToSet = new Set(arr); // Set { 1, 3, 5, 7 }
+          const uniqueArray = [...arrToSet]; // [ 1, 3, 5, 7 ]
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://pjchender.dev/javascript/js-array/" target="_blank">JavaScript 集合（Set）</a>
+      </li>
+    </ul>
+  </body>
+</html>

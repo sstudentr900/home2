@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
-    <link rel="import" href="common.html">
     <!-- 引入html -->
-</head>
-
-<body>
+    <link rel="import" href="common.html">
+  </head>
+  <body>
     <header class="frontHeader"></header>
-</body>
-<script>
+  </body>
+  <script>
     var link = document.querySelector('link[rel="import"]');
     var content = link.import;
     var frontHeader = content.querySelectorAll('.frontHeader>div');
     for (var i = 0; i < frontHeader.length; i++) {
         document.querySelector('.frontHeader').appendChild(frontHeader[i])
     }
-</script>
-
+  </script>
 </html>

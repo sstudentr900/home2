@@ -21,14 +21,14 @@
           console.log(arr[arr.length-1]); //選取最後一個 5
 
 
-          //從陣列中隨機抽取一個元素（sample element in array）---------------------------------------------------------
+          //從陣列中隨機抽取一個元素（sample element in array）--------------------------------
           //https://pjchender.dev/javascript/js-array
           var rand = myArray[Math.floor(Math.random() * myArray.length)];
 
 
-          //lastIndexOf從後面計算數組位置---------------------------------------------------------------
+          //lastIndexOf從後面計算數組位置----------------------------------------------------
           var b4 = [3, 5, 17, 6]
-          b4.lastIndexOf(1); //數組位置(從後面計算)
+          b4.lastIndexOf(6); //3
 
 
           //indexOf() 該值位置---------------------------------------------------------------
@@ -39,13 +39,18 @@
           //indexOf() 第二个参数，表示搜索的开始位置。
           a5.indexOf('a', 1) // -1
 
-      
 
-          //unshift從頭新增(array會改變)---------------------------------------------------------------
+          //findIndex尋找陣列中符合的元素，並返回其 index（索引）。如果沒有符合的對象，將返回 -1 。
+          const array1 = [5, 12, 8, 130, 44];
+          const isLargeNumber = (element) => element > 13;
+          console.log(array1.findIndex(isLargeNumber));
+
+
+          //unshift從頭新增(array會改變)------------------------------------------------------
           b.unshift(7);
 
 
-          //push從尾新增(array會改變)---------------------------------------------------------------
+          //push從尾新增(array會改變)---------------------------------------------------------
           var arr = ['60', '22', '90'];
           arr.push(4, 5, 6);
 
@@ -54,21 +59,41 @@
           arr.push.apply(arr, arr2)
 
 
-          //shift從頭獲取值(array會改變)---------------------------------------------------------------
+          //shift從頭獲取值(array會改變)-------------------------------------------------------
           var a9 = ['a', 'b', 'c'];
           a9.shift() // 'a'
           a9 // ['b', 'c']
 
 
-          //pop從後取值(array會改變)---------------------------------------------------------------
+          //pop從後取值(array會改變)------------------------------------------------------------
           a.pop();
 
 
-          //從後取值(原陣列不會被改變 (non-mutating) 而是回傳新陣列)---------------------------------------------------------------
+          //at從後取值(原陣列不會被改變 (non-mutating) 而是回傳新陣列)----------------------------
           var f = a[a.length - 1];
           var g = a.at(-1);
+
+          //数组中的最大最小值---------------------------------------------------------------
+          //bad
+          Math.max(1, 2, 3, 4); // 4
+          Math.min(1, 2, 3, 4); // 1
+
+          //good
+          var numbers = [1, 2, 3, 4];
+          Math.max.apply(null, numbers); // 4
+          Math.min.apply(null, numbers); // 1
+
+          // 可以用來篩選陣列最小值/最大值
+          let minX = arr.reduce((pre, cur) => Math.min(pre.x, cur.x));
+          let max = arr.reduce((acc, curr) => Math.max(acc, curr));
+
+          // 可以用來篩選陣列小值---------------------------------------------------------------
+          let minX = arr.reduce((pre, cur) => {
+            return pre.x < cur.x ? pre.x : cur.x;
+          });
         </script>
       </xmp>
     </pre>
+    <!-- shift(),unshift(),push(),pop(),max(),min(),indexOf,lastIndexOf(),at() -->
   </body>
 </html>

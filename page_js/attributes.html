@@ -1,54 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/customPrism.css">
     <link rel="stylesheet" href="../css/prism.css">
-     <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    
-</head>
-<body id="program">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
     <h2>attribute</h2>
     <p>hasAttribute 方法用來檢查 HTML 元素是否有某個屬性。</p>
-    <pre>
-        <code class="language-js">
-            document.getElementById('a').hasAttribute('href')
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        document.getElementById('a').hasAttribute('href')
+      </xmp>
     </pre>
     <p>getAttribute 方法用來取得 HTML 元素的屬性值</p>
-    <pre>
-        <code class="language-js">
-            document.getElementById('a').getAttribute('href')
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        document.getElementById('a').getAttribute('href')
+      </xmp>
     </pre>
     <p>setAttribute 方法用來新增 HTML 元素的屬性</p>
-    <pre>
-        <code class="language-js">
-            document.getElementById('a').setAttribute('target', '_blank')
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        document.getElementById('a').setAttribute('target', '_blank')
+      </xmp>
     </pre>
     <p>removeAttribute 方法用來移除 HTML 元素的某個屬性。</p>
-    <pre>
-        <code class="language-js">
-            document.getElementById('a').removeAttribute('data-foo')
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        document.getElementById('a').removeAttribute('data-foo')
+      </xmp>
     </pre>
     <p>attributes 取得 HTML 元素上所有的屬性</p>
-    <pre>
-        <code class="language-js">
-            document.getElementById('a').attributes['href'].value
-            document.getElementById('a').attributes['id'].value
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        document.getElementById('a').attributes['href'].value
+        document.getElementById('a').attributes['id'].value
+      </xmp>
     </pre>
     <hr>
     <h4>參考</h4>
     <ul>
-        <li>
-            <a href="https://www.fooish.com/javascript/dom/html-attributes.html" target="_blank">attributes</a>
-        </li>
+      <li>
+        <a href="https://www.fooish.com/javascript/dom/html-attributes.html" target="_blank">attributes</a>
+      </li>
     </ul>
-</body>
+  </body>
 </html>

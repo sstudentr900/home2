@@ -1,21 +1,38 @@
 <!DOCTYPE html>
-<html>
-
-<head lang="en">
+<html lang="en">
+  <head>
     <meta charset="UTF-8">
-    <title>https://stackoverflow.com/questions/13640109/how-to-prevent-browser-cache-for-php-site</title>
-    <!--https://www.willmaster.com/library/web-content-prep/preventing-browser-cache.php-->
-    <!--加上時間搓-->
-    <link rel="stylesheet" href="style.css?<?php echo date('Y-m-d_H:i:s'); ?>">
-    <link rel="stylesheet" href="style.css?v=" +new Date().getMilliseconds()>
-
-</head>
-
-<body>
-    <script>
-        //https://www.zhangxinxu.com/wordpress/2021/08/js-weakmap-es6/
-        //WeakMap
-    </script>
-</body>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>How to prevent Browser cache for php site</h2>
+    <pre class="prettyprint">
+      <xmp>
+        //meta
+        <meta http-equiv="cache-control" content="max-age=0">
+        <meta http-equiv="cache-control" content="no-cache">
+        <meta http-equiv="expires" content="-1">
+        <meta http-equiv="expires" content="Tue, 01 Jan 1980 11:00:00 GMT">
+        <meta http-equiv="pragma" content="no-cache">
+        //加上時間搓
+        <!-- <link rel="stylesheet" href="xxx.css?<?php echo date('Y-m-d_H:i:s'); ?>">
+        <link rel="stylesheet" href="xxx.css?v="+new Date().getMilliseconds()> -->
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/questions/13640109/how-to-prevent-browser-cache-for-php-site" target="_blank">How to prevent Browser cache for php site</a>
+      </li>
+      <li>
+        <a href="https://www.willmaster.com/library/web-content-prep/preventing-browser-cache.php" target="_blank">Preventing Browser Cache</a>
+      </li>
+    </ul>
+  </body>
 </html>

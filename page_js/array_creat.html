@@ -42,14 +42,31 @@
           //判斷陣列為空 arry is empty-------------------------------------------------------
           //https://www.freecodecamp.org/news/check-if-javascript-array-is-empty-or-not-with-length/
           //[].length === 0 //true
-
-          // []==''
-
+          //[]==''//true
           
           //includes檢驗陣列中是否包含 target 這個 element，有的話回傳 true--------------
           ['1', '2', '4'].includes('1'); //true
-          
 
+
+          //array if--------------------------------------------------------------------------------------
+          var foo = 20
+          if (foo == 1 || foo == 22 || foo == 43 || foo == 51 || foo == 63 || foo == 83) {
+              doSomething();
+          }
+
+          //这样写很冗长，可以改成这样：
+          if ([1, 22, 43, 51, 63, 83].indexOf(foo) != -1) {
+              doSomething();
+          }
+
+          //~arr -1轉0
+          let arr = ['apple', 'banana', 'candy']
+          if (~arr.indexOf('dock')) {
+              console.log('有')
+          } else {
+              console.log('沒有')
+          }
+          
 
           //建立一個長度為 n 且內容相同的陣列---------------------------------------------------------
           //https://pjchender.dev/javascript/js-array

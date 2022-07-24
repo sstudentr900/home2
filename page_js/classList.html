@@ -1,94 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/customPrism.css">
     <link rel="stylesheet" href="../css/prism.css">
-     <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    
-</head>
-<body id="program">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
     <h2>classList</h2>
     <p>用法</p>
-    <pre>
-        <code class="language-js">
-            document.body.classList.add('thisClass');
-            document.body.classList.remove('thatClass');
-            document.body.classList.toggle('anotherClass');
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        document.body.classList.add('thisClass');
+        document.body.classList.remove('thatClass');
+        document.body.classList.toggle('anotherClass');
+      </xmp>
     </pre>
     <h2>toggle</h2>
     <p>indexOf</p>
-    <pre>
-        <code class="language-js">
-            function hasClass(obj, cls) {
-                return (obj.className).indexOf(cls) > -1
-            }
+    <pre class="prettyprint">
+      <xmp>
+        function hasClass(obj, cls) {
+          return (obj.className).indexOf(cls) > -1
+        }
 
-            function main() {
-                var obj = document.getElementById('box');
-                if (hasClass(obj, 'active')) {
-                    obj.className = '';
-                } else {
-                    obj.className = 'active'
-                }
-            }
-        </code>
+        function main() {
+          var obj = document.getElementById('box');
+          if (hasClass(obj, 'active')) {
+            obj.className = '';
+          } else {
+            obj.className = 'active'
+          }
+        }
+      </xmp>
     </pre>
     <p>contains</p>
-    <pre>
-        <code class="language-js">
-            function hasClass() {
-                var obj = document.querySelector('#box');
-                if (obj.classList.contains('active')) {
-                    obj.className = '';
-                } else {
-                    obj.className = 'active'
-                }
-            }
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        function hasClass() {
+          var obj = document.querySelector('#box');
+          if (obj.classList.contains('active')) {
+              obj.className = '';
+          } else {
+              obj.className = 'active'
+          }
+        }
+      </xmp>
     </pre>
     <p>matches 查找有無該class名稱</p>
-    <pre>
-        <code class="language-js">
-            function hasClass() {
-                var obj = document.querySelector('#box');
-                if (obj.matches('.active')) {
-                    obj.className = '';
-                } else {
-                    obj.className = 'active'
-                }
-            }
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        function hasClass() {
+          var obj = document.querySelector('#box');
+          if (obj.matches('.active')) {
+            obj.className = '';
+          } else {
+            obj.className = 'active'
+          }
+        }
+      </xmp>
     </pre>
     <p>match</p>
-    <pre>
-        <code class="language-js">
-            function hasClass() {
-                var obj = document.querySelector('#box');
-                if (obj.src.match('XXX')) {
-                    obj.className = '';
-                } else {
-                    obj.className = 'active'
-                }
-            }
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        function hasClass() {
+          var obj = document.querySelector('#box');
+          if (obj.src.match('XXX')) {
+            obj.className = '';
+          } else {
+            obj.className = 'active'
+          }
+        }
+      </xmp>
     </pre>
     <p>display</p>
-    <pre>
-        <code class="language-js">
-            function hasClass(){
-                var menu = document.getElementById('menu');
-                if(menu.style.display == 'none'){
-                    menu.style.display = 'block';
-                }else{
-                    menu.style.display = 'none';
-                }
-            }
-        </code>
+    <pre class="prettyprint">
+      <xmp>
+        function hasClass(){
+          var menu = document.getElementById('menu');
+          if(menu.style.display == 'none'){
+            menu.style.display = 'block';
+          }else{
+            menu.style.display = 'none';
+          }
+        }
+      </xmp>
     </pre>
-</body>
+  </body>
 </html>

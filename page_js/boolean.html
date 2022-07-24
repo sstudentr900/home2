@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
-    <title>js_basis_ boolean</title>
-    <script>
-        //Object.is() ------------------------------------------------------------------------
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //Object.is() 比 === 更嚴格
         //https://ithelp.ithome.com.tw/articles/10217627
-        Object.is(4,4) // 回傳 true 或 false
+        //https://www.jstips.co/zh_tw/javascript/why-you-should-use-Object.is()-in-equality-comparison/
+        Object.is(4,4) // true
+        Object.is(0 , ' '); //false
+        Object.is(null, undefined); //false
+        Object.is([1], true); //false
+        Object.is(NaN, NaN); //true
+        Object.is(+0,-0) 為 false
 
 
         //其中一個(||=或)------------------------------------------------------------------------
@@ -141,6 +155,9 @@
         // [''] == 0 //true
         // [0] == 0 //true
         // [0] == '' //false
+        // null == undefined //true
+        // [1] == true //true
+        // NaN === NaN //false
 
         let c = {}
         let d = c
@@ -191,9 +208,15 @@
         typeof {}; //object
         typeof null; //object
         typeof undefined; //undefined
-    </script>
-</head>
-
-<body></body>
-
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <!-- <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.fooish.com/javascript/dom/html-attributes.html" target="_blank">attributes</a>
+      </li>
+    </ul> -->
+  </body>
 </html>

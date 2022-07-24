@@ -13,24 +13,6 @@
     <pre class="prettyprint">
       <xmp>
         <script>
-          //解構
-          const list9 = [{
-              name: 'Eva'
-          }, {
-              name: 'Carrie',
-              num: 23
-          }, {
-              name: 'Olivia'
-          }]
-          list9.forEach(({
-              name,
-              num = 'unknown'
-          }) => console.log(`Hi I'm ${name}. My number is ${num}.`));
-          //Hi I'm Eva. My number is unknown.
-          //Hi I'm Carrie. My number is 23.
-          //Hi I'm Olivia. My number is unknown.
-
-          
           //toString数组转为字串---------------------------------------------------------------
           var a7 = [1, 2, 3];
           a7.toString() // "1,2,3"
@@ -82,13 +64,13 @@
 
 
           //複製陣列不變原陣列---------------------------------------------------------------------------------------
-          //[1] == [1] //false
           //bad
           var a0 = [1, 2, 3];
           var b0 = a0;
           b0.push(4);
           //a = [1,2,3,4]
           //b = [1,2,3,4]
+
           //god
           var a1 = [1, 2, 3];
           var b1 = a1.slice();
@@ -117,24 +99,6 @@
           a2.slice(-2) // ["b", "c"]
           a2.slice(-2, -1) // ["b"]
 
-
-          
-          // 可以用來篩選陣列小值---------------------------------------------------------------
-          let minX = arr.reduce((pre, cur) => {
-              return pre.x < cur.x ? pre.x : cur.x;
-          });
-
-
-          //数组中的最大最小值---------------------------------------------------------------
-          //bad
-          Math.max(1, 2, 3, 4); // 4
-          Math.min(1, 2, 3, 4); // 1
-          //good
-          var numbers = [1, 2, 3, 4];
-          Math.max.apply(null, numbers); // 4
-          Math.min.apply(null, numbers); // 1
-
-
           
           //把陣列傳入函式做運算---------------------------------------------------------------
           function count(breakfast, lunch, dinner) {
@@ -143,21 +107,6 @@
           var price = [10, 50, 20];
 
           console.log(count(...price)); // 80
-
-
-          //Array创建新方法(toUpperCase)-------------------------------------------------------
-          Array.prototype.myUcase = function() {
-              for (i = 0; i < this.length; i++) {
-                  this[i] = this[i].toUpperCase();
-              }
-          }
-
-          function myFunction() {
-              var fruits = ["Banana", "Orange", "Apple", "Mango"];
-              fruits.myUcase();
-              console.log(fruits);
-          }
-          myFunction();
 
 
           // 把二维数组扁平化---------------------------------------------------------------
@@ -188,8 +137,35 @@
           //es6 arry展開
           let numbers2 = [1, 2, 3];
           let newNumbers = [...numbers2, 4]; //新的array
-          console.log(newNumbers);
+          console.log(newNumbers);//[1, 2, 3, 4]
 
+                    
+          //arguments 使用foreach--------------------------------------------------------
+          //https://www.casper.tw/javascript/2017/12/26/javascript-array/
+          const callAll = function() {
+            console.log(arguments);
+            let thisPeople = [...arguments];
+            // arguments.forEach is not a function
+            thisPeople.forEach((arg) => {
+                console.log(arg)
+            });
+          }
+          callAll(1, 2, 3);
+
+
+          //Array创建新方法(toUpperCase)-------------------------------------------------------
+          Array.prototype.myUcase = function() {
+            for (i = 0; i < this.length; i++) {
+              this[i] = this[i].toUpperCase();
+            }
+          }
+
+          function myFunction() {
+              var fruits = ["Banana", "Orange", "Apple", "Mango"];
+              fruits.myUcase();
+              console.log(fruits);
+          }
+          myFunction();
 
           //array-雙指針---------------------------------------------------------
           var arr = [3, 3, 3, 4, 2, 2, 2, 4];
@@ -211,20 +187,33 @@
           }
           console.log(result);
 
-          
-          //arguments 使用foreach--------------------------------------------------------
-          //https://www.casper.tw/javascript/2017/12/26/javascript-array/
-          const callAll = function() {
-              console.log(arguments);
-              let thisPeople = [...arguments];
-              // arguments.forEach is not a function
-              thisPeople.forEach((arg) => {
-                  console.log(arg)
-              });
+          //array_fibonacci[0,1,1,2,3]--------------------------------------------------------------
+          //https://www.delftstack.com/zh-tw/howto/javascript/javascript-fibonacci/
+          function fiboncciFn(number) {
+            var fibonacci = [];
+            fibonacci[0] = 0;
+            fibonacci[1] = 1;
+            for (var i = 2; i <= number; i++) {
+              fibonacci[i] = fibonacci[i - 2] + fibonacci[i - 1];
+              // console.log(i, fibonacci[i - 2], fibonacci[i - 1], fibonacci[i - 2] + fibonacci[i - 1])
+              // 2 0 1 1
+              // 3 1 1 2
+              // 4 1 2 3
+              // 5 2 3 5
+            }
+            console.log(fibonacci);
           }
-          callAll(1, 2, 3);
+          fiboncciFn(10)
         </script>
       </xmp>
     </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://pjchender.dev/javascript/js-array/" target="_blank">array</a>
+      </li>
+    </ul>
+    <!-- call(),apply(),tostring(),join(),concat(),[...[array]],slice -->
   </body>
 </html>

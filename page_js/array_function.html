@@ -54,10 +54,6 @@
           });
           console.log(deduped); // [2, 'a']
 
-          //去除陣列中重複的元素 new Set
-          let arr = ['aaron', 'po', 'aaron', 'po', 'chung'];
-          let arrKeepUniqueElements = [...new Set(arr)];
-
 
           //選出2倍數
           var number = ['1', '2', '3', '4', '5'];
@@ -67,15 +63,10 @@
 
 
           //返回不一樣陣列的值
-          const without = (array, filtered) => array.filter(n => n != filtered);
+          const without = (array, array2) => array.filter(n => n != array2);
+
 
           //map不會改變原本的陣列內容，根据函数结果返回一个新数组---------------------------------------------------------------
-          var number = [1, 2, 3];
-          var numbers = number.map(function(n) {
-              return n + 1;
-          }); // [2, 3, 4]
-          console.log(numbers); // [1, 2, 3]
-
 
           //2.传入三个参数，分别是当前成员、当前位置和数组本身。
           [1, 2, 3].map(function(elem, index, arr) {
@@ -96,6 +87,7 @@
           [1, 2].map(function(e) {
                   return this[e];
               }, arr) // ['b', 'c']
+
 
           //5.数组的空位
           var f = function(n) {
@@ -152,7 +144,7 @@
           }, "")
 
 
-          //自訂
+          //自訂sum
           Array.prototype.sum = function() {
               return this.reduce(function(partial, value) {
                   return partial + value;
@@ -310,5 +302,6 @@
         </script>
       </xmp>
     </pre>
+    filter,find,every,some,map,reduce
   </body>
 </html>
