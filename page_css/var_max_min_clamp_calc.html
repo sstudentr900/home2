@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>var (--變數名稱)</h2>
+    <p>用到的變數都放在 :root 選取器內</p>
+    <pre class="prettyprint">
+      <xmp>
+        :root {
+          --pink: pink;
+        }
+        p {
+          color: var(--pink);
+        }
+      </xmp>
+    </pre>
+    <h2>max()</h2>
+    <p>max()定義了一個數學運算最大值，括號內可以包含多個數值，使用逗號分隔，計算後得到的值就是多個數值的「最大值」。舉例來說，如果有個 div 寬度是 80vw，但鎖定最小寬度為 200px。( 80vw 代表視窗寬度的 80% )</p>
+    <h3>過去的寫法：</h3>
+    <pre class="prettyprint">
+      <xmp>
+        div{
+          width:80vw;
+          min-width:200px;
+        }
+      </xmp>
+    </pre>
+    <h3>換成max()之後：</h3>
+    <pre class="prettyprint">
+      <xmp>
+        div{
+          width:max(80vw, 200px); //寬度最小是 200px，否則就使用 80vw
+        }
+      </xmp>
+    </pre>
+    <h3>範例</h3>
+    <style>
+      .box {
+        background: #fff2ea;
+        padding: 15px 30px;
+      }
+      .widthMax{
+        width: max(70%, 200px);
+      }
+    </style>
+    <div class="codeDemo">
+      <div class="box widthMax">max() example - 200px limit</div>
+    </div>
+    <h2>min()</h2>
+    <p>min()定義了一個數學運算的最小值，括號內可以包含多個數值，使用逗號分隔，計算後得到的值就是多個數值的「最小值」。舉例來說，如果有個 div 寬度是 80vw，但鎖定最最大寬度為 200px。</p>
+    <h3>過去的寫法：</h3>
+    <pre class="prettyprint">
+      <xmp>
+        div{
+          width:80vw;
+          max-width:200px;
+        }
+      </xmp>
+    </pre>
+    <h3>換成min()之後：</h3>
+    <pre class="prettyprint">
+      <xmp>
+        div{
+          width:min(80vw, 200px);
+        }
+      </xmp>
+    </pre>
+    <h3>範例</h3>
+    <style>
+      .widthMix{
+        width: min(70%, 200px); 
+      }
+    </style>
+    <div class="codeDemo">
+      <div class="box widthMix">max() example - 200px limit</div>
+    </div>
+
+    <h2>clamp()</h2>
+    <p>clamp()包含三個數值，定義「最大值、最小值以及中間的數值」，效果等同於：</p>
+    <h3>過去的寫法：</h3>
+    <pre class="prettyprint">
+      <xmp>
+        div{
+          width: 100%;
+          min-width:200px;
+          max-width:300px;
+        }
+        </xmp>
+    </pre>
+    <h3>換成clamp()之後：</h3>
+    <pre class="prettyprint">
+      <xmp>
+        div{
+          clamp(200px, 100%, 300px);
+        }
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.oxxostudio.tw/articles/202011/css-max-min-clamp-calc.html" target="_blank">深入理解 CSS 的 max、min、clamp、calc</a>
+      </li>
+      <li>
+        <a href="https://stackdiary.com/css-math-functions" target="_blank">max()</a>
+      </li>
+      <li>
+        <a href="https://w3c.hexschool.com/blog/21985acb" target="_blank">原生 CSS 變數運用技巧（CSS Variables）</a>
+      </li>
+    </ul>
+  </body>
+</html>

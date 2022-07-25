@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>object</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+          .fit_contain{
+            /* 圖片大小:維持比例*/
+            object-fit: contain;
+          }
+          .fit_cover{
+            /* 圖片大小:填滿*/
+            object-fit: cover;
+          }
+          .position_center{
+            /* 圖片位置:置中 */
+            object-position: center;
+          }
+          .position_top{
+            /* 圖片位置:置上 */
+            object-position: top;
+          }
+        </style>
+      </xmp>
+    </pre>
+    <h3>範例</h3>
+    <style>
+      .fit_cover{
+        object-fit: cover;
+      }
+      .position_center{
+        object-position: center;
+      }
+      .position_top{
+        object-position: top;
+      }
+    </style>
+    <div class="codeDemo flex">
+      <div class="col_3">
+        <div class="img">
+          <img class="fit_cover position_center" src="https://justmarkup.com/iceland/img/l/DSCF3732.JPG" alt="">
+        </div>
+        <p>cover,center</p>
+      </div>
+      <div class="col_3">
+        <div class="img">
+          <img class="fit_cover position_top" src="https://justmarkup.com/iceland/img/l/DSCF3732.JPG" alt="">
+        </div>
+        <p>cover,top</p>
+      </div>
+    </div>
+    <h2>background</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+          .ba_size_cover{
+            /* 圖片大小:填滿*/
+            background-size: cover;
+          }
+          .ba_position_bottom{
+            /* 圖片位置:置底 */
+            background-position: bottom;
+          }
+        </style>
+      </xmp>
+    </pre>
+    <h3>範例</h3>
+    <style>
+      .codeDemo .img2{
+        background-image: url(https://justmarkup.com/iceland/img/l/DSCF3732.JPG);
+        background-repeat: no-repeat;
+        height: 120px;
+      }
+      .ba_size_cover{
+        background-size: cover;
+      }
+      .ba_position_bottom{
+        background-position: bottom;
+      }
+    </style>
+    <div class="codeDemo flex">
+      <div class="col_3">
+        <div class="img2 ba_size_cover"></div>
+        <p>cover,center</p>
+      </div>
+      <div class="col_3">
+        <div class="img2 ba_size_cover ba_position_bottom"></div>
+        <p>cover,bottom</p>
+      </div>
+    </div>
+    <h2>mix-blend-mode</h2>
+    <p>混和圖片</p>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+          img {
+            /*混和*/
+            mix-blend-mode: multiply;
+          }
+        </style>
+      </xmp>
+    </pre>
+    <h3>範例</h3>
+    <style>
+        .mix .col_3:hover {
+          background-color: #eee;
+        }
+
+        .mix img {
+          mix-blend-mode: multiply;
+        }
+    </style>
+    <div class="codeDemo flex mix">
+      <div class="col_3">
+          <img src="http://payload54.cargocollective.com/1/2/92802/3398657/beastwars%20in%20raglan.jpg"/>
+      </div>
+    </div>
+    <h2>background-img</h2>
+    <p>多個背景圖</p>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+          .img{
+            background-image:
+            url(https://mdn.mozillademos.org/files/11305/firefox.png),
+            linear-gradient(to right, rgba(30, 75, 115, 1),  rgba(255, 255, 255, 1));
+          }
+        </style>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://blog.camel2243.com/2017/01/21/css-object-fit-object-position-%E8%AA%BF%E6%95%B4%E7%BD%AE%E6%8F%9B%E5%85%83%E7%B4%A0img-%E7%AD%89%E7%9A%84%E5%85%A7%E5%AE%B9/" target="_blank">object-fit
+          / object-position 調整置換元素</a>
+      </li>
+    </ul>
+  </body>
+</html>

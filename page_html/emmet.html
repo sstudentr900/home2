@@ -1,95 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/customPrism.css">
-        <link rel="stylesheet" href="../css/prism.css">
-         <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-        
-    </head>
-    <body id="program">
-        <h2>前端開發神器 Emmet</h2>
-        <p>div#container>p.title+div.body>span.snippet+img[src="wfublog.jpg"]</p>
-        <pre>
-            <code class="language-markup">
-            <script type="prism-html-markup">
-                //產生HTML
-                <div id="container">
-                    <p class="title"></p>
-                    <div class="body">
-                        <span class="snippet"></span>
-                        <img src="wfublog.jpg" alt="">
-                    </div>
-                </div>
-            </script>
-            </code>
-        </pre>
-        <h2>括號 () 搭配乘號 *</h2>
-        <p>#WFU>ul>(li>a)*3</p>
-        <pre>
-            <code class="language-markup">
-            <script type="prism-html-markup">
-                //產生HTML
-                <div id="WFU">
-                    <ul>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                        <li><a href=""></a></li>
-                    </ul>
-                </div>
-            </script>
-            </code>
-        </pre>
-        <h2>續編功能 $</h2>
-        <p>ul>.wfu$*3</p>
-        <pre>
-            <code class="language-markup">
-            <script type="prism-html-markup">
-                //產生HTML
-                <ul>
-                    <li class="wfu1"></li>
-                    <li class="wfu2"></li>
-                    <li class="wfu3"></li>
-                </ul>
-            </script>
-            </code>
-        </pre>
-        <p>ul>.wfu$$*3</p>
-        <pre>
-            <code class="language-markup">
-            <script type="prism-html-markup">
-                //產生HTML
-                <ul>
-                    <li class="wfu01"></li>
-                    <li class="wfu02"></li>
-                    <li class="wfu03"></li>
-                </ul>
-            </script>
-            </code>
-        </pre>
-        <h2>續編功能指定起始數從 5 開始編 $@N</h2>
-        <p>ul>li.wfu$@5*3</p>
-        <pre>
-            <code class="language-markup">
-            <script type="prism-html-markup">
-                //產生HTML
-                <ul>
-                    <li class="wfu5"></li>
-                    <li class="wfu6"></li>
-                    <li class="wfu7"></li>
-                </ul>
-            </script>
-            </code>
-        </pre>
-        <hr>
-        <h4>參考</h4>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>前端開發神器 Emmet</h2>
+  <p>div#container>p.title+div.body>span.snippet+img[src="wfublog.jpg"]</p>
+  <pre class="prettyprint">
+    <xmp>
+      <!-- 產生HTML -->
+      <div id="container">
+        <p class="title"></p>
+        <div class="body">
+          <span class="snippet"></span>
+          <img src="wfublog.jpg" alt="">
+        </div>
+      </div>
+    </xmp>
+  </pre>
+  <h2>括號 () 搭配乘號 *</h2>
+  <p>#WFU>ul>(li>a)*3</p>
+  <pre class="prettyprint">
+    <xmp>
+      <!-- 產生HTML -->
+      <div id="WFU">
         <ul>
-            <li>
-                <a href="https://www.wfublog.com/2017/08/emmet-sublime-text.html" target="_blank">前端開發神器 Emmet</a>
-            </li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
+          <li><a href=""></a></li>
         </ul>
-    </body>
+      </div>
+    </xmp>
+  </pre>
+  <h2>^ (回到上一層)</h2>
+  <p>div>p^div</p>
+  <pre class="prettyprint">
+    <xmp>
+      <!-- 產生HTML -->
+      <div>
+        <p></p>
+      </div>
+      <div></div>
+    </xmp>
+  </pre>
+  <h2>續編功能 $</h2>
+  <p>ul>.wfu$*3</p>
+  <pre class="prettyprint">
+    <xmp>
+      <!-- 產生HTML -->
+      <ul>
+        <li class="wfu1"></li>
+        <li class="wfu2"></li>
+        <li class="wfu3"></li>
+      </ul>
+    </xmp>
+  </pre>
+  <p>ul>.wfu$$*3</p>
+  <pre class="prettyprint">
+    <xmp>
+      <!-- 產生HTML -->
+      <ul>
+        <li class="wfu01"></li>
+        <li class="wfu02"></li>
+        <li class="wfu03"></li>
+      </ul>
+    </xmp>
+  </pre>
+  <h2>續編功能指定起始數從 5 開始編 @</h2>
+  <p>ul>li.wfu$@5*3</p>
+  <pre class="prettyprint">
+    <xmp>
+      <!-- 產生HTML -->
+      <ul>
+        <li class="wfu5"></li>
+        <li class="wfu6"></li>
+        <li class="wfu7"></li>
+      </ul>
+    </xmp>
+  </pre>
+  <h2>[](設定屬性)</h2>
+  <p>div[titl border='1']</p>
+  <pre class="prettyprint">
+    <xmp>
+      <!-- 產生HTML -->
+      <div titl="" border="1"></div>
+    </xmp>
+  </pre>
+  <h2>{}(輸入內容)　　注意：此div不可省略!!!</h2>
+  <p>div{hello}</p>
+  <pre class="prettyprint">
+    <xmp>
+      <!-- 產生HTML -->
+      <div>hello</div>
+    </xmp>
+  </pre>
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://www.wfublog.com/2017/08/emmet-sublime-text.html" target="_blank">前端開發神器 Emmet</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10265761" target="_blank">快速打出HTML的代碼，超好用的Emmet語法！</a>
+    </li>
+  </ul>
+</body>
+
 </html>

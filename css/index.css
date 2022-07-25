@@ -121,9 +121,11 @@ h4 {
 p {
     line-height: 1.6;
 }
-.flex {
+.flex{
     display: flex;
+    flex-wrap: wrap;
 }
+
 /*index_content-------------------------------------- ---------------*/
 .index_content {
     display: flex;

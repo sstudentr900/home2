@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>flex-wrap:</h2>
+    <ol>
+      <li>nowrap (預設值)</li>
+      <li>wrap (換行)</li>
+      <li>wrap-reverse (換行，且行順序反轉)</li>
+    </ol>
+    <h2>flex-flow</h2>
+    <ol>
+      <li>flex-flow是flex-direction和flex-wrap的縮寫</li>
+      <li>flex-flow:column wrap;</li>
+    </ol>
+    <h2>justify-content</h2>
+    <ol>
+      <li>Flex-start </li>
+      <li>Flex-end</li>
+      <li>Center 中間</li>
+      <li>Space-between 是平均分配「元素」位置，但左右兩側會貼齊主軸的起點、終點</li>
+      <li>Space-around 是平均分配「元素」位置，但左右兩側的間距會較小</li>
+      <li>Space-evenly 是「元素」和「左右兩側」的間距皆相同</li>
+    </ol>
+    <h2>align-item</h2>
+    <ol>
+      <li>Stretch Stretch是align-item的預設值，會往交錯軸方向將內元素全部填滿
+        如果你有設置height，則不會起作用</li>
+      <li>flex-start 從交錯軸的「起點」開始排
+      </li>
+      <li>flex-end 從交錯軸的「終點」開始排
+      </li>
+      <li>center</li>
+      <li>baseline</li>
+    </ol>
+    <h2>flex-direction</h2>
+    <ol>
+      <li>row (預設值，由左至右，從上到下)</li>
+      <li>row-reverse (排列方向和row一樣，但內元件順序會反轉)</li>
+      <li>column (先從上到下，再由左至右)</li>
+      <li>column-reverse (排列方向和column一樣，但內元件順序會反轉)</li>
+    </ol>
+    <h2>Flex (flex-grow、flex-shrink、flex-basis)</h2>
+    <ol>
+      <li>Flex-grow 預設值為0，它會依照你設定的值去分配剩餘空間</li>
+      <li>Flex-shrink 壓縮比例，預設值為1，代表大家所壓縮的比例一樣</li>
+    </ol>
+    <h2>Responsive Gap for Flexbox</h2>
+    <p>place-content 需搭配 grid</p>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+            .flex {
+              gap: 10px; /*X,Y間距*/
+              display: flex;
+            }
+            .col-4 {
+              flex: calc((100% - 40px)/4); /* 120px=>10(間距)*4 */
+              height: 100px;
+              display: grid;
+              place-content: center; /*center center*/
+              background-color: #fff;
+              padding: 10px 15px;
+            }
+        </style>
+      </xmp>
+    </pre>
+    <h3>範例</h3>
+    <style>
+        .flex {
+          gap: 10px; /*X,Y間距*/
+          display: flex;
+        }
+        .col-4 {
+          flex: calc((100% - 40px)/4); /* 120px=>10(間距)*4 */
+          height: 100px;
+          display: grid;
+          place-content: center; /*center center*/
+          background-color: #fff;
+          padding: 10px 15px;
+        }
+    </style>
+    <div class="codeDemo">
+      <div class="flex">
+        <div class="col-4">1</div>
+        <div class="col-4">2</div>
+        <div class="col-4">3</div>
+        <div class="col-4">4</div>
+        <div class="col-4">5</div>
+        <div class="col-4">6</div>
+      </div>
+    </div>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10267398" target="_blank">HTML - 網頁排版超強神器，CSS Flex到底是什麼？</a>
+      </li>
+      <li>
+        <a href="https://stackdiary.com/css-math-functions/" target="_blank">Responsive Gap for Flexbox</a>
+      </li>
+      <li>
+        <a href="https://brandonzhang.cn/posts/use-calc-function-on-flex-basis/" target="_blank">calc()函数可以让flexbox省去媒体查询</a>
+      </li>
+    </ul>
+  </body>
+</html>

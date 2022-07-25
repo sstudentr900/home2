@@ -1,6 +1,5 @@
 /*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
 .prettyprint {
-  /* background: #1d1f21; */
   font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
   border: 0 !important;
   background: #1e293b;
@@ -10,12 +9,15 @@
   line-height: 1.4;
   font-size: 16px;
 }
-.prettyprint xmp{
+
+.prettyprint xmp {
   margin: -20px 0 -40px 0;
 }
-.prettyprint xmp span{
+
+.prettyprint xmp span {
   line-height: 1.4;
 }
+
 .prettyprint .pln {
   color: #e6e9ed;
 }
@@ -111,77 +113,73 @@
   }
 
   /* declaration */
-
   .prettyprint .dec {
     color: #ac92ec;
   }
 
   /* variable name */
-
   .prettyprint .var {
     color: #e6e9ed;
   }
 
   /* function name */
-
   .prettyprint .fun {
     color: #e6e9ed;
   }
 }
 
+
+
+/* program */
 #program {
   max-width: 920px;
   margin: auto;
 }
 
-#program>h1,
-#program>h2,
-#program>h3,
-#program>h4 {
+#program h1,
+#program h2,
+#program h3,
+#program h4 {
   font-weight: bold;
   font-size: 28px;
   color: var(--title);
 
 }
 
-/* #program>h1{
-    font-size: 2.2rem;
-    margin: 24px 0;
-} */
-#program>h2:nth-child(1) {
+#program h2:nth-child(1) {
   margin-top: 0;
 }
 
-#program>h2 {
+#program h2 {
   margin: 62px 0 28px;
   border-left: 4px solid var(--blue);
   padding-left: 15px;
 }
 
-#program>h3 {
+#program h3 {
   font-size: 22px;
   margin: 62px 0 22px;
 }
 
-#program>h2,
-#program>h3 {
+#program h2,
+#program h3 {
   display: flex;
   align-items: center;
 }
 
-#program>h2 a,
-#program>h3 a {
+#program h2 a,
+#program h3 a {
   color: var(--blue);
   font-size: 18px;
   margin-left: 10px;
 }
 
-#program>h4 {
+#program h4 {
   font-size: 18px;
   margin: 32px 0 0;
 }
 
-#program>p {
+#program p {
   font-size: 15px;
   line-height: 1.7;
   color: var(--text);
@@ -189,47 +187,26 @@
   letter-spacing: 1px;
 }
 
-/* #program>code{
-    font-weight: bold;
-    color: var(--title);
-    padding: 3px;
-} */
-/* #program>b{
-    line-height: 1.7;
-    color: var(--title);
-    margin: 16px 0;
-    letter-spacing: 1px;
-    font-weight: bold;
-} */
-#program>a {
+#program a {
   line-height: 1.7;
 }
 
-#program>pre {
+#program pre {
   margin-bottom: 64px;
 }
 
-#program>pre[class*=language-] {
+#program pre[class*=language-] {
   background: #1e293b;
   display: flex;
 
 }
 
-:root body.dark #program>pre[class*=language-] {
+:root body.dark #program pre[class*=language-] {
   background: #1e293b;
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
 }
 
-/* #program>pre[class*=language-] code{
-    margin-left: -60px;
-    width: calc(100% + 60px);
-    
-} */
-/* #program> code[class*=language-],
-#program> pre[class*=language-]{
-    font-family: inherit;
-} */
-#program>hr {
+#program hr {
   border-color: var(--solid);
   border-bottom: none;
   border-left: none;
@@ -237,72 +214,76 @@
   margin: 30px 0 40px;
 }
 
-#program>img {
+/* #program>img {
   width: 100%;
   height: auto;
-}
+} */
 
-#program>ol {
+#program ol {
   margin: 24px 0;
 }
 
-#program>ol li {
+#program ol li {
   color: var(--text);
   line-height: 1.5;
 }
 
-#program>h2 span,
-#program>p span,
-#program>ol li span {
+#program h2 span,
+#program p span,
+#program ol li span {
   color: var(--blue);
   padding: 0 5px;
 }
 
-#program>ul {
+#program ul {
   margin-bottom: 120px;
 }
-#program>ul li{
+
+#program ul li {
   line-height: 1.5;
 }
-#program>ul a {
+
+#program ul a {
   color: var(--blue);
-
 }
-
-/*單獨頁*/
-body#program>{
-  padding: 60px 20px;
-}
-
-body#program>ul a {
-  text-decoration: none;
-  color: rgb(32 171 253);
-}
-
-body#program>ul {
-  list-style: none;
-  padding: 0;
-}
-
-/*codeDemo*/
-#program>.codeDemo {
+#program .codeDemo {
   overflow: auto;
   resize: horizontal;
   padding: 1.5rem;
   background: #1e293b;
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
 }
-#program .flex-center {
-    display: flex;
-    justify-content: center;
+#program .flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /*X,Y間距*/
 }
-/**/
-.codeDemo{
-    overflow: auto;
-    resize: horizontal;
-    padding: 1.5rem;
-    background: #1e293b;
-    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%);
-    display: flex;
-    justify-content: center;
+#program .flex-center{
+  place-content: center;/*center center*/
+}
+#program .col_3{
+  flex: 0 1 calc((100% - calc( 10px * 3) )/3); /*width 120=>30*4*/
+}
+#program .col_3 p{
+  text-align: center;
+  margin: 0;
+}
+#program img{
+  width: 100%;
+  height: auto;
+}
+
+/*單獨頁*/
+body#program{
+  padding: 60px 20px;
+}
+
+body#program ul a {
+  text-decoration: none;
+  color: rgb(32 171 253);
+}
+
+body#program ul {
+  list-style: none;
+  padding: 0;
 }
