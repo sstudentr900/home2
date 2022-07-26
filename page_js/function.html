@@ -10,6 +10,78 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
+    <h2>作用域</h2>
+    <h3>var不存在塊集作用域,if() for()</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          function fun() {
+            for (var i = 0; i <= 3; i++) {
+                console.log(i);
+            }
+            console.log(i) //4
+            var i;
+            console.log(i); //undefined
+          }
+          fun();
+        </script>
+      </xmp>
+    </pre>
+    <h3>var命令只能在函数内部声明，在其他区块中声明，一律都是全局变量</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          if (true) {
+            var x = 5;
+          }
+          console.log(x);  // 5
+        </script>
+      </xmp>
+    </pre>
+    <h3>函数本身也是一个值，也有自己的作用域。它的作用域与变量一样，就是其声明时所在的作用域，与其运行时所在的作用域无关</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var a = 1;
+          var x = function () {
+              console.log(a);//1
+          };
+          function f() {
+              var a = 2;
+              x();
+          }
+          f() // 1
+        </script>
+      </xmp>
+    </pre>
+    <h3>當函數裡面沒有X會往外找X</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var x = 10;
+
+          function func() {
+            console.log(x);
+          }
+          func(); //10
+        </script>
+      </xmp>
+    </pre>
+    <h3>當函數裡面有var會已裡面var為主</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var x = 10;
+          function func() {
+              console.log(x); //undefined
+              var x = 20;
+              console.log(x); //20
+          }
+          func();
+        </script>
+      </xmp>
+    </pre>
+    <h2>let(更好的var),const(值不再改變)</h2>
     <h2>arrow</h2>
     <pre class="prettyprint">
       <xmp>
@@ -24,10 +96,19 @@
             console.log(name);
           }
 
-          //單一運算後直接回傳時
+          //當只有一個傳入值運算後直接回傳值
           const callMe6 = num => console.log(name);
 
           //在箭頭函式中沒有 bind()，且 apply() 及 call() 傳入的 this 值會被忽略
+
+
+          //回傳Object
+          [].map(function(preson) {
+            return {
+              name: preson.name
+            };
+          })
+          [].map(({name})=> ({name: name}))
         </script>
       </xmp>
     </pre>
@@ -105,29 +186,34 @@
             console.log(args);//['b','c']
         }
         callMore('a', 'b', 'c');
-
-
-        //arguments轉成數組apply
+        </script>
+      </xmp>
+    </pre>
+    <h2>arguments轉成數組apply</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //apply
         function show(){
           var args=Array.prototype.concat.apply([1,2,3], arguments);
           console.log(args);
         }
         show(1,2,3,4);//[1, 2, 3, 1, 2, 3, 4]
 
-        //arguments轉成數組
+        //apply
         function show(){
           var args=Array.prototype.slice.apply(arguments);
           console.log(args);
         }
         show(1,2,3,4);//[1, 2, 3, 4]
 
-        //arguments轉成數組
+        //for
         var args = [];
         for (var i = 0; i < arguments.length; i++) {
           args.push(arguments[i]);
         }
 
-        //arguments轉成數組[...arguments]
+        //[...arguments]
         //https://www.casper.tw/javascript/2017/12/26/javascript-array/
         const callAll = function() {
           // console.log(arguments);
@@ -136,14 +222,18 @@
         callAll(1, 2, 3);
 
 
-        //arguments轉成數組Array.from(arguments)
+        //Array.from(arguments)
         function sumArguments() {
               return Array.from(arguments).reduce((sum, num) => sum + num);
           }
           sumArguments(1, 2, 3); // => 6
-
-
-        //解構
+        </script>
+      </xmp>
+    </pre>
+    <h2>解構</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         function greet({
             name,
             greet = 'Nice to meet you'
@@ -169,7 +259,6 @@
       </xmp>
     </pre>
     <h2>阻止函數運行</h2>
-    <p>use strict</p>
     <pre class="prettyprint">
       <xmp>
         <script>

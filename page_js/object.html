@@ -11,10 +11,10 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
+    <h2>object寫法</h2>
     <pre class="prettyprint">
       <xmp>
         <script>
-        //object寫法--------------------------------------------------------------------------------
         //bad
         // var person = new object();
         // person.name = 'andy';
@@ -28,9 +28,13 @@
                 name: 'bb'
             }],
         }
-
-
-        //object方法--------------------------------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>object方法</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var person = {
             speak: function() {
                 console.log('hello');
@@ -41,8 +45,13 @@
                 console.log('hello');
             }
         }
-
-        //object 屬性名稱可以是表達式--------------------------------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>object 屬性名稱可以是表達式</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         let id = 0;
         const users = {
             [`user${++id}`]: id,
@@ -50,8 +59,14 @@
             [`user${++id}`]: id,
         };
         console.log(users); // {user1: 1, user2: 2, user3: 3}
-
-        //es6 物件相加--------------------------------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>物件合并</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //es6 
         //bad
         var person = {
             name: 'Andy',
@@ -73,7 +88,7 @@
         console.log(newPerson);
 
 
-        //数组对象合并--------------------------------------------------------------------------------
+        //数组对象合并
         [].concat.call({
             a: 1
         }, {
@@ -85,9 +100,13 @@
         [2].concat({
             a: 1
         }); // [2, {a: 1}]
-
-
-        // object取值--------------------------------------------------------------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>object取值</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var ab = [{
             name: 'kk'
         }, {
@@ -115,78 +134,63 @@
         console.log(gh.items[0].name);
 
 
-        // keys(object)方法返回一个数组，包含特定对象的所有键名。
-        // values(object)方法返回一个数组，包含特定对象的所有键值。
-        var o = {
-            'p1': 'a',
-            'p2': 'b'
-        };
-        Object.keys(o); // ["p1", "p2"]
-        Object.values(o); // ["a", "b"]
-        Object.entries(o); //[[p1:a],[p2:b]]
-
-
-        //https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/keys
-        // keys
+        //keys,values,rntries
         var obj = {
             2: 'a',
+            0: 'c',
             1: 'b',
-            0: 'c'
         };
+        // keys 會自動排序 返回所有键名
         console.log(Object.keys(obj)); // console: ['0', '1', '2']
 
-        // keys會自動排序
+        //values 會自動排序 返回所有键值
+        console.log(Object.values(obj)); // [c, b, a]
+
+        //entries 會自動排序
+        console.log(Object.entries(obj)); // [[0, 'c'],[1, 'b'],[2, 'a']]
+        </script>
+      </xmp>
+    </pre>
+    <h2>object for</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var obj = {
             2: 'a',
+            0: 'c',
             1: 'b',
-            0: 'c'
         };
-        console.log(Object.keys(obj)); // console: ['0', '1', '2']
-
-        //values
-        let object = {
-            a: 1,
-            b: 2,
-            c: 3
-        };
-        console.log(Object.values(object)); // [1, 2, 3]
-
-        //entries
-        let object2 = {
-            a: 1,
-            b: 2,
-            c: 3
-        };
+        //for
+        for (const key in obj) {
+            console.log(key, obj[key]);
+            // 0 c
+            // 1 b
+            // 2 a
+        }
 
         //entries forEach
-        console.log(Object.entries(object2)); // [["a", 1],["b", 2],["c", 3]]
-        Object.entries(object2).forEach(([key, value]) => {
+        Object.entries(obj).forEach(([key, value]) => {
             console.log(key, value);
-            // a 1
-            // b 2
-            // c 3
+            // 0 c
+            // 1 b
+            // 2 a
         });
 
         //entries for
-        for (const [key, value] of Object.entries(object2)) {
+        for (const [key, value] of Object.entries(obj)) {
             console.log(key, value);
-            // a 1
-            // b 2
-            // c 3
+            // 0 c
+            // 1 b
+            // 2 a
         }
-
-        //entries for
-        //https://titangene.github.io/article/javascript-object-keys-values-entries.html
-        let items = {
-            width: 16,
-            height: 9
-        };
-        for (const key in items) {
-            console.log(key, items[key]);
-        }
-
-
-        //delete 單個物件移除其中一個--------------------------------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>object delete</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //delete 單個物件移除其中一個
         var someArray = {
             a: "1",
             b: "1"
@@ -195,7 +199,7 @@
         console.log(someArray) //{a: "1"}
 
 
-        //filter多個物件移除其中一個--------------------------------------------------------------------------------
+        //filter多個物件移除其中一個
         // https://stackoverflow.com/questions/10024866/remove-object-from-array-using-javascript
         var someArray = [{
             i: "1"
@@ -209,9 +213,13 @@
         });
         console.log(filtered) //[{i: "1"},{i: "3"}]
         console.log(someArray) //[{i: "1"},{i: "2"},{i: "3"}]
-
-
-        //sort--------------------------------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>object sort</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var someArray = [{
             name: "张三",
             age: 30
@@ -226,9 +234,13 @@
             return o1.age - o2.age;
         })
         console.log('someArray', someArray)
-
-
-        //find--------------------------------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>object find</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var s = [{
             "name": "001"
         }, {
@@ -240,9 +252,13 @@
             return c.name == '001'
         })
         console.log(a) //{name: '001'}
-
-
-        //findIndex 陣列中的索引位置-------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>object findIndex 陣列中的索引位置</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var toolMan = [{
             "name": "001"
         }, {
@@ -255,71 +271,64 @@
 
         // 刪除元素
         toolMan.splice(daddy, 1);
-
-
-
-
-
-        //資料複製------------------------------------------------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>object copy</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //https://ithelp.ithome.com.tw/articles/10269367
-        //error記憶體位置是同一個
         var user = {
             name: 'Mary',
-            age: 30
+            age: 30,
+            obj: {}
         }
+        //error記憶體位置是同一個
         var userCopy = user; //拷貝user物件的地址
         userCopy.age = 20;
-        console.log(user.age); //20
+        console.log(user.age); //30
         console.log(userCopy.age); //20
 
 
-
         //淺層拷貝Object.assign,{...}(無法複製物件裡的物件)
-        const person = {
-            name: '小王',
-            obj: {},
-        }
-        const person4 = Object.assign({}, person);
-        const person5 = {...person
-        };
-        console.log(person === person4, person === person5);
-        person4.obj.age = 16;
-        person4.name = 'fd';
-        console.log(person, person4, person5)
+        var userCopy = Object.assign({}, user);
+        userCopy.age = 20;
+        console.log(user.age); //30
+        console.log(userCopy.age); //20
+
+
+        //淺層拷貝{...}(無法複製物件裡的物件)
+        var userCopy = {...user};
+        userCopy.age = 20;
+        console.log(user.age); //30
+        console.log(userCopy.age); //20
 
 
         //深層拷貝{obj: {}} JSON.parse(JSON.stringify())
-        var a = {
-            name: 'a',
-            obj: {}
-        }
+        var userCopy = JSON.parse(JSON.stringify(user));
+        userCopy.age = 20;
+        console.log(user.age); //30
+        console.log(userCopy.age); //20
 
-        function data(param) {
-            const newData = JSON.parse(JSON.stringify(param));
-            return newData;
-        }
-        var b = data(a);
-        b.obj.age = 16;
-        console.log(a === b);
-        console.log(a, b)
-
-        //map拷貝
-        var user = [{
-            name: 'Mary',
-            age: 30
-        }]
-        var userChanged = user.map(function(person) {
-            var newPerson = {
-                name: person.name,
-                age: person.age + 10
-            };
-
-            return newPerson
-        })
-        console.log(userChanged.age) //40
-        console.log(user.age) //30
-
-        //deepCopy------------------------------------------------------------------------------------------------
+        //深層拷貝map()
+        // var userChanged = [user].map(function({name,age}) {
+        //     return {
+        //         name: name,
+        //         age: age
+        //     };
+        // })
+        // var userCopy = [user].map(({name,age})=> ({name: name,age: age}))
+        userCopy.age = 20;
+        console.log(user.age); //30
+        console.log(userCopy.age); //20
+        </script>
+      </xmp>
+    </pre>
+    <h2>object deepCopy</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //https://ithelp.ithome.com.tw/articles/10223178
         function deepCopy(obj, cache = new WeakMap()) {
             // 基本型別 & function
@@ -342,9 +351,14 @@
 
             return copy
         }
-
-
-        //總數--------------------------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>object 範例</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //總數
         let fruits = {
             apple: 2,
             banana: 3,
@@ -357,7 +371,7 @@
         console.log(fruitsToatl) //6
 
 
-        //更改資料結構--------------------------------------------------------------------------
+        //更改資料結構
         let fruitBasket = Object.entries(fruits).map(([fruitName, fruitCount]) => {
             return {
                 name: fruitName,
@@ -371,14 +385,14 @@
         //   {name: "orange", count: 1}
         // ]
 
-        //跳出迴圈 some()--------------------------------------------------------------------------
+        //跳出迴圈 some()
         Object.entries(fruits).some(([validKey, validValue]) => {
             if (validValue == 2) {
                 return true; //true跳出整个迴圈
             };
         })
 
-        //跳出迴圈 every()--------------------------------------------------------------------------
+        //跳出迴圈 every()
         Object.entries(fruits).every(([validKey, validValue]) => {
             if (validValue == 2) {
                 return false; //false跳出整个迴圈
@@ -387,12 +401,12 @@
 
 
 
-        //new map--------------------------------------------------------------------------
+        //new map
         //https://medium.com/appworks-school/javascript-map-%E7%89%A9%E4%BB%B6%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B-2e5511b7a580
 
 
 
-        //Symbol -------------------------------------------------------------------------------
+        //Symbol
         //https://ithelp.ithome.com.tw/articles/10239947
 
         //確保不會蓋掉之前的屬性

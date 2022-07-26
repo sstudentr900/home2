@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html>
-
-<head lang="en">
+<html lang="en">
+  <head>
     <meta charset="UTF-8">
-    <title></title>
-</head>
-
-<body>
-    <script>
-        //this 當前方法屬於誰她就是誰
-        //函數原本型態是window
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>this 當前方法屬於誰她就是誰</h2>
+    <p>函數原本型態是window</p>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         function fn1() {
             console.log(this); //window
         }
@@ -21,33 +26,42 @@
         oDiv.onclick = function() {
             alert(this); //this指的是oDiv
         }
+        </script>
+      </xmp>
+    </pre>
+    <h2>addEventListener需要用傳統函式</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //https://ithelp.ithome.com.tw/articles/10249940
+          btn.addEventListener('click', () => {
+              console.log(this) //window
+          })
+          btn.addEventListener('click', function() {
+              console.log(this) //btn
+          })
 
 
-        //https://ithelp.ithome.com.tw/articles/10249940
-        //addEventListener需要用傳統函式
-        btn.addEventListener('click', () => {
-            console.log(this) //window
-        })
-        btn.addEventListener('click', function() {
-            console.log(this) //btn
-        })
+          //https://pjchender.dev/javascript/js-arrow-function
+          var button = document.querySelector('button');
+          var arrowFn = () => {
+              // 建立 function 時 this 指 Window
+              console.log(this.constructor.name); // 執行 function 時 this 指 Window
+          };
+          var fn = function() {
+              // 建立 function 時 this 指 Window
+              console.log(this.constructor.name); // 執行 function 時 this 指 HTMLButtonElement
+          };
 
-
-        //https://pjchender.dev/javascript/js-arrow-function
-        var button = document.querySelector('button');
-        var arrowFn = () => {
-            // 建立 function 時 this 指 Window
-            console.log(this.constructor.name); // 執行 function 時 this 指 Window
-        };
-        var fn = function() {
-            // 建立 function 時 this 指 Window
-            console.log(this.constructor.name); // 執行 function 時 this 指 HTMLButtonElement
-        };
-
-        button.addEventListener('click', arrowFn);
-
-
-        //对象的方法
+          button.addEventListener('click', arrowFn);
+        </script>
+      </xmp>
+    </pre>
+    <h2>对象的this</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //
         var obj = {
             foo: function() {
                 console.log(this);
@@ -71,11 +85,15 @@
             }
         }
         var name = '李四';
-        var f = A.describe;
+        var f = A.describe; // this window
         f(); // "姓名：李四"
-
-
-        //4forEach数组处理方法中的this
+        </script>
+      </xmp>
+    </pre>
+    <h2>forEach的this</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var o = {
             v: 'hello',
             p: ['a1', 'a2'],
@@ -113,9 +131,14 @@
             }
         }
         o.f(); // hello a1// hello a2
-
-
-        //5-2.閉包this指向window
+        </script>
+      </xmp>
+    </pre>
+    <h2>閉包的this</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //5-2.
         var name = 'window';
         var obj = {
             name: 'obj',
@@ -139,19 +162,6 @@
             }
         }
         obj.fun()() //obj
-
-        //5-3.同上
-        var name = 'window';
-        var obj = {
-            name: 'obj',
-            fun: (function() {
-                var t = this;
-                return function() {
-                    return t.name;
-                }
-            }).call(obj)
-        }
-        obj.fun() //obj
 
         //5-3.閉包this指向obj
         var name = 'window';
@@ -187,11 +197,14 @@
             }
         }
         obj.fun() //obj
-
-
-        // https://ithelp.ithome.com.tw/articles/10267920
+        </script>
+      </xmp>
+    </pre>
+    <h2>範例</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var demo = '全域變數';
-
         function callDemo() {
             console.log(this.demo);
         }
@@ -211,7 +224,15 @@
         obj4.fuA(); //全域變數
         obj4.callDemo(); //物件2
         obj4.innerObj.callDemo(); //全域變數
-    </script>
-</body>
-
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10267920" target="_blank">This 是什麼</a>
+      </li>
+    </ul>
+  </body>
 </html>

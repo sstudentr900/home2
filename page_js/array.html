@@ -13,7 +13,7 @@
     <pre class="prettyprint">
       <xmp>
         <script>
-          //toString数组转为字串---------------------------------------------------------------
+          //toString数组转为字串
           var a7 = [1, 2, 3];
           a7.toString() // "1,2,3"
 
@@ -21,7 +21,7 @@
           a6.toString() // "1,2,3,4,5,6"
 
 
-          //join数组转为字串 ---------------------------------------------------------------
+          //join数组转为字串 
           var a8 = [1, 2, 3, 4];
           a8.join(' ') // '1 2 3 4'
           a8.join(' | ') // "1 | 2 | 3 | 4"
@@ -38,7 +38,7 @@
           };
           Array.prototype.join.call(obj, '-') // 'a-b'
 
-          //concat合并array(原陣列會被改變回傳的是被連結後的結果)--------------------------------------------------------
+          //concat合并array(原陣列會被改變回傳的是被連結後的結果)
           var arr = ['60', '22', '90'];
           var arr2 = ['5', '3', '9'];
           var kai = ["Robin"];
@@ -63,7 +63,7 @@
           }); // [2, {a: 1}]
 
 
-          //複製陣列不變原陣列---------------------------------------------------------------------------------------
+          //複製陣列不變原陣列
           //bad
           var a0 = [1, 2, 3];
           var b0 = a0;
@@ -87,7 +87,7 @@
 
 
 
-          //slice(array不會改變)---------------------------------------------------------------
+          //slice(array不會改變)
           var a2 = ['a', 'b', 'c'];
           a2.slice(0) // ["a", "b", "c"]
           a2.slice(1) // ["b", "c"]
@@ -100,7 +100,7 @@
           a2.slice(-2, -1) // ["b"]
 
           
-          //把陣列傳入函式做運算---------------------------------------------------------------
+          //把陣列傳入函式做運算
           function count(breakfast, lunch, dinner) {
               return breakfast + lunch + dinner;
           }
@@ -109,7 +109,7 @@
           console.log(count(...price)); // 80
 
 
-          // 把二维数组扁平化---------------------------------------------------------------
+          // 把二维数组扁平化
           var myArray = [
               [0, 8],
               [1, 2, 3],
@@ -140,7 +140,7 @@
           console.log(newNumbers);//[1, 2, 3, 4]
 
 
-          //Array创建新方法(toUpperCase)-------------------------------------------------------
+          //Array创建新方法(toUpperCase)
           Array.prototype.myUcase = function() {
             for (i = 0; i < this.length; i++) {
               this[i] = this[i].toUpperCase();
@@ -154,7 +154,7 @@
           }
           myFunction();
 
-          //array-雙指針---------------------------------------------------------
+          //array-雙指針-
           var arr = [3, 3, 3, 4, 2, 2, 2, 4];
           var i = 0;
           var j = 1;
@@ -174,7 +174,7 @@
           }
           console.log(result);
 
-          //array_fibonacci[0,1,1,2,3]--------------------------------------------------------------
+          //array_fibonacci[0,1,1,2,3]--
           //https://www.delftstack.com/zh-tw/howto/javascript/javascript-fibonacci/
           function fiboncciFn(number) {
             var fibonacci = [];

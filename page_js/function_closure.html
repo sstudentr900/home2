@@ -11,17 +11,14 @@
   </head>
   <body id="program">
     <h2>閉包</h2>
+    <ol>
+      <li>透過閉包讓 function 能夠有 private 變數</li>
+      <li>閉包是子函數可以使用父函數的局部變量</li>
+      <li>闭包的最大用处有两个，一个是可以读取函数内部的变量，另一个就是让这些变量始终保持在内存中，即闭包可以使得它诞生环境一直存在</li>
+    </ol>
     <pre class="prettyprint">
       <xmp>
         <script>
-          var counter = 0;
-          function add() {
-            return counter += 1;
-          }
-          add();
-          add();
-          add();// 计数器现在为 3
-
           function add(num) {
             var y = 10;
             return (x = 0) => num + x + y;
@@ -29,19 +26,20 @@
           //1.
           let addFn = add(5)
           console.log(addFn(8))//23
-          //2.
+
+          //2.call
           console.log(add(5).call(null,8))//23
-          //3.
+
+          //3.bind
+          let addFn1 = add(5).bind(null,8)
+          console.log(addFn1())//23
+
+          //4.
           console.log(add(5)(8))//23
         </script>
       </xmp>
     </pre>
     <h2>請寫出間隔一秒印出 1, 2, 3, 4, 5 的程式碼</h2>
-    <ol>
-      <li>透過閉包讓 function 能夠有 private 變數</li>
-      <li>閉包是子函數可以使用父函數的局部變量</li>
-      <li>闭包的最大用处有两个，一个是可以读取函数内部的变量，另一个就是让这些变量始终保持在内存中，即闭包可以使得它诞生环境一直存在</li>
-    </ol>
     <pre class="prettyprint">
       <xmp>
         <script>

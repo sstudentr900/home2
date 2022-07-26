@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html>
-
-<head lang="en">
+<html lang="en">
+  <head>
     <meta charset="UTF-8">
-    <title></title>
-    <script>
-        //https://ithelp.ithome.com.tw/articles/10195896--------------------------------------------------------------------------------
-        //bind 加入參數
-        function add(a, b) {
-            return a + b;
-        }
-        var add1 = add.bind(null, 1);
-        console.log(add1(2)); // 3
-        console.log(add1(4)); // 5
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>bind</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //傳統this
         var foo = {
             bar: 1,
@@ -34,74 +34,79 @@
                 }.bind(this));
             }
         }
-
-        //bind()
+        </script>
+      </xmp>
+    </pre>
+    <h3>obj bind()</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var counter = {
             count: 0,
             inc: function() {
                 this.count++;
             }
         };
-        //func是在全局环境中运行的，这时inc内部的this指向顶层对象window，所以counter.count是不会变的，反而创建了一个全局变量count。因为window.count原来等于undefined，进行递增运算后undefined++就等于NaN。
+        //coun為0
         var func = counter.inc;
         func();
         counter.count // 0
-        count // NaN
 
-        //解决这个问题，可以使用this方法，将inc内部的this绑定到counter对象。
+        //解决coun為0
         var func = counter.inc.bind(counter);
         func();
         counter.count // 1
 
-        //bind方法将inc方法内部的this，绑定到obj对象。结果调用func函数以后，递增的就是obj内部的count属性。
+        //绑定到obj
         var obj = {
             count: 100
         };
         var func = counter.inc.bind(obj);
         func();
         obj.count // 101
-
-        //bind比call方法和apply方法更进一步的是，除了绑定this以外，还可以绑定原函数的参数-------------------------------------------------------
-        var add = function(x, y) {
-            return x * this.m + y * this.n;
-        }
-        var obj = {
-            m: 2,
-            n: 2
-        };
-        var newAdd = add.bind(obj, 5);
-        newAdd(5) // 20
-            //上面代码中，bind方法除了绑定this对象，还将add函数的第一个参数x绑定成5，然后返回一个新函数newAdd，这个函数只要再接受一个参数y就能运行了。
-
-
-
-        //bind方法每运行一次，就返回一个新函数，这会产生一些问题。比如，监听事件的时候-------------------------------------------------------
-        //element.addEventListener('click', o.m.bind(o));
+        </script>
+      </xmp>
+    </pre>
+    <h3>bind方法每运行一次，就返回一个新函数，这会产生一些问题。比如，监听事件的时候</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //error
+        element.addEventListener('click', o.m.bind(o));
+        
         //正确的方法
-        //var listener = o.m.bind(o);
-        //element.addEventListener('click', listener);
-
-
-        //use strict 结合回调函数使用-------------------------------------------------------
-        //var counter = {
-        //    count: 0,
-        //    inc: function () {
-        //	        'use strict';
-        //	        this.count++;
-        //    }
-        //};
-        //function callIt(callback) {
-        //    callback();
-        //}
-        ////錯誤
-        //callIt(counter.inc)// TypeError: Cannot read property 'count' of undefined
-        ////修改
-        //callIt(counter.inc.bind(counter));
-        //counter.count // 1
-
-
-
-        //https://ithelp.ithome.com.tw/articles/10249601--------------------------------------------------------------------------------
+        var listener = o.m.bind(o);
+        element.addEventListener('click', listener);
+        </script>
+      </xmp>
+    </pre>
+    <h3>use strict 结合回调函数使用</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var counter = {
+            count: 0,
+            inc: function () {
+              'use strict';
+              this.count++;
+            }
+          };
+          function callIt(callback) {
+            callback();
+          }
+          //錯誤
+          callIt(counter.inc)// TypeError: Cannot read property 'count' of undefined
+          
+          //修改
+          callIt(counter.inc.bind(counter));
+          counter.count // 1
+        </script>
+      </xmp>
+    </pre>
+    <h2>bind, apply, call方法</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var num = 999
 
         var obj = {
@@ -140,34 +145,39 @@
         showNum.call(undefined, 10, 20); //this是window，回傳是在全域的num //999, 10, 20
         showNum.call(window, 10, 20); //this是window，回傳是在全域的num //999, 10, 20
         showNum.call(obj) === obj; // true
-
-
-        //apply傳入參數為陣列，call 則為逐項傳入--------------------------------------------------------------------------------
-        //參考 https://medium.com/schaoss-blog/%E4%B8%80%E6%AC%A1%E6%90%9E%E6%87%82%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%A9%A6%E6%9C%80%E6%84%9B%E5%95%8F%E7%9A%84-apply-bind-call-708f57518776
-
+        </script>
+      </xmp>
+    </pre>
+    <h2>apply傳入參數為陣列，call 則為逐項傳入</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         let str = '12345'
         Array.prototype.map.apply(str, [c => c ** 2]);
         // [1, 4, 9, 16, 25 ]
         Array.prototype.map.call(str, c => c ** 3);
         // [1, 8, 27, 64, 125 ]
-
-
-        //參數相加-------------------------------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h2>apply，call 參數相加</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //參考 https://ithelp.ithome.com.tw/articles/10195896
         //Array.from()： ES6 的語法，他的功能是 把類陣列物件轉換成陣列
-        var list = [1, 5, 8];
+        var list = [1, 5];
 
         function add() {
             return Array.from(arguments).reduce(function(sum, num) {
                 return sum + num;
             });
         }
-        console.log(add.call(null, 1, 2)); // 3
-        console.log(add.apply(null, list)); // 14
+        console.log(add.call(null, 1, 5)); // 6
+        console.log(add.apply(null, list)); // 6
 
-
-        //簡易 Polyfill-------------------------------------------------------------------------------
-        //參考 https://ithelp.ithome.com.tw/articles/10195896
+        
+        //Polyfill
         function bind(t, callback) {
             console.log(t, callback)
             var outerArgs = Array.from(arguments).slice(2);
@@ -186,16 +196,21 @@
 
         var addWithBind = bind(null, add, 1, 5);
         console.log(addWithBind(8)); // 14
-
-
-        //apply() 找出数组最大元素--------------------------------------------------------------------------------
-        var a = [10, 2, 4, 15, 9];
-        Math.max.apply(null, a)
-    </script>
-</head>
-
-<body>
-
-</body>
-
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10195896" target="_blank">JavaScript - call，apply，bind</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10249601" target="_blank">bind, apply, call方法</a>
+      </li>
+      <li>
+        <a href="https://medium.com/schaoss-blog/%E4%B8%80%E6%AC%A1%E6%90%9E%E6%87%82%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%A9%A6%E6%9C%80%E6%84%9B%E5%95%8F%E7%9A%84-apply-bind-call-708f57518776" target="_blank">apply傳入參數為陣列，call 則為逐項傳入</a>
+      </li>
+    </ul>
+  </body>
 </html>

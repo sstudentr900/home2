@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Promise</h2>
+    <p>then接收成功,catch接收失敗,finally不管成功失敗都會讀取</p>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //https://www.casper.tw/development/2020/02/16/all-new-promise/
+        function wait2(ran = 0) {
+            return new Promise((resolve, reject) => {
+                console.log('promise stare')
+                console.log('ran', ran)
+                if (ran>3) {
+                    resolve('then:' + ran)
+                } else [
+                    reject('catch:' + ran)
+                ]
+            })
+        }
+        wait2(1).then(data => {
+            console.log('1', data)
+            return wait2(1) //resolve
+        }).then(data => {
+            console.log('2', data) //resolve
+            return wait2(1)
+        }).then(data => {
+            console.log('3', data) //reject
+        }).catch(data => {
+            console.log(data)
+        }).finally(() => {
+            console.log('finally') 
+        })
+        </script>
+      </xmp>
+    </pre>
+    <h2>Promise.all</h2>
+    <p>全部執行完成後回傳陣列結果</p>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //https://www.casper.tw/development/2020/02/16/all-new-promise/
+        let wait3 = function(num) {
+            return new Promise((resolve, reject) => {
+                resolve(num);
+                reject();
+            })
+        }
+        Promise.all([wait3(1), wait3(2), wait3(3)]).then(res => console.log(res)) //[1,2,3]
+
+        //https://ithelp.ithome.com.tw/articles/10251786
+        const p1 = Promise.resolve('Hello World');
+        const p2 = Promise.reject('Error!');
+        Promise.all([p1, p2])
+            .then(success => {
+                console.log(success);
+            })
+            .catch(error => {
+                console.log(error); //Error! 
+            });
+
+            
+        //https://pjchender.dev/javascript/js-async-await
+        doubleAndAdd(1, 2).then((value) => {
+            console.log(`doubleAndAdd(a, b)is ${value}`);
+        });
+
+        async function doubleAndAdd(a, b) {
+            const [aAfterDouble, bAfterDouble] = await Promise.all([
+                doubleAfterOneSecond(a),
+                doubleAfterOneSecond(b),
+            ]);
+            console.log(
+                `a after double is ${aAfterDouble}. b after double is ${bAfterDouble}`
+            );
+            return aAfterDouble + bAfterDouble;
+        }
+
+        function doubleAfterOneSecond(params) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(params * 2);
+                }, 1000);
+            });
+        }
+        </script>
+      </xmp>
+    </pre>
+    <h2>Promise.race 回傳第一個</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        let wait4 = function(num) {
+          return new Promise((resolve, reject) => {
+            resolve(num);
+            reject(num);
+          })
+        }
+        Promise.race([wait4(1), wait4(2), wait4(3)]).then(res => console.log(res))
+        </script>
+      </xmp>
+    </pre>
+    <h2>async 回傳一個Promise物件</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //https://ithelp.ithome.com.tw/articles/10252140
+        async function func() {
+            return 10;
+        }
+        func() //Promise {<fulfilled>: 10}
+        </script>
+      </xmp>
+    </pre>
+    <h3>async 錯誤處理用then catch</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        function add(num1, num2) {
+            return new Promise((resolve, reject) => {
+                window.setTimeout(() => {
+                    reject(num1 + num2); //在這裏改成reject，模擬出錯
+                }, 1000)
+            })
+        }
+
+        async function func() {
+            const p1 = await add(10, 20);
+            const p2 = await add(30, 40);
+            return `第一次相加結果：${p1}，第二次相加結果：${p2}`
+        }
+
+        func()
+            .then(success => {
+                console.log(`成功！`, success)
+            })
+            .catch(error => {
+                console.log(`錯誤！`, `最後相加結果：${error}`) //錯誤！ 最後相加結果：30
+            });
+        </script>
+      </xmp>
+    </pre>
+    <h3>async 錯誤處理用try...catch</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        function add(num1, num2) {
+            return new Promise((resolve, reject) => {
+                window.setTimeout(() => {
+                    reject(num1 + num2); //在這裏改成reject，模擬出錯
+                }, 1000)
+            })
+        }
+
+        async function func() {
+            try {
+                const p1 = await add(10, 20);
+                const p2 = await add(30, 40);
+                console.log(`第一次相加結果：${p1}，第二次相加結果：${p2}`)
+
+            } catch (error) {
+                console.log(`錯誤！`, `最後相加結果：${error}`) //錯誤！ 最後相加結果：30
+            }
+        }
+
+        func()
+        </script>
+      </xmp>
+    </pre>
+    <h3>範例</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //https://wcc723.github.io/javascript/2017/12/30/javascript-async-await/
+        let runPromise = (someone, timer, success = true) => {
+            console.log(`${someone} 開始跑開始`);
+            return new Promise((resolve, reject) => {
+                // 傳入 resolve 與 reject，表示資料成功與失敗
+                if (success) {
+                    setTimeout(function() {
+                        // 3 秒時間後，透過 resolve 來表示完成
+                        resolve(`${someone} 跑 ${timer / 1000} 秒時間(fulfilled)`);
+                    }, timer);
+                } else {
+                    // 回傳失敗
+                    reject(`${someone} 跌倒失敗(rejected)`)
+                }
+            });
+        }
+
+        // 此段函式並不會影響其它函示的執行
+        runPromise('小明', 3000).then(someone => {
+            console.log('小明', someone)
+        });
+        // 以下這段 console 會在 promise 結束前就執行
+        console.log('這裡執行了一段 console');
+
+
+        //async 將 await 包在裡面
+        //Await 顧名思義就是等待，在這個 Promise 結束前後面的程式碼都無法被執行。 單線往下
+        const asyncRun = async() => {
+            let mingRun = await runPromise('小明', 2000);
+            let auntieRun = await runPromise('漂亮阿姨', 1500);
+            return `${mingRun}, ${auntieRun}`
+        }
+        asyncRun().then(string => {
+            console.log(string)
+        }).catch(response => {
+            console.log(string)
+        })
+
+        //沒有await 先到先執行
+        const asyncRun = async() => {
+            runPromise('小明', 2000).then(string => {
+                console.log(string)
+            });
+            runPromise('漂亮阿姨', 500).then(string => {
+                console.log(string)
+            });
+        }
+        asyncRun()
+        </script>
+      </xmp>
+    </pre>
+    <h2>async for</h2>
+    <p>如果想要在迴圈中使用 await，則可以使用一般的 for 迴圈、for await...of，或 map 搭配 Promise 的寫法，千萬不要使用 forEach</p>
+    <p>若有需要使用 filter 或 reduce 等其他處理陣列的方式，先等陣列的資料完整取得後再來呼叫這些方法</p>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        //https://pjchender.dev/javascript/js-async-await
+        //若想要在迴圈中使用 async / await 的寫法需要特別留意， 一般來說在 for, while 或 for...of 這種迴圈中都可以正常使用；但若是在帶有 callback 的迴圈中，例如 forEach, map, filter, reduce 等等，就需要特別留意：
+        const sleep = (ms) => {
+            return new Promise((resolve, reject) => {
+                console.log(`[sleep-${ms}] invoke`);
+                setTimeout(() => {
+                    console.log(`[sleep-${ms}] resolve`);
+                    // if (ms === 2000) {
+                    //   reject(ms)
+                    // return
+                    // }
+
+                    resolve(ms);
+                }, ms);
+            });
+        };
+
+        // 所有的 Promise 會在此時就發動
+        const promises = [sleep(1000), sleep(3000), sleep(2000)];
+
+        // 方法一：使用 for await...of，每個 Promise 結束後可以馬上取得結果
+        (async function() {
+            for await (const item of promises) {
+                console.log('[for await...of] result', item);
+            }
+        })();
+
+        // 方法二：使用 for...of，每個 Promise 結束後可以馬上取得結果
+        (async function() {
+            for (const item of promises) {
+                const result = await item;
+                console.log('[for...of] result', result);
+            }
+        })();
+
+        // 方法三：使用 for 迴圈，每個 Promise 結束後可以馬上取得結果
+        (async function() {
+            for (let i = 0; i < promises.length; i++) {
+                const result = await promises[i];
+                console.log('[for] result', result);
+            }
+        })();
+
+        // 方法四，使用 Promise.all，一次取得所有結果，需等待所有 Promise resolve 或其中一個被 reject 時終止
+        (async function() {
+            const results = await Promise.all(promises);
+            console.log('[Promise.all] results', results);
+        })();
+
+        // 方法五，使用 Promise.allSettled，一次取得所有結果，需等待所有 Pormise 都 resolve(fulfilled) / reject(rejected) 後終止
+        (async function() {
+            const results = await Promise.allSettled(promises);
+            console.log('[Promise.allSettled] results', results);
+        })();
+
+        // 方法六：使用 for...of await，一次取得所有結果，需等待所有 Promise resolve 或其中一個被 reject 時終止（不如就用 Promise.all 吧）
+        (async function() {
+            for (const result of await Promise.all(promises)) {
+                console.log('[for...of await] result', result);
+            }
+        })();
+        </script>
+      </xmp>
+    </pre>
+    <h2>Promise.all和Promise.allSettled的区别</h2>
+    <ol>
+      <li>Promise.all 回傳要就全部成功，不然全部重来</li>
+      <li>Promise.allSettled 回傳多了一个status字段，表示当前promise的状态，没有任何一个promise的信息被丢失</li>
+    </ol>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          const promises = [
+            delay(100).then(() => 1),
+            delay(200).then(() => 2),
+            Promise.reject(3)
+          ]
+
+          //Promise.all 
+          Promise.all(promises).then(values=>console.log(values));// 最终输出： Uncaught (in promise) 3
+          Promise.all(promises)
+          .then(values=>console.log(values))
+          .catch(err=>console.log(err))
+          // 加入catch语句后，最终输出：3
+
+          // romise.allSettled
+          Promise.allSettled(promises).then(values=>console.log(values))
+          // 最终输出： 
+          //    [
+          //      {status: "fulfilled", value: 1},
+          //      {status: "fulfilled", value: 2},
+          //      {status: "rejected", value: 3},
+          //    ]
+        </script>
+      </xmp>
+    </pre>
+    <h2>從 Promise 到 async/await</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          const delay = (ms) => new Promise((resolve) => {
+              setTimeout(() => resolve(ms), ms)
+          })
+
+          /* then 1 */
+          delay(1000).then(data => {
+              console.log('case 1: step 1', data)
+              return delay(2000).then(data => {
+                  console.log('case 1: step 2', data)
+              })
+          });
+
+          /*then 2 */
+          delay(1000).(data => {
+              console.log('case 2: step 1', data);
+              return delay(2000);
+          }).then(data => {
+              console.log('case 2: step 2', data)
+          })
+
+          // Promise.all
+          const promises = [delay(1000), delay(2000)];
+          Promise.all(promises).then(data => console.log('promise.all', data))
+
+          /* async / await */
+          main();
+          async function main() {
+              const data1 = await delay(1000);
+              console.log('case 3: step 1', data1);
+              const data2 = await delay(2000);
+              console.log('case 3: step 2', data2)
+          }
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://segmentfault.com/a/1190000023413699" target="_blank">Promise.all和Promise.allSettled的区别</a>
+      </li>
+      <li>
+        <a href="https://pjchender.dev/javascript/js-async-await" target="_blank">Async and Await in JavaScript</a>
+      </li>
+    </ul>
+  </body>
+</html>
