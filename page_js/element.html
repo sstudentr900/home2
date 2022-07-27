@@ -66,10 +66,7 @@
           <li>4</li>
           <li>5</li>
         </ul>
-      </xmp>
-    </pre>
-    <pre class="prettyprint">
-      <xmp>
+  
         <script>
         document.querySelector("ul").innerHTML = '';
         document.querySelector("ul").textContent = '';
@@ -93,12 +90,12 @@
     <pre class="prettyprint">
       <xmp>
         <script>
-        const div = document.createElement("div");
-        const p = document.createElement("p");
+        var div = document.createElement("div");
+        var p = document.createElement("p");
         div.appendChild(p);
-        //
+
         console.log(div.outerHTML);
-        <div><p></p></div>
+        //<div><p></p></div>
         </script>
       </xmp>
     </pre>
@@ -106,14 +103,14 @@
     <pre class="prettyprint">
       <xmp>
         <script>
-        const div = document.createElement("div");
-        const p = document.createElement("p");
+        var div = document.createElement("div");
+        var p = document.createElement("p");
         div.appendChild(p);
-        const span = document.createElement("span");
+        //<div><p></p></div>
+
+        var span = document.createElement("span");
         p.replaceWith(span);
-        //
-        console.log(div.outerHTML);
-        <div><span></span></div>
+        //<div><span></span></div>
         </script>
       </xmp>
     </pre>
@@ -121,17 +118,18 @@
     <pre class="prettyprint">
       <xmp>
         <script>
-        const div = document.createElement("div");
-        const p = document.createElement("p");
+        var div = document.createElement("div");
+        var p = document.createElement("p");
         div.appendChild(p);
-        const span = document.createElement("span");
+        //<div><p></p></div>
+
+        var span = document.createElement("span");
         div.replaceChild(span,p);
-        //
-        <div><span></span></div>
+        //<div><span></span></div>
         </script>
       </xmp>
     </pre>
-    <h2>insertAdjacentHTML()插入節點</h2>
+    <h2>insertAdjacentHTML()插入 string</h2>
     <ol>
       <li>beforeBegin：在 element 前插入</li>
       <li>afterBegin：在 element 裡的第一個子元素前插入</li>
@@ -144,8 +142,7 @@
         let div = document.createElement("div");
         let html = "<p>My new paragraph.</p>";
         div.insertAdjacentHTML("beforeend", html);
-        //
-        <div><p>My new paragraph.</p></div>
+        //<div><p>My new paragraph.</p></div>
         </script>
       </xmp>
     </pre>
@@ -213,12 +210,12 @@
           innerElement.classList.add('inner')
   
           // // STEP2: 分別選擇各個 block
-          const block1 = document.querySelector('.block-1')
-          const block2 = document.querySelector('.block-2')
-          const block3 = document.querySelector('.block-3')
+          var block1 = document.querySelector('.block-1')
+          var block2 = document.querySelector('.block-2')
+          var block3 = document.querySelector('.block-3')
   
           let i = 0
-          const buttonAppend = document.querySelector('#appendNode')
+          var buttonAppend = document.querySelector('#appendNode')
           buttonAppend.addEventListener('click', function() {
               console.log(i);
               //複製
