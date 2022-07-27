@@ -2,51 +2,82 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>js_basis_object</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
 
-<body>
-    <script>
-        //https://ithelp.ithome.com.tw/articles/10223556
-        //es5
+<body id="program">
+  <h2>es5 物件建構</h2>
+  <p>不直接用 __proto__ 取得原型物件是因為 __proto__ 雖然被幾乎所有的瀏覽器支援，但它仍是非標準屬性；透過 getPrototypeOf 取得物件的原型是比較正確的方法。</p>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
         function Person(name, age) {
-            this.name = name;
-            this.age = age;
+          this.name = name;
+          this.age = age;
         }
-        Person.prototype.hello = function() {
-            console.log(`Hello ${this.name}.`)
+        Person.prototype.hello = function () {
+          console.log(`Hello ${this.name}.`)
         }
         var p1 = new Person('Gary', 27);
-        // p1.hello() // Hello Gary.
-        // console.dir(p1);
-        //prototype 
+        p1.hello() // Hello Gary.
+        Object.getPrototypeOf(p1) // {hello: ƒ, constructor: ƒ}
+        console.dir(p1); //Person age:27 name:"Gary" [[Prototype]]:Object
+      </script>
+    </xmp>
+  </pre>
+  <h2>es5 繼承原型</h2>
+  <ol>
+    <li>constructor 這邊透過 Object.create 複製了 Person.prototype 全部的屬性，連同 constructor 屬性都會被蓋掉，如果 constructor 屬性錯誤，在做
+      instanceof 判斷時會造成錯誤的結果；因此這邊設定繼承時需要再將 constructor 重新指定回建構子本身。</li>
+    <li>instanceof:當 objectA 屬於該 class (或其衍生類別) 的 instance 就會回傳 true；否則傳回 false。</li>
+  </ol>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        function Person(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        Person.prototype.hello = function () {
+          console.log(`Hello ${this.name}.`)
+        }
+
         function Engineer(name, skill) {
-            Person.call(this, name)
-            this.skill = skill
+          Person.call(this, name)
+          this.skill = skill
         }
         Engineer.prototype = Object.create(Person.prototype) //繼承父類
         Engineer.prototype.constructor = Engineer //constructor 指定
-        Engineer.prototype.hello2 = function() {
-            console.log(`Engineer,Hello ${this.name}.`)
+        Engineer.prototype.hello2 = function () {
+          console.log(`Engineer,Hello ${this.name}.`)
         }
-
         let e1 = new Engineer('Alice', 'JavaScript')
-            // console.dir(e1);
-            // e1.hello() // Hello Alice.
-            // console.log(e1.skill) // JavaScript
-            // Object.getPrototypeOf(e1) // Person {constructor: ƒ}
-
-
-        //es6 constructor
+        console.dir(e1);
+        e1.hello() // Hello Alice.
+        console.log(e1.skill) // JavaScript
+        Object.getPrototypeOf(e1) // Person {constructor: ƒ}
+      </script>
+    </xmp>
+  </pre>
+  <h2>es6 class</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
         class Person2 {
-            constructor(name, age) {
-                this.name = name;
-                this.age = age;
-            }
-            say() {
-                console.log(`Hello ${this.name}.`)
-            }
+          constructor(name, age) {
+            this.name = name;
+            this.age = age;
+          }
+          say() {
+            console.log(`Hello ${this.name}.`)
+          }
         }
         let p2 = new Person2('andy', 27);
         console.dir(p2);
@@ -54,120 +85,247 @@
 
         //extends,super
         class Engineer2 extends Person2 {
-            constructor(name, skill) {
-                super(name);
-                this.skill = skill
-            }
-            skillFn() {
-                console.log(`skill:${this.skill},${this.name}`);
-            }
+          constructor(name, skill) {
+            super(name); // 呼叫 Person 的建構子
+            this.skill = skill
+          }
+          skillFn() {
+            console.log(`skill:${this.skill},${this.name}`);
+          }
         }
         let e2 = new Engineer2('Alice', 'JavaScript');
         console.dir(e2);
-        // e2.say()
-        // e2.skillFn()
-
-
-        //使用 subclass
-        //https://pjchender.dev/javascript/js-class
+        e2.say()
+        e2.skillFn()
+      </script>
+    </xmp>
+  </pre>
+  <h2>constructor 設定預設值</h2>
+  <p>透過object destructuring 來做到設定預設值</p>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
         class Person {
-            constructor({
-                name,
-                age = 18
-            } = {}) {
-                this.name = name;
-                this.age = age;
-            }
-
-            dance() {
-                console.log('old dance');
-            }
+          constructor({
+            name,
+            age = 18
+          } = {}) {
+            this.name = name;
+            this.age = age;
+          }
         }
-        class Student extends Person {
-            constructor({
-                name,
-                age,
-            } = {}) {
-                // 因為這是 extends from Person，所以我們必須要在為 instance 賦值前，
-                // 在 Student constructor 裡面呼叫 super function，
-                // 呼叫 super function 的意思就是呼叫 Person 的 constructor function。
-                super({
-                    name,
-                    age
-                });
-                this.name = name;
-                this.age = age;
-            }
 
-            // 也就是說，subclass 是可以覆蓋 superclass 的 method
-            // dance() {
-            //     super.dance(); // 呼叫 Person 的 dance method
-            // }
-            dance() {
-                const dances = ['lyrical', 'tap', 'ballet', 'jaz'];
-                console.log(
-                    `${this.name} is doing the ${dances[Math.floor(Math.random() * dances.length)]}!`,
-                );
-            }
-        }
-        let stevenJ = new Student({
-            name: 'Steven',
-            age: 22
-        });
-        stevenJ.dance();
-
-
-        //設定預設值
-        //https://pjchender.dev/javascript/js-class
-        class Person {
-            constructor({
-                name,
-                age = 18
-            } = {}) {
-                this.name = name;
-                this.age = age;
-            }
-        }
+        let Test = new Person({});
+        console.log(Test); //Person {name: undefined, age: 18}
 
         let Aaron = new Person({
-            name: 'Aaron'
-        });
-        let Jackson = new Person({
-            name: 'Jackson',
-            age: 24
+          name: 'Aaron'
         });
         console.log(Aaron); // Person {name: "Aaron", age: 18}
+
+        let Jackson = new Person({
+          name: 'Jackson',
+          age: 24
+        });
         console.log(Jackson); // Person {name: "Jackson", age: 24}
 
+      </script>
+    </xmp>
+  </pre>
+  <h2>subclass</h2>
+  <ol>
+    <li>繼承自另一個 class 時需要使用關鍵字 extends</li>
+    <li>subclass 有可能覆蓋掉 superclass 的 method</li>
+    <li>super 的用法就像是去呼叫它的 superclass 這個 Class</li>
+  </ol>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        class Person {
+          constructor({
+            name,
+            age = 18
+          } = {}) {
+            this.name = name;
+            this.age = age;
+          }
 
-        //Static 靜態方法
+          skill() {
+            console.log('javascript');
+          }
+        }
+        class Engineer extends Person {
+          constructor({
+            name,
+            age,
+          } = {}) {
+            super({
+              name,
+              age
+            });
+            this.name = name;
+            this.age = age;
+          }
+
+          //呼叫 Person 的 skill method
+          skill() {
+            super.skill();
+          }
+
+          //使用自己 skill method
+          // skill() {
+          //   console.log(`${this.name} skill css`)
+          // }
+        }
+        let steven = new Engineer({
+          name: 'Steven',
+          age: 22
+        });
+        steven.skill();
+      </script>
+    </xmp>
+  </pre>
+  <h2>Setter設定值 和 Getter取值</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        class Person {
+          constructor({
+            firstName,
+            lastName,
+            country = 'Taiwan'
+          } = {}) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.country = country;
+          }
+
+          //  getter method
+          get name() {
+            return this.firstName + ' ' + this.lastName;
+          }
+
+          //  setter method
+          set name(input) {
+            [this.firstName, this.lastName] = input.split(' ');
+          }
+        }
+        let aaron = new Person({
+          firstName: 'Aaron',
+          lastName: 'Chen'
+        });
+        //使用 getter method
+        console.log(aaron.name); //Aaron Chen
+
+        // 使用 setter method
+        aaron.name = 'Peter Chen'; 
+        console.log(aaron.name); // Peter Chen
+      </script>
+    </xmp>
+  </pre>
+  <h2>Public, Private, Static 的差別</h2>
+  <ol>
+    <li>Public variable：class 內的公有變數可以被 instance 所存取和修改</li>
+    <li>Private variable：class 內的私有變數無法被 instance 所存取和修改 範例_variable</li>
+    <li>Static variable / static method：靜態表示該方法或變數，需要透過呼叫 Class 才能取得或使用</li>
+  </ol>
+  <h3>私有變數 Private(#)</h3>
+  <p>#count 這個變數將無法在 class 內部以外的其他地方被存取</p>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        class IncreasingCounter {
+          #count = 0;
+          get value() {
+            console.log('Getting the current value!');
+            return this.#count;
+          }
+          increment() {
+            this.#count++;
+          }
+        }
+        const counter = new IncreasingCounter();
+        counter.#count;// → SyntaxError
+        counter.#count = 42;// → SyntaxError
+      </script>
+    </xmp>
+  </pre>
+  <h3>Static 靜態方法</h3>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
         class Car {
-            constructor(type) {
-                this.type = type
-            }
-            static carHorn(type) {
-                return `我可以駕駛${type}`
-            }
+          constructor(type) {
+            this.type = type
+          }
+          static carHorn(type) {
+            return `我可以駕駛${type}`
+          }
         }
         console.log(Car.carHorn('電動車')) //我可以駕駛電動車
+      </script>
+    </xmp>
+  </pre>
+  <h3>Static 靜態的私有方法</h3>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        class FakeMath {
+          // `PI` 是一個靜態的公開屬性
+          // `PI` is a static public property.
+          static PI = 22 / 7; // Close enough.
 
+          // `#totallyRandomNumber` 是一個靜態的私有屬性
+          static #totallyRandomNumber = 4;
 
-        //在 static 中使用 this
-        //https://pjchender.dev/javascript/js-class
-        class Bird {
-            constructor({
-                    color = 'red'
-                } = {}) {
-                    this.color = color;
-                }
-                // 使用 static 以建立 static method，裡面用 this
-            static changeColor(color) {
-                // this 原本指稱的是所建立的 Bird 這個 Class
-                // 但在呼叫這個方法時，使用了 call() 把 this 改成了指定的 instance
-                this.color = color;
-            }
+          // `#computeRandomNumber` 是一個靜態的私有方法
+          static #computeRandomNumber() {
+            return FakeMath.#totallyRandomNumber;
+          }
+
+          // `random` 是一個靜態的公開方法 (ES2015 syntax)
+          // that consumes `#computeRandomNumber`.
+          static random() {
+            console.log('I heard you like random numbers…');
+            return FakeMath.#computeRandomNumber();
+          }
         }
-        let redBird = new Bird();
+        FakeMath.PI;
+        // → 3.142857142857143
+
+        FakeMath.random();
+        // logs 'I heard you like random numbers…'
+        // → 4
+
+        FakeMath.#totallyRandomNumber;
+        // → SyntaxError
+
+        FakeMath.#computeRandomNumber();
+        // → SyntaxError
+
+
+        //defineProperty 定義物件屬性特徵
+      </script>
+    </xmp>
+  </pre>
+  <h3>static 中使用 this</h3>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        class Bird {
+          constructor({
+            color = 'red'
+          } = {}) {
+            this.color = color;
+          }
+          // 使用 static 以建立 static method，裡面用 this
+          static changeColor(color) {
+            // this 原本指稱的是所建立的 Bird 這個 Class
+            // 但在呼叫這個方法時，使用了 call() 把 this 改成了指定的 instance
+            this.color = color;
+          }
+        }
+        var redBird = new Bird();
         console.log(redBird.color); // red
         // redBird.changeColor('blue')    // redBird.changeColor is not a function
         Bird.changeColor.call(redBird, 'blue');
@@ -175,122 +333,39 @@
 
 
         //在 static 中不使用 this
-        //https://pjchender.dev/javascript/js-class
         class Bird {
-            constructor({
-                color = 'red'
-            } = {}) {
-                this.color = color;
-            }
+          constructor({
+            color = 'red'
+          } = {}) {
+            this.color = color;
+          }
 
-            static changeColor(bird, color) {
-                // this 原本指稱的是所建立的 Bird 這個 Class
-                bird.color = color;
-            }
+          static changeColor(bird, color) {
+            // this 原本指稱的是所建立的 Bird 這個 Class
+            bird.color = color;
+          }
         }
-        let redBird = new Bird();
+        var redBird = new Bird();
         console.log(redBird.color); // red
         // redBird.changeColor('blue')    // redBird.changeColor is not a function
         Bird.changeColor(redBird, 'blue');
         console.log(redBird.color); // blue
-
-
-        //get 取值 set 設定值
-        class Person3 {
-            constructor(f, b) {
-                this.fr = f
-                this.ba = b
-            }
-            sayHello() {
-                console.log("hello I'm " + this.ba)
-            }
-            get fullname() {
-                return this.fr + " " + this.ba
-            }
-            set nameChange(nv) {
-                this.fr = nv.split(' ')[0]
-                this.ba = nv.split(' ')[1]
-            }
-
-        }
-        var person3 = new Person3('wu', 'majer')
-        person3.sayHello() //majer
-        person3.nameChange = 'ch fr' //set ->ch fr
-        person3.sayHello() //fr
-        var aa = person3.fullname
-        console.log(aa)
-
-
-        //Setter 和 Getter
-        //https://pjchender.dev/javascript/js-class
-        class Person {
-            constructor({
-                firstName,
-                lastName,
-                country = 'Taiwan'
-            } = {}) {
-                this.firstName = firstName;
-                this.lastName = lastName;
-                this.country = country;
-            }
-
-            //  getter method
-            get name() {
-                return this.firstName + ' ' + this.lastName;
-            }
-
-            //  setter method
-            set name(input) {
-                [this.firstName, this.lastName] = input.split(' ');
-            }
-        }
-        let aaron = new Person({
-            firstName: 'Aaron',
-            lastName: 'Chen'
-        });
-        console.log(aaron.name); // 使用 getter method，Aaron Chen
-        aaron.name = 'Peter Chen'; // 使用 setter method
-        console.log(aaron.name); // Peter Chen
-
-
-        //Static and public/private properties
-        //https://pjchender.dev/javascript/js-class
-        class FakeMath {
-            // `PI` 是一個靜態的公開屬性
-            // `PI` is a static public property.
-            static PI = 22 / 7; // Close enough.
-
-            // `#totallyRandomNumber` 是一個靜態的私有屬性
-            static# totallyRandomNumber = 4;
-
-            // `#computeRandomNumber` 是一個靜態的私有方法
-            static# computeRandomNumber() {
-                return FakeMath.#totallyRandomNumber;
-            }
-
-            // `random` 是一個靜態的公開方法 (ES2015 syntax)
-            // that consumes `#computeRandomNumber`.
-            static random() {
-                console.log('I heard you like random numbers…');
-                return FakeMath.#computeRandomNumber();
-            }
-        }
-        FakeMath.PI;
-        // → 3.142857142857143
-        FakeMath.random();
-        // logs 'I heard you like random numbers…'
-        // → 4
-        FakeMath.#totallyRandomNumber;
-        // → SyntaxError
-        FakeMath.#computeRandomNumber();
-        // → SyntaxError
-
-
-
-
-        //https://ithelp.ithome.com.tw/articles/10249020
-        //defineProperty 定義物件屬性特徵
-    </script>
+      </script>
+    </xmp>
+  </pre>
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10223556" target="_blank">什麼是原型鏈？</a>
+    </li>
+    <li>
+      <a href="https://pjchender.dev/javascript/js-class" target="_blank">JavaScript 類別</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10249020" target="_blank">JavaScript基本功修練：Day19 - 設定物件屬性裏的特徵</a>
+    </li>
+  </ul>
 </body>
 
 </html>
