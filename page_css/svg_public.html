@@ -12,6 +12,34 @@
 </head>
 
 <body id="program">
+ 
+  <h2>SVG共用</h2>
+  <ol>
+    <li>共用的svg寫在head</li>
+    <li>fill="currentColor"=>color填色</li>
+    <li>svg width height 一致</li>
+  </ol>
+  <pre class="prettyprint">
+    <xmp>
+      <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
+
+        //iconLink
+        <symbol id="iconLink" viewBox="0 0 77.586 100">
+          ... path fill="currentColor"
+        </symbol>
+
+      </svg>
+    </xmp>
+  </pre>
+  <p>在html引用svg的方式(xlink:href="#iconLink")</p>
+  <pre class="prettyprint">
+    <xmp>
+      <svg>
+        <use xlink:href="#iconLink"></use>
+      </svg>
+    </xmp>
+  </pre>
+  <h2>範例</h2>
   <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
     <symbol id="iconLine" viewBox="0 0 183.433 173.511">
       <path fill="currentColor"
@@ -516,40 +544,12 @@
       <path fill="currentColor" d="M3,8H21a1,1,0,0,0,0-2H3A1,1,0,0,0,3,8Zm18,8H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm0-5H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
     </symbol>
   </svg>
-  <h2>SVG共用</h2>
-  <ol>
-    <li>共用的svg寫在head</li>
-    <li>fill="currentColor" color填色</li>
-    <li>svg width height 一致</li>
-  </ol>
-  <pre class="prettyprint">
-    <xmp>
-      <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
-
-        //iconLink
-        <symbol id="iconLink" viewBox="0 0 77.586 100">
-          ... path fill="currentColor"
-        </symbol>
-
-      </svg>
-    </xmp>
-  </pre>
-  <p>在html引用svg的方式(xlink:href="#iconLink")</p>
-  <pre class="prettyprint">
-    <xmp>
-      <svg>
-        <use xlink:href="#iconLink"></use>
-      </svg>
-    </xmp>
-  </pre>
-  <h2>範例</h2>
   <style>
     .col-6 {
       width: calc((100% - 50px)/6); 
       height: 80px;
       display: grid;
-      place-content: center; /*center center*/
-      /* background-color: #fff; */
+      place-content: center; 
       padding: 10px;
       color: #fff;
     }
