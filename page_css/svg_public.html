@@ -12,10 +12,8 @@
 </head>
 
 <body id="program">
- 
   <h2>SVG共用</h2>
   <ol>
-    <li>共用的svg寫在head</li>
     <li>fill="currentColor"=>color填色</li>
     <li>svg width height 一致</li>
   </ol>
@@ -23,7 +21,7 @@
     <xmp>
       <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
 
-        //iconLink
+        //要共用SVG寫在這邊
         <symbol id="iconLink" viewBox="0 0 77.586 100">
           ... path fill="currentColor"
         </symbol>
@@ -31,7 +29,8 @@
       </svg>
     </xmp>
   </pre>
-  <p>在html引用svg的方式(xlink:href="#iconLink")</p>
+  <h3>html引用svg的方式</h3>
+  <p>(xlink:href="#iconLink")對應symbol id 名稱</p>
   <pre class="prettyprint">
     <xmp>
       <svg>
@@ -526,153 +525,212 @@
                     c1.533,0,1.814,0.226,2.026,0.34C57.375,42.958,57.274,43.189,57.017,43.55z"></path>
     </symbol>
     <symbol id="iconArrowBotton" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M5.30506 8.30602C4.89748 8.71405 4.89748 9.37559 5.30506 9.78361L11.2089 15.694C11.4372 15.9225 11.745 16.0231 12.0432 15.9956C12.3122 15.9969 12.5816 15.8949 12.7868 15.6897L18.6941 9.78283C19.102 9.37504 19.102 8.71388 18.6941 8.3061C18.2863 7.89831 17.6251 7.89831 17.2173 8.3061L11.9962 13.5269L6.78103 8.30602C6.37345 7.89799 5.71263 7.89799 5.30506 8.30602Z" />
+      <path fill="currentColor"
+        d="M5.30506 8.30602C4.89748 8.71405 4.89748 9.37559 5.30506 9.78361L11.2089 15.694C11.4372 15.9225 11.745 16.0231 12.0432 15.9956C12.3122 15.9969 12.5816 15.8949 12.7868 15.6897L18.6941 9.78283C19.102 9.37504 19.102 8.71388 18.6941 8.3061C18.2863 7.89831 17.6251 7.89831 17.2173 8.3061L11.9962 13.5269L6.78103 8.30602C6.37345 7.89799 5.71263 7.89799 5.30506 8.30602Z" />
     </symbol>
     <symbol id="iconLogin" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zM18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z" />
+      <path fill="currentColor"
+        d="M12 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zM18 21a1 1 0 0 0 1-1 7 7 0 0 0-14 0 1 1 0 0 0 1 1z" />
     </symbol>
     <symbol id="iconContact" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M5.1 22.1c-.5 0-.9-.1-1.4-.2-.3-.1-.6-.3-.8-.5l-.1-.1c-.1-.1-.2-.3-.2-.4 0-.2.1-.3.3-.4.8-.4 1.5-1.1 1.9-1.9.1-.1.2-.2.2-.3C2.2 16.6.5 13.9.5 11 .5 6 5.7 1.8 12 1.8S23.5 6 23.5 11c0 5-5.2 9.2-11.5 9.2-.6 0-1.3 0-1.9-.1-1.5 1.3-3.3 2-5 2z" />
+      <path fill="currentColor"
+        d="M5.1 22.1c-.5 0-.9-.1-1.4-.2-.3-.1-.6-.3-.8-.5l-.1-.1c-.1-.1-.2-.3-.2-.4 0-.2.1-.3.3-.4.8-.4 1.5-1.1 1.9-1.9.1-.1.2-.2.2-.3C2.2 16.6.5 13.9.5 11 .5 6 5.7 1.8 12 1.8S23.5 6 23.5 11c0 5-5.2 9.2-11.5 9.2-.6 0-1.3 0-1.9-.1-1.5 1.3-3.3 2-5 2z" />
     </symbol>
     <symbol id="iconInquire" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M 9 2 C 5.1458514 2 2 5.1458514 2 9 C 2 12.854149 5.1458514 16 9 16 C 10.747998 16 12.345009 15.348024 13.574219 14.28125 L 14 14.707031 L 14 16 L 20 22 L 22 20 L 16 14 L 14.707031 14 L 14.28125 13.574219 C 15.348024 12.345009 16 10.747998 16 9 C 16 5.1458514 12.854149 2 9 2 z M 9 4 C 11.773268 4 14 6.2267316 14 9 C 14 11.773268 11.773268 14 9 14 C 6.2267316 14 4 11.773268 4 9 C 4 6.2267316 6.2267316 4 9 4 z" />
+      <path fill="currentColor"
+        d="M 9 2 C 5.1458514 2 2 5.1458514 2 9 C 2 12.854149 5.1458514 16 9 16 C 10.747998 16 12.345009 15.348024 13.574219 14.28125 L 14 14.707031 L 14 16 L 20 22 L 22 20 L 16 14 L 14.707031 14 L 14.28125 13.574219 C 15.348024 12.345009 16 10.747998 16 9 C 16 5.1458514 12.854149 2 9 2 z M 9 4 C 11.773268 4 14 6.2267316 14 9 C 14 11.773268 11.773268 14 9 14 C 6.2267316 14 4 11.773268 4 9 C 4 6.2267316 6.2267316 4 9 4 z" />
     </symbol>
     <symbol id="iconShoppingCart" viewBox="0 0 24 24">
-      <path fill="currentColor"  d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 3c0 .55.45 1 1 1h1l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h11c.55 0 1-.45 1-1s-.45-1-1-1H7l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.37-.66-.11-1.48-.87-1.48H5.21l-.67-1.43c-.16-.35-.52-.57-.9-.57H2c-.55 0-1 .45-1 1zm16 15c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+      <path fill="currentColor"
+        d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 3c0 .55.45 1 1 1h1l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h11c.55 0 1-.45 1-1s-.45-1-1-1H7l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.37-.66-.11-1.48-.87-1.48H5.21l-.67-1.43c-.16-.35-.52-.57-.9-.57H2c-.55 0-1 .45-1 1zm16 15c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
     </symbol>
     <symbol id="iconHamburger" viewBox="0 0 24 24">
-      <path fill="currentColor" d="M3,8H21a1,1,0,0,0,0-2H3A1,1,0,0,0,3,8Zm18,8H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm0-5H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
+      <path fill="currentColor"
+        d="M3,8H21a1,1,0,0,0,0-2H3A1,1,0,0,0,3,8Zm18,8H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Zm0-5H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z" />
     </symbol>
   </svg>
   <style>
     .col-6 {
-      width: calc((100% - 50px)/6); 
+      width: calc((100% - 50px)/6);
       height: 80px;
       display: grid;
-      place-content: center; 
+      place-content: center;
       padding: 10px;
       color: #fff;
     }
-    .col-6 svg{
+
+    .col-6 svg {
       width: 30px;
       height: 30px;
       color: #fff;
       margin: auto;
-    } 
-    #program .col-6 p{
+    }
+
+    #program .col-6 p {
       margin: 5px 0;
     }
-</style>
+  </style>
   <div class="codeDemo">
     <div class="flex">
       <div class="col-6">
-        <svg><use xlink:href="#iconLine"></use></svg>
+        <svg>
+          <use xlink:href="#iconLine"></use>
+        </svg>
         <p>iconLine</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconGarbage"></use></svg>
+        <svg>
+          <use xlink:href="#iconGarbage"></use>
+        </svg>
         <p>iconGarbage</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconLock"></use></svg>
+        <svg>
+          <use xlink:href="#iconLock"></use>
+        </svg>
         <p>iconLock</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconKey"></use></svg>
+        <svg>
+          <use xlink:href="#iconKey"></use>
+        </svg>
         <p>iconKey</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconEarth"></use></svg>
+        <svg>
+          <use xlink:href="#iconEarth"></use>
+        </svg>
         <p>iconEarth</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconMail"></use></svg>
+        <svg>
+          <use xlink:href="#iconMail"></use>
+        </svg>
         <p>iconMail</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconMap"></use></svg>
+        <svg>
+          <use xlink:href="#iconMap"></use>
+        </svg>
         <p>iconMap</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconLink"></use></svg>
+        <svg>
+          <use xlink:href="#iconLink"></use>
+        </svg>
         <p>iconLink</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconPic"></use></svg>
+        <svg>
+          <use xlink:href="#iconPic"></use>
+        </svg>
         <p>iconPic</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconHouse"></use></svg>
+        <svg>
+          <use xlink:href="#iconHouse"></use>
+        </svg>
         <p>iconHouse</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconTel"></use></svg>
+        <svg>
+          <use xlink:href="#iconTel"></use>
+        </svg>
         <p>iconTel</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconFax"></use></svg>
+        <svg>
+          <use xlink:href="#iconFax"></use>
+        </svg>
         <p>iconFax</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconClock"></use></svg>
+        <svg>
+          <use xlink:href="#iconClock"></use>
+        </svg>
         <p>iconClock</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconMail2"></use></svg>
+        <svg>
+          <use xlink:href="#iconMail2"></use>
+        </svg>
         <p>iconMail2</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconLocal"></use></svg>
+        <svg>
+          <use xlink:href="#iconLocal"></use>
+        </svg>
         <p>iconLocal</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconMap2"></use></svg>
+        <svg>
+          <use xlink:href="#iconMap2"></use>
+        </svg>
         <p>iconMap2</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconSearch"></use></svg>
+        <svg>
+          <use xlink:href="#iconSearch"></use>
+        </svg>
         <p>iconSearch</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconSend"></use></svg>
+        <svg>
+          <use xlink:href="#iconSend"></use>
+        </svg>
         <p>iconSend</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconMap3"></use></svg>
+        <svg>
+          <use xlink:href="#iconMap3"></use>
+        </svg>
         <p>iconMap3</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconPdf"></use></svg>
+        <svg>
+          <use xlink:href="#iconPdf"></use>
+        </svg>
         <p>iconPdf</p>
       </div>
-      
+
       <div class="col-6">
-        <svg><use xlink:href="#iconArrowBotton"></use></svg>
+        <svg>
+          <use xlink:href="#iconArrowBotton"></use>
+        </svg>
         <p>iconArrowBotton</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconLogin"></use></svg>
+        <svg>
+          <use xlink:href="#iconLogin"></use>
+        </svg>
         <p>iconLogin</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconContact"></use></svg>
+        <svg>
+          <use xlink:href="#iconContact"></use>
+        </svg>
         <p>iconContact</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconInquire"></use></svg>
+        <svg>
+          <use xlink:href="#iconInquire"></use>
+        </svg>
         <p>iconInquire</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconShoppingCart"></use></svg>
+        <svg>
+          <use xlink:href="#iconShoppingCart"></use>
+        </svg>
         <p>iconShoppingCart</p>
       </div>
       <div class="col-6">
-        <svg><use xlink:href="#iconHamburger"></use></svg>
+        <svg>
+          <use xlink:href="#iconHamburger"></use>
+        </svg>
         <p>iconHamburger</p>
       </div>
     </div>
   </div>
-  <hr>
   <!-- <h4>參考</h4>
         <ul>
             <li>

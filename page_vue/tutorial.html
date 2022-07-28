@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="../css/customPrism.css">
   <link rel="stylesheet" href="../css/customPrism.css">
   <link rel="stylesheet" href="../css/prism.css">
-   <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
 
 <body id="program">
@@ -46,7 +46,7 @@
       </script>
     </xmp>
   </pre>
-  <h2>搜尋</h2>
+  <h3>搜尋</h3>
   <pre class="prettyprint">
     <xmp>
       <div id='app'>
@@ -95,7 +95,7 @@
       </script>
     </xmp>
   </pre>
-  <h2>getter與setter</h2>
+  <h3>getter與setter</h3>
   <ol>
     <li>getter：將data資料取出到comliuted運算完之後渲染到畫面</li>
     <li>setter：把資料(以下範例使用methods)運算完，傳回data</li>
@@ -290,21 +290,64 @@
       </script>
     </xmp>
   </pre>
+  <h2>component</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <div id="app">
+        <h4>{{ text }}</h4>
+        <con-tainer></con-tainer>
+        <area2></area2>
+      </div>
+      <script>
+        const area2 = {
+          data() {
+            return {
+              text: "根元件的子元件/區域註冊"
+            };
+          },
+          template: `<div>
+        <h4>{{ text }}</h4>
+      </div>`
+        }
+        var app = Vue.createApp({
+          data() {
+            return {
+              text: "外部元件"
+            };
+          },
+          components: {
+            area2
+          }
+        });
+        app.component("ConTainer", {
+          data() {
+            return {
+              text: "內部元件/全域註冊"
+            };
+          },
+          template: `<div>
+            <h4>{{ text }}</h4>
+          </div>`
+        });
+        app.mount("#app");
+      </script>
+    </xmp >
+  </pre>
   <h2>生命週期介紹</h2>
   <img src="https://i.imgur.com/hFcI2tF.png" alt="">
-  <h2>實體建立階段</h2>
+  <h3>實體建立階段</h3>
   <ol>
     <li>beforeCreate:Vue實體建立，狀態事件還沒初始化</li>
-    <li>created:資料建立完成</li>
+    <li>created:資料建立完成已配置選項 data 、computed、methods、watch,若直接操作 DOM 節點會找不到元素</li>
     <li>beforeMount:HTML結構準備與DOM節點綁定，尚未掛載</li>
-    <li>mounted:已經將DOM元素掛載到畫面上</li>
+    <li>mounted:實例已掛載，完成編譯 template 內容,已經將DOM元素掛載到畫面上</li>
   </ol>
-  <h2>實體更新階段</h2>
+  <h3>實體更新階段</h3>
   <ol>
     <li>beforeUpdate:當資料有更動，畫面更新前</li>
     <li>Update:當資料有更動，畫面更新完成</li>
   </ol>
-  <h2>銷毀階段</h2>
+  <h3>銷毀階段</h3>
   <ol>
     <li>beforeUnmount:Vue實體被銷毀前</li>
     <li>unmounted:Vue實體被銷毀完成</li>
@@ -366,49 +409,6 @@
         app.mount('#app');
       </script>
     </xmp>
-  </pre>
-  <h2>component</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        <h4>{{ text }}</h4>
-        <con-tainer></con-tainer>
-        <area2></area2>
-      </div>
-      <script>
-        const area2 = {
-          data() {
-            return {
-              text: "根元件的子元件/區域註冊"
-            };
-          },
-          template: `<div>
-        <h4>{{ text }}</h4>
-      </div>`
-        }
-        var app = Vue.createApp({
-          data() {
-            return {
-              text: "外部元件"
-            };
-          },
-          components: {
-            area2
-          }
-        });
-        app.component("ConTainer", {
-          data() {
-            return {
-              text: "內部元件/全域註冊"
-            };
-          },
-          template: `<div>
-            <h4>{{ text }}</h4>
-          </div>`
-        });
-        app.mount("#app");
-      </script>
-    </xmp >
   </pre>
   <h4>參考</h4>
   <ul>

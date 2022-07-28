@@ -1,47 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/customPrism.css">
-        <link rel="stylesheet" href="../css/prism.css">
-         <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-        
-    </head>
-    <body id="program">
-        <h2>position</h2>
-        <ol>
-            <li>static 靜態定位</li>
-            <li>relative 相對定位:相對於標準流中位置移動</li>
-            <li>absolute 絕對定位:跟父級位置移動,不佔位</li>
-            <li>fixed 固定定位:跟窗口做偏移</li>
-        </ol>
-        <h2>文字在盒中位置</h2>
-        <pre>
-            <code class="language-css">
-                text { 
-                    height: 30px;
-                    line-height: 30px; //垂直置中
-                    text-align: center:
-                }
-            </code>
-        </pre>
-        <h2>textarea 不能拖移</h2>
-        <pre>
-            <code class="language-css">
-                textarea { 
-                    resize: none;
-                }
-            </code>
-        </pre>
-        <hr>
-        <!-- <h4>參考</h4>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+</head>
+
+<body id="program">
+  <h2>position</h2>
+  <ol>
+    <li>static 靜態定位</li>
+    <li>relative 相對定位:相對於標準流中位置移動</li>
+    <li>absolute 絕對定位:跟父級位置移動,不佔位</li>
+    <li>fixed 固定定位:跟窗口做偏移</li>
+  </ol>
+  <h2>文字在盒中位置</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <style>
+        text {
+          height: 30px;
+          line-height: 30px;
+          text-align: center;
+        }
+      </style>
+    </xmp>
+  </pre>
+  <h2>textarea 不能拖移</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <style>
+        textarea {
+          resize: none;
+        }
+      </style>
+    </xmp>
+  </pre>
+  <h2>匯入</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <style>
+        /*匯入文字*/
+        @import url(https://fonts.googleapis.com/css?family=Lato:400,700,300);
+
+        /*匯入css*/
+        @import url(http://www.mysite.com/style.css);
+      </style>
+    </xmp>
+  </pre>
+  <!-- <h4>參考</h4>
         <ul>
             <li>
                 <a href="https://www.zhangxinxu.com/wordpress/2014/07/svg-sprites-fill-color-currentcolor/">SVG图标颜色文字般继承与填充</a>
             </li>
         </ul> -->
-    </body>
+</body>
+
 </html>

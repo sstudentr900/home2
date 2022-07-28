@@ -55,14 +55,14 @@
     <pre class="prettyprint">
       <xmp>
         public / 任何靜態檔都可以放在這，不會經過 webpack 打包
-      src / 原始檔案，大部分開發都在這異動
-      assets / 存放靜態資源，例如 images、css、logo 等
-      components / 存放自定義的元件
-      router / 存放所設置的路由元件
-      store / 存放 Vuex 管理的狀態庫
-      views / 裡的路由元件使用，例如在 Home.vue 中就使用了 HelloWorld.vue 元件
-      App.vue / 整個專案裡的核心主件，在此進行切換路由元件並渲染出相應頁面
-      main.js / 程式進入點，完成初始化 Vue instance 並掛載到 App.vue 上,同時會將專案中所需的 plugins 引入至此
+        src / 原始檔案，大部分開發都在這異動
+        assets / 存放靜態資源，例如 images、css、logo 等
+        components / 存放自定義的元件
+        router / 存放所設置的路由元件
+        store / 存放 Vuex 管理的狀態庫
+        views / 裡的路由元件使用，例如在 Home.vue 中就使用了 HelloWorld.vue 元件
+        App.vue / 整個專案裡的核心主件，在此進行切換路由元件並渲染出相應頁面
+        main.js / 程式進入點，完成初始化 Vue instance 並掛載到 App.vue 上,同時會將專案中所需的 plugins 引入至此
       </xmp>
     </pre>
     <h2>v-html</h2>
@@ -74,10 +74,10 @@
     <h3>eslint 關閉</h3>
     <pre class="prettyprint">
       <xmp>
-        //vue.config.js
+      //vue.config.js
       module.exports = {
-      //關閉eslint
-      lintOnSave: false
+        //關閉eslint
+        lintOnSave: false
       }
       </xmp>
     </pre>
@@ -88,9 +88,9 @@
     </p>
     <pre class="prettyprint">
       <xmp>
-        //vue.config.js 設定檔
+      //vue.config.js 設定檔
       module.exports = {
-      publicPath: process.env.NODE_ENV === 'production'? '/my-vue-app/name': '/'
+        publicPath: process.env.NODE_ENV === 'production'? '/my-vue-app/name': '/'
       }
       </xmp>
     </pre>
@@ -104,7 +104,7 @@
     <pre class="prettyprint">
       <xmp>
         import HelloWorld from "/src/components/HelloWorld.vue";
-      import HelloWorld from "@/components/HelloWorld.vue";
+        import HelloWorld from "@/components/HelloWorld.vue";
       </xmp>
     </pre>
     <h4>參考</h4>

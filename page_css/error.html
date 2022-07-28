@@ -1,133 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/customPrism.css">
-        <link rel="stylesheet" href="../css/prism.css">
-         <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-        
-    </head>
-    <body id="program">
-        <h2>圖片底空白(底線和父級對齊)</h2>
-        <ol>
-            <li>1.display:block; 便塊狀</li>
-            <li>2.vertical-align: bottom;改變對齊</li>
-        </ol>
-        <h2>ul 有間距</h2>
-        <pre>
-            <code class="language-css">
-                ul {
-                    list-style: none outside none;
-                    padding: 10px;
-                    background: green;
-                    text-align: center;
-            
-                    /*變0兼容chrome*/
-                    font-size: 0;
-            
-                    /*根据不同字体字号或许需要做一定的调整兼容safari*/
-                    letter-spacing: -4px;
-                    word-spacing:-4px;
-            
-                }
-                ul li {
-                    display: inline-block;
-                    *display: inline;
-                    background: orange;
-                    padding: 5px;
-            
-                    /*ie下的浮动*/
-                    zoom: 1;
-            
-                    /*設定字大小*/
-                    font-size: 16px;
-            
-                    /*兼容safari*/
-                    letter-spacing: 0;
-                    word-spacing:0;
-                }
-            </code>
-        </pre>
-        <h2>禁長按頁面彈出菜單</h2>
-        <ol>
-            <li>img,a{-webkit-touch-callout: none;}</li>
-        </ol>
-        <h2>Safari flex會使checkbox變小<a href="https://stackoverflow.com/questions/34220553/flexbox-resizes-a-checkbox-too-small">(連結)</a></h2>
-        <ol>
-            <li>增加 flex: 1;</li>
-        </ol>
-        <h2>box</h2>
-        <pre>
-            <code class="language-css">
-                * {
-                    box-sizing: border-box;
-                    -webkit-box-sizing: border-box; //移動端
-                }
-            </code>
-        </pre>
-        <h2>如何解決 Margin-collapse<a href="https://www.casper.tw/css/2016/06/08/css-margin-collapsing/">(連結)</a></h2>
-        <pre>
-            <code class="language-markup">
-            <script type="prism-html-markup">
-                // css
-                h4{
-                    width: 600px;
-                    background-color: pink;
-                    padding: 10px;
-                    box-sizing: border-box;
-                    margin: 0;
-                    margin-top: 60px;
-                }
-                .box{
-                    margin-top: 30px;
-                    margin-left: 30px;
-                    width: 100px;
-                    height: 100px;
-                    background-color: #36BEFF;
-                }
-                .bg-orange {
-                    width: 600px;
-                    background-color: #FFEFD3;
-                }
-                .collapsing-1{
-                    border: 1px solid yellow;
-                }
-                .collapsing-2{
-                    display: inline-block;
-                }
 
-                // html
-                // 1. 透過外元素的 border
-                <div class="bg-orange collapsing-1">
-                    <div class="box"></div>
-                </div>
-                
-                // 2. 內元素更改屬性 (inline-block)
-                <div class="bg-orange collapsing-2">
-                    <div class="box"></div>
-                </div>
-                
-                // 3. 內元素更改屬性 (inline-block)
-                
-                // 4. 內元素更改屬性 (float)
-            </script>
-            </code>
-        </pre>
-        <h2>Safari overflow:hidden<a href="https://stackoverflow.com/questions/3047337/does-overflowhidden-applied-to-body-work-on-iphone-safari">(連結)</a></h2>
-        <pre>
-            <code class="language-css">
-                html{
-                    overflow: hidden;
-                }
-                html,body{
-                    position: relative;
-                    height: 100%;
-                }
-            </code>
-        </pre>
-        
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+</head>
+
+<body id="program">
+  <h2>圖片底空白(底線和父級對齊)</h2>
+  <ol>
+    <li>1.display:block; 便塊狀</li>
+    <li>2.vertical-align: bottom;改變對齊</li>
+  </ol>
+  <h2>ul 有間距</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <style>
+        ul {
+          list-style: none outside none;
+          padding: 10px;
+          background: green;
+          text-align: center;
+
+          /*變0兼容chrome*/
+          font-size: 0;
+
+          /*根据不同字体字号或许需要做一定的调整兼容safari*/
+          letter-spacing: -4px;
+          word-spacing: -4px;
+
+        }
+
+        ul li {
+          display: inline-block;
+          *display: inline;
+          background: orange;
+          padding: 5px;
+
+          /*ie下的浮动*/
+          zoom: 1;
+
+          /*設定字大小*/
+          font-size: 16px;
+
+          /*兼容safari*/
+          letter-spacing: 0;
+          word-spacing: 0;
+        }
+
+        </code></pre><h2>禁長按頁面彈出菜單</h2><ol><li>img,
+        a {
+          -webkit-touch-callout: none;
+        }
+
+        </li></ol><h2>Safari flex會使checkbox變小<a href="https://stackoverflow.com/questions/34220553/flexbox-resizes-a-checkbox-too-small">(連結)</a></h2><ol><li>增加 flex: 1;
+
+        </li></ol><h2>box</h2><pre class="prettyprint"><xmp><style>* {
+          box-sizing: border-box;
+          -webkit-box-sizing: border-box; //移動端
+        }
+      </style>
+    </xmp>
+  </pre>
+  <h2>如何解決 Margin-collapse<a href="https://www.casper.tw/css/2016/06/08/css-margin-collapsing/">(連結)</a></h2>
+  <pre class="prettyprint">
+    <xmp>
+      <style>
+        /* css */
+        h4 {
+          width: 600px;
+          background-color: pink;
+          padding: 10px;
+          box-sizing: border-box;
+          margin: 0;
+          margin-top: 60px;
+        }
+
+        .box {
+          margin-top: 30px;
+          margin-left: 30px;
+          width: 100px;
+          height: 100px;
+          background-color: #36BEFF;
+        }
+
+        .bg-orange {
+          width: 600px;
+          background-color: #FFEFD3;
+        }
+
+        .collapsing-1 {
+          border: 1px solid yellow;
+        }
+
+        .collapsing-2 {
+          display: inline-block;
+        }
+      </style>
+
+      <!-- html -->
+      <!-- 1. 透過外元素的 border -->
+      <div class="bg-orange collapsing-1">
+        <div class="box"></div>
+      </div>
+
+      <!-- 2. 內元素更改屬性 (inline-block) -->
+      <div class="bg-orange collapsing-2">
+        <div class="box"></div>
+      </div>
+
+      <!-- 3. 內元素更改屬性 (inline-block) -->
+
+      <!-- 4. 內元素更改屬性 (float) -->
+
+    </xmp>
+  </pre>
+  <h2>Safari overflow:hidden<a
+      href="https://stackoverflow.com/questions/3047337/does-overflowhidden-applied-to-body-work-on-iphone-safari">(連結)</a>
+  </h2>
+  <pre class="prettyprint">
+    <xmp>
+      <style>
+        html {
+          overflow: hidden;
+        }
+
+        html,
+        body {
+          position: relative;
+          height: 100%;
+        }
+      </style>
+    </xmp>
+  </pre>
+
+</body>
+
 </html>

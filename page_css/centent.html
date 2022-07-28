@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+</head>
+
+<body id="program">
+  <h2>置中</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <style>
+        /*transform置中*/
+        .use-transform div {
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+          margin: auto;
+        }
+
+
+        /*absolute置中*/
+        .use-absolute {
+          position: relative;
+        }
+
+        .use-absolute div {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          margin: auto;
+        }
+
+
+        /*flexbox置中*/
+        .use-flexbox {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      </style>
+    </xmp>
+  </pre>
+  <h2>範例</h2>
+  <style>
+    .col-4 {
+      width: calc((100% - 40px)/4);
+      height: 200px;
+    }
+
+    .col-4 div {
+      width: 120px;
+      height: 120px;
+      background-color: #fff;
+      display: grid;
+      place-content: center;
+    }
+
+    /*transform置中*/
+    .use-transform div {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: auto;
+    }
+
+    /*absolute置中*/
+    .use-absolute {
+      position: relative;
+    }
+
+    .use-absolute div {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+    }
+
+    /*flexbox置中*/
+    .use-flexbox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <div class="flex">
+    <div class="codeDemo col-4 use-transform">
+      <div>transform置中</div>
+    </div>
+    <div class="codeDemo col-4 use-absolute">
+      <div>absolute置中</div>
+    </div>
+    <div class="codeDemo col-4 use-flexbox">
+      <div>flexbox置中</div>
+    </div>
+  </div>
+</body>
+
+</html>

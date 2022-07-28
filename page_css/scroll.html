@@ -1,58 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/customPrism.css">
-        <link rel="stylesheet" href="../css/prism.css">
-         <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-        
-    </head>
-    <body id="program">
-        <h2>避免捲到外層（父層）元素的捲軸</h2>
-        <pre>
-            <code class="language-css">
-                div {
-                    overscroll-behavior: contain;
-                    /* 或 overscroll-behavior-y: contain;
-                }
-            </code>
-        </pre>
-        <h2>修改 ScrollBar 樣式</h2>
-        <pre>
-            <code class="language-css">
-                /* width */
-                ::-webkit-scrollbar {
-                    width: 10px;
-                }
 
-                /* Track */
-                ::-webkit-scrollbar-track {
-                    background: #f1f1f1;
-                }
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
 
-                /* Handle */
-                ::-webkit-scrollbar-thumb {
-                    background: #888;
-                }
+<body id="program">
+  <h2>避免捲到外層（父層）元素的捲軸</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <style>
+        div {
+          overscroll-behavior: contain;
+          /* 或 overscroll-behavior-y: contain;*/
+        }
+      </style>
+    </xmp>
+  </pre>
+  <h2>修改 ScrollBar 樣式</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <style>
+        /* width */
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
 
-                /* Handle on hover */
-                ::-webkit-scrollbar-thumb:hover {
-                    background: #555;
-                }
-            </code>
-        </pre>
-        <hr>
-        <h4>參考</h4>
-        <ul>
-            <li>
-                <a href="https://pjchender.dev/css/css-scroll/">Scroll</a>
-            </li>
-            <li>
-                <a href="https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp">How TO - Custom Scrollbar</a>
-            </li>
-        </ul>
-    </body>
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: #888;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+      </style>
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://pjchender.dev/css/css-scroll/">Scroll</a>
+    </li>
+    <li>
+      <a href="https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp">How TO - Custom Scrollbar</a>
+    </li>
+  </ul>
+</body>
+
 </html>

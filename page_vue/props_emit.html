@@ -8,20 +8,21 @@
   <link rel="stylesheet" href="../css/customPrism.css">
   <link rel="stylesheet" href="../css/customPrism.css">
   <link rel="stylesheet" href="../css/prism.css">
-   <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
 
 <body id="program">
   <h2>父傳子 props</h2>
-  <p>接收方式可使用以下型別String,Number,Boolean,Array,Object,Date,Function,Symbol</p>
+  <p>接收父方式可使用以下型別String,Number,Boolean,Array,Object,Date,Function,Symbol</p>
   <pre class="prettyprint">
     <xmp>
       //父 template
       //enterName1內層引用名子="外層的值"
       //: v-bind 綁定變數
       //childName1內層引用名子,parentName1外層引用的名子
-      propHtml enterName1 = "All" : childName1 = "parentName1"
+      <propHtml enterName1="All" :childName1="parentName1"></propHtml>
+
       //子 script
       export default {
         //接收父的值方法[]
@@ -40,9 +41,9 @@
         props: {
           childName1: {
             type: String,
-              required: true //為必要屬性
+            required: true //為必要屬性
           },
-            enterName1: {
+          enterName1: {
             type: String,
           },
         }
@@ -50,7 +51,7 @@
     </xmp>
   </pre>
 
-  <h2>props值傳入元件</h2>
+  <h3>props值傳入元件</h3>
   <p>props單向數據流</p>
   <pre class="prettyprint">
     <xmp>
@@ -80,7 +81,7 @@
     </xmp>
   </pre>
 
-  <h2>props型別驗證</h2>
+  <h3>props型別驗證</h3>
   <pre class="prettyprint">
     <xmp>
       <div id="app">
@@ -129,139 +130,15 @@
     <xmp>
       //父 template
       //@ v-on 監聽事件
-      emitHtml @childName2="parentName2"
+      <emitHtml @childName2="parentName2"></emitHtml>
 
       //子 template
-      //1.使用$emit 傳給父元件
-      @input="$emit('childName2', $event.target.value)"
-
-      //2.使用 setup
-      @change='customChange'
-
-      //3.使用methods
-      @change='searchBook'
-
-      //子 script
-      //2.使用 setup ,元件建立前就執行 setup
-      export default {
-        setup(props, context) {
-          const customChange = (event) => {
-            context.emit("childName3", event.target.value)
-          }
-          return {
-            customChange
-          }
-        }
-
-        //3.使用methods
-        methods: {
-          searchBook(event) {
-            this.$emit("childName4", event.target.value)
-          }
-        }
-      }
+      //使用$emit 傳給父元件
+      <emitHtml @input="$emit('childName2', $event.target.value)"></emitHtml>
     </xmp>
   </pre>
 
-  <h2>emit傳遞事件</h2>
-  <ol>
-    <li>定義外層接收的函式 add()</li>
-    <li>定義內層 $emit 觸發的函式</li>
-    <li>透過外層模板 @button-click="add" 來觸發外層函式</li>
-  </ol>
-  <pre class="prettyprint">
-    <xmp>
-      {{ text }}：
-      <button type="button" @click="add()">add</button>
-      <button type="button" @click="dec()">dec</button>
-      {{ num }}
-      <out-text @button-click="add"></out-text>
-      <script>
-        var app = Vue.createApp({
-          data() {
-            return {
-              text: "外部元件",
-              num: 0,
-            }
-          },
-          methods: {
-            add() {
-              this.num++;
-            },
-            dec() {
-              this.num--;
-            }
-          }
-        });
-        app.component("outText", {
-          template: `<button @click="click">emit add</button>`,
-          data() {
-            return {
-              text: "內部元件"
-            };
-          },
-          methods: {
-            click() {
-              this.$emit('buttonClick');
-            }
-          }
-        });
-        app.mount("#app");
-      </script>
-    </xmp>
-  </pre>
-
-  <h2>emit傳遞參數</h2>
-  <p>將內層資料傳遞到外層元件上使用</p>
-  <img src="https://i.imgur.com/BVjQ2Ok.png" alt="">
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        <h3> {{ title }} </h3>
-        {{ text }}：
-        <button type="button" @click="add">add</button>
-        {{ num }}
-        <br>
-        <br>
-        <out-text @button-click="add"></out-text>
-      </div>
-      <script>
-        var app = Vue.createApp({
-          data() {
-            return {
-              title: "",
-              text: "外部元件",
-              num: 0,
-            }
-          },
-          methods: {
-            add(addtext) {
-              this.num++;
-              this.title = addtext;
-              //addtext 沒有值傳起來就會變成 事件物件 [object PointerEvent]
-            }
-          }
-        });
-        app.component("outText", {
-          template: `<button @click="click">emit add</button>`,
-          data() {
-            return {
-              text: "內部元件",
-              insideText: "內部元件傳遞文字"
-            };
-          },
-          methods: {
-            click() {
-              this.$emit('buttonClick', this.insideText);
-            }
-          }
-        });
-        app.mount("#app");
-      </script>
-    </xmp>
-  </pre>
-
-  <h2>emit驗證</h2>
+  <h3>emit驗證</h3>
   <pre class="prettyprint">
     <xmp>
       <div id="app">
@@ -321,16 +198,115 @@
       </script>
     </xmp>
   </pre>
+  <h3>setup</h3>
+  <pre class="prettyprint">
+    <xmp>
+      //父 template
+      <emitHtml @change='customChange'></emitHtml>
+
+      //子 script
+      <script>
+        //使用 setup ,元件建立前就執行 setup
+        setup(props, context) {
+          const customChange = (event) => {
+            context.emit("childName3", event.target.value)
+          }
+          return {
+            customChange
+          }
+        }
+      </script>
+    </xmp>
+  </pre>
+  <h3>methods</h3>
+  <pre class="prettyprint">
+    <xmp>
+      //父 template
+      <emitHtml @change='searchBook'></emitHtml>
+
+      //子 script
+      <script>
+        methods: {
+          searchBook(event) {
+            this.$emit("childName4", event.target.value)
+          }
+        }
+      </script>
+    </xmp>
+  </pre>
+  <!-- <h3>拋給父元件處理</h3>
+  <pre class="prettyprint">
+    <xmp>
+     子元件
+      <label>搜尋書本：
+        <input type="text" :value="inputText" @input="$emit('searchBook', $event)" />
+      </label>
+
+     父元件
+      <BookList :inputText="searchText" @searchBook="searchText = $event.target.value" />
+    </xmp>
+  </pre> -->
+
+
+  <!-- <h2>資料傳遞</h2>
+  <p>將內層資料傳遞到外層元件上使用</p>
+  <img src="https://i.imgur.com/BVjQ2Ok.png" alt="">
+  <pre class="prettyprint">
+    <xmp>
+      <div id="app">
+        <h3> {{ title }} </h3>
+        {{ text }}：
+        <button type="button" @click="add">add</button>
+        {{ num }}
+        <br>
+        <br>
+        <out-text @button-click="add"></out-text>
+      </div>
+      <script>
+        var app = Vue.createApp({
+          data() {
+            return {
+              title: "",
+              text: "外部元件",
+              num: 0,
+            }
+          },
+          methods: {
+            add(addtext) {
+              this.num++;
+              this.title = addtext;
+              //addtext 沒有值傳起來就會變成 事件物件 [object PointerEvent]
+            }
+          }
+        });
+        app.component("outText", {
+          template: `<button @click="click">emit add</button>`,
+          data() {
+            return {
+              text: "內部元件",
+              insideText: "內部元件傳遞文字"
+            };
+          },
+          methods: {
+            click() {
+              this.$emit('buttonClick', this.insideText);
+            }
+          }
+        });
+        app.mount("#app");
+      </script>
+    </xmp>
+  </pre> -->
 
   <h2>v-model 與元件的雙向綁定 (Vue 3.x 新增)</h2>
   <pre class="prettyprint">
     <xmp>
       //父 template
       //message 內層引用名子 parentName7外層引用的名子
-      emitHtml3 v-model:message="parentName7"
+      <emitHtml3 v-model:message="parentName7"></emitHtml3>
 
       //子 template
-      button @click="clickFn"
+      <button @click="clickFn"></button>
 
       //子 script
       export default {
@@ -344,22 +320,7 @@
     </xmp>
   </pre>
 
-  <h2>在元件上使用 v-model</h2>
-  <h3>$emit 拋給父元件處理</h3>
-  <pre class="prettyprint">
-    <xmp>
-      <!-- 子元件 -->
-      <label>搜尋書本：
-        <input type="text" :value="inputText" @input="$emit('searchBook', $event)" />
-      </label>
-
-      <!-- 父元件 -->
-      <BookList navTitle="All" :bookList="books" :inputText="searchText"
-        @searchBook="searchText = $event.target.value" />
-    </xmp>
-  </pre>
-
-  <h3>v-model 監聽 input 事件</h3>
+  <h3>監聽 input 事件</h3>
   <pre class="prettyprint">
     <xmp>
       <!-- 子元件 -->
@@ -372,7 +333,7 @@
     </xmp>
   </pre>
 
-  <h3>補充：update:myPropName</h3>
+  <h2>update</h2>
   <pre class="prettyprint">
     <xmp>
       <!-- 子元件 -->
@@ -381,7 +342,7 @@
       </label>
 
       <!-- 父元件 -->
-      <BookList navTitle="All" :bookList="books" :keyword="searchText"
+      <BookList navTitle="All" :keyword="searchText"
         @update:keyword="searchText = $event.target.value" />
     </xmp>
   </pre>
@@ -433,248 +394,6 @@
       console.log(msg)
       });
       },
-    </xmp>
-  </pre>
-
-  <h2>Slot</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        <h3> {{ text }} </h3>
-        <out-text>
-          <p>打洞成功</p>
-        </out-text>
-        <out-text>
-        </out-text>
-      </div>
-      <script>
-        var app = Vue.createApp({
-          data() {
-            return {
-              text: "外層元件",
-              product: {
-                name: "名刀不知火",
-                price: 200000,
-              }
-            }
-          }
-        });
-        app.component("outText", {
-          template: `
-            <div class="box">
-              <h3> {{ text }} </h3>
-              <div class="header">header</div>
-              <div class="main">
-                <slot> 預設值！</slot>
-              </div>
-              <div class="footer">footer</div>
-            </div>
-            `,
-          data() {
-            return {
-              text: "內部元件",
-              num: 3,
-            };
-          }
-        });
-        app.mount("#app");
-      </script>
-    </xmp>
-  </pre>
-
-  <h2>v-slot</h2>
-  <p>v-slot:header 同 #header</p>
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        <h3> {{ product.name }} </h3>
-        <out-text>
-          <template #header>波利卡片</template>
-          <template v-slot:main>瘋兔卡片</template>
-          <template v-slot:default></template>
-          <template v-slot:footer>禿鷹卡片</template>
-        </out-text>
-      </div>
-      <script>
-        var app = Vue.createApp({
-          data() {
-            return {
-              text: "外層元件",
-              product: {
-                name: "名刀不知火",
-                price: 200000,
-              }
-            }
-          }
-        });
-        app.component("outText", {
-          template: `
-          <div class="box">
-              <div class="header">
-                <slot name="header"></slot>
-              </div>
-              <div class="main">
-                <slot name="main"></slot>
-                <div>
-                  <slot>未插卡！</slot>
-                </div>
-              </div>
-              <div class="footer">
-                <slot name="footer"></slot>
-              </div>
-          </div>
-          `,
-          data() {
-            return {
-              text: "內部元件",
-              num: 3,
-            };
-          }
-        });
-        app.mount("#app");
-      </script>
-    </xmp>
-  </pre>
-
-  <h2>slot作用域</h2>
-  <p>slot 的內容都是由外層元件提供</p>
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        <h3> {{ product.name }} </h3>
-        <out-text>
-          <!-- 會無法顯示 -->
-          <p> {{ product.name }} </p>
-        </out-text>
-      </div>
-      <script>
-        var app = Vue.createApp({
-          data() {
-            return {
-              text: "外層元件",
-              product: {
-                name: "名刀不知火",
-                price: 200000,
-              }
-            }
-          }
-        });
-        app.component("outText", {
-          template: `<div class="box"></div>`,
-          data() {
-            return {
-              text: "內部元件",
-              product: {
-                name: "+9 獵人之弓",
-                price: 100000,
-              }
-            };
-          }
-        });
-        app.mount("#app");
-      </script>
-    </xmp>
-  </pre>
-
-  <h2>Slot(Props)內層傳遞給外層元件</h2>
-  <ol>
-    <li>內層元件定義好要傳出去的資料slot:ro="product"，:ro為自定義名稱，product為內層元件的data。</li>
-    <li>外層元件模板v-slot:default="roprops"接收資料，v-slot:default固定寫法，roprops為自定義名稱。</li>
-  </ol>
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        <out-text>
-          <template v-slot:default="roprops">
-            內層元件插槽：
-            {{ roprops.ro.name }}
-          </template>
-        </out-text>
-      </div>
-      <script>
-        var app = Vue.createApp({
-          data() {
-            return {
-              text: "外層元件",
-            }
-          }
-        });
-        app.component("outText", {
-          template: `
-            <div class="header">
-              <slot :ro="product"></slot>
-            </div>
-          `,
-          data() {
-            return {
-              text: "內部元件",
-              product: {
-                name: "名刀不知火",
-                price: 200000,
-                city: "普隆德拉"
-              }
-            };
-          }
-        });
-        app.mount("#app");
-      </script>
-    </xmp>
-  </pre>
-
-  <h2>Slot(Props)內層傳遞給外層元件</h2>
-  <ol>
-    <li>先把外層元件props到子元件使用，out-text :product="product"，props: ['product']。</li>
-    <li>執行mounted()。</li>
-    <li>內層定義傳出去的資料slot :ro="product" :buy="buy"(資料是外部元件data，經由內部元件props提供)。</li>
-    <li>外層模板改為物件方式接收v-slot:default="{ ro, buy }"。</li>
-  </ol>
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        <out-text :product="product">
-          <template v-slot:default="{ ro, buy }">
-            component props：{{ ro.name }} <br>
-            slot props：{{ buy }}
-          </template>
-        </out-text>
-      </div>
-      <script>
-        var app = Vue.createApp({
-          data() {
-            return {
-              text: "外層元件",
-              product: {
-                name: "名刀不知火",
-                price: 200000,
-                city: "普隆德拉",
-                amount: 5,
-              }
-            }
-          }
-        });
-        app.component("outText", {
-          props: ['product'],
-          template: `
-              <div class="header">
-                <slot :ro="product" :buy="buy"></slot>
-              </div>
-            `,
-          data() {
-            return {
-              text: "內部元件",
-              buy: ""
-            };
-          },
-          created() {
-            if (this.product.amount > 1) {
-              this.buy = "可購買";
-            } else {
-              this.buy = "無法購買";
-            };
-          }
-        });
-        app.mount("#app");
-      </script>
     </xmp>
   </pre>
 
@@ -796,7 +515,6 @@
       </script>
     </xmp>
   </pre>
-
   <h4>參考</h4>
   <ul>
     <li>
