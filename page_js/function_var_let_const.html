@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>var</h2>
+    <h3>存在变量提升的情况</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          console.log(a) // undefined
+          var a = 20
+
+          //编译器会将其变成以下执行
+          var a
+          console.log(a)
+          a = 20
+        </script>
+      </xmp>
+    </pre>
+    <h3>在函数中使用使用var声明变量时候，该变量是局部的</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var a = 20
+          function change(){
+            var a = 30
+          }
+          change()
+          console.log(a) // 20
+        </script>
+      </xmp>
+    </pre>
+    <h3>函数内不使用var，该变量是全局的</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var a = 20
+          function change(){
+            a = 30
+          }
+          change()
+          console.log(a) // 30
+        </script>
+      </xmp>
+    </pre>
+    <h3>函数本身也是一个值，也有自己的作用域。它的作用域与变量一样，就是其声明时所在的作用域，与其运行时所在的作用域无关</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var a = 1;
+          var x = function () {
+              console.log(a);//1
+          };
+          function f() {
+              var a = 2;
+              x();
+          }
+          f() // 1
+        </script>
+      </xmp>
+    </pre>
+    <h2>let</h2>
+    <h3>let命令所在{}的代码块内有效</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        {
+          let a = 20
+        }
+        console.log(a) // ReferenceError: a is not defined.
+        </script>
+      </xmp>
+    </pre>
+    <h3>不存在变量提升</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+        console.log(a) // 报错ReferenceError
+        let a = 2
+        </script>
+      </xmp>
+    </pre>
+    <h3>块级作用域内存在let命令，这个区域就不再受外部影响</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var a = 123
+          if (true) {
+              a = 'abc' // ReferenceError
+              let a;
+          }
+        </script>
+      </xmp>
+    </pre>
+    <h3>let不允许在相同作用域中重复声明</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          let a = 20
+          let a = 30
+          // Uncaught SyntaxError: Identifier 'a' has already been declared
+        </script>
+      </xmp>
+    </pre>
+    <h2>const</h2>
+    <h3>const声明一个只读的常量，一旦声明，常量的值就不能改变</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          const a = 1
+          a = 3
+          // TypeError: Assignment to constant variable.
+        </script>
+      </xmp>
+    </pre>
+    <h3>之前用var或let声明过变量，再用const声明同样会报错</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var a = 20
+          let b = 20
+          const a = 30
+          const b = 30
+          // 都会报错
+        </script>
+      </xmp>
+    </pre>
+    <h3>const实际上保证的并不是变量的值不得改动，而是变量指向的那个内存地址所保存的数据不得改动</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          const foo = {};
+
+          // 为 foo 添加一个属性，可以成功
+          foo.prop = 123;
+          foo.prop // 123
+
+          // 将 foo 指向另一个对象，就会报错
+          foo = {}; // TypeError: "foo" is read-only
+        </script>
+      </xmp>
+    </pre>
+    <h2>var、let、const三者区别</h2>
+    <ol>
+      <li>变量提升</li>
+      <li>暂时性死区</li>
+      <li>块级作用域</li>
+      <li>重复声明</li>
+      <li>修改声明的变量</li>
+    </ol>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://github.com/febobo/web-interview/issues/34" target="_blank">var、let、const之间的区别</a>
+      </li>
+    </ul>
+  </body>
+</html>

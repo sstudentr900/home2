@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>object寫法</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>object寫法</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //bad
         // var person = new object();
         // person.name = 'andy';
@@ -30,13 +28,13 @@
             name: 'bb'
           }],
         }
-      </script>
-    </xmp>
-  </pre>
-  <h2>object方法</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object方法</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var person = {
           speak: function () {
             console.log('hello');
@@ -47,13 +45,13 @@
             console.log('hello');
           }
         }
-      </script>
-    </xmp>
-  </pre>
-  <h2>object 屬性名稱可以是表達式</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object 屬性名稱可以是表達式</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         let id = 0;
         const users = {
           [`user${++id}`]: id,
@@ -61,13 +59,13 @@
           [`user${++id}`]: id,
         };
         console.log(users); // {user1: 1, user2: 2, user3: 3}
-      </script>
-    </xmp>
-  </pre>
-  <h2>物件合并</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>物件合并</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //es6 
         //bad
         var person = {
@@ -102,13 +100,13 @@
         [2].concat({
           a: 1
         }); // [2, {a: 1}]
-      </script>
-    </xmp>
-  </pre>
-  <h2>object取值</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object取值</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var ab = [{
           name: 'kk'
         }, {
@@ -150,13 +148,19 @@
 
         //entries 會自動排序
         console.log(Object.entries(obj)); // [[0, 'c'],[1, 'b'],[2, 'a']]
-      </script>
-    </xmp>
-  </pre>
-  <h2>object for</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+
+        //fromEntries 将一个键值对数组转为对象
+        Object.fromEntries([
+          ['foo', 'bar'],
+          ['baz', 42]
+        ])// { foo: "bar", baz: 42 }
+        </script>
+      </xmp>
+    </pre>
+    <h2>object for</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var obj = {
           2: 'a',
           0: 'c',
@@ -186,13 +190,13 @@
           // 1 b
           // 2 a
         }
-      </script>
-    </xmp>
-  </pre>
-  <h2>object delete</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object delete</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //delete 單個物件移除其中一個
         var someArray = {
           a: "1",
@@ -216,13 +220,13 @@
         });
         console.log(filtered) //[{i: "1"},{i: "3"}]
         console.log(someArray) //[{i: "1"},{i: "2"},{i: "3"}]
-      </script>
-    </xmp>
-  </pre>
-  <h2>object sort</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object sort</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var someArray = [{
           name: "张三",
           age: 30
@@ -237,13 +241,13 @@
           return o1.age - o2.age;
         })
         console.log('someArray', someArray)
-      </script>
-    </xmp>
-  </pre>
-  <h2>object find</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object find</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var s = [{
           "name": "001"
         }, {
@@ -255,13 +259,13 @@
           return c.name == '001'
         })
         console.log(a) //{name: '001'}
-      </script>
-    </xmp>
-  </pre>
-  <h2>object findIndex 陣列中的索引位置</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object findIndex 陣列中的索引位置</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         var toolMan = [{
           "name": "001"
         }, {
@@ -274,13 +278,13 @@
 
         // 刪除元素
         toolMan.splice(daddy, 1);
-      </script>
-    </xmp>
-  </pre>
-  <h2>object copy</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object copy</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //https://ithelp.ithome.com.tw/articles/10269367
         var user = {
           name: 'Mary',
@@ -325,13 +329,13 @@
         userCopy.age = 20;
         console.log(user.age); //30
         console.log(userCopy.age); //20
-      </script>
-    </xmp>
-  </pre>
-  <h2>object deepCopy</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object deepCopy</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //https://ithelp.ithome.com.tw/articles/10223178
         function deepCopy(obj, cache = new WeakMap()) {
           // 基本型別 & function
@@ -354,13 +358,13 @@
 
           return copy
         }
-      </script>
-    </xmp>
-  </pre>
-  <h2>object 範例</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object 範例</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //總數
         let fruits = {
           apple: 2,
@@ -401,13 +405,13 @@
             return false; //false跳出整个迴圈
           };
         })
-      </script>
-    </xmp>
-  </pre>
-  <h2>object 其他</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>object 其他</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //new map
         //https://medium.com/appworks-school/javascript-map-%E7%89%A9%E4%BB%B6%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B-2e5511b7a580
 
@@ -426,10 +430,10 @@
 
         //值可以相等
         Symbol.for("id4");
-      </script>
-    </xmp>
-  </pre>
-  <!--<hr>
+        </script>
+      </xmp>
+    </pre>
+    <!--<hr>
    <h4>參考</h4>
     <ul>
       <li>
@@ -442,6 +446,5 @@
         <a href="https://ithelp.ithome.com.tw/articles/10247031" target="_blank">JavaScript基本功修練：Day15 - 解構賦值的概念與應用</a>
       </li>
     </ul> -->
-</body>
-
+  </body>
 </html>

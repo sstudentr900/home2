@@ -41,9 +41,9 @@
 
 
           //findIndex尋找陣列中符合的元素，並返回其 index（索引）。如果沒有符合的對象，將返回 -1 。
-          const array1 = [5, 12, 8, 130, 44];
-          const isLargeNumber = (element) => element > 13;
-          console.log(array1.findIndex(isLargeNumber));
+          [1, 5, 10, 15].findIndex(function(value, index, arr) {
+            return value > 9;
+          }) // 2
 
 
           //unshift從頭新增(array會改變)------------------------------------------------------

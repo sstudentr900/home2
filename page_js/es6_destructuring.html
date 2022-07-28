@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>array ES6 解構賦值</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>array ES6 解構賦值</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //陣列的解構賦值
         let exGirl = ['蘋蘋', '欣欣', '雯雯', '綺綺'];
         let [one, two, three, fore] = exGirl;
@@ -63,6 +61,14 @@
         // console.log(one); // one = 欣欣
         // console.log(two); // two = 蘋蘋
 
+        //
+        const [first, ...rest] = [];
+        // first // undefined
+        // rest  // []
+        const [first, ...rest] = ["foo"];
+        // first  // "foo"
+        // rest   // []
+
 
         //字串拆解
         let please = '格幫我買飲料';
@@ -73,13 +79,13 @@
         //多維陣列
         const [a, [b, [c, d]]] = [1, [2, [[3, 4], 5]]];
           //a = 1, b = 2, c = [3,4], d = 5
-      </script>
-    </xmp>
-  </pre>
-  <h2>obj ES6 解構賦值</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>obj ES6 解構賦值</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         let { name, age = 18 } = {}
         //age = 18
         let restaurant = {
@@ -165,14 +171,13 @@
         console.log(a) //Ken
         console.log(b) //{pet: ['cat',['dogA','dogB']]}
         console.log(c) //100
-
-      </script>
-    </xmp>
-  </pre>
-  <h2>函式應用</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>函式應用</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         function greet({ name, greet = 'Nice to meet you' }) {
           console.log(`${greet}, ${name}`)
         }
@@ -190,39 +195,42 @@
         //Name: Mary, University: true, Language English, Skills: JavaScript,Ruby,PHP
         person({ name: 'Tom', university: false, language: 'Mandarin' }, 'C', 'JavaScript', 'PHP')
           //Name: Tom, University: false, Language Mandarin, Skills: C,JavaScript,PHP
-      </script>
-    </xmp>
-  </pre>
-  <h2>for</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h2>for</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //高階函式的例子：
         const list = [{ name: 'Eva' }, { name: 'Carrie', num: 23 }, { name: 'Olivia' }]
         list.forEach(({ name, num = 'unknown' }) => console.log(`Hi I'm ${name}. My number is ${num}.`))
           //Hi I'm Eva. My number is unknown.
           //Hi I'm Carrie. My number is 23.
           //Hi I'm Olivia. My number is unknown.
-      </script>
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://pjchender.dev/javascript/js-array" target="_blank">JavaScript 陣列（Array）</a>
-    </li>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10214766" target="_blank">Day11【ES6 小筆記】陣列的解構賦值-以哥哥的前女友為例（Array
-        Destructuring）</a>
-    </li>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10247031" target="_blank">JavaScript基本功修練：Day15 - 解構賦值的概念與應用</a>
-    </li>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10214721" target="_blank">ES6 小筆記】物件的解構賦值-以一間好吃的餐廳為例（Object
-        Destructuring）</a>
-    </li>
-  </ul>
-</body>
-
+        </script>
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://pjchender.dev/javascript/js-array" target="_blank">JavaScript 陣列（Array）</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10214766" target="_blank">
+          Day11【ES6 小筆記】陣列的解構賦值-以哥哥的前女友為例（Array
+        Destructuring）
+        </a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10247031" target="_blank">JavaScript基本功修練：Day15 - 解構賦值的概念與應用</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10214721" target="_blank">
+          ES6 小筆記】物件的解構賦值-以一間好吃的餐廳為例（Object
+        Destructuring）
+        </a>
+      </li>
+    </ul>
+  </body>
 </html>

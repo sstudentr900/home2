@@ -10,19 +10,18 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
+    <h2>Array.from 构造函数新增的方法</h2>
     <pre class="prettyprint">
       <xmp>
         <script>
-          //from---------------------------------------------------------------
-          //https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/from
-
           //字串產生陣列
           Array.from('foo'); //["f", "o", "o"]
 
 
-
           //數組的增加
           Array.from([1, 2, 3], x => x + x); //[2, 4, 6]
+
+
           //類數組的每一項乘以2
           Array.from({
               '0': 10,
@@ -31,13 +30,11 @@
           }, value => value * 2); // => [20, 30]
 
 
-
           //
           Array.from([1, 2, 3]).reduce(function(sum, num) {
               console.log(sum, num)
               return sum + num;
           }); //6
-
 
 
 
@@ -49,16 +46,17 @@
 
 
 
-
           //克隆一個數組
           const numbers = [3, 6, 9];
           const numbersCopy = Array.from(numbers);
           numbers === numbersCopy; // => false
-
-
-
-
-          //使用值填充數組
+        </script>
+      </xmp>
+    </pre>
+    <h3>使用值填充數組</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
           const length = 3;
           const init = 0;
           //1.
@@ -83,9 +81,13 @@
               ]
               // [0, 1, 2, 3, 4]
           console.log(a)
-
-          //將 array-like 的 Node List 轉成 Array---------------------------------------------------------------
-          //https://pjchender.dev/javascript/js-array
+        </script>
+      </xmp>
+    </pre>
+    <h3>將 array-like 的 Node List 轉成 Array</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
           function toArray(value) {
               if (Array.isArray(value)) {
                   return value;
@@ -98,5 +100,14 @@
         </script>
       </xmp>
     </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/from" target="_blank">Array.from</a>
+      </li>
+      <li>
+        <a href="https://pjchender.dev/javascript/js-array" target="_blank">Node List 轉成 Array</a>
+      </li>
+    </ul>
   </body>
 </html>

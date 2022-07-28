@@ -10,14 +10,15 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
+    <h2>排序 sort</h2>
     <pre class="prettyprint">
       <xmp>
         <script>
-          //sort按照对应字符串的字典顺序排序---------------------------------------------------------------
+          //字符串排序
           var arr = ["Ba", "Or", "Ap", "Ma"].sort(); //Ap,Ba,Ma,Or
           [4, 3, 2, 1].sort(); //[1, 2, 3, 4]
 
-          //2.(數字大小排序)
+          //數字大小排序
           var arr = ['60', '22', '90'];
           arr.sort(function(num1, num2) {
               return num1 - num2 //小到大排序(數字)
@@ -25,7 +26,36 @@
           });
           alert(arr);
 
-          //obj 排序
+          //反转排序
+          ['60', '22', '90'].reverse(); // ['90', '22', '60']
+        </script>
+      </xmp>
+    </pre>
+    <h3>es6 排序稳定性</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          const arr = [
+            'peach',
+            'straw',
+            'apple',
+            'spork'
+          ];
+
+          const stableSorting = (s1, s2) => {
+            if (s1[0] < s2[0]) return -1;
+            return 1;
+          };
+
+          arr.sort(stableSorting)
+          // ["apple", "peach", "straw", "spork"]
+        </script>
+      </xmp>
+    </pre>
+    <h3>obj 排序</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
           var arr = [{
               name: 'Edward',
               value: 21
@@ -39,9 +69,6 @@
           }
           arr.sort(compareObj);
           console.log(arr);
-          
-          //反转排序---------------------------------------------------------------
-          ['60', '22', '90'].reverse(); // ['90', '22', '60']
         </script>
       </xmp>
     </pre>
@@ -90,6 +117,11 @@
         </script>
       </xmp>
     </pre>
-    <!-- sort(),reverse(), -->
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://github.com/febobo/web-interview/issues/35" target="_blank">排序稳定性</a>
+      </li>
+    </ul>
   </body>
 </html>

@@ -66,13 +66,17 @@
           } else {
               console.log('沒有')
           }
-          
-
-          //建立一個長度為 n 且內容相同的陣列---------------------------------------------------------
+        </script>
+      </xmp>
+    </pre>
+    <h3>填充一个数组</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //fill()
           //https://pjchender.dev/javascript/js-array
-          Array(_length_).fill(_element_);
-          Array(10).fill('ele');
-          // [ 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele' ]
+          // Array(length).fill(element);
+          Array(10).fill('ele'); // [ 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele' ]
 
 
           //建立一個元素從 1 ~ n 的陣列---------------------------------------------------------
@@ -81,9 +85,11 @@
           [...Array(5)]; // [undefined, undefined, undefined, undefined, undefined]
           [...Array(5).keys()]; // [0, 1, 2, 3, 4]
           Array(5).keys(); // Array Iterator {}
+
           let array1to8 = Array.from({
               length: 5
           }, (val, index) => index + 1); // [1, 2, 3, 4, 5]
+
           let array1to10 = Array.from(new Array(5), (val, index) => index + 1); // [1, 2, 3, 4, 5]
         </script>
       </xmp>
