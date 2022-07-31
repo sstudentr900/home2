@@ -97,7 +97,7 @@
         var o = {
             v: 'hello',
             p: ['a1', 'a2'],
-            f: function f() {
+            f: function() {
                 this.p.forEach(function(item) {
                     console.log(this.v + ' ' + item);
                 });
@@ -110,7 +110,7 @@
         var o = {
             v: 'hello',
             p: ['a1', 'a2'],
-            f: function f() {
+            f: function() {
                 var that = this;
                 this.p.forEach(function(item) {
                     console.log(that.v + ' ' + item);
@@ -124,7 +124,7 @@
         var o = {
             v: 'hello',
             p: ['a1', 'a2'],
-            f: function f() {
+            f: function() {
                 this.p.forEach(function(item) {
                     console.log(this.v + ' ' + item);
                 }, this);
