@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-   <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>file_download</h2>
-  
-  <h3>html</h3>
-  <pre class="prettyprint">
-    <xmp>
-      <input type="file" name="file[]" data-target='file'>
-      <form action="{{route('image')}}" method="post" enctype="multipart/form-data">
-        @csrf
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>file_download</h2>
+    <h3>html</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <input type="file" name="file[]" data-target="file">
+        <form action="{{route('image')}}" method="post" enctype="multipart/form-data">
+          @csrf
         @if ($errors->any())
           <div class="alert alert-danger">
             <ul>
               @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+              <li>{{ $error }}</li>
               @endforeach
             </ul>
           </div>
-        @endif
-        <input name="file" type="file" accept="image/*" value=""/>
-        <input name="" type="submit" value="上傳"/>
-      </form>
-    </xmp>
-  </pre>
-
-  <h3>js</h3>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+          @endif
+          <input
+            name="file"
+            type="file"
+            accept="image/*"
+            value=""
+          >
+          <input name="" type="submit" value="上傳">
+        </form>
+      </xmp>
+    </pre>
+    <h3>js</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         function fileFn(e) {
           const file = e.target.files[0];
           //驗證
@@ -57,14 +58,13 @@
           }
         }
         document.querySelector('[data-target="file"]').addEventListener('change', fileFn)
-      </script>
-    </xmp>
-  </pre>
-
-  <h3>php 檔案存檔</h3>
-  <pre class="prettyprint">
-    <xmp>
-      if(isset($input['file'])){
+        </script>
+      </xmp>
+    </pre>
+    <h3>php 檔案存檔</h3>
+    <pre class="prettyprint">
+      <xmp>
+        if(isset($input['file'])){
         $files = $input['file'];
         foreach($files as $key => $value){
           $uploadedFile = $files[$key];
@@ -76,51 +76,46 @@
           $data->save();
         }
       }
-    </xmp>
-  </pre>
-
-  <h3>php 檔案刪除</h3>
-  <pre class="prettyprint">
-    <xmp>
-      $appendix = data_appendix::where('id', $id)->first();
+      </xmp>
+    </pre>
+    <h3>php 檔案刪除</h3>
+    <pre class="prettyprint">
+      <xmp>
+        $appendix = data_appendix::where('id', $id)->first();
       unlink(storage_path('app/'.$appendix['src'])); //delet store/app/fileName
       data_appendix::find($id)->delete(); //delet data
-    </xmp>
-  </pre>
-
-  <h3>blade 下載檔案</h3>
-  <p>Storage::url('檔案名稱') 取得Storage URL</p>
-  <pre class="prettyprint">
-    <xmp>
-      @if(isset($appendixs))
+      </xmp>
+    </pre>
+    <h3>blade 下載檔案</h3>
+    <p>Storage::url('檔案名稱') 取得Storage URL</p>
+    <pre class="prettyprint">
+      <xmp>
+        @if(isset($appendixs))
         @foreach ($appendixs as $appendix)
-          <a href="{{ Storage::url(str_replace('public/','',$appendix->src)) }}"
-          download="{{$appendix->name}}">{{$appendix->name}}</a>
+        <a href="{{ Storage::url(str_replace('public/','',$appendix->src)) }}" download="{{$appendix->name}}">{{$appendix->name}}</a>
         @endforeach
       @endif
-    </xmp>
-  </pre>
-
-  <h3>另開檔案,須裝google表單不然會變下載</h3>
-  <pre class="prettyprint">
-    <xmp>
-      <a href="javascript:;" onclick="window.open('{{ Storage::url(fileSrc) }}','_blank')">
-        {{fileName}}
-      </a>
-    </xmp>
-  </pre>
-
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a
-        href="https://stackoverflow.com/questions/55028870/how-to-download-file-from-storage-folder-in-blade-page-in-laravel">how
-        to download file from storage folder in blade page in laravel?</a>
-    </li>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10228413">上傳檔案</a>
-    </li>
-  </ul>
-</body>
-
+      </xmp>
+    </pre>
+    <h3>另開檔案,須裝google表單不然會變下載</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <a href="javascript:;" onclick="window.open('{{ Storage::url(fileSrc) }}','_blank')">
+          {{fileName}}
+        </a>
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/questions/55028870/how-to-download-file-from-storage-folder-in-blade-page-in-laravel">
+          how
+        to download file from storage folder in blade page in laravel?
+        </a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10228413">上傳檔案</a>
+      </li>
+    </ul>
+  </body>
 </html>

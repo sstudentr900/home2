@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+</head>
+
+<body id="program">
+  <h2>頁面模板(Blade)</h2>
+  <h3>csrf</h3>
+  <pre class="prettyprint">
+    <xmp>
+      //1.
+      @csrf
+
+      //2.
+      <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+      //3.
+      {!! csrf_field() !!}
+
+      //4.
+      <meta name="csrf-token" content="{{ csrf_token() }}">
+    </xmp>
+  </pre>
+
+  <h3>isset</h3>
+  <pre class="prettyprint">
+    <xmp>
+      //1.
+      {{isset($variable) ? $variable : "Default Value"}}
+    
+      //2.
+      @isset ($variable)
+          {{$variable}}
+      @else
+          Default
+      @endisset
+    </xmp>
+  </pre>    
+
+  <h3>empty</h3>
+  <pre class="prettyprint">
+    <xmp>
+      @empty($variable)
+          Default
+      @else
+          {{$variable}}
+      @endempty
+    </xmp>
+  </pre>
+
+  <h3>迴圈</h3>
+  <pre class="prettyprint">
+    <xmp>
+      @for ($i = 0; $i < 10; $i++)
+          The current value is {{ $i }}
+      @endfor
+
+
+      @foreach ($item as $list)
+          {{$item}} <br/>
+      @endforeach
+
+      //index
+      @foreach ($teams as  $team)
+      {{ $loop->index }}
+      @endforeach
+
+
+      @forelse ($item as $list)
+          <li>{{ $item }}</li>
+      @empty
+          <p>No item</p>
+      @endforelse
+
+
+      @while (true)
+          <p>I'm looping forever.</p>
+      @endwhile
+
+
+      @foreach ($users as $user)
+          @continue($user->type == 1)
+              <li>{{ $user->name }}</li>
+          @break($user->number == 5)
+      @endforeach
+    </xmp>
+  </pre>
+
+  <h3>判斷式</h3>
+  <pre class="prettyprint">
+    <xmp>
+      @if (judge1?)
+      // Something when true
+      @elseif (judge2?)
+      // Something when judge2 is true
+      @else
+      // Other condition
+      @endif
+    </xmp>
+  </pre>
+
+  <h3>不轉譯輸出</h3> 
+  <pre class="prettyprint">
+    <xmp>
+      {!! $variable !!}
+    </xmp>
+  </pre>
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10222061" target="_blank">路由&頁面模板</a>
+    </li>
+  </ul>
+</body>
+</html>
