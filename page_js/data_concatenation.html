@@ -12,12 +12,16 @@
   <body id="program">
     <pre class="prettyprint">
       <xmp>
-        <span id="productCount"></span>
         <input type="text" id="title">
         <input type="text" id="price">
         <input type="text" id="origin_price">
+        <!-- 增加商品 -->
         <button id="addProduct">addProduct</button>
+        <!-- 刪除全部商品 -->
         <button id="clearAll">clearAll</button>
+        <!-- 商品數 -->
+        <p id="productCount"></p>
+        <!-- 商品表單 -->
         <table id="productList"></table>
         <script>
           let productData = []
@@ -29,7 +33,7 @@
           let Price = document.getElementById('price');
           let Count = document.getElementById('productCount');
 
-          //資料處理
+          //增加商品 
           function addProduct(){
             const timeStamp = Math.floor(Date.now());
             if (document.getElementById('title').value.trim() !== '') {
@@ -51,7 +55,7 @@
           addBtn.addEventListener('click', addProduct);
 
 
-          // 資料全部刪除
+          // 刪除全部商品
           function clearAll(e){
             e.preventDefault();
             productData = [];
@@ -59,7 +63,7 @@
           };
           clearall.addEventListener('click', clearAll);
 
-
+          //商品表單 操作
           function productList(e){
             const action = e.target.dataset.action;
             const id = e.target.dataset.id;
@@ -115,5 +119,5 @@
         </script>
       </xmp>
     </pre>
-    <body>
-    </html>
+  </body>
+</html>
