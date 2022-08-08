@@ -12,34 +12,38 @@
   <body id="program">
     <h2>go top</h2>
     <p>使用window.scrollTo()</p>
-    <pre>
-      <code class="language-js">
-        button.addEventListener("click", function() {
-                window.scrollTo({
-                    top: 0, 
-                    behavior: 'smooth' //平滑滚动
-                })
-            });
-      </code>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          button.addEventListener("click", function() {
+              window.scrollTo({
+                  top: 0, 
+                  behavior: 'smooth' //平滑滚动
+              })
+          });
+        </script>
+      </xmp>
     </pre>
     <p>requestAnimationFrame</p>
-    <pre>
-      <code class="language-js">
-        utton.addEventListener('click',function(){
-                let cb = ()=>{
-                    if(document.documentElement.scrollTop===0){
-                        //满足条件，不再递归调用
-                        return;
-                    } else {
-                        let speed = 40 //每个帧内滚动条移动的距离
-                        document.documentElement.scrollTop -= speed
-                        //不满足条件，再次调用cb
-                        requestAnimationFrame(cb)
-                    }
-                }
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          utton.addEventListener('click',function(){
+            let cb = ()=>{
+              if(document.documentElement.scrollTop===0){
+                //满足条件，不再递归调用
+                return;
+              } else {
+                let speed = 40 //每个帧内滚动条移动的距离
+                document.documentElement.scrollTop -= speed
+                //不满足条件，再次调用cb
                 requestAnimationFrame(cb)
+              }
             }
-      </code>
+            requestAnimationFrame(cb)
+          })
+        </script>
+      </xmp>
     </pre>
     <hr>
     <h4>參考</h4>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Slide In on Scroll</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+          body{
+              height: 5000px;
+              margin: 0;
+          }
+          h2{
+              font-size: 60px;
+              margin: 0;
+          }
+          .active h2{
+              color: red;
+          }
+          .item{
+              margin-top: 100px;
+          }
+          .item2{
+              padding-top: 200px;
+          }
+        </style>
+        <div class="item">
+          <h2>item</h2>
+        </div>
+        <div class="item2">
+          <h2>item2</h2>
+        </div>
+        <script>
+          // let lastKnownScrollPosition = 0;
+          let ticking = false;
+          let item = document.querySelector('.item')
+          let item2 = document.querySelector('.item2')
+
+          function doSomething(scrollPos) {
+              // console.log('當前滾動數值',scrollPos,window.scrollY)
+              console.log('當前滾動數值',window.scrollY)
+              console.log('item與頂部距離',item.offsetTop)
+              console.log('item2與頂部距離',item2.offsetTop)
+
+              const moveToNextAt = (item.offsetTop) - (item.clientHeight / 2); //頂部距離-(item/2)
+              console.log('moveToNextAt',moveToNextAt)
+              console.log('scrollY',window.scrollY)
+              if (window.scrollY > moveToNextAt) {
+                  item.classList.add('active');
+              } else {
+                  item.classList.remove('active');
+              }
+          }
+
+          document.addEventListener('scroll', function(e) {
+              // lastKnownScrollPosition = window.scrollY;
+              if (!ticking) {
+                  window.requestAnimationFrame(function() {
+                      // doSomething(lastKnownScrollPosition);
+                      doSomething();
+                      ticking = false;
+                  });
+                  ticking = true;
+              }
+          });
+        </script>
+      </xmp>
+    </pre>
+  </body>
+</html>

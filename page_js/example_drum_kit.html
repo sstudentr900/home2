@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Drum Kit</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+        html {
+          font-size: 10px;
+          background: url('./background.jpg') bottom center;
+          background-size: cover;
+        }
+
+        body,html {
+          margin: 0;
+          padding: 0;
+          font-family: sans-serif;
+        }
+
+        .keys {
+          display: flex;
+          flex: 1;
+          min-height: 100vh;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .key {
+          border: .4rem solid black;
+          border-radius: .5rem;
+          margin: 1rem;
+          font-size: 1.5rem;
+          padding: 1rem .5rem;
+          transition: all .07s ease;
+          width: 10rem;
+          text-align: center;
+          color: white;
+          background: rgba(0,0,0,0.4);
+          text-shadow: 0 0 .5rem black;
+        }
+
+        .playing {
+          transform: scale(1.1);
+          border-color: #ffc600;
+          box-shadow: 0 0 1rem #ffc600;
+        }
+
+        kbd {
+          display: block;
+          font-size: 4rem;
+        }
+
+        .sound {
+          font-size: 1.2rem;
+          text-transform: uppercase;
+          letter-spacing: .1rem;
+          color: #ffc600;
+        }
+        </style>
+        <div class="keys">
+          <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <span class="sound">clap</span>
+          </div>
+          <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <span class="sound">hihat</span>
+          </div>
+          <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <span class="sound">kick</span>
+          </div>
+          <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <span class="sound">openhat</span>
+          </div>
+          <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <span class="sound">boom</span>
+          </div>
+          <div data-key="72" class="key">
+            <kbd>H</kbd>
+            <span class="sound">ride</span>
+          </div>
+          <div data-key="74" class="key">
+            <kbd>J</kbd>
+            <span class="sound">snare</span>
+          </div>
+          <div data-key="75" class="key">
+            <kbd>K</kbd>
+            <span class="sound">tom</span>
+          </div>
+          <div data-key="76" class="key">
+            <kbd>L</kbd>
+            <span class="sound">tink</span>
+          </div>
+          <audio data-key="65" src="https://qi-xiang.github.io/iThelp2021_JS30/01%20-%20JavaScript%20Drum%20Kit/sounds/clap.wav"></audio>
+          <audio data-key="83" src="https://qi-xiang.github.io/iThelp2021_JS30/01%20-%20JavaScript%20Drum%20Kit/sounds/hihat.wav"></audio>
+          <audio data-key="68" src="https://qi-xiang.github.io/iThelp2021_JS30/01%20-%20JavaScript%20Drum%20Kit/sounds/kick.wav"></audio>
+          <audio data-key="70" src="https://qi-xiang.github.io/iThelp2021_JS30/01%20-%20JavaScript%20Drum%20Kit/sounds/openhat.wav"></audio>
+          <audio data-key="71" src="https://qi-xiang.github.io/iThelp2021_JS30/01%20-%20JavaScript%20Drum%20Kit/sounds/boom.wav"></audio>
+          <audio data-key="72" src="https://qi-xiang.github.io/iThelp2021_JS30/01%20-%20JavaScript%20Drum%20Kit/sounds/ride.wav"></audio>
+          <audio data-key="74" src="https://qi-xiang.github.io/iThelp2021_JS30/01%20-%20JavaScript%20Drum%20Kit/sounds/snare.wav"></audio>
+          <audio data-key="75" src="https://qi-xiang.github.io/iThelp2021_JS30/01%20-%20JavaScript%20Drum%20Kit/sounds/tom.wav"></audio>
+          <audio data-key="76" src="https://qi-xiang.github.io/iThelp2021_JS30/01%20-%20JavaScript%20Drum%20Kit/sounds/tink.wav"></audio>
+        </div>
+        <script>
+          window.addEventListener("keydown",function(e){
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+            if(!audio)return; /*如果keyCode不存在則中止執行方法*/
+            audio.currentTime = 0; /*確保每一次按下鍵盤都從頭播放音檔*/
+            audio.play(); /*播放音檔*/
+            key.classList.add('playing');
+          })
+
+
+          /*當transform完成就移除.playing*/
+          function removeTransition(e){ 
+            //propertyName 属性返回过渡效果所对应的 CSS 属性的名称
+            if(e.propertyName != 'transform') return; 
+            this.classList.remove('playing');
+          }
+
+          /*取得所有的 key 標籤*/
+          const keys = document.querySelectorAll(`.key`);
+          /*在每個 key 上都註冊 "transitionend 事件" 的監聽器*/
+          keys.forEach(key => key.addEventListener('transitionend',removeTransition));
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10259079" target="_blank">JavaScript Drum Kit</a>
+      </li>
+    </ul>
+  </body>
+</html>
