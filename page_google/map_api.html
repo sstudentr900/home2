@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>取得金鑰(YOUR_API_KEY)</h2>
+    <img src="https://imgur.com/DXkoVDA.jpg" alt="">
+    <h2>取得經緯度</h2>
+    <img src="https://imgur.com/w3jKVDH.jpg" alt="">
+    <h2>範例:map styles</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+          #map {
+            height: 400px;
+            width: 100%;
+          }
+        </style>
+        <div id="map"></div>
+        <script>
+          function initMap() {
+            var uluru = {lat: 25.0253124, lng: 121.544109};
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 16,//放大的倍率
+              center: uluru,//初始化的地圖中心位置
+              styles: [
+                {
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#f5f5f5"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.icon",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#616161"
+                    }
+                  ]
+                },
+                {
+                  "elementType": "labels.text.stroke",
+                  "stylers": [
+                    {
+                      "color": "#f5f5f5"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "administrative.land_parcel",
+                  "elementType": "labels",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "administrative.land_parcel",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#bdbdbd"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#eeeeee"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "labels.text",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#757575"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.business",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#e5e5e5"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "labels.text",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "poi.park",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#9e9e9e"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#ffffff"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.arterial",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#757575"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#dadada"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.highway",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#616161"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.local",
+                  "elementType": "labels",
+                  "stylers": [
+                    {
+                      "visibility": "off"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "road.local",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#9e9e9e"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit.line",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#e5e5e5"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "transit.station",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#eeeeee"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "water",
+                  "elementType": "geometry",
+                  "stylers": [
+                    {
+                      "color": "#c9c9c9"
+                    }
+                  ]
+                },
+                {
+                  "featureType": "water",
+                  "elementType": "labels.text.fill",
+                  "stylers": [
+                    {
+                      "color": "#9e9e9e"
+                    }
+                  ]
+                }
+              ] 
+            });
+            var marker = new google.maps.Marker({
+              position: uluru,//marker的放置位置
+              map: map
+            });
+          }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+      </xmp>
+    </pre>
+    <h2>範例:地圖變斜</h2>
+    <h3>取得mapId</h3>
+    <img src="https://imgur.com/3QYPYFc.jpg" alt="">
+    <p>mapId不能用styles</p>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+          #map {
+            height: 400px;
+            width: 100%;
+          }
+        </style>
+        <div id="map"></div>
+        <script>
+          function initMap() {
+            var uluru = {lat: 25.0253124, lng: 121.544109};
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 16, 
+              heading: 320,//斜度
+              tilt: 47.5,//斜度
+              center: uluru,
+              mapId: YOUR_MAPId,
+              mapTypeControl: false, //地圖UI隱藏
+              streetViewControl: false,//小人UI隱藏
+              fullscreenControl: false,//放大UI隱藏
+            });
+            
+            //顯示地標ICON
+            var marker = new google.maps.Marker({
+              position: uluru,
+              map: map
+            });
+          }
+        </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10190905" target="_blank">Google Maps API的基礎實作篇</a>
+      </li>
+      <li>
+        <a href="https://www.letswrite.tw/google-map-api-marker-custom/" target="_blank">Google Maps API 學習筆記</a>
+      </li>
+      <li>
+        <a href="https://mapstyle.withgoogle.com/" target="_blank">Google Maps style</a>
+      </li>
+      <li>
+        <a href="https://www.letswrite.tw/google-map-api-distance-matrix/" target="_blank">Google Maps API 學習筆記 – 5：抓目前位置、計算到各點距離</a>
+      </li>
+    </ul>
+  </body>
+</html>

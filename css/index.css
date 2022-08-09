@@ -161,19 +161,20 @@ body.dark .index_top{
 .index_top .log a:hover,
 .index_top .log a{
     color: var(--title);
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     letter-spacing: 2px;
 }
 .index_top .log a {
     display: flex;
-    align-items: baseline;
+    align-items: center;
 }
 .index_top .log a svg{
-    width: 18px;
-    height: 18px;
-    margin-right: 5px;
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
     color: var(--blue);
+    margin-bottom: 3px;
 }
 /* body.dark .index_top .log{
     color: var(--blue);
