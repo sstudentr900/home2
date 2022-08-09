@@ -1,147 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/customPrism.css">
-    <link rel="stylesheet" href="../css/prism.css">
-     <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
+
 <body id="program">
-    <h2>fetch()</h2>
-    <p>語法：</p>
-    <pre>
-        <code class="language-js">
-            fetch('XXX')
-            .then((response) => {
-                //成功結果處理
+  <h2>fetch()</h2>
+  <p>語法：</p>
+  <pre>
+    <code class="language-js">
+      fetch('XXX')
+      .then((response) => {
+      //成功結果處理
 
-                //資料轉換
-                console.log(response.json());      //把資料轉成JSON格式
-                console.log(response.text());      //把資料轉成text格式(變成純字串)
-                console.log(response.blob());      //把資料轉成Blob物件
-                console.log(response.formData());  //把資料轉成FormData物件
-                console.log(response.formData());  //把資料轉成二進制數組
+      //資料轉換
+      console.log(response.json()); //把資料轉成JSON格式
+      console.log(response.text()); //把資料轉成text格式(變成純字串)
+      console.log(response.blob()); //把資料轉成Blob物件
+      console.log(response.formData()); //把資料轉成FormData物件
+      console.log(response.formData()); //把資料轉成二進制數組
 
-                //找不到該網址跳頁到index
-                if(response.ok) return response.text();
-                else location='./index'
+      //找不到該網址跳頁到index
+      if(response.ok) return response.text();
+      else location='./index'
 
-                //顯示錯誤碼
-                if(response.ok) return response.text();
-                    else throw new Error("狀態碼錯誤： " + res.status) 
-                })
-            .catch((error) => {
-                //錯誤結果處理
-                console.log(`Error: ${error}`);
-            })
-        </code>
-    </pre>
-    <h2>fetch本身就有promise</h2>
-    <p>語法：</p>
-    <pre>
-        <code class="language-js">
-            function creatMainHtml(url){
-                return fetch(url).then(response => {
-                    if(response.ok) return response.text();
-                    else new Error("狀態碼錯誤： " + res.status) 
-                }).then(function(html) {
-                    return html
-                })
-            }
-            creatMainHtml('XXX.html').then((html)=>{
-                let body = document.querySelector('body');
-                body.innerHTML='';
-                body.insertAdjacentHTML('afterbegin', html);
-            })
-        </code>
-    </pre>
-    <p>post</p>
-    <pre>
-        <code class="language-js">
-            let headers = {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Authorization": `Bearer ${token}`,
-            }
-            let body = {
-                "title": "...",
-                "category": "...",
-                "content": "...",
-                "description": "...",
-                "imageUrl": ["..."]
-            }
+      //顯示錯誤碼
+      if(response.ok) return response.text();
+      else throw new Error("狀態碼錯誤： " + res.status)
+      })
+      .catch((error) => {
+      //錯誤結果處理
+      console.log(`Error: ${error}`);
+      })
+    </code>
+  </pre>
+  <h2>fetch本身就有promise</h2>
+  <p>語法：</p>
+  <pre>
+    <code class="language-js">
+      function creatMainHtml(url){
+      return fetch(url).then(response => {
+      if(response.ok) return response.text();
+      else new Error("狀態碼錯誤： " + res.status)
+      }).then(function(html) {
+      return html
+      })
+      }
+      creatMainHtml('XXX.html').then((html)=>{
+      let body = document.querySelector('body');
+      body.innerHTML='';
+      body.insertAdjacentHTML('afterbegin', html);
+      })
+    </code>
+  </pre>
+  <p>post</p>
+  <pre>
+    <code class="language-js">
+      let headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Bearer ${token}`,
+      }
+      let body = {
+      "title": "...",
+      "category": "...",
+      "content": "...",
+      "description": "...",
+      "imageUrl": ["..."]
+      }
 
-            fetch(url, {
-                method: "POST",
-                headers: headers,
-                //別忘了把主體参數轉成字串，否則資料會變成[object Object]
-                body: JSON.stringify(body)
-            })
-            .then(response => response.json())
-            .then(json => console.log(json));
-        </code>
-    </pre>
-    <p>get</p>
-    <pre>
-        <code class="language-js">
-            let headers = {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
-                "Authorization": `Bearer ${token}`,
-            }
+      fetch(url, {
+      method: "POST",
+      headers: headers,
+      //別忘了把主體参數轉成字串，否則資料會變成[object Object]
+      body: JSON.stringify(body)
+      })
+      .then(response => response.json())
+      .then(json => console.log(json));
+    </code>
+  </pre>
+  <p>get</p>
+  <pre>
+    <code class="language-js">
+      let headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": `Bearer ${token}`,
+      }
 
-            fetch(url, {
-                    method: "GET",
-                    headers: headers,
-                })
-                .then((response) => response.json())
-                .then((json) => console.log(json));
-        </code>
-    </pre>
-    <p>async/await</p>
-    <pre>
-        <code class="language-js">
-            let getJSON = async(url) => {
-                let response = await fetch(url);
-                let JSON = await response.json();
-                console.log(response)
-                console.log(JSON)
-            }
-            getJSON('https://randomuser.me/api/')
-        </code>
-    </pre>
-    <p>blob 圖片</p>
-    <pre>
-        <code class="language-js">
-            let url = 'XXX'
-            fetch(url)
-                .then((response) => {
-                    // console.log(response)
-                    // console.log(response.blob())
-                    return response.blob();
-                })
-                .then((imageBlob) => {
-                    console.log(imageBlob)
-                    console.log(URL.createObjectURL(imageBlob))
-                        let img = document.createElement('IMG')
-                        img.src = URL.createObjectURL(imageBlob); //將 blog 物件轉為 url
-                        document.querySelector('.newImg').appendChild(img);
-                })
-        </code>
-    </pre>
-    <hr>
-    <h4>參考</h4>
-    <ul>
-        <li>
-            <a href="https://ithelp.ithome.com.tw/articles/10252941" target="_blank">Fetch練習(GET和POST請求)</a>
-        </li>
-        <li>
-            <a href="https://www.casper.tw/javascript/2017/12/28/javascript-fetch/" target="_blank">ES6 原生 Fetch 遠端資料方法</a>
-        </li>
-    </ul>
+      fetch(url, {
+      method: "GET",
+      headers: headers,
+      })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+    </code>
+  </pre>
+  <p>async/await</p>
+  <pre>
+    <code class="language-js">
+      let getJSON = async(url) => {
+      let response = await fetch(url);
+      let JSON = await response.json();
+      console.log(response)
+      console.log(JSON)
+      }
+      getJSON('https://randomuser.me/api/')
+    </code>
+  </pre>
+  <p>blob 圖片</p>
+  <pre>
+    <code class="language-js">
+      let url = 'XXX'
+      fetch(url)
+      .then((response) => {
+      // console.log(response)
+      // console.log(response.blob())
+      return response.blob();
+      })
+      .then((imageBlob) => {
+      console.log(imageBlob)
+      console.log(URL.createObjectURL(imageBlob))
+      let img = document.createElement('IMG')
+      img.src = URL.createObjectURL(imageBlob); //將 blog 物件轉為 url
+      document.querySelector('.newImg').appendChild(img);
+      })
+    </code>
+  </pre>
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10252941" target="_blank">Fetch練習(GET和POST請求)</a>
+    </li>
+    <li>
+      <a href="https://www.casper.tw/javascript/2017/12/28/javascript-fetch/" target="_blank">ES6 原生 Fetch 遠端資料方法</a>
+    </li>
+  </ul>
 </body>
+
 </html>
