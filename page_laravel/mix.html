@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>認識Laravel-Mix</h2>
+
+  <h3>JavaScript 和 CSS 編譯設定</h3>
+  <p>webpack.mix.js 文件中可以看到以下設定<br>
+    js('JS檔案位置', '存在公用位置')<br>
+    styles(['CSS檔案位置且合併'], '存在公用位置')</p>
+  <pre class="prettyprint">
+    <xmp>
+      mix.js('resources/js/fnapp.js', 'public/js')
+      .js('resources/js/baapp.js', 'public/js')
+      .styles([
+        'resources/css/default.css',
+        'resources/css/fndefault.css',
+      ],'public/css/fnapp.css')
+      .styles([
+        'resources/css/default.css',
+        'resources/css/badefault.css',
+      ],'public/css/baapp.css');
+    </xmp>
+  </pre>
+
+  <h3>JavaScript 和 CSS 輸出</h3>
+  <p>dev 用在開發環境<br>
+    production 輸出的代碼會被壓縮 </p>
+  <pre class="prettyprint">
+    <xmp>
+      $ npm run dev
+      // 或者
+      $ npm run production
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://dotblogs.com.tw/SmallFish/2020/09/23/074631" target="_blank">認識Laravel-Mix</a>
+    </li>
+    <li>
+      <a href="https://dotblogs.com.tw/SmallFish/2020/09/30/073103" target="_blank">處理Laravel-Mix的錯誤</a>
+    </li>
+  </ul>
+
+
+  <h3>browser-sync 自動更新瀏覽器</h3>
+  <p>1.在根目錄找到 webpack.mix.js 檔案</p>
+  <pre class="prettyprint">
+    <xmp>
+      mix.browserSync({
+      proxy: 'localhost:8000',
+      //open: false, // 當執行時是否要開啟瀏覽器
+      });
+    </xmp>
+  </pre>
+  <img src="https://imgur.com/t0Fu64b.png" alt="">
+
+
+  <p>2.開cmder跑serve</p>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan serve
+    </xmp>
+  </pre>
+  <img src="https://imgur.com/RD9Zp41.png" alt="">
+
+  <p>3.在開cmder跑watch</p>
+  <pre class="prettyprint">
+    <xmp>
+      npm run watch
+    </xmp>
+  </pre>
+
+  <p>4.npm錯誤</p>
+  <pre class="prettyprint">
+    <xmp>
+      npm install
+    </xmp>
+  </pre>
+
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10206875" target="_blank">browser-sync 自動更新瀏覽器</a>
+    </li>
+  </ul>
+</body>
+
+</html>

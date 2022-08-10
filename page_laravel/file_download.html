@@ -17,14 +17,14 @@
         <input type="file" name="file[]" data-target="file">
         <form action="{{route('image')}}" method="post" enctype="multipart/form-data">
           @csrf
-        @if ($errors->any())
-          <div class="alert alert-danger">
-            <ul>
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
+          @if ($errors->any())
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
           @endif
           <input
             name="file"
@@ -34,30 +34,25 @@
           >
           <input name="" type="submit" value="上傳">
         </form>
-      </xmp>
-    </pre>
-    <h3>js</h3>
-    <pre class="prettyprint">
-      <xmp>
         <script>
-        function fileFn(e) {
-          const file = e.target.files[0];
-          //驗證
-          const validFileTypes = ["jpeg", "jpg", "png", "pdf", "doc", "docx", "xls", "xlsx"];
-          const isValidFileType = validFileTypes.includes(file.name.split('.').pop());
-          if (!isValidFileType) {
-            alert("格式只能是jpg,png,pdf,doc,xls");
-            e.target.value = '';
-            return;
+          function fileFn(e) {
+            const file = e.target.files[0];
+            //驗證
+            const validFileTypes = ["jpeg", "jpg", "png", "pdf", "doc", "docx", "xls", "xlsx"];
+            const isValidFileType = validFileTypes.includes(file.name.split('.').pop());
+            if (!isValidFileType) {
+              alert("格式只能是jpg,png,pdf,doc,xls");
+              e.target.value = '';
+              return;
+            }
+            const isValidFileSize = file.size / 1024 / 1024 < 5;
+            if (!isValidFileSize) {
+              alert("檔案需小於 5MB!");
+              e.target.value = '';
+              return;
+            }
           }
-          const isValidFileSize = file.size / 1024 / 1024 < 5;
-          if (!isValidFileSize) {
-            alert("檔案需小於 5MB!");
-            e.target.value = '';
-            return;
-          }
-        }
-        document.querySelector('[data-target="file"]').addEventListener('change', fileFn)
+          document.querySelector('[data-target="file"]').addEventListener('change', fileFn)
         </script>
       </xmp>
     </pre>

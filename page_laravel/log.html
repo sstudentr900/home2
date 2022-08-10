@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>引入套件</h2>
+  <pre class="prettyprint">
+    <xmp>
+      use Illuminate\Support\Facades\Log;
+    </xmp>
+  </pre>
+
+  <h2>使用</h2>
+  <p>level嚴重程度的級別,從低到高為:debug、info、notice、warning、error、critical、alert、emergency.</p>
+  <pre class="prettyprint">
+    <xmp>
+      Log::info("Store New Blog Post: id = $post->id");
+      //取得目前使用過的SQL語法
+      Log::notice(print_r(DB::getQueryLog(), true));
+    </xmp>
+  </pre>
+
+  <h2>錯誤訊息顯示</h2>
+  <p>config/app.php設定檔的debug選項決定了是否向使用者顯示錯誤資訊</p>
+  <pre class="prettyprint">
+    <xmp>
+      'debug' => (bool) env('APP_DEBUG', true)
+    </xmp>
+  </pre>
+
+
+  <h2>設定Logging</h2>
+  <p>config/logging.php</p>
+  <pre class="prettyprint">
+    <xmp>
+      'default' => env('LOG_CHANNEL', 'stack'),
+      //stack 都寫在同一個檔案中
+      //daily 每天不同的Log檔案
+
+      'daily' => [
+      'driver' => 'daily',
+      'path' => storage_path('logs/laravel.log'),//存的位置
+      'level' => 'debug', //記錄大於或等於指定嚴重級別的所有級別的錯誤
+      'days' => 14, //預設保留14天份的日誌檔
+      ],
+    </xmp>
+  </pre>
+
+  <h2>log位置</h2>
+  <p>storage/logs/laravel.log</p>
+  <img src="https://i.imgur.com/bXfnpQD.png" alt=""><br>
+  <img src="https://i.imgur.com/xEJwA5a.png" alt="">
+
+
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10227332" target="_blank">紀錄檔</a>
+    </li>
+    <li>
+      <a href="https://dotblogs.com.tw/SmallFish/2020/10/09/074012" target="_blank">Laravel記錄Log</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10253415" target="_blank">Laravel記錄Log</a>
+    </li>
+  </ul>
+</body>
+
+</html>

@@ -10,37 +10,8 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
-    <h2>使用 https 加载 Blade 资源 Load Blade assets with https in Laravel</h2>
-    <p>asset()</p>
-    <pre class="prettyprint">
-      <xmp>
-        <link href="{{ asset('css/baapp.css')}}" rel="stylesheet" type="text/css">
-      </xmp>
-    </pre>
-    <p>URL::asset() 使用當前（HTTP 或 HTTPS）生成 URL：</p>
-    <pre class="prettyprint">
-      <xmp>
-        $url = asset('img/photo.jpg');
-        <link href="{{ URL::asset('css/baapp.css')}}" rel="stylesheet" type="text/css">
-      </xmp>
-    </pre>
-    <p>secure_asset() 使用 HTTPS 生成 URL：</p>
-    <pre class="prettyprint">
-      <xmp>
-        echo secure_asset('foo/bar.zip', $title, $attributes = []);
-        <link href="{{ secure_asset('css/baapp.css')}}" rel="stylesheet" type="text/css">
-      </xmp>
-    </pre>
-    <hr>
-    <h4>參考</h4>
-    <ul>
-      <li>
-        <a href="https://stackoverflow.com/questions/34378122/load-blade-assets-with-https-in-laravel" target="_blank">assets https</a>
-      </li>
-    </ul>
     <h2>不支持POST(The POST method is not supported for this route. Supported methods: GET, HEAD. Laravel)</h2>
     <p>注意URL斜線是否重複(https://XXX//XXX)</p>
-    <hr>
     <h4>參考</h4>
     <ul>
       <li>
@@ -62,11 +33,11 @@
         <a href="https://stackoverflow.com/questions/48270374/invalid-datetime-format-1366-incorrect-string-value" target="_blank">Invalid datetime format: 1366 Incorrect string value</a>
       </li>
     </ul>
-    <h2>
+    <h2>三位元要(a?b)c:d</h2>
+    <p>
       PHP Error : Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d
     : e)` [duplicate]
-    </h2>
-    <p>三位元要(a?b)c:d</p>
+    </p>
     <h4>參考</h4>
     <ul>
       <li>
@@ -83,7 +54,7 @@
         <a href="https://www.educative.io/answers/how-to-fix-storage-link-not-working-issue-in-laravel" target="_blank">How to fix storage link not working issue in Laravel</a>
       </li>
     </ul>
-    <h2>json_encode() escaping forward slashes</h2>
+    <h2>json轉斜杠 json_encode() escaping forward slashes</h2>
     <p>json_encode($str, JSON_UNESCAPED_SLASHES);</p>
     <ul>
       <li>
@@ -112,20 +83,5 @@
     <p>清除config緩存=>php artisan optimize:clear</p>
     <h2>'mix' 不是內部或外部命令、可執行的程式或批次檔。</h2>
     <p>npm install</p>
-    <h2>https http</h2>
-    <p>app/providers/AppServiceProvider</p>
-    <pre class="prettyprint">
-      <xmp>
-        //引入UrlGenerator
-      use Illuminate\Routing\UrlGenerator;
-
-      public function boot(UrlGenerator $url)
-      {
-        //本地端使用http
-        $http_type = (URL()->full() == 'http://localhost:3000' ? 'http' : 'https');
-        $url->forceScheme($http_type);
-      }
-      </xmp>
-    </pre>
   </body>
 </html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>Hash 引用</h2>
+  <pre class="prettyprint">
+    <xmp>
+      use Hash;
+      //or
+      use Illuminate\Support\Facades\Hash;
+    </xmp>
+  </pre>
+
+  <h2>Hash 加密</h2>
+  <pre class="prettyprint">
+    <xmp>
+      Hash::make($input['password']);
+      hash_hmac('ripemd160', 'The quick brown fox jumped over the lazy dog.', 'secret');
+    </xmp>
+  </pre>
+
+  <h2>Hash 解密</h2>
+  <pre class="prettyprint">
+    <xmp>
+      Hash::check($input['password'], $User->password)
+    </xmp>
+  </pre>
+
+  <h2>hash_hma 加密</h2>
+  <pre class="prettyprint">
+    <xmp>
+      hash_hmac($customStr1, $password, $customStr1);
+    </xmp>
+  </pre>
+
+  <h2>hash_hma 解密</h2>
+  <pre class="prettyprint">
+    <xmp>
+      if (hash_equals($hashed_expected, $hashed_value)) {
+      echo "hashes match!";
+      }
+    </xmp>
+  </pre>
+</body>
+</html>

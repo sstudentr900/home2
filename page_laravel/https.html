@@ -33,7 +33,6 @@
       <link href="{{ secure_asset('css/baapp.css')}}" rel="stylesheet" type="text/css">
     </xmp>
   </pre>
-  <hr>
   <h4>參考</h4>
   <ul>
     <li>
@@ -41,84 +40,67 @@
         target="_blank">assets https</a>
     </li>
   </ul>
-  <h2>不支持POST(The POST method is not supported for this route. Supported methods: GET, HEAD. Laravel)</h2>
-  <p>注意URL斜線是否重複(https://XXX//XXX)</p>
-  <hr>
+  <h2>http 切換 https</h2>
+  <h3>創建 middleware</h3>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan make:middleware ForceSSL
+    </xmp>
+  </pre>
+  <h3>判斷 middleware</h3>
+  <p>$request->secure() 判斷請求是否為 SSL<br>
+  App::environment() 是去抓 .env 的 APP_ENV 環境變數。當 APP_ENV=production 時會回傳 true<br>
+  $request->getRequestUri() 取的網址</p>
+  <pre class="prettyprint">
+    <xmp>
+    <?php
+      namespace App\Http\Middleware;
+      use Closure;
+      class ForceSSL
+      {
+        public function handle($request, Closure $next)
+        {
+          //1.url 判斷是否為 http
+          $url = $request->url();
+          $check = strstr($url,"http://"); 
+          if($check){
+              // is http
+              return redirect()->secure($request->getRequestUri());
+          }
+
+          //2.$request->secure() 判斷是否為 SSL
+          if (!$request->secure()) {
+            return redirect()->secure($request->getRequestUri());
+          }
+          return $next($request);
+        }
+      }
+    </xmp>
+  </pre>
+  <h3>在Kernel加入(app/Http/Kernel.php)</h3>
+  <pre class="prettyprint">
+    <xmp>
+    <?php
+      protected $middleware = [
+        \App\Http\Middleware\ForceSSL::class,
+      ];
+    </xmp>
+  </pre>
   <h4>參考</h4>
   <ul>
     <li>
-      <a href="https://stackoverflow.com/questions/55178647/the-post-method-is-not-supported-for-this-route-supported-methods-get-head-l"
-        target="_blank">The POST method is not supported for this route. Supported methods: GET, HEAD. Laravel</a>
+      <a href="https://stackoverflow.com/questions/28402726/laravel-5-redirect-to-https" target="_blank">redirect to HTTPS</a>
+    </li>
+    <li>
+      <a href="https://www.legendblogs.com/how-to-force-redirect-http-to-https-in-laravel-7x-and-6x-and-more" target="_blank">How to force redirect HTTP to HTTPS in Laravel 6.x, 7.x and 8.x and more</a>
+    </li>
+    <li>
+      <a href="https://stackoverflow.com/questions/35827062/how-to-force-laravel-project-to-use-https-for-all-routes" target="_blank"> HTTPS for all routes</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10231409" target="_blank">Laravel 專案強制使用 HTTPS</a>
     </li>
   </ul>
-  <h2>表情文字編碼(After update: Exception during INSERT: Invalid datetime format: 1366 Incorrect string value:
-    '\\xF0\\x9F\\x8C\\x80)</h2>
-  <ol>
-    <li>sql 編碼需要 utf8mb4_general_ci</li>
-    <li>laravel config/database.php=>charset 編碼需要 utf8mb4,collation 編碼需要 utf8mb4_general_ci</li>
-  </ol>
-  <img src="https://imgur.com/BqVVQI3.jpg" alt="">
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://stackoverflow.com/questions/48270374/invalid-datetime-format-1366-incorrect-string-value"
-        target="_blank">Invalid datetime format: 1366 Incorrect string value</a>
-    </li>
-  </ul>
-  <h2>PHP Error : Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d
-    : e)` [duplicate]</h2>
-  <p>三位元要(a?b)c:d</p>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://stackoverflow.com/questions/61432488/php-error-unparenthesized-a-b-c-d-e-is-deprecated-use-either-a"
-        target="_blank">PHP Error : Unparenthesized</a>
-    </li>
-  </ul>
-  <h2>Laravel - Image saved in storage folder not showing to user</h2>
-  <p>delete it, and run php artisan storage:link</p>
-  <ul>
-    <li>
-      <a href="https://stackoverflow.com/questions/50395449/laravel-image-saved-in-storage-folder-not-showing-to-user"
-        target="_blank">storage folder not showing to user</a>
-    </li>
-    <li>
-      <a href="https://www.educative.io/answers/how-to-fix-storage-link-not-working-issue-in-laravel"
-        target="_blank">How to fix storage link not working issue in Laravel</a>
-    </li>
-  </ul>
-  <h2>json_encode() escaping forward slashes</h2>
-  <p>json_encode($str, JSON_UNESCAPED_SLASHES);</p>
-  <ul>
-    <li>
-      <a href="https://stackoverflow.com/questions/10210338/json-encode-escaping-forward-slashes"
-        target="_blank">json_encode() escaping forward slashes</a>
-    </li>
-  </ul>
-  <h2>清除config緩存</h2>
-  <ol>
-    <li>php artisan config:cache</li>
-    <li>php artisan config:clear</li>
-    <li>php artisan optimize:clear //清除所有的緩存</li>
-  </ol>
-  <ul>
-    <li>
-      <a href="https://stackoverflow.com/questions/41521837/laravel-5-3-clear-config-cache-in-shared-hosting"
-        target="_blank">config</a>
-    </li>
-    <li>
-      <a href="https://stackoverflow.com/questions/32423034/reloading-env-variables-without-restarting-server-laravel-5-shared-hosting"
-        target="_blank">Reloading .env variables without restarting server</a>
-    </li>
-  </ul>
-  <h2>清除env 文件的緩存並重新加載它</h2>
-  <p>php artisan view:clear</p>
-  <h2>修改.env後必須重開</h2>
-  <p>php artisan serve</p>
-  <h2>laravel框架中提示错误：file_put_contents(/): failed to open stream: Permission denied</h2>
-  <p>清除config緩存=>php artisan optimize:clear</p>
-  <h2>'mix' 不是內部或外部命令、可執行的程式或批次檔。</h2>
-  <p>npm install</p>
 </body>
 
 </html>
