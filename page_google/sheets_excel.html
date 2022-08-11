@@ -10,40 +10,6 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
-    <script>
-        const embedApiKey = 'AIzaSyBjQzpKIdXs5vEoOCh2vLj-8sF4XdXjnfI';
-        //https://sheets.googleapis.com/v4/spreadsheets/{表單id}/values/{表單名稱}?alt=json&key={API金鑰}
-        const uri = 'https://sheets.googleapis.com/v4/spreadsheets/13fLPsJrjKANkrStkhh1NKOwrdQ61SEafX1OTUFyBuTs/values/Sheet1?alt=json&key=' + embedApiKey;
-        fetch(uri)
-        .then(res=>res.json())
-        .then(data=>{
-          
-          const values= data.values;
-          console.log('get json:');
-          console.log(values);
-          let items = [];
-          for(var i in values) {
-            if(i>0){
-              let item = {};
-              item[values[0][0]] = values[i][0];
-              item[values[0][1]] = values[i][1];
-              items.push(item);
-            }
-          }
-          console.log('try object:');
-          console.log(items);
-          console.table(items);
-
-          //亂數
-          // let r = () => {
-          //   max = items.length - 1;
-          //   min = 0;
-          //   return Math.floor(Math.random() * (max - min + 1)) + min;
-          // };
-          // console.log('亂數:');
-          // console.log();
-        })
-    </script>
     <h2>1.GCP新增新專案</h2>
     <p>
       進到
@@ -71,12 +37,6 @@
       <li>{表單id} 表單網址(../d/{表單id}/..)</li>
       <li>{表單名稱} 試算表的名稱</li>
     </ul>
-    <pre class="prettyprint">
-      <xmp>
-        https://sheets.googleapis.com/v4/spreadsheets/{表單id}/values/{表單名稱}?alt=json&key={API金鑰}
-      </xmp>
-    </pre>
-    <h2>範例:</h2>
     <pre class="prettyprint">
       <xmp>
         https://sheets.googleapis.com/v4/spreadsheets/{表單id}/values/{表單名稱}?alt=json&key={API金鑰}
