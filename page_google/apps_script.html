@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>範例:map styles</h2>
+    <pre class="prettyprint">
+      <xmp>
+        //put：新增一項資料，如果存在就覆蓋過去。（還是只有一筆資料）
+        //post：新增一項資料。（如果存在會新增一個新的）
+        function doPost(e) {
+          
+          // let params = e.parameter; 
+          // let name = params.name;
+          // let mail = params.mail;
+
+
+          //選擇google excel,openById('excel ID') 
+          // var SpreadSheet = SpreadsheetApp.openById("13fLPsJrjKANkrStkhh1NKOwrdQ61SEafX1OTUFyBuTs");
+
+          //取得 第一個表單
+          // var Sheet = SpreadSheet.getSheets()[0];
+
+          //覆蓋
+          // var params = e.parameter.array;
+          // for(var i = 0;i < params.length; i++){
+          //   //excel 第一個是1但1是名稱(shops)所以+2
+          //   Sheet.getRange([i+2], 1).setValue(params[i].shops);
+          //   Sheet.getRange([i+2], 2).setValue(params[i].vage);
+          // }
+
+          // return data as JSON
+          return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(
+            ContentService.MimeType.JSON
+          );
+
+          //寫入結束後傳回JSON
+          var dataExportFormat = JSON.stringify([{h:11}]);
+          return ContentService.createTextOutput(dataExportFormat).setMimeType(ContentService.MimeType.JSON);
+
+          
+        }
+
+        // function doPost(e) {
+          
+        //   //接帶入值 轉為變數    - 可根據需求修改
+        //   var params = e.parameter;
+        //   var shops = params.shops;
+        //   var vage = params.vage;
+
+
+        //   //選擇google excel,openById('excel ID') 
+        //   var SpreadSheet = SpreadsheetApp.openById("13fLPsJrjKANkrStkhh1NKOwrdQ61SEafX1OTUFyBuTs");
+
+        //   //取得 第一個表單
+        //   var Sheet = SpreadSheet.getSheets()[0];
+
+        //   //取得有資料的最後一行的"行數"(目的要在最後一行插入新資料)
+        //   var LastRow = Sheet.getLastRow();
+
+        //   //新增資料
+        //   Sheet.getRange(LastRow+1, 1).setValue(shops);
+        //   Sheet.getRange(LastRow+1, 2).setValue(vage);
+
+        //   //寫入結束後傳回true
+        //   return ContentService.createTextOutput(true);
+        // }
+
+        //call
+        function debug() {
+          //傳 obj
+          // var Result = doPost({
+          //   parameter: {
+          //     shops: "先生11",
+          //     vage: "是",
+          //   },
+          // });
+          // Logger.log("Result: %s", Result);
+
+          //傳 array 
+          var Result = doPost({
+            parameter: [
+              {
+                shops: "先生33",
+                vage: "是",
+              },
+              {
+                shops: "先生22",
+                vage: "是",
+              },
+              {
+                shops: "先生11",
+                vage: "是",
+              }
+            ],
+          });
+        }
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ianccy.com/googleformapi/" target="_blank">Google sheet 試算表表單串接api</a>
+      </li>
+      <li>
+        <a href="https://andy6804tw.github.io/2020/08/04/google-app-script-post/" target="_blank">使用 Google App Script 將 Google 試算表變成資料庫</a>
+      </li>
+    </ul>
+  </body>
+</html>

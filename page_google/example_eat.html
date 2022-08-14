@@ -4,6 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="0"
+      height="0"
+      display="none"
+    >
+      <symbol
+        id="iconArrowEnter"
+        viewBox="0 0 24 24"
+        stroke-width="1.7"
+        stroke="currentColor"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line
+          x1="-5"
+          y1="12"
+          x2="19"
+          y2="12"
+        ></line>
+        <line
+          x1="15"
+          y1="16"
+          x2="19"
+          y2="12"
+        ></line>
+        <line
+          x1="15"
+          y1="8"
+          x2="19"
+          y2="12"
+        ></line>
+      </symbol>
+      <symbol id="iconUpdate" viewBox="0 0 488.932 488.932" fill="currentColor">
+        <path d="M243.158 61.361v-57.6c0-3.2 4-4.9 6.7-2.9l118.4 87c2 1.5 2 4.4 0 5.9l-118.4 87c-2.7 2-6.7.2-6.7-2.9v-57.5c-87.8 1.4-158.1 76-152.1 165.4 5.1 76.8 67.7 139.1 144.5 144 81.4 5.2 150.6-53 163-129.9 2.3-14.3 14.7-24.7 29.2-24.7 17.9 0 31.8 15.9 29 33.5-17.4 109.7-118.5 192-235.7 178.9-98-11-176.7-89.4-187.8-187.4-14.7-128.2 84.9-237.4 209.9-238.8z"></path>
+      </symbol>
+    </svg>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
       *{
@@ -15,15 +53,18 @@
       }
       body{
         font-family: 'Noto Sans TC', sans-serif;
-        background: linear-gradient(45deg, rgba(66, 183, 245, 0.8) 0%, rgba(66, 245, 189, 0.4) 100%);
       }
       ul{
         list-style: none;
         padding: 0;
       }
 
-      /*program*/
-      #program{
+      #sample{
+        position: absolute;
+        display: none;
+      }
+      /*pageBg*/
+      .pageBg{
         user-select: none;
         height: 100vh;
         display: flex;
@@ -33,19 +74,48 @@
         flex-wrap: wrap;
         padding: 40px 20px;
         margin: 0 auto;
+        background: linear-gradient(45deg, rgba(66, 183, 245, 0.8) 0%, rgba(66, 245, 189, 0.4) 100%);
       }
+
       /*box*/
-      #program .box{
+      .box{
         width: 520px;
+        height: 740px;
         margin: auto;
-        padding: 40px 30px;
         position: relative;
-        overflow: hidden;
+        /* 翻轉時的深度,值越大效果越小 */
+        perspective: 4000px;
+      }
+      .box>div{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 30px 30px 40px;
         background-color: #fff;
         border-radius: 4px;
         box-shadow: 0 0 30px rgb(0 0 0 / 10%);
+        /* 翻轉背面隱藏 */
+        backface-visibility: hidden;
+        transition: all 0.3s ease-in-out, box-shadow 0.1s ease-in-out;
       }
-      #program .title{
+      .box_front{
+        transform: rotateY(0deg);
+      }
+      #sample:checked+.pageBg .box_front{
+        transform: rotateY(180deg);
+      }
+      .box_back{
+        transform: rotateY(-180deg);
+      }
+      .box_back .title{
+        margin-bottom: 35px
+      }
+      #sample:checked+.pageBg .box_back{
+        transform: rotateY(0deg);
+      }
+
+      /*title*/
+      .title{
         font-family: 'Noto Sans TC', sans-serif;
         color: #4285F4;
         font-size: 64px;
@@ -54,11 +124,12 @@
         margin: 0 0 30px;
         letter-spacing: 1px;
         text-align: center;
-        font-style: italic;
+        /* font-style: italic; */
         line-height: 1;
       }
+
       /*select*/
-      #program .selectOutLine{
+      .selectDiv{
         font-size: 15px;
         font-weight: 500;
         padding: 10px 20px;
@@ -68,20 +139,20 @@
         text-align: center;
         border-radius: 4px;
       }
-      #program .select{
+      .select{
         overflow: hidden;
         height: 22px;
       }
-      #program .select ul{
+      .select ul{
         margin: 0;
         animation-iteration-count: infinite;
         animation-timing-function: linear;
       }
-      #program .select ul.active{
+      .select ul.active{
         /* animation-duration: 2s; */
         animation-name: spin;
       }
-      #program .select li{
+      .select li{
         height: 22px;
         line-height: 22px;
       }
@@ -94,9 +165,9 @@
         }
       }
 
-      #program button{
+      /*button*/
+      button{
         width: 100%;
-        background: #4285F4;
         border: none;
         border-radius: 4px;
         padding: 10px 20px;
@@ -105,150 +176,262 @@
         color: #fff;
         margin-top: 20px;
         cursor: pointer;
+        background: #4285F4;
       }
-      #program .button.not-allow{
+      [class^=button_] svg{
+        display: none;
+      }
+      [class^=button_] .not-allow{
         pointer-events: none;
+        opacity: .6;
       }
-
+      /* [class^=button_] .not-allow svg{
+        display: block;
+      } */
+      
       /*map*/
-      #program .map{
+      .map{
         overflow: hidden;
         position: relative;
         z-index: 2;
         border: 1px solid #eee;
         background-color: rgb(225, 231, 237);
       }
-      #program .map iframe{
+      .map iframe{
         /* width: 80%; */
         width: 100%;
         transition: all 0.5s ease;
       }
-      #program .map .hidden {
+      .map .hidden {
         visibility: hidden;
         opacity: 0;
+      }
+
+      /*input_Enter*/
+      .input textarea{
+        width: 100%;
+        padding: 12px;
+        border-color: #ddd;
+        height: 500px;
+      }
+
+      /*links*/
+      .links{
+        position: absolute;
+        bottom: -30px;
+        color:#fff;
+        right: 0;
+      }
+      .links label{
+        cursor: pointer;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+      }
+      .links label svg{
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
       }
     </style>
   </head>
   <body>
-    <div id="program">
+    <!-- https://sstudentr900.github.io/home2/page_google/example_eat.html -->
+    <input type="checkbox" id="sample">
+    <div class="pageBg">
       <div class="box">
-        <h2 class="title">現在要吃什麼!!</h2>
-        <!--  select  -->
-        <div class="selectOutLine">
-          <div class="select">
-            <ul></ul>
+        <div class="box_front">
+          <h2 class="title">現在要去哪??</h2>
+          <!--  select  -->
+          <div class="selectDiv">
+            <div class="select">
+              <ul></ul>
+            </div>
+          </div>
+          <!--  地圖  -->
+          <section class="map">
+            <iframe
+              width="600"
+              height="450"
+              style="border:0"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </section>
+          <!--  按鈕  -->
+          <div class="button_send">
+            <button>
+              送出
+              <svg>
+                <use xlink:href="#iconUpdate"></use>
+              </svg>
+            </button>
+          </div>
+          <div class="links">
+            <label for="sample">
+              樣本數更新
+              <svg>
+                <use xlink:href="#iconArrowEnter"></use>
+              </svg>
+            </label>
           </div>
         </div>
-        <!--  地圖  -->
-        <section class="map">
-          <iframe
-            width="600"
-            height="450"
-            style="border:0"
-            loading="lazy"
-            allowfullscreen
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </section>
-        <!--  按鈕  -->
-        <div class="button">
-          <button>送出</button>
+        <div class="box_back">
+          <h4 class="title">樣本數更新</h4>
+          <div class="input">
+            <textarea cols="30" rows="10"></textarea>
+          </div>
+          <div class="button_update">
+            <button>
+              更新
+              <svg>
+                <use xlink:href="#iconUpdate"></use>
+              </svg>
+            </button>
+          </div>
+          <div class="links">
+            <label for="sample">
+              現在要去哪
+              <svg>
+                <use xlink:href="#iconArrowEnter"></use>
+              </svg>
+            </label>
+          </div>
         </div>
       </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
-      //https://sheets.googleapis.com/v4/spreadsheets/{表單id}/values/{表單名稱}?alt=json&key={API金鑰}
-      const uri = 'https://sheets.googleapis.com/v4/spreadsheets/13fLPsJrjKANkrStkhh1NKOwrdQ61SEafX1OTUFyBuTs/values/Sheet1?alt=json&key=AIzaSyBjQzpKIdXs5vEoOCh2vLj-8sF4XdXjnfI';
-      fetch(uri)
-      .then(res=>res.json())
-      .then(data=>{
-        const select = document.querySelector('.select>ul');
-        const button = document.querySelector('.button');
-        const items = getData(data.values);
-        //map
-        function mapFn(txt,buttonTarget){
-          const map = document.querySelector('.map iframe');
-          map.src = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBjQzpKIdXs5vEoOCh2vLj-8sF4XdXjnfI&q=' + txt;
-          map.classList.add('hidden'); // 地圖先消失
-          map.addEventListener('load', () => {
-            map.classList.remove('hidden');
-            if(buttonTarget)buttonTarget.target.classList.remove('not-allow');
-            //select stop animation
-            select.classList.remove('active');
-            //select result
-            select.querySelector('li').innerHTML = txt;
-            // console.log('txt:'+txt);
-          }, false);
-        }
-        //清空創建列表亂數
-        function creatDate(){
-          select.innerHTML='';
-          items.forEach(item=>{
-            select.insertAdjacentHTML('beforeend','<li>'+item['shops']+'</li>');
-          })
-          //亂數
-          const random = function(array){
-            const max = array.length - 1;
-            const min = 0;
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-          };
-          const shops = items[random(items)]['shops'];
-          //亂數決定中選店家
-          // console.log(shops);
-          return shops;
-        }
-        //get data try obj 轉動速度
-        function getData(datas){
-          const array = [];
-          // const firstArray
-          for(var i in datas) {
-            if(i>0){
-              let item = {};
-              item[datas[0][0]] = datas[i][0];
-              item[datas[0][1]] = datas[i][1];
-              if(i==1){
+      //url來源 - google appscript
+      let url = 'https://script.google.com/macros/s/AKfycbz7jOcWztdK2DhvzSg0MNCVXHwVniSh59pfGsCYZwbManytp31v_9WFzlsnbTSmXD9ElA/exec';
+      const select = document.querySelector('.select>ul');
+      const button_send = document.querySelector('.button_send');
+      const button_update = document.querySelector('.button_update');
+      const textarea = document.querySelector('.input textarea');
+      let datas = [];
+      getData();
+      //map update
+      function mapFn(txt,buttonTarget){
+        const map = document.querySelector('.map iframe');
+        map.src = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBjQzpKIdXs5vEoOCh2vLj-8sF4XdXjnfI&q=' + txt;
+        map.classList.add('hidden'); // 地圖先消失
+        map.addEventListener('load', () => {
+          map.classList.remove('hidden');
+          if(buttonTarget)buttonTarget.target.classList.remove('not-allow');
+          //select stop animation
+          select.classList.remove('active');
+          //select result
+          select.querySelector('li').innerHTML = txt;
+          // console.log('txt:'+txt);
+        }, false);
+      }
+      //清空創建列表,亂數選店家
+      function creatDate(){
+        //清空創建列表
+        select.innerHTML='';
+        datas.forEach(item=>{
+          select.insertAdjacentHTML('beforeend','<li>'+item+'</li>');
+        })
+        //亂數選店家
+        let random = function(array){
+          let max = array.length - 1;
+          let min = 0;
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+        let shops = datas[random(datas)];
+        return shops;
+      }
+      //get res,動畫速度
+      function getData(){
+        //get res
+        $.ajax({
+          type: "get",
+          url: url,
+          data: {
+            action: 'queryData'
+          },
+          dataType: "JSON",
+          success: function (res) {
+            //樣本數
+            textarea.innerText = res.join(',');
 
-              }
-              array.push(item);
+            //複製第一個給最後一個
+            res.push(res.slice()[0]);
+            datas = res;
+
+            //動畫速度
+            const max = res.length - 1;
+            const second = (0.08*max).toFixed(1);
+            select.style.animationDuration = second+"s";
+            // console.log(datas)
+
+            //第一個名稱
+            const text = res[0];
+            // console.log('第一個名稱'+text);
+            select.insertAdjacentHTML('beforeend','<li>'+text+'</li>');
+
+            //更新地圖
+            mapFn(text)
+          }
+        });
+      }
+      //sendFn
+      function sendFn(e){
+        e.preventDefault();
+
+        //禁止按鈕再被點擊
+        e.target.classList.add('not-allow');
+
+        //清空創建列表亂數
+        let txt = creatDate();
+
+        //select stare animation
+        select.classList.add('active');
+
+        //2s移除動畫 
+        setTimeout(() => {
+          // 改變地圖位置
+          mapFn(txt,e);
+        }, 2000);
+      }
+      //updateFn
+      function updateFn(e){
+        e.preventDefault();
+
+        //禁止按鈕再被點擊
+        e.target.classList.add('not-allow');
+
+        //取得樣本數
+        let array = textarea.value;
+        // console.log(array);
+        let custom_data = {
+          array: array,
+          action: 'updateData'
+        };
+
+        //送出
+        $.ajax({
+          type: "get",
+          url: url,
+          data: custom_data,
+          dataType: "JSON",
+          success: function (res) {
+            console.log(res.ok)
+            if(res.ok){
+              alert('更新成功');
+              e.target.classList.remove('not-allow');
+              getData();
             }
           }
-          //複製第一個
-          array.push(array.slice()[0])
-          const max = array.length - 1;
-          const second = (0.1*max).toFixed(1);
-          const text = array[0]['shops']
-          select.style.animationDuration = second+"s";
-          select.insertAdjacentHTML('beforeend','<li>'+text+'</li>');
-          mapFn(text)
-          // console.log('get json:');
-          // console.log(datas);
-          // console.log('try object:');
-          // console.log(items);
-          // console.table(items);
-          return array;
-        }
-        //buttonFn
-        function buttonFn(e){
-          e.preventDefault();
+        });
+      }
 
-          //禁止按鈕再被點擊
-          e.target.classList.add('not-allow');
+      //button_send
+      button_send.addEventListener('click',sendFn)
 
-          //清空創建列表亂數
-          const txt = creatDate();
-
-          //select stare animation
-          select.classList.add('active');
-
-          //1.5s移除動畫 
-          setTimeout(() => {
-            // 改變地圖位置
-            mapFn(txt,e);
-          }, 2000);
-        }
-        //按鈕
-        button.addEventListener('click',buttonFn)
-      })
+      //button_update
+      button_update.addEventListener('click',updateFn)
     </script>
   </body>
 </html>

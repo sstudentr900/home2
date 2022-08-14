@@ -10,11 +10,31 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
-    <h2>取得金鑰(YOUR_API_KEY)</h2>
+    <h2>Google Maps Embed API</h2>
+    <ul>
+      <li>使用自動 iframe 生成器將地圖嵌入到您的網頁中</li>
+      <li>Maps Embed API 請求90天免費</li>
+    </ul>
+    <pre class="prettyprint">
+      <xmp>
+        <iframe
+          width="600"
+          height="450"
+          style="border:0"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps/embed/v1/place?key=API_KEY
+            &q=Space+Needle,Seattle+WA"
+        ></iframe>
+      </xmp>
+    </pre>
+    <h2>Google Maps API</h2>
+    <h3>取得金鑰(YOUR_API_KEY)</h3>
     <img src="https://imgur.com/DXkoVDA.jpg" alt="">
-    <h2>取得經緯度</h2>
+    <h3>取得經緯度</h3>
     <img src="https://imgur.com/w3jKVDH.jpg" alt="">
-    <h2>範例:map styles</h2>
+    <h3>範例:map styles</h3>
     <pre class="prettyprint">
       <xmp>
         <style>
@@ -244,8 +264,8 @@
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
       </xmp>
     </pre>
-    <h2>範例:地圖變斜</h2>
-    <h3>取得mapId</h3>
+    <h3>範例:地圖變斜</h3>
+    <p>取得mapId</p>
     <img src="https://imgur.com/3QYPYFc.jpg" alt="">
     <p>mapId不能用styles</p>
     <pre class="prettyprint">
@@ -297,10 +317,7 @@
         <a href="https://www.letswrite.tw/google-map-api-distance-matrix/" target="_blank">Google Maps API 學習筆記 – 5：抓目前位置、計算到各點距離</a>
       </li>
       <li>
-        <a href="https://developers.google.com/maps/documentation/embed/get-api-key?hl=zh-tw" target="_blank">Maps Embed API 的定價</a>
-      </li>
-      <li>
-        <a href="https://developers.google.com/maps/documentation/embed/embedding-map" target="_blank">嵌入地圖</a>
+        <a href="https://developers.google.com/maps/documentation/embed/embedding-map" target="_blank">Google Maps Embed API</a>
       </li>
     </ul>
   </body>
