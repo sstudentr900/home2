@@ -66,13 +66,13 @@
       /*pageBg*/
       .pageBg{
         user-select: none;
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
         flex-wrap: wrap;
-        padding: 40px 20px;
+        padding: 10px 10px 60px;
         margin: 0 auto;
         background: linear-gradient(45deg, rgba(66, 183, 245, 0.8) 0%, rgba(66, 245, 189, 0.4) 100%);
       }
@@ -106,9 +106,6 @@
       }
       .box_back{
         transform: rotateY(-180deg);
-      }
-      .box_back .title{
-        margin-bottom: 35px
       }
       #sample:checked+.pageBg .box_back{
         transform: rotateY(0deg);
@@ -177,13 +174,38 @@
         margin-top: 20px;
         cursor: pointer;
         background: #4285F4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      button p{
+        margin: 0;
+        display: none;
       }
       [class^=button_] svg{
-        display: none;
+        margin: auto;
+        width: 24px;
+        height: 24px;
+        transform-origin: 12px 13px;
+        animation: rotation 1s infinite linear;
+      }
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
       }
       [class^=button_] .not-allow{
         pointer-events: none;
         opacity: .6;
+      }
+      [class^=button_] .not-allow svg{
+        display: block;
+      }
+      [class^=button_] .not-allow p{
+        display: none;
       }
       /* [class^=button_] .not-allow svg{
         display: block;
@@ -219,7 +241,7 @@
       /*links*/
       .links{
         position: absolute;
-        bottom: -40px;
+        bottom: -35px;
         color:#fff;
         right: 0;
       }
@@ -233,6 +255,26 @@
         width: 20px;
         height: 20px;
         margin-left: 10px;
+      }
+
+      @media screen and (max-width: 500px){
+        /* .pageBg{
+          padding: 10px 10px 60px;
+        } */
+        .box{
+          height: 670px;
+        }
+        .title{
+          font-size: 38px;
+          margin-bottom:20px;
+        }
+        
+        .box>div {
+          padding: 20px;
+        }
+        button {
+          margin-top: 15px;
+        }
       }
     </style>
   </head>
@@ -261,7 +303,9 @@
           </section>
           <div class="button_send">
             <button>
-              送出
+              <p>
+                送出
+              </p>
               <svg>
                 <use xlink:href="#iconUpdate"></use>
               </svg>
@@ -283,7 +327,9 @@
           </div>
           <div class="button_update">
             <button>
-              更新
+              <p>
+                更新
+              </p>
               <svg>
                 <use xlink:href="#iconUpdate"></use>
               </svg>
@@ -305,8 +351,8 @@
       //url來源 - google appscript
       let url = 'https://script.google.com/macros/s/AKfycbz7jOcWztdK2DhvzSg0MNCVXHwVniSh59pfGsCYZwbManytp31v_9WFzlsnbTSmXD9ElA/exec';
       const select = document.querySelector('.select>ul');
-      const button_send = document.querySelector('.button_send');
-      const button_update = document.querySelector('.button_update');
+      const button_send = document.querySelector('.button_send button');
+      const button_update = document.querySelector('.button_update button');
       const textarea = document.querySelector('.input textarea');
       let datas = [];
       getData();
@@ -317,7 +363,8 @@
         map.classList.add('hidden'); // 地圖先消失
         map.addEventListener('load', () => {
           map.classList.remove('hidden');
-          if(buttonTarget)buttonTarget.target.classList.remove('not-allow');
+          console.log(buttonTarget)
+          if(buttonTarget)buttonTarget.classList.remove('not-allow');
           //select stop animation
           select.classList.remove('active');
           //select result
@@ -380,7 +427,7 @@
         e.preventDefault();
 
         //禁止按鈕再被點擊
-        e.target.classList.add('not-allow');
+        this.classList.add('not-allow');
 
         //清空創建列表亂數
         let txt = creatDate();
@@ -391,7 +438,7 @@
         //2s移除動畫 
         setTimeout(() => {
           // 改變地圖位置
-          mapFn(txt,e);
+          mapFn(txt,this);
         }, 2000);
       }
       //updateFn
@@ -416,8 +463,8 @@
           data: custom_data,
           dataType: "JSON",
           success: function (res) {
-            console.log(res.ok)
-            if(res.ok){
+            console.log(res[0])
+            if(res[0]){
               alert('更新成功');
               e.target.classList.remove('not-allow');
               getData();
