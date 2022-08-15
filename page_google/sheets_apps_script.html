@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>AppScript 串接 sheets</h2>
+    <h3>打開 google 雲端硬碟 建立 google excel、建立 google AppScript</h3>
+    <img src="https://ianccy.com/static/14beed9086b4efadb2e23834ac3e6748/f4cab/creatAppScript.webp" alt="">
+    <h3>AppScript 建立 程式碼.gs</h3>
+    <pre class="prettyprint">
+      <xmp>
+        //doGet要用git, doPost要改用Post
+        function doGet(e) {
+
+          //打開google excel,URL:https://../d/【excel ID】/edit.. 
+          var SpreadSheet = SpreadsheetApp.openById(【excel ID】);
+        
+          //取得 第一個表單
+          var Sheet = SpreadSheet.getSheets()[0];
+        
+          //取得ajax的data 
+          var params = e.parameter; 
+          var action  = params.action;
+          // Logger.log("action: %s", action);
+        
+          //預設返回值
+          var result= [];
+        
+          //判斷動作
+          if (action === 'queryData') {
+            result = queryData(Sheet, params);
+          } 
+          if (action === 'updateData'){
+            result = updateData(Sheet, params);
+          } 
+        
+          //回傳json
+          return ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+        }
+        function queryData(Sheet,params) {
+        
+          //取得最後一列值的索引
+          //var LastRow = Sheet.getLastRow();
+        
+          //取得excel
+          var array = Sheet.getDataRange().getValues(); //[[1],[2]]
+        
+          //二維轉一維
+          var data = [].concat.apply([],array);//[1,2]
+          // Logger.log("data: %s", data);
+          
+          return data;
+        }
+        
+        function updateData(Sheet,params) {
+        
+          //清除全部Sheet
+          Sheet.clear();
+        
+          //字串轉數組
+          var array = params.array.split(',');
+        
+          //存入sheet
+          array.forEach((e,i)=>{
+            Logger.log("e: %s", e);
+            Logger.log("i: %s", i);
+            Sheet.getRange(i+1, 1).setValue(e)
+          });
+        
+          return [true];
+        }
+      </xmp>
+    </pre>
+    <h3>AppScript 建立 debug.gs</h3>
+    <pre class="prettyprint">
+      <xmp>
+        function debug() {
+          //執行doGet
+          var Result = doGet({
+            //parameter預設,裡面放ajax,data的值
+            parameter:  {
+              action: "updateData",
+              array:'11,22,33,44,55'
+            },
+          });
+          Logger.log("Result: %s", Result);
+        }
+      </xmp>
+    </pre>
+    <h3>發布</h3>
+    <img src="https://ianccy.com/static/0888b33a9fcd9d448463e8151fa0f795/3d6ad/deployAppScript.webp" alt="">
+    <img src="https://ianccy.com/static/51a32d2ea4472cf10763e6e34553a900/1464b/adjustAppscript.webp" alt="">
+    <img src="https://ianccy.com/static/6caa881f1c5fbea5f847917154930621/f2984/AppScriptapi.webp" alt="">
+    <h3>頁面的 javasctipt </h3>
+    <pre class="prettyprint">
+      <xmp>
+        $.ajax({
+          type: "get",
+          url: url,
+          data: {
+            action: 'queryData'
+          },
+          dataType: "JSON",
+          success: function (res) {
+            ...
+          }
+        });
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href=" https://developers.google.com/apps-script/reference/spreadsheet/sheet" target="_blank">api</a>
+      </li>
+      <li>
+        <a href="https://ianccy.com/googleformapi/" target="_blank">Google sheet 試算表表單串接api</a>
+      </li>
+      <li>
+        <a href="https://andy6804tw.github.io/2020/08/04/google-app-script-post/" target="_blank">使用 Google App Script 將 Google 試算表變成資料庫</a>
+      </li>
+    </ul>
+  </body>
+</html>
