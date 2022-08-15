@@ -80,7 +80,7 @@
       /*box*/
       .box{
         width: 520px;
-        height: 740px;
+        height: 730px;
         margin: auto;
         position: relative;
         /* 翻轉時的深度,值越大效果越小 */
@@ -90,7 +90,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        padding: 30px 30px 40px;
+        padding: 30px;
         background-color: #fff;
         border-radius: 4px;
         box-shadow: 0 0 30px rgb(0 0 0 / 10%);
@@ -171,7 +171,7 @@
         font-size: 18px;
         font-weight: 700;
         color: #fff;
-        margin-top: 20px;
+        margin-top: 15px;
         cursor: pointer;
         background: #4285F4;
         display: flex;
@@ -180,13 +180,13 @@
       }
       button p{
         margin: 0;
-        display: none;
       }
       [class^=button_] svg{
+        display: none;
         margin: auto;
         width: 24px;
         height: 24px;
-        transform-origin: 12px 13px;
+        transform-origin: 12px 13.5px;
         animation: rotation 1s infinite linear;
       }
       @keyframes rotation {
@@ -199,7 +199,7 @@
       }
       [class^=button_] .not-allow{
         pointer-events: none;
-        opacity: .6;
+        opacity: .5;
       }
       [class^=button_] .not-allow svg{
         display: block;
@@ -363,7 +363,6 @@
         map.classList.add('hidden'); // 地圖先消失
         map.addEventListener('load', () => {
           map.classList.remove('hidden');
-          console.log(buttonTarget)
           if(buttonTarget)buttonTarget.classList.remove('not-allow');
           //select stop animation
           select.classList.remove('active');
@@ -424,6 +423,7 @@
       }
       //sendFn
       function sendFn(e){
+        console.log('sendFn')
         e.preventDefault();
 
         //禁止按鈕再被點擊
@@ -443,10 +443,11 @@
       }
       //updateFn
       function updateFn(e){
+        console.log('updateFn')
         e.preventDefault();
 
         //禁止按鈕再被點擊
-        e.target.classList.add('not-allow');
+        this.classList.add('not-allow');
 
         //取得樣本數
         let array = textarea.value;
@@ -463,10 +464,10 @@
           data: custom_data,
           dataType: "JSON",
           success: function (res) {
-            console.log(res[0])
+            // console.log(res[0]);
             if(res[0]){
               alert('更新成功');
-              e.target.classList.remove('not-allow');
+              this.classList.remove('not-allow');
               getData();
             }
           }
@@ -479,5 +480,9 @@
       //button_update
       button_update.addEventListener('click',updateFn)
     </script>
+    <!-- embed -->
+    <!-- app_script -->
+    <!-- app_script_debug -->
+    <!-- 選轉 -->
   </body>
 </html>
