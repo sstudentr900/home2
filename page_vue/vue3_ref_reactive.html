@@ -12,14 +12,6 @@
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
 <body id="program">
-  <h2>安裝vue</h2>
-  <p>裡面有router,pinia,vitest可選</p>
-  <pre class="prettyprint">
-    <xmp>
-      npm init vue@latest
-    </xmp>
-  </pre>
-
   <h2>各板本變數</h2>
   <pre class="prettyprint">
     <xmp>
@@ -43,10 +35,10 @@
 
   <h2>ref()</h2>
   <ul>
+    <li>ref 可以包任何型別</li>
     <li>ref 包裝該值讓他有響應試</li>
     <li>ref 是obj請用const</li>
     <li>ref 被包裝後，要用.value才能取值</li>
-    <li>ref 可以包任何型別</li>
   </ul>
   <pre class="prettyprint">
     <xmp>
@@ -64,9 +56,10 @@
       </script>
     </xmp>
   </pre>
+
   <h2>reactive()</h2>
   <ul>
-    <li>reactive 可以包{}和[]</li>
+    <li>reactive 只可以包{}和[]</li>
   </ul>
   <pre class="prettyprint">
     <xmp>
@@ -87,6 +80,54 @@
   <h2>ref vs reactive</h2>
   <p>ref 取值需要加.value</p>
   <p>watch 觀看ref(object) 深度不會被監聽</p>
+  <pre class="prettyprint">
+    <xmp>
+      <script setup>
+        import { ref, reactive,watch } from 'vue';
+        //ref包入object時watch不能被監聽
+        const people = ref(0);
+        const people1 = ref({
+          num: 0,
+        });
+        const people2 = reactive({
+          num: 0,
+        });
+        setTimeout(() => {
+          people.value = 50;
+          people1.value.num = 100;
+          people2.num = 200;
+        }, 2000);
+        watch(people,()=>{
+          console.log('people被監聽')
+        })
+        watch(people1,()=>{
+          console.log('people1不能被監聽')
+        })
+        watch(people1,()=>{
+          console.log('people1有deep可以被監聽')
+        },{deep: true})
+        watch(people2,()=>{
+          console.log('people2被監聽')
+        })
+
+        //reactive 會解包 ref
+        const num = ref(0);
+        const people3 = reactive({
+          num: num,
+        });
+        setTimeout(() => {
+          //不需要.value
+          people3.num = 300;
+        }, 2000);
+      </script>
+      <template>
+        <h1>{{ people }}</h1>
+        <h1>{{ people1 }}</h1>
+        <h1>{{ people2 }}</h1>
+        <h1>{{ people3 }}</h1>
+      </template>
+    </xmp>
+  </pre>
   <h4>參考</h4>
   <ul>
     <li>

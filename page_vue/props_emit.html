@@ -13,227 +13,7 @@
 </head>
 
 <body id="program">
-  <h2>父傳子 props</h2>
-  <p>接收父方式可使用以下型別String,Number,Boolean,Array,Object,Date,Function,Symbol</p>
-  <pre class="prettyprint">
-    <xmp>
-      //父 template
-      //enterName1內層引用名子="外層的值"
-      //: v-bind 綁定變數
-      //childName1內層引用名子,parentName1外層引用的名子
-      <propHtml enterName1="All" :childName1="parentName1"></propHtml>
 
-      //子 script
-      export default {
-        //接收父的值方法[]
-        props: [
-          'childName1',
-          'enterName1'
-        ],
-
-        //接收父的值方法{type}
-        props: {
-          childName1: String,
-          enterName1: String
-        },
-
-        //接收父的值方法{type,required,default}
-        props: {
-          childName1: {
-            type: String,
-            required: true //為必要屬性
-          },
-          enterName1: {
-            type: String,
-          },
-        }
-      }
-    </xmp>
-  </pre>
-
-  <h3>props值傳入元件</h3>
-  <p>props單向數據流</p>
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        <h4>{{ text }}</h4>
-        <con-tainer :test-props="demo"></con-tainer>
-      </div>
-      <script>
-        var app = Vue.createApp({
-          data() {
-            return {
-              text: "外部元件",
-              demo: "外部元件傳遞的文字"
-            };
-          }
-        });
-        app.component("ConTainer", {
-          props: ["testProps"],
-          template: `<div>
-            <h4>{{ text }}</h4><h3>{{ testProps }}<h3>
-            <h3>value: {{ typeof testProps }} </h3>
-            <input type="text" v-model="testProps">
-          </div>`
-        });
-        app.mount("#app");
-      </script>
-    </xmp>
-  </pre>
-
-  <h3>props型別驗證</h3>
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        <area-component :pro-a="fun" :pro-b="text" pro-c="num" :pro-d="num">
-        </area-component>
-      </div>
-      <script>
-        const areaComponent = {
-          props: {
-            proA: Function,
-            proB: [String, Number],   //多個型別檢查
-            proC: {
-              type: String,
-              required: true //必要值 物件形式可以設立多個條件
-            },
-            proD: {
-              type: Number,
-              default: "hello"  //預設值
-            }
-          },
-          template: `{{ proA }} <br> {{ proB }} <br> {{ proC }} <br> {{ proD }}`
-        };
-        var app = Vue.createApp({
-          data() {
-            return {
-              num: 500,
-              text: "小明",
-              boo: true,
-              fun: () => {
-                return "a";
-              },
-              test: 100
-            };
-          },
-          components: {
-            areaComponent
-          }
-        });
-        app.mount("#app");
-      </script>
-    </xmp>
-  </pre>
-
-  <h2>子傳父 $emit</h2>
-  <pre class="prettyprint">
-    <xmp>
-      //父 template
-      //@ v-on 監聽事件
-      <emitHtml @childName2="parentName2"></emitHtml>
-
-      //子 template
-      //使用$emit 傳給父元件
-      <emitHtml @input="$emit('childName2', $event.target.value)"></emitHtml>
-    </xmp>
-  </pre>
-
-  <h3>emit驗證</h3>
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        {{ text }}：{{ num }}
-        <br>
-        <br>
-        <out-text @button-click="add"></out-text>
-        <br>
-        <out-text2 @button-click="add"></out-text2>
-      </div>
-      <script>
-        var app = Vue.createApp({
-          data() {
-            return {
-              text: "外部 num",
-              num: 0,
-            }
-          },
-          methods: {
-            add(num) {
-              this.num = this.num + num;
-            }
-          }
-        });
-        app.component("outText", {
-          template: `{{ text }}：<button @click="$emit('buttonClick', num)">emit add</button>`,
-          data() {
-            return {
-              text: "內部元件",
-              num: 3,
-            };
-          },
-          //因為無法正確追蹤你帶入的變數內層的num，
-          //就會跳出這個警告提示，
-          //這時只要加上emits:['buttonClick']就能消除警告。
-          emits: ['buttonClick']
-        });
-        app.component("outText2", {
-          template: `{{ text }}：<button @click="$emit('buttonClick', '1')">test</button>`,
-          data() {
-            return {
-              text: "emits",
-              num: 3,
-            };
-          },
-          //驗證事件參數傳出去的值，是否符合預期的型別
-          emits: {
-            buttonClick: (num) => {
-              if (typeof num !== 'string') {
-                console.warn('buttonClick 事件參數型別須為 String')
-              }
-              return typeof num === 'string'
-            }
-          }
-        });
-        app.mount("#app");
-      </script>
-    </xmp>
-  </pre>
-  <h3>setup</h3>
-  <pre class="prettyprint">
-    <xmp>
-      //父 template
-      <emitHtml @change='customChange'></emitHtml>
-
-      //子 script
-      <script>
-        //使用 setup ,元件建立前就執行 setup
-        setup(props, context) {
-          const customChange = (event) => {
-            context.emit("childName3", event.target.value)
-          }
-          return {
-            customChange
-          }
-        }
-      </script>
-    </xmp>
-  </pre>
-  <h3>methods</h3>
-  <pre class="prettyprint">
-    <xmp>
-      //父 template
-      <emitHtml @change='searchBook'></emitHtml>
-
-      //子 script
-      <script>
-        methods: {
-          searchBook(event) {
-            this.$emit("childName4", event.target.value)
-          }
-        }
-      </script>
-    </xmp>
-  </pre>
   <!-- <h3>拋給父元件處理</h3>
   <pre class="prettyprint">
     <xmp>
@@ -298,54 +78,7 @@
     </xmp>
   </pre> -->
 
-  <h2>v-model 與元件的雙向綁定 (Vue 3.x 新增)</h2>
-  <pre class="prettyprint">
-    <xmp>
-      //父 template
-      //message 內層引用名子 parentName7外層引用的名子
-      <emitHtml3 v-model:message="parentName7"></emitHtml3>
-
-      //子 template
-      <button @click="clickFn"></button>
-
-      //子 script
-      export default {
-        props: ['message'],
-        methods: {
-          clickFn(){
-            this.$emit("update:message",'childValue')
-          }
-        },
-      }
-    </xmp>
-  </pre>
-
-  <h3>監聽 input 事件</h3>
-  <pre class="prettyprint">
-    <xmp>
-      <!-- 子元件 -->
-      <label>搜尋書本：
-        <input type="text" :value="value" @input="$emit('input', $event.target.value)" />
-      </label>
-
-      <!-- 父元件 -->
-      <BookList navTitle="All" :bookList="books" v-model="searchText" />
-    </xmp>
-  </pre>
-
-  <h2>update</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <!-- 子元件 -->
-      <label>搜尋書本：
-        <input type="text" :value="keyword" @input="$emit('update:keyword', $event)" />
-      </label>
-
-      <!-- 父元件 -->
-      <BookList navTitle="All" :keyword="searchText"
-        @update:keyword="searchText = $event.target.value" />
-    </xmp>
-  </pre>
+  
 
   <h2>父傳孫(provide/nject)</h2>
   <pre class="prettyprint">
@@ -366,6 +99,62 @@
       export default {
       inject: ['provideMsg','provideMsg2'],
       }
+    </xmp>
+  </pre>
+  <h2>provide/inject 傳值(隔山打牛)</h2>
+  <ol>
+    <li>provide傳遞的資料</li>
+    <li>inject接收的子元件</li>
+  </ol>
+  <pre class="prettyprint">
+    <xmp>
+      <div id="app">
+        <h2>app</h2>
+        <input type="text" v-model="text">
+        <list-header></list-header>
+      </div>
+      <script>
+        var app = Vue.createApp({
+          data() {
+            return {
+              text: "隔山打牛"
+            };
+          },
+          provide() {
+            return {
+              provideText: this.text,
+              //provide輸出的資料並不會隨著父層資料更新而改變，要透過Vue.computed()
+              provideText2: Vue.computed(() => this.text)
+            };
+          }
+        });
+        app.component("list-header", {
+          template: `
+            <div v-for="i in 3">
+              list-header:
+              <list-main></list-main>
+            </div>`,
+          components: {
+            "list-main": {
+              template: `
+              <div>
+                list-main:
+                <list-footer></list-footer>
+              </div>`,
+              components: {
+                "list-footer": {
+                  inject: ["provideText", "provideText2"],
+                  template: `
+                  <div>list-footer: {{ provideText }} </div>
+                  <div>list-footer-computed: {{ provideText2.value }}</div>`
+                }
+              }
+            }
+          }
+        });
+
+        app.mount("#app");
+      </script>
     </xmp>
   </pre>
 
@@ -459,74 +248,18 @@
     </xmp>
   </pre>
 
-  <h2>provide/inject 傳值(隔山打牛)</h2>
-  <ol>
-    <li>provide傳遞的資料</li>
-    <li>inject接收的子元件</li>
-  </ol>
-  <pre class="prettyprint">
-    <xmp>
-      <div id="app">
-        <h2>app</h2>
-        <input type="text" v-model="text">
-        <list-header></list-header>
-      </div>
-      <script>
-        var app = Vue.createApp({
-          data() {
-            return {
-              text: "隔山打牛"
-            };
-          },
-          provide() {
-            return {
-              provideText: this.text,
-              //provide輸出的資料並不會隨著父層資料更新而改變，要透過Vue.computed()
-              provideText2: Vue.computed(() => this.text)
-            };
-          }
-        });
-        app.component("list-header", {
-          template: `
-            <div v-for="i in 3">
-              list-header:
-              <list-main></list-main>
-            </div>`,
-          components: {
-            "list-main": {
-              template: `
-              <div>
-                list-main:
-                <list-footer></list-footer>
-              </div>`,
-              components: {
-                "list-footer": {
-                  inject: ["provideText", "provideText2"],
-                  template: `
-                  <div>list-footer: {{ provideText }} </div>
-                  <div>list-footer-computed: {{ provideText2.value }}</div>`
-                }
-              }
-            }
-          }
-        });
-
-        app.mount("#app");
-      </script>
-    </xmp>
-  </pre>
   <h4>參考</h4>
   <ul>
     <li>
       <a href="https://book.vue.tw/CH2/2-2-communications.html">元件之間的溝通傳遞</a>
     </li>
     <li>
+      <a href="https://eudora.cc/posts/210303/">Components 間的資料傳遞</a>
+    </li>
+    <li>
       <a
         href="https://penueling.com/%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98/vue3-%E7%9A%84%E8%B3%87%E6%96%99%E7%8B%80%E6%85%8B%E7%AE%A1%E7%90%86%EF%BC%8Cprovide-inject%E3%80%81vuex/">Vue3的資料狀態管理，provide
         / inject、vuex、props</a>
-    </li>
-    <li>
-      <a href="https://eudora.cc/posts/210303/">Components 間的資料傳遞</a>
     </li>
     <li>
       <a
