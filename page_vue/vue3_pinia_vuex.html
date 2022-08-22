@@ -304,15 +304,15 @@
       <script setup>
         import {useCounterStore} from "./stores/counter.js";
         //執行
-        const store = useCounterStore();
+        const store2 = useCounterStore();
         //累加
         const clickAdd = ()=>{
-          store.increment();
+          store2.increment();
         }
-        console.log(store.increment());
+        console.log(store2.increment());
       </script>
       <template>
-        <h2>取counter值: {{store.$state.counter}}</h2>
+        <h2>取counter值: {{store2.$state.counter}}</h2>
         <button @click="clickAdd">clickAdd</button>
       </template>
     </xmp>
@@ -394,5 +394,4 @@
     </li>
   </ul>
 </body>
-
 </html>
