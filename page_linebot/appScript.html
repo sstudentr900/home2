@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>lineBot機器人</h2>
+  <ul>
+    <li>先去line bot developers 創建機器人</li>
+    <li>取得channel access token</li>
+    <li>再到appScrip編寫代碼</li>
+  </ul>
+  <h2>appScrip編寫</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        function doPost(e) {
+          //吃什麼表單
+          const shopTable = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1N3Q2xNBuYaSpdVgJYmEzwD4UWgUwOAZFBEhBSWHEcQo/edit#gid=0");
+          const shopSheet = shopTable.getSheetByName("sheet1");//表單名稱
+          const shopSheetData = shopSheet.getDataRange().getValues();//表單資料
+          //阿雞表單
+          const chickenTable = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1q9gzEYVoRP2Lydoa3V7mA9K8LL13vr8ButeJrEDsIvY/edit#gid=0");
+          const chickenSheet = chickenTable.getSheetByName("sheet1");//阿雞表單名稱
+          let chickenSheetData = chickenSheet.getDataRange().getValues();//阿雞表單Data
+        
+          //從接收到的訊息中取出 replyToken 和發送的訊息文字
+          const msg= JSON.parse(e.postData.contents);
+          const replyToken = msg.events[0].replyToken;
+          const userMessage = msg.events[0].message.text;
+          const userType = msg.events[0].message.type;
+
+          //除錯用
+          // Logger.log(msg);
+          // console.log(msg);
+
+          if(userType !== 'text'|| typeof replyToken === 'undefined'){
+            return;
+          }else if(~userMessage.indexOf('阿雞記吃的')){  
+            rememberEateFn(userMessage,shopSheet,shopSheetData,replyToken)
+          }else if(~userMessage.indexOf('阿雞記關鍵字')){
+            rememberFn(userMessage,chickenSheet,chickenSheetData,replyToken)
+          }else if(~userMessage.indexOf('吃什麼')){
+            gotoFn(shopSheetData,replyToken)
+          }else{
+            //亂數取阿雞表單資料
+            randomGetDataFn(userMessage,chickenSheetData,replyToken)
+          }
+        }
+        function randomFn(length){
+          return Math.floor(Math.random()*length)
+        }
+        function sendMessageFn(replyMessage,replyToken){
+          //認證身份，重新輸入line@ channel_access_token
+          const CHANNEL_ACCESS_TOKEN = 'ICWCKiPXFGVqfPc92uF1ZJuybJakn4rhH5ih3EeA47N6RbIP0VZbMLywZQt9McHCYvh8zB/qohLtO1CTd+NT6wIlj1BIXNTP7j4cE0kRxr+v9OL7aJeSE7zhYsDm7BoHriS7NfKILJQPqkC7DSWDyQdB04t89/1O/w1cDnyilFU=';
+          //lineUrl
+          const lineUrl = 'https://api.line.me/v2/bot/message/reply';
+          //回傳訊息給line 並傳送給使用者
+          UrlFetchApp.fetch(lineUrl, {
+              'headers': {
+              'Content-Type': 'application/json; charset=UTF-8',
+              'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
+            },
+            'method': 'post',
+            'payload': JSON.stringify({
+              'replyToken': replyToken,
+              'messages': replyMessage,
+            }),
+          });
+        }
+        function randomGetDataFn(userMessage,chickenSheetData,replyToken){
+          for (elements of chickenSheetData) {
+            if(elements[0]==userMessage){
+              sendMessageFn([{
+                'type': 'text',
+                'text': elements[randomFn(elements.length)]
+              }],replyToken)
+              break;
+            }
+          }
+        }
+        function gotoFn(shopSheetData,replyToken){
+          const shopName = shopSheetData[randomFn(shopSheetData.length+1)].toString();//亂數取商店
+          const mapResponse = Maps.newGeocoder().geocode(shopName); //商店資訊
+          sendMessageFn([{
+            "type": "location",
+            "title": shopName,
+            "address": mapResponse.results[0].formatted_address,
+            "latitude": mapResponse.results[0].geometry.location.lat,
+            "longitude": mapResponse.results[0].geometry.location.lng
+          }],replyToken)
+        }
+        function rememberEateFn(userMessage,shopSheet,shopSheetData,replyToken){
+          let array = userMessage.split(',')//[ '阿雞記吃的', '龍點心' ]
+          let isValue = shopSheetData.findIndex(elements => elements[0] == array[1]); 
+          if(isValue<0){
+            shopSheet.getRange(shopSheetData.length+1, 1).setValue(array[1])//更新A
+          }
+          sendMessageFn([{
+            'type': 'text',
+            'text': '好的，我記住了'
+          }],replyToken)
+        }
+        function rememberFn(userMessage,chickenSheet,chickenSheetData,replyToken){
+              let array = userMessage.split(',')//[ '阿雞記關鍵字', '1', '2' ]
+              //查詢有無該關鍵字
+              let y_index = chickenSheetData.findIndex(elements => elements[0] == array[1]); 
+              if(y_index>=0){
+              
+                let x_index = chickenSheetData[y_index].findIndex(elements =>elements ==''); 
+                if(x_index>=0){
+                  //x_index =>  [1,2,'',''] 填在''裡
+                  x_index += 1 
+                }else{
+                  //x_index =>  [1,2] 填在[]後
+                  x_index = chickenSheetData[y_index].length+1
+                }
+
+                chickenSheet.getRange(y_index+1, x_index).setValue(array[2])//更新A..
+              }else{
+                chickenSheet.getRange(chickenSheetData.length+1, 1).setValue(array[1])//更新A
+                chickenSheet.getRange(chickenSheetData.length+1, 2).setValue(array[2])//更新B
+              }
+              sendMessageFn([{
+                'type': 'text',
+                'text': '好的，我記住了'
+              }],replyToken)
+          }
+      </script>
+    </xmp>
+  </pre>
+  <h2>appScrip debug</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        function debug() {
+          var Result = doPost();
+          Logger.log("Result: %s", Result);
+        }
+      </script>
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://script.google.com/home/projects/1giaIXoOcydmRMcfZGKjArzsHVFi2e5G2caUNCbOFbgiaXpEX7_iSK782/edit" target="_blank">原檔</a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=P3lHn6lJsQw&ab_channel=%E9%A7%B1%E8%87%B4%E4%B8%AD" target="_blank">教學</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10219099" target="_blank">主動傳訊 push</a>
+    </li>
+    <li>
+      <a href="https://developers.line.biz/console/" target="_blank">line bot developers</a>
+    </li>
+  </ul>
+</body>
+
+</html>

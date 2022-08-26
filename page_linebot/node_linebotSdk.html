@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+<body id="program">
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        const express = require("express");
+        const configs = require("./config");
+        const line = require("@line/bot-sdk");
+
+        const config = {
+          // channelAccessToken: process.env.LINE_CHANNEL_ACCESS_TOKEN,
+          // channelSecret: process.env.LINE_CHANNEL_SECRET,
+          channelSecret: configs.channelSecret,
+          channelAccessToken: configs.channelAccessToken
+          // channelSecret: '6aecda9fc9f58ddb9e452f977c80bbb1',
+          // channelAccessToken: 'ICWCKiPXFGVqfPc92uF1ZJuybJakn4rhH5ih3EeA47N6RbIP0VZbMLywZQt9McHCYvh8zB/qohLtO1CTd+NT6wIlj1BIXNTP7j4cE0kRxr+v9OL7aJeSE7zhYsDm7BoHriS7NfKILJQPqkC7DSWDyQdB04t89/1O/w1cDnyilFU='
+        };
+
+        const app = express();
+        app.post("/", line.middleware(config), (req, res) => {
+          // console.log('post',req.body.events)
+          Promise
+          .all(req.body.events.map(handleEvent))
+          .then((result) =>res.json(result));
+        });
+
+        const client = new line.Client(config);
+        function handleEvent(event) {
+          if (event.type !== "message" || event.message.type !== "text") {
+            return Promise.resolve(null);
+          }
+
+          //接收訊息
+          let getMessage = event.message.text;
+          let setMessage = '';
+          // console.log('接收訊息',event.message.text)
+          if(getMessage=='22'){
+            setMessage = 11
+          }
+          if(getMessage=='33'){
+            setMessage = 22
+          }
+
+
+          //送出訊息
+          return client.replyMessage(event.replyToken, {
+            type: "text",
+            text: setMessage,
+          });
+        }
+
+        // listen on port
+        const port = process.env.PORT || 8080 || 3000;
+        app.listen(port, () => {
+          console.log(`listening on ${port}`);
+        });
+      </script>
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://developers.line.biz/console/" target="_blank">line bot developers</a>
+    </li>
+    <li>
+      <a href="https://line.github.io/line-bot-sdk-nodejs/api-reference/middleware.html#usage" target="_blank">line bot sdk nodejs api</a>
+    </li>
+    <li>
+      <a href="https://github.com/line/line-bot-sdk-nodejs/blob/next/examples/echo-bot/index.js" target="_blank">line bot sdk nodejs api</a>
+    </li>
+    <li>
+      <a href="https://medium.com/rd-tw/node-heroku-%E6%89%93%E9%80%A0-line-%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA-d81fe6dba1f" target="_blank">Node + Heroku 打造 Line 聊天機器人</a>
+    </li>
+    <li>
+      <a href="https://medium.com/@debbyji/%E8%B6%85%E7%B0%A1%E5%96%AE%E7%9A%84-line-bot-%E8%B5%B7%E6%89%8B%E5%BC%8F-feat-node-js-heroku-server-b2e5bcccab5b" target="_blank">超簡單的 line bot 起手式 feat. node.js + Heroku server</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10216853" target="_blank">30 天教你如何玩弄 Line bot API</a>
+    </li>
+    <li>
+      <a href="https://developers.line.biz/en/docs/messaging-api/nodejs-sample/#start-developing" target="_blank">使用 Node.js 製作一個示例回復機器人</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10233841" target="_blank">LINE Notify 推播通知</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10216028" target="_blank">Chatbot 框架 - 「Bottender」</a>
+    </li>
+    <li>
+      <a href="https://etrexkuo.medium.com/%E5%BE%9E%E9%9B%B6%E9%96%8B%E5%A7%8B%E5%9C%A8-windows-%E4%BD%BF%E7%94%A8-node-js-%E6%89%93%E9%80%A0%E5%B0%88%E5%B1%AC%E6%96%BC%E4%BD%A0%E7%9A%84-line-bot-%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA-173ac0f6be92" target="_blank">從零開始在 Windows 使用 Node.js 打造專屬於你的 LINE Bot 聊天機器人 「Bottender」</a>
+    </li>
+  </ul>
+</body>
+
+</html>
