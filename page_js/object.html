@@ -244,6 +244,23 @@
         </script>
       </xmp>
     </pre>
+    <h2>object reduce最大最小值</h2>
+    <pre>
+      <xmp>
+        <script>
+          var arr = [{
+            "x": 1
+          }, {
+            "x": 2
+          }, {
+            "x": 3
+          }];
+          let minX2 = arr.reduce((pre, cur) => {
+            return pre.x < cur.x ? pre : cur;
+          });
+        </script>
+      </xmp>
+    </pre>
     <h2>object find</h2>
     <pre class="prettyprint">
       <xmp>
@@ -281,6 +298,7 @@
         </script>
       </xmp>
     </pre>
+   
     <h2>object copy</h2>
     <pre class="prettyprint">
       <xmp>

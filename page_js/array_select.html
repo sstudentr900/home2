@@ -66,7 +66,11 @@
 
 
           //pop從後取值(array會改變)------------------------------------------------------------
-          a.pop();
+          a9.pop();
+
+          //slice取一段值(array不會改變)------------------------------------------------------------
+          var a9 = ['a', 'b', 'c'];
+          a9.slice(0,2);//['a','b']
 
 
           //at從後取值(原陣列不會被改變 (non-mutating) 而是回傳新陣列)----------------------------
@@ -84,12 +88,12 @@
           Math.min.apply(null, numbers); // 1
 
           // 可以用來篩選陣列最小值/最大值
-          let minX = arr.reduce((pre, cur) => Math.min(pre.x, cur.x));
+          let minX = arr.reduce((pre, cur) => Math.min(pre, cur));
           let max = arr.reduce((acc, curr) => Math.max(acc, curr));
 
           // 可以用來篩選陣列小值---------------------------------------------------------------
           let minX2 = arr.reduce((pre, cur) => {
-            return pre.x < cur.x ? pre.x : cur.x;
+            return pre.x < cur.x ? pre : cur;
           });
         </script>
       </xmp>
