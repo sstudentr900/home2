@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/customPrism.css">
-        <link rel="stylesheet" href="../css/prism.css">
-         <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    </head>
-    <body id="program">
-        <h2>MySQL 編碼挑選與差異比較</h2>
-        <h3>ci vs. bin vs. cs</h3>
-        <ol>
-            <li>
-                <span>ci</span> 是指 case-insensitive，例如 utf8mb4_unicode_ci 是不分大小寫的
-            </li>
-            <li>
-                <span>cs</span> 是指 case-sensitive，例如 utf8mb4_unicode_cs 是會區分大小寫的
-            </li>
-            <li>
-                <span>bin</span> 會用 binary value 比對，例如 utf8mb4_bin 會區分大小寫的且也會區分 Ä 和 A 的不同
-            </li>
-        </ol>
-        <h3>general vs. unicode</h3>
-        <ol>
-            <li>
-                <span>general</span>版本（例如 utf8mb4_general_ci），在排序時比較快，但在某些特殊情況會排錯。
-            </li>
-            <li>
-                <span>unicode</span> 版本（例如 utf8mb4_unicode_ci），實作了完整的 Unicode 標準。
-            </li>
-        </ol>
-        <h4>參考</h4>
-        <ul>
-            <li>
-                <a href="https://khiav223577.github.io/blog/2019/06/30/MySQL-%E7%B7%A8%E7%A2%BC%E6%8C%91%E9%81%B8%E8%88%87%E5%B7%AE%E7%95%B0%E6%AF%94%E8%BC%83/" target="_blank">MySQL 編碼挑選與差異比較</a>
-            </li>
-        </ul>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>MySQL 編碼挑選與差異比較</h2>
+    <h3>ci vs. bin vs. cs</h3>
+    <ol>
+      <li>
+        <span>ci</span>
+        是指 case-insensitive，例如 utf8mb4_unicode_ci 是不分大小寫的
+      </li>
+      <li>
+        <span>cs</span>
+        是指 case-sensitive，例如 utf8mb4_unicode_cs 是會區分大小寫的
+      </li>
+      <li>
+        <span>bin</span>
+        會用 binary value 比對，例如 utf8mb4_bin 會區分大小寫的且也會區分 Ä 和 A 的不同
+      </li>
+    </ol>
+    <h3>general vs. unicode</h3>
+    <ol>
+      <li>
+        <span>general</span>
+        版本（例如 utf8mb4_general_ci），在排序時比較快，但在某些特殊情況會排錯。
+      </li>
+      <li>
+        <span>unicode</span>
+        版本（例如 utf8mb4_unicode_ci），實作了完整的 Unicode 標準。
+      </li>
+    </ol>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://khiav223577.github.io/blog/2019/06/30/MySQL-%E7%B7%A8%E7%A2%BC%E6%8C%91%E9%81%B8%E8%88%87%E5%B7%AE%E7%95%B0%E6%AF%94%E8%BC%83/" target="_blank">MySQL 編碼挑選與差異比較</a>
+      </li>
+    </ul>
+  </body>
 </html>
