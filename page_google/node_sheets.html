@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>頁面的 javasctipt </h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          const { GoogleSpreadsheet } = require("google-spreadsheet");
+          //從google 下載
+          const creds = require('./client_secret.json');
+          const doc = new GoogleSpreadsheet('Please set your Spreadsheet ID'); 
+          const googleSheetGetData = async(id)=>{
+            await doc.useServiceAccountAuth(creds);
+            await doc.loadInfo();
+            //取得sheet ID
+            const worksheet = doc.sheetsById[id];
+            //取得所有值
+            const rows = await worksheet.getRows();
+            //console.log('標題',worksheet.title);
+            //console.log('數量',rows.length);
+          
+            //建表
+            // const sheet = await doc.addSheet({ headerValues: ['name', 'email'] })
+          
+            //取值
+            // rows.forEach((row) => {
+            //   // console.log(row);
+            //   // console.log(row.code);
+            //   // console.log(row.method);
+            //   console.log(row._rawData);
+            // });
+          
+            return rows
+          }
+          module.exports={
+            googleSheetGetData
+          }
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.youtube.com/watch?v=UGN6EUi4Yio&ab_channel=Twilio" target="_blank">Google Sheets and JavaScript with Node.js</a>
+      </li>
+      <li>
+        <a href="https://theoephraim.github.io/node-google-spreadsheet/#/classes/google-spreadsheet-worksheet?id=sheet-dimensions-amp-stats" target="_blank">Google sheet api</a>
+      </li>
+    </ul>
+  </body>
+</html>

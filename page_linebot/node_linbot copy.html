@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>linebot push</h2>
+  <pre>
+    <xmp>
+      <script>
+        // 引用linebot SDK
+        const linebot = require('linebot');
+        const userId = 'Your User ID';//
+        // 用於辨識Line Channel的資訊
+        const bot = linebot({
+          channelId: 'channelId',
+          channelSecret: 'channelSecret',
+          channelAccessToken: 'channelAccessToken'
+        });
+
+        // 當有人傳送訊息給Bot時
+        // bot.on('message', function (event) {
+        //   // event.message.text是使用者傳給bot的訊息
+        //   // 準備要回傳的內容
+        //   const replyMsg = `Hello你剛才說的是:${event.message.text}`;
+        //   // 使用event.reply(要回傳的訊息)方法可將訊息回傳給使用者
+        //   event.reply(replyMsg).then(function (data) {
+        //   // event.reply(event.message.text).then(function (data) {
+        //     // 當訊息成功回傳後的處理
+        //     console.log('successs',data)
+        //   }).catch(function (error) {
+        //     // 當訊息回傳失敗後的處理
+        //     console.log('error',error)
+        //   });
+          
+        // });
+
+        // // Bot所監聽的webhook路徑與port
+        // bot.listen('/linewebhook', 3000, function () {
+        //     console.log('BOT已準備就緒');
+        // });
+
+        //push
+        const linePush = (message)=>{
+          bot.push(userId, [message]);
+          // console.log('linePush: ' + message);
+          console.log('linePush');
+        }
+
+        module.exports = {
+          linePush
+        } 
+
+      </script>
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://dotblogs.com.tw/what_s_note/2018/08/17/111830"
+        target="_blank">linebot AP</a>
+    </li>
+  </ul>
+</body>
+
+</html>

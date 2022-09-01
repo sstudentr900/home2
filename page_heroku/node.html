@@ -30,35 +30,32 @@
   <p>.gitignore 檔案並新增忽略規則</p>
   <img src="https://miro.medium.com/max/1400/1*rCRNfITvBgxSCjLg2uddIg.png" alt="">
 
-
-  <h2>4.設定 package.json 檔</h2>
+  <h2>4.新增 .Procfile 檔</h2>
+  <p>heroku用來定義檔案從web底下start=>(node index.js)開啟</p>
   <pre class="prettyprint">
     <xmp>
-      {
-        "scripts": {
-          <!-- 給Procfile 呼叫 -->
-          "start": "node index.js"
-        },
-        "dependencies": {
-          "express": "^4.18.1",
-          "linebot": "^1.6.1"
-        },
-        "engines": {
-          "node": ">=10.0.0"
-        }
-      }
-    </xmp>
-  </pre>
-
-  <h2>5.新增 Procfile 檔</h2>
-  <p>heroku用來定義檔案從web底下開啟</p>
-  <pre class="prettyprint">
-    <xmp>
+      //.Procfile 檔
       web: npm start
     </xmp>
   </pre>
 
-  <h2>6.push_heroku</h2>
+  <h2>5.設定 package.json 檔</h2>
+  <pre class="prettyprint">
+    <xmp>
+      {
+        "scripts": {
+          //給Procfile檔呼叫
+          "start": "node index.js"
+        },
+      }
+    </xmp>
+  </pre>
+
+  <h2>6.變數設定 process.env</h2>
+  <img src="https://miro.medium.com/max/1400/1*bXjkW4F9QQWzQErDmAUnGw.png" alt="">
+
+  <h2>7.push_heroku</h2>
+
 
   <h2>解決跨域問題</h2>
   <pre class="prettyprint">
@@ -92,6 +89,10 @@
     <li>
       <a href="https://derek.coderbridge.io/2020/10/20/%E9%83%A8%E7%BD%B2-nodejs-app-%E5%9C%A8-heroku/"
         target="_blank">部署 Node.js app 在 Heroku</a>
+    </li>
+    <li>
+      <a href="https://medium.com/rd-tw/node-heroku-%E6%89%93%E9%80%A0-line-%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BA-d81fe6dba1f"
+        target="_blank">Node + Heroku 打造 Line 聊天機器人</a>
     </li>
   </ul>
 </body>
