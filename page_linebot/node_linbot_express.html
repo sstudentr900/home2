@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>linebot</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        const linebot = require('linebot');
+        const express = require('express');
+
+        const bot = linebot({
+          channelId: process.env.CHANNEL_ID,
+          channelSecret: process.env.CHANNEL_SECRET,
+          channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN
+        });
+
+        const app = express();
+
+        const linebotParser = bot.parser();
+
+        app.get('/',function(req,res){
+            res.send('Hello World!');
+        });
+
+        app.post('/linewebhook', linebotParser);
+
+        bot.on('message', function (event) {
+          event.reply(event.message.text).then(function (data) {
+            console.log('Success', data);
+          }).catch(function (error) {
+            console.log('Error', error);
+          });
+        });
+
+        app.listen(process.env.PORT || 80, function () {
+          console.log('LineBot is running.');
+        });
+      </script>
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://dotblogs.com.tw/what_s_note/2018/08/17/111830"
+        target="_blank">linebot AP</a>
+    </li>
+    <li>
+      <a href="https://pyradise.com/%E4%BD%BF%E7%94%A8node-js%E5%BB%BA%E7%BD%AE%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8Bline-bot-590b7ba7a28a"
+        target="_blank">使用Node.js建置你的第一個LINE BOT</a>
+    </li>
+    <li>
+      <a href="https://swf.com.tw/?p=1115" target="_blank">LINE Bot聊天機器人程式開發教學（六）</a>
+    </li>
+  </ul>
+</body>
+
+</html>

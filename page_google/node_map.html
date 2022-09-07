@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>頁面的 javasctipt </h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //googleMapID
+          const config = require("./plugin/config");
+          const axios = require('axios');
+          //serch
+          const serch = encodeURI('阿堂鹹粥')
+          const axiosConfig = {
+            method: 'get',
+            url: 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input='+serch+'&inputtype=textquery&fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry&key='+config.googleMapID,
+          };
+
+          axios(axiosConfig)
+          .then(function (response) {
+            //location { lat: 22.9899117, lng: 120.1979533 }
+            console.log('location',response.data.candidates[0].geometry.location)
+            //address
+            console.log('address',response.data.candidates[0].formatted_address)
+            //data
+            console.log('data',response.data)
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.youtube.com/watch?v=UGN6EUi4Yio&ab_channel=Twilio" target="_blank">Google Sheets and JavaScript with Node.js</a>
+      </li>
+      <li>
+        <a href="https://theoephraim.github.io/node-google-spreadsheet/#/classes/google-spreadsheet-worksheet?id=sheet-dimensions-amp-stats" target="_blank">Google sheet api</a>
+      </li>
+    </ul>
+  </body>
+</html>

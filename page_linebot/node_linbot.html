@@ -16,8 +16,65 @@
   <h2>設定Webhook</h2>
   <p>deecb94e.ngrok.io(location url)/linewebhook(listen url)</p>
   <img src="https://miro.medium.com/max/1336/1*7BOFUvtB6R1hdUmmOgyomw.png" alt="">
+  <h2>linebot</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        // 引用linebot SDK
+        const linebot = require('linebot');
+        const userId = 'Your User ID';//
+        // 用於辨識Line Channel的資訊
+        const bot = linebot({
+          channelId: 'channelId',
+          channelSecret: 'channelSecret',
+          channelAccessToken: 'channelAccessToken'
+        });
+
+        // 當有人傳送訊息給Bot時
+        bot.on('message', function (event) {
+          // event.message.text是使用者傳給bot的訊息
+          // 準備要回傳的內容
+          const replyMsg = `Hello你剛才說的是:${event.message.text}`;
+          // 使用event.reply(要回傳的訊息)方法可將訊息回傳給使用者
+          event.reply(replyMsg).then(function (data) {
+          // event.reply(event.message.text).then(function (data) {
+            // 當訊息成功回傳後的處理
+            console.log('successs',data)
+          }).catch(function (error) {
+            // 當訊息回傳失敗後的處理
+            console.log('error',error)
+          });
+        });
+
+        //Bot所監聽的webhook路徑與port
+        bot.listen('/linewebhook', 3000, function () {
+            console.log('BOT已準備就緒');
+        });
+      </script>
+    </xmp>
+  </pre>
+  <h2>push</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <script>
+        const linePush = (message)=>{
+          bot.push(userId, [message]);
+          // console.log('linePush: ' + message);
+          console.log('linePush');
+        }
+      </script>
+    </xmp>
+  </pre>
   <h4>參考</h4>
   <ul>
+    <li>
+      <a href="https://developers.line.biz/zh-hant/services/bot-designer/"
+        target="_blank">linebot</a>
+    </li>
+    <li>
+      <a href="https://dotblogs.com.tw/what_s_note/2018/08/17/111830"
+        target="_blank">linebot APi</a>
+    </li>
     <li>
       <a href="https://pyradise.com/%E4%BD%BF%E7%94%A8node-js%E5%BB%BA%E7%BD%AE%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%80%8Bline-bot-590b7ba7a28a"
         target="_blank">使用Node.js建置你的第一個LINE BOT</a>
