@@ -18,6 +18,7 @@
         <a href="https://stackoverflow.com/questions/55178647/the-post-method-is-not-supported-for-this-route-supported-methods-get-head-l" target="_blank">The POST method is not supported for this route. Supported methods: GET, HEAD. Laravel</a>
       </li>
     </ul>
+
     <h2>
       表情文字編碼(After update: Exception during INSERT: Invalid datetime format: 1366 Incorrect string value:
     '\\xF0\\x9F\\x8C\\x80)
@@ -33,6 +34,7 @@
         <a href="https://stackoverflow.com/questions/48270374/invalid-datetime-format-1366-incorrect-string-value" target="_blank">Invalid datetime format: 1366 Incorrect string value</a>
       </li>
     </ul>
+
     <h2>三位元要(a?b)c:d</h2>
     <p>
       PHP Error : Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d
@@ -44,6 +46,7 @@
         <a href="https://stackoverflow.com/questions/61432488/php-error-unparenthesized-a-b-c-d-e-is-deprecated-use-either-a" target="_blank">PHP Error : Unparenthesized</a>
       </li>
     </ul>
+
     <h2>Laravel - Image saved in storage folder not showing to user</h2>
     <p>delete it, and run php artisan storage:link</p>
     <ul>
@@ -54,6 +57,7 @@
         <a href="https://www.educative.io/answers/how-to-fix-storage-link-not-working-issue-in-laravel" target="_blank">How to fix storage link not working issue in Laravel</a>
       </li>
     </ul>
+
     <h2>json轉斜杠 json_encode() escaping forward slashes</h2>
     <p>json_encode($str, JSON_UNESCAPED_SLASHES);</p>
     <ul>
@@ -61,6 +65,18 @@
         <a href="https://stackoverflow.com/questions/10210338/json-encode-escaping-forward-slashes" target="_blank">json_encode() escaping forward slashes</a>
       </li>
     </ul>
+
+    <h2>清除上一頁緩存</h2>
+    <p>到middleware的handle 加上以下程式碼</p>
+    <pre>
+      <xmp>
+        $response = $next($request);
+        return $response->header('Cache-Control','nocache, no-store, max-age=0, must-revalidate')
+            ->header('Pragma','no-cache')
+            ->header('Expires','Sun, 02 Jan 1990 00:00:00 GMT');
+      </xmp>
+    </pre>
+
     <h2>清除config緩存</h2>
     <ol>
       <li>php artisan config:cache</li>
@@ -75,6 +91,7 @@
         <a href="https://stackoverflow.com/questions/32423034/reloading-env-variables-without-restarting-server-laravel-5-shared-hosting" target="_blank">Reloading .env variables without restarting server</a>
       </li>
     </ul>
+
     <h2>清除env 文件的緩存並重新加載它</h2>
     <p>php artisan view:clear</p>
 
@@ -88,6 +105,6 @@
     <p>npm install</p>
 
     <h2>There is no existing directory at "D:\xampp\htdocs\mybluehost\storage\logs" and it could not be created: Resource device</h2>
-    <p>php artisan cache:clear</p>
+    <p>php artisan s:clear</p>
   </body>
 </html>
