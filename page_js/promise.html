@@ -109,6 +109,77 @@
         </script>
       </xmp>
     </pre>
+    <h2>Promise.all和Promise.allSettled的区别</h2>
+    <ol>
+      <li>Promise.all 回傳要就全部成功，不然全部重来</li>
+      <li>Promise.allSettled 回傳多了一个status字段，表示当前promise的状态，没有任何一个promise的信息被丢失</li>
+    </ol>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var promises = [
+            delay(100).then(() => 1),
+            delay(200).then(() => 2),
+            Promise.reject(3)
+          ]
+
+          //Promise.all 
+          Promise.all(promises).then(values=>console.log(values));// 最终输出： Uncaught (in promise) 3
+          Promise.all(promises)
+          .then(values=>console.log(values))
+          .catch(err=>console.log(err))
+          // 加入catch语句后，最终输出：3
+
+          // romise.allSettled
+          Promise.allSettled(promises).then(values=>console.log(values))
+          // 最终输出： 
+          //    [
+          //      {status: "fulfilled", value: 1},
+          //      {status: "fulfilled", value: 2},
+          //      {status: "rejected", value: 3},
+          //    ]
+        </script>
+      </xmp>
+    </pre>
+    <h2>從 Promise 到 async/await</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          const delay = (ms) => new Promise((resolve) => {
+              setTimeout(() => resolve(ms), ms)
+          })
+
+          /* then 1 */
+          delay(1000).then(data => {
+              console.log('case 1: step 1', data)
+              return delay(2000).then(data => {
+                  console.log('case 1: step 2', data)
+              })
+          });
+
+          /*then 2 */
+          delay(1000).then(data => {
+              console.log('case 2: step 1', data);
+              return delay(2000);
+          }).then(data => {
+              console.log('case 2: step 2', data)
+          })
+
+          // Promise.all
+          var promises1 = [delay(1000), delay(2000)];
+          Promise.all(promises1).then(data => console.log('promise.all', data))
+
+          /* async / await */
+          main();
+          async function main() {
+              const data1 = await delay(1000);
+              console.log('case 3: step 1', data1);
+              const data2 = await delay(2000);
+              console.log('case 3: step 2', data2)
+          }
+        </script>
+      </xmp>
+    </pre>
     <h2>async 回傳一個Promise物件</h2>
     <pre class="prettyprint">
       <xmp>
@@ -197,29 +268,32 @@
             });
         }
 
-        // 此段函式並不會影響其它函示的執行
+
+        //1.
+        //此段函式並不會影響其它函示的執行
         runPromise('小明', 3000).then(someone => {
             console.log('小明', someone)
         });
-        // 以下這段 console 會在 promise 結束前就執行
-        console.log('這裡執行了一段 console');
+        console.log('小王');//小王 小明
 
 
+        //2.async
         //async 將 await 包在裡面
         //Await 顧名思義就是等待，在這個 Promise 結束前後面的程式碼都無法被執行。 單線往下
-        const asyncRun = async() => {
+        var asyncRun = async() => {
             let mingRun = await runPromise('小明', 2000);
             let auntieRun = await runPromise('漂亮阿姨', 1500);
             return `${mingRun}, ${auntieRun}`
         }
         asyncRun().then(string => {
-            console.log(string)
-        }).catch(response => {
+            console.log(string) //小明 漂亮阿姨
+        }).catch(string => {
             console.log(string)
         })
 
+        //3.await
         //沒有await 先到先執行
-        const asyncRun = async() => {
+        var asyncRun2 = async() => {
             runPromise('小明', 2000).then(string => {
                 console.log(string)
             });
@@ -227,18 +301,17 @@
                 console.log(string)
             });
         }
-        asyncRun()
+        asyncRun2()
         </script>
       </xmp>
     </pre>
-    <h2>async for</h2>
-    <p>如果想要在迴圈中使用 await，則可以使用一般的 for 迴圈、for await...of，或 map 搭配 Promise 的寫法，千萬不要使用 forEach</p>
+    <h2>for loop</h2>
+    <p>如果想要在迴圈中使用 await，則可以使用一般的 for, while 或 for...of 或 map 搭配 Promise 的寫法，但若是在帶有 callback 的迴圈中，例如 forEach, map, filter, reduce 等等，就需要特別留意</p>
     <p>若有需要使用 filter 或 reduce 等其他處理陣列的方式，先等陣列的資料完整取得後再來呼叫這些方法</p>
     <pre class="prettyprint">
       <xmp>
         <script>
         //https://pjchender.dev/javascript/js-async-await
-        //若想要在迴圈中使用 async / await 的寫法需要特別留意， 一般來說在 for, while 或 for...of 這種迴圈中都可以正常使用；但若是在帶有 callback 的迴圈中，例如 forEach, map, filter, reduce 等等，就需要特別留意：
         const sleep = (ms) => {
             return new Promise((resolve, reject) => {
                 console.log(`[sleep-${ms}] invoke`);
@@ -255,7 +328,7 @@
         };
 
         // 所有的 Promise 會在此時就發動
-        const promises = [sleep(1000), sleep(3000), sleep(2000)];
+        var promises = [sleep(1000), sleep(3000), sleep(2000)];
 
         // 方法一：使用 for await...of，每個 Promise 結束後可以馬上取得結果
         (async function() {
@@ -301,74 +374,43 @@
         </script>
       </xmp>
     </pre>
-    <h2>Promise.all和Promise.allSettled的区别</h2>
-    <ol>
-      <li>Promise.all 回傳要就全部成功，不然全部重来</li>
-      <li>Promise.allSettled 回傳多了一个status字段，表示当前promise的状态，没有任何一个promise的信息被丢失</li>
-    </ol>
-    <pre class="prettyprint">
+    <h2>for loop</h2>
+    <pre>
       <xmp>
         <script>
-          const promises = [
-            delay(100).then(() => 1),
-            delay(200).then(() => 2),
-            Promise.reject(3)
-          ]
+          //https://stackoverflow.com/questions/40328932/javascript-es6-promise-for-loop
+          async function someProcedure (n) {
+            for (let i = 0; i < n; i++) {
+              const t = Math.random() * 1000
+              const x = await new Promise(r => setTimeout(r, t, i))
+              console.log (i, x, t)
+            }
+            return 'done'
+          }
 
-          //Promise.all 
-          Promise.all(promises).then(values=>console.log(values));// 最终输出： Uncaught (in promise) 3
-          Promise.all(promises)
-          .then(values=>console.log(values))
-          .catch(err=>console.log(err))
-          // 加入catch语句后，最终输出：3
-
-          // romise.allSettled
-          Promise.allSettled(promises).then(values=>console.log(values))
-          // 最终输出： 
-          //    [
-          //      {status: "fulfilled", value: 1},
-          //      {status: "fulfilled", value: 2},
-          //      {status: "rejected", value: 3},
-          //    ]
+          someProcedure(10)
+            .then(console.log)
+            .catch(console.error)
         </script>
       </xmp>
     </pre>
-    <h2>從 Promise 到 async/await</h2>
-    <pre class="prettyprint">
+    <h2>for loop 堆疊、佇列</h2>
+    <pre>
       <xmp>
         <script>
-          const delay = (ms) => new Promise((resolve) => {
-              setTimeout(() => resolve(ms), ms)
-          })
-
-          /* then 1 */
-          delay(1000).then(data => {
-              console.log('case 1: step 1', data)
-              return delay(2000).then(data => {
-                  console.log('case 1: step 2', data)
-              })
-          });
-
-          /*then 2 */
-          delay(1000).(data => {
-              console.log('case 2: step 1', data);
-              return delay(2000);
-          }).then(data => {
-              console.log('case 2: step 2', data)
-          })
-
-          // Promise.all
-          const promises = [delay(1000), delay(2000)];
-          Promise.all(promises).then(data => console.log('promise.all', data))
-
-          /* async / await */
-          main();
-          async function main() {
-              const data1 = await delay(1000);
-              console.log('case 3: step 1', data1);
-              const data2 = await delay(2000);
-              console.log('case 3: step 2', data2)
+          //https://pjchender.dev/javascript/js-event-loop-stack-queue/
+          async function someProcedure (n) {
+            for (let i = 0; i < n; i++) {
+              const t = 0
+              const x = await new Promise(r => setTimeout(r, 0, i))
+              console.log (i, x, t)
+            }
+            return 'done'
           }
+
+          someProcedure(10)
+            .then(console.log)
+            .catch(console.error)
         </script>
       </xmp>
     </pre>
@@ -380,6 +422,9 @@
       </li>
       <li>
         <a href="https://pjchender.dev/javascript/js-async-await" target="_blank">Async and Await in JavaScript</a>
+      </li>
+      <li>
+        <a href="https://pjchender.dev/javascript/js-event-loop-stack-queue/" target="_blank">for loop 堆疊、佇列</a>
       </li>
     </ul>
   </body>
