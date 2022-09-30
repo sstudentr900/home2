@@ -13,11 +13,12 @@
 
 <body id="program">
   <h2>認識Laravel-Mix</h2>
-
   <h3>JavaScript 和 CSS 編譯設定</h3>
-  <p>webpack.mix.js 文件中可以看到以下設定<br>
-    js('JS檔案位置', '存在公用位置')<br>
-    styles(['CSS檔案位置且合併'], '存在公用位置')</p>
+  <ul>
+    <li>webpack.mix.js 中編譯</li>
+    <li>js('JS檔案位置', '存在公用位置')</li>
+    <li>styles(['CSS檔案位置且合併'], '存在公用位置')</li>
+  </ul>
   <pre class="prettyprint">
     <xmp>
       mix.js('resources/js/fnapp.js', 'public/js')

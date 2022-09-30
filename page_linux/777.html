@@ -13,24 +13,11 @@
 </head>
 
 <body id="program">
-  <h2>轉止到https</h2>
-  <pre class="prettyprint">
-    <xmp>
-      if($_SERVER["SERVER_PORT"] != '443' ) {
-        header('Location: https://'. $_SERVER["SERVER_NAME"] . str_replace('//', '/', $_SERVER['REQUEST_URI']));
-      }
-    </xmp>
-  </pre>
-  
-  <h2>轉止到https</h2>
-  <pre class="prettyprint">
-    <xmp>
-      if($_SERVER['HTTP_X_FORWARDED_PROTO']!='https'){
-        header('Location:https://'.$_SERVER['SERVER_NAME'].str_replace('//','/',$_SERVER['REQUEST_URI']));
-        exit();
-      }
-    </xmp>
-  </pre>
+  <h2>777</h2>
+  <ul>
+    <li>sudo chmod -R 777 public/images</li>
+  </ul>
+
   <!-- <h4>參考</h4>
   <ul>
     <li>

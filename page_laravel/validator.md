@@ -94,52 +94,41 @@ routes/web.php
 ## view
 resources/views/signup.blade.php
 ```
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <form id="form1" method="post" action="">
-        <!-- 自動產生 csrf_token 隱藏欄位-->
-        {!! csrf_field() !!}
-        <div class="login_form">
-            <div class="login_title">註冊</div>
-            <div class="login_label">帳號(必須為E-mail)</div>
-            <div class="login_textbox">
-                <input name="account" class="@error('account') is-invalid @enderror" type="text" placeholder="請輸入帳號" value="{{ old('account') }}"/>
-                @error('account')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="login_label">密碼</div>
-            <div class="login_textbox">
-                <input name="password" class="@error('password') is-invalid @enderror" type="password" placeholder="請輸入密碼" value="{{ old('password') }}"/>
-                @error('password')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="login_label">密碼確認</div>
-            <div class="login_textbox">
-                <input name="password_confirm" class="@error('password_confirm') is-invalid @enderror" type="password" placeholder="請確認密碼" value="{{ old('password_confirm') }}"/>
-                @error('password_confirm')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="login_error">
-                <!-- 錯誤訊息模板元件 -->
-                @include('layout.ValidatorError')
-            </div>
-            <div class="btn_group">
-                <button type="submit" class="btn btn-primary btn_login">註冊</button>
-            </div>
-        </div>
-        </form>
-    </body>
-    </html>
+  <form id="form1" method="post" action="">
+  <!-- 自動產生 csrf_token 隱藏欄位-->
+  {!! csrf_field() !!}
+  <div class="login_form">
+      <div class="login_title">註冊</div>
+      <div class="login_label">帳號(必須為E-mail)</div>
+      <div class="login_textbox">
+          <input name="account" class="@error('account') is-invalid @enderror" type="text" placeholder="請輸入帳號" value="{{ old('account') }}"/>
+          @error('account')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
+      </div>
+      <div class="login_label">密碼</div>
+      <div class="login_textbox">
+          <input name="password" class="@error('password') is-invalid @enderror" type="password" placeholder="請輸入密碼" value="{{ old('password') }}"/>
+          @error('password')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
+      </div>
+      <div class="login_label">密碼確認</div>
+      <div class="login_textbox">
+          <input name="password_confirm" class="@error('password_confirm') is-invalid @enderror" type="password" placeholder="請確認密碼" value="{{ old('password_confirm') }}"/>
+          @error('password_confirm')
+              <div class="alert alert-danger">{{ $message }}</div>
+          @enderror
+      </div>
+      <div class="login_error">
+          <!-- 錯誤訊息模板元件 -->
+          @include('layout.ValidatorError')
+      </div>
+      <div class="btn_group">
+          <button type="submit" class="btn btn-primary btn_login">註冊</button>
+      </div>
+  </div>
+  </form>
 ```
 
 

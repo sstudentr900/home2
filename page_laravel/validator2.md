@@ -32,7 +32,7 @@ resources/views/signup.blade.php
             @csrf
             <input name="text" type="text" value="{{ old('text') }}"/>
             @error('text')
-                <div class="alert alert-danger">{{ $message }}</div>
+              <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             <br>
             <br>

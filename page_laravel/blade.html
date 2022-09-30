@@ -36,23 +36,23 @@
     <xmp>
       //1.
       {{isset($variable) ? $variable : "Default Value"}}
-    
+
       //2.
       @isset ($variable)
-          {{$variable}}
+      {{$variable}}
       @else
-          Default
+      Default
       @endisset
     </xmp>
-  </pre>    
+  </pre>
 
   <h3>empty</h3>
   <pre class="prettyprint">
     <xmp>
       @empty($variable)
-          Default
+      Default
       @else
-          {{$variable}}
+      {{$variable}}
       @endempty
     </xmp>
   </pre>
@@ -60,37 +60,32 @@
   <h3>迴圈</h3>
   <pre class="prettyprint">
     <xmp>
-      @for ($i = 0; $i < 10; $i++)
-          The current value is {{ $i }}
-      @endfor
-
-
-      @foreach ($item as $list)
-          {{$item}} <br/>
+      @for ($i = 0; $i
+      < 10; $i++) The current value is {{ $i }} @endfor @foreach ($item as $list) {{$item}} <br />
       @endforeach
 
       //index
-      @foreach ($teams as  $team)
+      @foreach ($teams as $team)
       {{ $loop->index }}
       @endforeach
 
 
       @forelse ($item as $list)
-          <li>{{ $item }}</li>
+      <li>{{ $item }}</li>
       @empty
-          <p>No item</p>
+      <p>No item</p>
       @endforelse
 
 
       @while (true)
-          <p>I'm looping forever.</p>
+      <p>I'm looping forever.</p>
       @endwhile
 
 
       @foreach ($users as $user)
-          @continue($user->type == 1)
-              <li>{{ $user->name }}</li>
-          @break($user->number == 5)
+      @continue($user->type == 1)
+      <li>{{ $user->name }}</li>
+      @break($user->number == 5)
       @endforeach
     </xmp>
   </pre>
@@ -108,7 +103,7 @@
     </xmp>
   </pre>
 
-  <h3>不轉譯輸出</h3> 
+  <h3>不轉譯輸出</h3>
   <pre class="prettyprint">
     <xmp>
       {!! $variable !!}
@@ -122,4 +117,5 @@
     </li>
   </ul>
 </body>
+
 </html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>資料庫連線設定</h2>
+  <h3>config/database.php</h3>
+  <pre class="prettyprint">
+    <xmp>
+      return [
+      //設定mysql
+      'default' => env('DB_CONNECTION', 'mysql'),
+      'connections' => [
+        'mysql' => [
+          'driver' => 'mysql',
+          'url' => env('DATABASE_URL'),
+          'host' => env('DB_HOST', '127.0.0.1'),
+          'port' => env('DB_PORT', '3306'),
+          'database' => env('DB_DATABASE', 'forge'),
+          'username' => env('DB_USERNAME', 'forge'),
+          'password' => env('DB_PASSWORD', ''),
+          'unix_socket' => env('DB_SOCKET', ''),
+          'charset' => 'utf8mb4',
+          'collation' => 'utf8mb4_unicode_ci',
+          ],
+        ],
+      ];
+    </xmp>
+  </pre>
+  <h3>.env</h3>
+  <p>在phpMyadmin 設定databaseName</p>
+  <pre class="prettyprint">
+    <xmp>
+      DB_CONNECTION=mysql
+      DB_HOST=127.0.0.1
+      DB_PORT=3306
+      DB_DATABASE= databaseName
+      DB_USERNAME=root
+      DB_PASSWORD=
+    </xmp>
+  </pre>
+
+  <h2>建立migration</h2>
+  <ul>
+    <li>檔案位置 database/migration</li>
+    <li>fileName => 自訂檔案名稱</li>
+    <li>--create => 創建資料庫</li>
+    <li>tableName => 創建資料庫名稱為mind</li>
+  </ul>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan make:migration fileName --create=tableName
+    </xmp>
+  </pre>
+  <h3>同時增加model,migration (--migration or -m )</h3>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan make:model fileName -m
+    </xmp>
+  </pre>
+
+  <h2>自動建立table(會跑出之前紀錄的不好用)</h2>
+  <p>須注意先清空phpmyadmin的表 因為它會自動新增(migrations),其他表再用匯入就好</p>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan migrate
+    </xmp>
+  </pre>
+
+  <h2>自動建立一個table</h2>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan migrate --path={檔案路徑}
+      //php artisan migrate --path=database/migrations/2022_09_28_095229_manager_table.php
+    </xmp>
+  </pre>
+
+  <h2>自動建立指定路徑裡的全部table</h2>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan migrate --path={檔案路徑}
+      //php artisan migrate --path=database/migrations/
+    </xmp>
+  </pre>
+
+  <h2>顯示migrations狀態</h2>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan migrate：status
+    </xmp>
+  </pre>
+
+  <h2>回上一步</h2>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan migrate:rollback
+    </xmp>
+  </pre>
+
+  <h2>刪除所有資料表</h2>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan migrate:reset
+    </xmp>
+  </pre>
+
+  <h2>刪除所有資料表</h2>+建置資料表
+  <pre class="prettyprint">
+    <xmp>
+      php artisan migrate:refresh
+    </xmp>
+  </pre>
+
+  <h2>刪除所有資料表裡的內容</h2>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan migrate:fresh
+    </xmp>
+  </pre>
+
+  <h2>創立資料表</h2>
+  <pre class="prettyprint">
+    <xmp>
+      use Illuminate\Support\Facades\Schema;
+      use Illuminate\Database\Schema\Blueprint;
+      use Illuminate\Database\Migrations\Migration;
+
+      class CreateBlogPostTable extends Migration
+      {
+        public function up()
+        {
+          Schema::create('blog_post', function (Blueprint $table) {
+            $table->charset = 'utf8mb4';
+            $table->collation = 'utf8mb4_general_ci';
+            $table->increments('id');                            //int(10) 主鍵
+            $table->integer('user_id');                          //int(10)
+            $table->id();                                        //bigint(20) 主鍵 
+            $table->bigIncrements('id');                         //bigint(20) 主鍵
+            $table->unsignedBigInteger('user_id');               //bigint(20) //unsigned 既為非負數，用此類型可以增加資料長度!
+            $table->string('name', 50)->nullable();              //nullable->  允許為空值 ,string->varchar
+            $table->string('account', 50)->unique();             //unique->  不可重複的索引
+            $table->integer('type')->default(0);                 //default-> 預設值是0
+            $table->string("title")->comment('標題');            //comment->  sql 標題 
+            $table->enum('release', array('y', 'n'))->default('y');   //enum-> 選擇
+            $table->mediumText('tinymce');                       //mediumText-> ??
+            $table->char('remember_token', 100);                 //char-> ??
+            $table->timestamps();                                //創建及修改日期
+          });
+        }
+
+        public function down()
+        {
+            Schema::dropIfExists('blog_post');
+        }
+      }
+    </xmp>
+  </pre>
+
+  <h2>清空資料表</h2>
+  <pre class="prettyprint">
+      <xmp>
+        use Illuminate\Support\Facades\Schema;
+        use Illuminate\Database\Schema\Blueprint;
+        use Illuminate\Database\Migrations\Migration;
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('email')->nullable();
+        });
+    </xmp>
+  </pre>
+
+  <h2>改變資料表</h2>
+  <pre class="prettyprint">
+    <xmp>
+      use Illuminate\Support\Facades\Schema;
+      use Illuminate\Database\Schema\Blueprint;
+      use Illuminate\Database\Migrations\Migration;
+
+      Schema::table('users', function (Blueprint $table) {
+          $table->string('name', 50)->change();
+      });
+    </xmp>
+  </pre>    
+
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10223878" target="_blank">建立資料庫Migration</a>
+    </li>
+    <li>
+      <a href="https://dotblogs.com.tw/SmallFish/2020/09/27/071934" target="_blank">資料庫連線設定</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10220189" target="_blank">Laravel資料庫遷移(migration)</a>
+    </li>
+    <li>
+      <a href="https://laravel.com/docs/8.x/migrations#column-method-mediumText" target="_blank">官網</a>
+    </li>
+  </ul>
+</body>
+</html>
