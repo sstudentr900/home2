@@ -25,6 +25,17 @@
     </xmp>
   </pre>
 
+
+  <h2>has</h2>
+  <pre class="prettyprint">
+    <xmp>
+      @if ($errors->has('title'))
+      <span class="puplicError">{{ $errors->first('short') }}</span>
+      @endif
+    </xmp>
+  </pre>
+
+
   <h2>@error</h2>
   <pre class="prettyprint">
     <xmp>
@@ -35,6 +46,8 @@
       @enderror
     </xmp>
   </pre>
+
+
   <hr>
   <h4>參考</h4>
   <ul>

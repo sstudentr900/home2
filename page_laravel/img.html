@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/customPrism.css">
   <link rel="stylesheet" href="../css/prism.css">
-   <script src="../js/prism.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 </head>
 
 <body id="program">
@@ -92,7 +92,10 @@
   </pre>
 
   <h3>view</h3>
-  <p>resources/views/images.php</p>
+  <ul>
+    <li>resources/views/images.php</li>
+    <li>form 要寫 enctype="multipart/form-data" 沒寫不能傳檔案</li>
+  </ul>
   <pre class="prettyprint">
     <xmp>
       <form action="{{route('image')}}" method="post" enctype="multipart/form-data">

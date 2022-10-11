@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>爬蟲</h2>
+  <pre class="prettyprint">
+    <xmp>
+      import requests 
+      from bs4 import BeautifulSoup #解析原始碼
+
+
+
+      # requests #查找url
+      response = requests.get("https://www.ptt.cc/bbs/C_Chat/index.html")    # 以ptt C_Chat版為例
+      # print(response.text) 
+      # print(response.status_code)
+      # print('hello python!')
+
+
+
+      # BeautifulSoup解析原始碼
+      soup = BeautifulSoup(response.text, "html.parser")
+      # print(soup.prettify())
+
+      #find()找第一個節點
+      # meta = soup.find("div", class_="meta")
+      # print(meta)
+
+      #find_all()找所有節點，回傳的是一個列表。
+      # meta = soup.find_all("div", class_="meta")
+      # print(meta)
+
+      #抓取標題文字
+      titles = soup.find_all("div", class_="title")
+      for title in titles:
+      print(title.text.strip()) # strip()用來刪除文字前面和後面多餘的空白
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+      <li>
+          <a href="https://ithelp.ithome.com.tw/articles/10270296" target="_blank">從HTML到Python爬蟲的30天之旅</a>
+      </li>
+  </ul>
+</body>
+
+</html>
