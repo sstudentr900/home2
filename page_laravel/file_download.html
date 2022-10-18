@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
-    <h2>file_download</h2>
+    <h2>file_download 多檔上傳 下載</h2>
     <h3>html</h3>
     <pre class="prettyprint">
       <xmp>
@@ -60,25 +60,25 @@
     <pre class="prettyprint">
       <xmp>
         if(isset($input['file'])){
-        $files = $input['file'];
-        foreach($files as $key => $value){
-          $uploadedFile = $files[$key];
-          $path = $uploadedFile->store('public');//存的位置 storage/app/public/自訂亂碼名稱
-          $filename = $uploadedFile->getClientOriginalName(); //檔名
-          $data = new data_appendix;
-          $data->src = $path;
-          $data->name = $filename;
-          $data->save();
+          $files = $input['file'];
+          foreach($files as $key => $value){
+            $uploadedFile = $files[$key];
+            $path = $uploadedFile->store('public');//存的位置 storage/app/public/自訂亂碼名稱
+            $filename = $uploadedFile->getClientOriginalName(); //檔名
+            $data = new data_appendix;
+            $data->src = $path;
+            $data->name = $filename;
+            $data->save();
+          }
         }
-      }
       </xmp>
     </pre>
     <h3>php 檔案刪除</h3>
     <pre class="prettyprint">
       <xmp>
         $appendix = data_appendix::where('id', $id)->first();
-      unlink(storage_path('app/'.$appendix['src'])); //delet store/app/fileName
-      data_appendix::find($id)->delete(); //delet data
+        unlink(storage_path('app/'.$appendix['src'])); //delet store/app/fileName
+        data_appendix::find($id)->delete(); //delet data
       </xmp>
     </pre>
     <h3>blade 下載檔案</h3>
@@ -86,10 +86,10 @@
     <pre class="prettyprint">
       <xmp>
         @if(isset($appendixs))
-        @foreach ($appendixs as $appendix)
-        <a href="{{ Storage::url(str_replace('public/','',$appendix->src)) }}" download="{{$appendix->name}}">{{$appendix->name}}</a>
-        @endforeach
-      @endif
+          @foreach ($appendixs as $appendix)
+            <a href="{{ Storage::url(str_replace('public/','',$appendix->src)) }}" download="{{$appendix->name}}">{{$appendix->name}}</a>
+          @endforeach
+        @endif
       </xmp>
     </pre>
     <h3>另開檔案,須裝google表單不然會變下載</h3>
@@ -100,16 +100,279 @@
         </a>
       </xmp>
     </pre>
+
+    <h2>file 多圖上傳瀏覽</h2>
+    <h3>html</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <div class="publicAppendix" data-target="fileDiv">
+          <label data-target='add'>圖片<svg xmlns="http://www.w3.org/2000/svg" width="537.947px" height="537.947px" viewBox="0 0 537.947 537.947"><path d="M268.974,0C120.411,0,0,120.411,0,268.974c0,148.563,120.411,268.973,268.974,268.973s268.973-120.334,268.973-268.973
+          C537.947,120.334,417.537,0,268.974,0z M394.51,286.033c0,11.857-9.715,21.496-21.496,21.496h-64.566v64.566
+          c0,11.857-9.715,21.496-21.496,21.496h-35.878c-11.857,0-21.497-9.715-21.497-21.496v-64.566h-64.566
+          c-11.857,0-21.497-9.715-21.497-21.496v-35.878c0-11.857,9.715-21.497,21.497-21.497h64.566v-64.566
+          c0-11.857,9.715-21.496,21.497-21.496h35.878c11.857,0,21.496,9.715,21.496,21.496v64.566h64.566
+          c11.857,0,21.496,9.716,21.496,21.497V286.033z"/></svg></label>
+          <div class="input">
+            @if(isset($appendixs))
+              <!-- 有圖片 -->
+              @foreach ($appendixs as $appendix)
+              <div class="publicImg">
+                <div class="img">
+                  <img src="@php
+                    echo Storage::url(str_replace('public/','',$appendix->src)).'?'.rand();
+                  @endphp">
+                </div>
+                <i data-target='minus' data-id='{{$appendix->id}}'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+                  </svg>
+                </i>
+              </div>
+              @endforeach
+            @else
+              <!-- 沒有圖片 -->
+              <div class="publicImg">
+                <label for="cover0">
+                  <span>請選擇圖片</span>
+                  <input class="cover" id="cover0" type="file" accept=".jpg, .jpeg, .png, .pdf"  name="file[]" data-target="file">
+                </label>
+                <i data-target='minus'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path>
+                  </svg>
+                </i>
+              </div>
+            @endif
+          </div>
+        </div>
+        <script>
+          function fileFn() {
+            const fileDiv = document.querySelector('[data-target="fileDiv"]');
+            if(!fileDiv)return;
+            const adds = fileDiv.querySelectorAll('[data-target="add"]');
+            const minus = fileDiv.querySelectorAll('[data-target="minus"]');
+            const inputs = fileDiv.querySelectorAll('[data-target="file"]');
+            const inputDiv = fileDiv.querySelector('.input');
+            let num = 0;
+            const isClass = document.querySelector('.ba')?document.querySelector('.ba'):document.querySelector('.fn')
+            const className = isClass.classList[1].replace('_update','').replace('_add','')
+            const inImage = function(o) {
+              o.obj.closest(".publicImg").append(creatHtml({
+                'tage': 'div',
+                'cl': 'img',
+                'addHtml': [
+                  creatHtml({
+                    'tage': 'img',
+                    'attr': { 'src': o.img  },
+                  }),
+                  // creatHtml({
+                  //   'tage': 'i',
+                  //   'text': '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg>',
+                  //   'handler': minusFn
+                  // }),
+                  // creatHtml({
+                  //   'tage': 'input',
+                  //   'attr': { 'type': 'hidden','name': idName,'value': o.img  },
+                  // }),
+                ]
+              }))
+            }
+            const file2Image = function(file,callback){
+                var image = new Image();
+                var url = URL.createObjectURL(file);
+                image.onload = function() {
+                    callback(image);
+                    URL.revokeObjectURL(url);
+                };
+                image.src = url;
+            }
+            function fileFn(e){
+              const file = e.target.files[0];
+              if (!file) return;
+
+              //驗證
+              const validFileTypes = ["jpeg","jpg", "png", "pdf"];
+              const isValidFileType = validFileTypes.includes(file.name.split('.').pop());
+              if (!isValidFileType) {
+                alert("格式只能是jpg,png,pdf");
+                e.target.value = '';
+                return ;
+              }
+              const isValidFileSize = file.size / 1024 / 1024 < 5;
+              if (!isValidFileSize) {
+                alert("檔案需小於 5MB!");
+                e.target.value = '';
+                return ;
+              }
+
+              //不自動切圖
+              file2Image(file, function(img) {
+                const canvas = document.createElement("canvas");
+                const context = canvas.getContext("2d");
+                canvas.width = img.width;
+                canvas.height = img.height;
+                context.drawImage(img, 0, 0, img.width, img.height);
+                inImage({ 'obj': e.target, 'img': canvas.toDataURL("image/jpeg", 0.9)})
+              })
+
+              //不自動切圖
+              // file2Image(file, function(img) {
+              //   if (img.width!=imgWidth || img.height!=imgHight) {
+              //     alert('錯誤 : 圖片尺寸'+imgWidth+'*'+imgHight);
+              //     input.value='' ;
+              //     return;
+              //   }
+              //   var canvas = document.createElement("canvas");
+              //   var context = canvas.getContext("2d");
+              //   canvas.width = img.width;
+              //   canvas.height = img.height;
+              //   context.drawImage(img, 0, 0, img.width, img.height);
+              //   inImage({ 'obj': input, 'img': canvas.toDataURL("image/jpeg", 0.9)})
+              // })
+
+              //自動切圖
+              // file2Image(file, function(img) {
+              //   var canvas = document.createElement("canvas");
+              //   var context = canvas.getContext("2d");
+              //   if(imgWidth){
+              //     canvas.width = imgWidth;
+              //     canvas.height = imgHight;
+              //     var imageWidth = img.width;
+              //     var imageHeight = img.height;
+              //     context.clearRect(0, 0, canvas.width, canvas.height);
+              //     if ((imageWidth / imgWidth) > (imageHeight / imgHight)) {
+              //       context.drawImage(img, imgWidth / 2 - (imgHight * imageWidth / imageHeight) / 2, 0, imgHight * imageWidth / imageHeight, imgHight);
+              //     } else {
+              //       context.drawImage(img, 0, imgHight / 2 - (imgWidth * imageHeight / imageWidth) / 2, imgWidth, imgWidth * imageHeight / imageWidth);
+              //     }
+              //   }else{
+              //     canvas.width = img.width;
+              //     canvas.height = img.height;
+              //     context.drawImage(img, 0, 0, img.width, img.height);
+              //   }
+              //   inImage({ 'obj': input, 'img': canvas.toDataURL("image/jpeg", 0.9)})
+              // })
+            }
+            function minusFn(){
+              // console.log(this)
+              const id = this.dataset?this.dataset.id:'';
+              const length = this.closest('.input').querySelectorAll('.publicImg').length;
+              this.closest('.publicImg').remove();
+
+              //判斷修改時才能刪除資料
+              if(id){
+                fetch(`/${className}_appendix_delet/${id}`,{
+                  method: 'GET',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                  },
+                })
+                .then(function(res) {
+                  return res.json();
+                })
+                .then(function(result) {
+                  console.log(result)
+                })
+              }
+              //刪除到只剩一個就新增
+              if(length==1){
+                addFn();
+              }
+            }
+            function addFn(){
+              num++;
+              let publicImg = document.createElement('div');
+              let label = document.createElement('label');
+              let span = document.createElement('span');
+              let input = document.createElement('input');
+              let i = document.createElement('i');
+              publicImg.setAttribute('class','publicImg');
+              label.setAttribute('for','cover'+num);
+              input.setAttribute('id','cover'+num);
+              input.setAttribute('type','file');
+              input.setAttribute('data-target','file')
+              input.setAttribute('name','file[]');
+              span.textContent= '請選擇圖片';
+              i.setAttribute('data-target','minus');
+              i.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg>';
+              input.addEventListener('change',fileFn)
+              i.addEventListener('click',minusFn)
+              label.append(span,input)
+              publicImg.append(label,i)
+              inputDiv.append(publicImg)
+            }
+            adds.forEach(el => el.addEventListener('click',addFn));
+            minus.forEach(el => el.addEventListener('click',minusFn))
+            inputs.forEach(el => el.addEventListener('change',fileFn))
+          }
+          fileFn()
+        </script>
+      </xmp>
+    </pre>
+    <h3>php 檔案存檔</h3>
+    <pre class="prettyprint">
+      <xmp>
+        if (isset($input['file'])) {
+          $files = $input['file'];
+          foreach ($files as $key => $value) {
+            $uploadedFile = $files[$key];
+            $path = $uploadedFile->store('public'); //存在這裡 storage/app/public/自訂亂碼名稱 
+            $filename =  $uploadedFile->getClientOriginalName(); //取得檔名
+            $data = new data_bamember_appendix;
+            $data->member_id = $id;
+            $data->src = $path;
+            $data->name = $filename;
+            $data->save();
+          }
+        }
+      </xmp>
+    </pre>
+    <h3>php 檔案取得</h3>
+    <pre class="prettyprint">
+      <xmp>
+        if (data_bamember_appendix::where('member_id', $id)->count()) {
+          $this->binding['appendixs'] = data_bamember_appendix::select('id', 'name', 'src')->where('member_id', $id)->orderBy('id', 'desc')->get();
+        }
+      </xmp>
+    </pre>
+    <h3>php 檔案刪除</h3>
+    <pre class="prettyprint">
+      <xmp>
+        //查找該ID
+        $appendix =  data_bamember_appendix::where('id', $id)->first();
+        if ($appendix) {
+          unlink(storage_path('app/' . $appendix['src'])); //delet=>store/app/fileName
+          data_bamember_appendix::find($id)->delete();  //delet=>data
+        }
+      </xmp>
+    </pre>
+
+    <h2>error storage not working</h2>
+    <p>搬移專案要注意public的storage連結</p>
+    <ul>
+      <li>1.先把 public/storage 移除</li>
+      <li>2.在執行public的storage連結 php artisan storage:link</li>
+    </ul>
+    <h2>判斷連結可不可用</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <?php
+        echo exec("php artisan storage:link");
+      </xmp>
+    </pre>
     <h4>參考</h4>
     <ul>
       <li>
-        <a href="https://stackoverflow.com/questions/55028870/how-to-download-file-from-storage-folder-in-blade-page-in-laravel">
-          how
-        to download file from storage folder in blade page in laravel?
+        <a href="https://stackoverflow.com/questions/55028870/how-to-download-file-from-storage-folder-in-blade-page-in-laravel">how to download file from storage folder in blade page in laravel?
         </a>
       </li>
       <li>
         <a href="https://ithelp.ithome.com.tw/articles/10228413">上傳檔案</a>
+      </li>
+      <li>
+        <a href="https://www.educative.io/answers/how-to-fix-storage-link-not-working-issue-in-laravel">storage not working</a>
       </li>
     </ul>
   </body>

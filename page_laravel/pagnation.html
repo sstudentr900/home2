@@ -1,6 +1,22 @@
-# pagnation
-app/Http/Controller/
-```php
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>pagnation</h2>
+  <h3>app/Http/Controller/</h3>
+  <pre class="prettyprint">
+    <xmp>
         //1.Pagnation
         $limit = 2; //顯示數量
         // $request->query("page")->?page=2
@@ -42,9 +58,12 @@ app/Http/Controller/
             "pageStare"=>$pageP,
             "pageTotle" => $pageTotle,
         ]);
-```
-resource/views/
-```php
+    </xmp>
+  </pre>
+
+  <h3>resource/views/</h3>
+  <pre class="prettyprint">
+    <xmp>
     //1.Pagnation
     <nav aria-label="Page navigation">
         <ul class="pagination">
@@ -81,7 +100,14 @@ resource/views/
             </li>
         </ul>
     </div>
-```
+    </xmp>
+  </pre>
 
----
-[Pagnation](https://ithelp.ithome.com.tw/articles/10227014)
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10227014" target="_blank">Pagnation</a>
+    </li>
+  </ul>
+</body>
+</html>
