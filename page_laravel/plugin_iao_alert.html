@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>顯示訊息</h2>
+  <pre class="prettyprint">
+    <xmp>
+      <link href="iao-alert.css" rel="stylesheet" type="text/css">
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script src="iao-alert.jquery.js"></script>
+      <script>
+          $( document ).ready(function() {
+              // <?PHP 
+              //     if($result == "success")
+              //     {
+              //         echo('Success("修改資料成功!")');
+              //     }
+              // ?>
+          });
+          function Success(message)
+          {
+              $.iaoAlert({
+                  type: "success",
+                  mode: "dark",
+                  msg: message,
+              })
+          }
+      </script>
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://www.jqueryscript.net/other/Custom-Alert-Notification-Plugin-For-jQuery-iao-alert.html" target="_blank">iao-alert</a>
+    </li>
+    <li>
+      <a href="https://www.dotblogs.com.tw/SmallFish/2021/04/27/191205" target="_blank">編輯列表頁</a>
+    </li>
+  </ul>
+</body>
+</html>
