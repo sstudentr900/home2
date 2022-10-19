@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>新增controller</h2>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan make:controller SignupController 
+    </xmp>
+  </pre>
+
+  <h2>SignupController.php</h2>
+  <p>app/Http/Controllers/SignupController.php</p>
+  <pre class="prettyprint">
+    <xmp>
+      <?php
+      namespace App\Http\Controllers;
+      use Illuminate\Http\Request;
+      //需引入Validator
+      use Validator;
+
+      class SignupController extends Controller
+      {
+          //1.
+          // public function signup()
+          // {
+          //     //接收輸入資料
+          //     $input = request()->all();
+          //     //驗證規則
+          //     $rules = [
+          //         //帳號(E-mail)
+          //         'account' => [
+          //             'required',
+          //             'max:50',
+          //             'email',
+          //         ],
+          //         //密碼
+          //         'password' => [
+          //             'required',
+          //             'min:5',
+          //         ],
+          //         //密碼驗證
+          //         'password_confirm' => [
+          //             'required',
+          //             'same:password',
+          //             'min:5'
+          //         ],
+          //     ];
+
+          //     //驗證資料
+          //     $validator = Validator::make($input, $rules);
+
+          //     if($validator->fails())
+          //     {
+          //         //資料驗證錯誤
+          //         //withInput 顯示輸入的值
+          //         return redirect('signup')->withErrors($validator)->withInput();
+          //     }
+          //     exit;
+          // }
+
+
+          //2.自動重定向
+          // public function signup(Request $request)
+          // {
+          //     Validator::make($request->all(), [
+          //         'account' => 'required|max:50|email',
+          //         'password' => 'required|min:5',
+          //         'password_confirm' => 'required|same:password|min:5',
+          //     ])->validate();
+          //     exit;
+          // }
+
+
+          //3.等同上面
+          public function signup(Request $request)
+          {
+              $validate = $request->validate([
+                  'account' => 'required|max:50|email',
+                  'password' => 'required|min:5',
+                  'password_confirm' => 'required|same:password|min:5',
+              ]);
+              exit;
+          }
+      }
+    </xmp>
+  </pre>
+
+  <h2>route</h2>
+  <p>routes/web.php</p>
+  <pre class="prettyprint">
+    <xmp>
+      use App\Http\Controllers\SignupController;
+      Route::view('signup', 'signup');
+      Route::post('signup', [SignupController::class,'signup']);
+    </xmp>
+  </pre>
+
+
+  <h2>view</h2>
+  <p>resources/views/signup.blade.php</p>
+  <pre class="prettyprint">
+    <xmp>
+      <form id="form1" method="post" action="">
+      <!-- 自動產生 csrf_token 隱藏欄位-->
+      {!! csrf_field() !!}
+      <div class="login_form">
+          <div class="login_title">註冊</div>
+          <div class="login_label">帳號(必須為E-mail)</div>
+          <div class="login_textbox">
+              <input name="account" class="@error('account') is-invalid @enderror" type="text" placeholder="請輸入帳號" value="{{ old('account') }}"/>
+              @error('account')
+                  <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+          </div>
+          <div class="login_label">密碼</div>
+          <div class="login_textbox">
+              <input name="password" class="@error('password') is-invalid @enderror" type="password" placeholder="請輸入密碼" value="{{ old('password') }}"/>
+              @error('password')
+                  <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+          </div>
+          <div class="login_label">密碼確認</div>
+          <div class="login_textbox">
+              <input name="password_confirm" class="@error('password_confirm') is-invalid @enderror" type="password" placeholder="請確認密碼" value="{{ old('password_confirm') }}"/>
+              @error('password_confirm')
+                  <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
+          </div>
+          <div class="login_error">
+              <!-- 錯誤訊息模板元件 -->
+              @include('layout.ValidatorError')
+          </div>
+          <div class="btn_group">
+              <button type="submit" class="btn btn-primary btn_login">註冊</button>
+          </div>
+      </div>
+      </form>
+    </xmp>
+  </pre>
+
+
+  <h2>錯誤訊息模板元件</h2>
+  <p>resources/views/layout/ValidatorError.blade.php</p>
+  <pre class="prettyprint">
+    <xmp>
+      @if($errors AND count($errors))
+          <ul style='color:red;'>
+              @foreach($errors->all() as $err)
+                  <li> {{ $err }} </li>
+              @endforeach
+          </ul>
+      @endif
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://dotblogs.com.tw/SmallFish/2020/10/04/080756" target="_blank">資料驗證與錯誤訊息</a>
+    </li>
+    <li>
+      <a href="https://laravel.com/docs/8.x/validation#named-error-bags" target="_blank">官網</a>
+    </li>
+  </ul>
+</body>
+</html>
