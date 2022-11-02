@@ -349,13 +349,33 @@
       </xmp>
     </pre>
 
-    <h2>error storage not working</h2>
+
+    <h2>error</h2>
+    <h3>Laravel - Image saved in storage folder not showing to user</h3>
+    <p>delete it, and run php artisan storage:link</p>
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/questions/50395449/laravel-image-saved-in-storage-folder-not-showing-to-user" target="_blank">storage folder not showing to user</a>
+      </li>
+      <li>
+        <a href="https://www.educative.io/answers/how-to-fix-storage-link-not-working-issue-in-laravel" target="_blank">How to fix storage link not working issue in Laravel</a>
+      </li>
+    </ul>
+
+    <h3>Laravel 存儲進入 404 頁面。（符號鏈接不起作用）</h3>
+    <p>
+      php artisan optimize:clear
+      php artisan storage:link
+    </p>
+
+    <h3>error storage not working</h3>
     <p>搬移專案要注意public的storage連結</p>
     <ul>
       <li>1.先把 public/storage 移除</li>
       <li>2.在執行public的storage連結 php artisan storage:link</li>
     </ul>
-    <h2>判斷連結可不可用</h2>
+
+    <h3>判斷連結可不可用</h3>
     <pre class="prettyprint">
       <xmp>
         <?php
@@ -375,5 +395,6 @@
         <a href="https://www.educative.io/answers/how-to-fix-storage-link-not-working-issue-in-laravel">storage not working</a>
       </li>
     </ul>
+
   </body>
 </html>

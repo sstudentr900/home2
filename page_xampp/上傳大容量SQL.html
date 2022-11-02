@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../css/customPrism.css"> -->
+    <!-- <link rel="stylesheet" href="../css/prism.css"> -->
+    <!-- <script src="../js/prism.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>phpmyadmin 無法正常匯入上傳大容量SQL檔案問題解決方法</h2>
+    <ul>
+      <li>修改 Apache Module 旁 Actions 功能按鈕選擇Config> php.ini</li>
+      <li>upload_max_filesize：是上傳檔案的最大限制，預設 2M，可依需求調整。</li>
+      <li>post_max_size：是POST的資料量限制，預設 8M，可依需求調整。</li>
+      <li>memory_limit – 記憶體限制，預設 8M，可依需求調整。</li>
+      <li>max_execution_time：每個php頁面運行的最大時間值(秒)，預設30秒。</li>
+      <li>max_input_time：每個php頁面接收資料所需的最大時間，預設60秒 。</li>
+    </ul>
+    <pre class="prettyprint">
+      <xmp>
+        upload_max_filesize = 100M;
+        post_max_size = 100M;
+        max_execution_time = 6000;
+        max_input_time = 6000;
+        memory_limit = 120M;
+      </xmp>
+    </pre>
+
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="http://tech.smallya.net/2017/11/21/phpmyadmin%E7%84%A1%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%8C%AF%E5%85%A5%E4%B8%8A%E5%82%B3%E5%A4%A7%E5%AE%B9%E9%87%8Fsql%E6%AA%94%E6%A1%88%E5%95%8F%E9%A1%8C%E8%A7%A3%E6%B1%BA/" target="_blank">phpmyadmin 無法正常匯入上傳大容量SQL檔案問題解決方法</a>
+      </li>
+    </ul>
+  </body>
+</html>

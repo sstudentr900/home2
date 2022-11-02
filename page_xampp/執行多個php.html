@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../css/customPrism.css"> -->
+    <!-- <link rel="stylesheet" href="../css/prism.css"> -->
+    <!-- <script src="../js/prism.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>執行多個php</h2>
+
+    <h3>Step 1.下載所需版本的php,這邊示範v5.6</h3>
+    <ul>
+      <li>https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/</li>
+      <li>將xampp/php資料複製並改名為[php56]</li>
+      <li></li>
+    </ul>
+
+    <h3>Step 2.修改 php.ini</h3>
+    <p>修改xampp/php56/php.ini 裡的值</p>
+    <pre class="prettyprint">
+      <xmp>
+        extension_dir = "ext"
+      </xmp>
+    </pre>
+
+    <h3>Step 3.修改 Apache 設定</h3>
+    <ul>
+      <li>Apache 模塊右手邊的 config，打開 Apache (httpd-xampp.conf) 這支檔案。在尾端加上下列設定。</li>
+      <li>需要注意路徑位置(D:/xampp/php56)</li>
+    </ul>
+    <pre class="prettyprint">
+      <xmp>
+        #
+        # php v5.6
+        #
+        ScriptAlias /php56 "D:/xampp/php56"
+        Action application/x-httpd-php56-cgi /php56/php-cgi.exe
+        <Directory "D:/xampp/php56">
+            AllowOverride None
+            Options None
+            Require all denied
+            <Files "php-cgi.exe">
+                Require all granted
+            </Files>
+        </Directory>
+      </xmp>
+    </pre>
+
+    <h3>Step 4.關閉 SetEnv PHPRC 設定</h3>
+    <ul>
+      <li>繼續在 httpd-xampp.conf 修改成以下</li>
+      <li>關閉是因為在執行時會出現 403 錯誤</li>
+    </ul>
+    <pre class="prettyprint">
+      <xmp>
+        # SetEnv PHPRC "\\xampp\\php"
+      </xmp>
+    </pre>
+
+    <h3>Step 5.指定資料夾要運行哪個版本的php</h3>
+    <ul>
+      <li>繼續在 httpd-xampp.conf 追加代碼</li>
+      <li>test56為資料名稱會執行phpV5.6</li>
+      <li>test56底下新增一個index.php並加上 <?php phpinfo();</li>
+      <li>然後重新啟動 Apache</li>
+    </ul>
+    <pre class="prettyprint">
+      <xmp>
+        <Directory "D:\xampp\htdocs\test56">
+          <FilesMatch "\.php$">
+              SetHandler application/x-httpd-php56-cgi
+          </FilesMatch>
+        </Directory>
+      </xmp>
+    </pre>
+
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://medium.com/codememo/windows-%E4%BD%BF%E7%94%A8-xampp-%E5%9F%B7%E8%A1%8C%E5%A4%9A%E5%80%8B%E4%B8%8D%E5%90%8C%E7%9A%84-php-%E7%89%88%E6%9C%AC-457bf0553c79" target="_blank">Windows 使用 XAMPP 執行多個不同的 PHP 版本</a>
+      </li>
+    </ul>
+  </body>
+</html>
