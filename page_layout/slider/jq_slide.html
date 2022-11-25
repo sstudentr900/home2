@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <style>
+        #feature .customSlider{
+            position: relative;
+            margin: auto;
+            /* padding: 0 60px; */
+            width: 720px;
+            margin-bottom: 80px;
+
+        }
+        #feature .customSlider .sliderDiv{
+            margin: 0 auto;
+            overflow: hidden;
+            width: 600px;
+            /* position: relative; */
+            /*  */
+        }
+        #feature .customSlider ul{
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            left: 0;
+            width: 300%;
+        }
+        #feature .customSlider li{
+            flex: 0 0 33.333%;
+            /* padding: 0 5px; */
+            /* width: 33.3333%; */
+        }
+        #feature .customSlider li .videobox{
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+        }
+        #feature .customSlider li .videobox iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #feature .customSlider h4{
+            color: #0D6FB8;
+            font-weight: bold;
+            font-size: 30px;
+            position: relative;
+            padding: 0 60px;
+            margin: 0 auto 30px;
+            width: 340px;
+        }
+        #feature .customSlider h4::after,
+        #feature .customSlider h4::before{
+            content: '';
+            width: 50px;
+            height: 2px;
+            position: absolute;
+            top: 20px;
+            background: #0D6FB8;;
+        }
+        #feature .customSlider h4::after{
+            right: 0;
+        }
+        #feature .customSlider h4::before{
+            left: 0;
+        }
+        #feature .customSlider .arrow{
+            width: 46px;
+            height: 46px;
+            background: #0D6FB8;
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 54%;
+            cursor: pointer;
+            z-index: 9;
+        }
+        #feature .customSlider .arrow.disable{
+            background: #959595;
+        }
+        #feature .customSlider .arrow.left {
+            left: 0;
+        }
+        #feature .customSlider .arrow.right {
+            right: 0;
+        }
+        #feature .customSlider .arrow.left svg{
+            margin-right: 4px;
+        }
+        #feature .customSlider .arrow.right svg{
+            margin-left: 4px;
+        }
+        @media only screen and (max-width: 920px) {
+            #feature .customSlider{
+                max-width: 600px;
+                width: 100%;
+                padding: 0 30px;
+                box-sizing: border-box;
+            }
+            #feature .customSlider h4{
+                max-width: 270px;
+                width: 100%;
+                font-size: 20px;
+                padding: 0;
+            }
+            #feature .customSlider h4::after,
+            #feature .customSlider h4::before{
+                top: 13px;
+                width: 20px;
+            }
+            #feature .customSlider .sliderDiv{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="feature">
+        <div class="customSlider">
+            <div class="sliderDiv">
+                <ul>
+                    <li class="now">
+                        <h4>野村美高債 最佳得分王</h4>
+                        <div class="videobox">
+                            <iframe frameborder="0" allowFullScreen="true" src="https://www.youtube.com/embed/uPKjKh1k4iI"></iframe>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>升息環境 美收債攻勢不減</h4>
+                        <div class="videobox">
+                            <iframe frameborder="0" allowFullScreen="true" src="https://www.youtube.com/embed/GP0VBEZ3oic"></iframe>
+                        </div>
+                    </li>
+                    <li>
+                        <h4>美收債上漲力道不輸股市</h4>
+                        <div class="videobox">
+                            <iframe frameborder="0" allowFullScreen="true" src="https://www.youtube.com/embed/8FaHLxQYcJE"></iframe>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="arrow left">
+                <svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2.10051 11.8995L12 21.799" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                    
+            </div>
+            <div class="arrow right">
+                <svg width="14" height="24" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 2L11.8995 11.8995L2 21.799" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        var arrow = $('#feature .customSlider .arrow');
+        var ul = $('#feature .customSlider .sliderDiv ul');
+        var lis = $('#feature .customSlider .sliderDiv ul li');
+        arrow.on('click',function(e){
+            var n = $('#feature .customSlider .sliderDiv ul li.now').index();
+            // console.log(n,lis.length - 2,lis.length)
+            if ($(this).hasClass("left")) {
+                ul.stop(false, true).animate({marginLeft: -100 * (n - 1) + "%"}, {duration: 200});
+                lis.removeClass("now").eq(n - 1).addClass("now");
+                if (n === 0) {
+                    ul.stop(false, true).animate({marginLeft: '-200%'}, {duration: 200});
+                    lis.removeClass("now").eq(lis.length-1).addClass("now");
+                }
+            }else{
+                ul.stop(false, true).animate({marginLeft: -100 * (n + 1) + "%"}, {duration: 200});
+                lis.removeClass("now").eq(n + 1).addClass("now");
+                if (n === lis.length - 1) {
+                    ul.stop(false, true).animate({marginLeft: 0}, {duration: 200});
+                    lis.removeClass("now").eq(0).addClass("now");
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            font-size: 24px;
+        }
+        h1 {
+            font-size: 3.3rem;
+            margin: 0 0 24px;
+            line-height: 1;
+        }
+        p {
+            line-height: 1.4;
+            font-size: 16px;
+            text-align: start;
+            opacity: .6;
+        }
+        .white h1, .white p {
+            color: #fff;
+            font-family: serif, sans-serif;
+            font-weight: bold;
+        }
+        .link{
+            margin-top: 56px;
+        }
+        .link a {
+            font-size: 16px;
+            color: #fff;
+            background: #A28662;
+            width: 160px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .8s;
+            padding: 16px;
+            box-sizing: border-box;
+            text-decoration: none;
+            line-height: 1;
+        }
+
+        /*--------------------------*/
+        .slide {
+            position: relative;
+            height: 800px;
+            overflow: hidden;
+        }
+
+        .slide ul {
+            width: 100%;
+            display: flex;
+            transition: margin-left .8s;
+            padding: 0;
+            margin: 0;
+        }
+
+        .slide li {
+            width: 100%;
+            height: 800px;
+            background: linear-gradient(to right, rgba(0, 0, 0, .8), rgba(0, 0, 0, .2)) center no-repeat,url('https://picsum.photos/1920/720?1') center no-repeat;
+            background-size: cover;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+
+        .slide li:nth-child(1) {
+            display: flex;
+        }
+
+        .slide li:nth-child(2) {
+            background: linear-gradient(to right, rgba(0, 0, 0, .8), rgba(0, 0, 0, .2)) center no-repeat,url('https://picsum.photos/1920/720?2') center no-repeat;
+            background-size: cover;
+        }
+        .slide li .customItem{
+            width: 100%;
+            padding: 3.3rem 2rem 0;
+        }
+        .slide .texts {
+            width: 100%;
+            max-width: 620px;
+            color: #fff;
+        }
+        .slide .texts>div{
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        .slide li.active .texts>div{
+            opacity: 1;
+            transform: translateY(0);
+            transition: .8s .2s;
+        }
+        .slide li.active .texts .text{
+            transition-delay: .4s;
+        }
+        .slide li.active .texts .link{
+            transition-delay: .5s;
+        }
+        .slide .prev,
+        .slide .next {
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 800px;
+            opacity: 0;
+            transition: opacity .5s ease;
+            background: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+        }
+
+        .slide .prev:hover,
+        .slide .next:hover {
+            opacity: 1;
+        }
+
+        .slide .prev:hover:after,
+        .slide .next:hover:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 40px;
+            z-index: 10;
+            margin-top: -30px;
+            width: 20px;
+            height: 20px;
+            border: 0;
+            border-left: 3px solid #fff;
+            border-bottom: 3px solid #fff;
+            transform: rotate(45deg);
+        }
+
+        .slide .next:hover:after {
+            right: auto;
+            left: 40px;
+            transform: rotate(-135deg);
+        }
+
+        .slide .next {
+            background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+            right: 0;
+        }
+
+        .slide .points {
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+        }
+
+        .slide .points span {
+            width: 16px;
+            height: 16px;
+            border: 1px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .slide .points span:hover,
+        .slide .points span.active {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide">
+    <ul>
+        <li>
+            <div class="customItem">
+                <div class="texts white">
+                    <div class="title">
+                        <h1>Junior equestrian training</h1>
+                    </div>
+                    <div class="text">
+                        <p>Magical has been promoting the equestrian sports in Taiwan for a long time. In recent years, Magical has devoted us to the development of equestrian sports for young people. Under the strict guidance of Magical's coaching
+                            staff, , our youth training team players have demonstrated outstanding results in various arenas, and even on behalf of Chinese Taipei, have played in foreign competitions in recent years with great results.</p>
+                    </div>
+                    <div class="link">
+                        <a href="#">LEARN MORE</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="customItem">
+                <div class="texts white">
+                    <div class="title">
+                        <h1>Junior equestrian training</h1>
+                    </div>
+                    <div class="text">
+                        <p>Magical has been promoting the equestrian sports in Taiwan for a long time. In recent years, Magical has devoted us to the development of equestrian sports for young people. Under the strict guidance of Magical's coaching
+                            staff, , our youth training team players have demonstrated outstanding results in various arenas, and even on behalf of Chinese Taipei, have played in foreign competitions in recent years with great results.</p>
+                    </div>
+                    <div class="link">
+                        <a href="#">LEARN MORE</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+    <script>
+        function headerslider() {
+            var slide = document.querySelector('.slide')
+            if (!slide) return;
+            var slideW = slide.offsetWidth
+            var ul = slide.querySelector('ul')
+            var li = slide.querySelectorAll('li')
+            var liL = li.length
+            var index = 0
+
+            //prev
+            var prev = document.createElement('div');
+            prev.className = 'prev';
+            prev.onclick = function() {
+                now(-1);
+            };
+            slide.appendChild(prev);
+
+            //next
+            var next = document.createElement('div');
+            next.className = 'next';
+            next.onclick = function() {
+                now(1);
+            };
+            slide.appendChild(next);
+
+            function now(i) {
+                var now = (index + i + liL) % liL;
+                move(now);
+            }
+            function init() {
+                // console.log('init');
+                slideW = slide.offsetWidth
+                li.forEach(function(i) {
+                    i.style.width = slideW + 'px'
+                    i.style.display = 'flex'
+                })
+                ul.style.width = slideW * liL + 'px'
+                ul.style.marginLeft = '0px'
+                // ul.style.transition = 'margin-left .8s'
+
+                //point
+                var points = slide.querySelector('.points');
+                if (points) {
+                    points.innerHTML = '';
+                } else {
+                    points = document.createElement('div');
+                    points.className = 'points'
+                }
+
+                for (let i = 0; i < liL; i++) {
+                    var dot = document.createElement('span');
+                    if (i == 0) {
+                        dot.classList.add('active')
+                    }
+                    dot.onclick = function() {
+                        move(i);
+                    };
+                    // console.log(points)
+                    points.append(dot);
+                }
+                slide.append(points)
+                slide.style.opacity = '1';
+            }
+            function move(i) {
+                index = i;
+                //move
+                var dis = i * slideW;
+                ul.style.marginLeft = -dis + 'px'
+
+                //active
+                var spans = slide.querySelectorAll('.points span')
+                for(var o=0; o<spans.length;o++) {
+                    spans[o].classList.remove('active')
+                    li[o].classList.remove('active')
+                }
+                spans[i].classList.add('active');
+                li[i].classList.add('active')
+            }
+            window.addEventListener('resize', function() {
+                init();
+            });
+            init();
+        }
+
+        window.onload = function() {
+            headerslider();
+            var li = document.querySelector('.slide li')
+            li.classList.add('active')
+        }
+    </script>
+</body>
+
+</html>

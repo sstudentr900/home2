@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *, *::before, *::after {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        body{
+            margin: 0;
+            padding: 0;
+            background: #aaa;
+        }
+        .numberBox{
+            height: 1200px;
+        }
+        p{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        .header_nav {
+            justify-content: space-between;
+            z-index: 999;
+            /* position: fixed; */
+            position: relative;
+            width: 100%;
+            top: 0;
+        }
+        .header_nav #notifyContainerBtn{
+            display: none;
+        }
+        .header_nav .nav {
+            background: #FF0A00;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            height: 90px;
+        }
+        .header_nav .nav .logo{
+            padding-left: 45px;
+            padding: 15px 0 15px 45px;
+            color: #fff;
+        }
+        .header_nav .nav .logo img{
+            width: 243px;
+            height: auto;
+        }
+        @media only screen and (max-width: 1024px) {
+            .header_nav .nav {
+                height: 64px;
+            }
+        }
+        @media only screen and (max-width: 992px) {
+            .header_nav .nav .logo img{
+                width: 200px;
+            }
+        }
+        /*menu*/
+        .header_nav .nav .menuDiv{
+            display: flex;
+            align-items: center;
+        }
+        .header_nav .nav .menu ul{
+            padding: 0;
+            list-style: none;
+            display: flex;
+            margin-bottom: 0;
+        }
+        .header_nav .nav .menu .box>ul>li{
+            cursor: pointer;
+        }
+        .header_nav .nav .menu .box>ul>li>input{
+            display: none;
+        }
+        .header_nav .nav .menu .menu_title{
+            position: relative;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            padding: 30px 18px;
+            transform: skewX(-10deg);
+            margin-bottom: 0;
+        }
+        .header_nav .nav .menu .menu_title a,
+        .header_nav .nav .menu .menu_title p{
+            color: #fff;
+            margin-bottom: 0;
+            transform: skewX(10deg);
+            display: block;
+            position: relative;
+            z-index: 2;
+            font-weight: bold;
+        } 
+        .header_nav .nav .menu .box>ul>li:hover .menu_title{
+            background: #fff;
+        }
+        .header_nav .nav .menu .box>ul>li:hover .menu_title a,
+        .header_nav .nav .menu .box>ul>li:hover .menu_title p{
+            color: #FF0A00;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .header_nav .nav .menu .box>ul>li>ul{
+            display: none;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            height: 90px;
+            background: #fff;
+            align-items: center;
+            background: url('../imgs/index/nav.png') no-repeat left,#fff no-repeat;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        .header_nav .nav .menu .box>ul>li:hover>ul{
+            display: flex;
+        }
+        .header_nav .nav .menu .box>ul>li>ul li:first-child{
+            margin-left: 300px;
+        }
+        .header_nav .nav .menu .box>ul>li>ul li+li{
+            margin-left: 60px;
+        }
+        .header_nav .nav .menu .box>ul>li>ul a{
+            color: #323D47;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        .header_nav .nav .menu .box>ul>li>ul a::before{
+            display: block;
+            content: "";
+            width: 4px;
+            height: 18px;
+            background-color: #e71a0f;
+            border-radius: 1px;
+            margin-right: 12px;
+        }
+        .header_nav .nav .menu .box>ul>li>ul a:hover{
+            text-decoration: none;
+        }
+        .header_nav .nav .menu .menuLoginBtn{
+            display: none;
+        }
+        @media only screen and (max-width: 1450px) {
+            .header_nav .nav .menu{
+                display: none;
+            }
+        }
+        /*menuBtn*/
+        .header_nav .nav #menuBtn,
+        .header_nav .nav .menuBtn{
+            display: none;
+        }
+        @media only screen and (max-width: 1450px) {
+            .header_nav .nav .menuBtn{
+                display: block;
+                position: relative;
+                cursor: pointer;
+                height: 38px;
+                width: 45px;
+                margin: 0 20px 0 0;
+            }
+            .header_nav .nav .menuBtn div {
+                display: inline-block;
+                height: 3px;
+                width: 30px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -15px;
+                background: #fff;
+                transform-origin: center center;
+                transition: margin .2s .3s, transform .2s .1s
+            }
+            .header_nav .nav .menuBtn div:nth-child(1) {
+                margin-top: -8px;
+                transform: rotate(0);
+            }
+            .header_nav .nav .menuBtn div:nth-child(2) {
+                transform: scaleX(1);
+            }
+            .header_nav .nav .menuBtn div:nth-child(3) {
+                margin-top: 8px;
+                transform: rotate(0);
+            }
+            .header_nav .nav #menuBtn:checked~.menuBtn div {
+                transition: margin .2s .1s, transform .2s .3s;
+            }
+            .header_nav .nav #menuBtn:checked~.menuBtn div:nth-child(1) {
+                margin-top: 0;
+                transform: rotate(-45deg);
+            }
+            .header_nav .nav #menuBtn:checked~.menuBtn div:nth-child(2) {
+                margin-top: 0;
+                transform: scaleX(0);
+            }
+            .header_nav .nav #menuBtn:checked~.menuBtn div:nth-child(3) {
+                margin-top: 0;
+                transform: rotate(45deg);
+            }
+            .header_nav .nav #menuBtn:checked~.menu{
+                left: 0;
+            }
+            .header_nav .nav .menu{
+                position: absolute;
+                width: 100%;
+                /* min-height: 100vh; */
+                height: 200vh;
+                top: 90px;
+                left: -100%;
+                background: #F8F8F8;
+                z-index: 2;
+                display: block;
+            }
+            .header_nav .nav .menu ul{
+                display: block;
+                width: 100%;
+            }
+            .header_nav .nav .menu .menu_title{
+                transform: skewX(0deg);
+                padding: 20px;
+                position: relative;
+                height: auto;
+            }
+            .header_nav .nav .menu .menu_title:after{
+                content: '';
+                width: 1px;
+                height: 20px;
+                background: #323D47;
+                position: absolute;
+                right: 29px;
+            }
+            .header_nav .nav .menu .menu_title::before{
+                content: '';
+                width: 20px;
+                height: 1px;
+                background: #323D47;
+                position: absolute;
+                right: 20px;
+            }
+            .header_nav .nav .menu li:nth-child(2) .menu_title:after,
+            .header_nav .nav .menu li:nth-child(2) .menu_title:before{
+                display: none;
+            }
+            .header_nav .nav .menu .menu_title a,
+            .header_nav .nav .menu .menu_title p{
+                color: #323D47;
+                transform: skewX(0deg);
+                font-weight: bold;
+                user-select: none;
+            }
+            .header_nav .nav .menu .box>ul>li>ul{
+                position: relative;
+                background: none;
+                box-shadow: none;
+                height: auto;
+            }
+            .header_nav .nav .menu .box>ul>li:hover .menu_title,
+            .header_nav .nav .menu .box>ul>li.active .menu_title,
+            .header_nav .nav .menu .box>ul>li .menu_title{
+                background: none;
+            }
+            .header_nav .nav .menu .box>ul>li:hover .menu_title a,
+            .header_nav .nav .menu .box>ul>li:hover .menu_title p,
+            .header_nav .nav .menu .box>ul>li .menu_title a,
+            .header_nav .nav .menu .box>ul>li .menu_title p{
+                color: #323D47;
+            }
+            /* .header_nav .nav .menu .box>ul>li:hover .menu_title::after, */
+            .header_nav .nav .menu .box>ul>li:hover>ul,
+            .header_nav .nav .menu .box>ul>li>ul a::before,
+            .header_nav .nav .menu .box>ul>li.active .menu_title::after{
+                display: none;
+            }
+            /* .header_nav .nav .menu .box>ul>li:hover>ul, */
+            .header_nav .nav .menu .box>ul>li.active>ul{
+                display: block;
+            }
+            .header_nav .nav .menu .box>ul>li>ul li+li,
+            .header_nav .nav .menu .box>ul>li>ul li:first-child{
+                margin: 0 20px 25px;
+            }
+            .header_nav .nav .menu .box>ul>li>ul li:last-child{
+                margin-bottom: 5px;
+            }
+            .header_nav .nav .menu .box>ul>li>ul a{
+                /* font-weight: bold; */
+                color: #647581;
+                font-size: 15px;
+                user-select: none;
+            }
+            .header_nav .nav .menu .menuLoginBtn{
+                display: flex;
+                padding: 14px 20px;
+                height: 48px;
+                background: linear-gradient(270deg, #FF0A00 -0.13%, #D5071C 99.6%);
+                box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.25);
+                margin: 20px 20px 40px;
+                align-items: center;
+                justify-content: space-between;
+                text-decoration: none;
+                user-select: none;
+            }
+            .header_nav .nav .menu .menuLoginBtn p{
+                font-size: 14px;
+                color: #fff;
+                margin-bottom: 0;
+                text-decoration: none;
+            }
+            .header_nav .nav .menu .menuLoginBtn i{
+                position: relative;
+                display: block;
+                width: 53px;
+                height: 1px;
+                background: #fff;
+                margin-top: 3px;
+            }
+            .header_nav .nav .menu .menuLoginBtn i:after{
+                content: '';
+                position: absolute;
+                top: -4px;
+                right: -1px;
+                transform: rotate(45deg);
+                width: 10px;
+                height: 1px;
+                background: #fff;
+            }
+        }
+        @media only screen and (max-width: 1024px) {
+            .header_nav .nav #menuBtn:checked~.menu{
+                top: 71px;
+            }
+        }
+        @media only screen and (max-width: 992px) {
+            .header_nav .nav #menuBtn:checked~.menu{
+                top: 107px;
+            }
+        }
+        /*serch*/
+        .header_nav .nav .serch{
+            display: flex;
+            position: relative;
+        }
+        .header_nav .nav .serch::after{
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 50px;
+            bottom: 0;
+            right: -8px;
+            background: #f8f8f8;
+            z-index: 1;
+        }
+        .header_nav .nav .serch .serchInput{
+            padding: 0 18px;
+            transform: skewX(-10deg);
+            background: #F8F8F8;
+        }
+        .header_nav .nav .serch input{
+            height: 90px;
+            width: 175px;
+            background: #F8F8F8;
+            border: none;
+            padding: 0;
+            text-align: center;
+            transform: skewX(10deg);
+        }
+        .header_nav .nav .serch input:focus-visible,
+        .header_nav .nav .serch input:focus{
+            border: none;
+            outline: none;
+        }
+        .header_nav .nav .serch ul{
+            display: none;
+            position: absolute;
+            list-style: none;
+            background: #FFFFFF;
+            border: 1px solid #E5E6E8;
+            width: 100%;
+            top: 90px;
+            left: -8px;
+            padding: 10px 15px;
+            z-index: 1;
+        }
+        .header_nav .nav .serch ul li{
+            color: #8C8A8A;
+        }
+        .header_nav .nav .serch ul li+li{
+            margin-top: 10px;
+        }
+        .header_nav .nav .serch .serchBtn{
+            background: #323D47;
+            padding: 30px;
+            height: 90px;
+            width: 95px;
+            text-align: center;
+            cursor: pointer;
+            transform: skewX(-10deg);
+            position: relative;
+            z-index: 2;
+        }
+        .header_nav .nav .serch .serchBtn svg{
+            transform: skewX(10deg);
+        }
+        /*login*/
+        .header_nav .nav .login{
+            background: #F8F8F8;
+            height: 90px;
+            padding: 0 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* transform: skewX(-10deg); */
+        }
+        .header_nav .nav .login a{
+            font-weight: bold;
+            color: #FF0A00;
+        }
+        /*notifyContainer*/
+        .header_nav .notifyContainerContent {
+            padding: 8px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            /* box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative; */
+        }
+        .header_nav  #notifyContainerBtn:checked~.notifyContainer{
+            height: 0;
+            overflow: hidden;
+        }
+        .header_nav .notifyContainer .warnCricle{
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            background-color: #eb9d00;
+            width: 19px;
+            height: 19px;
+            border-radius: 19px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 3px;
+        }
+        .header_nav .notifyContainer .ico_warn {
+            width: 12px;
+            height: 12px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: block;
+        }
+        .header_nav .notifyContainer label{
+            position: relative;
+            width: 18px;
+            height: 18px;
+            margin-bottom: 0;
+            transform: rotate(45deg);
+            cursor: pointer;
+            margin-left: 80px;
+        }
+        .header_nav .notifyContainer label::before{
+            content: '';
+            width: 18px;
+            height: 3px;
+            background: #FF0A00;
+            position: absolute;
+            top: 7px;
+            /* transform: translateY(-50%); */
+        }
+        .header_nav .notifyContainer label:after{
+            content: '';
+            width: 3px;
+            height: 18px;
+            background: #FF0A00;
+            position: absolute;
+            left: 7px;
+            /* transform: translateX(-50%); */
+        }
+        @media only screen and (max-width: 1024px) {
+            .header_nav .nav .logo{
+                padding: 15px 0 15px 15px;
+            }
+            .header_nav .nav .login,
+            .header_nav .nav .serch{
+                display: none;
+            }
+            .header_nav{
+                display: flex;
+                flex-direction: column;
+            }
+            .header_nav .notifyContainer{
+                order: 1;
+            }
+            .header_nav .notifyContainerContent{
+                align-items: baseline;
+                padding: 15px 20px;
+            }
+            .header_nav .notifyContainer .warnCricle{
+                margin-right: 8px;
+            }
+            .header_nav .notifyContainer label{
+                margin-left: 20px;
+            }
+            .header_nav .nav{
+                order: 2;
+            }
+            .header_nav .mbSearch{
+                order: 3;
+                box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+                z-index: 3;
+            }
+        }
+        .mbSearch {
+            background-color: #fff;
+        }
+
+        @media only screen and (min-width: 992px) {
+            .mbSearch {
+                display: none;
+            }
+        }
+
+        .mbSearch .searchContainer {
+            display: inline-block;
+            position: relative;
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+
+        .mbSearch .searchContainer:before {
+            display: block;
+            position: absolute;
+            z-index: 10px;
+            content: '';
+            width: 18px;
+            height: 18px;
+            top: 13px;
+            left: 10px;
+            background-image: url(../imgs/icons/ico_search.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .mbSearch .searchInput {
+            border: none;
+            background: #FFF;
+            margin-right: 9px;
+            font-size: 16px;
+            line-height: 20px;
+            padding: 6px 10px;
+            padding-left: 33px;
+            width: 100%;
+        }
+
+        .mbSearch .searchInput:focus {
+            outline: none;
+        }
+
+        .mbSearch .searchInput::-webkit-input-placeholder {
+            color: #57595D;
+        }
+
+      
+        /*paddingBottom*/
+        .paddingBottom{
+            position: relative;
+        }
+        .paddingBottom #mapBtn{
+            display: none;
+        }
+        .paddingBottom .map .mapBtn{
+            background: #FFFFFF;
+            border: 1px solid #E5E6E8;
+            box-sizing: border-box;
+            border-radius: 30px;
+            height: 40px;
+            width: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            z-index: 1;
+        }
+        .paddingBottom .map .mapBtn p{
+            font-size: 16px;
+            color: #323D47;
+            margin-bottom: 0;
+            font-weight: bold;
+        }
+        .paddingBottom .map .mapBtn i{
+            width: 8px;
+            height: 8px;
+            border: 2px solid #323D47;
+            border-bottom: none;
+            border-right: none;
+            transform: rotate(45deg);
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        .paddingBottom .map .mapContent{
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+            transition: .4s;
+        }
+        .paddingBottom #mapBtn:checked~.map .mapBtn p{
+            color: #FF0A00;
+        }
+        .paddingBottom #mapBtn:checked~.map .mapBtn i{
+            border: 2px solid #FF0A00;
+            border-top: none;
+            border-left: none;
+            margin-top: -5px;
+        }
+        .paddingBottom #mapBtn:checked~.map .mapContent{
+            height: 360px;
+            visibility: visible;
+            transition: .4s;
+        }
+        .paddingBottom .map .itemAll{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: #323D47;
+            padding: 90px 20px 150px;
+        }
+        .paddingBottom .map .itemAll .item{
+            width: 140px;
+            /* max-width: 140px; */
+        }
+        .paddingBottom .map .itemAll .item+.item{
+            margin-left: 30px;
+        }
+        .paddingBottom .map .itemAll h4{
+            font-size: 18px;
+            color: #B2BCC3;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .paddingBottom .map .itemAll ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .paddingBottom .map .itemAll li+li{
+            margin-top: 12px;
+        }
+        .paddingBottom .map .itemAll a{
+            color: #F8F8F8;
+            font-weight: bold;
+            font-size: 16px;
+            width: 140px;
+            display: flex;
+        }
+        .paddingBottom .map .itemAll a::before{
+            content: '';
+            display: block;
+            height: 1px;
+            background: #647581;
+            margin-right: 10px;
+            flex: 0 0 8px;
+            margin-top: 11px;
+        }
+        @media only screen and (max-width: 1240px) {
+            .paddingBottom .map .itemAll{
+                padding: 60px 30px 80px;
+            }
+            .paddingBottom #mapBtn:checked~.map .mapContent{
+                height: 1150px;
+            }
+            .paddingBottom .map .itemAll .item{
+                width: 100%;
+            }
+            .paddingBottom .map .itemAll .item+.item{
+                margin-top: 22px;
+                margin-left: 0;
+            }
+            .paddingBottom .map .itemAll h4{
+                margin-bottom: 18px;
+            }
+        }
+        .paddingBottom .text{
+            padding: 30px 45px;
+            background: linear-gradient(180deg, #FF0A00 0%, #D5071C 100%);
+        }
+        .paddingBottom .text ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        } 
+        .paddingBottom .text a,
+        .paddingBottom .text p{
+            color: #fff;
+            margin: 0;
+            line-height: 1;
+        }
+        .paddingBottom .text li{
+            line-height: 1;
+        }
+        .paddingBottom .text .item{
+            display: flex;
+        }
+        .paddingBottom .text .item ul li:last-child{
+            border-right: none;
+        }
+        .paddingBottom .text .item:nth-child(1){
+            justify-content: space-between;
+            margin-bottom: 38px;
+        }
+        .paddingBottom .text .item:nth-child(1) h4{
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #fff;
+            margin-top: 0;
+        }
+        .paddingBottom .text .item:nth-child(1) h4 span{
+            font-size: 14px;
+            margin-left: 5px;
+        }
+        .paddingBottom .text .item:nth-child(2) li,
+        .paddingBottom .text .item:nth-child(1) li{
+            border-right: 1px solid #fff;
+            padding-right: 18px;
+            margin-right: 18px;
+
+        }
+        .paddingBottom .text .item:nth-child(1) li{
+            margin-top: 10px;
+        }
+        .paddingBottom .text .item:nth-child(1) a{
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .paddingBottom .text .item:nth-child(2){
+            flex-direction: column;
+            align-items: end;
+            margin-bottom: 27px;
+        }
+        .paddingBottom .text .item:nth-child(2) ul:nth-child(1) li:last-child{
+            border-right: 1px solid #fff;
+        }
+        .paddingBottom .text .item:nth-child(2) li{
+            margin-top: 12px;
+        }
+        .paddingBottom .text .item:nth-child(2) a {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .paddingBottom .text .item:nth-child(3){
+            justify-content: space-between;
+            opacity: 0.75;
+        }
+        .paddingBottom .text .item:nth-child(3) p{
+            font-size: 16px;
+            font-weight: 100;
+        }
+        .paddingBottom .text .item:nth-child(3) .right p{
+            font-size: 14px;
+        }
+        .paddingBottom .text .item:nth-child(3) li{
+            border-right: 1px solid #fff;
+            padding-right: 8px;
+            margin-right: 8px;
+            margin-top: 5px;
+        }
+        @media only screen and (max-width: 1440px) {
+            .paddingBottom .text .item:nth-child(2){
+                align-items: flex-start;
+            }
+            .paddingBottom .text .item:nth-child(3){
+                flex-direction: column;
+            }
+            .paddingBottom .text .item:nth-child(3) .right{
+                margin-top: 20px;
+            }
+        }
+        @media only screen and (max-width: 1024px) {
+            .paddingBottom .text{
+                position: relative;
+                padding: 60px 20px 30px;
+            }
+            .paddingBottom .text .item:nth-child(1) .right{
+                position: absolute;
+                bottom: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .paddingBottom .text .item:nth-child(1) h4 span{
+                display: block;
+            }
+            .paddingBottom .text .item:nth-child(3) li{
+                margin-top: 8px;
+            }
+            .paddingBottom .text .item:nth-child(3) .right{
+                margin-top: 140px;
+            }
+            .paddingBottom .text .item:nth-child(3) .right p{
+                text-align: center;
+            }
+            .paddingBottom .text .item:nth-child(3) ul+ul{
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header_nav">
+        <input type="checkbox" id="notifyContainerBtn">
+        <div class="nav">
+            <a class="logo" href="#">
+                <!-- <img src="./assets/imgs/logo/logo.png"> -->
+                logo
+            </a>
+            <div class="menuDiv">
+                <input type="checkbox" id="menuBtn">
+                <label for="menuBtn" class="menuBtn">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </label>
+                <div class="menu">
+                    <div class="box">
+                        <ul>
+                            <li class="">
+                                <div class="menu_title">
+                                    <p>基金總覽</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#">基金淨值</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">基金績效</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">基金配息</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">預定配息時間</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="menu_title">
+                                    <a href="#">ETF專區</a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="menu_title">
+                                    <p>最新消息</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#">新光快訊</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">基金公告</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">電子報</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">影音專區</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="menu_title">
+                                    <p>理財幫手</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#">投資試算</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">線上開戶</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="">
+                                <div class="menu_title">
+                                    <p>客服專區</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#">常見問題</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">客服信箱</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">表單/資料索取</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="menu_title">
+                                    <p>關於我們</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#">公司簡介</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">盡職治理守則</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">關係企業</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">招募菁英</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="menu_title">
+                                    <p>優惠專區</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#">e利扣享優惠</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">善用定期定額打造優質生活</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <a class="menuLoginBtn" href="#">
+                            <p>登入/交易</p><i></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="serch">
+                    <div class="serchInput">
+                        <input type="input" placeholder="請輸入基金商品名稱">
+                    </div>
+                    <a class="serchBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="31" height="31" viewBox="0 0 31 31" fill="none">
+                            <path d="M23.7955 12.1348C23.7955 18.4145 18.6446 23.5197 12.2727 23.5197C5.90089 23.5197 0.75 18.4145 0.75 12.1348C0.75 5.85513 5.90089 0.75 12.2727 0.75C18.6446 0.75 23.7955 5.85513 23.7955 12.1348Z" stroke="white" stroke-width="1.5"></path>
+                            <path d="M19.7729 20.2247L30.0001 29.6629" stroke="white" stroke-width="1.5"></path>
+                        </svg>
+                    </a>
+                    <ul>
+                        <li>新光創新科技</li>
+                        <li>新光恆生科技指數(美元)</li>
+                        <li>新光恆生科技指數(新台幣)</li>
+                        <li>新光恆生科技指數(人民幣)</li>
+                    </ul>
+                </div>
+                <div class="login">
+                    <a href="#" class="loginBtn">登入/交易</a>
+                </div>
+            </div>
+        </div>
+        <div class="notifyContainer">
+            <div class="notifyContainerContent">
+                <div class="warnCricle">
+                    <div class="ico_warn"></div>
+                </div>
+                <span>新光投信將於8月29日(星期六)09:00至20:00進行主機維護，所有網站將於上述時間暫停運作，造成不便敬請見諒。</span>
+                <label for="notifyContainerBtn"></label>
+            </div>
+        </div>
+        <div class="mbSearch">
+            <div class="searchContainer">
+                <input class="searchInput" type="input" placeholder="請輸入基金商品名稱">
+            </div>
+        </div>
+    </div>
+    <div class="numberBox"></div>
+    <div class="paddingBottom">
+        <input type="checkbox" id="mapBtn">
+        <div class="map">
+            <label for="mapBtn" class="mapBtn">
+                <p>網站地圖</p>
+                <i></i>
+            </label>
+            <div class="mapContent">
+                <div class="itemAll">
+                    <div class="item">
+                        <h4>基金總覽</h4>
+                        <ul>
+                            <li><a href="#">基金淨值</a></li>
+                            <li><a href="#">基金績效</a></li>
+                            <li><a href="#">基金配息</a></li>
+                            <li><a href="#">預定配息時間</a></li>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <h4>ETF專區</h4>
+                    </div>
+                    <div class="item">
+                        <h4>最新消息</h4>
+                        <ul>
+                            <li><a href="#">新光快訊</a></li>
+                            <li><a href="#">基金公告</a></li>
+                            <li><a href="#">電子報</a></li>
+                            <li><a href="#">影音專區</a></li>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <h4>理財幫手</h4>
+                        <ul>
+                            <li><a href="#">投資試算</a></li>
+                            <li><a href="#">線上開戶</a></li>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <h4>客服專區</h4>
+                        <ul>
+                            <li><a href="#">常見問題</a></li>
+                            <li><a href="#">客服信箱</a></li>
+                            <li><a href="#">表單/資料索取</a></li>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <h4>關於我們</h4>
+                        <ul>
+                            <li><a href="#">公司簡介</a></li>
+                            <li><a href="#">盡職治理守則</a></li>
+                            <li><a href="#">關係企業</a></li>
+                            <li><a href="#">招募菁英</a></li>
+                        </ul>
+                    </div>
+                    <div class="item">
+                        <h4>優惠專區</h4>
+                        <ul>
+                            <li><a href="#">e利扣享優惠</a></li>
+                            <li><a href="#">善用定期定額打造優質生活</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text">                
+            <div class="item">
+                <div class="left">
+                    <h4>新光證券投資信託股份有限公司<span>(新光投信獨立經營管理)</span></h4>
+                    <ul>
+                        <li>
+                            <a href="#" target="_blank">新光金控</a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">新光人壽</a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">新光銀行</a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">元富證券</a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">新光投信</a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">新光金保代</a>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank">新光金創投</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <img src="./assets/imgs/index/digicert.png" alt="">
+                </div>
+            </div>
+            <div class="item">
+                <ul>
+                    <li>
+                        <a href="#" target="_blank">保密措施</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">使用條款</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">隱私權政策</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">境外基金銷售報酬揭露</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">個人資料告知事項</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="#" target="_blank">網站資訊安全說明</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">證券投資人及期貨交易人保護中心</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">金融友善服務準則</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">防制洗錢打擊資恐</a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">盡職治理守則</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="item">
+                <div class="left">
+                    <ul>
+                        <li>
+                            <p>台北總公司：台北市南京東路二段123號12樓</p>
+                        </li>
+                        <li>
+                            <p>電話：(02)2507-1123</p>
+                        </li>
+                        <li>
+                            <p>傳真：(02)2507-7600</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <p>台中分公司：台中市臺灣大道二段285號21樓之2</p>
+                        </li>
+                        <li>
+                            <p>電話： (04)2327-3166</p>
+                        </li>
+                        <li>
+                            <p>傳真：(04)2327-2867</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <p>高雄分公司：高雄市七賢一路249號5樓</p>
+                        </li>
+                        <li>
+                            <p>電話： (07)238-1188</p>
+                        </li>
+                        <li>
+                            <p>傳真：(07)238-1199</p>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <p>客戶服務專線：0800-075-858</p>
+                        </li>
+                        <li>
+                            <p>檢舉信箱：whistleblower@mail.skit.com.tw</p>
+                        </li>
+                        <li>
+                            <p>客服信箱：service@mail.skit.com.tw</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <p>© 2021 Copyright By Shin Kong Investment Trust CO.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function ($) {
+            var scrollValue = 'no';
+            function inputFocus(e){
+                var ul = $('.header_nav .serch ul')
+                if(e){
+                    ul.css('display','block')
+                }else{
+                    ul.css('display','none')
+                }
+            }
+            function ifScrollFn(){
+                let header_nav = $('.header_nav').outerHeight(true);
+                let box = $('.header_nav .box').outerHeight(true);
+                var parent_height = header_nav+box;
+                // var parent_offset = 0;
+                var window_height = $(window).height();
+                // var doc_scroll = $(document).scrollTop();
+                // ifScroll = ((doc_scroll - parent_offset) / (parent_height - window_height))<0?0:1;
+                // scrollValue = parent_height - window_height
+                if(window_height>parent_height){
+                    scrollValue = 0
+                }else{
+                    scrollValue = parent_height - window_height + 30
+                }
+                $(window).scrollTop(scrollValue-60);
+            }
+            $('.header_nav .serch input').focus(function(){inputFocus(true)})
+            $('.header_nav .serch input').blur(function(){inputFocus(false)})
+            $('.header_nav .menuBtn').click(function(){
+                if(!$('.header_nav #menuBtn').is(":checked")){
+                    ifScrollFn()
+                }else{
+                    scrollValue = 'no'
+                }
+            })
+            $('.header_nav .box>ul>li').click(function(){
+                if($(this).children('ul').length){
+                    if($(this).hasClass('active')){
+                        $(this).removeClass('active')
+                        // scrollValue = 0
+                    }else{
+                        $('.header_nav .box>ul>li').removeClass('active')
+                        $(this).addClass('active')
+                    }
+                    ifScrollFn()
+                }
+            })
+            $(window).scroll(function(){
+                // console.log($(document).scrollTop())
+                if(scrollValue!='no'&& $(window).scrollTop()>scrollValue){
+                    //有限滾動
+                    // console.log('262',scrollValue)
+                    $(window).scrollTop(scrollValue);
+                }else{
+                    $(window).scrollTop($(document).scrollTop());
+                }
+            });
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <title>JavaScript slidedown without jQuery</title>
+    <style>
+        body {
+            background: #333;
+        }
+        
+        #slideshow03 {
+            width: 100%;
+            height: auto;
+        }
+        
+        #slideshow03 img {
+            width: 100%;
+        }
+        
+        #slideshow03 ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+        }
+        
+        #slideshow03>ul {
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+        }
+        
+        #slideshow03>ul li:not(:first-child) {
+            display: none;
+        }
+        
+        #slideshow03>ul li.active {
+            display: block;
+        }
+        
+        #slideshow03 .bottom {
+            position: relative;
+            background: #fff;
+        }
+        
+        #slideshow03 .bottom .content {
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+        }
+        
+        #slideshow03 .bottom ul {
+            position: absolute;
+        }
+        
+        #slideshow03 .bottom li {
+            float: left;
+            cursor: pointer;
+            box-sizing: border-box;
+            border-right: 1px solid rgba(0, 0, 0, .1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        #slideshow03 .bottom li:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: .5s;
+        }
+        
+        #slideshow03 .bottom .control {
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: -40px;
+            bottom: 0;
+            width: 40px;
+            background: #fff;
+            border-right: 1px solid rgba(0, 0, 0, .1);
+            z-index: 2;
+        }
+        
+        #slideshow03 .bottom .control.next {
+            border-left: 1px solid rgba(0, 0, 0, .1);
+            border-right: none;
+            left: auto;
+            right: -40px;
+        }
+        
+        #slideshow03 .bottom .control:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -10px;
+            margin-left: -5px;
+            width: 15px;
+            height: 15px;
+            border: 0;
+            border-left: 2px solid #888;
+            border-bottom: 2px solid #888;
+            transform: rotate(45deg);
+            transition: .5s;
+            opacity: 0.4;
+        }
+        
+        #slideshow03 .bottom .control.next:after {
+            content: '';
+            left: auto;
+            right: 50%;
+            margin-left: auto;
+            margin-right: -5px;
+            transform: rotate(-135deg);
+        }
+        
+        #slideshow03 .bottom .control:hover:after {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="slideshow03">
+        <ul>
+            <li>
+                <img src="https://picsum.photos/1000/400?1" alt="">
+            </li>
+            <li>
+                <img src="https://picsum.photos/1000/400?2" alt="">
+            </li>
+            <li>
+                <img src="https://picsum.photos/1000/400?3" alt="">
+            </li>
+            <li>
+                <img src="https://picsum.photos/1000/400?4" alt="">
+            </li>
+            <li>
+                <img src="https://picsum.photos/1000/400?5" alt="">
+            </li>
+        </ul>
+    </div>
+    <script>
+        window.onload = function() {
+            slider();
+        }
+
+        function slider() {
+            var slide = document.getElementById('slideshow03');
+            if (!slide) {
+                return;
+            }
+            var ul = slide.querySelector('ul');
+            var li = ul.querySelectorAll('li');
+            var liLength = li.length;
+            var bottomLiWidth,
+                bottomShowLi = 4,
+                slideIndex = 0;
+
+            //bottom
+            var bottom = document.createElement('div');
+            bottom.setAttribute('class', 'bottom');
+
+            //bottomContent
+            var bottomContent = document.createElement('div');
+            bottomContent.setAttribute('class', 'content');
+
+            //bottomUl
+            var bottomUl = document.createElement('ul');
+
+            //bottomLi
+            var bottomLi = '';
+            for (var i = 0; i < liLength; ++i) {
+                bottomLi += li[i].outerHTML;
+            }
+
+            //bottomNext
+            var bottomNext = document.createElement('div');
+            bottomNext.className = 'next control';
+            bottomNext.onclick = function() {
+                move(1);
+            };
+
+            //bottomPrev
+            var bottomPrev = document.createElement('div');
+            bottomPrev.className = 'prev control';
+            bottomPrev.onclick = function() {
+                move(-1);
+            };
+
+            if (liLength >= bottomShowLi) {
+                //show prev next
+                bottom.appendChild(bottomNext);
+                bottom.appendChild(bottomPrev);
+                bottom.style.margin = '0 40px 0';
+                bottomUl.innerHTML = bottomLi + bottomLi;
+            } else {
+                bottom.style.margin = '0';
+                bottomUl.innerHTML = bottomLi;
+            }
+
+            //bottomLi
+            bottomContent.appendChild(bottomUl);
+            bottomLi = bottomContent.querySelectorAll('li');
+            for (let i = 0; i < bottomLi.length; i++) {
+                let a = i % liLength;
+                bottomLi[i].getAttribute('id', a);
+                bottomLi[i].addEventListener('click', function() {
+                    active(a);
+                })
+            }
+            bottom.appendChild(bottomContent);
+            slide.appendChild(bottom);
+
+            init();
+
+            function init() {
+                //bottomLiWidth
+                bottomLiWidth = bottomContent.offsetWidth / bottomShowLi;
+                for (let i = 0; i < bottomLi.length; i++) {
+                    bottomLi[i].style.width = bottomLiWidth + 'px';
+                }
+
+                //bottomHeight
+                bottom.style.height = bottomContent.querySelector('li').offsetHeight + 'px';
+
+                //bottomUiWidth
+                bottomUl.style.width = bottomLiWidth * bottomLi.length + 'px';
+                bottomUl.style.left = '0';
+            }
+            //監聽
+            var timer;
+
+            function move(i) {
+                clearInterval(timer);
+                var now = slideIndex - i;
+
+                if (now == -1) {
+                    now = liLength - 1;
+                    bottomUl.style.left = -bottomLiWidth * liLength + 'px';
+                }
+
+                var iTarget = -(bottomLiWidth * now);
+                iTarget = iTarget > 0 ? Math.ceil(iTarget) : Math.floor(iTarget);
+                timer = setInterval(function() {
+                    var speed = (iTarget - bottomUl.offsetLeft) / 8;
+                    speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                    if (bottomUl.offsetLeft == iTarget) {
+                        clearInterval(timer);
+                        if (now == liLength) {
+                            now = 0;
+                            bottomUl.style.left = '0';
+                        }
+                        active(now);
+                        slideIndex = now;
+                    } else {
+                        bottomUl.style.left = bottomUl.offsetLeft + speed + 'px';
+                    }
+                }, 16);
+            }
+
+            function active(v) {
+                //topImgShow;
+                for (var i = 0; i < li.length; i++) {
+                    if (i == v) {
+                        li[i].style.display = 'list-item';
+                    } else {
+                        li[i].style.display = 'none';
+                    }
+                }
+                //bottomactive
+                for (var i = 0; i < bottomLi.length; i++) {
+                    if (i == v) {
+                        bottomLi[i].classList.add('active');
+                    } else {
+                        bottomLi[i].classList.remove('active');
+                    }
+                }
+            }
+            window.addEventListener('resize', function() {
+                init();
+                active(0);
+            });
+        }
+    </script>
+</body>
+
+</html>
+
+</html>

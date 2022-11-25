@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <title>JavaScript slidedown without jQuery</title>
+    <style>
+        #slideshow {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        #slideshow ul {
+            font-size: 0;
+            list-style: none;
+            padding: 0;
+            position: relative
+        }
+        
+        #slideshow li:not(:first-child) {
+            /* width: 100%;*/
+            position: absolute;
+            top: 0;
+            /*left: 0;
+            padding: 0;
+            overflow: hidden;  */
+            display: none;
+        }
+        
+        #slideshow li:first-child {
+            position: relative;
+            /* display: block; */
+        }
+        
+        #slideshow li img {
+            width: 100%;
+            height: auto;
+        }
+        
+        #slideshow .prev,
+        #slideshow .next {
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            opacity: 0;
+            transition: opacity .5s ease;
+            background: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+        }
+        
+        #slideshow .next {
+            background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+            right: 0;
+        }
+        
+        #slideshow .prev:hover,
+        #slideshow .next:hover {
+            opacity: 1;
+        }
+        
+        #slideshow .prev:hover:after,
+        #slideshow .next:hover:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 40px;
+            z-index: 10;
+            margin-top: -30px;
+            width: 20px;
+            height: 20px;
+            border: 0;
+            /* border-left: 3px solid #002e5f;
+            border-bottom: 3px solid #002e5f; */
+            border-left: 3px solid #fff;
+            border-bottom: 3px solid #fff;
+            transform: rotate(45deg);
+        }
+        
+        #slideshow .next:hover:after {
+            right: auto;
+            left: 40px;
+            transform: rotate(-135deg);
+        }
+        
+        #slideshow .dot {
+            cursor: pointer;
+            margin: 0 5px;
+            border: 1px solid #fff;
+            /* border: 1px solid #002e5f; */
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        #slideshow .dot.active,
+        #slideshow .dot:hover {
+            background: #fff;
+            /* background: #002e5f; */
+        }
+        
+        #slideshow .dotdiv {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        #slideshow .dotOut {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 860px) {
+            #slideshow .prev:hover:after,
+            #slideshow .next:hover:after {
+                width: 10px;
+                height: 10px;
+                right: 70px;
+                margin-top: -10px;
+            }
+            #slideshow .next:hover:after {
+                left: 70px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="slideshow">
+        <ul>
+            <li>
+                <img src="https://picsum.photos/1000/400?1" alt="">
+            </li>
+            <li>
+                <img src="https://picsum.photos/1000/400?2" alt="">
+            </li>
+            <li>
+                <img src="https://picsum.photos/1000/400?3" alt="">
+            </li>
+        </ul>
+    </div>
+    <script>
+        function showslider() {
+            var slideshow = document.getElementById('slideshow');
+            if (!slideshow) {
+                return;
+            }
+            var ul = slideshow.querySelector('ul');
+            var li = slideshow.querySelectorAll('li');
+            var liLength = li.length;
+            var slideIndex = 0;
+            var slideshowWidth = li[0].offsetWidth;
+
+            //clone li
+            for (var i = 0; i < li.length; i++) {
+                ul.appendChild(li[i].cloneNode(true))
+            }
+            var newLi = ul.querySelectorAll('li');
+            var newLiLength = newLi.length;
+            for (var i = 0; i < newLiLength; i++) {
+                newLi[i].style.width = slideshowWidth + 'px';
+                newLi[i].style.left = slideshowWidth * i + 'px';
+                newLi[i].style.display = 'block';
+            }
+
+            //slideshow height
+            slideshow.style.height = li[0].offsetHeight;
+
+            //ul width
+            ul.style.width = slideshowWidth * newLiLength + 'px'
+
+            //dotDiv
+            var dotDiv = document.createElement('div');
+            dotDiv.className = 'dotdiv';
+
+            //prev
+            var prev = document.createElement('div');
+            prev.className = 'prev';
+            prev.onclick = function() {
+                nowIndex(-1);
+            };
+            dotDiv.appendChild(prev);
+
+            //next
+            var next = document.createElement('div');
+            next.className = 'next';
+            next.onclick = function() {
+                nowIndex(1);
+            };
+            dotDiv.appendChild(next);
+
+            //dot
+            var dotOut = document.createElement('div');
+            dotOut.className = 'dotOut';
+            for (let i = 0; i < li.length; i++) {
+                var dot = document.createElement('span');
+                dot.onclick = function() {
+                    showSlides(-i);
+                };
+                dotOut.appendChild(dot);
+            }
+
+            dotDiv.appendChild(dotOut);
+            slideshow.appendChild(dotDiv);
+            showSlides(slideIndex);
+
+            var timer;
+
+            function nowIndex(n) {
+                var now = slideIndex - n;
+                //prev first
+                if (now == '1') {
+                    now = -(liLength - now);
+                    ul.style.left = -(slideshowWidth * liLength) + 'px';
+                }
+                showSlides(now);
+            }
+
+            function showSlides(n) {
+                var iTarget = (slideshowWidth * n);
+                clearInterval(timer);
+                timer = setInterval(function() {
+                    var speed = (iTarget - ul.offsetLeft) / 8;
+                    speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                    if (ul.offsetLeft == iTarget) {
+                        //next last
+                        if (n == -liLength) {
+                            n = 0;
+                            ul.style.left = '0';
+                        }
+                        //dot
+                        dotFn(n)
+                        slideIndex = n;
+                        clearInterval(timer);
+                    } else {
+                        ul.style.left = ul.offsetLeft + speed + 'px';
+                    }
+                }, 16);
+            }
+
+            function dotFn(n) {
+                var span = dotOut.querySelectorAll('span');
+                //dot
+                for (let i = 0; i < span.length; i++) {
+                    span[i].className = 'dot';
+                }
+                span[Math.abs(n)].className = 'dot active';
+            }
+
+            window.addEventListener('resize', function() {
+                lisHeight = li[0].offsetHeight;
+                slideshow.style.height = lisHeight + 'px';
+            });
+
+            //auto
+            // var autoSlide = setInterval(function() {
+            //     now(1);
+            // }, 3000)
+            // slideshow.addEventListener('mouseover', function() {
+            //     clearInterval(autoSlide);
+            // })
+            // slideshow.addEventListener('mouseout', function() {
+            //     autoSlide = setInterval(function() {
+            //         now(1);
+            //     }, 3000)
+            // })
+        }
+        window.onload = function() {
+            showslider();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_slider_多個</title>
+    <style>
+        img {
+            border: 0;
+            width: 100%;
+            vertical-align: middle;
+        }
+        
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+        .slide01 {
+            position: relative;
+            padding: 0 50px;
+        }
+        
+        .slide01 .text {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+        }
+        
+        .slide01 .text h2 {
+            font-style: italic;
+            margin-right: 5px;
+            font-size: 42px;
+        }
+        
+        .slide01 .text p {
+            font-size: 16px;
+            color: inherit;
+            line-height: 1.6;
+        }
+        
+        .slide01 .move {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slide01 .move:after {
+            content: '';
+            position: absolute;
+            bottom: 40%;
+            left: 0;
+            width: 100%;
+            padding: 0 60px;
+            height: 1px;
+            background: #ddd;
+            background-clip: content-box;
+            z-index: -1;
+        }
+        
+        .slide01 ul {
+            height: 220px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 0;
+        }
+        
+        .slide01 li {
+            display: inline-block;
+            vertical-align: middle;
+            width: 20%;
+            position: relative;
+            padding: 0 40px;
+        }
+        
+        .slide01 .img {
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px #fff, 0 0 0 5px #ddd;
+            background-color: #fff;
+            overflow: hidden;
+            margin: 20px auto;
+            max-width: 280px;
+        }
+        
+        .slide01 .control>div {
+            position: absolute;
+            top: 48%;
+            left: 30px;
+            border-top: 2px solid #ddd;
+            border-left: 2px solid #ddd;
+            width: 30px;
+            height: 30px;
+            transform: rotate(-45deg);
+            cursor: pointer;
+            transition: .5s;
+        }
+        
+        .slide01 .control>div:last-child {
+            left: auto;
+            right: 30px;
+            transform: rotate(135deg);
+        }
+        
+        .slide01 .control>div:hover {
+            border-top: 2px solid #666;
+            border-left: 2px solid #666;
+        }
+        
+        .slide01 .points {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .slide01 .point {
+            width: 12px;
+            height: 12px;
+            background: #ddd;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: .5s;
+        }
+        
+        .slide01 .point:hover,
+        .slide01 .point.active {
+            background: #2356a6;
+        }
+        
+        @media (max-width: 600px) {
+            .slide01 .move:after {
+                display: none;
+            }
+            .slide01 .points {
+                display: none;
+            }
+            .slide01 li {
+                padding: 0 20px;
+            }
+            .slide01 .control>div {
+                top: 56%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slide01" id="slide01">
+        <div class="move">
+            <ul class="ul-inline">
+                <li>
+                    <div class="text">
+                        <h2>1</h2>
+                        <p>發夢起點</p>
+                    </div>
+                    <div class="img">
+                        <img class="img-responsive" src="https://picsum.photos/300/300?0" alt="" />
+                    </div>
+                </li>
+                <li>
+                    <div class="text">
+                        <h2>2</h2>
+                        <p>造夢追逐</p>
+                    </div>
+                    <div class="img">
+                        <img class="img-responsive" src="https://picsum.photos/300/300?1" alt="" />
+                    </div>
+                </li>
+                <li>
+                    <div class="text">
+                        <h2>3</h2>
+                        <p>招兵買馬</p>
+                    </div>
+                    <div class="img">
+                        <img class="img-responsive" src="https://picsum.photos/300/300?2" alt="" />
+                    </div>
+                </li>
+                <li>
+                    <div class="text">
+                        <h2>4</h2>
+                        <p>募資築夢</p>
+                    </div>
+                    <div class="img">
+                        <img class="img-responsive" src="https://picsum.photos/300/300?3" alt="" />
+                    </div>
+                </li>
+                <li>
+                    <div class="text">
+                        <h2>5</h2>
+                        <p>實踐建構</p>
+                    </div>
+                    <div class="img">
+                        <img class="img-responsive" src="https://picsum.photos/300/300?4" alt="" />
+                    </div>
+                </li>
+                <li>
+                    <div class="text">
+                        <h2>6</h2>
+                        <p>幸福完夢</p>
+                    </div>
+                    <div class="img">
+                        <img class="img-responsive" src="https://picsum.photos/300/300?5" alt="" />
+                    </div>
+                </li>
+                <li>
+                    <div class="text">
+                        <h2>7</h2>
+                        <p>發夢起點</p>
+                    </div>
+                    <div class="img">
+                        <img class="img-responsive" src="https://picsum.photos/300/300?6" alt="" />
+                    </div>
+                </li>
+                <li>
+                    <div class="text">
+                        <h2>8</h2>
+                        <p>造夢追逐</p>
+                    </div>
+                    <div class="img">
+                        <img class="img-responsive" src="https://picsum.photos/300/300?7" alt="" />
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="control">
+            <div class="pre"></div>
+            <div class="next"></div>
+        </div>
+        <div class="points"></div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script>
+        function slide01() {
+            var $slide = $('#slide01');
+            var $move = $slide.find('.move');
+            var $ul = $slide.find('ul');
+            var $li = $slide.find('li');
+            var $pre = $slide.find('.pre');
+            var $next = $slide.find('.next');
+            var liL = $li.length;
+            var moveW = 0,
+                liW = 0,
+                ulW = 0,
+                showLi = 0,
+                showPoint = 0,
+                id = 0;
+
+
+            $li.find('img').on('load', function() {
+                console.log(12);
+                init();
+            });
+            init();
+
+            function init() {
+                var lg = window.matchMedia("(min-width: 1200px)");
+                var md = window.matchMedia("(min-width: 920px)");
+                var sm = window.matchMedia("(min-width: 600px)");
+                if (lg.matches) {
+                    showLi = 4;
+                } else if (md.matches) {
+                    showLi = 3;
+                } else if (sm.matches) {
+                    showLi = 2;
+                } else {
+                    showLi = 1;
+                }
+
+
+
+                moveW = $move.width();
+                liW = moveW / showLi;
+                ulW = liW * liL;
+                $li.css('width', liW);
+                $ul.css({
+                    'width': ulW,
+                    'marginLeft': 0,
+                    'height': $li.height()
+                });
+
+                //creatPoint
+                showPoint = Math.ceil(liL / showLi);
+                $slide.find('.point').remove();
+                for (var i = 0; i < showPoint; i++) {
+                    var active;
+                    if (i == 0) {
+                        active = ' active';
+                    } else {
+                        active = '';
+                    }
+                    $slide.find('.points').append('<div class="point' + active + '" data-id="' + i + '"></div>');
+                    //click
+                    $slide.find('.point:last').on('click', function() {
+                        id = $(this).data('id');
+                        move();
+                    })
+                }
+
+            }
+
+            function move() {
+                var dis = id * moveW;
+                //最後一個
+                if (id == showPoint - 1) {
+                    dis = ulW - moveW;
+                }
+
+                $ul.animate({
+                    marginLeft: -dis + "px"
+                }, 500);
+
+                //active
+                $slide.find('.point').removeClass('active').eq(id).addClass('active');
+            }
+
+            function now(n) {
+                id = (id + n + showPoint) % showPoint;
+                move();
+            }
+            $(window).resize(function() {
+                init();
+            })
+            $next.on('click', function() {
+                now(1)
+            })
+            $pre.on('click', function() {
+                now(-1)
+            })
+
+        }
+        slide01();
+    </script>
+
+</body>
+
+</html>

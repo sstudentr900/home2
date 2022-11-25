@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #playimagese{
+            width: 600px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #playimagese .bigPic{
+            padding: 0;
+            list-style: none;
+        }
+        #playimagese .bigPic img{
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            opacity: 0;
+            transition: .8s;
+        }
+        #playimagese .small_pic{
+            width: 300px;
+            position: absolute;
+            overflow: hidden;
+            height: 42px;
+            bottom: 30px;
+            left: 4vw;
+            border: 1px solid #fff;
+            z-index: 999999999;
+        }
+        #playimagese .small_pic > div{
+            position: absolute;
+            top: 0px;
+            left: -20px;
+            background-color: #333;
+            width: 20px;
+            height: 20px;
+        }
+        #playimagese .small_pic > div:nth-child(2){
+            left: auto;
+            right: -20px;
+        }
+        #playimagese .small_pic ul{
+            position: absolute;
+            width: 700px;
+            top: 0px;
+            left: 0px;
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none;
+            margin: 0;
+        }
+        #playimagese .small_pic ul li{
+            float: left;
+            cursor: pointer;
+            background: #000;
+            width: 75px;
+            height: 42px;
+            overflow: hidden;
+            position: relative;
+        }
+        #playimagese .small_pic ul li+li{
+            outline: 1px solid #fff;
+        }
+        #playimagese .small_pic ul li img {
+            width: 75px;
+            opacity: .5;
+            position: absolute;
+        }
+        #playimagese .small_pic ul li:hover img,
+        #playimagese .small_pic ul li.active img {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="playimagese" class="play">
+        <div class="bigPic">
+            <img src="img/01.jpg">
+            <img src="img/02.jpg">
+            <img src="img/03.jpg">
+            <img src="img/04.jpg">
+            <img src="img/05.jpg">
+            <img src="img/06.jpg">
+        </div>
+        <div class="small_pic">
+            <ul class="smallPicUL">
+                <li><img src="img/01.jpg"></li>
+                <li><img src="img/02.jpg"></li>
+                <li><img src="img/03.jpg"></li>
+                <li><img src="img/04.jpg"></li>
+                <li><img src="img/05.jpg"></li>
+                <li><img src="img/06.jpg"></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="scripts/jquery.min.js"></script>
+<script>
+    /*判斷圖片*/
+    var imgdefereds=[];
+    $('img').each(function(){
+        var dfd=$.Deferred();
+        $(this).bind('load',function(){
+            dfd.resolve();
+        }).bind('error',function(){
+            //图片加载错误，加入错误处理
+            // dfd.resolve();
+        })
+        if(this.complete) setTimeout(function(){
+            dfd.resolve();
+        },1000);
+        imgdefereds.push(dfd);
+    })
+    console.log(imgdefereds);
+    $.when.apply(null,imgdefereds).done(function(){
+        slideshow();
+    });
+    function slideshow(){
+        var $playimagese=$('#playimagese');
+        var bigPic = $playimagese.find('.bigPic');
+        var smallPicimg = bigPic.children('img');
+        var smallPic = $playimagese.find('.small_pic');
+        var smallPicUL = smallPic.find('.smallPicUL');
+        var smallPicULLi = smallPicUL.children('li');
+        var smallPicULLiWidth=smallPicULLi.eq(0).width()*(smallPicULLi.length)+'px';
+        var smallPicULWidth=smallPicUL.width(smallPicULLiWidth);
+        var bigImg = bigPic.children();
+        var smallPicULLilength= smallPicULLi.length-1;
+        var now = 0;
+        smallPicULLi.eq(now).addClass('active');
+        bigImg.eq(now).css('opacity','1');
+        //大圖高度
+         $playimagese.height(bigImg.eq(now).height());
+        //小圖置中
+        for(var i=0;i<smallPicULLi.length;i++){
+            var ww = 75,wh = 42;
+            var img=smallPicULLi.eq(i).find('img');
+            var iw = img.width(), ih = img.height();
+            var scale = Math.max( ww / iw, wh / ih ),
+                    sw = Math.floor( iw * scale ),
+                    sh = Math.floor( ih * scale ),
+                    moveX = Math.floor( (ww - sw) / 2 ),
+                    moveY = Math.floor( (wh - sh) / 2 );
+            img.css({
+                'width': sw,
+                'height': sh,
+                'left' : moveX,
+                'top' : moveY
+            });
+        }
+        //小圖數量
+        if(smallPicULLi.length<4){
+            smallPic.width(smallPicULLiWidth);
+        }
+        $( window ).resize(function() {
+            $playimagese.height(bigImg.eq(now).height());
+        });
+        smallPicULLi.click(function(){
+            if($(this).index()==now)return;
+            now=$(this).index();
+            bigImg.css('opacity','0').eq(now).css('opacity','1');
+            smallPicULLi.removeClass('active').eq(now).addClass('active');
+            $playimagese.height(bigImg.eq(now).height());
+//                console.log(now);
+//                console.log(smallPicULLi.length-1);
+            if(smallPicULLilength>3){
+                if(now==0){//第一張
+                    smallPicUL.animate({left:0});
+                }else if(now == smallPicULLilength-1||now == smallPicULLilength){//最後二張
+                    smallPicUL.animate({left:-(smallPicULLilength-3)*smallPicULLi.eq(0).width()+'px'});
+                }else{
+                    smallPicUL.animate({left:-(now-1)*smallPicULLi.eq(0).width()+'px'});
+                }
+            }
+        });
+    }
+</script>
+</html>

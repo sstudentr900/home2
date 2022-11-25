@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        ul{
+            display: flex;
+            transition: .5s;
+            padding: 0;
+            list-style: none;
+        }
+        p{
+            width: 60px;
+            font-size: 14px;
+            text-align: center;
+        }
+         .slide{
+             width: 60px;
+             border-radius: 0;
+             height: 100px;
+             overflow: hidden;
+         }
+    </style>
+</head>
+<body>
+<div class="slide">
+    <ul style="transform: translate(0px);">
+        <li>
+            <p class="day">04/02</p>
+            <p class="degree">20~22C</p>
+        </li>
+        <li>
+            <p class="day">04/04</p>
+            <p class="degree">24~26C</p>
+        </li>
+        <li>
+            <p class="day">04/06</p>
+            <p class="degree">26~28C</p>
+        </li>
+    </ul>
+</div>
+<script>
+    function slide(option) {
+        for(var i=0; i<option.length; i++) {
+            var slid = document.querySelector(option[i].el);
+            if(slid == null){return;}
+            var ul = slid.querySelector('ul');
+            var liW = slid.querySelector('li').offsetWidth;
+            var liLength = ul.querySelectorAll('li').length;
+            var slideIndex = 0;
+
+            setInterval(function () {
+                var now = (slideIndex + liLength) % liLength;
+                ul.style.transform = 'translate(-' + (now) * liW + 'px)';
+                slideIndex = now + 1;
+            }, 1500)
+        }
+
+    }
+    slide([{el:'.slide'}]);
+</script>
+</body>
+</html>

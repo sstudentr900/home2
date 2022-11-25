@@ -1,0 +1,26 @@
+let windowHeight = window.innerHeight;
+let contentHeight = document.querySelector('.content').clientHeight;
+
+let imageEl = document.querySelector('.image');
+
+let maxBlurValue = 50;
+let maxOpacityValue = 1;
+
+window.addEventListener('scroll', onScroll, false);
+window.addEventListener('resize', onResize, false);
+
+function onScroll() {
+  let ratio = window.pageYOffset / (contentHeight - windowHeight);
+  
+  console.log('window.pageYOffset '+window.pageYOffset);
+  console.log('contentHeight '+contentHeight);
+  console.log('windowHeight '+windowHeight);
+  
+  imageEl.style.filter = `blur(${maxBlurValue * ratio}px)`;
+  imageEl.style.opacity = maxOpacityValue - ratio;
+}
+
+function onResize() {
+  windowHeight = window.innerHeight;
+  contentHeight = document.querySelector('.content').clientHeight;
+}

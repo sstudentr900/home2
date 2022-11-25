@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="zh-tw">
+<head>
+<meta name="Generator" content="EditPlus" />
+<meta name="Author" content="男丁格爾's 脫殼玩" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<title>仿 Yahoo 標籤式垂直廣告輪播</title>
+<style type="text/css">
+	a img {
+		border: none;
+		vertical-align: middle;
+	}
+	#adblock {
+		overflow: hidden;
+		width: 920px;	/* 廣告圖片的寬 + 選單圖片最大的寬 */
+		height: 220px;	/* 廣告圖片的高 */
+		border: 1px solid #ccc;
+		position: relative;
+	}
+	#adblock ul, #adblock li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	#adblock ul.showbox, #adblock ul.link {
+		position: absolute;
+	}
+	#adblock ul.showbox li a {
+		display: block;
+		height: 220px;	/* 廣告圖片的高 */
+	}
+	#adblock ul.showbox {
+		right: 0;
+	}
+	#adblock ul.link li a {
+		display: block;
+		width: 180px;	/* 滑鼠未移入時的選單圖片寬 */
+		height: 55px;	/* 選單圖片的高 */
+		position: absolute;
+		text-indent:20px;
+		line-height: 55px;
+		background-color: #ccc;
+		background: url(images/menu.off.gif);
+	}
+	#adblock ul.link li a.selected {
+		width: 200px;	/* 滑鼠移入時的選單圖片寬 */
+		background: url(images/menu.on.gif);
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		// 大廣告圖片的高度及動畫時間
+		var adHeight = 220,
+			animateSpeed = 400;
+		$('#adblock ul.link li a').each(function(i){
+			// 把選單排好位置
+			$(this).css('top', i * 55);
+		}).mouseover(function(){
+			var $this = $(this),
+				// 找出目前 li 是在選單中的第幾個(jQuery 1.4)
+				no = $this.parent().index();
+			
+			// 先移除有 .selected 的超連結的樣式
+			$('#adblock ul.link li a.selected').removeClass('selected');
+			// 再把目前點擊到的超連結加上 .selected
+			$this.addClass('selected');
+			
+			// 把 ul.showbox 的 top 移到相對應的高度
+			$('#adblock ul.showbox').stop().animate({
+				top: adHeight * no * -1
+			}, animateSpeed);
+		}).focus(function(){
+			$(this).blur();
+		}).eq(0).mouseover();
+	});
+</script>
+</head>
+
+<body>
+	<div id="adblock">
+		<ul class="showbox">
+			<li><a href="http://www.google.com/phone"><img src="images/nexus_one.gif" title="Nexus One" /></a></li>
+			<li><a href="http://www.apple.com/tw/iphone/why-iphone/"><img src="images/iphone.gif" title="iPhone 3GS" /></a></li>
+			<li><a href="http://www.htc.com/tw/product/hero/overview.html"><img src="images/hero.gif" title="HTC Hero" /></a></li>
+			<li><a href="http://www.htc.com/tw/product/hd2/overview.html"><img src="images/hd2.gif" title="HTC HD2" /></a></li>
+		</ul>
+		<ul class="link">
+			<li><a href="#">Nexus One</a></li>
+			<li><a href="#">iPhone 3GS</a></li>
+			<li><a href="#">HTC Hero</a></li>
+			<li><a href="#">HTC HD2</a></li>
+		</ul>
+	</div>
+</body>
+</html>

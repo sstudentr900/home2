@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <title>JavaScript slidedown without jQuery</title>
+    <style>
+        #intro {
+            background-image:  linear-gradient(to right, rgba(0, 0, 0, .8),  rgba(0, 0, 0, .8)),url(http://3.bp.blogspot.com/-2JmF-bg5Evc/VAQpEzd0fWI/AAAAAAAAAAQ/vabrdskc9HY/s1600/P1000743.JPG) ;
+            background-repeat: no-repeat;
+            background-position:center;
+            background-attachment: fixed;
+            background-size: cover;
+            color: white;
+            margin: 0 auto;
+            padding: 140px 0 100px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .step {
+            height: 345px;
+            position: relative;
+        }
+        .step .item{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            opacity: 0;
+            transition: opacity .5s ease;
+            overflow: hidden;
+        }
+        .step .item.active{
+            position: relative;
+            opacity: 1;
+            width: 100%;
+        }
+        .step .flex{
+            max-width: 1040px;
+            padding: 0 40px;
+            margin: auto;
+            display: flex;
+        }
+        .step .jms-content{
+            width: 55%;
+            padding-right: 20px;
+        }
+        .step .img{
+            width: 45%;
+        }
+        .step img{
+            width: 100%;
+            height: auto;
+        }
+        .step .linetop {
+            height: 2px;
+            background: #3d85c6;
+            width: 80px;
+            margin: 20px 0;
+        }
+        .step h3 {
+            font: normal 400 40px 'Open Sans', 'Roboto', Arial, Helvetica, sans-serif;
+            color: #ffffff;
+            font-size: 42px;
+            font-weight: bold;
+            margin: 0;
+            padding: 20px 0 10px 0;
+            text-transform: uppercase;
+        }
+        .step p {
+            font: normal 300 15px 'Open Sans', 'roboto', Arial, Helvetica, sans-serif;
+            line-height: 2.4;
+            color: #ffffff;
+            font-weight: normal;
+            position: relative;
+            margin: 0
+        }
+        .step a.jms-link {
+            text-transform: uppercase;
+            background: transparent;
+            border: 1px solid #ffffff;
+            padding: 8px 15px;
+            font: normal normal 12px 'Open Sans', Arial, Helvetica, sans-serif;
+            display: inline-block;
+            color: #ffffff;
+            opacity: 1;
+            margin-top: 20px;
+            /*clear: both;*/
+            /*-webkit-transition: all 0.1s ease-in-out 1s;*/
+            /*-moz-transition: all 0.1s ease-in-out 1s;*/
+            /*-ms-transition: all 0.1s ease-in-out 1s;*/
+            /*-o-transition: all 0.1s ease-in-out 1s;*/
+            /*transition: all 0.1s ease-in-out 1s;*/
+        }
+        .step a.jms-link:hover {
+            padding: 8px 25px;
+        }
+        #intro .prev,
+        #intro .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 60px;
+            background: rgba(255,255,255,.3);
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+        #intro .next {
+            right: 0;
+        }
+        #intro .controlDiv:hover .prev,
+        #intro .controlDiv:hover .next{
+            opacity: 1;
+        }
+        #intro .prev:after,
+        #intro .next:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 3px;
+            z-index: 10;
+            margin-top: -10px;
+            width: 15px;
+            height: 15px;
+            border: 0;
+            border-left: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            transform: rotate(45deg);
+            opacity: .3;
+            transition: opacity .3s ease;
+        }
+        #intro .next:after {
+            right: auto;
+            left: 3px;
+            transform: rotate(-135deg);
+        }
+        #intro .prev:hover:after,
+        #intro .next:hover:after {
+            opacity: 1;
+        }
+        #intro .dot {
+            cursor: pointer;
+            margin: 0 5px;
+            border: 1px solid #fff;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        #intro .dot.active,
+        #intro .dot:hover {
+            background: #fff;
+        }
+        #intro .controlDiv {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+        }
+        #intro .dotDiv {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        @media only screen and (max-width: 1000px){
+            #intro{
+                padding: 110px 0 60px;
+            }
+            .step{
+                height: auto;
+            }
+            .step .flex{
+                max-width: 500px;
+                flex-wrap: wrap;
+                flex-direction: column-reverse;
+            }
+            .step .img,
+            .step .jms-content{
+                width: 100%;
+            }
+            .step .jms-content{
+                padding: 0;
+            }
+        }
+        @media only screen and (max-width: 520px){
+            .step h3{
+                font-size: 28px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="intro">
+        <div class="step">
+            <div class="item">
+                <div class="flex">
+                    <div class="jms-content">
+                        <h3>風險最小化。Technical Due Diligence</h3>
+                        <div class="linetop"></div>
+                        <p>Green Power High Efficiency, High Quality PV Modules.
+                            盈碩能源有限公司，專注太陽光電系統顧問、營運維護服務、綠建築與能源管理。太陽光電系統清潔維護工程可常保太陽能板性能處在一個相對優良狀態。&nbsp; </p>
+                        <a class="jms-link" href="http://www.solarium-taiwan.com/2014/01/green-powercleaning-system.html">Read
+                            more</a>
+                    </div>
+                    <div class="img">
+                        <img src="http://3.bp.blogspot.com/-2JmF-bg5Evc/VAQpEzd0fWI/AAAAAAAAAAY/TRsHf9Z2KA8/s500/P1000743.JPG">
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="flex">
+                    <div class="jms-content">
+                        <h3>清潔+鍍膜 | CLEANING AND COATING。</h3>
+                        <div class="linetop"></div>
+                        <p>盈碩能源有限公司懷抱愛護地球的使命感，協助案主太陽光電系統進行清潔+鍍膜工程，專業清除頑垢、長效預防水垢.... </p>
+                        <a class="jms-link" href="http://www.solarium-taiwan.com/2014/01/green-powercleaning-system.html">Read
+                            more</a>
+                    </div>
+                    <div class="img">
+                        <img src="http://4.bp.blogspot.com/-cEMEuVDCpYg/VAVn1Akx2uI/AAAAAAAAABQ/OPy1kb1OdG4/s500/P1000782.JPG">
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="flex">
+                    <div class="jms-content">
+                        <h3>診斷+除錯。Diagnosing and Troubleshooting</h3>
+                        <div class="linetop"></div>
+                        <p>The World faces unprecedented climate change challenges in the coming years. The PV energy revolution is underway, transforming the world's energy supply into one that is sustainable and secure. Next ...</p>
+                        <a class="jms-link" href="http://www.solarium-taiwan.com/2014/01/green-powercleaning-system.html">Read
+                            more</a>
+                    </div>
+                    <div class="img">
+                        <img src="http://2.bp.blogspot.com/-HHBA2mqLydw/VAVns1A-psI/AAAAAAAAABM/gnzFtkqq3as/s500/DSC01193.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //class
+        class slide{
+            constructor(){
+                this.ul = document.querySelector('#intro')
+                if(!this.ul)return
+                this.lis = this.ul.querySelectorAll('.item')
+                this.liLength = this.lis.length
+                this.index = 0
+                this.dots = null
+                this.timer = null
+                this.creatDiv()
+            }
+            creatDiv(){
+                //controlDiv
+                let controlDiv = document.createElement('div')
+                controlDiv.className='controlDiv'
+                controlDiv.addEventListener('mouseout',()=>{
+                    this.setTimer()
+                })
+                controlDiv.addEventListener('mouseover',()=>{
+                    clearInterval(this.timer)
+                })
+                //prev
+                let prev= document.createElement('div')
+                prev.className='prev'
+                prev.addEventListener('click',()=>{this.now(-1)})
+                controlDiv.appendChild(prev)
+                //next
+                let next=document.createElement('div')
+                next.className='next'
+                next.addEventListener('click',()=>{this.now(1)})
+                controlDiv.appendChild(next)
+                //dot
+                let dotDiv = document.createElement('div')
+                dotDiv.className='dotDiv'
+                Array.prototype.map.call(this.lis,(e,i)=>{
+                    let dot =document.createElement('span')
+                    dot.className='dot'
+                    dot.addEventListener('click',()=>{this.showSlides(i)})
+                    dotDiv.appendChild(dot)
+                })
+                this.dots = dotDiv.querySelectorAll('.dot')
+                controlDiv.appendChild(dotDiv)
+                //
+                this.ul.appendChild(controlDiv)
+                this.showSlides(this.index)
+                //setTimer
+                this.setTimer()
+            }
+            setTimer(){
+                clearInterval(this.timer)
+                this.timer = setInterval(()=>{this.now(1)}, 3000)
+            }
+            now(i){
+                let n = (this.index + i + this.liLength) % this.liLength
+                this.showSlides(n)
+            }
+            showSlides(n){
+                //dot li
+                this.lis[this.index].className = " item"
+                this.dots[this.index].className = 'dot'
+                this.lis[n].className += " active"
+                this.dots[n].className += " active"
+                //當前Index
+                this.index = n;
+            }
+        }
+
+        //fn
+        function showslider() {
+            var ul = document.querySelector('#intro');
+            if (!ul) {
+                return;
+            }
+            var lis = ul.querySelectorAll('.item');
+            var liLength = lis.length;
+            var slideIndex = 0;
+
+            //controllDiv
+            var controllDiv = document.createElement('div');
+            controllDiv.className = 'controllDiv';
+
+            //prev
+            var prev = document.createElement('div');
+            prev.className = 'prev';
+            prev.onclick = function() {
+                now(-1);
+            };
+            controllDiv.appendChild(prev);
+
+            //next
+            var next = document.createElement('div');
+            next.className = 'next';
+            next.onclick = function() {
+                now(1);
+            };
+            controllDiv.appendChild(next);
+
+            //dot
+            var dotDiv = document.createElement('div');
+            var dots = null;
+            dotDiv.className = 'dotDiv';
+            for (var i = 0; i < liLength; i++) {
+                var dot = document.createElement('span');
+                dot.className = 'dot';
+                dot.index = i;
+                dot.onclick = function() {
+                    showSlides(this.index);
+                };
+                dotDiv.appendChild(dot);
+            }
+            dots = dotDiv.querySelectorAll('.dot');
+
+            controllDiv.appendChild(dotDiv);
+            ul.appendChild(controllDiv);
+
+            showSlides(slideIndex);
+
+            function now(n) {
+                var now = (slideIndex + n + liLength) % liLength;
+                showSlides(now);
+            }
+
+            function showSlides(n) {
+                //dot li
+                lis[slideIndex].className = " item";
+                dots[slideIndex].className = 'dot';
+                lis[n].className += " active";
+                dots[n].className += " active";
+
+                //當前Index
+                slideIndex = n;
+            }
+
+            // window.addEventListener('resize', function() {
+            //     lisHeight = lis[0].offsetHeight;
+            //     ul.style.height = lisHeight + 'px';
+            // });
+
+            //auto
+            // var autoSlide = setInterval(function() {
+            //     now(1);
+            // }, 3000)
+            // ul.addEventListener('mouseover', function() {
+            //     clearInterval(autoSlide);
+            // })
+            // ul.addEventListener('mouseout', function() {
+            //     autoSlide = setInterval(function() {
+            //         now(1);
+            //     }, 3000)
+            // })
+        }
+
+        window.onload = function() {
+            new slide()
+            // showslider();
+        }
+    </script>
+</body>
+
+</html>

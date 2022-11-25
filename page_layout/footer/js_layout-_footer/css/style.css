@@ -1,0 +1,144 @@
+.content {
+  height: 8000px;
+}
+
+.footer {
+  margin-top: 80px;
+}
+.footer .top {
+  position: relative;
+  background: #e9e9e9;
+  padding: 20px 0 40px;
+}
+.footer .top small {
+  color: #777;
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 440px;
+}
+.footer .top small i {
+  margin: 0 5px 0 15px;
+}
+.footer .top .up {
+  position: absolute;
+  top: -45px;
+  right: 15px;
+  text-align: center;
+  width: 45px;
+  padding: 15px 0;
+  background: #e9e9e9;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  color: #666666;
+}
+.footer .top .row-item {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.footer .top .footer-nav {
+  width: 50%;
+  text-align: left;
+}
+.footer .top .footer-nav ul {
+  margin: 20px 0 10px;
+}
+.footer .top .footer-nav li {
+  padding: 0;
+}
+.footer .top .footer-nav li + li {
+  border-left: 1px solid #999999;
+  padding-left: 10px;
+  margin-left: 10px;
+  padding-right: 0;
+  line-height: 0.8;
+}
+.footer .top .footer-nav li a {
+  color: #777;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.footer .top .share {
+  width: 50%;
+  text-align: end;
+}
+.footer .top .share p {
+  padding-top: 2px;
+}
+.footer .top .share a {
+  width: 30px;
+  height: 30px;
+  color: #7d7d7d;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .bottom {
+  background: #4e4e4e;
+  padding: 10px 0;
+  color: #cccccc;
+}
+
+@media (max-width: 1200px) {
+  .footer .top .row-item {
+    display: block;
+    text-align: center;
+  }
+  .footer .top .row-item .footer-nav {
+    margin-bottom: 20px;
+  }
+  .footer .top .row-item .share p {
+    display: none;
+  }
+  .footer .top .row-item .footer-nav, .footer .top .row-item .share {
+    width: 100%;
+    text-align: center;
+  }
+}
+@media (max-width: 992px) {
+  .footer .top .footer-nav {
+    text-align: center;
+  }
+  .footer .top small {
+    margin: auto;
+  }
+  .footer .top .share ul {
+    justify-content: center;
+  }
+}
+@media (max-width: 768px) {
+  .footer {
+    text-align: center;
+  }
+  .footer .top ul {
+    margin-top: 0;
+  }
+  .footer .top .col-md-4 {
+    display: none;
+  }
+  .footer .bottom .col-md-4 {
+    text-align: center;
+  }
+}
+@media (max-width: 576px) {
+  .footer {
+    margin-top: 80px;
+  }
+}
+@media (max-width: 420px) {
+  .footer .top {
+    padding: 20px 0;
+  }
+  .footer .top .footer-nav ul.list-inline li {
+    margin-bottom: 8px;
+    display: block;
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 5px;
+  }
+}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            html,
+            body,
+            div,
+            span,
+            applet,
+            object,
+            iframe,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            blockquote,
+            pre,
+            a,
+            abbr,
+            acronym,
+            address,
+            big,
+            cite,
+            code,
+            del,
+            dfn,
+            em,
+            img,
+            ins,
+            kbd,
+            q,
+            s,
+            samp,
+            small,
+            strike,
+            strong,
+            sub,
+            sup,
+            tt,
+            var,
+            b,
+            u,
+            i,
+            center,
+            dl,
+            dt,
+            dd,
+            ol,
+            ul,
+            li,
+            fieldset,
+            form,
+            label,
+            legend,
+            table,
+            caption,
+            tbody,
+            tfoot,
+            thead,
+            tr,
+            th,
+            td,
+            article,
+            aside,
+            canvas,
+            details,
+            embed,
+            figure,
+            figcaption,
+            footer,
+            header,
+            hgroup,
+            menu,
+            nav,
+            output,
+            ruby,
+            section,
+            summary,
+            time,
+            mark,
+            audio,
+            video {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font: inherit;
+                font-size: 100%;
+                vertical-align: baseline;
+            }
+            body {
+                font-family: Helvetica, Arila, "LiHei Pro", "Microsoft JhengHei", "新細明體", serif;
+                margin: 0;
+                padding: 0;
+                /* color:#3e3a39; */
+                color:#999;
+                font-size: 16px;
+                position: relative;
+            }
+            *,
+            *::before,
+            *::after {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            img {
+                border: 0;
+                width: 100%;
+                height: auto;
+                display:block; /*li 間隙*/
+            }
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                padding-right: 15px;
+                padding-left: 15px;
+                margin-right: auto;
+                margin-left: auto;
+                display: flex;
+            }
+            .introduction{
+                padding: 100px 0;
+            }
+            .introduction .container{
+                align-items: flex-end;
+                position: relative;
+            }
+            .introduction .img{
+                width: 80%;
+                min-height: 500px;
+            }
+            .introduction .text{
+                position: absolute;
+                width: 540px;
+                background: #fff;
+                padding: 50px 30px 30px 60px;
+                bottom: 0;
+                right: 0;
+            }
+            .introduction .text h2{
+                font-size: 52px;
+                margin-bottom: 5px;
+                font-weight: 100;
+                color: #181d23;
+            }
+            .introduction .text h2 span{
+                font-weight: bold;
+                color: #dc0000;
+                margin-left: 5px;
+            }
+            .introduction .text h4{
+                margin-bottom: 40px;
+                font-size: 24px;
+                font-weight: 800;
+                color: #181d23;
+            }
+            .introduction .text p{
+                line-height: 2;
+            }
+            .introduction .text p+p{
+                margin-top: 15px;
+            }
+            @media (max-width: 800px) {
+                .introduction .container{
+                    display: block;
+                    padding: 0 30px;
+                }
+                .introduction .img{
+                    width: 100%;
+                    min-height: auto;
+                }
+                .introduction .text{
+                    position: relative;
+                    width: 100%;
+                    padding: 40px 0 0;
+                }
+                .introduction{
+                    padding: 60px 0;
+                }
+            }
+            @media (max-width: 550px) {
+                .introduction .text h2{
+                    font-size: 38px;
+                }
+                .introduction .text h4{
+                    font-size: 28px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="introduction">
+            <div class="container">
+                <div class="img">
+                    <img src="https://picsum.photos/1200/600?0" alt="">
+                </div>
+                <div class="text">
+                    <h2>
+                        ABOUT
+                        <span>BITO</span>
+                    </h2>
+                    <h4>效率、服務 、品質</h4>
+                    <p>有限公司成立於2009年，主要生產高精密線性伺服滑台(XY-table)、工業用機器人與自動包裝等設備。</p>
+                    <p>這幾年來隨著團隊不斷的努力成長與研發,必特科技的專業技術在自動化產業裡已獲得不少業界的認同與重視,必特將以不斷的創新及提升客戶專業技術需求為使命，結合客製化的產品並推動自動化產業之研發，以增加產品精度及生產效能為終極目標,必特一直秉持著最高品質與最好的服務為經營理念來達成每個客戶的期望與需求,打造雙贏的局面。</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

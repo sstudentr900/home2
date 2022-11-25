@@ -1,0 +1,97 @@
+html{
+    background-color: #eee;
+}
+
+#slider {
+    max-width: 640px;
+    height: 320px;
+    margin: 20px auto 50px;
+    position: relative;
+}
+
+#slider img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+
+    border: 8px solid #fff;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#slider img:target {
+    opacity: 1;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+#slider img#five {
+    opacity: 1;
+}
+
+#slider img:not(:target), #slider img:target ~ img#five  {
+    opacity: 0;
+}
+
+
+/* Navigation */
+
+#slider ul{
+    position: absolute;
+    width: 100%;
+    text-align:center;
+    bottom: -65px;
+    padding:0;
+}
+
+#slider ul li {
+    display: inline-block;
+    margin: 0 .5em;
+}
+
+#slider ul li a{
+    margin: 0;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    height: 15px;
+    width: 15px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background: #ccc;
+
+}
+
+#slider ul li a[href="#five"] {
+    /* by default set five to be selected */
+    background: #777;
+}
+
+#one:target ~ ul li a[href="#one"],
+#two:target ~ ul li a[href="#two"],
+#three:target ~ ul li a[href="#three"],
+#four:target ~ ul li a[href="#four"],
+#five:target ~ ul li a[href="#five"] {
+    /*when #id is the target set the link to change to selected color*/
+    background: #777;
+}
+
+#one:target ~ ul li a[href="#five"],
+#two:target ~ ul li a[href="#five"],
+#three:target ~ ul li a[href="#five"],
+#four:target ~ ul li a[href="#five"]{
+    /*set default selected color of five to change to unselected when any other slide is the target  */
+    background: #ccc;
+}

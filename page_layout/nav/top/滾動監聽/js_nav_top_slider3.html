@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>js nav_top_slider</title>
+    <style>
+        body,
+        html,
+        ul{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .bg{
+            height: 1000px;
+            background: rgba(0,0,0,.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bg:nth-child(odd){
+            background: rgba(0,0,0,.5);
+        }
+        #nav{
+            position: fixed;
+            top: 0;
+            right: 0;
+            background: #fff;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        #nav ul{
+            display: flex;
+        }
+        #nav a{
+            color: #888;
+            text-decoration: none;
+            padding:30px;
+        }
+        #nav li.active a{
+            color: #333;
+        }
+        #nav .menu{display: none;}
+        @media(max-width: 800px){
+            #nav .menu{
+                display: block;
+                cursor: pointer;
+            }
+            #nav ul{
+                position: absolute;
+                width: 100%;
+                top: 100%;
+                left: 0;
+                background: #fff;
+                display: block;
+                box-shadow: 0 2px rgba(0,0,0,.5);
+                height: 0;
+                transition: .5s ease-in-out;
+                overflow: hidden;
+            }
+            #nav ul.active{
+                height: 153px;
+                border-top: 1px solid #333;
+            }
+            #nav a{
+                display: block;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div id="nav">
+    <div class="logo">
+      <h2>logo</h2>
+    </div>
+    <ul>
+        <li>
+            <a class="link" href="#home">
+            Home
+            </a>
+        </li>
+        <li>
+            <a class="link" href="#Business">
+               Business
+            </a>
+        </li>
+        <li>
+            <a class="link" href="#Information">
+              Information
+            </a>
+        </li>
+        <li>
+            <a class="link" href="#contact">
+                contact us
+            </a>
+        </li>
+    </ul>
+    <div class="menu">X</div>
+</div>
+<div id='home' class='bg'>
+   <h5>回到首頁</h5>
+</div> 
+<div id='Business' class='bg'>
+   <h5>相關業務</h5>
+</div> 
+<div id='Information' class='bg'>
+   <h5>徵才訊息</h5>
+</div> 
+<div id='contact' class='bg'>
+   <h5>聯絡我們</h5>
+</div>
+<script>
+    function navFn(id) {
+        var nav = document.querySelector(id)
+        var ul = nav.querySelector('ul')
+        var navLi = ul.querySelectorAll('li')
+        var button = nav.querySelector('.menu')
+        var isTop=true
+        var timer=null
+        function className(obj) {
+            for(var i=0;i<navLi.length;i++){
+                navLi[i].className=''
+            }
+            obj.className='active'
+        }
+        function offsetTop(obj) {
+            return document.getElementById(obj.querySelector('a').getAttribute('href').slice(1)).offsetTop
+        }
+        function scrolTopFn() {
+            return document.documentElement.scrollTop || document.body.scrollTop;
+        }
+        function tab(obj) {
+            var offsettop = offsetTop(obj)
+            clearInterval(timer);
+            timer=setInterval(function(){
+                var scollTop = scrolTopFn();
+                var itarget = scollTop-offsettop;
+                var ispeed = itarget<0?Math.ceil(-itarget/8):Math.floor(-itarget/8);
+                if(Math.abs(itarget)<1){
+                    clearInterval(timer);
+                    document.documentElement.scrollTop = document.body.scrollTop = offsettop;
+                    className(obj)
+                }else{
+                    isTop=true;
+                    document.documentElement.scrollTop = document.body.scrollTop = scollTop+ispeed;
+                }
+            },60)
+        }
+        function scrollFn() {
+            Array.prototype.map.call(navLi,function(obj){
+                if(offsetTop(obj) < scrolTopFn() + 120){
+                    className(obj);
+                }
+            })
+            //停止動畫
+            if(!isTop){
+                clearInterval(timer);
+            }
+            isTop=false;
+        }
+
+        button.addEventListener('click',function(){
+            if(ul.className=='active'){
+                ul.className=''
+            }else{
+                ul.className='active'
+            }
+        })
+        Array.prototype.map.call(navLi,function(obj){
+            obj.addEventListener('click',function(e){
+                e.preventDefault();
+                ul.className=''
+                tab(this);
+            })
+        })
+        window.addEventListener('scroll',function () {
+            scrollFn();
+        })
+        scrollFn()
+    }
+    window.onload=function(){
+        navFn('#nav')
+    }
+
+</script>
+</body>
+
+</html>

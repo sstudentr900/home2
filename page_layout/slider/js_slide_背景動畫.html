@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            html,
+            body,
+            div,
+            span,
+            applet,
+            object,
+            iframe,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            blockquote,
+            pre,
+            a,
+            abbr,
+            acronym,
+            address,
+            big,
+            cite,
+            code,
+            del,
+            dfn,
+            em,
+            img,
+            ins,
+            kbd,
+            q,
+            s,
+            samp,
+            small,
+            strike,
+            strong,
+            sub,
+            sup,
+            tt,
+            var,
+            b,
+            u,
+            i,
+            center,
+            dl,
+            dt,
+            dd,
+            ol,
+            ul,
+            li,
+            fieldset,
+            form,
+            label,
+            legend,
+            table,
+            caption,
+            tbody,
+            tfoot,
+            thead,
+            tr,
+            th,
+            td,
+            article,
+            aside,
+            canvas,
+            details,
+            embed,
+            figure,
+            figcaption,
+            footer,
+            header,
+            hgroup,
+            menu,
+            nav,
+            output,
+            ruby,
+            section,
+            summary,
+            time,
+            mark,
+            audio,
+            video {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font: inherit;
+                font-size: 100%;
+                vertical-align: baseline;
+            }
+            body {
+                font-family: Helvetica, Arila, "LiHei Pro", "Microsoft JhengHei", "新細明體", serif;
+                margin: 0;
+                padding: 0;
+                /* color:#3e3a39; */
+                color:#999;
+                font-size: 16px;
+                position: relative;
+            }
+            *,
+            *::before,
+            *::after {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            ul{
+                list-style: none;
+            }
+            img {
+                border: 0;
+                width: 100%;
+                height: auto;
+                display:block; /*li 間隙*/
+            }
+            .slide{
+                position: relative;
+                overflow: hidden;
+                min-height: 500px;
+            }
+            .slide .text{
+                width: 100%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 2;
+                color: #fff;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                padding: 30px;
+            }
+            .slide .text h2{
+                font-size: 52px;
+            }
+            .slide .text p{
+                font-size: 36px;
+                color: inherit;
+                margin-top: 20px;
+            }
+            .slide ul li{
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                opacity: 0;
+                visibility: hidden;
+                transition: visibility 2s, opacity 1.8s;
+            }
+            .slide ul li.active{
+                position: relative;
+                z-index: 1;
+                opacity: 1;
+                visibility: visible;
+                top: 0;
+            }
+            .slide ul li img{
+                transform: scale(1);
+                transition: 6s cubic-bezier(0.4, 0, 1, 1);
+            }
+            .slide ul li.active img{
+                transform: scale(1.1);
+            }
+            @media (max-width: 1090px) {
+                .slide .text{
+                    padding: 80px 30px 30px;
+                }
+            }
+            @media (max-width: 950px) {
+                .slide ul li img{
+                    height: 500px;
+                    width: auto;
+                }
+            }
+            @media (max-width: 550px) {
+                .slide .text h2 {
+                    font-size: 38px;
+                }
+                .slide .text p {
+                    font-size: 28px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slide">
+            <ul>
+                <li>
+                    <img src="https://picsum.photos/1200/600?0" alt="">
+                </li>
+                <li>
+                    <img src="https://picsum.photos/1200/600?1" alt="">
+                </li>
+                <li>
+                    <img src="https://picsum.photos/1200/600?2" alt="">
+                </li>
+            </ul>
+            <div class="text">
+                <h2>ONLY PERFECTION CAN BE INHERITED</h2>
+                <p>工於完美．始得傳承</p>
+            </div>
+        </div>
+        <script>
+            var slide = function(){
+                var body = document.querySelector('body')
+                var lis = body.querySelectorAll('.slide li')
+                var liLength = lis.length
+                var slideIndex = 0
+                var showSlides = function(n){
+                    slideIndex = (slideIndex + n + liLength) % liLength;
+                    lis.forEach(element=>element.classList.remove('active'))
+                    lis[slideIndex].classList.add('active')
+                }
+                setInterval(function() {
+                    showSlides(1)
+                }, 6000)
+                showSlides(0)
+            }
+            slide()
+        </script>
+    </body>
+</html>

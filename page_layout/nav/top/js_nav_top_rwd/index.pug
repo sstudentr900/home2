@@ -1,0 +1,25 @@
+.nav
+    .bottom
+        .container
+            .navbottom
+                .logo
+                    a(href='#')
+                        img(src='https://unsplash.it/180/50')
+                ul.list-inline#navul
+                    li
+                        a(href='about.html') about
+                    li
+                        a(href='product.html') product
+                    li
+                        a(href='company.html') company
+                    li
+                        a(href='new.html') new
+                    li
+                        a(href='contact.html') contact
+                    li
+                        form#navseach(action='search.html')
+                            input(type='text',placeholder='search')
+                            button(type='submit')
+                                i.fa.fa-search
+                a.bars(href='javascript:;' onclick='navshow();')
+                    i.fa.fa-bars

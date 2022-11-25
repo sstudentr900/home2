@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+.help-tip{
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    text-align: center;
+    background-color: #BCDBEA;
+    border-radius: 50%; /* 实现圆角*/
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 26px;
+    cursor: default;
+}
+ 
+.help-tip:before{/* 在.hel-tip元素前加上内容*/
+    content:'?';
+    font-weight: bold;
+    color:#fff;
+}
+ 
+.help-tip:hover p{/* 鼠标在help-tip悬浮时p的样式*/
+    display:block;
+    transform-origin: 100% 0%;/* 设置元素的运动的基点（参照点）*/
+ 
+    -webkit-animation: fadeIn 0.3s ease-in-out; /* 0.3秒内缓冲淡出（参照点）*/
+    animation: fadeIn 0.3s ease-in-out;
+ 
+}
+ 
+.help-tip p{   /* The tooltip */
+    display: none;
+    text-align: left;
+    background-color: #1E2021;
+    padding: 20px;
+    width: 300px;
+    position: absolute;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    right: -4px;
+    color: #FFF;
+    font-size: 13px;
+    line-height: 1.4;
+}
+ 
+.help-tip p:before{ /* 在p元素前加上内容*/
+    position: absolute;
+    content: '';
+    width:0;
+    height: 0;
+    border:6px solid transparent;/* 用边框实现小三角形*/
+    border-bottom-color:#1E2021;
+    right:10px;
+    top:-12px;
+}
+ 
+.help-tip p:after{ /* 在p元素后加上内容*/
+    width:100%;
+    height:40px;
+    content:'';
+    position: absolute;
+    top:-40px;
+    left:0;
+}
+ 
+/* CSS 动画，透明度从0变化到1，大小从0.6变形到1 */
+ 
+@-webkit-keyframes fadeIn {
+    0% { 
+        opacity:0; 
+        transform: scale(0.6);
+    }
+ 
+    100% {
+        opacity:100%;
+        transform: scale(1);
+    }
+}
+ 
+@keyframes fadeIn {
+    0% { opacity:0; }
+    100% { opacity:100%; }
+}
+</style>
+
+<body>
+    <div class="help-tip">
+        <p>This is the same tooltip, but with a picture inside it! <br><br><img src="01.jpg" width="300"></p>
+    </div>
+    <div class="help-tip">
+        <p>This is the same tooltip, but with <b>HTML tags!</b> <a href="http://tutorialzine.com/">And a links!</a> You could do <i><strike>even more</strike></i>!</p>
+    </div>
+</body>
+
+</html>

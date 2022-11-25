@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            html,
+            body,
+            div,
+            span,
+            applet,
+            object,
+            iframe,
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            blockquote,
+            pre,
+            a,
+            abbr,
+            acronym,
+            address,
+            big,
+            cite,
+            code,
+            del,
+            dfn,
+            em,
+            img,
+            ins,
+            kbd,
+            q,
+            s,
+            samp,
+            small,
+            strike,
+            strong,
+            sub,
+            sup,
+            tt,
+            var,
+            b,
+            u,
+            i,
+            center,
+            dl,
+            dt,
+            dd,
+            ol,
+            ul,
+            li,
+            fieldset,
+            form,
+            label,
+            legend,
+            table,
+            caption,
+            tbody,
+            tfoot,
+            thead,
+            tr,
+            th,
+            td,
+            article,
+            aside,
+            canvas,
+            details,
+            embed,
+            figure,
+            figcaption,
+            footer,
+            header,
+            hgroup,
+            menu,
+            nav,
+            output,
+            ruby,
+            section,
+            summary,
+            time,
+            mark,
+            audio,
+            video {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font: inherit;
+                font-size: 100%;
+                vertical-align: baseline;
+            }
+            body {
+                font-family: Helvetica, Arila, "LiHei Pro", "Microsoft JhengHei", "新細明體", serif;
+                margin: 0;
+                padding: 0;
+                /* color:#3e3a39; */
+                color:#999;
+                font-size: 16px;
+                position: relative;
+            }
+            *,
+            *::before,
+            *::after {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            .container {
+                width: 100%;
+                max-width: 1200px;
+                padding-right: 15px;
+                padding-left: 15px;
+                margin-right: auto;
+                margin-left: auto;
+                display: flex;
+            }
+            ul{
+                list-style: none;
+            }
+            a {
+                font-size: 1rem;
+                color: inherit;
+                text-decoration: none;
+                display: block;
+            }
+            /*fnFooter*/
+            .fnFooter{
+                background: #181d23;
+                padding: 60px 0 0;
+            } 
+            .fnFooter .container{
+                flex-wrap: wrap;
+            }
+            .fnFooter a{
+                color: #bbb;
+            }
+            .fnFooter a:hover{
+                color: #fff;
+            }
+            .fnFooter .phone,
+            .fnFooter .email,
+            .fnFooter .nav,
+            .fnFooter .logo{
+                width: 25%;
+                padding: 0 40px 10px;
+                border-left: 1px solid rgba(255,255,255,.1);
+            }
+            .fnFooter .phone span,
+            .fnFooter .email span{
+                color: #dc0000;
+                display: block;
+                margin-bottom: 12px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .fnFooter .logo{
+                border-left: none;
+            }
+            .fnFooter .logo img{
+                max-width: 160px;
+            }
+            .fnFooter .nav ul{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .fnFooter .nav li{
+                width: 50%;
+                margin-bottom: 5px;
+            }
+            .fnFooter .copy-area{
+                border-top: 1px solid rgba(255,255,255,.1);
+                margin-top: 40px;
+                padding: 20px;
+                color: #666;
+                width: 100%;
+                text-align: center;
+            }
+            .fnFooter .copy-area span{
+                font-size: 14px;
+            }
+            @media (max-width: 1160px) {
+                .fnFooter .phone, .fnFooter .email, .fnFooter .nav, .fnFooter .logo{
+                    padding: 0 20px;
+                }
+            }
+            @media (max-width: 900px) {
+                .fnFooter .logo{
+                    margin-bottom: 10px;
+                }
+                .fnFooter .logo, .fnFooter .nav{
+                    width: 100%;
+                    border-left: none;
+                    margin-top: 10px;
+                }
+                .fnFooter .phone, .fnFooter .email{
+                    width: 100%;
+                    display: flex;
+                    border-left: none;
+                }
+                .fnFooter .phone span, .fnFooter .email span{
+                    margin-right: 10px;
+                    margin-bottom: 0;
+                }
+                .fnFooter .nav li{
+                    width: auto;
+                }
+                .fnFooter .nav li+li{
+                    margin-left: 10px;
+                }
+                .fnFooter .logo img {
+                    margin: auto;
+                }
+                .fnFooter .nav ul,
+                .fnFooter .phone, 
+                .fnFooter .email, 
+                .fnFooter .nav, 
+                .fnFooter .logo{
+                    padding: 0;
+                    justify-content: center;
+                    text-align: center;
+                }
+            }
+            @media (max-width: 900px) {
+                .fnFooter .nav{
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="fnFooter">
+            <div class="container">
+                <div class="logo">
+                    <!-- <img src="./img/logo2.png" alt=""> -->
+                    <h2>LOGO</h2>
+                </div>
+                <div class="phone">
+                    <span>phone</span>
+                    <a href="tel:886-3-354-7136">+886-3-354-7136</a>
+                </div>
+                <div class="email">
+                    <span>email</span>
+                    <a href="mailto:King.qty@msa.hinet.net">King.qty@msa.hinet.net</a>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li>
+                            <a href="fnhome.html">首頁</a>
+                        </li>
+                        <li>
+                            <a href="fnintroduction.html">公司簡介</a>
+                        </li>
+                        <li>
+                            <a href="fnproduct.html">產品展示</a>
+                        </li>
+                        <li>
+                            <a href="fnequipment.html">機械設備</a>
+                        </li>
+                        <li>
+                            <a href="fncertification.html">資質認證</a>
+                        </li>
+                        <li>
+                            <a href="fncontact.html">聯絡方式</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="copy-area">
+                    <span>Copyright © Aurex Industries Inc. All rights reserved. Privacy Policy web design by GRNET</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="zh-tw">
+<head>
+<meta name="Generator" content="EditPlus" />
+<meta name="Author" content="男丁格爾's 脫殼玩" />
+<meta name="Keywords" content="" />
+<meta name="Description" content="" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<title>上下垂直選項式廣告輪播</title>
+<style type="text/css">
+	#abgneBlock {
+		padding: 5px;
+		width: 450px;
+		height: 286px;
+		border: 1px solid #ccc;
+	}
+	#abgneBlock #player {
+		position: relative;
+		overflow: hidden;
+		height: 100%;
+	}
+	#abgneBlock ul.list {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+	#abgneBlock ul.list li {
+		float: left;
+		width: 100%;
+		height: 100%;
+	}
+	#abgneBlock .list img{
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+	#abgneBlock ul.playerControl {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		position: absolute;
+		bottom: 120px;
+		right: 5px;
+		height: 20px;
+	}
+	#abgneBlock ul.playerControl li {
+		color: #ff99cc;
+		text-align: center;
+		line-height: 20px;
+		width: 20px;
+		height: 20px;
+		font-family: Arial;
+		font-size: 12px;
+		cursor: pointer;
+		margin: 2px 2px;
+		text-indent: -9999px;
+		background: url(images/control_ico2.gif) no-repeat;
+	}
+	#abgneBlock ul.playerControl li.current {
+		background-position: 0 -21px;
+	}
+	#abgneBlock ul.playerControl li.playerControl_2 {
+		background-position: -21px 0;
+	}
+	#abgneBlock ul.playerControl li.playerControl_2.current {
+		background-position: -21px -21px;
+	}
+	#abgneBlock ul.playerControl li.playerControl_3 {
+		background-position: -42px 0;
+	}
+	#abgneBlock ul.playerControl li.playerControl_3.current {
+		background-position: -42px -21px;
+	}
+	#abgneBlock ul.playerControl li.playerControl_4 {
+		background-position: -63px 0;
+	}
+	#abgneBlock ul.playerControl li.playerControl_4.current {
+		background-position: -63px -21px;
+	}
+	#abgneBlock ul.playerControl li.playerControl_5 {
+		background-position: -84px 0;
+	}
+	#abgneBlock ul.playerControl li.playerControl_5.current {
+		background-position: -84px -21px;
+	}
+	#abgneBlock ul.playerControl li.playerControl_6 {
+		background-position: -105px 0;
+	}
+	#abgneBlock ul.playerControl li.playerControl_6.current {
+		background-position: -105px -21px;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		// 先取得必要的元素並用 jQuery 包裝
+		// 再來取得 $slides 的高度及設定動畫時間
+		var $block = $('#abgneBlock'),
+			$slides = $('#player ul.list', $block),
+			_height = $slides.find('li').height(),
+			$li = $('li', $slides),
+			_animateSpeed = 400;
+		
+		// 產生 li 選項
+		var _str = '';
+		for(var i=0, j=$li.length;i<j;i++){
+			// 每一個 li 都有自己的 className = playerControl_號碼
+			_str += '<li class="playerControl_' + (i+1) + '">' + (i+1) + '</li>';
+		}
+
+		// 產生 ul 並把 li 選項加到其中
+		// 並幫 li 加上 mouseover 事件
+		$('<ul class="playerControl"></ul>').html(_str).appendTo($slides.parent()).find('li').mouseover(function(){
+			var $this = $(this);
+			$this.addClass('current').siblings('.current').removeClass('current');
+			// 移動位置到相對應的號碼
+			$slides.stop().animate({
+				top: _height * $this.index() * -1
+			}, _animateSpeed);
+
+			return false;
+		}).eq(0).mouseover();
+	});
+</script>
+</head>
+
+<body>
+	<div id="abgneBlock">
+		<div id="player">
+			<ul class="list">
+				<li><a target="_blank" href="#"><img src="images/GoldRedenvelope00.jpg"></a></li>
+				<li><a target="_blank" href="#"><img src="images/laluz00.jpg"></a></li>
+				<li><a target="_blank" href="#"><img src="images/MazingerZ00.jpg"></a></li>
+				<li><a target="_blank" href="#"><img src="images/MetalTableware00.jpg"></a></li>
+				<li><a target="_blank" href="#"><img src="images/RuiShidao00.jpg"></a></li>
+				<li><a target="_blank" href="#"><img src="images/uWang00.jpg"></a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

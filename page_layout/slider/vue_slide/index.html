@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>vue.js_slider</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  
+<div id="app">
+  <div class="postarea">
+    <div class="posts" :style="computed_left">
+      <div class="postbox" v-for="(w,id) in works" :class="{cur_item: id==now_index}">
+        <div class="cover" :style="bg_css(w.cover)">
+          <div class="infos">
+            <h1>{{w.title}}</h1>
+            <h5>{{w.description}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="control_left" @click="delta(-1)"><i class="fa fa-angle-left"></i></div>
+  <div class="control_right" @click="delta(1)"><i class="fa fa-angle-right"></i></div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js'></script>
+
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

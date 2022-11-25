@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>css_nav_top</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font: 300 14px "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+      background: #f5f5f5;
+    }
+
+    ul {
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      white-space: nowrap; 
+    }
+    ul li {
+      position: relative; 
+    }
+
+    ul li a {
+      text-decoration: none;
+      color: #777;
+      padding: 10px 20px;
+      display: block;
+      background: url(detail.png) bottom right no-repeat;
+    }
+
+    ul li a:only-child {
+      background: none;
+    }
+    ul li:hover {
+      background: #777;
+    }
+    ul li:hover > a {
+      color: #fff;
+    }
+    ul li:hover > ul {
+      display: block; 
+    }
+    nav > ul > li {
+      display: inline-block; 
+    }
+    ul ul {
+      position: absolute;
+      top: 100%;
+      list-style: none;
+      background: #fff;
+      box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+    ul ul ul {
+      position: absolute;
+      left: 100%;
+      top: 0;
+    }
+  </style>
+  
+</head>
+
+<body>
+
+  <nav>
+  <ul>
+    <li><a href="http://store.apple.com/" target="_blank">Store</a></li>
+    <li>
+      <a href="http://www.apple.com/mac/" target="_blank">Mac</a>
+      <ul>
+          <li>
+            <a href="http://www.apple.com/mac/" target="_blank">Mac</a>
+            <ul>
+                            <li>
+                                <a href="http://www.apple.com/macbookair/" target="_blank">MacBook Air</a>
+                                <ul>
+                                    <li><a href="http://www.apple.com/ilife/" target="_blank">iLife</a></li>
+                                    <li><a href="http://www.apple.com/iwork/" target="_blank">iWork</a></li>
+                                    <li><a href="http://www.apple.com/safari/" target="_blank">Safari</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="http://www.apple.com/macbookpro/" target="_blank">MacBook Pro</a></li>
+                            <li><a href="http://www.apple.com/macmini/" target="_blank">Mac mini</a></li>
+                            <li><a href="http://www.apple.com/imac/" target="_blank">iMac</a></li>
+                            <li><a href="http://www.apple.com/macpro/" target="_blank">Mac Pro</a></li>
+                            <li><a href="http://www.apple.com/macosx/" target="_blank">OS X Lion</a></li>
+                        </ul>
+          </li>
+          <li>
+            <a href="http://www.apple.com/mac/" target="_blank">Applications</a>
+            <ul>
+                            <li><a href="http://www.apple.com/ilife/" target="_blank">iLife</a></li>
+                            <li><a href="http://www.apple.com/iwork/" target="_blank">iWork</a></li>
+                            <li><a href="http://www.apple.com/safari/" target="_blank">Safari</a></li>
+                            <li><a href="http://www.apple.com/aperture/" target="_blank">Aperture</a></li>
+                            <li><a href="http://www.apple.com/finalcutpro/" target="_blank">Final Cut Pro</a></li>
+                            <li><a href="http://www.apple.com/logicpro/" target="_blank">Logic Pro</a></li>
+                        </ul>
+          </li>
+          <li>
+            <a href="http://www.apple.com/mac/" target="_blank">Accessories</a>
+            <ul>
+                            <li><a href="http://www.apple.com/keyboard/" target="_blank">Apple Wireless Keyboard</a></li>
+                            <li><a href="http://www.apple.com/magicmouse/" target="_blank">Magic Mouse</a></li>
+                            <li><a href="http://www.apple.com/magictrackpad/" target="_blank">Magic Trackpad</a></li>
+                            <li><a href="http://www.apple.com/displays/" target="_blank">Apple Thunderbolt Display</a></li>
+                            <li><a href="http://www.apple.com/airportexpress/" target="_blank">Airport Express</a></li>
+                            <li><a href="http://www.apple.com/airportextreme/" target="_blank">Airport Extreme</a></li>
+                            <li><a href="http://www.apple.com/timecapsule/" target="_blank">Time Capsule</a></li>
+                        </ul>
+          </li>
+          <li>
+            <a href="http://www.apple.com/mac/" target="_blank">Server</a>
+            <ul>
+                            <li><a href="http://www.apple.com/macosx/server/" target="_blank">OS X Lion Server</a></li>
+                            <li><a href="http://www.apple.com/macpro/" target="_blank">Mac Pro with Lion Server</a></li>
+                            <li><a href="http://www.apple.com/remotedesktop/" target="_blank">Apple Remote Desktop</a></li>
+                            <li><a href="http://www.apple.com/macmini/server/" target="_blank">Mac mini with Lion Server</a></li>
+                        </ul>
+          </li>
+        </ul>
+    </li>
+    <li><a href="http://www.apple.com/iphone/" target="_blank">iPhone</a></li>
+  </ul>
+</nav>
+  
+  
+
+</body>
+
+</html>

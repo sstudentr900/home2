@@ -1,0 +1,12 @@
+#app
+  .postarea
+    .posts(:style="computed_left")
+      .postbox(v-for="(w,id) in works",:class="{cur_item: id==now_index}")
+        .cover(:style="bg_css(w.cover)")
+          .infos
+            h1 {{w.title}}
+            h5 {{w.description}}
+  .control_left(@click="delta(-1)")
+    i.fa.fa-angle-left
+  .control_right(@click="delta(1)")
+    i.fa.fa-angle-right

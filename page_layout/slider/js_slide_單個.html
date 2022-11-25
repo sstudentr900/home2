@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <title>JavaScript slidedown without jQuery</title>
+    <style>
+        #slideshow {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            /* transition: height .3s ease; */
+            /* height: 0; */
+        }
+        
+        #slideshow ul {
+            transition: transform 0.5s ease;
+            font-size: 0;
+            list-style: none;
+        }
+        
+        #slideshow li {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        #slideshow li:first-child {
+            position: relative;
+        }
+        
+        #slideshow li img {
+            width: 100%;
+            height: auto;
+        }
+        
+        #slideshow .prev,
+        #slideshow .next {
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            opacity: 0;
+            transition: opacity .5s ease;
+            /* background: linear-gradient(to left, transparent 0%, rgba(255, 255, 255, 0.4) 100%); */
+            background: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+        }
+        
+        #slideshow .next {
+            /* background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.4) 100%); */
+            background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+            right: 0;
+        }
+        
+        #slideshow .prev:hover,
+        #slideshow .next:hover {
+            opacity: 1;
+        }
+        
+        #slideshow .prev:hover:after,
+        #slideshow .next:hover:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 40px;
+            z-index: 10;
+            margin-top: -30px;
+            width: 20px;
+            height: 20px;
+            border: 0;
+            /* border-left: 3px solid #002e5f;
+            border-bottom: 3px solid #002e5f; */
+            border-left: 3px solid #fff;
+            border-bottom: 3px solid #fff;
+            transform: rotate(45deg);
+        }
+        
+        #slideshow .next:hover:after {
+            right: auto;
+            left: 40px;
+            transform: rotate(-135deg);
+        }
+        
+        #slideshow .dot {
+            cursor: pointer;
+            margin: 0 5px;
+            border: 1px solid #fff;
+            /* border: 1px solid #002e5f; */
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        #slideshow .dot.active,
+        #slideshow .dot:hover {
+            background: #fff;
+            /* background: #002e5f; */
+        }
+        
+        #slideshow .dotdiv {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        #slideshow .dotOut {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 860px) {
+            #slideshow .prev:hover:after,
+            #slideshow .next:hover:after {
+                width: 10px;
+                height: 10px;
+                right: 70px;
+                margin-top: -10px;
+            }
+            #slideshow .next:hover:after {
+                left: 70px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="slideshow">
+        <ul>
+            <li>
+                <img src="https://picsum.photos/1000/400?1" alt="">
+            </li>
+            <li>
+                <img src="https://picsum.photos/1000/400?2" alt="">
+            </li>
+            <li>
+                <img src="https://picsum.photos/1000/400?3" alt="">
+            </li>
+        </ul>
+    </div>
+    <script>
+        function showslider() {
+            var slideshow = document.getElementById('slideshow');
+            if (!slideshow) {
+                return;
+            }
+            var lis = slideshow.querySelectorAll('li');
+            var lisHeight = lis[0].offsetHeight;
+            var liLength = lis.length;
+            var ul = slideshow.querySelector('ul');
+            var slideIndex = 0;
+
+            //slideshowheight
+            slideshow.style.height = lisHeight + 'px';
+
+            //liWidth
+            for (var i = 0; i < liLength; i++) {
+                lis[i].style.left = (100 * i) + '%';
+                lis[i].style.position = 'absolute';
+            }
+
+            //dotDiv
+            var dotDiv = document.createElement('div');
+            dotDiv.className = 'dotdiv';
+
+            //prev
+            var prev = document.createElement('div');
+            prev.className = 'prev';
+            prev.onclick = function() {
+                now(-1);
+            };
+            dotDiv.appendChild(prev);
+
+            //next
+            var next = document.createElement('div');
+            next.className = 'next';
+            next.onclick = function() {
+                now(1);
+            };
+            dotDiv.appendChild(next);
+
+            //dot
+            var dotOut = document.createElement('div');
+            dotOut.className = 'dotOut';
+            for (var i = 0; i < liLength; i++) {
+                var dot = document.createElement('span');
+                dot.className = 'dot';
+                dot.index = i;
+                dot.onclick = function() {
+                    showSlides(this.index);
+                };
+                dotOut.appendChild(dot);
+            }
+
+            dotDiv.appendChild(dotOut);
+            slideshow.appendChild(dotDiv);
+
+            showSlides(slideIndex);
+
+            function now(n) {
+                var now = (slideIndex + n + liLength) % liLength;
+                showSlides(now);
+            }
+
+
+            function showSlides(n) {
+                //當前Index
+                slideIndex = n;
+
+                //ul move
+                ul.style.transform = 'translateX(-' + (100 * n) + '%)';
+
+                //dot
+                var dots = slideshow.querySelectorAll('.dot');
+
+                for (var i = 0; i < dots.length; i++) {
+                    dots[i].className = 'dot';
+                }
+                dots[n].className += " active";
+            }
+
+            window.addEventListener('resize', function() {
+                lisHeight = lis[0].offsetHeight;
+                slideshow.style.height = lisHeight + 'px';
+            });
+
+            //auto
+            var autoSlide = setInterval(function() {
+                now(1);
+            }, 3000)
+            slideshow.addEventListener('mouseover', function() {
+                clearInterval(autoSlide);
+            })
+            slideshow.addEventListener('mouseout', function() {
+                autoSlide = setInterval(function() {
+                    now(1);
+                }, 3000)
+            })
+        }
+        window.onload = function() {
+            showslider();
+        }
+    </script>
+</body>
+
+</html>

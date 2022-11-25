@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>js_slider-more-unlimited02</title>
+        <style>
+            .list-inline {
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                font-size: 0;
+            }
+            .list-inline>li {
+                display: inline-block;
+                padding: 0;
+            }
+            img.img-responsive {
+                width: 100%;
+            }
+            * {
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            a{
+            text-decoration: none;
+            }
+            h3 {
+                font-size: 24px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+            p {
+                margin: 0;
+            }
+            #slider02{
+                position: relative;
+                width: 800px;
+                padding: 0 40px;
+                margin: auto;
+                text-align: center;
+            }
+            #slider02 .content{
+                overflow: hidden;
+            }
+            #slider02 ul{
+                margin-left: 0;
+                font-size: 0;
+                width: 1800px;
+                /*margin: 0 -15px;*/
+            }
+            #slider02 li{
+                width: 350px;
+                padding: 0 15px;
+                vertical-align: top;
+            }
+            #slider02 li .text p{
+                font-size: 16px;
+                min-height: 90px;
+                color: #888;
+            }
+            #slider02 h3{
+                margin-top: 20px;
+                color: #222;
+                transition: .5s ease;
+            }
+            #slider02 .img{
+                overflow: hidden;
+            }
+            #slider02 img{
+                transform: scale(1);
+                transition: .5s ease;
+            }
+            #slider02 li:hover img{
+                transform: scale(1.1);
+            }
+            #slider02 li:hover h3{
+                color: #4a1430;
+            }
+            #slider02 .control>div{
+                position: absolute;
+                left: 5px;
+                top: 40%;
+                width: 25px;
+                height: 25px;
+                box-shadow: 4px 4px #888;
+                transform: rotate(135deg);
+                cursor: pointer;
+            }
+            #slider02 .control .next{
+                left: auto;
+                right: 5px;
+                transform: rotate(-45deg);
+            }
+            #slider02 .control>div:hover{
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="slider02">
+            <div class="content">
+                <ul class="list-inline">
+                    <li>
+                        <a class="linkItem" href="threeGorges/index.html" target="_blank">
+                            <div class="img parallaxFn">
+                                <img class="img-responsive" src="https://picsum.photos/300/300" alt="">
+                            </div>
+                            <div class="text">
+                                <h3>VR三峽</h3>
+                                <p>在這裡，戴上VR眼鏡你不只可以漫步老街，也可以一探清水祖師廟的莊嚴廟宇，想回到現代?也可以帶您到百年古厝煥然一新的甘樂文創!</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkItem" href="anping/index.html" target="_blank">
+                            <div class="img parallaxFn">
+                                <img class="img-responsive" src="https://picsum.photos/300/300" alt="">
+                            </div>
+                            <div class="text">
+                                <h3>VR安平</h3>
+                                <p>台南除了小吃還具有許多值得您來的景點，從天上看從地上看都是安平，還沒來過安平?那就戴上VR眼鏡跟著我們一起逛吧!</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkItem" href="#" target="_blank">
+                            <div class="img parallaxFn">
+                                <img class="img-responsive" src="https://picsum.photos/300/300" alt="">
+                            </div>
+                            <div class="text">
+                                <h3>客製拍攝</h3>
+                                <p>想要與眾不同獨一無二嗎?不論是戶外活動、婚禮紀錄、工商宣傳片等都可為您量身拍攝，不想再拍死板板的2D平面圖，快來聯絡我們！</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkItem" href="#" target="_blank">
+                            <div class="img parallaxFn">
+                                <img class="img-responsive" src="https://picsum.photos/300/300" alt="">
+                            </div>
+                            <div class="text">
+                                <h3>宜蘭力麗威斯汀酒店</h3>
+                                <p>想要與眾不同獨一無二嗎?不論是戶外活動、婚禮紀錄、工商宣傳片等都可為您量身拍攝，不想再拍死板板的2D平面圖，快來聯絡我們！</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="linkItem" href="#" target="_blank">
+                            <div class="img parallaxFn">
+                                <img class="img-responsive" src="https://picsum.photos/300/300" alt="">
+                            </div>
+                            <div class="text">
+                                <h3>客製拍攝</h3>
+                                <p>想要與眾不同獨一無二嗎?不論是戶外活動、婚禮紀錄、工商宣傳片等都可為您量身拍攝，不想再拍死板板的2D平面圖，快來聯絡我們！</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="control">
+                <div class="previous"></div>
+                <div class="next"></div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            slider02();
+            function slider02(){
+                var $slider02 = $('#slider02');
+                var $content = $slider02.find('.content');
+                var $next = $slider02.find('.next');
+                var $previous = $slider02.find('.previous');
+                var $Li = $slider02.find('li');
+                var $LiLeng = $Li.length;
+                var $Ul = $slider02.find('ul');
+                var $LiW;
+                var $UlW;
+                var slideIndex = 0;
+                var flow;
+
+
+                //複製
+                $Ul.append($Li.clone());
+                init();
+                function init(){
+                    var mid = window.matchMedia( "(min-width: 992px)" );
+                    var md = window.matchMedia( "(max-width: 992px)" );
+                    var sm = window.matchMedia( "(max-width: 620px)" );
+                    if(mid.matches) {
+                        $LiW = $content.width() /3;
+                    }
+                    if(md.matches) {
+                        $LiW = $content.width() /2;
+                    }
+                    if(sm.matches){
+                        $LiW = $content.width();
+                    }
+
+                    var $newLi = $slider02.find('li');
+                    $UlW = $LiW * $newLi.length;
+                    $newLi.map(function(){
+                        $(this).css('width',$LiW);
+                    });
+                    $Ul.css({
+                        'width': $UlW,
+                        'marginLeft': 0
+                    });
+
+                    //小於三且寬度大於992
+                    if($LiLeng<=3 && mid.matches){
+                        $slider02.find('.control').hide();
+                    }else{
+                        $slider02.find('.control').show();
+                        //自動播
+                        clearInterval(flow);
+                        autoSlide();
+                    }
+                }
+                function autoSlide(){
+                    flow = setInterval(ulMove,4000);
+                }
+
+                $previous.on('click',function(){
+                    ulMove(1);
+                });
+                $next.on('click',function(){
+                    ulMove(-1);
+                });
+                $slider02.on('mouseover',function(){
+                    clearInterval(flow);
+                });
+                $slider02.on('mouseout',function(){
+                    autoSlide();
+                });
+                $(window).resize(function(){
+                    init();
+                })
+
+                function ulMove(n){
+                    var n = n||1;
+                    var now = slideIndex + n;
+                    if(now == -1){
+                        $Ul.css('marginLeft',-$LiW*$LiLeng);
+                        now = $LiLeng-1;
+                    }
+                    if(!$Ul.is(":animated")){
+                        $Ul.animate({
+                            marginLeft: -($LiW*now)
+                        },200,function(){
+                            if(now == $LiLeng){
+                                $Ul.css('marginLeft',0);
+                                now = 0;
+                            }
+                            slideIndex = now;
+                        })
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

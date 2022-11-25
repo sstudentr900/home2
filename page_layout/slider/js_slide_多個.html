@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: #666;
+            color: #fff;
+        }
+        
+        .slideDiv {
+            max-width: 1000px;
+            margin: auto;
+        }
+        
+        .slide {
+            opacity: 0;
+            max-width: 960px;
+            margin: auto;
+            padding: 40px 0;
+            overflow: hidden;
+        }
+        
+        .slide ul {
+            display: flex;
+            transition: .8s;
+            list-style: none;
+        }
+        
+        .slide li {
+            width: 226px;
+            padding: 0 16px;
+            text-align: center;
+        }
+        
+        .slide .img {
+            width: 160px;
+            height: 160px;
+            background: url('https://picsum.photos/200/200?1') no-repeat center;
+            background-size: cover;
+            border-radius: 50%;
+            margin: auto;
+        }
+        
+        .slide li:nth-child(2) .img {
+            background: url('https://picsum.photos/200/200?2') no-repeat center;
+            background-size: cover;
+        }
+        
+        .slide li:nth-child(3) .img {
+            background: url('https://picsum.photos/200/200?3') no-repeat center;
+            background-size: cover;
+        }
+        
+        .slide li:nth-child(4) .img {
+            background: url('https://picsum.photos/200/200?4') no-repeat center;
+            background-size: cover;
+        }
+        
+        .slide li:nth-child(5) .img {
+            background: url('https://picsum.photos/200/200?5') no-repeat center;
+            background-size: cover;
+        }
+        
+        .slide li:nth-child(6) .img {
+            background: url('https://picsum.photos/200/200?6') no-repeat center;
+            background-size: cover;
+        }
+        
+        .slide li:nth-child(7) .img {
+            background: url('https://picsum.photos/200/200?7') no-repeat center;
+            background-size: cover;
+        }
+        
+        .slide li:nth-child(8) .img {
+            background: url('https://picsum.photos/200/200?8') no-repeat center;
+            background-size: cover;
+        }
+        
+        .slide li:nth-child(9) .img {
+            background: url('https://picsum.photos/200/200?9') no-repeat center;
+            background-size: cover;
+        }
+        
+        .slide li:nth-child(10) .img {
+            background: url('https://picsum.photos/200/200?10') no-repeat center;
+            background-size: cover;
+        }
+        
+        .slide h6 {
+            color: #A28662;
+            margin: 32px 0 2px;
+        }
+        
+        .slide p {
+            text-align: inherit;
+            opacity: 1;
+        }
+        
+        .slide .points {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .slide .points span {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .3);
+            display: block;
+            margin: 6px;
+            cursor: pointer;
+        }
+        
+        .slide .points span.active {
+            background: rgba(255, 255, 255, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slideDiv">
+        <div class="slide">
+            <ul class="ul-unstyle">
+                <li>
+                    <div class="img"></div>
+                    <div class="text">
+                        <h6>TECHNICAL DIRECTOR</h6>
+                        <p>楊宏宇</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="img"></div>
+                    <div class="text">
+                        <h6>HEAD COACH</h6>
+                        <p>賴嘉慧</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="img"></div>
+                    <div class="text">
+                        <h6>COACH</h6>
+                        <p>陳方璞</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="img"></div>
+                    <div class="text">
+                        <h6>COACH</h6>
+                        <p>洪子又</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="img"></div>
+                    <div class="text">
+                        <h6>coach</h6>
+                        <p>蘇丸如</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="img"></div>
+                    <div class="text">
+                        <h6>coach</h6>
+                        <p>賴芷旻</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="img"></div>
+                    <div class="text">
+                        <h6>COACH</h6>
+                        <p>楊子璇</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="img"></div>
+                    <div class="text">
+                        <h6>Stables administrator</h6>
+                        <p>許哥</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="img"></div>
+                    <div class="text">
+                        <h6>Teaching assistant</h6>
+                        <p>林珮芸</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="img"></div>
+                    <div class="text">
+                        <h6> Foreign equestrian coach</h6>
+                        <p>Alex van Silfhout</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function coachslider() {
+            var slide = document.querySelectorAll('.slide')[0]
+            var ul = slide.querySelectorAll('ul')[0];
+            var slideW = 0;
+            var init = function() {
+                var showLi = 1;
+                var li = slide.querySelectorAll('li');
+                var liL = li.length;
+                var lg = window.matchMedia("(min-width: 1100px)");
+                var md = window.matchMedia("(min-width: 760px)");
+                var sm = window.matchMedia("(min-width: 600px)");
+                if (lg.matches) {
+                    showLi = 4;
+                } else if (md.matches) {
+                    showLi = 3;
+                } else if (sm.matches) {
+                    showLi = 2;
+                }
+
+                slideW = slide.offsetWidth
+                var liW = slideW / showLi
+                li.forEach(function(i) {
+                    i.style.width = liW + 'px'
+                })
+                ul.style.width = liW * liL + 'px'
+                ul.style.marginLeft = '0px'
+
+                //point
+                var points = slide.querySelector('.points');
+                if (points) {
+                    points.innerHTML = '';
+                } else {
+                    points = document.createElement('div');
+                    points.className = 'points'
+                }
+
+                for (let i = 0; i < Math.ceil(liL / showLi); i++) {
+                    var dot = document.createElement('span');
+                    if (i == 0) {
+                        dot.classList.add('active')
+                    }
+                    dot.onclick = function() {
+                        move(i);
+                    };
+                    console.log(points)
+                    points.append(dot);
+                }
+                slide.append(points)
+                slide.style.opacity = '1';
+            }
+            var move = function(i) {
+                //move
+                var dis = i * slideW;
+                ul.style.marginLeft = -dis + 'px'
+
+                //active
+                var spans = slide.querySelectorAll('.points span')
+                spans.forEach(function(i) {
+                    i.classList.remove('active')
+                })
+                spans[i].classList.add('active');
+            }
+            window.onresize = function() {
+                init();
+            }
+            init();
+        }
+
+        window.onload = function() {
+            coachslider();
+        }
+    </script>
+</body>
+
+</html>

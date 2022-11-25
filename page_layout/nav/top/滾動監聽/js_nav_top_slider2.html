@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>js nav_top_slider</title>
+    <style>
+        .bg{
+            height: 1000px;
+            background: rgba(0,0,0,.1);
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+        .nav{
+            position: fixed;
+            top: 20px;
+            right:0;
+            z-index: 999;
+        }
+        .nav .logo h2{
+            margin: 0;
+            padding: 5px;
+        }
+        .nav .logo ,.nav .linkout{float: left;}
+        .nav a{
+            text-align: left;
+            color: #333;
+            text-decoration: none;
+            transition: .4s;
+            display: inline-block;
+            padding: 5px 30px 5px 10px;
+            border-left: 1px solid #bbb;
+        }
+        .nav a >*{
+            margin: 0;
+        }
+        .nav a h5{
+            color: #000;
+        }
+        .nav a p{
+            color: #888;
+            font-size: 12px;
+        }
+        .nav a:hover h5,.nav a.active h5{
+            color: #d90009;
+        }
+        .nav img{
+            width: 40px;
+            margin-right: 10px;
+            vertical-align: bottom;
+        }
+        .nav .close{display: none;}
+        @media (max-width: 840px) {
+            .nav{
+                width: 102%;
+                height: 100%;
+                top: 0;
+                left: 102%;
+                transition: .4s;
+                cursor: pointer;
+            }
+            .nav.active{
+                left: 0;
+            }
+            .nav .logo{
+                position: absolute;
+                left: -60px;
+                top: 20px;
+                z-index: 999;
+            }
+            .nav .linkout{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                background-color: rgba(0,0,0,.8);
+                padding-top: 28vw;
+            }
+            .nav a{
+                border-left: none;
+                display: block;
+                text-align: center;
+                padding: 20px 15px;
+            }
+            .nav a h5 {
+                color: #ddd;
+                font-size: 24px;
+            }
+            .nav img {
+                width: 45px;
+                margin-right: 0;
+            }
+            .nav .close{
+                position: absolute;
+                top:30px;
+                right: 30px;
+                color: #fff;
+                font-size: 45px;
+                cursor: pointer;
+            }
+            .nav .close{display: block;}
+        }
+    </style>
+</head>
+
+<body>
+<div id="nav" class="nav list-inline">
+    <div id="logo" class="logo">
+      <h2>logo</h2>
+    </div>
+    <div class="linkout">
+        <a class="link" href="#home">
+            <h5>回到首頁</h5>
+            <p>Home</p>
+        </a>
+        <a class="link" href="#Business">
+            <h5>相關業務</h5>
+            <p>Business</p>
+        </a>
+        <a class="link" href="#Information">
+            <h5>徵才訊息</h5>
+            <p>Information</p>
+        </a>
+        <a class="link" href="#contact">
+            <h5>聯絡我們</h5>
+            <p>contact us</p>
+        </a>
+        <div class="close">×</div>
+    </div>
+</div>
+<div id='home' class='bg'>
+   <h5>回到首頁</h5>
+</div> 
+<div id='Business' class='bg'>
+   <h5>相關業務</h5>
+</div> 
+<div id='Information' class='bg'>
+   <h5>徵才訊息</h5>
+</div> 
+<div id='contact' class='bg'>
+   <h5>聯絡我們</h5>
+</div>
+<script>
+  window.onload=function(){
+      var nav = document.getElementById('nav');
+      var logo = document.getElementById('logo');
+      // var main = document.getElementById('main');
+      var stScroll = document.getElementById('stScroll');
+      var link = nav.querySelectorAll(".link");
+      var close = nav.querySelector(".close");
+      var offsettop;
+      var isTop=true;
+      var timer=null;
+      var now = 0;
+
+      /*nav*/
+      for(i =0;i<link.length;i++){
+          link[i].index=i;
+          link[i].onclick=function(e){
+              e.preventDefault();
+              now=this.index;
+              tab();
+          }
+      }
+      //手機
+      logo.addEventListener('click',function(){
+          if ( document.body.clientWidth < 840 ){
+              nav.className +=" active";
+              // main.className = "blur";
+              close.onclick=function(e){
+                  e.preventDefault();
+                  nav.className ="nav list-inline";
+                  // main.className = "";
+              }
+              for(i =0;i<link.length;i++){
+                  link[i].index=i;
+                  link[i].onclick=function(e){
+                      e.preventDefault();
+                      nav.className ="nav list-inline";
+                      // main.className = "";
+                      now=this.index
+                      tab();
+                  }
+              }
+          }
+      })
+
+      window.onscroll=function(){
+          var fromTop = document.documentElement.scrollTop||document.body.scrollTop;
+          Array.prototype.map.call(link, function(obj) {
+              if(document.getElementById(obj.getAttribute("href").slice(1)).offsetTop< fromTop+80){
+                  for(i =0;i<link.length;i++){
+                      link[i].className="link";
+                  }
+                  obj.className = "link active";
+              };
+          });
+          //停止動畫
+          if(!isTop){
+              clearInterval(timer);
+          }
+          isTop=false;
+      };
+      function tab(){
+          for(i =0;i<link.length;i++){
+              link[i].className="link";
+          }
+          offsettop = document.getElementById(link[now].getAttribute("href").slice(1)).offsetTop;
+          clearInterval(timer);
+          timer=setInterval(function(){
+              var scollTop = document.documentElement.scrollTop||document.body.scrollTop;
+              var itarget = scollTop-offsettop;
+              var ispeed = itarget<0?Math.ceil(-itarget/8):Math.floor(-itarget/8);
+              if(Math.abs(itarget)<1){
+                  clearInterval(timer);
+                  document.documentElement.scrollTop=document.body.scrollTop = offsettop;
+              }else{
+                  isTop=true;
+                  document.documentElement.scrollTop=document.body.scrollTop = scollTop+ispeed;
+              }
+          },50)
+      }
+
+  }
+</script>
+</body>
+
+</html>

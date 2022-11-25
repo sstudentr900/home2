@@ -1,0 +1,114 @@
+*
+  font-family: 微軟正黑體
+  
+@mixin trans($t:0.5s,$td:0s)
+  transition: $t $td
+@mixin flex_center
+  display: flex
+  justify-content: center
+  align-items: center
+
+@mixin size($w,$h:$w)  
+  width: $w
+  height: $h
+html,body
+  +size(100%)
+  overflow: hidden
+  background-color: #1c1c1c
+  // transition: 0.5s
+#app
+  +size(100%)
+  +flex_center
+.postarea
+  position: relative
+  +size(930px,250px)
+  white-space: nowrap
+.posts
+  position: relative
+  height: 100%  
+  transition: 0.5s ease
+.postbox
+  height: 100%  
+  display: inline-block
+  cursor: pointer
+  .cover
+    +size(330px,100%)
+    background-color: white
+    margin: 0 300px
+    background-size: 110% auto
+    background-position: center center
+    +flex_center
+    // +trans
+    // cursor: pointer
+    //設定陰影
+    box-shadow: 0px 0px 30px rgba(0,0,0,0.3)
+    transition: 0.5s
+    &:hover
+      +size(340px,110%)
+      .infos
+        // +trans
+        transform: translateX(-220px) translateX(-10px)
+      //封面背景放大
+      .cover
+        background-size: 110% auto
+  .infos
+    color: white
+    transform: translateX(-200px)
+    text-shadow: 0 0 30px rgba(black,0.3)
+    transition: 0.5s
+    *
+      margin: 0
+    h1
+      margin-bottom: 10px
+      font-size: 50px
+      font-weight: 400
+    h5
+      background-color: white
+      color: black
+      padding: 4px 12px
+      font-size: 20px
+      font-weight: 300
+      box-shadow: 0 0 30px rgba(black,0.3)
+@keyframes fadeIn
+  0%
+    opacity: 0
+    transform: translateX(30px)
+    filter: saturate(0%)
+  100%
+    opacity: 1
+    transform: translateX(0px)
+    filter: saturate(100%)
+@keyframes sliceIn
+  0%
+    transform: translateX(-50px)
+  100%
+    transform: translateX(0px)
+
+.cur_item
+  .cover
+    animation: fadeIn 1s ease both
+  .infos
+    h5
+      animation: sliceIn 1s 0.1s ease
+    
+.control_left,.control_right
+  +size(40px)
+  border: solid 1px white
+  position: fixed
+  border-radius: 50%
+  color: white
+  font-size: 30px
+  +flex_center
+  cursor: pointer
+  +trans
+  &:hover
+    background-color: white
+    color: black
+  
+.control_left  
+  left: 50px
+.control_right 
+  right: 50px  
+  
+      
+      
