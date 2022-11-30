@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>1:1 Image </h2>
+    <style>
+      .row{
+        display: flex;
+      }
+      .col-3{
+        width: 25%;
+        margin-right: 10px;
+      }  
+      .asp-img,
+      .pos-img {
+        position: relative;
+        width: 100%;
+      }
+      .pos-img img ,
+      .asp-img img {
+        position: absolute;
+        width: 100%;
+        height: 100%!important;
+        /* display: block;
+        -o-object-fit: cover; */
+        object-fit: cover;
+      }
+      .bgCover-img {
+        display: flex;
+        width: 100%;
+        flex: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+      .pos-img[data-size="1x1"] {
+        padding-bottom: 100%;
+      }
+      .asp-img[data-size="1x1"] {
+        aspect-ratio: 1/1;
+      }
+      .bgCover-img[data-size="1x1"] {
+        padding-bottom: 100%;
+      }
+    </style>
+    <div class="row">
+      <div class="col-3">
+        <div class="pos-img" data-size="1x1">
+          <img src="https://picsum.photos/800/?image=123" alt="">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="asp-img" data-size="1x1">
+          <img src="https://picsum.photos/800/?image=123" alt="">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="bgCover-img" data-size="1x1" style="background-image: url('https://picsum.photos/400/300/?image=125');"></div>
+      </div>
+    </div>
+    <h2>3:4 Image</h2>
+    <style>
+      .pos-img[data-size="3x4"] {
+        padding-bottom: 75%;
+      }
+      .asp-img[data-size="3x4"] {
+        aspect-ratio: 4/3;
+      }
+      .bgCover-img[data-size="3x4"] {
+        padding-bottom: 75%;
+      }
+    </style>
+    <div class="row">
+      <div class="col-3">
+        <div class="pos-img" data-size="3x4">
+          <img src="https://picsum.photos/800/?image=123" alt="">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="asp-img" data-size="3x4">
+          <img src="https://picsum.photos/800/?image=123" alt="">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="bgCover-img" data-size="3x4" style="background-image: url('https://picsum.photos/400/300/?image=125');"></div>
+      </div>
+    </div>
+    <h2>16:9 Image <span>(9/16)*100=56.25%</span></h2>
+    <style>
+      .pos-img[data-size="16x9"] {
+        padding-bottom: 56.25%;
+      }
+      .asp-img[data-size="16x9"] {
+        aspect-ratio: 16/9;
+      }
+      .bgCover-img[data-size="16x9"] {
+        padding-bottom: 56.25%;
+      }
+    </style>
+    <div class="row">
+      <div class="col-3">
+        <div class="pos-img" data-size="16x9">
+          <img src="https://picsum.photos/800/?image=123" alt="">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="asp-img" data-size="16x9">
+          <img src="https://picsum.photos/800/?image=123" alt="">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="bgCover-img" data-size="16x9" style="background-image: url('https://picsum.photos/400/300/?image=125');"></div>
+      </div>
+    </div>
+    <!-- <pre class="prettyprint">
+      <xmp>
+        <style>
+          .img{
+            background-image:
+            url(https://mdn.mozillademos.org/files/11305/firefox.png),
+            linear-gradient(to right, rgba(30, 75, 115, 1),  rgba(255, 255, 255, 1));
+          }
+        </style>
+      </xmp>
+    </pre> -->
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://codepen.io/floraya/pen/abWVpYY?editors=1100" target="_blank">RWD Img 等比例響應圖片 寫法</a>
+      </li>
+    </ul>
+  </body>
+</html>
