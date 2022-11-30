@@ -10,30 +10,29 @@
 
 <body>
     <script>
-        let time = 0
-
         function countdown(second = 5) {
-            return new Promise((resolve, reject) => {
-                let start = null;
-                let limit = second * 1000;
-                let count = 0;
-                let number = 0;
-                let self = this;
-                let animation = function(t) {
-                    if (start === null) start = t;
-                    count = t - start;
-                    number = Math.floor(count / 1000)
-                    if (count < limit) {
-                        requestAnimationFrame(animation);
-                    } else {
-                        number = second;
-                        resolve()
-                    }
-                    time = second - number;
-                    console.log(time)
-                }
+          let time = 0
+          return new Promise((resolve, reject) => {
+            let start = null;
+            let limit = second * 1000;
+            let count = 0;
+            let number = 0;
+            let self = this;
+            let animation = function(t) {
+              if (start === null) start = t;
+              count = t - start;
+              number = Math.floor(count / 1000)
+              if (count < limit) {
                 requestAnimationFrame(animation);
-            })
+              } else {
+                number = second;
+                resolve()
+              }
+              time = second - number;
+              console.log(time)
+            }
+            requestAnimationFrame(animation);
+          })
         }
         countdown().then(() => {
             console.log('ok')
