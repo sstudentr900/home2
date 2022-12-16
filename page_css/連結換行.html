@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+    <h3>word-break</h3>
+    <ol>
+      <li>word-break: break-all=>英文單詞會截斷</li>
+      <li>word-break: break-word=>英文單詞不會截斷</li>
+    </ol>
+    <br>
+    <br>
+    <h3>display: contents;</h3>
+    <p>元素本身不会被渲染，但是其子元素能够正常被渲染。</p>
+    <style>
+      .one a{
+        display: contents;
+      }
+    </style>
+    <div class="one">
+      我<a href="#">同意使用者條款與隱私政策</a>並註冊
+    </div>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://shubo.io/word-wrap-vs-word-break/" target="_blank">word-break, word-wrap, overflow-wrap 的差別是什麼? 如何用 CSS 強制文字換行?</a>
+      </li>
+      <li>
+        <a href="https://juejin.cn/post/6844903973678219277" target="_blank">word-break, word-wrap, overflow-wrap 的差別是什麼? 如何用 CSS 強制文字換行?</a>
+      </li>
+    </ul>
+</body>
+
+</html>

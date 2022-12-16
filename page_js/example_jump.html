@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script> -->
+  <style>
+    /*****publicJumpWindow****/
+    .publicJumpWindow{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .publicJumpWindow .box{
+      width: 465px;
+      padding: 30px;
+      background: #FFFFFF;
+      border-radius: 8px;
+    }
+    .publicJumpWindow .top{
+      border-bottom: 1px solid #D6E4EC;
+      padding-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .publicJumpWindow .top .title{
+      font-weight: 700;
+      font-size: 24px;
+    }
+    .publicJumpWindow .top .close{
+      cursor: pointer;
+    }
+    .publicJumpWindow .content{
+      padding: 10px;
+      min-height: 120px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .publicJumpWindow .content p.remind{
+      font-weight: 400;
+      font-size: 18px;
+      color: #9D9D9D;
+      line-height: 26px;
+    }
+    .publicJumpWindow .link{
+      width: 100%;
+      display: flex;
+      justify-content: end;
+    }
+    .publicJumpWindow .link .send,
+    .publicJumpWindow .link .cancel{
+      padding: 15px 35px;
+      border-radius: 4px;
+      box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.016);
+      cursor: pointer;
+      user-select: none;
+    }
+    .publicJumpWindow .link .cancel{
+      border: 1px solid #0C090A;
+      color: #0C090A;
+      margin-right: 23px;
+    }
+    .publicJumpWindow .link .send{
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #0C090A;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body id="program">
+  <button>彈窗</button>
+  <script>
+    function publicCreatHtml(o) {
+      var tage = o.tage || ''
+      var text = o.text || ''
+      var cl = o.cl || ''
+      var attr = o.attr || ''
+      var addHtml = o.addHtml || ''
+      var method = o.method || 'click'
+      var handler = o.handler || ''
+      // var addhandler = o.addhandler || ''
+      var html = document.createElement(tage)
+      if (text) {
+        html.innerHTML = text
+      }
+      if (cl) {
+        html.className = cl
+      }
+      if (attr) {
+        attr = Array.isArray(attr) ? attr : [attr]
+        attr.forEach((element) => {
+          Object.keys(element).forEach((item, i) => {
+            html.setAttribute(item, element[item])
+          })
+        })
+        // for(var i=0;i<attr.length;i++){
+        //     html.setAttribute(attr[i]['n'],attr[i]['v'])
+        // }
+      }
+      if (addHtml) {
+        addHtml = Array.isArray(addHtml) ? addHtml : [addHtml]
+        // console.log(addHtml)
+        addHtml.forEach(element => html.append(element))
+      }
+      if (handler) {
+        html.addEventListener(method, handler.bind(html), false)
+      }
+      // if (addhandler) {
+      //     html.addEventListener(method, addhandler.bind(html), false)
+      // }
+      return html;
+
+      //使用方式
+      // function creatTitle(o) {
+      //   return publicCreatHtml({
+      //       'tage': 'div',
+      //       'cl': o.addcl ? 'customTitle ' + o.addcl : 'customTitle',
+      //       'addHtml': [
+      //           publicCreatHtml({
+      //               'tage': 'h3',
+      //               'text': o.title,
+      //           }),
+      //           o.more ? publicCreatHtml({
+      //               'tage': 'a',
+      //               'cl': 'customMore',
+      //               'attr': { 'href': o.more['id'] },
+      //               'text': o.more['text'],
+      //           }) : '',
+      //       ]
+      //   })
+      // }
+    }
+    function publicJumpClose(){
+      const customjump = document.querySelector('.publicJumpWindow')
+      customjump ? customjump.remove() : ''
+    }
+    function publicJump(o) {
+      const content = o.content
+      const titleText = o.titleText
+      const closeHandler = o.closeHandler?o.closeHandler:publicJumpClose
+      const cancel = o.cancel?false:true
+      const cancelText = o.cancelText?o.cancelText:''
+      const cancelHandler = o.cancelHandler?o.cancelHandler:publicJumpClose
+      const send = o.send?o.send:true
+      const sendText = o.sendText?o.sendText:''
+      const sendHandler = o.sendHandler?o.sendHandler:publicJumpClose
+      document.querySelector('body').append(publicCreatHtml({
+        'tage': 'div',
+        'cl': 'publicJumpWindow',
+        'addHtml': [
+          publicCreatHtml({
+            'tage': 'div',
+            'cl': 'box',
+            'addHtml': [
+              publicCreatHtml({
+                'tage': 'div',
+                'cl': 'top',
+                'addHtml': [
+                  publicCreatHtml({
+                    'tage': 'div',
+                    'cl': 'title',
+                    'text': titleText
+                  }),
+                  publicCreatHtml({
+                    'tage': 'div',
+                    'cl': 'close',
+                    'text':'<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.579 1.93242L11.9963 0.324707L6.86323 5.53868L1.73021 0.324707L0.147461 1.93242L5.28048 7.14639L0.147461 12.3604L1.73021 13.9681L6.86323 8.75414L11.9963 13.9681L13.579 12.3604L8.44602 7.14639L13.579 1.93242Z" fill="#00140E"/></svg>',
+                    'handler': closeHandler
+                  })
+                ]
+              }),
+              publicCreatHtml({
+                'tage': 'div',
+                'cl': 'bottom',
+                'addHtml': [
+                  publicCreatHtml({
+                    'tage': 'div',
+                    'cl': 'content',
+                    'addHtml': content
+                  }),
+                  publicCreatHtml({
+                    'tage': 'div',
+                    'cl': 'link',
+                    'addHtml': [
+                      cancel?publicCreatHtml({
+                        'tage': 'div',
+                        'cl': 'cancel',
+                        'text': cancelText,
+                        'handler': cancelHandler
+                      }):'',
+                      send?publicCreatHtml({
+                        'tage': 'div',
+                        'cl': 'send',
+                        'text': sendText,
+                        'handler':sendHandler
+                      }):''
+                    ]
+                  })
+                ]
+              })
+            ]
+          })
+        ]
+      }))
+    }
+    document.querySelector('button').addEventListener('click',()=>{
+      publicJump({
+        'titleText':'驗證簡訊已寄出',
+        'content':publicCreatHtml({
+          'cl':'remind',
+          'tage': 'p',
+          'text': '請輸入驗證碼後，在設定您的新密碼。'
+        }),
+        'cancel':'false',
+        'sendText': '確認',
+        'sendHandler': function(){
+          document.location.href="getPasswordSet.html";
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

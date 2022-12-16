@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script> -->
+  </head>
+  <body id="program">
+    <style>
+      *{
+        --gap: 12px;
+      }
+      .emulated-flex-gap {
+        display: inline-flex;
+        flex-wrap: wrap;
+        /* margin: -12px 0 0 -12px;
+        width: calc(100% + 12px); */
+        margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
+        width: calc(100% + var(--gap));
+        margin-bottom: 20px;
+      }
+      .emulated-flex-gap > * {
+        /* margin: 12px 0 0 12px; */
+        margin: var(--gap) 0 0 var(--gap);
+        width: 200px;
+        height: 200px;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .publicRow{
+        display: inline-flex;
+        flex-wrap: wrap;
+        margin: calc(-1 * var(--gap)) 0 0 calc(-1 * var(--gap));
+        width: calc(100% + var(--gap));
+        margin-bottom: 20px;
+      }
+      .publicRow > * {
+        margin: var(--gap) 0 0 var(--gap);
+        height: 200px;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .publicCol6{
+        width: calc(60% - var(--gap));
+        margin: var(--gap) 0 0 var(--gap);
+      }
+      .publicCol4{
+        width: calc(40% - var(--gap));
+        margin: var(--gap) 0 0 var(--gap);
+      }
+    </style>
+    <div class="emulated-flex-gap">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </div>
+    <div class="publicRow">
+      <div class="publicCol6">1</div>
+      <div class="publicCol4">2</div>
+    </div>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://coryrylan.com/blog/css-gap-space-with-flexbox" target="_blank">Flexbox 的 CSS 間隙空間</a>
+      </li>
+      <li>
+        <a href="https://stackoverflow.com/questions/20626685/better-way-to-set-distance-between-flexbox-items" target="_blank">Better way to set distance between flexbox items</a>
+      </li>
+      <li>
+        <a href="https://zxuqian.cn/videos/css/css-flex-gap-tutorial/" target="_blank">使用 Gap 属性给 CSS Flex 布局设置间距</a>
+      </li>
+      <li>
+        <a href="https://css-tricks.com/almanac/properties/g/gap/" target="_blank">gap</a>
+      </li>
+    </ul>
+  </body>
+</html>
