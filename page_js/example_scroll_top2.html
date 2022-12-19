@@ -87,6 +87,7 @@
       function scrollOnHashchange(){
         // console.log('scrollOnLoad');
         let hashval = window.location.hash
+        // console.log(hashval)
         hashval = hashval.replace('#', '.');
         scrollFn(hashval);
       }
@@ -95,18 +96,12 @@
         scrollOnLoad()
       }
     </script>
-    <!-- <hr>
+    <hr>
     <h4>參考</h4>
     <ul>
       <li>
-        <a href="https://juejin.cn/post/6844903925473083405" target="_blank">平滑滚动的实现</a>
+        <a href="https://stackoverflow.com/questions/3163615/how-to-scroll-an-html-page-to-a-given-anchor" target="_blank">How to scroll an HTML page to a given anchor</a>
       </li>
-      <li>
-        <a href="https://www.zhangxinxu.com/wordpress/2017/01/share-a-animation-algorithm-js/" target="_blank">scroll</a>
-      </li>
-      <li>
-        <a href="https://www.zhangxinxu.com/wordpress/2018/10/scroll-behavior-scrollintoview-%E5%B9%B3%E6%BB%91%E6%BB%9A%E5%8A%A8/" target="_blank">页面滚动平滑</a>
-      </li>
-    </ul> -->
+    </ul>
   </body>
 </html>
