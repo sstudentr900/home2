@@ -84,15 +84,23 @@
     <h2>清除env 文件的緩存並重新加載它</h2>
     <p>php artisan view:clear</p>
 
+
     <h2>修改.env後必須重開</h2>
     <p>php artisan serve</p>
-
-  
 
     <h2>'mix' 不是內部或外部命令、可執行的程式或批次檔。</h2>
     <p>npm install</p>
 
     <h2>There is no existing directory at "D:\xampp\htdocs\mybluehost\storage\logs" and it could not be created: Resource device</h2>
     <p>php artisan s:clear</p>
+
+    <h2>blade 呼叫models</h2>
+    <p>
+      @php
+        <!-- dataName:Models裡面的資料表名稱 -->
+        $data = App\Models\dataName::find(1);
+        print_r($data['releases']);
+      @endphp
+    </p>
   </body>
 </html>
