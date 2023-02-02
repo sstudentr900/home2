@@ -14,6 +14,15 @@
     <pre class="prettyprint">
       <xmp>
         <style>
+          .img{
+            width: 200px;
+            height: 100px;
+          }
+          img{
+            /*必須*/
+            width: 100% !important;
+            height: 100% !important;
+          }
           .fit_contain{
             /* 圖片大小:維持比例*/
             object-fit: contain;
@@ -35,6 +44,15 @@
     </pre>
     <h3>範例</h3>
     <style>
+      /*必須*/
+      .img{
+        width: 200px;
+        height: 100px;
+      }
+      img{
+        width: 100% !important;
+        height: 100% !important;
+      }
       .fit_cover{
         object-fit: cover;
       }
