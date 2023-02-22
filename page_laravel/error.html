@@ -102,5 +102,12 @@
         print_r($data['releases']);
       @endphp
     </p>
+
+    <h2>https</h2>
+    <a href="https://www.cnblogs.com/mllt/p/web_err_20221124.html">來源</a>
+    <p>
+      <!-- 加上这句代码，意思是自动将http的不安全请求升级为https -->
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    </p>
   </body>
 </html>
