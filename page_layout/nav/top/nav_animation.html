@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>js_nav_top_slider</title>
+  <style>
+    body{
+      background: #666;
+    }
+    a{
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .indexHeader{
+      height: 100%;
+      min-height: 600px;
+    }
+
+
+    .indexHeader .logo,
+    .indexHeader .share,
+    .indexHeader .soundNav,
+    .indexHeader .bottomScroll{
+      position: fixed;
+      z-index: 10;
+      padding: 20px;
+      cursor: pointer;
+    }
+
+    /*log*/
+    .indexHeader .logo{
+      left: 0;
+      padding-top: 16px;
+    }
+    .indexHeader .logo a{
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+    
+    }
+    .indexHeader .logo a svg{
+      width: 30px;
+        height: 30px;
+        margin-right: 6px;
+        margin-bottom: 1px;
+        transition: .4s;
+    }
+    .indexHeader .logo a:hover svg{
+      margin-right: 2px;
+    }
+    /*bottomshare*/
+    .indexHeader .share{
+      left: 0;
+      bottom: 0;
+      display: flex;
+    }
+    .indexHeader .share a{
+      opacity: .7;
+      transition: 0.4s ease;
+    }
+    .indexHeader .share a img{
+      width: 100%;
+    }
+    .indexHeader .share a:nth-child(1){
+      width: 16px;
+      margin-right: 15px;
+    }
+    .indexHeader .share a:nth-child(2){
+      width: 34px;
+    }
+    .indexHeader .share a:hover{
+      opacity: 1;
+    }
+    /*bottomSoundNav*/
+    .indexHeader .soundNav{
+      right: 0;
+      bottom: 0;
+      display: flex;
+    }
+    .indexHeader .soundNav .sound{
+      width: 23px;
+      height: 15px;
+      position: relative;
+      margin-right: 15px;
+    }
+    .indexHeader .soundNav .sound .line{
+      position: absolute;
+      bottom: 0;
+      width: 2px;
+      height: 2px;
+      transition: height 0.4s ease;
+    }
+    .indexHeader .soundNav .sound .line:nth-child(1){
+      left: 0;
+    }
+    .indexHeader .soundNav .sound .line:nth-child(2){
+      left: 3px;
+    }
+    .indexHeader .soundNav .sound .line:nth-child(3){
+      left: 6px;
+    }
+    .indexHeader .soundNav .sound .line:nth-child(4){
+      left: 9px;
+    }
+    .indexHeader .soundNav .sound .line:nth-child(5){
+      left: 12px;
+    }
+    .indexHeader .soundNav .sound .line:nth-child(6){
+      left: 15px;
+    }
+    .indexHeader .soundNav .sound .line:nth-child(7){
+      left: 18px;
+    }
+    .indexHeader .soundNav .sound .line:nth-child(8){
+      left: 21px;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(1){
+      height: 2px;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(2){
+      height: 7px;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(3){
+      height: 13px;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(4){
+      height: 16px;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(5){
+      height: 9px;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(6){
+      height: 4px;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(7){
+      height:6px;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(8){
+      height: 2px;
+    }
+    .indexHeader .soundNav .sound .line:after{
+      content:'';
+      position: absolute;
+        bottom: 0;
+        background: #fff;
+        height: 100%;
+        width: 100%;
+        opacity: .7;
+        transition: opacity 0.4s linear;
+    }
+    .indexHeader .soundNav .sound:hover .line:after{
+      opacity: 1;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(1):after{
+      animation: soundAnimation .2s infinite;
+        animation-delay: 0.3s;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(2):after{
+      animation: soundAnimation .5s infinite;
+        animation-delay: 0.5s;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(3):after{
+      animation: soundAnimation .6s infinite;
+        animation-delay: 0.3s;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(4):after{
+      animation: soundAnimation .7s infinite;
+        animation-delay: 0.7s;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(5):after{
+      animation: soundAnimation .3s infinite;
+        animation-delay: 0.3s;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(6):after{
+      animation: soundAnimation .64s infinite;
+        animation-delay: 0.64s;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(7):after{
+      animation: soundAnimation .89s infinite;
+        animation-delay: 0.89s;
+    }
+    .indexHeader .soundNav .sound.active .line:nth-child(8):after{
+      animation: soundAnimation .5s infinite;
+        animation-delay: 0.5s;
+    }
+    @keyframes soundAnimation{
+      0%{height: 100%;}
+      50%{height: 0%;}
+      100%{height: 100%;}
+    }
+    .indexHeader .soundNav .zoom{
+      width: 20px;
+      height: 15px;
+      position: relative;
+      transform: scale(1);
+      transition: .4s;
+      opacity: .7;
+    }
+    .indexHeader .soundNav .zoom .box{
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border: 2px solid #fff;
+    }
+    .indexHeader .soundNav .zoom .box:nth-child(1){
+      top: 0;
+      left: 0;
+      border-right: none;
+      border-bottom: none;
+    }
+    .indexHeader .soundNav .zoom .box:nth-child(2){
+      top: 0;
+      right: 0;
+      border-left: none;
+      border-bottom: none;
+    }
+    .indexHeader .soundNav .zoom .box:nth-child(3){
+      bottom: 0;
+      left: 0;
+      border-right: none;
+      border-top: none;
+    }
+    .indexHeader .soundNav .zoom .box:nth-child(4){
+      bottom: 0;
+      right: 0;
+      border-top: none;
+      border-left: none;
+    }
+    .indexHeader .soundNav .zoom:hover{
+      transform:scale(1.08);
+      opacity: 1;
+    }
+    /*bottomScroll*/
+    .indexHeader .bottomScroll{
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+        align-items: center;
+      z-index: 9;
+    }
+    .indexHeader .bottomScroll .scroll{
+      overflow: hidden;
+      position: relative;
+      width: 15px;
+      height: 50px;
+      opacity: 0;
+      transition: .5s;
+    }
+    .indexHeader .bottomScroll .scroll .line{
+      position: absolute;
+      left: 50%;
+      bottom: 5px;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 40px;
+      background: #fff;
+      opacity: 0.7;
+    }
+    .indexHeader .bottomScroll .scroll .line:after{
+      content:'';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-top: 1px solid #fff;
+      border-left: 1px solid #fff;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) rotate(-135deg);
+    }
+    .indexHeader .bottomScroll .scroll:hover .line{
+      opacity: 1;
+      animation: scrollAnimation .6s infinite;
+    }
+    @keyframes scrollAnimation{
+      0%{bottom: 5px;}
+      59%{bottom: -100%;}
+      60%{bottom: 100%;}
+      100%{bottom: 5px;}
+    }
+    @media (max-width: 1400px) {
+      .bottomScroll .scroll{
+        opacity: 0!important;
+      }
+    }
+    .menu{
+      position: fixed;
+      right: 0;
+      padding: 20px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .menu p{
+      color:#fff;
+    }
+    .menu:hover .bar:nth-child(1),
+    .menu:hover .bar:nth-child(3){
+      top: 7px;
+    }
+    .menu .inner {
+      width: 22px;
+      height: 16px;
+      margin-left: 10px;
+      position: relative;
+    }
+    .menu .bar {
+      height: 1px;
+      margin-bottom: 4px;
+      background: #fff;
+      position: absolute;
+      transition: all 0.2s ease-in-out;
+      right: 0;
+    }
+    .menu .bar:nth-child(1) {
+      width: 21px;
+      top: 0;
+    }
+    .menu .bar:nth-child(2) {
+      width: 14px;
+      top: 7px;
+    }
+    .menu .bar:nth-child(3) {
+      width: 17px;
+      top: 14px;
+    }
+    .menu.active .bar:nth-child(1) {
+      top: 50%;
+      width: 23px;
+      transform: translate(0%) rotate(-45deg);
+    }
+    .menu.active .bar:nth-child(2) {
+      opacity: 0;
+      width: 0;
+    }
+    .menu.active .bar:nth-child(3) {
+      top: 50%;
+      width: 23px;
+      transform: translate(0%) rotate(45deg);
+    }
+    /*menu*/
+    .menuopen{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      background: rgba(0,0,0,.9);
+      opacity: 0;
+      visibility:hidden;
+      z-index: 9;
+    }
+    .menuopen .content{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 600px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .menuopen .lineAll>*{
+      position: absolute;
+      opacity: 0;
+    }
+    .menuopen .lineAll .linetext{
+      top: -10px;
+      left: 50px;
+      transform: translateX(-20px) translateY(-20px);
+      transition: 0.7s cubic-bezier(0.7, 0.01, 0.37, 1);
+    }
+    .menuopen .lineAll .line{
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255,255,255,0.4);
+      /*transition: opacity 0.4s, transform 0.7s;*/
+      transition: transform 0.7s cubic-bezier(0.7, 0.01, 0.37, 1);
+    }
+    .menuopen .lineAll .line:nth-child(5){
+      top: 0;
+      left: 0;
+      border-bottom: none;
+      border-right: none;
+      transform: translateX(-20px) translateY(-20px);
+    }
+    .menuopen .lineAll .line:nth-child(2){
+      top: 0;
+      right: 0;
+      border-bottom: none;
+      border-left: none;
+      transform: translateX(20px) translateY(-20px);
+      transition-delay: 0.1s;
+    }
+    .menuopen .lineAll .line:nth-child(3){
+      right: 0;
+      bottom: 0;
+      border-top: none;
+      border-left: none;
+      transform: translateX(20px) translateY(20px);
+      transition-delay: 0.2s;
+    }
+    .menuopen .lineAll .line:nth-child(4){
+      left: 0;
+      bottom: 0;
+      border-top: none;
+      border-right: none;
+      transform: translateX(-20px) translateY(20px);
+      transition-delay: 0.3s;
+    }
+    .menuopen ul{
+      padding: 100px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .menuopen ul li{
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    .menuopen ul li .number{
+      overflow: hidden;
+    }
+    .menuopen ul li .number span{
+      margin-right: 20px;
+      display: inline-block;
+      position: relative;
+      padding-bottom: 6px;
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: #0f8cee;
+      font-style: italic;
+      transform: translateX(50px);
+      transition: transform 0.5s cubic-bezier(0.7, 0.01, 0.37, 1);
+    }
+    .menuopen ul li .number span:after{
+      content: '';
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      background: #0f8cee;
+      bottom: 0;
+      left: 0;
+    }
+    .menuopen ul li:nth-child(1) .number span{
+      transition-delay: 0.3s;
+    }
+    .menuopen ul li:nth-child(2) .number span{
+      transition-delay: 0.35s;
+    }
+    .menuopen ul li:nth-child(3) .number span{
+      transition-delay: 0.4s;
+    }
+    .menuopen ul li:nth-child(4) .number span{
+      transition-delay: 0.45s;
+    }
+    .menuopen ul li:nth-child(5) .number span{
+      transition-delay: 0.5s;
+    }
+    .menuopen ul li:nth-child(6) .number span{
+      transition-delay: 0.55s;
+    }
+    .menuopen a{
+      font-size: 28px;
+      letter-spacing: 3px;
+      font-weight: bold;
+      width: 130px;
+      height: 28px;
+      opacity: 0;
+    }
+    .menuopen a.active{
+      color: #0f8cee;
+    }
+    .menuopen a:hover{
+      color: #0f8cee;
+    }
+
+    .menu.active+.menuopen .lineAll .linetext,
+    .menu.active+.menuopen .lineAll .line:nth-child(5),
+    .menu.active+.menuopen .lineAll .line:nth-child(2),
+    .menu.active+.menuopen .lineAll .line:nth-child(3),
+    .menu.active+.menuopen .lineAll .line:nth-child(4){
+      opacity: .8;
+      transform: translateX(0) translateY(0);
+      animation: myfirst .6s;
+    }
+    .menu.active+.menuopen ul li .number span{
+      transform: translateX(0);
+    }
+    @keyframes myfirst{
+      0% {opacity: 0;}
+      30% {opacity: 1;}
+      100% {opacity: 0.8;}
+    }
+
+    @media (max-width: 680px) {
+      .indexHeader .logo,
+      .indexHeader .share,
+      .indexHeader .soundNav,
+      .indexHeader .bottomScroll{
+        padding: 15px;
+      }
+      .menuopen .content{
+        width: 280px;
+      }
+      .menuopen ul{
+        padding: 60px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div id="indexHeader" class="indexHeader">
+  <div class="logo">
+    <a href="#" class="goto">Logo</a>
+  </div>
+  <div class="menu" id="menu">
+    <p>MENU</p>
+    <div class="inner">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+  </div>
+  <div class="menuopen">
+    <div class="content">
+      <div class="lineAll">
+        <p class="linetext">menu</p>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul>
+        <li>
+          <div class="number">
+            <span>01</span>
+          </div>
+          <a href="#indexService" class="goto active">服務項目</a>
+        </li>
+        <li>
+          <div class="number">
+            <span>02</span>
+          </div>
+          <a href="#indexCase" class="goto">設計案例</a>
+        </li>
+        <li>
+          <div class="number">
+            <span>03</span>
+          </div>
+          <a href="#indexCooperation" class="goto">合作流程</a>
+        </li>】
+        <li>
+          <div class="number">
+            <span>04</span>
+          </div>
+          <a href="#indexTeam" class="goto">明郅團隊</a>
+        </li>
+        <li>
+          <div class="number">
+            <span>05</span>
+          </div>
+          <a href="#indexContact" class="goto">聯絡資訊</a>
+        </li>
+        <li>
+          <div class="number">
+            <span>06</span>
+          </div>
+          <a href="#" class="">VR全景</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="share"></div>
+  <div class="soundNav">
+    <div class="sound active">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="zoom">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+  </div>
+  <div class="bottomScroll">
+    <div class="scroll">
+      <div class="line"></div>
+    </div>
+  </div>
+</div>
+<script>
+  //拉霸不會滾動
+  function unmouseeheel(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      return false;
+  }
+  function fadeIn(el,n,s,fn){
+      var start = window.performance.now();
+      var icur = Math.round(el.style.opacity) || 0;
+      var speed = n-icur;
+      (function tick(){
+          var now =  window.performance.now() - start;
+          //等速
+          el.style.opacity = icur + ((now / s).toFixed(2)) * speed;
+          if(now < s){
+              (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 24);
+          }else{
+            if(fn){
+                fn();
+            }
+          }
+      })();
+  }
+  function randomChar() {
+      var pool = "abcdefghijklmnopqrstuvwxyz0123456789";
+      var arr = pool.split('');
+      return arr[Math.floor(Math.random()*arr.length)]
+  }
+  function shuffleLetters (obj) {
+      if(obj.getAttribute('animated')){
+          return true;
+      }
+      obj.setAttribute('animated','true');
+      var str = obj.textContent.split(''),
+          len = str.length;
+      obj.textContent ='';
+      obj.style.opacity = '1';
+      (function shuffle(start){
+          if(start>len){
+              obj.setAttribute('animated','');
+              return;
+          }
+          var strCopy = str.slice(0); // Fresh copy of the string
+          for(var i=Math.max(start,0);i<len;i++){
+              if( i < start+5){
+                  strCopy[i] = randomChar();
+              }else{
+                  strCopy[i] = "";
+              }
+              // console.log('i '+ i);
+              // console.log('start '+ start);
+              // console.log('start+5 '+ (start*1+5*1));
+              // console.log('letters '+ letters[i]);
+              // console.log('strCopy '+ strCopy[letters[i]]);
+          }
+          // console.log(start+'次的循環 '+ strCopy.join(""));
+
+          obj.textContent = strCopy.join("");
+          setTimeout(function(){
+              shuffle(start+1);
+          },1000/30);
+      })(-5);
+  }
+  function menuActive() {
+      var gotoObj = document.querySelectorAll('.indexHeader .menuopen .goto');
+      var fromTop = document.documentElement.scrollTop||document.body.scrollTop;
+      for(var i=0; i<gotoObj.length;i++){
+          gotoObj[i].classList.remove('active');
+          var id = document.getElementById(gotoObj[i].getAttribute('href').slice(1));
+          if(id.offsetTop < fromTop+10 && id.offsetTop+id.offsetHeight> fromTop){
+              gotoObj[i].classList.add('active');
+          }
+      }
+  }
+  function menufn(obj) {
+      var menuopen = obj.nextElementSibling;
+      var linkAll = menuopen.querySelectorAll('a');
+      var content = menuopen.querySelectorAll('.content')[0];
+      init();
+      function init() {
+          for(var i=0;i<linkAll.length;i++){
+              linkAll[i].style.opacity = '';
+          }
+          content.style.opacity ='0';
+          document.addEventListener('mousewheel', unmouseeheel);
+      }
+      if(obj.classList.contains('active')){
+          obj.classList.remove('active');
+          init();
+          fadeIn(menuopen,0,300,function(){
+              menuopen.style.visibility = 'hidden';
+              document.removeEventListener('mousewheel', unmouseeheel);
+          });
+      }else{
+          menuopen.style.visibility = 'visible';
+          fadeIn(menuopen,1,500,function() {
+              obj.classList.add('active');
+              content.style.opacity = '1';
+              setTimeout(function(){
+                  //文字動畫
+                  (function time(i) {
+                      if(i>linkAll.length-1){
+                          return;
+                      }
+                      setTimeout(function(){
+                          shuffleLetters(linkAll[i]);
+                          time(i+1);
+                      }, 100);
+                  })(0);
+              }, 300);
+          });
+      }
+  }
+  function menu(argument) {
+      document.querySelectorAll('.menu')[0].addEventListener('click',function(){
+          menufn(this);
+      });
+  }
+  window.onload=function() {
+    menu();
+  }
+  document.addEventListener('scroll', function () {
+      menuActive();
+  })
+</script>  
+</body>
+</html>

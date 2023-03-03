@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>js_nav_top_slider</title>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'>
+  <style>
+    *,
+    *:before,
+    *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    html {
+        font-family: Helvetica,Arila,'LiHei Pro','Microsoft JhengHei','新細明體',serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #888;
+        margin: 0;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /*iOS*/
+    }
+    body {
+        margin: 0;
+        background-color: #ffffff;
+    }
+    /*連結*/
+    a {
+        color: #18bc9c;
+        text-decoration: none;
+    }
+    a:active,
+    a:hover {
+        outline: 0;
+        color: #18bc9c;
+        text-decoration: underline;
+    }
+    a:focus {
+        outline-color:rgba(0,0,0,0);
+    }
+    :focus {
+        outline-width: 0;
+    }
+    /*UL*/
+    ul,
+    ol {
+        margin-top: 0;
+        margin-bottom: 10.5px;
+    }
+    ul ul,
+    ol ul,
+    ul ol,
+    ol ol {
+        margin-bottom: 0;
+    }
+    .list-unstyled {
+        padding-left: 0;
+        list-style: none;
+    }
+    .list-inline {
+        padding-left: 0;
+        list-style: none;
+        /*margin-left: -5px;*/
+    }
+    .list-inline > li {
+        display: inline-block;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    /*邊距*/
+    .container {
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    @media (min-width: 768px) {
+        .container {
+            width: 750px;
+        }
+    }
+    @media (min-width: 992px) {
+        .container {
+            width: 970px;
+        }
+    }
+    @media (min-width: 1200px) {
+        .container {
+            width: 1170px;
+        }
+    }
+    .container-fluid {
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    /*清除浮動*/
+    .clearfix:after,
+    .dl-horizontal dd:after,
+    .container:after,
+    .container-fluid:after,
+    .row:after,
+    .row_margin:after,
+    .form-horizontal .form-group:after,
+    .btn-toolbar:after,
+    .btn-group-vertical > .btn-group:after,
+    .nav:after,
+    .navbar:after,
+    .navbar-header:after,
+    .navbar-collapse:after,
+    .pager:after,
+    .panel-body:after,
+    .modal-footer:after {
+        clear: both;
+    }
+    .clearfix:before,
+    .clearfix:after,
+    .dl-horizontal dd:before,
+    .dl-horizontal dd:after,
+    .container:before,
+    .container:after,
+    .container-fluid:before,
+    .container-fluid:after,
+    .row:before,
+    .row:after,
+    .row_margin:after,
+    .row_margin:before,
+    .form-horizontal .form-group:before,
+    .form-horizontal .form-group:after,
+    .btn-toolbar:before,
+    .btn-toolbar:after,
+    .btn-group-vertical > .btn-group:before,
+    .btn-group-vertical > .btn-group:after,
+    .nav:before,
+    .nav:after,
+    .navbar:before,
+    .navbar:after,
+    .navbar-header:before,
+    .navbar-header:after,
+    .navbar-collapse:before,
+    .navbar-collapse:after,
+    .pager:before,
+    .pager:after,
+    .panel-body:before,
+    .panel-body:after,
+    .modal-footer:before,
+    .modal-footer:after {
+        content: " ";
+        display: table;
+    }
+    /*****************************************自訂*************************************/
+    /*nav*/
+    .navcusrom01{
+        position: fixed;
+        right: 0;
+        left: 0;
+        top:0;
+        z-index: 999;
+    }
+    .navcusrom01 .nav{
+        position: relative;
+        background: rgba(0,0,0,.95);
+        box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.6);
+        min-height: 60px;
+        padding-top: 15px;
+        z-index: 999;
+    }
+    .navcusrom01 .map{
+        position: relative;
+        height: 0;
+        z-index: -999;
+    }
+    .navcusrom01 .navlogo{
+        float: left;
+    }
+    .navcusrom01 .navlogo a{
+        font-size: 24px;
+        padding-bottom: 15px;
+        display: block;
+        text-decoration: none;
+    }
+    .navcusrom01 .navlogo a img {
+        width: 120px;
+        display: inline-block;
+    }
+    .navcusrom01 .navlogo a span {
+        color: #46C9B0;
+        margin-left: 5px;
+        font-weight: bold;
+        vertical-align: middle;
+    }
+    /*nav-button*/
+    .navcusrom01 .navrihgt .nav-trigger,
+    .navcusrom01 .navrihgt label[for="nav-trigger"] {
+        display: none;
+    }
+    .navcusrom01 .navrihgt .navitem{
+        float: left;
+        margin-bottom: 0;
+        margin-left: 5%;
+    }
+    .navcusrom01 .navrihgt .navitem > li{
+        float: left;
+        margin-bottom: 0;
+        padding-left: 0;
+        list-style: none;
+    }
+    .navcusrom01 .navrihgt .navitem > li > a {
+        padding: 12px 15px;
+        font-size: 18px;
+        color: #bbb;
+        display: block;
+        text-decoration: none;
+        transition:color .7s;
+    }
+    .navcusrom01 .navrihgt .navitem > li > a:hover {
+        color: #d1a80a;
+    }
+    .navcusrom01 .navrihgt .navitem > li:last-child > a{
+        padding: 12px 0 12px 15px;
+    }
+    .navcusrom01 .navrihgt .navitem > li.active a{
+        color: #d1a80a;
+    }
+    @media (max-width: 991px){
+        .navcusrom01 .container{
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .navcusrom01 .navlogo {
+            float: none;
+            display: block;
+            padding: 0 15px;
+        }
+        .navcusrom01 .navrihgt .navitem{
+            float: none;
+            height: 0;
+            overflow: hidden;
+            transition: 0.6s;
+            margin-left:0;
+        }
+        .navcusrom01 .navrihgt .navitem > li {
+            float: none;
+            display: block;
+            border-top: 1px solid #444;
+        }
+        .navcusrom01 .navrihgt .navitem > li > a {
+            padding: 12px 15px;
+        }
+        .navcusrom01 .navrihgt .navitem > li:last-child > a{
+            padding: 12px 0 10px 15px;
+        }
+        /*button*/
+        .navcusrom01 .navrihgt .nav-trigger{
+            position: absolute;
+            clip: rect(0, 0, 0, 0);
+        }
+        .navcusrom01 .navrihgt label[for="nav-trigger"] {
+            display: block;
+            position: absolute;
+            top: 23px;
+            right: 15px;
+            z-index: 999;
+            height: 30px;
+            width: 28px;
+            cursor: pointer;
+        }
+        .navcusrom01 .navrihgt label[for="nav-trigger"] span{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 4px;
+            background-color: #bbb;
+            font-size: 0px;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-transition: background-color 0.3s;
+            transition: background-color 0.3s;
+        }
+        .navcusrom01 .navrihgt label[for="nav-trigger"] span:before,
+        .navcusrom01 .navrihgt label[for="nav-trigger"] span:after {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:  #bbb;
+            content: '';
+            -webkit-transition: -webkit-transform 0.3s;
+            transition: transform 0.3s;
+        }
+        .navcusrom01 .navrihgt label[for="nav-trigger"] span:after{
+            -webkit-transform: translateY(240%);
+            transform: translateY(240%);
+        }
+        .navcusrom01 .navrihgt label[for="nav-trigger"] span:before {
+            -webkit-transform: translateY(-240%);
+            transform: translateY(-240%);
+        }
+        .navcusrom01 .navrihgt .nav-trigger:checked + label[for="nav-trigger"] span{
+            background-color: transparent;
+        }
+        .navcusrom01 .navrihgt .nav-trigger:checked + label[for="nav-trigger"] span:before{
+            -webkit-transform: translateY(0) rotate(45deg);
+            transform: translateY(0) rotate(45deg);
+        }
+        .navcusrom01 .navrihgt .nav-trigger:checked + label[for="nav-trigger"] span:after{
+            -webkit-transform: translateY(0) rotate(-45deg);
+            transform: translateY(0) rotate(-45deg);
+        }
+        .navcusrom01 .navrihgt .nav-trigger:checked ~ .navitem {
+            height: 320px;
+        }
+    }
+    /*nav_第二層*/
+    .navitem02 ,.navitem02 li{
+        float: left;
+        margin-left: 60px;
+    }
+    .navitem02 li{
+        margin-top: 5px;
+        margin-left: 15px;
+    }
+    .navitem02 li a{
+        width: 35px;
+        height: 35px;
+        text-align: center;
+        color: #fff;
+        background-color: #bd8b01;
+        font-size: 22px;
+        border-radius: 50px;
+        display: block;
+        transition: .4s;
+    }
+    .navitem02 li a:hover{
+        color: #fff;
+        background-color: #E0A501;
+    }
+    .navitem02 #navphone{
+        position: relative;
+    }
+    .navitem02 #navphone ul{
+        position: absolute;
+        font-size: 16px;
+        width: 165px;
+        top: 57px;
+        padding: 0 10px;
+        background: rgba(0,0,0,.8);
+        left: -60px;
+        opacity: 0;
+        transition: .6s;
+        z-index: -888;
+        display: none;
+    }
+    .navitem02 #navphone ul li{
+        margin-top: 0;
+        margin-left:0;
+        padding: 5px 0;
+    }
+    .navitem02 a#navphone:hover ul{
+        display: block;
+        opacity: 1;
+    }
+    @media (max-width: 1300px){
+        .navitem02{
+            margin-left: 35px;
+        }
+    }
+    @media (max-width: 991px){
+        .navitem02{
+            position: absolute;
+            top: 18px;
+            left: 105px;
+        }
+    }
+    /*nav_自訂*/
+    #topmapout{
+        overflow: hidden;
+    }
+    #topmapout > iframe{
+        height: 450px;
+    }
+    @media (min-width: 768px){
+        #nav .container {
+            width:100%;
+        }
+    }
+    @media (min-width: 991px){
+        #nav .container {
+            width:100%;
+        }
+    }
+    @media (min-width: 1200px){
+        #nav .container {
+            width: 1170px;
+        }
+    }
+    /*wrapper*/
+    #wrapper{position: relative;}
+    #content div{height:60vh;}
+    #content div:nth-child(odd){
+        background: #888;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="navout" class="navcusrom01">
+        <div id="topmapout" class="map">
+            <iframe id="topmap" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.7626404436473!2d120.1722588153932!3d22.995754223099397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e760e3c00a457%3A0x9e2caee54e59e63a!2zNzA45Y-w5Y2X5biC5a6J5bmz5Y2A5YGl5bq35LqM6KGXNTE56Jmf!5e0!3m2!1szh-TW!2stw!4v1472539497350" width="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+        <div id="nav" class="nav">
+            <div class="container">
+                <div class="navlogo">
+                    <a href="#wrapper">Logo</a>
+                </div>
+                <div class="navrihgt">
+                    <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+                    <label for="nav-trigger">
+                    <span>Menu</span>
+                    </label>
+                    <ul class="navitem list-unstyled">
+                    <li>
+                        <a href="#wrapper">建案導覽</a>
+                    </li>
+                    <li>
+                        <a href="#equipment">建材設備</a>
+                    </li>
+                    <li>
+                        <a href="#ruleImg">戶型瀏覽</a>
+                    </li>
+                    <li>
+                        <a href="#rule">設施規劃</a>
+                    </li>
+                    <li>
+                        <a href="#equipmentImg">周邊環境</a>
+                    </li>
+                    <li>
+                        <a href="#reserve">預約賞屋</a>
+                    </li>
+                    </ul>
+                    <ul class="navitem02 list-unstyled">
+                    <li>
+                        <a id="navfb" href="https://www.facebook.com/mjapptech/" target="_blank">
+                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="navphone" href="javascript:void(0)">
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                        <ul class="list-unstyled">
+                            <li>02-87918160  台北</li>
+                            <li>04-22213430  台中</li>
+                            <li>06-2956988  台南</li>
+                            <li>07-2829290  高雄</li>
+                        </ul>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="navtopmap" href="javascript:void(0)">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div id="heard">
+        </div>
+        <div id="equipment">
+        </div>
+        <div id="ruleImg">
+        </div>
+        <div id="rule">
+        </div>
+        <div id="equipmentImg">
+        </div>
+        <div id="environment">
+        </div>
+        <div id="map">
+        </div>
+        <div id="reserve">
+        </div>
+    </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+  <script>
+    /*nav*/
+    function nav(topmap){
+        var href,scrollItems,offsettop,
+        nav = $('#nav'),
+        navheight = nav.outerHeight()- 1,
+        navItems = nav.find('.navitem').find('a');
+        var isTop=true;
+        var timer=null;
+
+        navItems.click(function(e){
+            var navlinkthis = $(this);
+            navlinkfn(navlinkthis);
+            e.preventDefault();
+        });
+        //console.log(navItems);
+        scrollItems = navItems.map(function(){
+            var item = $($(this).attr("href"));
+            if (item.length) { return item; }
+        });
+
+        $(window).scroll(function(){
+            var fromTop = $(this).scrollTop()+navheight+20;
+
+            var cur = scrollItems.map(function(){
+                if ($(this).offset().top < fromTop)
+                    return this;
+            });
+            cur = cur[cur.length-1];
+            var id = cur && cur.length ? cur[0].id : "";
+            navItems.parent().removeClass("active").end().filter("[href='#"+id+"']").parent().addClass("active");
+
+            //捲軸底
+            var $BodyHeight = $(document).height();//判斷整體網頁的高度
+            var $ViewportHeight=$(window).height();//判斷所見範圍的高度
+            var $ScrollTop=$(this).scrollTop();//偵測目前捲軸頂點
+            if($BodyHeight==($ViewportHeight+$ScrollTop)){
+                navItems.parent().removeClass("active").eq(-1).addClass("active");
+                clearInterval(timer);
+            }
+
+            //google地圖
+            if(!topmap.height()==0){
+                starmove(topmap,0);
+                return false;
+            }
+
+            //停止動畫
+            if(!isTop){
+                clearInterval(timer);
+            }
+            isTop=false;
+
+        });
+
+        function navlinkfn(obj){
+          $('#nav-trigger').prop("checked", false);
+            href = obj.attr('href');
+            offsettop= $(href).offset().top - navheight;
+          
+            //setInterval
+            clearInterval(timer);
+            timer = setInterval(function(){
+                var scollTop=document.documentElement.scrollTop||document.body.scrollTop;
+                var itarget = scollTop-offsettop;
+                var ispeed = itarget<0?Math.ceil(-itarget/8):Math.floor(-itarget/8);
+                if(Math.abs(scollTop-offsettop)<1){
+                    clearInterval(timer);
+                    document.documentElement.scrollTop=document.body.scrollTop = offsettop;
+                }else{
+                    isTop=true;
+                    document.documentElement.scrollTop=document.body.scrollTop = scollTop+ispeed;
+                }
+            },50);
+          
+          //requestAnimationFrame
+        //   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+        //   var timer = null;
+        //   var isScroll = true;
+        //   cancelAnimationFrame(timer);
+        //   timer = requestAnimationFrame(Animation);
+        //   function Animation(){
+        //         var number = 8;
+        //         var scollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        //         var offsetTop = document.getElementById(self.getAttribute('href').slice(1)).offsetTop;
+        //         var itarget = scollTop-offsetTop;
+        //         var ispeed = itarget<0?Math.ceil(-itarget/number):Math.floor(-itarget/number);
+        //         if(Math.abs(itarget)<1){
+        //             document.documentElement.scrollTop=document.body.scrollTop = offsetTop;
+        //         }else{
+        //             document.documentElement.scrollTop=document.body.scrollTop = scollTop+ispeed;
+        //             timer = requestAnimationFrame(Animation);
+        //         }
+        //     };  
+          
+        }
+        //判斷是否有滾動
+        // document.addEventListener("wheel",function (ev) {
+        //     cancelAnimationFrame(timer);
+        // });
+      
+    }
+    //google地圖
+    function starmove(obj,target){
+        if(!obj.height()==0){
+            target=0;
+        }else{
+            target=450;
+        }
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function(){
+            var icur = parseInt(obj.height());
+            var speed = (target-icur)/8;
+            speed = speed > 0?Math.ceil(speed):Math.floor(speed);
+            if(icur==target){
+            clearInterval(obj.timer);
+            }else{
+            var k =icur+speed
+            obj.height(k);
+            }
+        },30);
+    }
+    $(document).ready(function() {
+        var topmap =  $('#topmapout');
+        nav(topmap);
+        //google地圖
+        $('#navtopmap').click(function(e){
+            if(!topmap.height()==0){
+            starmove(topmap,0);
+            }else{
+            starmove(topmap,450);
+            }
+        });
+    });
+  </script>
+</body>
+
+</html>

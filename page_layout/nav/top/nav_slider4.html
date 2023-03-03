@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="keywords" Lang="" content="">
+    <title></title>
+    <style>
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        font,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+        }
+        *,
+        *:before,
+        *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        html {
+            font-family: "Microsoft JhengHei", "新細明體", serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+      
+            -webkit-tap-highlight-color: transparent;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+        }
+        body {
+            background-color: #fff;
+            text-transform: uppercase;
+            color: #333;
+        }
+        ul{
+            padding-left: 0;
+            list-style: none;
+        }
+        h2{
+            font-size: 60px;
+            font-weight: bold;
+        }
+        a {
+            text-decoration: none;
+            display: block;
+        }
+        a:hover,
+        a:active {
+            outline: 0;
+            text-decoration: none;
+        }
+        a:hover:focus,
+        a:active:focus {
+            outline-color: transparent;
+            outline-width: 0;
+        }
+        /**********************************************************************/
+        .publicNav{
+            display: flex;
+            padding: 10px 20px;
+            height: 60px;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            background: #fff;
+            top: 0;
+            z-index: 3;
+            border-bottom: 1px solid #ddd;
+        }
+        .publicNav .logo{
+            margin-top: 3px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #000;
+        }
+        .publicNav .links,
+        .publicNav .links>ul,
+        .publicNav .links>ul>li,
+        .publicNav .links>.share{
+            display: flex;
+        }
+        .publicNav .links>ul>li{
+            align-items: center;
+        }
+        .publicNav .links>ul>li+li{
+            margin-left: 40px;
+        }
+        .publicNav .links>ul>li>a{
+            font-size: 20px;
+            color: inherit;
+            font-weight: bold;
+            position: relative;
+        }
+        .publicNav .links>ul>li+li>a::after{
+            content: '';
+            width: 1px;
+            height: 18px;
+            background: #000;
+            position: absolute;
+            top: 5px;
+            left: -18px;
+        }
+        .publicNav .links>ul>li.active>a{
+            color: #00A94F;
+        }
+        /*支援滑鼠*/
+        @media (any-hover: hover) {
+            .publicNav .links>ul>li>a:hover{
+                color: #00A94F;
+            }
+        }
+        .publicNav .share{
+            margin-top: 3px;
+            margin-left: 35px;
+        }
+        .publicNav .share>a+a{
+            margin-left: 15px;
+        }
+        .publicNav .service,
+        .publicNav .hamburger{
+            display: none;
+        }
+        .publicNav .hamburger{
+            width: 28px;
+            height: 28px;
+            display: none;
+            align-items: center;
+            cursor: pointer;
+            position: absolute;
+            left: 20px;
+        }
+        .publicNav .hamburger span{
+            width: 100%;
+            height: 3px;
+            position: relative;
+            background: #008E42;
+            display: block;
+            transition: background .5s;
+            border-radius: 30px;
+        }
+        .publicNav .hamburger span:before,
+        .publicNav .hamburger span:after{
+            content: '';
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            background: #008E42;
+            transform: translateY(-300%);
+            position: absolute;
+            left: 0;
+            transition: transform .3s;
+        }
+        .publicNav .hamburger span:after{
+            transform: translateY(300%);
+        }
+        @media (max-width: 1290px) {
+            .publicNav .service,
+            .publicNav .hamburger{
+                display: flex;
+            }
+            .publicNav.active .hamburger span{
+                background: transparent;
+            }
+            .publicNav.active .hamburger span:after{
+                transform: rotate(45deg);
+            }
+            .publicNav.active .hamburger span:before{
+                transform: rotate(-45deg);
+            }
+            .publicNav.active .links{
+                height: 386px;
+            }
+            .publicNav .links{
+                position: absolute;
+                width: 100%;
+                top: 100%;
+                left: 0;
+                background: #F7F7F7;
+                z-index: 3;
+                padding: 0 80px;
+                display: block;
+                height: 0;
+                transition: height .5s;
+                overflow: hidden;
+            }
+            .publicNav .links>ul{
+                display: block;
+                margin: 20px 0 15px;
+            }
+            .publicNav .links>ul>li+li{
+                margin-left: 0;
+            }
+            .publicNav .links>ul>li>a{
+                padding: 10px 20px;
+                width: 100%;
+            }
+            .publicNav .links>ul>li>a::before{
+                content: '';
+                width: 4px;
+                height: 4px;
+                border-radius: 50%;
+                background: #008E42;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+            }
+            .publicNav .links>ul>li+li>a::after{
+                display: none;
+            }
+            .publicNav .share{
+                margin:  0 0 20px;
+            }
+            .publicNav .share>a+a{
+                margin-left: 40px;
+            }
+        }
+        @media (max-width: 1290px) {
+            .publicNav{
+                height: 44px;
+                justify-content: center;
+            }
+        }
+        .item_clinch,
+        .item_stock,
+        .item_payment,
+        .item_application,
+        .item_phone,
+        .item_contact{
+            height: 800px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .item_clinch,
+        .item_application,
+        .item_contact{
+            background: #E4FFF4;
+        }
+        /*publicAnimation*/
+        .publicAnimationShowLeft{
+            opacity: 0;
+            transform: translateX(100%);
+            transition-duration: 1.2s;
+            transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .publicAnimationShowLeft.active{
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .publicAnimationShowTop{
+            opacity: 0;
+            transform: translateY(50%);
+            transition-duration: 1.2s;
+            transition-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .publicAnimationShowTop.active{
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .publicAnimationDelay2{
+            transition-delay: .2s;
+        }
+        .publicAnimationDelay4{
+            transition-delay: .4s;
+        }
+    </style>
+</head>
+
+<body>
+  <div class="index">
+      <div class="publicNav">
+          <div class="hamburger">
+              <span></span>
+          </div>
+          <a href='#' class="logo" target="_black">LOGO</a>
+          <div class="links">
+              <ul>
+                  <li><a data-nav="item_stock">item1</a></li>
+                  <li><a data-nav="item_clinch">item2</a></li>
+                  <li><a data-nav="item_payment">item3</a></li>
+                  <li><a data-nav="item_application">item4</a></li>
+                  <li><a data-nav="item_phone">item5</a></li>
+                  <li><a data-nav="item_contact">item6</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="item_stock">
+          <h2 class="publicAnimation publicAnimationShowTop">item1</h2>
+      </div>
+      <div class="item_clinch">
+          <h2 class="publicAnimation publicAnimationShowTop">item2</h2>
+      </div>
+      <div class="item_payment">
+          <h2 class="publicAnimation publicAnimationShowTop">item3</h2>
+      </div>
+      <div class="item_application">
+          <h2 class="publicAnimation publicAnimationShowTop">item4</h2>
+      </div>
+      <div class="item_phone">
+          <h2 class="publicAnimation publicAnimationShowTop">item5</h2>
+      </div>
+      <div class="item_contact">
+          <h2 class="publicAnimation publicAnimationShowTop">item6</h2>
+      </div>
+  </div>
+  <script>
+    function navFn() {
+      const nav = document.querySelector('.publicNav')
+      const lis = nav.querySelectorAll('.links li')
+      const scrollAnimation = document.querySelectorAll(".publicAnimation");
+      function scrolTopFn() {
+        return document.documentElement.scrollTop || document.body.scrollTop;
+      }
+      function navHeight(){
+        return window.innerWidth >= 1290 ? 60 : 44;
+      }
+      function debounce(func, timeout = 10){
+          let timer;
+          return (...args) => {
+              clearTimeout(timer);
+              timer = setTimeout(() => { func.apply(this, args); }, timeout);
+          };
+      }
+      function removeActive(){
+          Array.prototype.map.call(lis,function(li){
+              li.className=''
+          })
+          nav.classList.remove('active')
+      }
+      function addActive(obj) {
+          removeActive()
+          obj.className='active'
+      }
+      function offsetTop(obj){
+        return document.querySelector('.'+obj.querySelector('a').getAttribute('data-nav')).offsetTop
+      }
+      function animation(){
+        if (!scrollAnimation.length) return;
+        function getoffset(el) {
+          var box = el.getBoundingClientRect();
+          return {
+            top: box.top + window.pageYOffset - document.documentElement.clientTop,
+            left: box.left + window.pageXOffset - document.documentElement.clientLeft
+          }
+        }
+        Array.prototype.map.call(scrollAnimation,function(obj){
+          // console.log((getoffset(obj).top*1-900),scrolTopFn(),(getoffset(obj).top*1-800) < scrolTopFn())
+          if((getoffset(obj).top*1-1000) < scrolTopFn()){
+            obj.classList.add('active');
+          }
+        })
+      }
+      function ifActive() {
+          var active = false
+          Array.prototype.map.call(lis,function(li){
+              if(offsetTop(li) < scrolTopFn()+navHeight()-1){
+                  addActive(li);
+                  active = true
+              }
+          })
+          if(!active){
+              removeActive()
+          }
+      }
+      function scrollToFn(target){
+        window.scrollTo({
+          top: (document.querySelector('.'+target).offsetTop)-navHeight()+1, 
+          behavior: 'smooth' //平滑滚动
+        })
+      }
+      function scrollOnLoad() {
+        const hash = window.location.hash;
+        if (hash) {
+          const target = hash.replace('#', '');
+          if (document.querySelector(target))scrollToFn(target)
+        }
+
+        //改變路徑
+        window.addEventListener('hashchange',function(){
+          scrollOnLoad()
+        })
+      }
+      function scrollStar(){
+        animation()
+        ifActive()
+      }
+      // var timer=null
+      // function clearTime(){
+      //   clearTimeout(timer);
+      // }
+      // function tab(obj) {
+      //     function timerFn(){
+      //         var scollTop = scrolTopFn();
+      //         var offsettop = offsetTop(obj)
+      //         var itarget = scollTop-offsettop;
+      //         var ispeed = itarget<0?Math.ceil(-itarget/10):Math.floor(-itarget/10);
+      //         console.log(ispeed,itarget)
+      //         if(Math.abs(itarget)<10){
+      //             clearTime();
+      //             document.documentElement.scrollTop = document.body.scrollTop = offsettop;
+      //         }else{
+      //             document.documentElement.scrollTop = document.body.scrollTop = scollTop+ispeed;
+      //             timer = setTimeout(timerFn, 60)
+      //         }
+      //     }
+      //     clearTime();
+      //     timer = setTimeout(timerFn,60)
+      // }
+
+      //nav button hamburger
+      nav.querySelector('.hamburger').addEventListener('click',function(){
+          if(nav.classList.contains('active')){
+              nav.classList.remove('active')
+          }else{
+              nav.classList.add('active')
+          }
+      })
+
+      //點擊選單
+      Array.prototype.map.call(lis,function(li){
+        li.addEventListener('click',(e)=>{
+          const target = li.querySelector('a').dataset.nav
+          window.location.hash = target;
+          scrollToFn(target)
+        })
+      })
+
+      //scroll animation active
+      document.addEventListener('scroll', debounce(scrollStar));
+      // document.addEventListener('mousewheel', clearTime)
+      // document.addEventListener('touchmove', clearTime)
+
+      //load
+      scrollStar()
+      scrollOnLoad()
+    }
+    window.onload = function(){
+      navFn()
+    }
+  </script>
+</body>
+
+</html>

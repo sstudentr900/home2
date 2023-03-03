@@ -1,0 +1,154 @@
+html {
+	font-size: 16px;
+}
+.technology{
+  width: 1400px;
+  padding: 100px;
+}
+.technology .img{
+    position: relative;
+    padding-left: 85px;
+}
+.technology .img:before{
+    background: #c1894c;
+    width: 100%;
+    -moz-transition: width 0.6s 0.2s;
+    -o-transition: width 0.6s 0.2s;
+    -webkit-transition: width 0.6s;
+    -webkit-transition-delay: 0.2s;
+    transition: width 0.6s 0.2s;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+}
+.technology .scrollTop.active .img:before{
+    width: 0;
+}
+.technology .date{
+    position: absolute;
+    top: 30px;
+    left: 0;
+    font-family: "PTSerif-Regular";
+    color: #000;
+    border: 1px solid #000;
+    display: block;
+    width: 120px;
+    padding: 15px 20px;
+    position: absolute;
+    z-index: 2;
+    font-weight: normal;
+}
+.technology .date > span {
+    display: inline-block;
+    vertical-align: top;
+}
+.technology .date .num {
+    font-size: 2.5rem;
+    float: left;
+    line-height: 40px;
+}
+.technology .date .month {
+    margin: 0;
+    margin-top: 5px;
+    font-size: 1rem;
+}
+.technology .date .year {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 15px;
+}
+.technology .title a{
+    color: #000;
+    font-size: 24px;
+    margin: 20px 0;
+    display: block;
+}
+.technology .title a:hover{
+    text-decoration: underline;
+}
+.technology .text p{
+    line-height: 1.6;
+}
+.technology .text p+p{
+    margin-top: 10px;
+}
+.readmore {
+    font-family: "PTSerif-Regular";
+    font-size: 1rem;
+    margin-top: 30px;
+    padding-right: 15px;
+    color: #000;
+    display: inline-block;
+    position: relative;
+    -moz-transition: ease 0.5s;
+    -o-transition: ease 0.5s;
+    -webkit-transition: ease 0.5s;
+    transition: ease 0.5s;
+}
+.readmore:hover {
+    color: #c1894c;
+}
+.readmore:before {
+    content: "";
+    width: 8px;
+    height: 1px;
+    top: 50%;
+    position: absolute;
+    opacity: 0;
+    background: #000;
+}
+.readmore:hover:before {
+    -webkit-animation: liner 0.5s 0.2s ease both;
+    -moz-animation: liner 0.5s 0.2s ease both;
+    -ms-animation: liner 0.5s 0.2s ease both;
+    -o-animation: liner 0.5s 0.2s ease both;
+    animation: liner 0.5s 0.2s ease both;
+}
+@-webkit-keyframes liner {
+    from {
+        -moz-transform-origin: 0 10%;
+        -ms-transform-origin: 0 10%;
+        -webkit-transform-origin: 0 10%;
+        transform-origin: 0 10%;
+        -moz-transform: scaleX(0);
+        -ms-transform: scaleX(0);
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+    }
+    50% {
+        opacity: 1;
+        -moz-transform-origin: 0 10%;
+        -ms-transform-origin: 0 10%;
+        -webkit-transform-origin: 0 10%;
+        transform-origin: 0 10%;
+        -moz-transform: scaleX(10);
+        -ms-transform: scaleX(10);
+        -webkit-transform: scaleX(10);
+        transform: scaleX(10);
+    }
+    to {
+        opacity: 1;
+        -moz-transform-origin: 0 10%;
+        -ms-transform-origin: 0 10%;
+        -webkit-transform-origin: 0 10%;
+        transform-origin: 0 10%;
+        -moz-transform: scaleX(1) translateX(100px);
+        -ms-transform: scaleX(1) translateX(100px);
+        -webkit-transform: scaleX(1) translateX(100px);
+        transform: scaleX(1) translateX(100px);
+    }
+}
+@-moz-keyframes liner {
+    from { -moz-transform-origin: 0 10%; -ms-transform-origin: 0 10%; -webkit-transform-origin: 0 10%; transform-origin: 0 10%; -moz-transform: scaleX(0); -ms-transform: scaleX(0); -webkit-transform: scaleX(0); transform: scaleX(0); }
+    50% { opacity: 1; -moz-transform-origin: 0 10%; -ms-transform-origin: 0 10%; -webkit-transform-origin: 0 10%; transform-origin: 0 10%; -moz-transform: scaleX(10); -ms-transform: scaleX(10); -webkit-transform: scaleX(10); transform: scaleX(10); }
+    to { opacity: 1; -moz-transform-origin: 0 10%; -ms-transform-origin: 0 10%; -webkit-transform-origin: 0 10%; transform-origin: 0 10%; -moz-transform: scaleX(1) translateX(100px); -ms-transform: scaleX(1) translateX(100px); -webkit-transform: scaleX(1) translateX(100px); transform: scaleX(1) translateX(100px); }
+}
+@keyframes liner {
+    from { -moz-transform-origin: 0 10%; -ms-transform-origin: 0 10%; -webkit-transform-origin: 0 10%; transform-origin: 0 10%; -moz-transform: scaleX(0); -ms-transform: scaleX(0); -webkit-transform: scaleX(0); transform: scaleX(0); }
+    50% { opacity: 1; -moz-transform-origin: 0 10%; -ms-transform-origin: 0 10%; -webkit-transform-origin: 0 10%; transform-origin: 0 10%; -moz-transform: scaleX(10); -ms-transform: scaleX(10); -webkit-transform: scaleX(10); transform: scaleX(10); }
+    to { opacity: 1; -moz-transform-origin: 0 10%; -ms-transform-origin: 0 10%; -webkit-transform-origin: 0 10%; transform-origin: 0 10%; -moz-transform: scaleX(1) translateX(100px); -ms-transform: scaleX(1) translateX(100px); -webkit-transform: scaleX(1) translateX(100px); transform: scaleX(1) translateX(100px); }
+}

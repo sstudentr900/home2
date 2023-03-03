@@ -1,0 +1,121 @@
+a{
+  text-decoration: none;
+  display: block;
+}
+.img-responsive{
+  width:100%;
+  height: auto;
+  display: block;
+}
+.newEvent{
+  margin: 100px;
+  width: 400px;
+}
+.newEvent .item{
+    padding: 0 40px;
+}
+.newEvent .item .img{
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    -moz-transition: -moz-transform 0.3s;
+    -o-transition: -o-transform 0.3s;
+    -webkit-transition: -webkit-transform 0.3s;
+    transition: transform 0.3s;
+}
+.newEvent .item:hover .img {
+    -moz-transform: scale(0.95, 0.95);
+    -ms-transform: scale(0.95, 0.95);
+    -webkit-transform: scale(0.95, 0.95);
+    transform: scale(0.95, 0.95);
+}
+.newEvent .item .img:before,
+.newEvent .item .img:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    -moz-transition: ease 0.3s 0.3s;
+    -o-transition: ease 0.3s 0.3s;
+    -webkit-transition: ease 0.3s;
+    -webkit-transition-delay: 0.3s;
+    transition: ease 0.3s 0.3s;
+}
+.newEvent .item:hover .img:before,
+.newEvent .item:hover .img:after {
+    opacity: 1;
+}
+.newEvent .item .img:after {
+    content: "Read More";
+    color: #fff;
+    text-align: center;
+    font-family: "Oswald-Light";
+    z-index: 2;
+    height: 30px;
+    margin: auto;
+    -moz-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
+}
+.newEvent .item:hover .img:after {
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+     transform: translateX(0%);
+}
+.newEvent .item .img:before {
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1;
+    width: 0;
+}
+.newEvent .item:hover .img:before {
+     width: 100%;
+}
+.newEvent .data{
+    font-family: "Oswald-Light";
+    color: #000;
+    position: relative;
+    z-index: 2;
+    top: -50px;
+    padding: 7px 20px;
+    font-size: 0.9rem;
+    -moz-transition: color 0.3s 0.3s;
+    -o-transition: color 0.3s 0.3s;
+    -webkit-transition: color 0.3s;
+    -webkit-transition-delay: 0.3s;
+    transition: color 0.3s 0.3s;
+}
+.newEvent .data:before{
+    content: "";
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #000;
+    position: absolute;
+    right: 90%;
+    top: 50%;
+    margin-top: -2px;
+}
+.newEvent .item:hover .data {
+    color: #fff;
+}
+.newEvent .bottom{
+    padding: 0 10px 20px;
+}
+.newEvent .bottom h5{
+    color: #000;
+    font-weight: bold;
+    margin:0;  
+    margin-bottom: 10px;
+    line-height: 1.2;
+    font-size:18px;
+}
+.newEvent .bottom p{
+  color: #000;
+  margin:0;
+}
