@@ -12,7 +12,6 @@
 </head>
 
 <body id="program">
-  
     <h2>1.switch</h2>
     <style>
       /*puplic_switch*/
@@ -277,19 +276,41 @@
     <br>
     <h2>select</h2>
     <style>
-      select {
-        outline: none;
+      .puplicFromSelect{
+          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0.75rem center;
+          background-size: 16px 12px;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          padding: 10px;
+          width: 120px;
       }
-      select::placeholder {
+    </style>
+    <select class="puplicFromSelect">
+      <option value="m">男</option>
+      <option value="w">女</option>
+    </select>
+    <br>
+    <br>
+    <h2>select2</h2>
+    <style>
+      .puplicFromSelect2 {
+        outline: none;
+        padding: 10px;
+        width: 120px;
+      }
+      .puplicFromSelect2::placeholder {
         color: rgba(55, 56, 47, 0.4);
       }
-      select {
+      .puplicFromSelect2 {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
       }
     </style>
-    <select name="option">
+    <select name="option" class="puplicFromSelect2">
       <option value="" disabled="disabled" selected="selected">使用產品</option>
       <option value="2">白毫烏龍</option>
       <option value="3">茉莉綠茶</option>
