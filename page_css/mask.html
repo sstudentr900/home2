@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <!-- <img src="harry.jpg" alt="Harry Potter"> -->
+    <div class="bg">
+      <div class="clip-svg">
+        <p>132132132</p>
+        <p>132132132</p>
+        <p>132132132</p>
+        <p>132132132</p>
+        <p>132132132</p>
+      </div>
+    </div>
+    <svg width="0" height="0">
+      <defs>
+        <clipPath id="myClip">
+          <circle cx="100" cy="100" r="40" />
+        </clipPath>
+      </defs>
+    </svg>
+    <style>
+      .bg{
+        background: #333;
+      }
+      .clip-svg {
+        clip-path: url(#myClip);
+        border: 6px solid #d10808;
+        padding: 20px;
+        background: #fff;
+      }
+    </style>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://css-tricks.com/clipping-masking-css/" target="_blank">Clipping and Masking</a>
+      </li>
+    </ul>
+  </body>
+</html>
