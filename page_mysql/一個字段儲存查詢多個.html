@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>輔助插件</h2>
+    <ul>
+      <li>GROUP_CONCAT(要合併的值)</li>
+      <li>FIND_IN_SET(查詢的值,查詢的表)</li>
+    </ul>
+    <p>SELECT m.id,(SELECT GROUP_CONCAT(c.name) FROM c WHERE FIND_IN_SET(c.id,m.c_id)) AS className FROM m;</p>
+    <div>
+      m 主
+      -----------------
+      id    c_id
+      -----------------
+      1     1,2
+      2     2,3
+
+      c 類
+      -----------------
+      id    name
+      -----------------
+      1     A
+      2     B
+      3     C
+
+      結果
+      -----------------
+      id    className
+      -----------------
+      1     A,B
+      2     B,C
+    </div>  
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://blog.csdn.net/guoxilen/article/details/24332517" target="_blank">一个字段存储多个ID时的查询</a>
+      </li>
+    </ul>
+  </body>
+</html>

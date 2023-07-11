@@ -21,11 +21,13 @@
       <li>data::take(10)                    //查询多少数据</li>
       <li>data::count()                     //數量</li>
     </ol>
+
     <h2>讀取(Read)</h2>
     <ol>
       <li>all() 讀取全部資料</li>
+      <li>first()->單筆,get()->多筆</li>
       <li>find() 輸入primary key 讀取該資料</li>
-      <li>where() where用法就比較需要注意了，他跟原生sql語法差不多用法，裏面都是放置判斷式，不同點於find()是，他後面需要加上first()或是get(),例如：</li>
+      <li>where() where用法就比較需要注意了，他跟原生sql語法差不多用法，裏面都是放置判斷式</li>
     </ol>
     <pre class="prettyprint">
       <xmp>
@@ -36,6 +38,7 @@
         Users::where('id','1')->first();
       </xmp>
     </pre>
+
     <h2>新增(Create)</h2>
     <pre class="prettyprint">
       <xmp>
@@ -49,6 +52,7 @@
         Users::create(['title'=>'Default Title' , 'content'=>'Example Content']);
       </xmp>
     </pre>
+
     <h2>更新(Update)</h2>
     <pre class="prettyprint">
       <xmp>
@@ -66,6 +70,7 @@
         ->update(['delayed' => 1]);
       </xmp>
     </pre>
+
     <h2>updateOrCreate 和 updateOrInsert 的区别</h2>
     <p>存在即更新，反之则创建 updateOrCreate 方法使用的是 Eloquent ORM 操作的数据库（支持自动添加创建和更新时间），updateOrInsert 方法使用的是查询构造器（不可以自动添加创建和更新时间）</p>
     <p>第一個指示匹配條件，第二個用於指定要更新的字段</p>
@@ -86,6 +91,7 @@
         ]);
       </xmp>
     </pre>
+
     <h2>刪除(Update)</h2>
     <pre class="prettyprint">
       <xmp>
@@ -96,6 +102,7 @@
         Users::destroy('2');
       </xmp>
     </pre>
+
     <h2>判斷有無值</h2>
     <pre class="prettyprint">
       <xmp>
@@ -105,6 +112,7 @@
         }
       </xmp>
     </pre>
+
     <h2>列印EloquentSQL語法</h2>
     <pre class="prettyprint">
       <xmp>
@@ -121,6 +129,15 @@
         Log::notice(print_r(DB::getQueryLog(), true));
       </xmp>
     </pre>
+
+    <h2>sort id+1</h2>
+    <pre class="prettyprint">
+      <xmp>
+        data::max('id') + 1
+      </xmp>
+    </pre>
+
+
     <hr>
     <h4>參考</h4>
     <ul>

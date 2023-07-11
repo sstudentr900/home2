@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      /* overflow-x: scroll; */
+      width: 100%;
+      overflow: hidden;
+    }
+    .container2{
+      /* width: 100vw; */
+    }
+    .topDiv{
+      width: 100%;
+      overflow: hidden;
+    }
+    .page {
+      width: 100vw;
+      height: 100vh;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      font-weight: bold;
+    }
+    .page:nth-child(1) {
+      background: hsl(140deg, 50%, 50%);
+    }
+
+    .page:nth-child(2) {
+      background: hsl(210deg, 50%, 50%);;
+    }
+
+    .page:nth-child(3) {
+      background: hsl(270deg, 50%, 50%);;
+    }
+    .container .page:nth-child(2){
+      width: 1600px;
+    }
+    .container .page:nth-child(3){
+      width: 2000px;
+    }
+  </style>
+  <div class="topDiv">
+    <div class="container">
+      <div class="page">Page1</div>
+      <div class="page">Page2</div>
+      <div class="page">Page3</div>
+    </div>
+    <div class="container2">
+      <div class="page">Page4</div>
+      <div class="page">Page5</div>
+      <div class="page">Page6</div>
+    </div>
+  </div>
+  <script>
+    let container = document.querySelector(".container");
+    let pages = container.querySelectorAll(".page");
+    function checkScrollDirectionIsUp(event) {
+      if (event.wheelDelta) {
+        return event.wheelDelta > 0;
+      }
+      return event.deltaY < 0;
+    }
+    // function checkScrollDirection(event) {
+    //   if (checkScrollDirectionIsUp(event)) {
+    //     console.log('UP');
+    //   } else {
+    //     console.log('Down');
+    //   }
+    // }
+    let widthValue = 0;
+    pages.forEach(item => {
+      widthValue+=item.offsetWidth
+    });  
+    // console.log(widthValue)
+    widthValue = widthValue-window.innerWidth;
+    console.log()
+    container.addEventListener("wheel", (event) => {
+      console.log('document.body.scrollTop:',document.body.scrollTop)
+      console.log('window.scrollY:',window.scrollY)
+      console.log('event.deltaY:',event.deltaY)
+      console.log('container.scrollLeft:',container.scrollLeft)
+      console.log('checkScrollDirectionIsUp:',checkScrollDirectionIsUp(event))
+      console.log('widthValue:',widthValue)
+      // checkScrollDirection(event)
+      if(window.scrollY<=10 && container.scrollLeft<=widthValue || window.scrollY<=10 && container.scrollLeft>=widthValue && checkScrollDirectionIsUp(event)){
+        event.preventDefault();
+        container.scrollLeft += event.deltaY;
+      }
+    })
+  </script>
+</body>
+</html>
