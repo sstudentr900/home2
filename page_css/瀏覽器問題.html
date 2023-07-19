@@ -18,6 +18,11 @@
     
     <h2>chrome type='password' 關閉提示</h2>
     <p>不能加id name 需加 autocomplete="new-password"</p>
+
+    <h2>不要將 100vh 用於移動響應</h2>
+    <a href="https://dev.to/nirazanbasnet/dont-use-100vh-for-mobile-responsive-3o97">來源</a>
+    <p>height:100vh全屏佈局,大多數移動設備上的 Chrome 和 Firefox 瀏覽器在頂部都有一個 UI（地址欄等）。在 Safari 上，更棘手的地址欄位於底部。不同的瀏覽器有不同大小的視口移動設備計算瀏覽器視口為（頂部欄 + 文檔 + 底部欄）= 100vh 使用 100vh 將整個文檔填充到頁面</p>
+    <p>解決方案 min-height: 100vh;</p>
     <!-- <pre class="prettyprint">
       <xmp>
       </xmp>
