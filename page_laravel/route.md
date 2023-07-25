@@ -142,12 +142,17 @@
 
 ## error 404(fallback)
 ```php
-    //1.
+    //web.php
+    Route::fallback(function () {
+      return redirect()->route('fnindex');
+    });
+
+    //blade.php 
     if(false){
         return redirect('/');
     }
 
-    //2.
+    //blade.php
     if(false){
         abort(404);
     }
