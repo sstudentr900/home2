@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Scroll to top button</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+          html{
+            scroll-behavior: smooth;
+          }
+          .full-page{
+            height: 100vh;
+          }
+        </style>
+        <!-- html -->
+        <div class="fixed-top text-center w-100">
+          <a href="#home" class="btn btn-info">home</a>
+          <a href="#about" class="btn btn-info">about</a>
+          <a href="#shop" class="btn btn-info">shop</a>
+        </div>
+        <div class="full-page" id="home">
+          Home
+        </div>
+        <div class="full-page" id="about">
+          About
+        </div>
+        <div class="full-page" id="shop">
+          Shop
+        </div>
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://tools.wingzero.tw/article/sn/224">使用 scroll-behavior 達成免用 js 的平滑滾動效果</a>
+      </li>
+    </ul>
+  </body>
+</html>
