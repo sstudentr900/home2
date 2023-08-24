@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+      .table {
+          display: table;
+          background-color: grey;
+          border-spacing: 1px;
+          width: 200px;
+      }
+      .table .row {
+          display: table-row;
+          background-color: blue;
+      }
+      .table .header {
+          font-weight: bold;
+      }
+      .table .row .cell {
+          display: table-cell;
+          padding: 5px;
+          text-align: center;
+          background-color:green;
+      }
+      .table .row .cell.align-left {
+          text-align: left;
+      }
+      .drag-handle {
+          cursor: pointer;
+      }
+    </style>
+</head>
+<body>
+  <div class="table" >
+    <div class="row drag-handle" draggable="true" id="drag1" >
+      <div class="cell">A</div>
+    </div>
+    <div class="row drag-handle" draggable="true" id="drag2">
+      <div class="cell">B</div>
+    </div>
+    <div class="row drag-handle" draggable="true" id="drag3">
+      <div class="cell">C</div>
+    </div>
+  </div>
+  <a href="https://codepen.io/MrFelna/pen/ajqagB">CodePen Home table drag drop</a>
+  <script>
+    function handleDragStart(e) {
+      dragSrcEl = this;
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/html', this.innerHTML);
+      this.style.opacity = '0.4';  // this / e.target is the source node.
+    }
+
+    function handleDragOver(e) {
+      if (e.preventDefault) {
+        e.preventDefault(); // Necessary. Allows us to drop.
+      }
+
+      e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+
+      return false;
+    }
+
+    function handleDragEnter(e) {
+      // this / e.target is the current hover target.
+      this.classList.add('over');
+    }
+
+    function handleDragLeave(e) {
+      this.classList.remove('over');  // this / e.target is previous target element.
+    }
+
+    function handleDrop(e) {
+      // this / e.target is current target element.
+
+      if (e.stopPropagation) {
+        e.stopPropagation(); // stops the browser from redirecting.
+      }
+
+      // See the section on the DataTransfer object.
+      // Don't do anything if dropping the same column we're dragging.
+      if (dragSrcEl != this) {
+        // Set the source column's HTML to the HTML of the column we dropped on.
+        dragSrcEl.innerHTML = this.innerHTML;
+        this.innerHTML = e.dataTransfer.getData('text/html');
+        this.style.opacity = 1;
+        dragSrcEl.style.opacity = 1;
+      }
+
+      return false;
+    }
+
+    function handleDragEnd(e) {
+      // this/e.target is the source node.
+
+      [].forEach.call(cols, function (col) {
+        col.classList.remove('over');
+      });
+    }
+
+    var dragSrcEl = null;
+    var cols = document.querySelectorAll('.drag-handle');
+    [].forEach.call(cols, function(col) {
+      col.addEventListener('dragstart', handleDragStart, false);
+      col.addEventListener('dragenter', handleDragEnter, false)
+      col.addEventListener('dragover', handleDragOver, false);
+      col.addEventListener('dragleave', handleDragLeave, false);
+      col.addEventListener('drop', handleDrop, false);
+      col.addEventListener('dragend', handleDragEnd, false);
+    });
+  </script>
+</body>
+</html>

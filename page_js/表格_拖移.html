@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+      body,
+      html {
+        background-color: #f0f0f0;
+        font-family: sans-serif;
+        text-align: center;
+      }
+
+      table {
+        display: flex;
+        justify-content: center;
+        margin: 2% auto;
+      }
+
+      tr {
+        margin: auto;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+      }
+
+      td,
+      th {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style-type: none;
+        padding: 5px;
+        margin: 2px;
+        background-color: #dff8ff;
+        border: 2px solid #00a7d5;
+        height: 40px;
+        width: 180px;
+      }
+      th {
+        height: 24px;
+        background: #fff;
+      }
+
+    </style>
+</head>
+<body>
+  <a href="https://codepen.io/pistol/pen/rNVNwqP">CodePen Hometable Drag Drop</a>
+  <table>
+    <tr>
+      <th>A</th><th>B</th><th>C</th>
+    </tr>
+    <tr>
+      <td draggable="true" ondragstart="dragStarted(event)" ondragover="draggingOver(event)" ondrop="dropped(event)">
+        ぺんぎんクッキー</td>
+      <td draggable="true" ondragstart="dragStarted(event)" ondragover="draggingOver(event)" ondrop="dropped(event)">
+        あひるサブレ</td>
+      <td draggable="true" ondragstart="dragStarted(event)" ondragover="draggingOver(event)" ondrop="dropped(event)">
+        らくだキャラメル</td>
+    </tr>
+    <tr>
+      <td draggable="true" ondragstart="dragStarted(event)" ondragover="draggingOver(event)" ondrop="dropped(event)">
+        ふくろうケーキ</td>
+      <td draggable="true" ondragstart="dragStarted(event)" ondragover="draggingOver(event)" ondrop="dropped(event)">
+        しろくまアイス</td>
+      <td draggable="true" ondragstart="dragStarted(event)" ondragover="draggingOver(event)" ondrop="dropped(event)">
+        しろくまアイス2</td>
+    </tr>
+  </table>
+  <script>
+    let source;
+    function dragStarted(evt) {
+      source = evt.target;
+      evt.dataTransfer.setData("text/plain", evt.target.innerHTML);
+      evt.dataTransfer.effectAllowed = "move";
+    }
+    function draggingOver(evt) {
+      evt.preventDefault();
+      evt.dataTransfer.dropEffect = "move";
+    }
+    function dropped(evt) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      source.innerHTML = evt.target.innerHTML;
+      evt.target.innerHTML = evt.dataTransfer.getData("text/plain");
+    }
+  </script>
+</body>
+</html>

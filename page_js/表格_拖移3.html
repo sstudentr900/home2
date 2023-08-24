@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+      .row{
+        margin:0;
+      }
+      .curriculum-schedule{
+          margin-left: 49.5%;font-weight: 800;display: none
+      }
+      .schedule-list{
+          text-align: center;
+      }
+      .drag-main{
+          margin: 0;
+      }
+      .drag{
+          height: 600px;
+          overflow-y: auto;
+          overflow-x: hidden;
+          user-select: none;
+      }
+      .dragSelect{
+          border:1px solid #ff8400;
+      }
+      .disabled {
+          cursor: not-allowed !important;
+      }
+      th {
+          text-align: center;
+      }
+      tbody td{
+          padding: 10px;
+          cursor: pointer;
+      }
+      .drag-table,.drag-operate-history{
+          user-select: none;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/juicer/0.6.15/juicer-min.js"></script>
+</head>
+<body>
+  <div class="row mt10">
+    <div class="col-sm-8 col-md-8 col-lg-8">
+        <div class="row mt10 drag-main">
+            <div class="col-sm-4 col-sm-offset-8 col-md-2 col-md-offset-10 col-lg-2 col-lg-offset-10">
+                <button type="button" class="btn btn-info" id="btn-schedule-confirm">
+                    <i class="fa fa-floppy-o"></i> 保存
+                </button>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 drag">
+                <div class="schedule-list" id="schedule-list">
+                    <table style="margin-bottom: 3%" class="drag-table" align="center" border="1" width="800"
+                        cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>课 次</th>
+                                <th>上课时间</th>
+                                <th>星期一A</th>
+                                <th>星期二B</th>
+                                <th>星期三C</th>
+                                <th>星期四D</th>
+                                <th>星期五E</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ff80808167df49520167dfa4130200c6">
+                            <tr>
+                                <th>1</th>
+                                <td>08:00 - 08:40</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-1-Monday"
+                                    id="ff80808167df49520167dfa4130200c6-1-Monday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="1"
+                                    weekday="Monday" class="drag-td  dragOp">Chemistry</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-1-Tuesday"
+                                    id="ff80808167df49520167dfa4130200c6-1-Tuesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="1"
+                                    weekday="Tuesday" class="drag-td  dragOp">Math**</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-1-Wednesday"
+                                    id="ff80808167df49520167dfa4130200c6-1-Wednesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="1"
+                                    weekday="Wednesday" class="drag-td dragOp">Biology**</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-1-Thursday"
+                                    id="ff80808167df49520167dfa4130200c6-1-Thursday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="1"
+                                    weekday="Thursday" class="drag-td  dragOp">Physics**</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-1-Friday"
+                                    id="ff80808167df49520167dfa4130200c6-1-Friday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="1"
+                                    weekday="Friday" class="drag-td  dragOp">Physics</td>
+                            </tr>
+                            <tr>
+                                <th>2</th>
+                                <td>08:50 - 09:30</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-2-Monday"
+                                    id="ff80808167df49520167dfa4130200c6-2-Monday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="2"
+                                    weekday="Monday" class="drag-td  dragOp">Physics</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-2-Tuesday"
+                                    id="ff80808167df49520167dfa4130200c6-2-Tuesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="2"
+                                    weekday="Tuesday" class="drag-td  dragOp">Biology**</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-2-Wednesday"
+                                    id="ff80808167df49520167dfa4130200c6-2-Wednesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="2"
+                                    weekday="Wednesday" class="drag-td  dragOp">Econ</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-2-Thursday"
+                                    id="ff80808167df49520167dfa4130200c6-2-Thursday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="2"
+                                    weekday="Thursday" class="drag-td dragOp">Math**</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-2-Friday"
+                                    id="ff80808167df49520167dfa4130200c6-2-Friday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="2"
+                                    weekday="Friday" class="drag-td  dragOp">Math**</td>
+                            </tr>
+                            <tr>
+                                <th>3</th>
+                                <td>10:05 - 10:40</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-3-Monday"
+                                    id="ff80808167df49520167dfa4130200c6-3-Monday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="3"
+                                    weekday="Monday" class="drag-td  dragOp">Econ</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-3-Tuesday"
+                                    id="ff80808167df49520167dfa4130200c6-3-Tuesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="3"
+                                    weekday="Tuesday" class="drag-td  dragOp">Physics</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-3-Wednesday"
+                                    id="ff80808167df49520167dfa4130200c6-3-Wednesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="3"
+                                    weekday="Wednesday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-3-Thursday"
+                                    id="ff80808167df49520167dfa4130200c6-3-Thursday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="3"
+                                    weekday="Thursday" class="drag-td dragOp">Econ</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-3-Friday"
+                                    id="ff80808167df49520167dfa4130200c6-3-Friday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="3"
+                                    weekday="Friday" class="drag-td  dragOp">Econ</td>
+                            </tr>
+                            <tr>
+                                <th>4</th>
+                                <td>10:45 - 11:20</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-4-Monday"
+                                    id="ff80808167df49520167dfa4130200c6-4-Monday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="4"
+                                    weekday="Monday" class="drag-td  dragOp">Math**</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-4-Tuesday"
+                                    id="ff80808167df49520167dfa4130200c6-4-Tuesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="4"
+                                    weekday="Tuesday" class="drag-td  dragOp">Chemistry**</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-4-Wednesday"
+                                    id="ff80808167df49520167dfa4130200c6-4-Wednesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="4"
+                                    weekday="Wednesday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-4-Thursday"
+                                    id="ff80808167df49520167dfa4130200c6-4-Thursday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="4"
+                                    weekday="Thursday" class="drag-td  dragOp">Biology</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-4-Friday"
+                                    id="ff80808167df49520167dfa4130200c6-4-Friday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="4"
+                                    weekday="Friday" class="drag-td tdm dragDt"></td>
+                            </tr>
+                            <tr>
+                                <th>5</th>
+                                <td>11:25 - 12:00</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-5-Monday"
+                                    id="ff80808167df49520167dfa4130200c6-5-Monday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="5"
+                                    weekday="Monday" class="drag-td  dragOp">Biology</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-5-Tuesday"
+                                    id="ff80808167df49520167dfa4130200c6-5-Tuesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="5"
+                                    weekday="Tuesday" class="drag-td  dragOp">Econ</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-5-Wednesday"
+                                    id="ff80808167df49520167dfa4130200c6-5-Wednesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="5"
+                                    weekday="Wednesday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-5-Thursday"
+                                    id="ff80808167df49520167dfa4130200c6-5-Thursday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="5"
+                                    weekday="Thursday" class="drag-td dragOp">History</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-5-Friday"
+                                    id="ff80808167df49520167dfa4130200c6-5-Friday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="5"
+                                    weekday="Friday" class="drag-td dragOp">History**</td>
+                            </tr>
+                            <tr>
+                                <th>6</th>
+                                <td>13:00 - 13:40</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-6-Monday"
+                                    id="ff80808167df49520167dfa4130200c6-6-Monday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="6"
+                                    weekday="Monday" class="drag-td  dragOp">History</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-6-Tuesday"
+                                    id="ff80808167df49520167dfa4130200c6-6-Tuesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="6"
+                                    weekday="Tuesday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-6-Wednesday"
+                                    id="ff80808167df49520167dfa4130200c6-6-Wednesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="6"
+                                    weekday="Wednesday" class="drag-td  dragOp">History**</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-6-Thursday"
+                                    id="ff80808167df49520167dfa4130200c6-6-Thursday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="6"
+                                    weekday="Thursday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-6-Friday"
+                                    id="ff80808167df49520167dfa4130200c6-6-Friday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="6"
+                                    weekday="Friday" class="drag-td tdm dragDt"></td>
+                            </tr>
+                            <tr>
+                                <th>7</th>
+                                <td>13:50 - 14:30</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-7-Monday"
+                                    id="ff80808167df49520167dfa4130200c6-7-Monday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="7"
+                                    weekday="Monday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-7-Tuesday"
+                                    id="ff80808167df49520167dfa4130200c6-7-Tuesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="7"
+                                    weekday="Tuesday" class="drag-td  dragOp">History**</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-7-Wednesday"
+                                    id="ff80808167df49520167dfa4130200c6-7-Wednesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="7"
+                                    weekday="Wednesday" class="drag-td  dragOp">Physics**</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-7-Thursday"
+                                    id="ff80808167df49520167dfa4130200c6-7-Thursday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="7"
+                                    weekday="Thursday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-7-Friday"
+                                    id="ff80808167df49520167dfa4130200c6-7-Friday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="7"
+                                    weekday="Friday" class="drag-td tdm dragDt"></td>
+                            </tr>
+                            <tr>
+                                <th>8</th>
+                                <td>14:45 - 15:25</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-8-Monday"
+                                    id="ff80808167df49520167dfa4130200c6-8-Monday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="8"
+                                    weekday="Monday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-8-Tuesday"
+                                    id="ff80808167df49520167dfa4130200c6-8-Tuesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="8"
+                                    weekday="Tuesday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-8-Wednesday"
+                                    id="ff80808167df49520167dfa4130200c6-8-Wednesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="8"
+                                    weekday="Wednesday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-8-Thursday"
+                                    id="ff80808167df49520167dfa4130200c6-8-Thursday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="8"
+                                    weekday="Thursday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-8-Friday"
+                                    id="ff80808167df49520167dfa4130200c6-8-Friday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="8"
+                                    weekday="Friday" class="drag-td tdm dragDt"></td>
+                            </tr>
+                            <tr>
+                                <th>9</th>
+                                <td>15:35 - 16:15</td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-9-Monday"
+                                    id="ff80808167df49520167dfa4130200c6-9-Monday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="9"
+                                    weekday="Monday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-9-Tuesday"
+                                    id="ff80808167df49520167dfa4130200c6-9-Tuesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="9"
+                                    weekday="Tuesday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-9-Wednesday"
+                                    id="ff80808167df49520167dfa4130200c6-9-Wednesday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="9"
+                                    weekday="Wednesday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-9-Thursday"
+                                    id="ff80808167df49520167dfa4130200c6-9-Thursday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="9"
+                                    weekday="Thursday" class="drag-td tdm dragDt"></td>
+                                <td data-id="ff80808167df49520167dfa4130200c6-9-Friday"
+                                    id="ff80808167df49520167dfa4130200c6-9-Friday"
+                                    classid="ff80808167df49520167dfa4130200c6" classname="高一二班" zoneorder="9"
+                                    weekday="Friday" class="drag-td tdm dragDt"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <!-- Widget ID (each widget will need unique ID)-->
+        <div class="jarviswidget jarviswidget-color mb10 drag-operate-history" id="wid-id-3"
+            data-widget-editbutton="false">
+            <header>
+                <span class="widget-icon"> <i class="fa fa-table"></i>
+                </span>
+                <h4>拖拽排课操作历史记录列表</h4>
+
+                <div class="widget-toolbar" role="menu">
+                    <!--                                                         <button type="button" class="btn btn-info" id="btn-drag-revert">
+                                <i class="fa fa-undo"></i> 所有操作还原
+                            </button> -->
+                </div>
+            </header>
+            <!-- widget div-->
+            <div>
+                <div class="widget-body no-padding">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th width="100">序号</th>
+                                    <th width="">内容</th>
+                                    <th width="120">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="drag-operate-history-list">
+                                <tr>
+                                    <td colspan="3">无操作记录！</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- end widget content -->
+            </div>
+            <!-- end widget div -->
+
+        </div>
+        <!-- end widget -->
+    </div>
+  </div>
+  <a href="https://codepen.io/ssj_8551/pen/MWgKxOW">CodePen Home table内拖拽td内容 、拖拽操作历史记录及退回</a>
+  <script>
+    var drag_operate_history = []; // 拖拽排课操作历史记录
+    init_drag();
+    $('body').on('click', '#btn-schedule-confirm', saveScheduleCourse);
+    // 退回 
+    $('body').on('click', '.btn-drag-operate-cancel', dragOperateCancel);
+    // 拖拽排课操作 全部还原
+    $('body').on('click', '#btn-drag-revert', function () {
+      drag_operate_history = [];
+      getSchedule();
+      drag_operate_history_list();
+    });
+    //拖拽题的事件
+    function init_drag() {
+      var $dragB = $("tbody td.dragOp"),
+        $area = $("tbody td.dragDt"),
+        cX, cY, temText, $tbox, $curS, $tmOld;
+
+      $("body").append("<p id='temMovBlock' style='position:absolute'></p>");
+      $tbox = $("#temMovBlock");
+
+      if ($dragB.length > 0 && $area.length > 0) {
+        var localizer; //定位器加载
+        function createDWK() {
+          // var scrolltop = $(".drag").scrollTop();
+          var scrollLeft = $(".drag").scrollLeft();
+          var eleMsg = {};
+          localizer = [];
+          $.each($("tbody td"), function () {
+            $cur = $(this);
+            eleMsg = {};
+            eleMsg["w"] = $cur.outerWidth();
+            eleMsg["h"] = $cur.outerHeight();
+
+            eleMsg["x"] = $cur.position().left //+ ($cur.outerWidth() - $cur.width());
+            eleMsg["y"] = $cur.position().top //+ ($cur.outerHeight() - $cur.height());; //+ scrolltop; 如果要固定
+
+            eleMsg["dx"] = $cur.offset().left - scrollLeft //+ ($cur.outerWidth() - $cur.width());
+            eleMsg["dy"] = $cur.offset().top //+ ($cur.outerHeight() - $cur.height());; //+ scrolltop; 如果要固定
+
+            eleMsg["top"] = $cur.offset().top
+            eleMsg["left"] = $cur.offset().left
+            eleMsg["elem"] = $cur;
+            localizer.push(eleMsg);
+          })
+        }
+
+        $(".drag").on("scroll", function () {
+          createDWK();
+        })
+        $(window).resize(function () {
+          createDWK();
+        })
+        createDWK();
+
+        //点选
+        $("tbody td").on("mousedown", function (e) {
+          if (!$(e.target).hasClass("dragOp")) {
+            return false;
+          }
+
+          $tmOld = $(e.target);
+          e.stopPropagation();
+
+          cX = e.clientX;
+          cY = e.clientY;
+
+          temText = $tmOld.html();
+          $tmOld.html("");
+
+          $tbox.css({
+            left: cX + "px",
+            top: cY + "px"
+          }).html(temText);
+
+          $curS = $(document.elementFromPoint(cX, cY));
+
+          //移动鼠标拖动事件
+          $(document).on("mousemove", function (e) {
+            var moveX = e.clientX;
+            var moveY = e.clientY;
+
+            $tbox.css({
+              top: moveY + 'px',
+              left: moveX + 'px'
+            });
+
+            //由于IE9无法直接通过document.elementFromPoint进行准确获取，所以使用自定义方法进行获取
+            $curS = getElemByMovein(moveX, moveY, localizer);
+            if ($curS) { //正确摆放位置加提示框
+              $curS.parent().find("td").removeClass("dragSelect");
+              $curS.addClass("dragSelect");
+            } else {
+              $("td").removeClass("dragSelect");
+              $curS = $("body");
+            }
+          })
+
+        })
+        //松开鼠标
+        $(document).on("mouseup", function () {
+          if ($curS) {
+            $(document).off("mousemove");
+            $tbox.css({
+              left: "-1px",
+              top: "-1px"
+            }).html("");
+
+            if (!+[1,]) {
+              $curS = $curS.find("td.dragOp");
+            }
+
+            if ($curS.hasClass("tdm")) {
+              $curS.removeClass("dragSelect");
+              if ($curS.html() === "") {
+                getScheduleDragHistory($curS, $tmOld, temText);
+                $curS.html(temText);
+                $curS.removeClass("dragDt").removeClass("tdm").addClass("dragOp");
+                $tmOld.removeClass("dragOp").addClass("tdm").addClass("dragDt");
+              } else {
+                if (!$tmOld.hasClass("dragOp")) {
+                  $tmOld.html(temText);
+                }
+              }
+            } else {
+              //非正确摆放位置，文字返回原处
+              //$tmOld.html(temText);       
+              
+              // 注意 此处的data-id 不能改为id，否则判断会出错，造成原td中的文字消失
+              var oldTdId = $tmOld.attr('data-id');
+              var curSTdId = $curS.attr('data-id');
+            console.log(oldTdId);
+            console.log(curSTdId);
+              if (curSTdId==null ||curSTdId === oldTdId) {
+                //在原td处未拖动，文字返回原处
+                $tmOld.html(temText);
+              } else {
+                getScheduleDragHistory($curS, $tmOld, temText);
+                //拖拽到已有文字的td时，两个互换
+                var selectTxt = $curS.html();
+                $curS.html(temText);
+                $tmOld.html(selectTxt);
+              }
+            }
+            $curS = null;
+            $("td").removeClass("dragSelect");
+          } else {
+
+          }
+        })
+      }
+    }
+    //从定位器中获取元素
+    function getElemByMovein(x, y, localizer) {
+      for (var i = 0; i < localizer.length; i++) {
+        if (x >= localizer[i].dx && x <= (localizer[i].dx + localizer[i].w) && y >= localizer[i].dy && y <= (localizer[i].dy + localizer[i].h)) {
+          return localizer[i].elem
+        }
+      }
+    }
+    function saveScheduleCourse(){
+      var classIds = [];
+      var datas = [];
+      var tables = $('.drag-table');
+      $.each(tables, function (i, item) {
+        var classId = $(item).find('tbody').attr('id');
+        classIds.push(classId);
+      });
+      // console.log(classIds);
+      $.each(classIds, function (index, item) {
+        var tds = $('#'+item).find('.drag-td');
+        // console.log(tds);
+        var schedules = [];
+        $.each(tds, function (i, it) {
+          schedules.push(it.innerHTML);
+        });		
+        // console.log(schedules);
+        datas.push({
+          classId: item,
+          schedules: schedules
+        });
+      });		
+      console.log(datas);
+    }
+    function getScheduleDragHistory($curS, $tmOld, temText) {
+      var weekDays = { 'Monday': "星期一", "Tuesday": "星期二", "Wednesday": "星期三", "Thursday": "星期四", "Friday": "星期五" };
+      var weekDayOld = $tmOld.attr('weekDay');
+      var weekDayCurS = $curS.attr('weekDay');
+      var oldTdId = $tmOld.attr('id');
+      var curSTdId = $curS.attr('id');
+      var drag_operate = {
+        oldTdId: oldTdId,
+        oldClassId: $tmOld.attr('classId'),
+        oldClassName: $tmOld.attr('className'),
+        oldZoneOrder: $tmOld.attr('zoneOrder'),
+        oldWeekDay: weekDays[weekDayOld],
+        oldTxt: temText,
+        curSTdId: curSTdId,
+        curSClassId: $curS.attr('classId'),
+        curSClassName: $curS.attr('className'),
+        curSZoneOrder: $curS.attr('zoneOrder'),
+        curSWeekDay: weekDays[weekDayCurS],
+        curSTxt: $curS.html(),
+      };
+      drag_operate_history.push(drag_operate);
+      $.each(drag_operate_history, function (i, item) {
+        var id = (i + 1) + '-' + item.oldTdId + '-' + item.curSTdId;
+        item.id = id;
+      });
+      // console.log(drag_operate_history);
+      drag_operate_history_list();
+    }
+    function drag_operate_history_list() {
+      if (drag_operate_history.length == 0) {
+        $('#drag-operate-history-list').html('<tr><td colspan="3">无操作记录！</td></tr>');
+      } else {
+        var page = {};
+        page.content = drag_operate_history;
+        var tpl = drag_operate_history_list_html(page);
+        $('#drag-operate-history-list').html(tpl);
+      }
+    }
+    function drag_operate_history_list_html(page) {
+      var tpl = [
+        '{@each content as it, k}',
+        '<tr>',
+        '<td>${parseInt(k)+1}</td>',
+        '<td>拖拽 班级${it.oldClassName}中 ${it.oldWeekDay} 第${it.oldZoneOrder}节课 ${it.oldTxt} 与 ${it.curSClassName} ${it.curSWeekDay} 第${it.curSZoneOrder}节课 ${it.curSTxt} 互换 </td>',
+        '<td>',
+        '<button type="button" class="btn btn-info btn-xs btn-drag-operate-cancel mb5" id="${it.id}" oldTdId="${it.oldTdId}" curSTdId="${it.curSTdId}" ${parseInt(k)+1==content.length?"":"disabled"}> <i class="fa fa-reply-all"></i> 退回</button>',
+        '</td>',
+        '</tr>',
+        '{@/each}',
+      ].join('\n');
+      return juicer(tpl, page);
+    }
+    function dragOperateCancel() {
+      // console.log($(this));
+      var oldTdId = $(this).attr('oldTdId');
+      var curSTdId = $(this).attr('curSTdId');
+      //文字交换还原
+      var oldTxt = $('#' + oldTdId).html();
+      var curSTxt = $('#' + curSTdId).html();
+      $('#' + oldTdId).html(curSTxt);
+      $('#' + curSTdId).html(oldTxt);
+      if (oldTxt == "") {
+        // 原文字为空时，还原是否可拖动选项的标记样式
+        $('#' + oldTdId).removeClass("dragDt").removeClass("tdm").addClass("dragOp");
+        $('#' + curSTdId).removeClass("dragOp").addClass("tdm").addClass("dragDt");
+      }
+
+      //删除该操作历史记录
+      var id = $(this).attr('id');
+      $.each(drag_operate_history, function (index, item) {
+        if (item.id == id) {
+          drag_operate_history.splice(index, 1);
+        }
+      });
+      drag_operate_history_list();
+    }
+  </script>
+</body>
+</html>
