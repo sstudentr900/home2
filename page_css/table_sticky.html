@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Scroll to top button</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
+          /*凍結表頭/行頭*/
+          /*sticky會跟著上一層的overfloat跑！！因此要定義一個外框*/
+          .table-sticky-wrapper{
+            width: 100%;
+            height: 60vh;/*外框的高度*/
+            overflow:auto;
+          }
+          table.table-sticky {
+            table-layout: fixed;
+            min-width: 100%;
+            width: auto;
+            overflow: unset!important
+          }
+          .table-sticky th {
+            position:sticky;
+            word-break: keep-all;
+            background: #fff
+          }
+
+          .table-sticky td {
+            border-right: 1px solid #ddd;
+            text-align: right
+          }
+
+          .table-sticky thead tr th:first-of-type {
+            left:0;/*sticky要用 上下左右定位*/
+            z-index:3;
+            border-right: 0;
+            box-shadow: -2px -2px 0 inset #ddd
+          }
+          .table-sticky thead tr th{
+            top:0;/*sticky要用 上下左右定位*/
+            background: #f7f7f7;
+            vertical-align: top;
+            border-bottom: 0;
+            border-right: 1px solid #ddd;
+            box-shadow: 0 -2px 0 inset #ddd;
+            z-index: 2;
+          }
+          /*sticky要用 上下左右定位*/
+          .table-sticky tbody th {
+            left: 0;/*定位用*/
+            z-index: 2;/*遮蓋表格內容的圖層層級設定*/
+            box-shadow: -2px 0 0 inset #ddd;/*內框線*/
+          }
+          .table-sticky .card-header{
+            background: #f7f7f7
+          }
+          .table-sticky td a{
+            float: left
+          }/*為了按鈕設定的，刪除不影響*/
+          .table-sticky th a{
+            display: inline-block
+          }/*為了按鈕設定的，刪除不影響*/
+
+          /*表格做記號：群組底色*/
+          table [data-group="0"],table tr[data-group="0"]>th{
+              background: #ffffff!important;
+          }
+          table [data-group="1"],table tr[data-group="1"]>th{
+              background: #F5F6F7!important;
+          }
+          @media screen and (max-width: 767px) {
+            .table-sticky tbody th,
+            .table-sticky thead tr th:first-of-type{
+              width: unset!important;/*th有時會自帶寬度設定，用以清除*/
+              word-break: break-word;
+              min-width: 100px;
+              max-width: 150px}
+          }/*讓左邊第一直欄的寬度 手機尺寸時不要過寬遮蔽資訊*/
+        </style>
+        <!-- html -->
+        <h3>用position:sticky凍結欄位(th)</h3>
+        <p>sticky會跟著上一層的overfloat跑！！因此要定義一個外框(class="table-sticky-wrapper")</p>
+        <div class="table-sticky-wrapper">
+          <table class="table table-sticky">
+            <thead class="tr-sticky">
+              <tr class="">
+                <th>計畫</th>
+                <th>
+                  投資金額(千元)
+                  <a href="" target="_blank">
+                    <span class="glyphicon glyphicon-stats"></span>
+                  </a>
+                </th>
+                <th>
+                  投資金額(千元)
+                </th>
+                <th>
+                  就業人數
+                </th>
+                <th>
+                  投資筆數
+                </th>
+                <th>
+                  圈圈圈收入
+                  <a href="" target="_blank">
+                    <span class="glyphicon glyphicon-stats"></span>
+                  </a>
+                </th>
+                <th>
+                  圈圈圈繳庫
+                </th>
+                <th>
+                  圈圈圈筆數
+                </th>
+                <th>
+                  應用國內筆數
+                  <a href="" target="_blank">
+                    <span class="glyphicon glyphicon-stats"></span>
+                  </a>
+                </th>
+                <th>
+                  應用國外筆數
+                </th>
+                <th>
+                  申請國內筆數
+                  <a href="" target="_blank">
+                    <span class="glyphicon glyphicon-stats"></span>
+                  </a>
+                </th>
+                <th>
+                  申請國外筆數
+                </th>
+                <th>
+                  獲得國內筆數
+                  <a href="" target="_blank">
+                    <span class="glyphicon glyphicon-stats"></span>
+                  </a>
+                </th>
+                <th>
+                  獲得國外筆數
+                </th>
+                <th>
+                  研究筆數
+                  <a href="" target="_blank">
+                    <span class="glyphicon glyphicon-stats"></span>
+                  </a>
+                </th>
+                <th>
+                  引進筆數
+                  <a href="" target="_blank">
+                    <span class="glyphicon glyphicon-stats"></span>
+                  </a>
+                </th>
+                <th>
+                  開發筆數
+                </a>
+              </th>
+              <th>
+                引進金額(千元)
+              </th>
+              <th>
+                開發金額(千元)
+              </th>
+              <th>
+                衍生筆數
+                <a href="" target="_blank">
+                  <span class="glyphicon glyphicon-stats"></span>
+                </a>
+              </th>
+              <th>
+                部門筆數
+              </th>
+              <th>
+                金額(千元)
+              </th>
+              <th>
+                收益金額(千元)
+              </th>
+              <th>
+                推動筆數
+                <a href="" target="_blank">
+                  <span class="glyphicon glyphicon-stats"></span>
+                </a>
+              </th>
+              <th>
+                推動金額(千元)
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>
+                <a href="">A計畫A計畫A計畫A計畫</a>
+              </th>
+              <td data-group="0">左邊那欄是th</td>
+              <td data-group="0">很重要喔</td>
+              <td data-group="0">把要凍結的</td>
+              <td data-group="0">頭或尾</td>
+              <td data-group="1">改成</td>
+              <td data-group="1">&lt;th&gt;吧！</td>
+              <td data-group="1">36</td>
+              <td data-group="0">1,222</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">55</td>
+              <td data-group="1">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">14,568</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">301</td>
+              <td data-group="0">444,444</td>
+              <td data-group="0">88,999</td>
+              <td data-group="1">888</td>
+              <td data-group="1">665</td>
+              <td data-group="1">10,357</td>
+              <td data-group="1">777</td>
+              <td data-group="0">999</td>
+              <td data-group="0">666</td>
+            </tr>
+            <tr>
+              <th>
+                <a href="">B計畫B計畫B計畫B計畫</a>
+              </th>
+              <td data-group="0">3,221</td>
+              <td data-group="0">53,221</td>
+              <td data-group="0">12,112</td>
+              <td data-group="0">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">36</td>
+              <td data-group="0">1,222</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">55</td>
+              <td data-group="1">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">14,568</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">301</td>
+              <td data-group="0">444,444</td>
+              <td data-group="0">88,999</td>
+              <td data-group="1">888</td>
+              <td data-group="1">665</td>
+              <td data-group="1">10,357</td>
+              <td data-group="1">777</td>
+              <td data-group="0">999</td>
+              <td data-group="0">666</td>
+            </tr>
+            <tr>
+              <th>
+                <a href="">C計畫C計畫C計畫C計畫</a>
+              </th>
+              <td data-group="0">3,221</td>
+              <td data-group="0">53,221</td>
+              <td data-group="0">12,112</td>
+              <td data-group="0">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">36</td>
+              <td data-group="0">1,222</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">55</td>
+              <td data-group="1">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">14,568</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">301</td>
+              <td data-group="0">444,444</td>
+              <td data-group="0">88,999</td>
+              <td data-group="1">888</td>
+              <td data-group="1">665</td>
+              <td data-group="1">10,357</td>
+              <td data-group="1">777</td>
+              <td data-group="0">999</td>
+              <td data-group="0">666</td>
+            </tr>
+            <tr>
+              <th>
+                <a href="">D計畫D計畫D計畫D計畫</a>
+              </th>
+              <td data-group="0">3,221</td>
+              <td data-group="0">53,221</td>
+              <td data-group="0">12,112</td>
+              <td data-group="0">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">36</td>
+              <td data-group="0">1,222</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">55</td>
+              <td data-group="1">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">14,568</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">301</td>
+              <td data-group="0">444,444</td>
+              <td data-group="0">88,999</td>
+              <td data-group="1">888</td>
+              <td data-group="1">665</td>
+              <td data-group="1">10,357</td>
+              <td data-group="1">777</td>
+              <td data-group="0">999</td>
+              <td data-group="0">666</td>
+            </tr>
+            <tr>
+              <th>
+                <a href="">E計畫E計畫E計畫E計畫</a>
+              </th>
+              <td data-group="0">3,221</td>
+              <td data-group="0">53,221</td>
+              <td data-group="0">12,112</td>
+              <td data-group="0">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">36</td>
+              <td data-group="0">1,222</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">55</td>
+              <td data-group="1">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">14,568</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">301</td>
+              <td data-group="0">444,444</td>
+              <td data-group="0">88,999</td>
+              <td data-group="1">888</td>
+              <td data-group="1">665</td>
+              <td data-group="1">10,357</td>
+              <td data-group="1">777</td>
+              <td data-group="0">999</td>
+              <td data-group="0">666</td>
+            </tr>
+            <tr>
+              <th>
+                <a href="">F計畫F計畫F計畫F計畫</a>
+              </th>
+              <td data-group="0">3,221</td>
+              <td data-group="0">53,221</td>
+              <td data-group="0">12,112</td>
+              <td data-group="0">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">36</td>
+              <td data-group="0">1,222</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">55</td>
+              <td data-group="1">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">14,568</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">301</td>
+              <td data-group="0">444,444</td>
+              <td data-group="0">88,999</td>
+              <td data-group="1">888</td>
+              <td data-group="1">665</td>
+              <td data-group="1">10,357</td>
+              <td data-group="1">777</td>
+              <td data-group="0">999</td>
+              <td data-group="0">666</td>
+            </tr>
+            <tr>
+              <th>合計</th>
+              <td data-group="0">3,221</td>
+              <td data-group="0">53,221</td>
+              <td data-group="0">12,112</td>
+              <td data-group="0">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">1,222</td>
+              <td data-group="1">36</td>
+              <td data-group="0">1,222</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">55</td>
+              <td data-group="1">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">2,301</td>
+              <td data-group="1">14,568</td>
+              <td data-group="0">2,301</td>
+              <td data-group="0">301</td>
+              <td data-group="0">444,444</td>
+              <td data-group="0">88,999</td>
+              <td data-group="1">888</td>
+              <td data-group="1">665</td>
+              <td data-group="1">10,357</td>
+              <td data-group="1">777</td>
+              <td data-group="0">999</td>
+              <td data-group="0">666</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://codepen.io/FernHsu/pen/bGGXWdO">Sticky table head pure css凍結表頭純CSS</a>
+    </li>
+  </ul>
+</body>
+</html>
