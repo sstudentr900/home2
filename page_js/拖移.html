@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+      .outDiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-family: "Titillium Web", sans-serif;
+        cursor: drabbing;
+      }
+      img {
+        width: 200px;
+      }
+
+      /* 標題 */
+      h1 {
+        text-shadow: -2px 1px 1px black;
+        color: #b93a3a;
+        font-size: 50px;
+        position: relative;
+        border: 3px solid #b93a3a;
+        box-shadow: -2px 2px 2px black;
+        line-height: 1;
+        width: 250px;
+        text-align: center;
+      }
+      h1:after {
+        animation: shaking 1s linear infinite alternate;
+        display: block;
+        content: "Do It Yourself";
+        font-size: 16px;
+        color: #faa51a;
+        transform: rotate(0deg);
+        position: absolute;
+        right: -200px;
+        bottom: -20px;
+        font-size: 26px;
+      }
+      h1:hover {
+        background: #b93a3a;
+        color: antiquewhite;
+        border: 3px solid #faa51a;
+        text-shadow: -2px 1px 1px black;
+      }
+      @keyframes shaking {
+        0% {
+          transform: rotate(13deg);
+        }
+        100% {
+          transform: rotate(5deg);
+        }
+      }
+
+      /* 材料 */
+      .ingredient {
+        width: 500px;
+        height: 300px;
+      }
+      .cheese {
+        margin-bottom: -24px;
+        z-index: 1;
+      }
+      .vagie {
+        margin-bottom: -13px;
+        z-index: 999;
+      }
+
+      /* 組合 */
+      .assembly {
+        background-image: url("https://i.imgur.com/rISTArr.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: flex;
+        width: 500px;
+        height: 400px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 0;
+      }
+    </style>
+</head>
+<body>
+  <div class="outDiv">
+    <h1>BURGER</h1>
+    <div class="ingredient">
+      <img src='https://i.imgur.com/ZDj2IBC.png' alt='漢堡上蓋' class="target" draggable="true"></img>
+      <img src='https://i.imgur.com/F0ONiKX.png' alt='肉' class="target" draggable="true"></img>
+      <img src='https://i.imgur.com/F0ONiKX.png' alt='肉' class="target" draggable="true"></img>
+      <img src='https://i.imgur.com/rYrv3EJ.png' alt='番茄' class="target" draggable="true"></img>
+      <img src='https://i.imgur.com/s8Sxxr4.png' alt='漢堡下蓋' class="target" draggable="true"></img>
+      <img src='https://i.imgur.com/aOphAGl.png' alt='青菜' class="target vagie" draggable="true"></img>
+      <img src='https://i.imgur.com/P5UL9oT.png' alt='起司' class="target cheese" draggable="true"></img>
+    </div>
+    <div class="assembly"></div>
+  </div>
+  <img src="" alt="">
+  <a href="https://ithelp.ithome.com.tw/articles/10280913">去瀏覽器學 Drag & Drop 自己組漢堡包</a>
+  <script>
+    let get = (tag) => document.querySelector(tag);
+    // 取target
+    let draggedTarget = null;
+    document.addEventListener("dragstart", function (event) {
+      console.log("抓到目標");
+      draggedTarget = event.target;
+    });
+    // 設定 dropArea
+    get(".assembly").addEventListener("drop", function (event) {
+      let previousIngredient = this.children[0];
+      this.insertBefore(draggedTarget, previousIngredient);
+    });
+    get(".ingredient").addEventListener("drop", function (event) {
+      let previousIngredient = this.children[0];
+      this.insertBefore(draggedTarget, previousIngredient);
+    });
+
+    // 取消預設行為
+    get(".assembly").addEventListener("dragover", function (event) {
+      event.preventDefault();
+    });
+    get(".ingredient").addEventListener("dragover", function (event) {
+      event.preventDefault();
+    });
+
+    // 當沒材料時拔掉材料區
+    document.body.addEventListener("drop", function (event) {
+      if (get(".ingredient").childElementCount === 0) {
+        let emptyBox = get(".ingredient");
+        this.removeChild(emptyBox);
+      }
+    });
+  </script>
+</body>
+</html>
