@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>response json</h2>
+  <p>api設計在給前端資料時會使用json格式</p>
+  <pre class="prettyprint">
+    <xmp>
+      //controller範例：
+      public function show($id)
+      {
+        // $tasks = Task::all();
+        $tasks = Task::find($id);
+        if (!$task) {
+          return response()->json(['status' => false, 'error' => 'task search not found'], 400);
+        }
+        return response()->json(['status' => true, 'task_data' => $task], 200);
+      }
+
+
+      //route:
+      Route::get('task/{id}',[controllerName::class,'className']);
+    </xmp>
+  </pre>
+
+  <h2>status code</h2>
+  <pre class="prettyprint">
+    <xmp>
+      * 1xx訊息
+      * 2xx成功
+      * 3xx重新導向
+      * 4xx客戶端錯誤
+      * 5xx伺服器錯誤
+      * 200 OK
+      * 201 Created
+      * 400 Bad Request
+      * 401 Unauthorized
+      * 403 Forbidden
+      * 404 Not Found
+      * 500 Internal Server Error
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10248242" target="_blank">設計自己的api</a>
+    </li>
+  </ul>
+</body>
+
+</html>

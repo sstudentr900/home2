@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <style>
+      .quantity {
+        position: relative;
+      }
+
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button
+      {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      input[type=number]
+      {
+        -moz-appearance: textfield;
+      }
+
+      .quantity input {
+        width: 45px;
+        height: 42px;
+        line-height: 1.65;
+        float: left;
+        display: block;
+        padding: 0;
+        margin: 0;
+        padding-left: 20px;
+        border: 1px solid #eee;
+      }
+
+      .quantity input:focus {
+        outline: 0;
+      }
+
+      .quantity-nav {
+        float: left;
+        position: relative;
+        height: 42px;
+      }
+
+      .quantity-button {
+        position: relative;
+        cursor: pointer;
+        border-left: 1px solid #eee;
+        width: 20px;
+        text-align: center;
+        color: #333;
+        font-size: 13px;
+        font-family: "Trebuchet MS", Helvetica, sans-serif !important;
+        line-height: 1.7;
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+      }
+
+      .quantity-button.quantity-up {
+        position: absolute;
+        height: 50%;
+        top: 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .quantity-button.quantity-down {
+        position: absolute;
+        bottom: -1px;
+        height: 50%;
+      }
+    </style>
+    <div class="quantity">
+      <input type="number" min="1" max="9" step="1" value="1">
+      <div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>
+    </div>
+    
+    <!-- <pre class="prettyprint">
+      <xmp>
+        <script>
+          //Array宣告數組
+          var arr = new Array(2);
+          var arr = Array(2);
+          var arr1=new Array('a','b','c');
+          var arr1=['a','b','c']; 
+
+
+          //名錯誤寫法(字作为索引)----------------------------------------------------------
+          // var person = [];
+          // person["firstName"] = "John";
+          // person["lastName"] = "Doe";
+          // person["age"] = 46;
+          // var x = person.length;         // person.length 返回 0
+          // var y = person[0];             // person[0] 返回 undefined
+        </script>
+      </xmp>
+    </pre>
+    <h3>填充一个数组</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //fill()
+          //https://pjchender.dev/javascript/js-array
+          // Array(length).fill(element);
+          Array(10).fill('ele'); // [ 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele', 'ele' ]
+
+
+          //建立一個元素從 1 ~ n 的陣列---------------------------------------------------------
+          //https://pjchender.dev/javascript/js-array
+          Array(5); // [empty × 5]
+          [...Array(5)]; // [undefined, undefined, undefined, undefined, undefined]
+          [...Array(5).keys()]; // [0, 1, 2, 3, 4]
+          Array(5).keys(); // Array Iterator {}
+
+          let array1to8 = Array.from({
+              length: 5
+          }, (val, index) => index + 1); // [1, 2, 3, 4, 5]
+
+          let array1to10 = Array.from(new Array(5), (val, index) => index + 1); // [1, 2, 3, 4, 5]
+        </script>
+      </xmp>
+    </pre> -->
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://html.form.guide/html5/html5-number-input-type/" target="_blank">HTML5 數字輸入類型</a>
+      </li>
+    </ul>
+  </body>
+</html>
