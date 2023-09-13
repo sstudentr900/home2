@@ -137,13 +137,81 @@
       </xmp>
     </pre>
 
+    <h2>in 替代方案 FIND_IN_SET</h2>
+    <pre class="prettyprint">
+      <xmp>
+        id in(5,6,7)
+        FIND_IN_SET(id,5,6,7) 
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://n.sfs.tw/content/index/11606" target="_blank">laravel Eloquent</a>
+      </li>
+    </ul>
+
+    <h2>join FIND_IN_SET</h2>
+    <pre class="prettyprint">
+      <xmp>
+        SELECT GROUP_CONCAT(DISTINCT c0.option_name) Hobby,
+        GROUP_CONCAT(DISTINCT c1.option_name) CarType,
+        GROUP_CONCAT(DISTINCT c2.option_name) Datimarketing
+        FROM Datimarketing d
+        JOIN carline c0 ON FIND_IN_SET(c0.option_value, d.Hobby)
+        JOIN carline c1 ON FIND_IN_SET(c1.option_value, d.CarType)
+        JOIN carline c2 ON FIND_IN_SET(c2.option_value, d.Datimarketing)
+        GROUP BY d.Hobby, d.CarType, d.Datimarketing;
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://dba.stackexchange.com/questions/282099/mysql-join-two-tables-with-comma-separated-values" target="_blank">MySQL Join </a>
+      </li>
+    </ul>
+
+    <h2>多筆查詢結果串接合併為一筆</h2>
+    <pre class="prettyprint">
+      <xmp>
+        SELECT
+          departments.id AS departments_id,
+          departments.name AS departments_name,
+          -- 子查詢
+          (
+              SELECT
+                  -- 將多筆查詢結果依 GROUP BY 分組合併為一筆 JSON
+                  CONCAT(
+                      '[',
+                      GROUP_CONCAT(
+                          CONCAT('{"name":"', employees.name, '",'),
+                          CONCAT('"sex":"', employees.sex, '",'),
+                          -- 如果資料會有 NULL，必須使用 IFNULL() 排除，否則會導致整筆資料為 NULL
+                          CONCAT('"last_day":"', IFNULL(employees.last_day, '0'), '"}')
+                      ),
+                      ']'
+                  )
+              FROM employees
+              WHERE employees.departments_id = departments.id
+              -- 將不重覆的欄位分組
+              GROUP BY employees.departments_id
+          ) AS employees
+      FROM departments
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://footmark.com.tw/news/database/mysql/mysql-group-concat-json/" target="_blank">多筆查詢結果串接合併為一筆 </a>
+      </li>
+    </ul>
+
     <h2>sort id+1</h2>
     <pre class="prettyprint">
       <xmp>
         data::max('id') + 1
       </xmp>
     </pre>
-
 
     <hr>
     <h4>參考</h4>
@@ -156,6 +224,12 @@
       </li>
       <li>
         <a href="https://stackoverflow.com/questions/42695943/laravel-updateorcreate-method" target="_blank">laravel updateOrCreate method</a>
+      </li>
+      <li>
+        <a href="https://laravelacademy.org/post/9698" target="_blank">通过查询构建器实现复杂的查询语句</a>
+      </li>
+      <li>
+        <a href="https://laravel5-book.kejyun.com/database/model/eloquent-sub-query/" target="_blank">子查詢</a>
       </li>
     </ul>
   </body>
