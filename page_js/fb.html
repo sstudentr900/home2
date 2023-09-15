@@ -1,0 +1,55 @@
+<html>
+<head>
+  <title>Your Website Title</title>
+  <!-- Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+  <meta property="og:url"           content="file:///D:/xampp/htdocs/home2/page_js/fb.html" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="12355645" />
+  <meta property="og:description"   content="415645646545" />
+  <meta property="og:image"         content="https://miro.medium.com/v2/resize:fit:1400/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png" />
+</head>
+<body>
+  <style>
+    .fb-button{
+      position: relative;
+      display: inline-block;
+      width: 80px;
+      height: 30px;
+      border: 1px solid #333;
+    }
+    .fb-button p{
+      position: absolute;
+      background: #fff;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      z-index: 1;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fb-button .fb-share-button{
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <!-- Your share button code -->
+  <div class="fb-button">
+    <p>fb分享</p>
+    <div class="fb-share-button" data-href="https://chingshin.fortune-inc.com.tw/news-details?id=13" data-layout="button" data-size="large"></div>
+    <div id="fb-root"></div>
+  </div>
+  <!-- Load Facebook SDK for JavaScript -->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v15.0&appId=723996535389738&autoLogAppEvents=1" nonce="xvjOABVq"></script>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+</body>
+</html>

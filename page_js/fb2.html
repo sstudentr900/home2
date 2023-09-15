@@ -1,0 +1,42 @@
+<html>
+<head>
+  <title>Your Website Title</title>
+  <meta property="og:url"           content="file:///D:/xampp/htdocs/home2/page_js/fb.html" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="12355645" />
+  <meta property="og:description"   content="415645646545" />
+  <meta property="og:image"         content="https://miro.medium.com/v2/resize:fit:1400/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png" />
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=YOUR_APP_ID&autoLogAppEvents=1" nonce="YOUR_NONCE"></script>
+</head>
+<body>
+  <button id="custom-fb-share-button">自訂分享到 Facebook</button>
+  <script>
+    // 初始化 Facebook SDK
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '2107364662938475',
+            autoLogAppEvents: true,
+            xfbml: true,
+            version: 'v12.0'
+        });
+    };
+
+    // 自定義按鈕的點擊事件處理程序
+    document.getElementById('custom-fb-share-button').addEventListener('click', function() {
+        FB.ui({
+            method: 'share',
+            href: 'https://bee4-211-20-170-212.ngrok-free.app/home2/page_js/fb2.html', // 連結的 URL
+            picture: 'https://miro.medium.com/v2/resize:fit:1400/1*FKlRYAU5z-74RYqsTYrOAQ@2x.png', // 圖片的 URL
+            quote: '這是一個示例分享。', // 分享的訊息
+        }, function(response) {
+            if (response && !response.error_message) {
+                alert('分享成功！');
+            } else {
+                alert('分享失敗：' + response.error_message);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
