@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+</head>
+
+<body id="program">
+  <h2>Composer install/update/require 差別</h2>
+
+  <h2>composer require 安裝套件用的指令</h2>
+  <p>同時會將套件資訊記錄到composer.json與composer.lock檔案中。</p>
+  <pre class="prettyprint">
+    <xmp>
+      composer require tymon/jwt-auth "1.0.1"
+    </xmp>
+  </pre>
+  <h2>composer update</h2>
+  <p>這個指令會安裝composer.json中指定或最新版本的required packages，然後更新composer.lock檔案，在其中記錄安裝的package版本。</p>
+
+  <h2>composer.json中指定的套件版本</h2>
+  <pre class="prettyprint">
+    <xmp>
+      "monolog/monolog": "1.0.0"  //只會安裝monolog 1.0.0這個版本
+      "monolog/monolog": "1.0.*"  //則會upgrade至最新released版本的monolog，可能是1.0.3。
+    </xmp>
+  </pre>
+
+  <h2>composer install</h2>
+  <p>這個指令會安裝composer.lock中定義的套件(Laravel專案中可以看到生成vendor資料夾)，如果找不到composer.lock這個檔案，則會根據composer.json的定義去安裝，並自動產生composer.lock檔案。</p>
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://vocus.cc/article/62820301fd8978000138e4cc" target="_blank">Composer install/update/require 差別</a>
+    </li>
+  </ul>
+</body>
+
+</html>
