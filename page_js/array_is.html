@@ -10,6 +10,23 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
+    <h2>JavaScript未定義的屬性</h2>
+    <pre class="prettyprint">
+      <xmp>
+        const arr = [];
+        console.log(arr[0].name); //會報錯
+        console.log(arr[0] && arr[0].name);//不會報錯 
+        console.log(arr[0]?.name);//等同上面
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://bobbyhadz.com/blog/javascript-cannot-read-property-of-undefined">JavaScript 中未定義的屬性</a>
+      </li>
+    </ul>
+    <hr>
+
     <pre class="prettyprint">
       <xmp>
         <script>

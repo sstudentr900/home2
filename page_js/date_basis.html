@@ -30,5 +30,26 @@
         <a href="http://www.eion.com.tw/Blogger/?Pid=1148" target="_blank">JavaScript Date() 日期與時間</a>
       </li>
     </ul>
+    <h2>時間轉換</h2>
+    <pre class="prettyprint">
+      <xmp>
+        var datee = new Date('dateTime');
+      console.log(
+        datee.getFullYear()+'-'+
+        ('0'+(datee.getMonth()+1)).slice(-2)+'-'+
+        ('0'+datee.getDate()).slice(-2)+' '+
+        ('0'+(datee.getHours())).slice(-2)+':'+
+        ('0'+(datee.getMinutes())).slice(-2)+':'+
+        ('0'+(datee.getSeconds())).slice(-2)
+      );
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/questions/62120309/sql-datetime-to-nodejs">SQL DATETIME to Nodejs</a>
+      </li>
+    </ul>
+    <hr>
   </body>
 </html>

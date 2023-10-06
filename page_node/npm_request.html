@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>爬蟲用 request + cheerio</h2>
+  <h3>安裝</h3>
+  <pre class="prettyprint">
+    <xmp>
+      npm install request cheerio
+    </xmp>
+  </pre>
+  <h3>一般網站的防爬蟲機制</h3>
+  <p>直接偵測requests的header</p>
+  <pre class="prettyprint">
+    <xmp>
+      headers:{'user-agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'}
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://andy6804tw.github.io/2018/02/11/nodejs-crawler/">[Node.js 爬蟲] 用 request + cheerio 抓取地震資訊</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10191165">html檔的取得及常見問題</a>
+    </li>
+  </ul>
+  <hr>
+</body>
+
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>不驗證Csrf 讓外部可以連進來</h2>
+  <p>app/Http/Middleware/VerifyCsrfToken</p>
+  <pre class="prettyprint">
+    <xmp>
+      protected $except = [
+        'payment_notify', //結帳背後執行回傳
+        'payment_return', //結帳後回到該網址
+      ];
+    </xmp>
+  </pre>
+
+  <h2>新增config存key</h2>
+  <p>config/newebpay</p>
+  <pre class="prettyprint">
+    <xmp>
+      return [
+        'MerchantId' =>'',//商店ID
+        'Key' =>'',
+        'IV' =>'',
+        'Active' =>'https://ccore.newebpay.com/MPG/mpg_gateway',//測試連結
+        'Active' =>'https://core.newebpay.com/MPG/mpg_gateway',//正試連結
+        'NotifyURL' =>'https://.../payment_notify',//結帳背後執行回傳
+        'ReturnURL' =>'https://.../payment_return',//結帳後回到該網址
+      ];
+    </xmp>
+  </pre>
+
+  <h2>結帳送出到藍星</h2>
+  <p>controller/newebpay</p>
+  <pre class="prettyprint">
+    <xmp>
+      public function newebpay($ItemDesc,$totle,$or_ids,$pu_id,$remark) {
+        //取得config裡的KEY
+        $MerchantID = config('newebpay.MerchantId'); 
+        $mer_key = config('newebpay.Key');
+        $mer_iv = config('newebpay.IV');
+        $NotifyURL = config('newebpay.NotifyURL');
+        $ReturnURL = config('newebpay.ReturnURL');
+        $Action = config('newebpay.Active');
+        $merchant_no = date("Ymd").$pu_id; //訂單編號
+        $date_now = time(); //目前時間
+        $data1 = http_build_query(array(
+          'MerchantID'=>$MerchantID,
+          'TimeStamp'=>$date_now, //目前時間
+          'Version'=>'2.0',
+          'RespondType'=>'String',//回傳格式
+          'MerchantOrderNo'=> $merchant_no,//訂單編號
+          'Amt'=> $totle,//價錢
+          'ItemDesc'=>$ItemDesc,//購買項目
+          'OrderComment'=>$remark,//備註
+          'NotifyURL'=>$NotifyURL, //背景支付,
+          'ReturnURL'=>$ReturnURL, //支付完成
+          // 'CustomerURL'=>'', //取號資訊導回商店設定
+          // 'ClientBackURL'=>'', //返回商店按鈕網址
+        ));
+  
+        //加密
+        $TradeInfo =trim(bin2hex(openssl_encrypt($data1,'AES-256-CBC',$mer_key, OPENSSL_RAW_DATA,$mer_iv)));
+        $hashs = "HashKey=".$mer_key."&".$TradeInfo."&HashIV=".$mer_iv;
+        $TradeSha = strtoupper(hash("sha256", $hashs));
+      
+        //儲存訂單(金流)
+        <!-- db_re::create([
+          'orderlist_id'=> implode(',',$or_ids),//訂單ids
+          'purchaser_id'=> $pu_id,//	購買人	
+          'merchant_no' => $merchant_no,//訂單編號	
+          'totle'=> $totle,//總金額
+        ])->id; -->
+        
+        //post到藍星(藍星要post) 
+        echo "<body style='display:none'>
+          <form method='post' action=".$Action."> 
+            <input type='hidden' id='MerchantID' name='MerchantID' value=".$MerchantID.">
+            <input type='hidden' id='TradeInfo' name='TradeInfo' value=".$TradeInfo.">
+            <input type='hidden' id='TradeSha' name='TradeSha' value=".$TradeSha.">
+            <input type='hidden' id='RespondType' name='RespondType' value='JSON'>
+            <input type='hidden' id='TimeStamp' name='TimeStamp' value=".$date_now.">
+            <input type='hidden' id='Version' name='Version' value='2.0'>
+            <input type='hidden' id='MerchantOrderNo' name='MerchantOrderNo' value=".$merchant_no.">
+            <input type='hidden' id='totle' name='Amt' value=".$totle.">
+            <input type='hidden' id='ItemDesc' name='ItemDesc' value=".$ItemDesc.">
+            <input type='hidden' id='OrderComment' name='OrderComment' value=".$remark.">
+            <input type='submit' value='submit'>
+          </form>
+          <script>
+            window.onload=function(){
+              //清空購物車
+              localStorage.removeItem('car');
+              document.forms[0].submit()
+            };
+          </script>
+        </body>";
+      }
+    </xmp>
+  </pre>
+
+  <h2>藍星結帳背後執行回傳</h2>
+  <p>controller/fnpayment_notify</p>
+  <pre class="prettyprint">
+    <xmp>
+      public function fnpayment_notify(Request $request) {
+        //只接受 80 與 443 Port
+        //解編碼
+        $paramsArray = $this->newebpay_decrypt($request['TradeInfo']);
+        //存金流訂單
+        $data_re = db_re::select('id')->where(['merchant_no'=>$paramsArray['MerchantOrderNo']])->first();
+        $data_re->trade_no = $paramsArray['TradeNo']; //金流編號
+        $data_re->state = $paramsArray['Message']; //狀態
+        $data_re->payment_type = $this->newebpay_paymentType($paramsArray['PaymentType']); //交易方式
+        $data_re->save();
+      }
+    </xmp>
+  </pre>
+
+  <h2>結帳後回到該網址</h2>
+  <p>controller/fnpayment_return</p>
+  <pre class="prettyprint">
+    <xmp>
+      public function fnpayment_return(Request $request) {
+        //跳頁
+        if(!$request || $request['Status']!='SUCCESS'){
+          //失敗
+          return $this->fnindex('錯誤請重新操作');
+        }else{
+          //成功
+          return redirect()->route('fncomplete_order');
+        }
+      }
+    </xmp>
+  </pre>
+
+  <h2>藍星交易方式</h2>
+  <p>controller/newebpay_paymentType</p>
+  <pre class="prettyprint">
+    <xmp>
+      function newebpay_paymentType($PaymentType){
+        switch($PaymentType){
+          case 'CREDIT':
+            return '信用卡一次付清';
+          case 'WEBATM':
+            return 'Web ATM';
+          case 'VACC':
+            return 'ATM轉帳';
+          case 'BARCODE':
+            return '條碼繳費';
+          case 'CVS':
+            return '超商代碼繳費';
+          default:
+            return $PaymentType;
+        }
+      }
+    </xmp>
+  </pre>
+
+  <h2>藍星解密</h2>
+  <p>controller/newebpay_decrypt</p>
+  <pre class="prettyprint">
+    <xmp>
+      public function newebpay_decrypt($string){
+        $mer_key = config('newebpay.Key');
+        $mer_iv = config('newebpay.IV');
+        $string = openssl_decrypt(hex2bin($string),"AES-256-CBC",$mer_key,OPENSSL_RAW_DATA|OPENSSL_ZERO_PADDING,$mer_iv);
+        $slast = ord(substr($string, -1));
+        $slastc = chr($slast);
+        $pcheck = substr($string, -$slast);
+        if (preg_match("/$slastc{" . $slast . "}/", $string)) {
+          $string = substr($string, 0, strlen($string) - $slast);
+          //字串轉array
+          parse_str($string, $paramsArray);
+          return $paramsArray;
+        } else {
+          return false;
+        }
+      }
+    </xmp>
+  </pre>
+
+  <h2>不背後執行直接用payment_return做結帳或測試</h2>
+  <p>controller/fnpayment_return</p>
+  <pre class="prettyprint">
+    <xmp>
+      public function fnpayment_return(Request $request) {
+        //test
+        //dd('fnpayment_return',$request);
+        
+        //判斷交易狀態
+        if( !$request || !$request['Status'] || !$request['MerchantID'] || !$request['TradeInfo']){
+          return $this->fnindex('驗證錯請重新操作');
+          //dd('payment_return_error,錯誤請重新操作');
+        }
+      
+        //解編碼
+        $paramsArray = $this->newebpay_decrypt($request['TradeInfo']);
+        print_r($paramsArray);
+  
+        //存金流訂單
+        $data_re = db_re::select('id')->where(['merchant_no'=>$paramsArray['MerchantOrderNo']])->first();
+        if(!$data_re){
+          return $this->fnindex('驗證錯請重新操作');
+          dd('payment_return_error,驗證錯');
+        }
+        $data_re->trade_no = $paramsArray['TradeNo']; //金流編號
+        $data_re->state = $paramsArray['Message']; //狀態
+        $data_re->payment_type = $this->newebpay_paymentType($paramsArray['PaymentType']); //交易方式
+        // $paramsArray['IP'];
+        // $paramsArray['EscrowBank']; //款項保管銀行
+        // $paramsArray['RespondCode']; //金融機構回應碼.由收單機構所回應的回應碼
+        // $paramsArray['AuthBank']; //收單金融機構
+        // $paramsArray['Auth']; //由收單機構所回應的授權碼
+        // $paramsArray['Card6No']; //信用卡卡號前六碼
+        // $paramsArray['Card4No']; //信用卡卡號後四碼
+        // $paramsArray['Exp']; //保管銀行
+        // $paramsArray['TokenUseStatus']; //信用卡快速結帳
+        // $paramsArray['InstFirst']; //信用卡分期交易首期金額
+        // $paramsArray['InstEach']; //信用卡分期交易每期金額
+        // $paramsArray['Inst']; //信用卡分期交易期
+        // $paramsArray['ECI']; //3D 回傳值
+        // $paramsArray['PaymentMethod']; //交易類別
+        $data_re->save();
+  
+        //跳頁
+        if($paramsArray['Status']!='SUCCESS'){
+           //失敗
+          return $this->fnindex('錯誤請重新操作');
+        }else{
+          //成功
+          return redirect()->route('fncomplete_order');
+        }
+      }
+    </xmp>
+  </pre>
+
+  <!-- <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10227332" target="_blank">紀錄檔</a>
+    </li>
+    <li>
+      <a href="https://dotblogs.com.tw/SmallFish/2020/10/09/074012" target="_blank">Laravel記錄Log</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10253415" target="_blank">Laravel記錄Log</a>
+    </li>
+  </ul> -->
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>Node.js-Express+MySQL</h2>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10237562">參考</a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=f5kye3ESXE8&ab_channel=Raddy">參考</a>
+    </li>
+    <li>
+      <a href="https://dotblogs.com.tw/explooosion/2016/07/18/010601">參考</a>
+    </li>
+  </ul>
+  <hr>
+  
+  <h2>npm mysql</h2>
+  <h3>sql datetime to node.js</h3>
+  <p>sql時間轉換</p>
+  <pre class="prettyprint">
+    <xmp>
+      var datee = new Date('dateTime');
+      console.log(
+        datee.getFullYear()+'-'+
+        ('0'+(datee.getMonth()+1)).slice(-2)+'-'+
+        ('0'+datee.getDate()).slice(-2)+' '+
+        ('0'+(datee.getHours())).slice(-2)+':'+
+        ('0'+(datee.getMinutes())).slice(-2)+':'+
+        ('0'+(datee.getSeconds())).slice(-2)
+      );
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://stackoverflow.com/questions/62120309/sql-datetime-to-nodejs">SQL DATETIME to Nodejs</a>
+    </li>
+  </ul>
+  <hr>
+</body>
+
+</html>

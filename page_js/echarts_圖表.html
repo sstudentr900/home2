@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>echarts 圖表</h2>
+    <h3>ECharts关于y轴刻度调整</h3>
+    <p></p>
+    <pre class="prettyprint">
+      <xmp>
+        1.
+        min:0,  //取0为最小刻度
+        max: 100, //取100为最大刻度
+
+        2.
+        min:'dataMin', //取最小值为最小刻度
+        max: 'dataMax', //取最大值为最大刻度
+
+        3.
+        min: function(value) {//取最小值向下取整为最小刻度
+            return Math.floor(value.min)
+        },
+        max: function(value) {//取最大值向上取整为最大刻度
+            return  Math.ceil(value.max) 
+        },
+
+        4.
+        scale: true, //自适应
+        minInterval: 0.1, //分割刻度
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.jianshu.com/p/34351adb4fc0">ECharts关于y轴刻度调整</a>
+      </li>
+      <li>
+        <a href="https://echarts.apache.org/zh/option.html#dataZoom-slider">echarts 中文</a>
+      </li>
+    </ul>
+  </body>
+</html>

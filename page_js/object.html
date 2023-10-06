@@ -62,6 +62,18 @@
         </script>
       </xmp>
     </pre>
+    <h2>object values null</h2>
+    <pre class="prettyprint">
+      <xmp>
+        var a = {}
+        var b = {
+          'a':'12'
+        }
+        console.log( Object.values(a).length) //0
+        console.log( Object.values(b).length) //1
+      </xmp>
+    </pre>
+    <hr>
     <h2>物件合并</h2>
     <pre class="prettyprint">
       <xmp>
@@ -223,6 +235,20 @@
         </script>
       </xmp>
     </pre>
+    <h2>object Remove</h2>
+    <pre class="prettyprint">
+      <xmp>
+        var person = {
+          name: "Harry",
+          age: 16,
+          gender: "Male"
+        };
+        delete person.age;
+        console.log(person.age);  // Prints: undefined
+        console.log(person);  // Prints: {name: "Harry", gender: "Male"}
+      </xmp>
+    </pre>
+    <hr>
     <h2>object sort</h2>
     <pre class="prettyprint">
       <xmp>
@@ -298,7 +324,39 @@
         </script>
       </xmp>
     </pre>
-   
+    <h2>by value 和 by reference</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          //By value 記憶體不同
+          let a = 'a' 
+
+          //By Reference 記憶體同個
+          var c = {greeting : 'Hello'};
+          var d;
+          d = c;
+          console.log(c); //{greeting: 'Hello'}
+          console.log(d); //{greeting: 'Hello'}
+
+          d.greeting = 'hola';
+          console.log(c);//{greeting: 'hola'}
+          console.log(d);//{greeting: 'hola'}
+
+          //object literal  就會是 by value
+          c = {greeting: "Hola"};
+          console.log(c); //{greeting: 'Hola'}
+          console.log(d); //{greeting: 'hola'}
+
+        </script>
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://pjchender.blogspot.com/2016/03/javascriptby-referenceby-value.html" target="_blank">by value 和 by reference</a>
+      </li>
+    </ul>
+    <hr>
     <h2>object copy</h2>
     <pre class="prettyprint">
       <xmp>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>npm Express</h2>
+  <p>Express前後端網頁框架</p>
+  <h3>1.安裝</h3>
+  <pre class="prettyprint">
+    <xmp>
+      npm install express --save
+    </xmp>
+  </pre>
+  <h3>2.路由</h3>
+  <h3>3.middleware</h3>
+  <h3>4.載入靜態檔案 static</h3>
+  <pre class="prettyprint">
+    <xmp>
+      <!-- express 的靜態方法去找到要呈現的靜態檔案。需加上這一段 -->
+      app.use(express.static('public'));
+    app.get("/", (req, res) => {
+      res.send("
+      <h1>這是 middleware 練習</h1>
+      "+ "
+      <img src="./images/book.jpg">
+      ");
+    });
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10308430">Node.js - Express.js 介紹與起手式</a>
+    </li>
+  </ul>
+  <hr>
+</body>
+
+</html>

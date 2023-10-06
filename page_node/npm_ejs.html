@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>npm EJS</h2>
+  <p>是一個簡易的模板語法</p>
+  <h3>安裝</h3>
+  <pre class="prettyprint">
+    <xmp>
+      npm i -D ejs
+      npm i -D ejs-locals
+    </xmp>
+  </pre>
+  <h3>引入EJS</h3>
+  <pre class="prettyprint">
+    <xmp>
+      <!-- EJS 核心 -->
+      const engine = require("ejs-locals");
+    app.engine("ejs", engine);
+      <!-- 讀取 EJS 檔案位置 -->
+      app.set('views','./views');
+      <!-- 用 EJS 引擎跑模板 -->
+      app.set("view engine", "ejs");
+      <!-- 引入 index.ejs -->
+      app.get("/", (req, res) => {
+      res.render("index");
+    });
+    </xmp>
+  </pre>
+  <h3>將JSON對像傳遞給模板之前，您需要將其轉換回字符串</h3>
+  <pre class="prettyprint">
+    <xmp>
+      var str = JSON.parse('[{"name":"bill", "age":"26"}, {"name":"jeff", "age":"32"}]');
+      app.get('/data', function(req, res){
+          res.render('data', { str: JSON.stringify(str) });
+      });
+    </xmp>
+  </pre>
+  <h3>將JSON對像轉換字符串存才能存在js，之後再轉對像使用</h3>
+  <pre class="prettyprint">
+    <xmp>
+      JSON.parse('<%- JSON.stringify(data) %>').forEach(d=>creatStrockHtml(d))
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10308702">Node.js - EJS 介紹與起手式</a>
+    </li>
+    <li>
+      <a href="https://medium.com/web-design-zone/ejs%E6%A8%A3%E6%9D%BF%E5%BC%95%E6%93%8E%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F-40873ea2dfae" target="_blank">Node.js — EJS樣板引擎的使用方式</a>
+    </li>
+    <li>
+      <a href="https://stackoverflow.com/questions/47066222/can-i-render-json-parse-data-to-ejs" target="_blank">將 JSON 數據渲染到 EJS 嗎？</a>
+    </li>
+    <li>
+      <a href="https://ejs.co/" target="_blank">EJS</a>
+    </li>
+    <li>
+      <a href="https://medium.com/web-design-zone/ejs%E6%A8%A3%E6%9D%BF%E5%BC%95%E6%93%8E%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F-40873ea2dfae"
+        target="_blank">Node.js — EJS樣板引擎的使用方式</a>
+    </li>
+  </ul>
+  <hr>
+</body>
+
+</html>
