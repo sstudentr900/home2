@@ -28,19 +28,22 @@
     <xmp>
       <!-- express 的靜態方法去找到要呈現的靜態檔案。需加上這一段 -->
       app.use(express.static('public'));
-    app.get("/", (req, res) => {
-      res.send("
-      <h1>這是 middleware 練習</h1>
-      "+ "
-      <img src="./images/book.jpg">
-      ");
-    });
+      app.get("/", (req, res) => {
+        res.send("
+        <h1>這是 middleware 練習</h1>
+        "+ "
+        <img src="./images/book.jpg">
+        ");
+      });
     </xmp>
   </pre>
   <h4>參考</h4>
   <ul>
     <li>
       <a href="https://ithelp.ithome.com.tw/articles/10308430">Node.js - Express.js 介紹與起手式</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10237562">參考</a>
     </li>
   </ul>
   <hr>

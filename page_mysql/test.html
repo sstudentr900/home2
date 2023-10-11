@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+      <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Mysql text 多少个汉字</h2>
+    <p>
+      以utf8编码计算的话 
+      <br> LANGTEXT：4294967295/3=1431655765个汉字，14亿，存储空间占用：4294967295/1024/1024/1024=4G的数据； 
+      <br> MEDIUMTEXT:16777215/3=5592405个汉字，560万，存储空间占用：16777215/1024/1024=16M的数据； 
+      <br> TEXT：65535/3=21845个汉字，约20000，存储空间占用：65535/1024=64K的数据； 
+    </p>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://blog.csdn.net/happy_jijiawei/article/details/52412213" target="_blank">Mysql text 多少个汉字</a>
+      </li>
+    </ul>
+    <hr>
+    <h2>Mysql BLOB、BLOB与TEXT区别及性能影响、将BLOB类型转换成VARCHAR类型</h2>
+    <h3>BLOB与TEXT的区别</h3>
+    <p>二者之间的主要差别是BLOB能用来保存二进制数据，比如照片；而TEXT只能保存字符数据</p>
+    <p>
+      类型                     大小(单位：字节)
+      TinyBlob                 最大 255
+      Blob                     最大 65K
+      MediumBlob               最大 16M
+      LongBlob                 最大 4G
+    </p>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.cnblogs.com/wt645631686/p/10102509.html" target="_blank">Mysql BLOB、BLOB与TEXT区别及性能影响、将BLOB类型转换成VARCHAR类型</a>
+      </li>
+    </ul>
+  </body>
+</html>
