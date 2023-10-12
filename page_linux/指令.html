@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>檔案權限</h2>
+  <p>指令 sudo chmod -R 777 '檔名(istart)'</p>
+  <p>drwxrwxrwx 13 root    root         4096 May 30 14:12  istart</p>
+  <ul>
+    <li>第一个字符 "d" 表示这是一个目录（directory），如果是文件的话会显示 "-"。</li>
+    <li>接下来的三组字符 "rwx" 表示文件所有者、所属组和其他用户的权限。</li>
+    <li>每组权限字符都由三个字符组成，分别表示读（r）、写（w）和执行（x）权限。这些字符的含义如下：
+    <li>"r" 表示读权限，允许查看文件的内容。</li>
+    <li>"w" 表示写权限，允许修改文件的内容。</li>
+    <li>"x" 表示执行权限，允许在目录中查找文件、对文件执行操作（如运行可执行文件）。</li>
+    <li>drwxrwxrwx 表示这是一个目录，且对于文件所有者、所属组和其他用户都有读、写和执行权限，即该目录是完全开放的，任何用户都可以进行读、写和执行操作</li>
+  </ul>
+
+  <h2>删除它的记录以重新建立信任</h2>
+  <p>指令 ssh-keygen -R 10.1.2.91</p>
+
+  <h2>登入ssh</h2>
+  <p>指令ssh fattwen@10.1.2.91</p>
+  <p>fattwen@10.1.2.91's password:</p>
+
+  <h2>目前工作目錄中</h2>
+  <p>指令 ls</p>
+  <p>
+    blog   info.php   istart  
+  </p>
+
+  <h2>详细信息</h2>
+  <p>指令 ls -l</p>
+  <p>
+    drwxrwxrwx 13 root    root         4096 Sep 28  2022  blog
+    -rwxrwxrwx  1 root    root           19 Sep 28  2022  indo.php
+    -rwxrwxrwx  1 root    root            0 Sep 28  2022  info.php
+    drwxrwxrwx 13 root    root         4096 May 30 14:12  istart
+  </p>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="" target="_blank"></a>
+    </li>
+  </ul>
+
+  <h2>範例</h2>
+  <p>
+    //重新建立
+    C:\Users\pig>ssh-keygen -R 10.1.2.91
+    Updating known_hosts is not supported in Windows yet.
+
+    //登入ssh
+    C:\Users\pig>ssh fattwen@10.1.2.91
+    fattwen@10.1.2.91's password:
+
+    //改變帳號權限
+    fattwen@ubuntu:~$ cd /home/fattwen/
+    fattwen@ubuntu:~$ ls
+    fattwen@ubuntu:~$ cd ..
+    fattwen@ubuntu:/home$ ls -l
+    drwxr-xr-x 2 root   root   4096 Sep 28  2022 fattwen
+    drwxr-xr-x 4 phenix phenix 4096 Sep 27  2022 phenix
+    fattwen@ubuntu:/home$ chmod -R 777 fattwen/
+    chmod: changing permissions of 'fattwen/': Operation not permitted
+    fattwen@ubuntu:/home$ sudo chmod -R 777 fattwen/
+    [sudo] password for fattwen:
+    fattwen@ubuntu:/home$ ls -l
+    drwxrwxrwx 2 root   root   4096 Sep 28  2022 fattwen
+    drwxr-xr-x 4 phenix phenix 4096 Sep 27  2022 phenix
+
+    //改變istart權限
+    fattwen@ubuntu:/home$ cd /var/www/html/
+    fattwen@ubuntu:/var/www/html$ sudo chmod -R 777 istart
+    [sudo] password for fattwen:
+    fattwen@ubuntu:/var/www/html$ ls -l
+    drwxrwxrwx 13 root    root         4096 Sep 28  2022  blog
+    -rwxrwxrwx  1 root    root           19 Sep 28  2022  indo.php
+    -rwxrwxrwx  1 root    root            0 Sep 28  2022  info.php
+    drwxrwxrwx 13 root    root         4096 May 30 14:12  istart
+  </p>
+  
+</body>
+
+</html>
