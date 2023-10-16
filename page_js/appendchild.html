@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>insertAdjacentElement</h2>
+    <ul>
+      <li>afterbegin:就在元素内部，在它的第一个孩子之前。</li>
+      <li>afterend:在元素本身之后。</li>
+      <li>beforebegin:在元素本身之前。</li>
+      <li>beforeend:在元素的最后一个子元素之后。</li>
+    </ul>
+    <pre class="prettyprint">
+      <xmp>
+        const p = document.createElement('p');
+        p.innerText='test'
+        document.querySelector('body').insertAdjacentElement("beforeend", p);
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.delftstack.com/zh-tw/howto/javascript/javascript-append-html/">使用 JavaScript 將 HTML 內容附加到現有的 HTML 元素
+        </a>
+      </li>
+      <li>
+        <a href="https://vimsky.com/examples/usage/html-dom-insertadjacentelement-method.html">HTML DOM insertAdjacentElement()用法及代码示例
+        </a>
+      </li>
+    </ul>
+    <hr>
+  </body>
+</html>
