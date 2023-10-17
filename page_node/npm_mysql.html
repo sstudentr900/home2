@@ -39,38 +39,53 @@
 
   
   <h2>Node.js-Express+MySQL</h2>
-    <p>安裝npm i mysql</p>
-    <h3></h3>
-    <pre>
-      <xmp>
-        var users = require('./routes/users');
-        // DataBase 
-        var mysql = require("mysql");
-        var con = mysql.createConnection({
-            host: "localhost",
-            user: "root",
-            password: "",
-            database: "test"
-        });
-        con.connect(function(err) {
-            if (err) {
-                console.log('connecting error');
-                return;
-            }
-            console.log('connecting success');
-        });
-      </xmp>
-    </pre>
-    <h4>參考</h4>
-    <ul>
-      <li>
-        <a href="https://dotblogs.com.tw/explooosion/2016/07/18/010601">參考</a>
-      </li>
-      <li>
-        <a href="https://www.youtube.com/watch?v=f5kye3ESXE8&ab_channel=Raddy">參考</a>
-      </li>
-    </ul>
-    <hr>
+  <p>安裝npm i mysql</p>
+  <h3></h3>
+  <pre>
+    <xmp>
+      var users = require('./routes/users');
+      // DataBase 
+      var mysql = require("mysql");
+      var con = mysql.createConnection({
+          host: "localhost",
+          user: "root",
+          password: "",
+          database: "test"
+      });
+      con.connect(function(err) {
+          if (err) {
+              console.log('connecting error');
+              return;
+          }
+          console.log('connecting success');
+      });
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://dotblogs.com.tw/explooosion/2016/07/18/010601">參考</a>
+    </li>
+    <li>
+      <a href="https://www.youtube.com/watch?v=f5kye3ESXE8&ab_channel=Raddy">參考</a>
+    </li>
+  </ul>
+  <hr>
+
+  <h2>Set encoding character set to utf8mb4 in Node.js or MySQL client?</h2>
+  <p></p>
+  <h3></h3>
+  <pre>
+    <xmp>
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://stackoverflow.com/questions/71053669/set-encoding-character-set-to-utf8mb4-in-node-js-or-mysql-client">Set encoding character set to utf8mb4 in Node.js or MySQL client?</a>
+    </li>
+  </ul>
+  <hr>
 </body>
 
 </html>
