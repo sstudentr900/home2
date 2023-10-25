@@ -38,11 +38,31 @@
       -----------------
       1     A,B
       2     B,C
-    </div>  
+    </div>
     <h4>參考</h4>
     <ul>
       <li>
         <a href="https://blog.csdn.net/guoxilen/article/details/24332517" target="_blank">一个字段存储多个ID时的查询</a>
+      </li>
+    </ul>
+    <hr>
+    <h2>把多筆條件判斷弄成字串</h2>
+    <ul>
+      <li></li>
+      <li></li>
+    </ul>
+    <p></p>
+    <div>
+      //IN
+      DELETE FROM `table` WHERE `ID` IN (2,5,6,7,8,9,11)
+
+      //FIND_IN_SET
+      DELETE FROM `table` WHERE  FIND_IN_SET(`ID`, '2,5,6,7,8,9,11')
+    </div>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://n.sfs.tw/content/index/11606" target="_blank">把多筆條件判斷弄成字串</a>
       </li>
     </ul>
   </body>
