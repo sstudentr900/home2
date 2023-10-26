@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      h1{
+        font-size: 80px;
+        position: absolute;
+        left: 40%;
+        top: 35%;
+        cursor: pointer;
+      }
+      h3{
+        font-size: 30px;
+        position: absolute;
+        left: 60%;
+        top: 30%;
+        cursor: pointer;
+      }
+      img{}
+    </style>
+    <h1 class="post-3d" data-layer="5" data-invert="1">標題1</h1>
+    <h3 class="post-3d" data-layer="10">標題3標題3標題3標題3</h3>
+    <!-- <img
+      class="post-3d"
+      data-layer="30"
+      src=""
+      alt=""
+    > -->
+    <script>
+      function add3d(element,e) {
+        const mx=e.pageX,
+        my=e.pageY,
+        ww = window.innerWidth,
+        wh=window.innerHeight,
+        ow=element.offsetWidth,
+        distance=(element.offsetWidth-ww)/2,
+        layer=Number(element.getAttribute('data-layer')), 
+        invert=Number(element.getAttribute('data-invert')),
+        ox=ww/2,
+        oy=wh/2,
+        wwSqrt = Math.sqrt(ww/2),
+        d = distance/wwSqrt/layer;
+        
+        let wx=mx-ox, 
+        wy=my-oy;
+
+        //距離計算
+        let sx=Math.sqrt(Math.abs(wx))
+        if(wx<0){
+          sx=-sx;
+        }
+        let dx = sx*d;
+
+        //style
+        element.style.transform = `translateX(${invert?dx:-dx}px)`
+      }
+      document.addEventListener('mousemove',e=>{
+        document.querySelectorAll('.post-3d').forEach(element => {
+          add3d(element,e)
+        });
+      })
+    </script>
+  </body>
+</html>
