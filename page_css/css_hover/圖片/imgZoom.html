@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>css_text-hover</title>
+  <style>
+    .publicImgZoom.img,
+    .publicImgZoom .img{
+      overflow:hidden;
+    }
+    .publicImgZoom img{
+      transform:scale(1,1);
+      transition: all 1s ease-out;
+    }
+    .publicImgZoom:hover img{
+      transform:scale(1.2,1.2);
+    }
+    .img{
+      width: 300px;
+      height: 300px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="publicImgZoom img">
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample33.jpg" alt="">
+  </div>
+</body>
+</html>

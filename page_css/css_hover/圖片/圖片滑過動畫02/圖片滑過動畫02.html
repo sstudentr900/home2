@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .stack {
+        position: relative;
+        z-index: 10;
+    }
+    /* Image styles */
+    
+    .stack img {
+        max-width: 100%;
+        height: auto;
+        vertical-align: bottom;
+        border: 10px solid #fff;
+        border-radius: 3px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+    /* Stacks creted by the use of generated content */
+    
+    .stack:before,
+    .stack:after {
+        content: "";
+        border-radius: 3px;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border: 10px solid #fff;
+        left: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+        -webkit-transition: 0.3s all ease-out;
+        -moz-transition: 0.3s all ease-out;
+        transition: 0.3s all ease-out;
+    }
+    
+    .stack:before {
+        top: 4px;
+        z-index: -10;
+    }
+    /* 1st element in stack (behind image) */
+    
+    .stack:after {
+        top: 8px;
+        z-index: -20;
+    }
+    /* 2nd element in stack (behind image) */
+    /* Second stack example (rotated to the right from the bottom left) */
+    
+    .stack.rotated:before {
+        -webkit-transform-origin: bottom left;
+        -moz-transform-origin: bottom left;
+        transform-origin: bottom left;
+        -webkit-transform: rotate(2deg);
+        -moz-transform: rotate(2deg);
+        transform: rotate(2deg);
+    }
+    
+    .stack.rotated:after {
+        -webkit-transform-origin: bottom left;
+        -moz-transform-origin: bottom left;
+        transform-origin: bottom left;
+        -webkit-transform: rotate(4deg);
+        -moz-transform: rotate(4deg);
+        transform: rotate(4deg);
+    }
+    /* Third stack example (One stack element rotated in the opposite direction) */
+    
+    .stack.twisted:before {
+        -webkit-transform: rotate(4deg);
+        -moz-transform: rotate(4deg);
+        transform: rotate(4deg);
+    }
+    
+    .stack.twisted:after {
+        -webkit-transform: rotate(-4deg);
+        -moz-transform: rotate(-4deg);
+        transform: rotate(-4deg);
+    }
+    /* Fourth stack example (Similar to the second but rotated left) */
+    
+    .stack.rotated-left:before {
+        -webkit-transform-origin: bottom left;
+        -moz-transform-origin: bottom left;
+        transform-origin: bottom left;
+        -webkit-transform: rotate(-3deg);
+        -moz-transform: rotate(-3deg);
+        transform: rotate(-3deg);
+    }
+    
+    .stack.rotated-left:after {
+        -webkit-transform-origin: bottom left;
+        -moz-transform-origin: bottom left;
+        transform-origin: bottom left;
+        -webkit-transform: rotate(-6deg);
+        -moz-transform: rotate(-6deg);
+        transform: rotate(-6deg);
+    }
+    /* Reset all rotations on hover */
+    
+    .stack:hover:before,
+    .stack:hover:after {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    /*============================================*/
+    
+    .a {
+        margin: 50px;
+        float: left;
+    }
+    /*=====================portfolio-box=====================*/
+    
+    .portfolio-box {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        max-width: 650px;
+    }
+    
+    .portfolio-box .portfolio-box-caption {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: #fff;
+        opacity: 0;
+        background: rgba(240, 95, 64, .9);
+        -webkit-transition: all .35s;
+        -moz-transition: all .35s;
+        transition: all .35s;
+    }
+    
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        transform: translateY(-50%);
+    }
+    
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+        padding: 0 15px;
+        font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+        font-size: 18px;
+    }
+    
+    .portfolio-box:hover .portfolio-box-caption {
+        opacity: 1;
+    }
+    
+    @media(min-width:768px) {
+        .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+            font-size: 16px;
+        }
+        .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+            font-size: 22px;
+        }
+    }
+    /*==============================portfolio-item=======================*/
+    /* .portfolio-item {
+        right: 0;
+        margin: 0 0 15px;
+    }*/
+    
+    .portfolio-item .portfolio-link {
+        display: block;
+        position: relative;
+        margin: 0 auto;
+        max-width: 400px;
+    }
+    
+    .portfolio-item .portfolio-link .portfolio-hover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        background: rgba(254, 209, 54, .9);
+        -webkit-transition: all ease .5s;
+        -moz-transition: all ease .5s;
+        transition: all ease .5s;
+    }
+    
+    .portfolio-item .portfolio-link .portfolio-hover:hover {
+        opacity: 1;
+    }
+    
+    .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        height: 20px;
+        margin-top: -12px;
+        text-align: center;
+        font-size: 20px;
+        color: #fff;
+    }
+    
+    .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
+        margin-top: -12px;
+    }
+    
+    .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h3,
+    .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content h4 {
+        margin: 0;
+    }
+    
+    .portfolio-item .portfolio-caption {
+        margin: 0 auto;
+        padding: 25px;
+        max-width: 400px;
+        text-align: center;
+        background-color: #fff;
+    }
+    
+    .portfolio-item .portfolio-caption h4 {
+        margin: 0;
+        text-transform: none;
+    }
+    
+    .portfolio-item .portfolio-caption p {
+        margin: 0;
+        font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        font-style: italic;
+    }
+    
+    #portfolio * {
+        z-index: 2;
+    }
+    /*@media(min-width:767px) {
+        .portfolio-item {
+            margin: 0 -15px 30px;
+        }
+    }*/
+    /*=================#ex5===================*/
+    
+    #ex5 img {
+        width: 100%;
+        margin-bottom: 30px;
+        border: 10px solid #999;
+        /*Transition*/
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        -o-transition: all 0.5s ease;
+        /*Reflection*/
+        -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0, 0, 0, 0.1)));
+    }
+    
+    #ex5 img:hover {
+        /*Reflection*/
+        -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(.7, transparent), to(rgba(0, 0, 0, 0.4)));
+        /*Glow*/
+        -webkit-box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
+        -moz-box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
+        box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.8);
+    }
+    /*===================Thumbnails==================*/
+    /*Thumbnails*/
+    
+    .overflow-hidden {
+        overflow: hidden;
+    }
+    
+    .hover-effect {
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+    }
+    
+    a.thumbnail {
+        padding: 0;
+        border: none;
+        margin-bottom: 15px;
+    }
+    
+    .thumbnail-style {
+        padding: 7px;
+        margin-bottom: 0px;
+    }
+    
+    .thumbnail-style:hover {
+        box-shadow: 0 0 8px #ddd;
+        -webkit-transition: box-shadow 0.2s ease-in-out;
+        -moz-transition: box-shadow 0.2s ease-in-out;
+        -o-transition: box-shadow 0.2s ease-in-out;
+        transition: box-shadow 0.2s ease-in-out;
+    }
+    
+    .thumbnail h3,
+    .thumbnail-style h3 {
+        margin: 6px 0 8px 0;
+    }
+    
+    .thumbnail h3 a,
+    .thumbnail-style h3 a {
+        color: #585f69;
+        font-size: 18px;
+    }
+    
+    .thumbnail h3 a:hover,
+    .thumbnail-style h3 a:hover {
+        color: #72c02c;
+        text-decoration: none;
+    }
+    
+    .thumbnail-style .thumbnail-img {
+        position: relative;
+        margin-bottom: 11px;
+    }
+    
+    .thumbnail-style a.btn-more {
+        right: -10px;
+        bottom: 10px;
+        color: #fff;
+        padding: 1px 6px;
+        position: absolute;
+        background: #72c02c;
+        display: inline-block;
+    }
+    
+    .thumbnail-style a.btn-more:hover {
+        text-decoration: none;
+        box-shadow: 0 0 0 2px #5fb611;
+    }
+    
+    .thumbnail-style:hover a.btn-more {
+        right: 10px;
+    }
+    
+    .thumbnail-kenburn img {
+        left: 10px;
+        margin-left: -10px;
+        position: relative;
+        -webkit-transition: all 0.8s ease-in-out;
+        -moz-transition: all 0.8s ease-in-out;
+        -o-transition: all 0.8s ease-in-out;
+        -ms-transition: all 0.8s ease-in-out;
+        transition: all 0.8s ease-in-out;
+    }
+    
+    .thumbnail-kenburn:hover img {
+        -webkit-transform: scale(1.2) rotate(2deg);
+        -moz-transform: scale(1.2) rotate(2deg);
+        -o-transform: scale(1.2) rotate(2deg);
+        -ms-transform: scale(1.2) rotate(2deg);
+        transform: scale(1.2) rotate(2deg);
+    }
+    
+    .aa {
+        width: 400px;
+        clear: both;
+    }
+    /*================gallery-image=========================*/
+    
+    .gallery-image {
+        width: 250px;
+        height: 250px;
+        -webkit-border-radius: 999px;
+        -o-border-radius: 999px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: transparent no-repeat center top;
+        -webkit-box-shadow: inset 0px 0px 15px 5px rgba(0, 0, 0, 0.9), 0 1px 1px 0px rgba(255, 255, 255, 0.2);
+        box-shadow: inset 0px 0px 15px 5px rgba(0, 0, 0, 0.9), 0 1px 1px 0px rgba(255, 255, 255, 0.2);
+        background-size: auto 100%;
+        position: static;
+    }
+    
+    .gallery-image .circle {
+        display: block;
+        position: relative;
+        z-index: 2;
+        width: 250px;
+        height: 250px;
+        -webkit-border-radius: 999px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: url(circle_caption.png) 0px 190px repeat-x;
+    }
+    
+    .gallery-image .circle strong {
+        display: block;
+        position: absolute;
+        top: 182px;
+        width: 140px;
+        text-align: center;
+        font-size: 16px;
+        color: #ffcc00;
+        line-height: 1.1em;
+        overflow: hidden;
+        left: 53px;
+    }
+    
+    .gallery-image .circle strong h2 {
+        font-size: 16px;
+        color: #ffcc00;
+    }
+     /*
+                            Book
+                            —————————————————————————————————————————————————- */
+                            .book-container { /*width: 375px;*/ margin: 0 auto; display: block;
+                            -webkit-perspective: 1200px;
+                            -moz-perspective: 1200px;
+                            perspective: 1200px;
+                            }
+
+                            .book { z-index: 5; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+                            -webkit-transition: 0.75s;
+                            -moz-transition: 0.75s;
+                            transition: 0.75s;
+                            -webkit-transform-style: preserve-3d;
+                            -moz-transform-style: preserve-3d;
+                            transform-style: preserve-3d;
+                            -webkit-transform-origin: 125px 0;
+                            -moz-transform-origin: 125px 0;
+                            transform-origin: 125px 0;
+                            }
+                            .book:after { content: ""; position: absolute; top: 0; bottom: 0; left: 3px; width: 7px; background: url(ridge.png) repeat-y; z-index: 20;
+                            -webkit-transform: translateZ(1px); /* Fix for flickering in Chrome */
+                            }
+                            .book:hover {
+                            -webkit-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+                            -moz-transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+                            transform: translateX(-10px) translateZ(35px) translateX(35px) rotateY(45deg);
+                            }
+
+                            /*
+                            Book cover and spine
+                            —————————————————————————————————————————————————- */
+                            .book-cover { position: relative; z-index: 10; }
+                            .book-cover img { vertical-align: bottom; max-width: 100%; height: auto; }
+
+                            .book-spine { position: absolute; color: #fff; position: absolute; bottom: 0; top: 0; width: 50px; z-index: 5; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); background: url(spine.jpg) -64px 0 no-repeat; background-size: auto 100%;
+                            -webkit-transform: rotateY(-90deg) translateX(-49px);
+                            -moz-transform: rotateY(-90deg) translateX(-49px);
+                            transform: rotateY(-90deg) translateX(-49px);
+                            -webkit-transform-origin: 0 0;
+                            -moz-transform-origin: 0 0;
+                            transform-origin: 0 0;
+                            }
+                            .book-spine .book-spine-h1 { display: block; width: 325px; text-align: left; color: #fff; position: absolute; top: 0; left: 39px; /*text-indent: 43px;*/ text-transform: uppercase; font-family: "league_gothic_condensedRg", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 2em; opacity: 0.75; font-weight: normal;
+                            -webkit-font-smoothing: antialiased;
+                            -webkit-transform: rotateZ(90deg);
+                            -moz-transform: rotateZ(90deg);
+                            transform: rotateZ(90deg);
+                            -webkit-transform-origin: 0 0;
+                            -moz-transform-origin: 0 0;
+                            transform-origin: 0 0;
+                            }
+                            .book-spine:before { display: block; content: ""; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); }
+    </style>
+</head>
+
+<body style="background: rgba(0, 0, 0, .1);">
+    <div class="a">
+        <div class="stack rotated">
+            <img src="http://lorempixel.com/400/400/people/9" alt="girl">
+        </div>
+    </div>
+    <div class="a">
+        <div class="stack twisted">
+            <img src="http://lorempixel.com/400/400/people/9" alt="girl">
+        </div>
+    </div>
+    <div class="a">
+        <div class="stack rotated-left">
+            <img src="http://lorempixel.com/400/400/people/9" alt="girl">
+        </div>
+    </div>
+    <div class="a">
+        <a href="#" class="portfolio-box">
+            <img src="http://lorempixel.com/400/400/people/9" class="img-responsive" alt="">
+            <div class="portfolio-box-caption">
+                <div class="portfolio-box-caption-content">
+                    <div class="project-category text-faded">
+                        Category
+                    </div>
+                    <div class="project-name">
+                        Project Name
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="a portfolio-item">
+        <div id="portfolio">
+            <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
+                <div class="portfolio-hover">
+                    <div class="portfolio-hover-content">
+                        <i class="fa fa-plus fa-3x">Project Name</i>
+                    </div>
+                </div>
+                <img src="http://lorempixel.com/400/400/people/9" class="img-responsive" alt="">
+            </a>
+            <div class="portfolio-caption">
+                <h4>Dreams</h4>
+                <p class="text-muted">Website Design</p>
+            </div>
+        </div>
+    </div>
+    <div class="a">
+        <div id="ex5">
+            <img src="http://lorempixel.com/400/400/people/9" alt="">
+        </div>
+    </div>
+    <div class="a aa">
+        <div class="thumbnails thumbnail-style thumbnail-kenburn">
+            <div class="thumbnail-img">
+                <div class="overflow-hidden">
+                    <img class="img-responsive" src="http://lorempixel.com/400/400/people/9" alt="">
+                </div>
+                <a class="btn-more hover-effect" href="#">read more +</a>
+            </div>
+            <div class="caption">
+                <h3><a class="hover-effect" href="#">Project One</a></h3>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+            </div>
+        </div>
+    </div>
+    <div class="a">
+        <div class="gallery-image" style="background-image:url(http://pixelkit.com/wp-content/uploads/2015/02/grid-thumbnail.jpg)">
+            <a href="http://pixelkit.com/kits/food-ui-kit/" class="circle" hidefocus="true" style="outline: none;">
+                <strong><h2>Delicious Recipes</h2></strong>
+            </a>
+        </div>
+    </div>
+    <div class="a">
+        <div class="book-container">
+            <div class="book">
+                <div class="book-cover">
+                    <img src="cover.jpg" />
+                </div>
+                <div class="book-spine">
+                    <h1 class="book-spine-h1">The Book’s Spine Text</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -116,6 +116,8 @@
       <form id="form1" method="post" action="">
       <!-- 自動產生 csrf_token 隱藏欄位-->
       {!! csrf_field() !!}
+      <!-- 同上-->
+      <!-- @csrf -->
       <div class="login_form">
           <div class="login_title">註冊</div>
           <div class="login_label">帳號(必須為E-mail)</div>
@@ -163,6 +165,10 @@
               @endforeach
           </ul>
       @endif
+      <!-- 同上-->
+      <!-- @error('text')
+        <div class="alert alert-danger">{{ $message }}</div>
+      @enderror -->
     </xmp>
   </pre>
   <h4>參考</h4>
