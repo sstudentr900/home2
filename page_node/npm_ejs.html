@@ -27,7 +27,7 @@
     <xmp>
       <!-- EJS 核心 -->
       const engine = require("ejs-locals");
-    app.engine("ejs", engine);
+      app.engine("ejs", engine);
       <!-- 讀取 EJS 檔案位置 -->
       app.set('views','./views');
       <!-- 用 EJS 引擎跑模板 -->
@@ -73,6 +73,24 @@
     </li>
   </ul>
   <hr>
+  <h2>註解comment </h2>
+  <pre class="prettyprint">
+    <xmp>
+      <% /* %>
+        <div>
+          <span>This will not be rendered</span>
+          <% for(var i=0; i < data.length; i++) { %>
+            <span>These won't be rendered either.</span>
+          <% } %>
+        </div>
+      <% */ %>
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://stackoverflow.com/questions/29180611/how-can-i-comment-the-ejs-code-js-node-without-getting-an-error">How can I comment the EJS code (JS node) without getting an error</a>
+    </li>
+  </ul>
 </body>
-
 </html>
