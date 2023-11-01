@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <script>
+      //計算頁碼
+      async function pageFn( count, pageShow, pageNow ) {
+        // console.log(`pageObj`)
+        let pageTotle = Number(Math.ceil(count / pageShow));
+        let pageStart = Number(pageNow);
+        if (pageNow > pageTotle) {
+          pageStart = pageTotle;
+        } else if (pageNow < 1) {
+          pageStart = 1;
+        }
+        let startValue = (pageStart - 1) * pageShow;
+        return {
+          'pageStart': pageStart,
+          'pageTotle': pageTotle,
+          'startValue': startValue,
+          'endValue': pageShow,
+        }
+      }
+
+      //時間
+      async function timeFn(obj){
+        const objDate = obj?.date
+        const objDay = obj?.day
+        const objYear= obj?.year
+        const dt = objDate?new Date(objDate):new Date();
+        objDay?dt.setDate(dt.getDate()+Number(objDay)):'';//加減日
+        objYear?dt.setFullYear(dt.getFullYear()+Number(objYear)):'';//加減日
+        // const year = Number(dt.getFullYear());//取幾年-2022
+        // let month = Number(dt.getMonth())+1;//取幾月-8
+        // month = month>9?month:'0'+month//08
+        const year = dt.getFullYear()+'';
+        const month = ('0'+(dt.getMonth()+1)).slice(-2);
+        const day = ('0'+dt.getDate()).slice(-2);
+        const date = `${year}-${month}-${day}`;
+        const hours = ('0'+(dt.getHours())).slice(-2);
+        const min = ('0'+(dt.getMinutes())).slice(-2);
+        const sec = ('0'+(dt.getSeconds())).slice(-2);
+        const time = `${hours}:${min}:${sec}`;
+        const datetime = `${date} ${time}`;
+        const week = dt.getDay()
+        return {
+          "year": year,
+          "month" :month,
+          "day": day,
+          "date": date,
+          "hours": hours,
+          "min": min,
+          "sec": sec,
+          "time": time,
+          "datetime": datetime,
+          "week": week,
+        }
+      }
+    </script>
+    <!-- <h2></h2>
+    <pre class="prettyprint">
+      <xmp>
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="" target="_blank"></a>
+      </li>
+    </ul> -->
+  </body>
+</html>
