@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <h2>JavaScript 自組json</h2>
+    <pre class="prettyprint">
+      <xmp>
+        //1.replace
+        function jsonEscape(str)  {
+          return str.replace(/\n/g, "\\\\n").replace(/\r/g, "\\\\r").replace(/\t/g, "\\\\t");
+        }
+      
+        var data = '{"count" : 1, "stack" : "sometext\n\n"}';
+        var dataObj = JSON.parse(jsonEscape(data));
+        //Object {count: 1, stack: "sometext\n\n"}
+
+        //2.String.raw
+        var data = String.raw`{"count" : 1, "stack" : "sometext\n\n"}`;
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://tw.coderbridge.com/questions/e0a6989f6daa4584b208331af6a567d2"> 如何處理JSON中的換行符</a>
+      </li>
+    </ul>
+    <hr>
+</body>
+
+</html>
