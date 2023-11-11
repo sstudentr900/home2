@@ -1,59 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>Laravel安裝</h2>
-  <p>cmd執行下列命令來安裝Laravel</p>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Laravel安裝</h2>
+    <!-- <p>cmd執行下列命令來安裝Laravel</p>
   <pre class="prettyprint">
     <xmp>
       composer global require "laravel/installer"
     </xmp>
-  </pre>
-  <p>建立專案</p>
-  <ol>
-    <li>LaravelBlog 檔案名稱</li>
-    <li>create-project 創建專案</li>
-    <li>--prefer-dist 當有可用的包時，從 dist 安裝</li>
-  </ol>
-  <pre class="prettyprint">
-    <xmp>
-      composer create-project --prefer-dist laravel/laravel LaravelBlog
-    </xmp>
-  </pre>
-  <p>啟動專案serve</p>
-  <pre class="prettyprint">
-    <xmp>
-      cd LaravelBlog
-      php artisan serve
-    </xmp>
-  </pre>
-  <p>npm 安裝</p>
-  <pre class="prettyprint">
-    <xmp>
-      npm install
-    </xmp>
-  </pre>
-  <p>composer 安裝</p>
-  <pre class="prettyprint">
-    <xmp>
-      composer install
-    </xmp>
-  </pre>
-  <p>即時更新請看mix</p>
-  <h2>專案架構介紹</h2>
-  <pre class="prettyprint">
-    <xmp>
-      - app/
+  </pre> -->
+    <p>建立專案</p>
+    <ol>
+      <li>LaravelBlog 檔案名稱</li>
+      <li>create-project 創建專案</li>
+      <li>--prefer-dist 當有可用的包時，從 dist 安裝</li>
+    </ol>
+    <pre class="prettyprint">
+      <xmp>
+        composer create-project --prefer-dist laravel/laravel LaravelBlog
+      </xmp>
+    </pre>
+    <p>啟動專案serve</p>
+    <pre class="prettyprint">
+      <xmp>
+        cd LaravelBlog
+        php artisan serve
+      </xmp>
+    </pre>
+    <p>npm 安裝</p>
+    <pre class="prettyprint">
+      <xmp>
+        npm install
+      </xmp>
+    </pre>
+    <p>composer 安裝</p>
+    <pre class="prettyprint">
+      <xmp>
+        composer install
+      </xmp>
+    </pre>
+    <p>即時更新請看mix</p>
+    <h2>專案架構介紹</h2>
+    <pre class="prettyprint">
+      <xmp>
+        - app/
       - Console/
       - Commands/ #Laravel的命令檔案
       - Kernel.php #Laravel的排程
@@ -78,16 +76,15 @@
       - .env #環境變數設定檔案
       - composer.json #Composer套件安裝清單
       - package.json #專案套件安裝清單
-    </xmp>
-  </pre>
-  <img src="https://imgur.com/eQYMSAd.png" alt="">
-  <hr>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://dotblogs.com.tw/SmallFish/2020/09/18/075203" target="_blank">在Windows安裝Laravel及建立專案</a>
-    </li>
-  </ul>
-</body>
-
+      </xmp>
+    </pre>
+    <img src="https://imgur.com/eQYMSAd.png" alt="">
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://dotblogs.com.tw/SmallFish/2020/09/18/075203" target="_blank">在Windows安裝Laravel及建立專案</a>
+      </li>
+    </ul>
+  </body>
 </html>
