@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <script>
+      //計算頁碼
+      async function pageFn( count, pageShow, pageNow ) {
+        // console.log(`pageObj`)
+        let pageTotle = Number(Math.ceil(count / pageShow));
+        let pageStart = Number(pageNow);
+        if (pageNow > pageTotle) {
+          pageStart = pageTotle;
+        } else if (pageNow < 1) {
+          pageStart = 1;
+        }
+        let startValue = (pageStart - 1) * pageShow;
+        return {
+          'pageStart': pageStart,
+          'pageTotle': pageTotle,
+          'startValue': startValue,
+          'endValue': pageShow,
+        }
+      }
+
+      //時間
+      async function timeFn(obj){
+        const objDate = obj?.date
+        const objDay = obj?.day
+        const objYear= obj?.year
+        const dt = objDate?new Date(objDate):new Date();
+        objDay?dt.setDate(dt.getDate()+Number(objDay)):'';//加減日
+        objYear?dt.setFullYear(dt.getFullYear()+Number(objYear)):'';//加減日
+        // const year = Number(dt.getFullYear());//取幾年-2022
+        // let month = Number(dt.getMonth())+1;//取幾月-8
+        // month = month>9?month:'0'+month//08
+        const year = dt.getFullYear()+'';
+        const month = ('0'+(dt.getMonth()+1)).slice(-2);
+        const day = ('0'+dt.getDate()).slice(-2);
+        const date = `${year}-${month}-${day}`;
+        const hours = ('0'+(dt.getHours())).slice(-2);
+        const min = ('0'+(dt.getMinutes())).slice(-2);
+        const sec = ('0'+(dt.getSeconds())).slice(-2);
+        const time = `${hours}:${min}:${sec}`;
+        const datetime = `${date} ${time}`;
+        const week = dt.getDay()
+        return {
+          "year": year,
+          "month" :month,
+          "day": day,
+          "date": date,
+          "hours": hours,
+          "min": min,
+          "sec": sec,
+          "time": time,
+          "datetime": datetime,
+          "week": week,
+        }
+      }
+      // let time = timeFn()
+      // time = time['datetime']
+
+      //creatHtml
+      async function creatHtml(o) {
+        let tage = o.tage || '';
+        let text = o.text || '';
+        let cl = o.cl || '';
+        let attr = o.attr || '';
+        let addHtml = o.addHtml || '';
+        let method = o.method || 'click';
+        let handler = o.handler || '';
+        let handler2 = o.handler2 || '';
+        let method2 = o.method2 || method;
+        let html = document.createElement(tage);
+        if (text) {
+          html.innerHTML = text;
+        }
+        if (cl) {
+          html.className = cl;
+        }
+        if (attr) {
+          attr = Array.isArray(attr) ? attr : [attr];
+          attr.forEach(function (element) {
+            Object.keys(element).forEach(function (item, i) {
+              html.setAttribute(item, element[item]);
+            });
+          }); // for(var i=0;i<attr.length;i++){
+          //     html.setAttribute(attr[i]['n'],attr[i]['v'])
+          // }
+        }
+        if (addHtml) {
+          addHtml = Array.isArray(addHtml) ? addHtml : [addHtml]; // console.log(addHtml)
+
+          addHtml.forEach(function (element) {
+            return html.append(element);
+          });
+        }
+        if (handler) {
+          html.addEventListener(method, handler.bind(html), false);
+        }
+        if (handler2) {
+          window.addEventListener(method2, handler2, false);
+        }
+        return html;
+      };
+      // div.append(creatHtml({
+      //   'tage': 'div',
+      //   'cl': 'active',
+      //   'handler': function handler() {
+      //     console.log('dot', i);
+      //   }
+      // }));
+
+
+      async function getJSON({url,method,headers,body}){
+        if(method=='POST'){
+          headers = {
+            "Content-Type": "application/json",//POST with body 必帶
+            "Accept": "application/json",//我是用哪種資料型態來
+          }
+        }
+        const response = await fetch(
+          url,
+          {
+            method: method,
+            headers: headers,
+            body: JSON.stringify(body)
+          }
+        );
+        return await response.json();
+      }
+      // getJSON({
+      //   'url': 'src',
+      //   'method': 'POST', //DELETE,POST
+      //   'body': {'id': id}
+      // }).then(function (json) {
+      //   console.log(json)
+      // });
+
+
+    </script>
+    <!-- <h2></h2>
+    <pre class="prettyprint">
+      <xmp>
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="" target="_blank"></a>
+      </li>
+    </ul> -->
+  </body>
+</html>

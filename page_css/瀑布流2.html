@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <style>
+   .container {
+      display: flex;
+      flex-flow: column wrap;
+      align-content: space-between;
+      /* 容器必须有固定高度
+      * 且高度大于最高的列高 */
+      height: 960px;
+      
+      /* 非必须 */
+      background-color: #f7f7f7;
+      border-radius: 3px;
+      padding: 20px;
+      width: 60%;
+      margin: 40px auto;
+      counter-reset: items;
+    }
+
+    .item {
+      width: 24%;
+      /* 非必须 */
+      position: relative;
+      margin-bottom: 2%;
+      border-radius: 3px;
+      background-color: #a1cbfa;
+      border: 1px solid #4290e2;
+      box-shadow: 0 2px 2px rgba(0,90,250,0.05),
+        0 4px 4px rgba(0,90,250,0.05),
+        0 8px 8px rgba(0,90,250,0.05),
+        0 16px 16px rgba(0,90,250,0.05);
+      color: #fff;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+
+    /* 仅用于打印数字 */
+    div.item::before {
+      counter-increment: items;
+      content: counter(items);
+    }
+
+    /* 将内容块重排为4列 */
+    .item:nth-of-type(4n+1) { order: 1; }
+    .item:nth-of-type(4n+2) { order: 2; }
+    .item:nth-of-type(4n+3) { order: 3; }
+    .item:nth-of-type(4n)   { order: 4; }
+
+    /* 强制换列 */
+    .break {
+      flex-basis: 100%;
+      width: 0;
+      border: 1px solid #ddd;
+      margin: 0;
+      content: "";
+      padding: 0;
+    }
+
+    body { font-family: sans-serif; }
+    h3 { text-align: center; }
+  </style>
+  <div class="container">
+    <div class="item" style="height: 140px"></div>
+    <div class="item" style="height: 190px"></div>
+    <div class="item" style="height: 170px"></div>
+    <div class="item" style="height: 120px"></div>
+    <div class="item" style="height: 160px"></div>
+    <div class="item" style="height: 180px"></div>
+    <div class="item" style="height: 140px"></div>
+    <div class="item" style="height: 150px"></div>
+    <div class="item" style="height: 170px"></div>
+    <div class="item" style="height: 170px"></div>
+    <div class="item" style="height: 140px"></div>
+    <div class="item" style="height: 190px"></div>
+    <div class="item" style="height: 170px"></div>
+    <div class="item" style="height: 120px"></div>
+    <div class="item" style="height: 160px"></div>
+    <div class="item" style="height: 180px"></div>
+    <div class="item" style="height: 140px"></div>
+    <div class="item" style="height: 150px"></div>
+    <div class="item" style="height: 170px"></div>
+    <div class="item" style="height: 170px"></div>
+    <span class="item break"></span>
+    <span class="item break"></span>
+    <span class="item break"></span>
+  </div>
+  
+  <h3>
+    <a href="https://jessieji.com/2019/pure-css-masonry">阅读原文</a>
+    <a href="https://tobiasahlin.com/blog/masonry-with-css/">阅读英文原文</a> 
+  </h3>
+  
+  
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://jessieji.com/2019/pure-css-masonry" target="_blank">纯 CSS 实现横向排序的瀑布流式布局</a>
+    </li>
+  </ul>
+</body>
+
+</html>

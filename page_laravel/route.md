@@ -26,11 +26,11 @@
 ## route未命名的值會變成?
 ```php
     //Blade
-    {{route('routeName',['id'=>$post->id,'sex'=>'m'])}}    //url/idValue?sex=m
+    {{route('routeName',['id'=>$post->id,'sex'=>'m'])}}    //routeName/idValue?sex=m
 
 
     //web
-    Route::get('url/{id}', [controllerName::class,'functionName'])->name('routeName');
+    Route::get('routeName/{id}', [controllerName::class,'functionName'])->name('routeName');
 ```
 
 
