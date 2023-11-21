@@ -15,9 +15,9 @@
     <pre class="prettyprint">
       <xmp>
         protected $except = [
-        'payment_notify', //結帳背後執行回傳
-        'payment_return', //結帳後回到該網址
-      ];
+          'payment_notify', //結帳背後執行回傳
+          'payment_return', //結帳後回到該網址
+        ];
       </xmp>
     </pre>
     <h2>新增config存key</h2>
@@ -25,14 +25,22 @@
     <pre class="prettyprint">
       <xmp>
         return [
-        'MerchantId' =>'',//商店ID
-        'Key' =>'',
-        'IV' =>'',
-        'Active' =>'https://ccore.newebpay.com/MPG/mpg_gateway',//測試連結
-        'Active' =>'https://core.newebpay.com/MPG/mpg_gateway',//正試連結
-        'NotifyURL' =>'https://.../payment_notify',//結帳背後執行回傳
-        'ReturnURL' =>'https://.../payment_return',//結帳後回到該網址
-      ];
+          'MerchantId' =>'',//測試
+          'Key' =>'',//測試
+          'IV' =>'',//測試
+          'Active' =>'https://ccore.newebpay.com/MPG/mpg_gateway',//本地測試
+          'NotifyURL' =>'.../payment_notify',//本地測試
+          'ReturnURL' =>'.../payment_return',//本地測試
+          'Active' =>'https://ccore.newebpay.com/MPG/mpg_gateway',//測試
+          'NotifyURL' =>'.../payment_notify',//測試
+          'ReturnURL' =>'.../payment_return',//測試
+          'MerchantId' =>'',//正試
+          'Key' =>'',//正試
+          'IV' =>'',//正試
+          'Active' =>'https://core.newebpay.com/MPG/mpg_gateway',//正試
+          'NotifyURL' =>'.../payment_notify',//正試
+          'ReturnURL' =>'.../payment_return',//正試
+        ];
       </xmp>
     </pre>
     <h2>清除快取</h2>
