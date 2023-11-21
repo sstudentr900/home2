@@ -219,7 +219,6 @@
             fwrite($file,json_encode( $paramsArray));
             fclose($file);
 
-
             //確認成功
             if($paramsArray['Status']=='failed'){
               $data_re->rtnnsg = '回傳繳款狀態失敗';
@@ -227,10 +226,11 @@
             if($output['result']=='success'){
               $data_re->rtnnsg = '回傳繳款狀態成功';
             }
-
-            //存金流訂單
-            $data_re->save();
+          }else{
+            $data_re->rtnnsg = '找不到該訂單';
           }
+          //存金流訂單
+          $data_re->save();
         }
       </xmp>
     </pre>
