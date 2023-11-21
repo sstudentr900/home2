@@ -205,12 +205,30 @@
           //只接受 80 與 443 Port
           //解編碼
           $paramsArray = $this->newebpay_decrypt($request['TradeInfo']);
-          //存金流訂單
+          //找到該訂單
           $data_re = db_re::select('id')->where(['merchant_no'=>$paramsArray['MerchantOrderNo']])->first();
           if($data_re){
+            //存金流訂單
             $data_re->trade_no = $paramsArray['TradeNo']; //金流編號
             $data_re->state = $paramsArray['Message']; //狀態
             $data_re->payment_type = $this->newebpay_paymentType($paramsArray['PaymentType']); //交易方式
+            $data_re->save();
+
+            //存本地看觀看資料
+            $file=fopen('/var/www/html/SLY/public/'.time().'.json','w');
+            fwrite($file,json_encode( $paramsArray));
+            fclose($file);
+
+
+            //確認成功
+            if($paramsArray['Status']=='failed'){
+              $data_re->rtnnsg = '回傳繳款狀態失敗';
+            }
+            if($output['result']=='success'){
+              $data_re->rtnnsg = '回傳繳款狀態成功';
+            }
+
+            //存金流訂單
             $data_re->save();
           }
         }
@@ -276,6 +294,7 @@
       }
       </xmp>
     </pre>
+    <hr>
     <h2>不背後執行直接用payment_return做結帳或測試</h2>
     <p>controller/fnpayment_return</p>
     <pre class="prettyprint">
