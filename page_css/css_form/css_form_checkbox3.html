@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <title>css_form-checkbox</title>
+    </head>
+    <body>
+      <style>
+        input[type=checkbox] {
+          -webkit-appearance: none; /*隱藏原本input*/
+          appearance: none; /*隱藏原本input*/
+          border-radius: 4px;
+          width: 21px;
+          height: 21px;
+          outline: none;
+          display: inline-block;
+          vertical-align: top;
+          position: relative;
+          margin: 0;
+          cursor: pointer;
+          --border: #BBC1E1;
+          --background: #fff;
+          border: 1px solid var(--bc, var(--border));
+          background: var(--b, var(--background));
+          transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+        }
+        input[type=checkbox]::after{
+          content: "";
+          display: block;
+          width: 5px;
+          height: 9px;
+          border: 2px solid #fff;
+          border-top: 0;
+          border-left: 0;
+          position: absolute;
+          left: 6px;
+          top: 3px;
+          opacity: var(--o, 0);
+          transform: rotate(var(--r, 20deg));
+          /* transition: transform 0.3s ease opacity 0.2s; */
+          /* transition: transform 0.6s cubic-bezier(.2, .85, .32, 1.2), opacity 0.2s; */
+          transition: transform var(--d-t, 0.6s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+      
+        }
+        input[type=checkbox]:checked{
+          --active: #275EFE;
+          --b: var(--active);
+          --bc: var(--active);
+          --o: 1;
+          --r: 43deg;
+          --d-o: .3s;
+          --d-t: .6s;
+          --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+        }
+      </style>
+      <p>css 變數</p>
+      <div>
+        <input type="checkbox">
+        <label>複選框</label>
+      </div>
+      <hr>  
+      <h4>參考</h4>
+      <ul>
+        <li>
+          <a href="https://getcssscan.com/css-checkboxes-examples" target="_blank">Checkbox</a>
+        </li>
+      </ul>
+    </body>
+</html>
