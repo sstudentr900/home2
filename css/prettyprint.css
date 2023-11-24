@@ -26,6 +26,7 @@
 .prettyprint ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
+  padding-left: 0;
   color: #656d78;
 }
 
@@ -39,9 +40,10 @@
 .prettyprint li.L7,
 .prettyprint li.L8,
 .prettyprint li.L9 {
-  padding-left: 1em;
-  background-color: #2f3640;
-  list-style-type: decimal;
+  padding-left: 0 !important;
+  /* background-color: #2f3640; */
+  background-color: #1e293b;
+  /* list-style-type: decimal; */
 }
 
 @media screen {
@@ -223,17 +225,17 @@
   margin: 24px 0;
 }
 
-#program ol li {
+/* #program ol li {
   color: var(--text);
   line-height: 1.5;
-}
+} */
 
-#program h2 span,
+/* #program h2 span,
 #program p span,
 #program ol li span {
   color: var(--blue);
   padding: 0 5px;
-}
+} */
 
 #program ul {
   margin-bottom: 120px;
