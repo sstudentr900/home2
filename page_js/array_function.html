@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         //find比對到符合条件不再比對-------------------------------------------------------
         var number = ['1', '2', '3', '4', '5'];
         var result3 = number.find(function (number) {
@@ -115,11 +113,13 @@
 
 
         // reduce-------------------------------------------------------
-        // accumulator：累加器
+        // https://w3c.hexschool.com/blog/a2cb755f
+        // initialValue: 預設值
+        // accumulator：累計值
         // currentValue：當前元素
         // currentIndex：當前元素的索引（選擇性）
         // array: 呼叫 reduce() 方法的陣列（選擇性）
-        // arr.reduce((accumulator,currentValue,currentIndex,array)=>{});
+        // arr.reduce((accumulator,currentValue,currentIndex,array)=>{},initialValue);
 
         //數字計算
         var number = ['1', '2', '3', '4', '5'];
@@ -155,6 +155,17 @@
         [3, 4, 5, 6, 10].sum() // 28
 
 
+        //array 轉 obj
+        //https://stackoverflow.com/questions/2276463/how-can-i-get-form-data-with-javascript-jquery
+        //$('#form').serializeArray() => [{name:'phone',value:'0915899868'},{name:'name',value:'jj'}]
+        //reduce=>{phone:'0915899868',name:'jj'}
+        //reduce(()=>{})
+        var data = $('#form').serializeArray().reduce(function(obj, item) {
+          obj[item.name] = item.value;
+          return obj;
+        }, {});
+
+
         //链式使用-------------------------------------------------------
         var users = [{
           name: 'tom',
@@ -170,13 +181,13 @@
             return /^t/.test(email);
           })
           .forEach(alert); // 弹出tom@example.com
-      </script>
-    </xmp>
-  </pre>
-  <h3>範例</h3>
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+        </script>
+      </xmp>
+    </pre>
+    <h3>範例</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         let list = [{
           firstName: 'Noah',
           lastName: 'M.',
@@ -303,10 +314,9 @@
         let result11 = Math.max(...list.map(person => person.age));
         result11 = list.filter(dev => dev.age === result11.age)
         console.log(result11)
-      </script>
-    </xmp>
-  </pre>
-  <!-- filter,find,every,some,map,reduce -->
-</body>
-
+        </script>
+      </xmp>
+    </pre>
+    <!-- filter,find,every,some,map,reduce -->
+  </body>
 </html>
