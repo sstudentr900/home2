@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>資料庫連線設定</h2>
+    <h3>config/database.php</h3>
+    <pre class="prettyprint">
+      <xmp>
+        return [
+      //設定mysql
+      'default' => env('DB_CONNECTION', 'mysql'),
+      'connections' => [
+        'mysql' => [
+          'driver' => 'mysql',
+          'url' => env('DATABASE_URL'),
+          'host' => env('DB_HOST', '127.0.0.1'),
+          'port' => env('DB_PORT', '3306'),
+          'database' => env('DB_DATABASE', 'forge'),
+          'username' => env('DB_USERNAME', 'forge'),
+          'password' => env('DB_PASSWORD', ''),
+          'unix_socket' => env('DB_SOCKET', ''),
+          'charset' => 'utf8mb4',
+          'collation' => 'utf8mb4_unicode_ci',
+          ],
+        ],
+      ];
+      </xmp>
+    </pre>
+    <h3>.env</h3>
+    <p>在phpMyadmin 設定databaseName</p>
+    <pre class="prettyprint">
+      <xmp>
+        DB_CONNECTION=mysql
+      DB_HOST=127.0.0.1
+      DB_PORT=3306
+      DB_DATABASE= databaseName
+      DB_USERNAME=root
+      DB_PASSWORD=
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://dotblogs.com.tw/SmallFish/2020/09/27/071934" target="_blank">資料庫連線設定</a>
+      </li>
+    </ul>
+  </body>
+</html>
