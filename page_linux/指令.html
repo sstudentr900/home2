@@ -25,20 +25,20 @@
     <li>"x" 表示执行权限，允许在目录中查找文件、对文件执行操作（如运行可执行文件）。</li>
     <li>drwxrwxrwx 表示这是一个目录，且对于文件所有者、所属组和其他用户都有读、写和执行权限，即该目录是完全开放的，任何用户都可以进行读、写和执行操作</li>
   </ul>
-
+  <hr>
   <h2>删除它的记录以重新建立信任</h2>
   <p>指令 ssh-keygen -R 10.1.2.91</p>
-
+  <hr>
   <h2>登入ssh</h2>
   <p>指令ssh fattwen@10.1.2.91</p>
   <p>fattwen@10.1.2.91's password:</p>
-
+  <hr>
   <h2>目前工作目錄中</h2>
   <p>指令 ls</p>
   <p>
     blog   info.php   istart  
   </p>
-
+  <hr>
   <h2>详细信息</h2>
   <p>指令 ls -l</p>
   <p>
@@ -47,13 +47,19 @@
     -rwxrwxrwx  1 root    root            0 Sep 28  2022  info.php
     drwxrwxrwx 13 root    root         4096 May 30 14:12  istart
   </p>
-  <h4>參考</h4>
+  <hr>
+  <h2>777</h2>
+  <p>chmod -R 777 檔案名</p>
+  <pre>
+    [root@localhost storage]# chmod -R 777 storage
+  </pre>
+  <hr>
+  <!-- <h4>參考</h4>
   <ul>
     <li>
       <a href="" target="_blank"></a>
     </li>
-  </ul>
-
+  </ul> -->
   <h2>範例</h2>
   <p>
     //重新建立
@@ -89,7 +95,30 @@
     -rwxrwxrwx  1 root    root            0 Sep 28  2022  info.php
     drwxrwxrwx 13 root    root         4096 May 30 14:12  istart
   </p>
-  
+  <hr>
+  <h2>Apache Server 基本設定 路由</h2>
+  <p>位置</p>
+  <pre>
+    // 編輯器 vim 
+    // 位置 /etc/httpd/conf/httpd.conf 
+    vim /etc/httpd/conf/httpd.conf 
+  </pre>
+  <p>輸入路由</p>
+  <pre>
+    <Directory /var/www/html/oao>
+      AllowOverride All
+    </Directory>
+  </pre>
+  <p>跳出</p>
+  <pre>
+    :q!
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://dic.vbird.tw/linux_server2/2018unit09.php" target="_blank"> 網頁伺服器</a>
+    </li>
+  </ul>
 </body>
 
 </html>
