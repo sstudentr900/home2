@@ -13,14 +13,13 @@
 
 <body id="program">
   <h2>email</h2>
-  <h3></h3>
+  <h3>1. google 2步驗證</h3>
   <ul>
-    <li>打開google 2步驗證</li>
     <li>google應用程式密碼設定，取密碼</li>
   </ul>
   <img src="https://imgur.com/jk33ibt.jpg" alt="">
   <img src="https://imgur.com/Fe8WiIA.jpg" alt="">
-  <h3>.env 設定帳號</h3>
+  <h3>2. env 設定帳號</h3>
   <pre class="prettyprint">
     <xmp>
       MAIL_MAILER=smtp
@@ -34,7 +33,7 @@
       MAIL_FROM_NAME="${APP_NAME}"
     </xmp>
   </pre>
-  <h3>.controller</h3>
+  <h3>3. controller</h3>
   <pre class="prettyprint">
     <xmp>
       use Mail; 
@@ -44,7 +43,7 @@
     });
     </xmp>
   </pre>
-  <h3>.email_register</h3>
+  <h3>4. views email</h3>
   <pre class="prettyprint">
     <xmp>
       <!DOCTYPE html>

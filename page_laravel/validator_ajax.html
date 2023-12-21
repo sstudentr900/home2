@@ -13,22 +13,75 @@
 </head>
 
 <body id="program">
-  <h2>表單驗證</h2>
-  <h3>route=>routes/web.php</h3>  
+  <h2>fetch</h2>
+  <h3>blade</h3>  
   <pre class="prettyprint">
     <xmp>
-      use Illuminate\Http\Request;
+      //js
+      function emailFn(){
+        fetch("{{ route( 'fnemail' ) }}", {
+          method: 'post', 
+          headers: {
+            'Content-Type': 'application/json',
+            "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          },
+          cache: 'no-cache',
+          body: JSON.stringify({
+            name: 'name',
+          })
+        })
+        .then((response)=>response.json())
+        .then(data => {
+          console.log(data)
+        })
+        .catch(error => {
+          alert(error)
+        });
+      }
+      //html
+      onclick="emailFn()"
+    </xmp>
+  </pre>
+  <h3>php</h3>  
+  <pre class="prettyprint">
+    <xmp>
       use Illuminate\Validation\Validator;
+      use Illuminate\Support\Facades\Mail;//寄信
       Route::view('home', 'home');
-      Route::post('home', function(){
-          $validate = $request->validate([
-              'text' => 'required|max:5',
-          ]);
-          if ($validator->fails()) {
-              $error = $validator->errors()->All(); //顯示全部錯誤
-              return response()->json(['status' => false, 'error' => $error], 400);
+      Route::post('home', function(Request $request){
+        $input = $request->all();
+        //驗證規則
+        $rules = [
+          'name' => [
+            'required',
+            'max:20',
+          ],
+        ];
+        //驗證資料
+        $validator = Validator::make($input, $rules);
+        if($validator->fails())
+        {
+          $error = $validator->errors()->All(); //顯示全部錯誤
+          return response()->json(array('status' => 500, 'message' => $error));
+        }
+        try {
+          //寄信
+          Mail::send('fnemail', [
+            'name' => $input['name'],
+          ], function($mail) use ($input){
+            $mail->to('gentlementest04@gmail.com');
+            $mail->subject('來自XXX');
+          });
+          //判斷寄信
+          if (count(Mail::failures()) > 0) {
+            return response()->json(array('status' => 500, 'message' => '發送失敗'));
+          } else {
+            return response()->json(array('status' => 200, 'message' => '發送成功'));
           }
-      })->name('checkfrom');
+        } catch (\Exception $e) {
+          return response()->json(array('status' => 500, 'message' => '發送失敗'));
+        }
+      })->name('fnemail');
     </xmp>
   </pre>
 </body>
