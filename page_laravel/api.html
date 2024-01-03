@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>jwt-auth</h2>
+
+  <h3>jwt-auth安裝</h3>
+  <ul>
+    <li>composer require tymon/jwt-auth => composer安裝 </li>
+    <li>php artisan jwt:secret => 在 .env 文件中，增加了一行 JWT_SECRET</li>
+    <li>php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider" => 配置文件</li>
+  </ul>
+  <pre class="prettyprint">
+    <xmp>
+    </xmp>
+  </pre>
+
+  <h3>routes/api.php</h3>
+  <ul>
+    <li>檔案位置routes/api.php</li>
+    <li>登入一定要post</li>
+  </ul>
+  <pre class="prettyprint">
+    <xmp>
+      //routes/api.php
+
+      //登入1
+      Route::post('/jwt1',   [TestController::class, 'jwt1']);
+
+      //登入2
+      Route::post('/jwt2',   [TestController::class, 'jwt2']);
+
+      //jwt:jwt1=>(jwt=>路由驗證,:jwt1=token驗證)
+      Route::group(['middleware' =>'jwt:jwt1'], function () {
+        //取foreveryone1資料
+        Route::get('/foreveryone1', [TestController::class, 'forEveryone1']);
+      });
+      Route::group(['middleware' => 'jwt:jwt2'], function () {
+        Route::get('/foreveryone2', [TestController::class, 'forEveryone2']);
+      });
+    </xmp>
+  </pre>
+
+  <h3>Controllers</h3>
+  <p>Controllers/TestController.php</p>
+  <pre class="prettyprint">
+    <xmp>
+      namespace App\Http\Controllers;
+      use Illuminate\Http\Request;
+      use Illuminate\Support\Facades\Auth;
+      use App\Models\Jwt1;
+      use App\Models\Jwt2;
+      use Tymon\JWTAuth\Contracts\JWTSubject;
+      class TestController extends Controller
+      {
+        public function jwt1(Request $request)
+        {
+          //登入的帳密
+          $value = ['account'=>'2@2.2','password'=>'1'];
+          //取得token1
+          $token = auth('jwt1')->attempt($value);
+          return response()->json(['token'=>$token]);
+        }
+        public function jwt2(Request $request)
+        {
+          $value = ['account'=>'1@1.1','password'=>'1'];
+          //取得token2
+          $token = auth('jwt2')->attempt($value);
+          return response()->json(['token'=>$token]);
+        }
+        public function forEveryone () {
+          return '不需要token';
+        }
+        public function forEveryone1 () {
+          return response()->json('需要token1');
+        }
+        public function forEveryone2 () {
+          return response()->json('需要token2');
+        }
+      }
+
+    </xmp>
+  </pre>
+
+  <h3>Kernel</h3>
+  <ul>
+    <li>app/Http/Kernel.php</li>
+    <li>routeMiddleware 路由驗證</li>
+  </ul>
+  <pre class="prettyprint">
+    <xmp>
+      protected $routeMiddleware = [
+        'jwt' => \App\Http\Middleware\jwtMiddleware::class,
+        ...
+      ];
+    </xmp>
+  </pre>
+
+  <h3>Middleware</h3>
+  <ul>
+    <li>app/Http/Middleware/jwtMiddleware.php</li>
+    <li>jwtMiddleware 錯誤到該頁</li>
+  </ul>
+  <pre class="prettyprint">
+    <xmp>
+      <?php
+
+      namespace App\Http\Middleware;
+      
+      use Illuminate\Auth\Middleware\Authenticate as Middleware;
+      
+      class jwtMiddleware extends Middleware
+      {
+          /**
+           * Get the path the user should be redirected to when they are not authenticated.
+           *
+           * @param  \Illuminate\Http\Request  $request
+           * @return string|null
+           */
+          protected function redirectTo($request)
+          {
+              if (! $request->expectsJson()) {
+                  return route('login');
+              }
+          }
+      }
+    </xmp>
+  </pre>
+
+  <h3>auth</h3>
+  <ul>
+    <li>config/auth.php</li>
+  </ul>
+  <pre class="prettyprint">
+    <xmp>
+      'guards' => [
+        //設定jwt
+        'jwt1' => [
+          'driver' => 'jwt',
+          'provider' => 'jwt1s',
+        ],    
+        'jwt2' => [
+          'driver' => 'jwt',
+          'provider' => 'jwt2s',
+        ],       
+      ],
+      'providers' => [
+        //設定jwt1s,jwt2s資料庫
+        'jwt1s' => [
+          'driver' => 'eloquent',
+          'model' => App\Models\Jwt1::class,
+        ],
+        'jwt2s' => [
+          'driver' => 'eloquent',
+          'model' => App\Models\Jwt2::class,
+        ],
+      ],
+    </xmp>
+  </pre>
+
+  <h3>jwt1資料庫</h3>
+  <ul>
+    <li>app/Models/jwt1.php</li>
+  </ul>
+  <pre class="prettyprint">
+    <xmp>
+      <?PHP
+        namespace App\Models;
+        
+        use Illuminate\Database\Eloquent\Model;
+        use Tymon\JWTAuth\Contracts\JWTSubject;
+        use Illuminate\Foundation\Auth\User as Authenticatable;
+        //jwt 需加 implements JWTSubject
+        class Jwt1 extends Authenticatable implements JWTSubject
+        {
+          //資料表名稱
+          protected $table = 'jwt1';
+      
+          //主鍵名稱
+          protected $promaryKey = 'id';
+      
+          //可變動欄位
+          protected $fillable = [
+            'id',
+            'cover',
+            'account',
+            'password',
+            'name',
+            'phone',
+            'releases',
+            'name',
+            'account',
+            'password',
+          ];
+          //jwt 需加
+          public function getJWTIdentifier() {
+            return $this->getKey();
+          }
+      
+          public function getJWTCustomClaims() {
+            return [];
+          }
+        }
+      ?>
+    </xmp>
+  </pre>
+
+  <h3>jwt2資料庫</h3>
+  <ul>
+    <li>app/Models/jwt2.php</li>
+  </ul>
+  <pre class="prettyprint">
+    <xmp>
+      <?PHP
+        namespace App\Models;
+        
+        use Illuminate\Database\Eloquent\Model;
+        use Tymon\JWTAuth\Contracts\JWTSubject;
+        use Illuminate\Foundation\Auth\User as Authenticatable;
+        class Jwt2 extends Authenticatable implements JWTSubject
+        {
+          //資料表名稱
+          protected $table = 'jwt2';
+      
+          //主鍵名稱
+          protected $promaryKey = 'id';
+      
+          //可變動欄位
+          protected $fillable = [
+            'id',
+            'cover',
+            'account',
+            'password',
+            'name',
+            'phone',
+            'releases',
+            'name',
+            'account',
+            'password',
+          ];
+          public function getJWTIdentifier() {
+            return $this->getKey();
+          }
+      
+          public function getJWTCustomClaims() {
+            return [];
+          }
+        }
+      ?>
+    </xmp>
+  </pre>
+
+
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://www.0x2beace.com/laravel-jwt-auth-use-detailed-explanation/" target="_blank">Laravel jwt-auth</a>
+    </li>
+    <li>
+      <a href="https://blog.csdn.net/Gan_1314/article/details/127795406" target="_blank">Laravel快速接入JWT用户认证-多用户认证</a>
+    </li>
+  </ul>
+</body>
+
+</html>
