@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+  <h2>自動播放 HTML5 影</h2>
+  <!-- <h3>muted playsinline controls</h3> -->
+  <p>muted 音频为静音才會自動撥放autoplay</p>
+  <p>playsinline 视频始终是全屏播放的</p>
+  <p>loop 重播</p>
+  <pre class="prettyprint linenums">
+    <video id="autoplay" muted autoplay playsinline loop controls>
+      <source src="video.mp4" type="video/mp4">
+      <source src="video.webm" type="video/webm">
+    </video>
+    <script>
+    // document.getElementById('autoplay').play();
+    </script>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://walterebert.com/playground/video/autoplay-js/">使用 JavaScript 自動播放 HTML5 影片</a>
+    </li>
+  </ul>
+</body>
+
+</html>
