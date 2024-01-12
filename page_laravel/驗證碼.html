@@ -38,7 +38,7 @@
     <xmp>
       php artisan vendor:publish 
 
-      //選CaptchaServiceProvider生成
+      //選 Mews\Captcha\CaptchaServiceProvider 生成
       [10] ...
       [11] Provider: Mews\Captcha\CaptchaServiceProvider
       [12] ...
@@ -54,7 +54,7 @@
         'width' => 120,
         'height' => 36,
         'quality' => 90,
-        'math' => false,
+        'math' => false, //是否啟用數字驗證碼
         'expire' => 60,
         'encrypt' => false,
       ],
@@ -65,15 +65,18 @@
   <p>resources/lang/zh-tw/validation</p>
   <pre class="prettyprint">
     <xmp>
-      //驗證錯誤=>中文
+    
       return [
-        'captcha'              => ":attribute 錯誤。",
+        // ...
+        //驗證錯誤=>中文
+        'captcha'                 => ":attribute 錯誤。",
+        // ...
+        //name中文=>驗證碼
+        'attributes' => [
+          // ...
+          'captcha'               => "驗證碼", 
+        ],
       ]
-
-      //name中文=>驗證碼
-      'attributes' => [
-        'captcha'               => "驗證碼", 
-      ],
     </xmp>
   </pre>
   <hr>
