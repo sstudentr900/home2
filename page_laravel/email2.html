@@ -46,8 +46,9 @@
       use Mail; 
       // Mail::send('view_url', ['view_id' => view_value ], function($mail) use ('外部資料傳入'){
       Mail::send('email_password', ['name' => $User['name'],'href' => $href ], function($mail) use ($User){
-        //收件人
-        $mail->to($User['account']);
+        $mail->from($User['account'], '寄件人');
+        $mail->to($User['account']);   //收件人
+        $mail->cc('sstudentr900@gmail.com'); //副本,傳給其他人
         //信箱標題
         $mail->subject('台灣財務金融學會【修改密碼通知】!!');
       });
