@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>es6 spread operator 扩展运算符</h2>
+    <h3>字符串转为数组</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          [...'hello']// [ "h", "e", "l", "l", "o" ]
+        </script>
+      </xmp>
+    </pre>
+    <h2>合并array</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          var arr1 = ['a', 'b'];
+          var arr2 = ['c'];
+          var arr3 = ['d', 'e'];
+          var arr4 =[...arr1, ...arr2, ...arr3]; //['a','b','c','d', 'e']
+        </script>
+      </xmp>
+    </pre>
+    <h2>複製陣列不變原陣列</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          let today = ['沙拉', '水煮雞胸'];
+          let tomorrow = [...today];
+          console.log(tomorrow); //['沙拉', '水煮雞胸']
+          console.log(today===tomorrow); //false
+        </script>
+      </xmp>
+    </pre>
+    <h2>把陣列傳入函式做運算</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          function count(breakfast, lunch, dinner) {
+              return breakfast + lunch + dinner;
+          }
+
+          var price = [10, 50, 20];
+          console.log(count(...price)); // 80
+        </script>
+      </xmp>
+    </pre>
+    <h2>把二维数组扁平化</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          let numbers2 = [1, 2, 3];
+          let newNumbers = [...numbers2, 4]; //新的array
+          console.log(newNumbers);//[1, 2, 3, 4]
+        </script>
+      </xmp>
+    </pre>
+    <h2>数据结构转为数组</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          [...document.querySelectorAll('div')]
+        </script>
+      </xmp>
+    </pre>
+    <h2>遍历器（Iterator）接口的对象，都可以用扩展运算符转为真正的数组</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          let nodeList = document.querySelectorAll('div');
+          let array = [...nodeList];
+        </script>
+      </xmp>
+    </pre>
+    <h2>new Map</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <script>
+          let map = new Map([
+            [1, 'one'],
+            [2, 'two'],
+            [3, 'three'],
+          ]);
+
+          let arr = [...map.keys()]; // [1, 2, 3]
+        </script>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://github.com/febobo/web-interview/issues/35" target="_blank">ES6中数组新增了哪些扩展</a>
+      </li>
+    </ul>
+  </body>
+</html>
