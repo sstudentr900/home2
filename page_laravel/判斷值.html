@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <link rel="stylesheet" href="../css/prism.css">
+  <script src="../js/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>儲存時間不同</h2>
+  <p>不管是DB门面还是Eloquent ORM，如果是first()等一维数组或字符串的值，建议使用 empty($users)  或者 is_null($users);</p>
+  <p>如果是get()等二维数组的值，使用 $users->isEmpty()、$users->count()、$users->first()都可以。建议使用前两个返回值为bool;</p>
+  <pre class="prettyprint">
+    <xmp>
+      //get()
+      $datas = data::where('id',$id)->get();
+      if($datas->isEmpty()){
+        return response()->json([
+          'status'=> false,
+          'message' => '找不到資料'
+        ]);
+      }
+      //find()
+      $data = data::find($id);
+      if(is_null($data)) {
+        return response()->json([
+          'status'=> false,
+          'message' => '沒有資料'
+        ]);
+      }
+    </xmp>
+  </pre>
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://blog.csdn.net/qq_37035946/article/details/102798715" target="_blank">laravel查询结果后判断是否为空</a>
+    </li>
+  </ul>
+</body>
+
+</html>
