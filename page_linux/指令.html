@@ -19,6 +19,41 @@
     [root@localhost storage]# chmod -R 777 storage
   </pre>
   <hr>
+
+  <h2>Linux 複製檔案 cp</h2>
+  <p>複製fileName1 到 fileName2</p>
+  <pre>
+    cp -r fileName1 fileName2
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://blog.gtwang.org/linux/linux-cp-command-copy-files-and-directories-tutorial/" target="_blank"> Linux 複製檔案 cp</a>
+    </li>
+  </ul>
+  <hr>
+
+  <h2>刪除檔案 rm</h2>
+  <p>-r 裡面資料夾也會刪除</p>
+  <p>-f 不詢問強制刪除</p>
+  <pre>
+    rm -rf fileName
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://www.youtube.com/watch?v=aTOTWYLytEk" target="_blank">Linux 指令: rm (Remove) - 刪除檔案或目錄</a>
+    </li>
+  </ul>
+  <hr>
+
+  <h2>--help</h2>
+  <p>cp 指令</p>
+  <pre>
+    cp --help
+  </pre>
+  <hr>
+
   <h2>檔案權限</h2>
   <p>指令 sudo chmod -R 777 '檔名(istart)'</p>
   <p>drwxrwxrwx 13 root    root         4096 May 30 14:12  istart</p>
@@ -32,6 +67,7 @@
     <li>drwxrwxrwx 表示这是一个目录，且对于文件所有者、所属组和其他用户都有读、写和执行权限，即该目录是完全开放的，任何用户都可以进行读、写和执行操作</li>
   </ul>
   <hr>
+
   <h2>删除它的记录以重新建立信任</h2>
   <p>指令 ssh-keygen -R 10.1.2.91</p>
   <hr>
@@ -39,12 +75,14 @@
   <p>指令ssh fattwen@10.1.2.91</p>
   <p>fattwen@10.1.2.91's password:</p>
   <hr>
+
   <h2>目前工作目錄中</h2>
   <p>指令 ls</p>
   <p>
     blog   info.php   istart  
   </p>
   <hr>
+
   <h2>详细信息</h2>
   <p>指令 ls -l</p>
   <p>
@@ -96,6 +134,7 @@
     drwxrwxrwx 13 root    root         4096 May 30 14:12  istart
   </p>
   <hr>
+
   <h2>Apache Server 基本設定 路由</h2>
   <p>位置</p>
   <pre>

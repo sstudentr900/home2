@@ -34,7 +34,7 @@
       MAIL_FROM_NAME="${APP_NAME}"
     </xmp>
   </pre>
-  <h3>.controller</h3>
+  <h3>.env</h3>
   <pre class="prettyprint">
     <xmp>
       //.env
@@ -46,9 +46,21 @@
       DB_USERNAMEchild=root
       DB_PASSWORDchild=passwordofchild
 
-      //controller
+      //取的.env值
       $User = env('DB_USERNAMEchild','');
       $Pass = env('DB_PASSWORDchild','');
+    </xmp>
+  </pre>
+  <h3>.controller</h3>
+  <pre class="prettyprint">
+    <xmp>
+      use Mail; 
+      Mail::send('email_password', ['name' => $User,'href' => $href ], function($mail) use ($User){
+        $mail->from('寄件人mail', '寄件人');
+        $mail->to('收件人mail','收件人'); 
+        $mail->cc('sstudentr900@gmail.com'); //副本,傳給其他人
+        $mail->subject('信箱標題');  
+      });
     </xmp>
   </pre>
   <h3>.email_register</h3>
@@ -82,6 +94,9 @@
   </pre>
   <h4>參考</h4>
   <ul>
+    <li>
+      <a href="https://www.wantnetinfo.com/system-integration/Security/49" target="_blank">Google低安全性應用程式</a>
+    </li>
     <li>
       <a href="https://stackoverflow.com/questions/34263107/get-environment-value-in-controller" target="_blank">get environment value</a>
     </li>

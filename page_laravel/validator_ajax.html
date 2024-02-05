@@ -45,10 +45,11 @@
   <h3>php</h3>  
   <pre class="prettyprint">
     <xmp>
-      use Illuminate\Validation\Validator;
+      use Illuminate\Support\Facades\Validator;//驗證
       use Illuminate\Support\Facades\Mail;//寄信
       Route::view('home', 'home');
       Route::post('home', function(Request $request){
+
         $input = $request->all();
         //驗證規則
         $rules = [
@@ -64,6 +65,7 @@
           $error = $validator->errors()->All(); //顯示全部錯誤
           return response()->json(array('status' => 500, 'message' => $error));
         }
+
         try {
           //寄信
           Mail::send('fnemail', [
@@ -81,6 +83,7 @@
         } catch (\Exception $e) {
           return response()->json(array('status' => 500, 'message' => '發送失敗'));
         }
+        
       })->name('fnemail');
     </xmp>
   </pre>

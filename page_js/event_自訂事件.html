@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js_basis_target</title>
+</head>
+
+<body>
+  <h2>点击网页脚本教学</h2>
+  <pre class="prettyprint">
+    <xmp>
+        // 获取需要点击的按钮元素
+        const button = document.querySelector('#button');
+        // 模拟鼠标点击事件
+        const event = new MouseEvent("click", {
+          view: window,
+          bubbles: true, //指定事件是否应该冒泡。这里设为 true。
+          cancelable: true //指定事件是否可以被取消。这里设为 true。
+        });
+        button.dispatchEvent(event);
+    </xmp>
+  </pre>
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://juejin.cn/s/js%E8%87%AA%E5%8A%A8%E7%82%B9%E5%87%BB%E7%BD%91%E9%A1%B5%E8%84%9A%E6%9C%AC%E6%95%99%E5%AD%A6" target="_blank">js自动点击网页脚本教学</a>
+    </li>
+  </ul>
+</body>
+
+</html>
