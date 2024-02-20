@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>groupBy + count 合併計算數量</h2>
+    <pre class="prettyprint">
+      <xmp>
+        //leftJoin取得2個表但db1會有重複(class,id)
+        $classdatas = DB::table('db1')
+        ->leftJoin('db2', 'db2.id', '=', 'db1.id')
+        ->select('db1.class', 'db1.id')
+        ->get();
+
+        //要不重複須注意=>select查找(class,id) groupBy也要查找(class,id)做合併
+        $classdatas2 = DB::table('db1')
+        ->leftJoin('db2', 'db2.id', '=', 'db1.id')
+        ->select('db1.class', 'db1.id')
+        ->groupBy('db1.class', 'db1.id')
+        ->get();
+
+        //計算數量=>groupBy 合併後要搭配 count 計算
+        $classdatas3 = DB::table('db1')
+        ->leftJoin('db2', 'db2.id', '=', 'db1.id')
+        ->select('db1.class', 'db1.id', DB::raw('count(db2.id) as count'))
+        ->groupBy('db1.class', 'db1.id')
+        ->get();
+        dd($classdatas,$classdatas2,$classdatas3);
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <!-- <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10246143" target="_blank">laravel Eloquent</a>
+      </li>
+      <li>
+        <a href="https://blog.csdn.net/u010324331/article/details/82698211" target="_blank">updateOrCreate 和 updateOrInsert 的区别</a>
+      </li>
+      <li>
+        <a href="https://stackoverflow.com/questions/42695943/laravel-updateorcreate-method" target="_blank">laravel updateOrCreate method</a>
+      </li>
+      <li>
+        <a href="https://laravelacademy.org/post/9698" target="_blank">通过查询构建器实现复杂的查询语句</a>
+      </li>
+      <li>
+        <a href="https://laravel5-book.kejyun.com/database/model/eloquent-sub-query/" target="_blank">子查詢</a>
+      </li> -->
+    </ul>
+  </body>
+</html>
