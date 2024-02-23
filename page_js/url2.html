@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/prettyprint.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+<body id="program">
+    <h2>URL 对象</h2>
+    <h3>创建 URL 对象</h3>
+    <pre class="prettyprint linenums">
+      new URL(url, [base])
+      url —— 完整的 URL，或者仅路径（如果设置了 base），
+      base —— 可选的 base URL：如果设置了此参数，且参数 url 只有路径，则会根据这个 base 生成 URL。
+
+      //下面这两个 URL 是一样的：
+      let url1 = new URL('https://javascript.info/profile/admin');
+      let url2 = new URL('/profile/admin', 'https://javascript.info');
+      alert(url1); // https://javascript.info/profile/admin
+      alert(url2); // https://javascript.info/profile/admin
+    </pre>
+    <h3>解析 url </h3>
+    <pre class="prettyprint linenums">
+      let url = new URL('https://javascript.info/url');
+      alert(url.protocol); // https:
+      alert(url.host);     // javascript.info
+      alert(url.pathname); // /url
+    </pre>
+    <h4>參考</h4>
+    <ul>
+        <li>
+            <a href="https://zh.javascript.info/url" target="_blank">URL 对象</a>
+        </li>
+    </ul>
+</body>
+</html>
