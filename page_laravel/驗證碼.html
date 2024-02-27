@@ -36,13 +36,11 @@
   <h2>3.生成配置文件 config/captcha.php</h2>
   <pre class="prettyprint">
     <xmp>
+      //終端機執行
       php artisan vendor:publish 
 
       //選 Mews\Captcha\CaptchaServiceProvider 生成
-      [10] ...
       [11] Provider: Mews\Captcha\CaptchaServiceProvider
-      [12] ...
-      > 11
     </xmp>
   </pre>
   <hr>
@@ -67,13 +65,11 @@
     <xmp>
     
       return [
-        // ...
         //驗證錯誤=>中文
         'captcha'                 => ":attribute 錯誤。",
-        // ...
+
         //name中文=>驗證碼
         'attributes' => [
-          // ...
           'captcha'               => "驗證碼", 
         ],
       ]
