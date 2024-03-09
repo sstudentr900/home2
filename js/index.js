@@ -75,7 +75,7 @@ function pageStudyMain(){
         creatMainHtml(url,'.page_study .main').then(()=>{
             PR.prettyPrint()
             Prism.highlightAll();//執行Prism
-            creatFooterHtml('.page_study .main')
+            // creatFooterHtml('.page_study .main')
         })
     }
 }
@@ -97,7 +97,7 @@ function pageStudyLeftNav(obj){
 function pageMain(){
     let url = getSearch().page
     creatMainHtml(url,'.index_main').then(()=>{
-        if(url!='study')creatFooterHtml('.index_main')
+        // if(url!='study')creatFooterHtml('.index_main')
         if(url=='study')pageNav('.page_study .nav a',pageStudyLeftNav,pageStudyMain)
     })
 } 
@@ -112,60 +112,71 @@ function pageTopNav(obj){
 }
 function pageNav(obj,navActiveFn,mainFn,ifClick=true){
     
-    let links = document.querySelectorAll(obj);
+  let links = document.querySelectorAll(obj);
 
-    //navActiveFn
+  //navActiveFn
+  links.forEach((el)=>{
+      el.classList.remove('active'); 
+      navActiveFn(el)
+  })
+
+  //nav click
+  if(ifClick){
     links.forEach((el)=>{
-        el.classList.remove('active'); 
-        navActiveFn(el)
+      el.addEventListener('click',function(){
+        //history
+        let linkUrl = this.getAttribute('data-url');
+        history.pushState('', '' ,linkUrl)
+        //不相同網址才更新
+        if(ifLocalStorageUrl()){
+          //nav active
+          links.forEach((el)=>{
+              el.classList.remove('active');
+          })
+          this.classList.add('active')
+
+          //chageMainHtml
+          mainFn()
+        }
+        //active
+        document.querySelector('body').classList.remove('active')
+      })
     })
+  }
 
-    //nav click
-    if(ifClick){
-        links.forEach((el)=>{
-            el.addEventListener('click',function(){
-                //history
-                let linkUrl = this.getAttribute('data-url');
-                history.pushState('', '' ,linkUrl)
-                //不相同網址才更新
-                if(ifLocalStorageUrl()){
-                    //nav active
-                    links.forEach((el)=>{
-                        el.classList.remove('active');
-                    })
-                    this.classList.add('active')
-
-                    //chageMainHtml
-                    mainFn()
-                }
-            })
-        })
-    }
-
-    //chageMainHtml f5 
-    mainFn()
+  //chageMainHtml f5 
+  mainFn()
 }
 function bodyStyle(){
-    //style
-    let body = document.querySelector('body')
-    if(!localStorage.getItem('style')){
-        body.classList.add('dark')
-        localStorage.setItem('style','dark')
-    }else if(localStorage.getItem('style')=='white'){
-        body.classList.remove('dark')
-    }else if(localStorage.getItem('style')=='dark'){
-        body.classList.add('dark')
+  //style
+  const body = document.querySelector('body')
+  if(!localStorage.getItem('style')){
+      body.classList.add('dark')
+      localStorage.setItem('style','dark')
+  }else if(localStorage.getItem('style')=='white'){
+      body.classList.remove('dark')
+  }else if(localStorage.getItem('style')=='dark'){
+      body.classList.add('dark')
+  }
+  // const darkButton = document.querySelector('.index_top [data-dark]');
+  // darkButton.addEventListener('click',function(){
+  //     if(body.classList.contains('dark')){
+  //         body.classList.remove('dark')
+  //         localStorage.setItem('style','white')
+  //     }else{
+  //         body.classList.add('dark')
+  //         localStorage.setItem('style','dark')
+  //     }
+  // })
+  //active
+  const hamburgerButton = document.querySelector('.index_top [data-hamburger]');
+  hamburgerButton.addEventListener('click',function(){
+    if(body.classList.contains('active')){
+      body.classList.remove('active')
+    }else{
+      body.classList.add('active')
     }
-    let darkButton = document.querySelector('.index_top [data-dark]');
-    darkButton.addEventListener('click',function(){
-        if(body.classList.contains('dark')){
-            body.classList.remove('dark')
-            localStorage.setItem('style','white')
-        }else{
-            body.classList.add('dark')
-            localStorage.setItem('style','dark')
-        }
-    })
+  })
 }
 function start(){
     bodyStyle()
