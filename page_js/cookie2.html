@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //顯示cookie 同意
+        const showCookie = ref(false)
+        const checkCookie = () => {
+            //判斷cookie 有無agreecookie值
+            const cookieValue = document.cookie.split('; ').map(x => x.split('=')).find(x => x[0] == 'agreecookie');
+            //console.log('checkCookie', document.cookie, cookieValue, !(cookieValue == undefined || cookieValue[1] == '0'))
+            return !(cookieValue == undefined || cookieValue[1] == '0')
+        }
+        const agreeAllCookie = ()=>{
+            //同意就加入agreecookie=1值,path=/不要區分不同頁
+            //console.log('agreeAllCookie')
+            if (!checkCookie()) {
+                document.cookie = "agreecookie=1;path=/ "
+                showCookie.value = false
+            }
+        }
+        //載入執行
+        onMounted(() => {
+            //console.log('onMounted')
+            if (!checkCookie()) {
+                showCookie.value = true
+            }
+        })
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
