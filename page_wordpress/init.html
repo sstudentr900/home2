@@ -24,27 +24,95 @@
     <li>wp-content=>themes ：放置佈景主題的目錄。</li>
     <li>wp-config-sample.php 它是一個設定的樣本檔，當完成安裝 WordPress 的時候，wp-config.php 會被自動建立。如果你想手動設定，將這個檔案改名為 wp-config.php 並修改檔案內容即可。</li>
   </ul>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10322937" target="_blank"> 從 0 到 100：WordPress 開發者的實戰手冊</a>
+    </li>
+  </ul>
+  <hr>
+  <h3>函式：add_theme_support</h3>
+  <p>第一個參數為功能的設定名稱，第二個參數為陣列，即為該功能的細節參數。</p>
+  <pre class="prettyprint">
+    <xmp>
+      add_theme_support( 'custom-logo', array(
+        'height' => 80,
+        'width'  => 200,
+      ));
+    </xmp>
+  </pre>
+  <h3>函式：add_filter 過濾器</h3>
+  <p>__return_false 是 WordPress 定義好的函式，它回傳的是布林值 false</p>
+  <pre class="prettyprint">
+    <xmp>
+      add_filter( 'show_admin_bar', '__return_false' );
+    </xmp>
+  </pre>
+  <h3>函式：add_action 鉤點</h3>
+  <p></p>
+  <pre class="prettyprint">
+    <xmp>
+      add_action( 'after_setup_theme', 'ironman_setup' );
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10328303" target="_blank">add_theme_support</a>
+    </li>
+    <li>
+      <a href="https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/" target="_blank">官方文件</a>
+    </li>
+  </ul>
   <hr>
   <h3>函式：get_template_part</h3>
   <p>它用來載入範本組件 (template part) 的檔案，以利於在不同的地方可以重覆地使用</p>
   <ul>
+    <li> get_template_part( $slug, $name = null, $args );</li>
     <li>$slug (必需)：不含後綴的範本組件主檔名。</li>
     <li>$name (選用)：用於擴充範本組件主檔的選項。</li>
     <li>$args (選用)：變數的集合。WordPress 5.5 版本以上才有。</li>
   </ul>
   <pre class="prettyprint">
     <xmp>
-      get_template_part( $slug, $name = null, $args );
-      $slug (必需)：不含後綴的範本組件主檔名。
-      $name (選用)：用於擴充範本組件主檔的選項。
-      $args (選用)：變數的集合。WordPress 5.5 版本以上才有。
+      //載入 content.php
+      get_template_part( 'content' );
+
+      //載入特定於文章的模板，如 content-single.php
+      get_template_part( 'content', 'single' );
+
+      //網站文章有多種格式，例如 video、audio 等等，為了進入不同格式文章有不同的呈現方式，可以這樣做
+      //當文章格式為 video 時，這會嘗試載入 content-video.php。如果那個檔案不存在，則會退回到 content.php，這種作法很常見喔。
+      $post_format = get_post_format();
+      get_template_part( 'content', $post_format );
+
     </xmp>
   </pre>
-  <hr>
+  <h3>函式：has_nav_menu('footer')</h3>
+  <p>有設定 footer 這個選單，該位置就會出現選單喔</p>
+  <pre class="prettyprint">
+    <xmp>
+      wp_nav_menu(
+        array(
+          'theme_location' => 'footer',
+          'items_wrap'     => '%3$s',
+          'container'      => false,
+          'depth'          => 1,
+          'link_before'    => '<span>',
+          'link_after'     => '</span>',
+          'fallback_cb'    => false,
+        )
+      )
+    </xmp>
+  </pre>
+  <h3>函式：has_custom_logo</h3>
+  <p>如果設定 Logo，則顯示 Logo，否則就只顯示網站的名稱或連結</p>
+  <h3>函式：wp_footer</h3>
+  <p>wp_footer 函式中有許多鉤點，用來插入額外的 HTML 或 JavaScript 程式碼或載入語法。</p>
   <h4>參考</h4>
   <ul>
     <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10322937" target="_blank"> 從 0 到 100：WordPress 開發者的實戰手冊</a>
+      <a href="https://ithelp.ithome.com.tw/articles/10330218" target="_blank"> 開始套版準備</a>
     </li>
   </ul>
 </body>

@@ -28,6 +28,41 @@
     </li>
   </ul>
   <hr>
+  <h3>npm 爬蟲套件-Puppeteer</h3>
+  <p>Puppeteer</p>
+  <pre class="prettyprint">
+    <xmp>
+      const puppeteer = require('puppeteer');
+      const cheerio = require('cheerio');
+      async function getOpenPrice() {
+          const browser = await puppeteer.launch();
+          const page = await browser.newPage();
+          const url = 'https://goodinfo.tw/tw/ShowK_Chart.asp?STOCK_ID=%E5%8A%A0%E6%AC%8A%E6%8C%87%E6%95%B8&CHT_CAT2=DATE&PERIOD=365';
+          await page.goto(url);
+
+          //等待元素載入完成
+          const textSelector = await page.waitForSelector("#divPriceDetail");
+          // 在瀏覽器執行 JavaScript，取得元素資訊
+          const fullTitle = await textSelector?.evaluate((el) => el.textContent);
+          console.log(fullTitle)
+          //關閉
+          await browser.close();
+      }
+
+      getOpenPrice().catch(error => console.error(error));
+
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://www.tpisoftware.com/tpu/articleDetails/3032">Puppeteer</a>
+    </li>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10199826">Puppeteer</a>
+    </li>
+  </ul>
+  <hr>
 </body>
 
 </html>

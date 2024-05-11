@@ -18,7 +18,6 @@
         npm init -y
       </xmp>
     </pre>
-    <hr>
     <h3>安裝 Tailwind CSS 和它的平行依賴套件 PostCSS 及 Auto Prefixer。</h3>
     <p></p>
     <pre class="prettyprint">
@@ -26,7 +25,6 @@
         npm install -D tailwindcss postcss autoprefixer
       </xmp>
     </pre>
-    <hr>
     <h3>產生 tailwind.config.js 設定檔</h3>
     <p>-p 參數是告訴 Tailwind CLI 工具，順便產生 postcss.config.js 設定檔。</p>
     <pre class="prettyprint">
@@ -34,7 +32,6 @@
         npx tailwindcss init -p
       </xmp>
     </pre>
-    <hr>
     <h3>打包時要掃描那些目錄裡的檔案</h3>
     <p>盤點要請 Tailwind CLI 工具在打包時要掃描那些目錄裡的檔案。並修改 tailwind.config.js 內容。</p>
     <pre class="prettyprint">
@@ -54,7 +51,6 @@
         }
       </xmp>
     </pre>
-    <hr>
     <h3>入口檔案</h3>
     <p>建立 assets 目錄，在它之後再建立 sass 目錄，接著開一個新的檔案，命名為 index.scss。放入以下語法來載入 Tailwind CSS</p>
     <pre class="prettyprint">
@@ -64,7 +60,6 @@
         @tailwind utilities;
       </xmp>
     </pre>
-    <hr>
     <h3>打包檔案</h3>
     <p>設定打包指令到 package.json 中，以下這一行指令加到 script 段落。</p>
     <pre class="prettyprint">
@@ -74,7 +69,6 @@
         }
       </xmp>
     </pre>
-    <hr>
     <h3>執行指令</h3>
     <p></p>
     <pre class="prettyprint">
@@ -82,11 +76,47 @@
         npm run css
       </xmp>
     </pre>
-    <hr>
     <h4>參考</h4>
     <ul>
       <li>
         <a href="https://ithelp.ithome.com.tw/articles/10329696" target="_blank">tailwind css</a>
+      </li>
+    </ul>
+    <hr>
+    <h3>顏色透明</h3>
+    <p></p>
+    <pre class="prettyprint">
+      <xmp>
+        //bg-背景顏色,[#F9E5B2]自訂顏色,/30透明度30
+        bg-[#F9E5B2]/30
+      </xmp>
+    </pre>
+    <hr>
+    <h3>自訂距離</h3>
+    <p></p>
+    <pre class="prettyprint">
+      <xmp>
+        //left:280px
+        left-[280px] 
+
+        //width:calc(100% - 280px)
+        w-[calc(100%-280px)]
+      </xmp>
+    </pre>
+    <hr>
+    <h3>hover</h3>
+    <p></p>
+    <pre class="prettyprint">
+      <xmp>
+
+        group/{name} =>group/item 父唯一名稱
+        group-hover/{name} =>group-hover/item:text-gray-700 子修飾:文字變灰
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.tailwindcss.cn/docs/hover-focus-and-other-states#styling-based-on-parent-state" target="_blank">區分嵌套組</a>
       </li>
     </ul>
   </body>
