@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+      //移除中間空白符
+      let test = "this  is  a test";
+      test = test.replace(/\s/g, "");
+      console.log(test)
+
+      //移除前後空白
+      let test2 = " this is a test ";
+      test2 = test2.trim();
+      console.log(test2)
+    </script>
+</body>
+
+</html>
