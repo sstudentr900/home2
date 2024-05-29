@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <script src="../js/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>class</h2>
+    <p>用法</p>
+    <pre class="prettyprint">
+      <xmp>
+        //父
+        class Person {
+          constructor(name) {
+            this.name = name;
+          }
+        
+          getFrom() {
+            const state = 'Taiwan';
+            return `${this.name} from ${state}.`;
+          }
+        }
+
+        //子繼承父 extends
+        class Employee extends Person {
+          constructor(name, position) {
+            //super 傳直給父
+            super(name);
+            this.position = position;
+          }
+        
+          getPosition() {
+            return `${this.name}'s position is the ${this.position}.`;
+          }
+          
+          // super call
+          superCallGetFrom() {
+            //super 引用父函數
+            return super.getFrom();
+          }
+        }
+        
+        const luck = new Employee('Luck', 'Front-end');
+        
+        console.log(luck.superCallGetFrom()); // Luck from Taiwan.
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://medium.com/enjoy-life-enjoy-coding/javascript-es6-%E4%B8%AD%E6%9C%80%E5%AE%B9%E6%98%93%E8%AA%A4%E6%9C%83%E7%9A%84%E8%AA%9E%E6%B3%95%E7%B3%96-class-%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95-23e4a4a5e8ed" target="_blank">JavaScript | ES6 中最容易誤會的語法糖 Class - 基本用法</a>
+      </li>
+    </ul>
+  </body>
+</html>
