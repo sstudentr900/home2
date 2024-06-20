@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+  <!-- <link rel="stylesheet" href="../css/customPrism.css"> -->
+  <!-- <link rel="stylesheet" href="../css/prism.css"> -->
+  <!-- <script src="../js/prism.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>設計主題自訂器</h2>
+  <h3></h3>
+  <p>functions.php 放入該程式</p>
+  <pre class="prettyprint">
+      /**
+      * Customizer settings. 佈景主題自訂器
+      *
+      * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+      *
+      * @return void
+      */
+
+      function ironman_customize_register($wp_customize)
+      {
+        //add_section 在選項新增面板
+        $wp_customize->add_section(
+          'ironman_background_color_section', //任意取名ID
+          array(
+            'title'       => __('Website Background Color', 'ironman'), //標題
+            'description' => 'Adjust the background color of your site.', //敘說
+            'priority'    => 30, //優先級越低的話會排在越前面。
+          )
+        );
+        //add_setting 設定選項
+        $wp_customize->add_setting(
+          'ironman_background_color_setting',
+          array(
+            'default'   => '#ffffff',
+            'transport' => 'refresh',
+          )
+        );
+        //add_setting 方法
+        $wp_customize->add_control(
+          //用內建的 WP_Customize_Color_Control 類別，它會自動長出選擇顏色的 UI
+          new WP_Customize_Color_Control(
+            $wp_customize,
+            'ironman_background_color_control',
+            array(
+              'label'    => __('Background Color', 'ironman'), //副標
+              'section'  => 'ironman_background_color_section',
+              'settings' => 'ironman_background_color_setting',
+            )
+          )
+        );
+      }
+      //將這個函式註冊到 customize_register 鉤點中
+      add_action('customize_register', 'ironman_customize_register');
+
+
+      /**
+      * 即時預覽 ironman_background_color_section 顏色
+      *
+      * @return void
+      */
+      function ironman_customizer_css()
+      {
+        $background_color = get_theme_mod('ironman_background_color_setting', '#ffffff');
+        ?>
+          <style type="text/css">
+            body {
+              background-color: <?php echo esc_attr($background_color); ?>;
+            }
+          </style>
+        <?php
+      }
+
+      add_action('wp_head', 'ironman_customizer_css');
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10331781" target="_blank">  設計主題自訂器</a>
+    </li>
+  </ul>
+</body>
+</html>
