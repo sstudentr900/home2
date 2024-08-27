@@ -28,7 +28,7 @@
           };
         }
 
-        //obj find
+        //obj find 001
         var s = [{
           "name": "001"
         }, {
@@ -177,10 +177,10 @@
         users.map(function (user) {
           return user.email;
         })
-          .filter(function (email) {
-            return /^t/.test(email);
-          })
-          .forEach(alert); // 弹出tom@example.com
+        .filter(function (email) {
+          return /^t/.test(email);
+        })
+        .forEach(alert); // 弹出tom@example.com
         </script>
       </xmp>
     </pre>
@@ -273,7 +273,7 @@
         //https://ithelp.ithome.com.tw/articles/10246455
         const getFirstPython = list =>
           (val => val ? `${val.firstName}, ${val.country}` : `There will be no Python developers`)
-            (list.find(val => val.language === `Python`));
+          (list.find(val => val.language === `Python`));
 
 
         //{ C: 2, JavaScript: 1, Ruby: 1 }---------------------------------------------------------------    
