@@ -1,42 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>轉止到https</h2>
-  <pre class="prettyprint">
-    <xmp>
-      if($_SERVER["SERVER_PORT"] != '443' ) {
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>轉止到https</h2>
+    <pre class="prettyprint">
+      <xmp>
+        if($_SERVER["SERVER_PORT"] != '443' ) {
         header('Location: https://'. $_SERVER["SERVER_NAME"] . str_replace('//', '/', $_SERVER['REQUEST_URI']));
       }
-    </xmp>
-  </pre>
-  
-  <h2>轉止到https</h2>
-  <pre class="prettyprint">
-    <xmp>
-      if($_SERVER['HTTP_X_FORWARDED_PROTO']!='https'){
+      </xmp>
+    </pre>
+    <h2>轉止到https</h2>
+    <pre class="prettyprint">
+      <xmp>
+        if($_SERVER['HTTP_X_FORWARDED_PROTO']!='https'){
         header('Location:https://'.$_SERVER['SERVER_NAME'].str_replace('//','/',$_SERVER['REQUEST_URI']));
         exit();
       }
-    </xmp>
-  </pre>
-  <!-- <h4>參考</h4>
+      </xmp>
+    </pre>
+    <!-- <h4>參考</h4>
   <ul>
     <li>
       <a href="https://medium.com/feveral%E7%9A%84%E7%A8%8B%E5%BC%8F%E7%AD%86%E8%A8%98/apache-%E5%AE%89%E8%A3%9D-https-%E6%95%99%E5%AD%B8-dd022e2be7b4" target="_blank">Apache 安裝 HTTPS 教學</a>
     </li>
   </ul> -->
-</body>
-
+  </body>
 </html>

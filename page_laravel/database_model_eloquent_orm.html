@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>Eloquent ORM</h2>
-  <h3>一對一</h3>
-  <p>route</p>
-  <pre class="prettyprint">
-    <xmp>
-      Route::get('testOne', [FnController::class,'testOne']);
-    </xmp>
-  </pre>
-  <p>migrations 需要在test2新增test1_id</p>
-  <pre class="prettyprint">
-    <xmp>
-      //test1
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Eloquent ORM</h2>
+    <h3>一對一</h3>
+    <p>route</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::get('testOne', [FnController::class,'testOne']);
+      </xmp>
+    </pre>
+    <p>migrations 需要在test2新增test1_id</p>
+    <pre class="prettyprint">
+      <xmp>
+        //test1
       Schema::create('test1', function (Blueprint $table) {
         $table->increments();
         $table->string('username');
@@ -36,12 +32,12 @@
         $table->integer('test1_id');
         $table->timestamps();
       });
-    </xmp>
-  </pre>
-  <p>model hasOne:去Test2裡的test1_id取得test1的ID</p>
-  <pre class="prettyprint">
-    <xmp>
-      //Test1
+      </xmp>
+    </pre>
+    <p>model hasOne:去Test2裡的test1_id取得test1的ID</p>
+    <pre class="prettyprint">
+      <xmp>
+        //Test1
       class Test1 extends Model
       {
         protected $table = 'test1';
@@ -64,12 +60,12 @@
         'title'
         ];
       }
-    </xmp>
-  </pre>
-  <p>controll</p>
-  <pre class="prettyprint">
-    <xmp>
-      public function testOne(){
+      </xmp>
+    </pre>
+    <p>controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function testOne(){
       //1對1 {}
       $userData = Test1::find(1)->test2One;
       return response()->json(['status' => true, 'user_data' => $userData], 200);
@@ -104,20 +100,19 @@
       // }
       // }
       }
-    </xmp>
-  </pre>
-
-  <h3>一對一（逆向）</h3>
-  <p>route</p>
-  <pre class="prettyprint">
-    <xmp>
-      Route::get('testOne', [FnController::class,'testOne']);
-    </xmp>
-  </pre>
-  <p>migrations 需要在test2新增test1_id</p>
-  <pre class="prettyprint">
-    <xmp>
-      //test1
+      </xmp>
+    </pre>
+    <h3>一對一（逆向）</h3>
+    <p>route</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::get('testOne', [FnController::class,'testOne']);
+      </xmp>
+    </pre>
+    <p>migrations 需要在test2新增test1_id</p>
+    <pre class="prettyprint">
+      <xmp>
+        //test1
       Schema::create('test1', function (Blueprint $table) {
         $table->increments();
         $table->string('username');
@@ -130,12 +125,12 @@
         $table->integer('test1_id');
         $table->timestamps();
       });
-    </xmp>
-  </pre>
-  <p>model hasOne:去Test2裡的test1_id取得test1的ID</p>
-  <pre class="prettyprint">
-    <xmp>
-      //Test1
+      </xmp>
+    </pre>
+    <p>model hasOne:去Test2裡的test1_id取得test1的ID</p>
+    <pre class="prettyprint">
+      <xmp>
+        //Test1
       class Test1 extends Model
       {
         protected $table = 'test1';
@@ -160,12 +155,12 @@
         return $this->belongsTo('App\Test1');
         }
       }
-    </xmp>
-  </pre>
-  <p>controll</p>
-  <pre class="prettyprint">
-    <xmp>
-      public function testOne(){
+      </xmp>
+    </pre>
+    <p>controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function testOne(){
       $userData = Test2::find(1);
       $userData->test1To;
       return response()->json(['status' => true, 'user_data' => $userData], 200);
@@ -186,20 +181,19 @@
       // }
       // }
       }
-    </xmp>
-  </pre>
-
-  <h3>一對多</h3>
-  <p>route</p>
-  <pre class="prettyprint">
-    <xmp>
-      Route::get('testOne', [FnController::class,'testOne']);
-    </xmp>
-  </pre>
-  <p>migrations 需要在test2新增test1_id</p>
-  <pre class="prettyprint">
-    <xmp>
-      //test1
+      </xmp>
+    </pre>
+    <h3>一對多</h3>
+    <p>route</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::get('testOne', [FnController::class,'testOne']);
+      </xmp>
+    </pre>
+    <p>migrations 需要在test2新增test1_id</p>
+    <pre class="prettyprint">
+      <xmp>
+        //test1
       Schema::create('test1', function (Blueprint $table) {
         $table->increments();
         $table->string('username');
@@ -213,12 +207,12 @@
         $table->integer('test1_id');
         $table->timestamps();
       });
-    </xmp>
-  </pre>
-  <p>model hasMany:去Test2裡的test1_id取得全部test1的ID</p>
-  <pre class="prettyprint">
-    <xmp>
-      //Test1
+      </xmp>
+    </pre>
+    <p>model hasMany:去Test2裡的test1_id取得全部test1的ID</p>
+    <pre class="prettyprint">
+      <xmp>
+        //Test1
       class Test1 extends Model
       {
         protected $table = 'test1';
@@ -241,12 +235,12 @@
         'title'
         ];
       }
-    </xmp>
-  </pre>
-  <p>controll</p>
-  <pre class="prettyprint">
-    <xmp>
-      public function testOne(){
+      </xmp>
+    </pre>
+    <p>controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function testOne(){
       //1對多 {[{},{}]}
       $userData = Test1::find(1);
       $userData->test2Many;
@@ -277,20 +271,19 @@
       // }
 
       }
-    </xmp>
-  </pre>
-
-  <h3>多對一</h3>
-  <p>route</p>
-  <pre class="prettyprint">
-    <xmp>
-      Route::get('testOne', [FnController::class,'testOne']);
-    </xmp>
-  </pre>
-  <p>migrations</p>
-  <pre class="prettyprint">
-    <xmp>
-      //test1
+      </xmp>
+    </pre>
+    <h3>多對一</h3>
+    <p>route</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::get('testOne', [FnController::class,'testOne']);
+      </xmp>
+    </pre>
+    <p>migrations</p>
+    <pre class="prettyprint">
+      <xmp>
+        //test1
       Schema::create('test1', function (Blueprint $table) {
         $table->increments();
         $table->string('username');
@@ -304,12 +297,12 @@
         $table->integer('test1_id');
         $table->timestamps();
       });
-    </xmp>
-  </pre>
-  <p>model</p>
-  <pre class="prettyprint">
-    <xmp>
-      //Test1
+      </xmp>
+    </pre>
+    <p>model</p>
+    <pre class="prettyprint">
+      <xmp>
+        //Test1
       class Test1 extends Model
       {
         protected $table = 'test1';
@@ -333,12 +326,12 @@
           return $this->belongsTo('App\Test2');
         }
       }
-    </xmp>
-  </pre>
-  <p>controll</p>
-  <pre class="prettyprint">
-    <xmp>
-      public function testOne(){
+      </xmp>
+    </pre>
+    <p>controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function testOne(){
       $userData = Test2::where('test1_id','1')->with('test1')->get();
       return response()->json(['status' => true, 'user_data' => $userData], 200);
       // {
@@ -380,26 +373,24 @@
       // }
 
       }
-    </xmp>
-  </pre>
-
-
-  <h3>多對多</h3>
-  <ul>
-    <li>樞紐表(test1_test2)要最後建立哦，否則它無法辨別test1和test2表的關係</li>
-    <li>命名規範為將兩個表格名稱按照字母順序，並在它們之間加上一個底線來分隔</li>
-    <li>樞紐表不適合使用 -m</li>
-  </ul>
-  <p>route</p>
-  <pre class="prettyprint">
-    <xmp>
-      Route::get('testOne', [FnController::class,'testOne']);
-    </xmp>
-  </pre>
-  <p>migrations </p>
-  <pre class="prettyprint">
-    <xmp>
-      //test1
+      </xmp>
+    </pre>
+    <h3>多對多</h3>
+    <ul>
+      <li>樞紐表(test1_test2)要最後建立哦，否則它無法辨別test1和test2表的關係</li>
+      <li>命名規範為將兩個表格名稱按照字母順序，並在它們之間加上一個底線來分隔</li>
+      <li>樞紐表不適合使用 -m</li>
+    </ul>
+    <p>route</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::get('testOne', [FnController::class,'testOne']);
+      </xmp>
+    </pre>
+    <p>migrations</p>
+    <pre class="prettyprint">
+      <xmp>
+        //test1
       Schema::create('test1', function (Blueprint $table) {
         $table->increments();
         $table->string('username');
@@ -421,12 +412,12 @@
         $table->string('days');
         $table->timestamps();
       });
-    </xmp>
-  </pre>
-  <p>model </p>
-  <pre class="prettyprint">
-    <xmp>
-      //Test1
+      </xmp>
+    </pre>
+    <p>model</p>
+    <pre class="prettyprint">
+      <xmp>
+        //Test1
       class Test1 extends Model
       {
         protected $table = 'test1';
@@ -450,12 +441,12 @@
         'title'
         ];
       }
-    </xmp>
-  </pre>
-  <p>controll</p>
-  <pre class="prettyprint">
-    <xmp>
-      public function testOne(){
+      </xmp>
+    </pre>
+    <p>controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function testOne(){
         $userData = Test1::with('test2ToMany')->get();
         return response()->json(['status' => true, 'user_data' => $userData], 200);
         {
@@ -534,16 +525,14 @@
       ]
       }
       }
-    </xmp>
-  </pre>
-
-  <hr>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10224980" target="_blank">Eloquent ORM</a>
-    </li>
-  </ul>
-</body>
-
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10224980" target="_blank">Eloquent ORM</a>
+      </li>
+    </ul>
+  </body>
 </html>

@@ -1,120 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <!-- <link rel="stylesheet" href="../css/customPrism.css"> -->
-  <!-- <link rel="stylesheet" href="../css/prism.css"> -->
-  <!-- <script src="../js/prism.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>WordPress</h2>
-  <h3>目錄結構</h3>
-  <ul>
-    <li>wp-admin 包含了所有 WordPress 後台管理界面的檔案及目錄鉤點和過濾器不能直接修</li>
-    <li>wp-includes 包含了WordPress 核心功能的檔案，包括了 PHP 以及非 PHP 的依賴套件，例如 JavaScript 的 jQuery、CSS 檔案。當然，這個目錄裡的檔案也不能修改。</li>
-    <li>wp-content 資源目錄指的是存放各式各樣的資源檔案，WordPress 更新核心版本時並不會影響到的目錄</li>
-    <li>wp-content=>uploads：放置上傳的媒體檔案及附件檔案的地方。</li>
-    <li>wp-content=>plugins：放置外掛程式的目錄。</li>
-    <li>wp-content=>themes ：放置佈景主題的目錄。</li>
-    <li>wp-config-sample.php 它是一個設定的樣本檔，當完成安裝 WordPress 的時候，wp-config.php 會被自動建立。如果你想手動設定，將這個檔案改名為 wp-config.php 並修改檔案內容即可。</li>
-  </ul>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10322937" target="_blank"> 從 0 到 100：WordPress 開發者的實戰手冊</a>
-    </li>
-  </ul>
-  <hr>
-  <h3>函式：add_theme_support</h3>
-  <p>第一個參數為功能的設定名稱，第二個參數為陣列，即為該功能的細節參數。</p>
-  <pre class="prettyprint">
-    <xmp>
-      add_theme_support( 'custom-logo', array(
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <!-- <link rel="stylesheet" href="../css/customPrism.css"> -->
+    <!--
+    -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>WordPress</h2>
+    <h3>目錄結構</h3>
+    <ul>
+      <li>wp-admin 包含了所有 WordPress 後台管理界面的檔案及目錄鉤點和過濾器不能直接修</li>
+      <li>wp-includes 包含了WordPress 核心功能的檔案，包括了 PHP 以及非 PHP 的依賴套件，例如 JavaScript 的 jQuery、CSS 檔案。當然，這個目錄裡的檔案也不能修改。</li>
+      <li>wp-content 資源目錄指的是存放各式各樣的資源檔案，WordPress 更新核心版本時並不會影響到的目錄</li>
+      <li>wp-content=>uploads：放置上傳的媒體檔案及附件檔案的地方。</li>
+      <li>wp-content=>plugins：放置外掛程式的目錄。</li>
+      <li>wp-content=>themes ：放置佈景主題的目錄。</li>
+      <li>wp-config-sample.php 它是一個設定的樣本檔，當完成安裝 WordPress 的時候，wp-config.php 會被自動建立。如果你想手動設定，將這個檔案改名為 wp-config.php 並修改檔案內容即可。</li>
+    </ul>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10322937" target="_blank"> 從 0 到 100：WordPress 開發者的實戰手冊</a>
+      </li>
+    </ul>
+    <hr>
+    <h3>函式：add_theme_support</h3>
+    <p>第一個參數為功能的設定名稱，第二個參數為陣列，即為該功能的細節參數。</p>
+    <pre class="prettyprint">
+      <xmp>
+        add_theme_support( 'custom-logo', array(
         'height' => 80,
         'width'  => 200,
       ));
-    </xmp>
-  </pre>
-  <h3>函式：add_filter 過濾器 返回值</h3>
-  <ul>
-    <li>$filter_name (必要)：要掛鉤的過濾器名稱。</li>
-    <li>$function (必要)：當過濾器被執行時，要執行的函式名稱。</li>
-    <li>$priority (選擇性)：執行函式的優先級。設預值為 10。數字越小，優先級越高，越早執行。</li>
-    <li>$accepted_args (選擇性)：傳遞給函式的參數數量。設預值為1。</li>
-  </ul>
-  <p>__return_false 是 WordPress 定義好的函式，它回傳的是布林值 false</p>
-  <p>這個鉤點的作用是用來把輸入的值，經過一些程式邏輯的判斷，而決定返回的值是原本的值，還是經過判斷後，被修改過的值，因此它被稱為過濾器。</p>
-  <pre class="prettyprint">
-    <xmp>
-      add_filter( $filter_name, $function, $priority = 10, $accepted_args = 1 );
+      </xmp>
+    </pre>
+    <h3>函式：add_filter 過濾器 返回值</h3>
+    <ul>
+      <li>$filter_name (必要)：要掛鉤的過濾器名稱。</li>
+      <li>$function (必要)：當過濾器被執行時，要執行的函式名稱。</li>
+      <li>$priority (選擇性)：執行函式的優先級。設預值為 10。數字越小，優先級越高，越早執行。</li>
+      <li>$accepted_args (選擇性)：傳遞給函式的參數數量。設預值為1。</li>
+    </ul>
+    <p>__return_false 是 WordPress 定義好的函式，它回傳的是布林值 false</p>
+    <p>這個鉤點的作用是用來把輸入的值，經過一些程式邏輯的判斷，而決定返回的值是原本的值，還是經過判斷後，被修改過的值，因此它被稱為過濾器。</p>
+    <pre class="prettyprint">
+      <xmp>
+        add_filter( $filter_name, $function, $priority = 10, $accepted_args = 1 );
       add_filter( 'show_admin_bar', '__return_false' );
-    </xmp>
-  </pre>
-  <h3>函式：add_action 鉤點</h3>
-  <ul>
-    <li>$hook_name (必要)：鉤點的名稱。</li>
-    <li>$function (必要)：被觸發時要執行的函式名稱。</li>
-    <li>$priority (選擇性)：執行函式的優先級。預設值為 10。數字越小，優先級越高，越早執行。</li>
-    <li>$accepted_args (選擇性)：傳遞給函式的參數數量。預設值為 1。</li>
-  </ul>
-  <pre class="prettyprint">
-    <xmp>
-      add_action( $hook_name, $function, $priority = 10, $accepted_args = 1 );
+      </xmp>
+    </pre>
+    <h3>函式：add_action 鉤點</h3>
+    <ul>
+      <li>$hook_name (必要)：鉤點的名稱。</li>
+      <li>$function (必要)：被觸發時要執行的函式名稱。</li>
+      <li>$priority (選擇性)：執行函式的優先級。預設值為 10。數字越小，優先級越高，越早執行。</li>
+      <li>$accepted_args (選擇性)：傳遞給函式的參數數量。預設值為 1。</li>
+    </ul>
+    <pre class="prettyprint">
+      <xmp>
+        add_action( $hook_name, $function, $priority = 10, $accepted_args = 1 );
       add_action( '什麼情況觸發', '執行函數名' );
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10324494" target="_blank">鉤點 (Hook) 及過濾器 (Filter)</a>
-    </li>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10328303" target="_blank">add_theme_support</a>
-    </li>
-    <li>
-      <a href="https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/" target="_blank">官方文件</a>
-    </li>
-  </ul>
-  <h3>資料庫</h3>
-  <ul>
-    <li>wp_posts	所有的文章、頁面和修訂版本等內容資訊。</li>
-    <li>wp_postmeta	文章或頁面相關的自訂欄位資訊。</li>
-    <li>wp_comments	網站上的迴響。</li>
-    <li>wp_commentmeta	與迴響相關的自訂欄位資訊。</li>
-    <li>wp_terms	分類、標籤和其他自訂分類法。</li>
-    <li>wp_termmeta	與分類相關的自訂欄位資訊。</li>
-    <li>wp_term_relationships	將文章、頁面和分類、標籤建立關聯。</li>
-    <li>wp_term_taxonomy	定義了分類、標籤和其他自訂分類之間關聯，包含上下層的從屬關係。</li>
-    <li>wp_users	網站上的所有用戶資訊。</li>
-    <li>wp_usermeta	與用戶相關的自訂欄位資訊。</li>
-    <li>wp_links	舊版本的 WordPress 才有使用，拿來放網站連結和書籤。新版本的WordPress 並無使用。</li>
-    <li>wp_options	網站的設定選項，如網站名稱、描述、啟用的外掛、佈景主題的設定等等。</li>
-  </ul>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10324514" target="_blank">Day 7 - 詳解 WordPress 的資料庫架構</a>
-    </li>
-  </ul>
-  <hr>
-  <hr>
-  <h3>函式：get_template_part</h3>
-  <p>它用來載入範本組件 (template part) 的檔案，以利於在不同的地方可以重覆地使用</p>
-  <ul>
-    <li> get_template_part( $slug, $name = null, $args );</li>
-    <li>$slug (必需)：不含後綴的範本組件主檔名。</li>
-    <li>$name (選用)：用於擴充範本組件主檔的選項。</li>
-    <li>$args (選用)：變數的集合。WordPress 5.5 版本以上才有。</li>
-  </ul>
-  <pre class="prettyprint">
-    <xmp>
-      //載入 content.php
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10324494" target="_blank">鉤點 (Hook) 及過濾器 (Filter)</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10328303" target="_blank">add_theme_support</a>
+      </li>
+      <li>
+        <a href="https://developer.wordpress.org/block-editor/how-to-guides/themes/theme-support/" target="_blank">官方文件</a>
+      </li>
+    </ul>
+    <h3>資料庫</h3>
+    <ul>
+      <li>wp_posts	所有的文章、頁面和修訂版本等內容資訊。</li>
+      <li>wp_postmeta	文章或頁面相關的自訂欄位資訊。</li>
+      <li>wp_comments	網站上的迴響。</li>
+      <li>wp_commentmeta	與迴響相關的自訂欄位資訊。</li>
+      <li>wp_terms	分類、標籤和其他自訂分類法。</li>
+      <li>wp_termmeta	與分類相關的自訂欄位資訊。</li>
+      <li>wp_term_relationships	將文章、頁面和分類、標籤建立關聯。</li>
+      <li>wp_term_taxonomy	定義了分類、標籤和其他自訂分類之間關聯，包含上下層的從屬關係。</li>
+      <li>wp_users	網站上的所有用戶資訊。</li>
+      <li>wp_usermeta	與用戶相關的自訂欄位資訊。</li>
+      <li>wp_links	舊版本的 WordPress 才有使用，拿來放網站連結和書籤。新版本的WordPress 並無使用。</li>
+      <li>wp_options	網站的設定選項，如網站名稱、描述、啟用的外掛、佈景主題的設定等等。</li>
+    </ul>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10324514" target="_blank">Day 7 - 詳解 WordPress 的資料庫架構</a>
+      </li>
+    </ul>
+    <hr>
+    <hr>
+    <h3>函式：get_template_part</h3>
+    <p>它用來載入範本組件 (template part) 的檔案，以利於在不同的地方可以重覆地使用</p>
+    <ul>
+      <li> get_template_part( $slug, $name = null, $args );</li>
+      <li>$slug (必需)：不含後綴的範本組件主檔名。</li>
+      <li>$name (選用)：用於擴充範本組件主檔的選項。</li>
+      <li>$args (選用)：變數的集合。WordPress 5.5 版本以上才有。</li>
+    </ul>
+    <pre class="prettyprint">
+      <xmp>
+        //載入 content.php
       get_template_part( 'content' );
 
       //載入特定於文章的模板，如 content-single.php
@@ -124,35 +122,38 @@
       //當文章格式為 video 時，這會嘗試載入 content-video.php。如果那個檔案不存在，則會退回到 content.php，這種作法很常見喔。
       $post_format = get_post_format();
       get_template_part( 'content', $post_format );
-
-    </xmp>
-  </pre>
-  <h3>函式：has_nav_menu('footer')</h3>
-  <p>有設定 footer 這個選單，該位置就會出現選單喔</p>
-  <pre class="prettyprint">
-    <xmp>
-      wp_nav_menu(
+      </xmp>
+    </pre>
+    <h3>函式：has_nav_menu('footer')</h3>
+    <p>有設定 footer 這個選單，該位置就會出現選單喔</p>
+    <pre class="prettyprint">
+      <xmp>
+        wp_nav_menu(
         array(
           'theme_location' => 'footer',
           'items_wrap'     => '%3$s',
           'container'      => false,
           'depth'          => 1,
-          'link_before'    => '<span>',
-          'link_after'     => '</span>',
+          'link_before'    => '
+        <span>
+          ',
+          'link_after'     => '
+        </span>
+        ',
           'fallback_cb'    => false,
         )
       )
-    </xmp>
-  </pre>
-  <h3>函式：has_custom_logo</h3>
-  <p>如果設定 Logo，則顯示 Logo，否則就只顯示網站的名稱或連結</p>
-  <h3>函式：wp_footer</h3>
-  <p>wp_footer 函式中有許多鉤點，用來插入額外的 HTML 或 JavaScript 程式碼或載入語法。</p>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10330218" target="_blank"> 開始套版準備</a>
-    </li>
-  </ul>
-</body>
+      </xmp>
+    </pre>
+    <h3>函式：has_custom_logo</h3>
+    <p>如果設定 Logo，則顯示 Logo，否則就只顯示網站的名稱或連結</p>
+    <h3>函式：wp_footer</h3>
+    <p>wp_footer 函式中有許多鉤點，用來插入額外的 HTML 或 JavaScript 程式碼或載入語法。</p>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10330218" target="_blank"> 開始套版準備</a>
+      </li>
+    </ul>
+  </body>
 </html>

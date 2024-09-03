@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>npm mysql</h2>
-  <h3>sql datetime to node.js</h3>
-  <p>sql時間轉換</p>
-  <pre class="prettyprint">
-    <xmp>
-      var datee = new Date('dateTime');
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>npm mysql</h2>
+    <h3>sql datetime to node.js</h3>
+    <p>sql時間轉換</p>
+    <pre class="prettyprint">
+      <xmp>
+        var datee = new Date('dateTime');
     console.log(
       datee.getFullYear()+'-'+
       ('0'+(datee.getMonth()+1)).slice(-2)+'-'+
@@ -27,23 +23,21 @@
       ('0'+(datee.getMinutes())).slice(-2)+':'+
       ('0'+(datee.getSeconds())).slice(-2)
     );
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://stackoverflow.com/questions/62120309/sql-datetime-to-nodejs">SQL DATETIME to Nodejs</a>
-    </li>
-  </ul>
-  <hr>
-
-  
-  <h2>Node.js-Express+MySQL</h2>
-  <p>安裝npm i mysql</p>
-  <h3></h3>
-  <pre>
-    <xmp>
-      var users = require('./routes/users');
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/questions/62120309/sql-datetime-to-nodejs">SQL DATETIME to Nodejs</a>
+      </li>
+    </ul>
+    <hr>
+    <h2>Node.js-Express+MySQL</h2>
+    <p>安裝npm i mysql</p>
+    <h3></h3>
+    <pre>
+      <xmp>
+        var users = require('./routes/users');
       // DataBase 
       var mysql = require("mysql");
       var con = mysql.createConnection({
@@ -59,33 +53,30 @@
           }
           console.log('connecting success');
       });
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://dotblogs.com.tw/explooosion/2016/07/18/010601">參考</a>
-    </li>
-    <li>
-      <a href="https://www.youtube.com/watch?v=f5kye3ESXE8&ab_channel=Raddy">參考</a>
-    </li>
-  </ul>
-  <hr>
-
-  <h2>Set encoding character set to utf8mb4 in Node.js or MySQL client?</h2>
-  <p></p>
-  <h3></h3>
-  <pre>
-    <xmp>
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://stackoverflow.com/questions/71053669/set-encoding-character-set-to-utf8mb4-in-node-js-or-mysql-client">Set encoding character set to utf8mb4 in Node.js or MySQL client?</a>
-    </li>
-  </ul>
-  <hr>
-</body>
-
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://dotblogs.com.tw/explooosion/2016/07/18/010601">參考</a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/watch?v=f5kye3ESXE8&ab_channel=Raddy">參考</a>
+      </li>
+    </ul>
+    <hr>
+    <h2>Set encoding character set to utf8mb4 in Node.js or MySQL client?</h2>
+    <p></p>
+    <h3></h3>
+    <pre>
+      <xmp></xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/questions/71053669/set-encoding-character-set-to-utf8mb4-in-node-js-or-mysql-client">Set encoding character set to utf8mb4 in Node.js or MySQL client?</a>
+      </li>
+    </ul>
+    <hr>
+  </body>
 </html>

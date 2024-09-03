@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>fetch()</h2>
-  <p>語法：</p>
-  <pre>
-    <code class="language-js">
-      fetch('XXX')
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>fetch()</h2>
+    <p>語法：</p>
+    <pre>
+      <code class="language-js">
+        fetch('XXX')
       .then((response) => {
       //成功結果處理
 
@@ -39,13 +35,13 @@
       //錯誤結果處理
       console.log(`Error: ${error}`);
       })
-    </code>
-  </pre>
-  <h2>fetch本身就有promise</h2>
-  <p>語法：</p>
-  <pre>
-    <code class="language-js">
-      function creatMainHtml(url){
+      </code>
+    </pre>
+    <h2>fetch本身就有promise</h2>
+    <p>語法：</p>
+    <pre>
+      <code class="language-js">
+        function creatMainHtml(url){
       return fetch(url).then(response => {
       if(response.ok) return response.text();
       else new Error("狀態碼錯誤： " + res.status)
@@ -58,12 +54,12 @@
       body.innerHTML='';
       body.insertAdjacentHTML('afterbegin', html);
       })
-    </code>
-  </pre>
-  <p>post</p>
-  <pre>
-    <code class="language-js">
-      let headers = {
+      </code>
+    </pre>
+    <p>post</p>
+    <pre>
+      <code class="language-js">
+        let headers = {
       "Content-Type": "application/json",
       "Accept": "application/json",
       "Authorization": `Bearer ${token}`,
@@ -84,12 +80,12 @@
       })
       .then(response => response.json())
       .then(json => console.log(json));
-    </code>
-  </pre>
-  <p>get</p>
-  <pre>
-    <code class="language-js">
-      let headers = {
+      </code>
+    </pre>
+    <p>get</p>
+    <pre>
+      <code class="language-js">
+        let headers = {
       "Content-Type": "application/json",
       "Accept": "application/json",
       "Authorization": `Bearer ${token}`,
@@ -101,24 +97,24 @@
       })
       .then((response) => response.json())
       .then((json) => console.log(json));
-    </code>
-  </pre>
-  <p>async/await</p>
-  <pre>
-    <code class="language-js">
-      let getJSON = async(url) => {
+      </code>
+    </pre>
+    <p>async/await</p>
+    <pre>
+      <code class="language-js">
+        let getJSON = async(url) => {
       let response = await fetch(url);
       let JSON = await response.json();
       console.log(response)
       console.log(JSON)
       }
       getJSON('https://randomuser.me/api/')
-    </code>
-  </pre>
-  <p>blob 圖片</p>
-  <pre>
-    <code class="language-js">
-      let url = 'XXX'
+      </code>
+    </pre>
+    <p>blob 圖片</p>
+    <pre>
+      <code class="language-js">
+        let url = 'XXX'
       fetch(url)
       .then((response) => {
       // console.log(response)
@@ -132,18 +128,17 @@
       img.src = URL.createObjectURL(imageBlob); //將 blog 物件轉為 url
       document.querySelector('.newImg').appendChild(img);
       })
-    </code>
-  </pre>
-  <hr>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10252941" target="_blank">Fetch練習(GET和POST請求)</a>
-    </li>
-    <li>
-      <a href="https://www.casper.tw/javascript/2017/12/28/javascript-fetch/" target="_blank">ES6 原生 Fetch 遠端資料方法</a>
-    </li>
-  </ul>
-</body>
-
+      </code>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10252941" target="_blank">Fetch練習(GET和POST請求)</a>
+      </li>
+      <li>
+        <a href="https://www.casper.tw/javascript/2017/12/28/javascript-fetch/" target="_blank">ES6 原生 Fetch 遠端資料方法</a>
+      </li>
+    </ul>
+  </body>
 </html>

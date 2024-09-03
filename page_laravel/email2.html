@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>安裝郵件插件</h2>
-  <pre class="prettyprint">
-    <xmp>
-      composer require guzzlehttp/guzzle
-    </xmp>
-  </pre>
-
-  <h2>郵件相關設定</h2>
-  <p>郵件的設定放在config/mail.php檔案中</p>
-  <pre class="prettyprint">
-    <xmp>
-      'smtp' => [
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>安裝郵件插件</h2>
+    <pre class="prettyprint">
+      <xmp>
+        composer require guzzlehttp/guzzle
+      </xmp>
+    </pre>
+    <h2>郵件相關設定</h2>
+    <p>郵件的設定放在config/mail.php檔案中</p>
+    <pre class="prettyprint">
+      <xmp>
+        'smtp' => [
           'transport' => 'smtp',
           'host' => 'smtp.gmail.com',
           'port' => 587,
@@ -37,13 +32,12 @@
           'address' => '寄件人信箱',
           'name' => '寄件人名稱',
       ],
-    </xmp>
-  </pre>
-
-  <h2>contriller</h2>
-  <pre class="prettyprint">
-    <xmp>
-      use Mail; 
+      </xmp>
+    </pre>
+    <h2>contriller</h2>
+    <pre class="prettyprint">
+      <xmp>
+        use Mail; 
       // Mail::send('view_url', ['view_id' => view_value ], function($mail) use ('外部資料傳入'){
       Mail::send('email_password', ['name' => $User['name'],'href' => $href ], function($mail) use ($User){
         $mail->from($User['account'], '寄件人');
@@ -52,61 +46,60 @@
         //信箱標題
         $mail->subject('台灣財務金融學會【修改密碼通知】!!');
       });
-    </xmp>
-  </pre>
-
-  <h2>頁面設計 view</h2>
-  <pre class="prettyprint">
-    <xmp>
-      <!DOCTYPE html>
-      <html>
-        <head>
+      </xmp>
+    </pre>
+    <h2>頁面設計 view</h2>
+    <pre class="prettyprint">
+      <xmp>
+        <!DOCTYPE html>
+        <html>
+          <head>
             <meta charset="utf-8">
-        </head>
-        <body>
+          </head>
+          <body>
             <p>{{ $name }} 您好，</p>
             <br>
             <div style="background-color:#f2f2f2;vertical-align:top;padding:20px 25px">
-                <p>請點選「重設密碼」按鈕來完成重設密碼。</p>
-                <div style="padding:10px 25px;text-align:center">
-                    <a href="{{ $href }}" style="display:inline-block;background:#ec6f11;color:#ffffff;text-decoration:none;text-transform:none;padding:10px 60px;border-radius:3px" target="_blank">重設密碼</a>
-                </div>
+              <p>請點選「重設密碼」按鈕來完成重設密碼。</p>
+              <div style="padding:10px 25px;text-align:center">
+                <a href="{{ $href }}" style="display:inline-block;background:#ec6f11;color:#ffffff;text-decoration:none;text-transform:none;padding:10px 60px;border-radius:3px" target="_blank">重設密碼</a>
+              </div>
             </div>
             <p>若無法點選按鈕請連此網址：</p>
             <a href="{{ $href }}" style="color:#ec6f11" target="_blank">{{ $href }}</a>
             <br>
             <br>
             <small>
-                謝謝您<br>台灣財務金融學會敬上
+              謝謝您
+              <br>
+              台灣財務金融學會敬上
             </small>
-        </body>
-      </html>
-    </xmp>
-  </pre>
-
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://www.dotblogs.com.tw/SmallFish/2021/04/17/123034" target="_blank">Gmail設定</a>
-    </li>
-    <li>
-      <a href="https://www.dotblogs.com.tw/SmallFish/2021/04/18/074822" target="_blank">Gmail設定</a>
-    </li>
-    <li>
-      <a href="https://webkul.com/blog/user-guide-to-set-up-gmail-smtp-configuration/" target="_blank">Gmail設定</a>
-    </li>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10252073" target="_blank">Gmail設定</a>
-    </li>
-  </ul>
-
-  <h2>修改密碼後不能寄</h2>
-  <p>去兩步驟驗證->應用程式密碼->新增加密碼</p>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://www.webdesigntooler.com/google-smtp-send-mail">Google SMTP</a>
-    </li>
-  </ul>
-</body>
+          </body>
+        </html>
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.dotblogs.com.tw/SmallFish/2021/04/17/123034" target="_blank">Gmail設定</a>
+      </li>
+      <li>
+        <a href="https://www.dotblogs.com.tw/SmallFish/2021/04/18/074822" target="_blank">Gmail設定</a>
+      </li>
+      <li>
+        <a href="https://webkul.com/blog/user-guide-to-set-up-gmail-smtp-configuration/" target="_blank">Gmail設定</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10252073" target="_blank">Gmail設定</a>
+      </li>
+    </ul>
+    <h2>修改密碼後不能寄</h2>
+    <p>去兩步驟驗證->應用程式密碼->新增加密碼</p>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.webdesigntooler.com/google-smtp-send-mail">Google SMTP</a>
+      </li>
+    </ul>
+  </body>
 </html>

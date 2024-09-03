@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-<body id="program">
-  <pre class="prettyprint">
-    <xmp>
-      <script>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <pre class="prettyprint">
+      <xmp>
+        <script>
         const express = require("express");
         const configs = require("./config");
         import {axiosFn} from './axios_module'
@@ -103,15 +100,14 @@
           //get appScript data
           axiosFn({action: 'queryData'}).then(res=>queryData = res.data)
         });
-      </script>
-    </xmp>
-  </pre>
-  <!-- <h4>參考</h4>
+        </script>
+      </xmp>
+    </pre>
+    <!-- <h4>參考</h4>
   <ul>
     <li>
       <a href="https://line.github.io/line-bot-sdk-nodejs/api-reference/middleware.html#usage" target="_blank">line bot sdk nodejs api</a>
     </li>
   </ul> -->
-</body>
-
+  </body>
 </html>

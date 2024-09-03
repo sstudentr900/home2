@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- <link rel="stylesheet" href="../css/customPrism.css"> -->
-    <link rel="stylesheet" href="../css/prism.css">
-    <script src="../js/prism.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
+  </head>
+  <body id="program">
     <h2>1.switch</h2>
     <style>
       /*puplic_switch*/
@@ -53,13 +49,13 @@
       }
     </style>
     <label class="puplic_switch">
-        <input type="checkbox" checked>
-        <span></span>
+      <input type="checkbox" checked>
+      <span></span>
     </label>
     <br>
     <label class="puplic_switch">
-        <input type="checkbox">
-        <span></span>
+      <input type="checkbox">
+      <span></span>
     </label>
     <br>
     <br>
@@ -117,29 +113,29 @@
     </style>
     <div data-target="checkboxDiv">
       <div class="checkboxContent">
-          <label class="puplic_checkbox">
-              <input type="checkbox" checked>
-              <i></i>
-              <span>水泥工業</span>
-          </label>
-          <br>
-          <label class="puplic_checkbox">
-              <input type="checkbox">
-              <i></i>
-              <span>食品工業</span>
-          </label>
+        <label class="puplic_checkbox">
+          <input type="checkbox" checked>
+          <i></i>
+          <span>水泥工業</span>
+        </label>
+        <br>
+        <label class="puplic_checkbox">
+          <input type="checkbox">
+          <i></i>
+          <span>食品工業</span>
+        </label>
       </div>
       <br>
       <label class="puplic_checkbox" data-target="cancelBtn">
-          <input type="checkbox">
-          <i></i>
-          <span>取消全選</span>
+        <input type="checkbox">
+        <i></i>
+        <span>取消全選</span>
       </label>
       <br>
       <label class="puplic_checkbox" data-target="allBtn">
-          <input type="checkbox">
-          <i></i>
-          <span>全部選取</span>
+        <input type="checkbox">
+        <i></i>
+        <span>全部選取</span>
       </label>
     </div>
     <script>
@@ -221,21 +217,21 @@
       }
     </style>
     <span>
-    <label class="puplic_radio">
+      <label class="puplic_radio">
         <input type="radio" name="radio" checked>
         <i></i>
         <span>塑膠工業</span>
-    </label>
-    <br>
-    <label class="puplic_radio">
+      </label>
+      <br>
+      <label class="puplic_radio">
         <input type="radio" name="radio">
         <i></i>
         <span>紡織纖維</span>
-    </label>
-    <br>
-    <br>
-    <h2>4.radio button</h2>
-    <style>
+      </label>
+      <br>
+      <br>
+      <h2>4.radio button</h2>
+      <style>
       .publicRadioButton{
         display: inline-block;
       }
@@ -259,23 +255,39 @@
         background: #000;
         color: #fff;
       }
-    </style>
-    <div class="publicRadioButton">
-      <input type="radio" value="Radio1" id="Radio1" name="classification" checked="">
-      <label for="Radio1">Radio1</label>
-    </div>
-    <div class="publicRadioButton">
-      <input type="radio" value="Radio2" id="Radio2" name="classification">
-      <label for="Radio2">Radio2</label>
-    </div>
-    <div class="publicRadioButton">
-      <input type="radio" value="Radio3" id="Radio3" name="classification">
-      <label for="Radio3">Radio3</label>
-    </div>
-    <br>
-    <br>
-    <h2>select</h2>
-    <style>
+      </style>
+      <div class="publicRadioButton">
+        <input
+          type="radio"
+          value="Radio1"
+          id="Radio1"
+          name="classification"
+          checked=""
+        >
+        <label for="Radio1">Radio1</label>
+      </div>
+      <div class="publicRadioButton">
+        <input
+          type="radio"
+          value="Radio2"
+          id="Radio2"
+          name="classification"
+        >
+        <label for="Radio2">Radio2</label>
+      </div>
+      <div class="publicRadioButton">
+        <input
+          type="radio"
+          value="Radio3"
+          id="Radio3"
+          name="classification"
+        >
+        <label for="Radio3">Radio3</label>
+      </div>
+      <br>
+      <br>
+      <h2>select</h2>
+      <style>
       .puplicFromSelect{
           background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
           background-repeat: no-repeat;
@@ -287,15 +299,15 @@
           padding: 10px;
           width: 120px;
       }
-    </style>
-    <select class="puplicFromSelect">
-      <option value="m">男</option>
-      <option value="w">女</option>
-    </select>
-    <br>
-    <br>
-    <h2>select2</h2>
-    <style>
+      </style>
+      <select class="puplicFromSelect">
+        <option value="m">男</option>
+        <option value="w">女</option>
+      </select>
+      <br>
+      <br>
+      <h2>select2</h2>
+      <style>
       .puplicFromSelect2 {
         outline: none;
         padding: 10px;
@@ -309,30 +321,29 @@
         -moz-appearance: none;
         appearance: none;
       }
-    </style>
-    <select name="option" class="puplicFromSelect2">
-      <option value="" disabled="disabled" selected="selected">使用產品</option>
-      <option value="2">白毫烏龍</option>
-      <option value="3">茉莉綠茶</option>
-      <option value="4">伯爵紅茶</option>
-    </select>
-    <br>
-    <br>
-    <h4>參考</h4>
-    <ul>
-      <li>
-        <a href="https://hahow.in/courses/586fae97a8aae907000ce721/discussions?item=5a1e1755a2c4b000589dda23" target="_blank">select</a>
-      </li>
-      <li>
-        <a href="https://css-tricks.com/custom-styling-form-inputs-with-modern-css-features/">Form style</a>
-      </li>
-      <li>
-        <a href="https://css-tricks.com/custom-styling-form-inputs-with-modern-css-features/">Form style</a>
-      </li>
-      <li>
-        <a href="https://www.w3schools.com/howto/howto_css_custom_checkbox.asp">參考</a>
-      </li>
-    </ul>
-</body>
-
-</html>
+      </style>
+      <select name="option" class="puplicFromSelect2">
+        <option value="" disabled="disabled" selected="selected">使用產品</option>
+        <option value="2">白毫烏龍</option>
+        <option value="3">茉莉綠茶</option>
+        <option value="4">伯爵紅茶</option>
+      </select>
+      <br>
+      <br>
+      <h4>參考</h4>
+      <ul>
+        <li>
+          <a href="https://hahow.in/courses/586fae97a8aae907000ce721/discussions?item=5a1e1755a2c4b000589dda23" target="_blank">select</a>
+        </li>
+        <li>
+          <a href="https://css-tricks.com/custom-styling-form-inputs-with-modern-css-features/">Form style</a>
+        </li>
+        <li>
+          <a href="https://css-tricks.com/custom-styling-form-inputs-with-modern-css-features/">Form style</a>
+        </li>
+        <li>
+          <a href="https://www.w3schools.com/howto/howto_css_custom_checkbox.asp">參考</a>
+        </li>
+      </ul>
+    </body>
+  </html>

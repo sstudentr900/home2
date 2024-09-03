@@ -1,50 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>npm cron 排程任務的工具 </h2>
-  <h3>安裝</h3>
-  <pre class="prettyprint">
-    <xmp>
-      npm install cron
-    </xmp>
-  </pre>
-  <h3>官方範例</h3>
-  <pre class="prettyprint">
-    <xmp>
-      var CronJob = require('cron').CronJob;
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>npm cron 排程任務的工具</h2>
+    <h3>安裝</h3>
+    <pre class="prettyprint">
+      <xmp>
+        npm install cron
+      </xmp>
+    </pre>
+    <h3>官方範例</h3>
+    <pre class="prettyprint">
+      <xmp>
+        var CronJob = require('cron').CronJob;
       var job = new CronJob('* * * * * *', function() {
           console.log('You will see this message every second');
       }, null, true, 'America/Los_Angeles');
       job.start();
-    </xmp>
-  </pre>
-  <h3>api 架構</h3>
-  <pre class="prettyprint">
-    <xmp>
-      constructor(cronTime, onTick, onComplete, start, timezone, context, runOnInit, unrefTimeout)
+      </xmp>
+    </pre>
+    <h3>api 架構</h3>
+    <pre class="prettyprint">
+      <xmp>
+        constructor(cronTime, onTick, onComplete, start, timezone, context, runOnInit, unrefTimeout)
       cronTime [必填] 設定定時任務時間
       onTick [必填] 定時任務要執行的函式
       onComplete [選填] 完成定時任務後要執行的函式
       Start [選填] 是否自動啟動job，默認為false
       timeZone [選填] - 指定執行的時區
-    </xmp>
-  </pre>
-  <h3>cronTime 語法</h3>
-  <pre class="prettyprint">
-    <xmp>
-      //每秒都執行
+      </xmp>
+    </pre>
+    <h3>cronTime 語法</h3>
+    <pre class="prettyprint">
+      <xmp>
+        //每秒都執行
       * * * * * *
 
       //每分鐘的第 10 秒執行
@@ -52,12 +48,12 @@
 
       //每天晚上 10點30分10秒時執行
       10 30 22 * * *
-    </xmp>
-  </pre>
-  <h3>調整 package.json，建立專門跑排程的 scripts</h3>
-  <pre class="prettyprint">
-    <xmp>
-      start : mac 執行單次爬蟲時使用的
+      </xmp>
+    </pre>
+    <h3>調整 package.json，建立專門跑排程的 scripts</h3>
+    <pre class="prettyprint">
+      <xmp>
+        start : mac 執行單次爬蟲時使用的
       win_start : windows 執行單次爬蟲時使用的(需要將單引號與雙引號反過來，因為 windows 只會將單引號內的資訊印除來而不會去執行)
       cron : mac、windows 排程執行爬蟲時使用的
       
@@ -66,21 +62,20 @@
         "win_start": "node  -e \"require('./index').crawler()\"",
         "cron":"node tools/cron.js"
       }
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10295841"> 設定排程任務的工具 - node-cron</a>
-    </li>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10249462">排程 - Cron套件超詳解，讓爬蟲自己動起來</a>
-    </li>
-    <li>
-      <a href="https://www.zeitverschiebung.net/en/">時區代碼參考網站</a>
-    </li>
-  </ul>
-  <hr>
-</body>
-
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10295841"> 設定排程任務的工具 - node-cron</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10249462">排程 - Cron套件超詳解，讓爬蟲自己動起來</a>
+      </li>
+      <li>
+        <a href="https://www.zeitverschiebung.net/en/">時區代碼參考網站</a>
+      </li>
+    </ul>
+    <hr>
+  </body>
 </html>

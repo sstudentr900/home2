@@ -1,50 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>在heroku建立laravel專案</h2>
-  <h3>1.指令</h3>
-  <pre class="prettyprint">
-    <xmp>
-      //LaravelBlog 檔案名稱
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>在heroku建立laravel專案</h2>
+    <h3>1.指令</h3>
+    <pre class="prettyprint">
+      <xmp>
+        //LaravelBlog 檔案名稱
       //create-project 創建專案
       //--prefer-dist 當有可用的包時，從 dist 安裝。
       composer create-project --prefer-dist laravel/laravel LaravelBlog
-    </xmp>
-  </pre>
-
-  <h3>2.heroku config set</h3>
-  <pre class="prettyprint">
-    <xmp>
-      //heroku->settings->config Vars
+      </xmp>
+    </pre>
+    <h3>2.heroku config set</h3>
+    <pre class="prettyprint">
+      <xmp>
+        //heroku->settings->config Vars
       DB_HOST=us-cdbr-east-06.cleardb.net
       DB_DATABASE=heroku_d723d36659c064c
       DB_USERNAME=b35ccc613998de
       DB_PASSWORD=da2805b8
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://just1and0.medium.com/how-to-setup-database-on-heroku-for-your-laravel-application-6a903c2c75c7"
-        target="_blank">How To Setup Database On Heroku For Your Laravel Application.</a>
-    </li>
-    <li>
-      <a href="https://dev.to/okmarq/deploying-a-laravel-application-to-heroku-with-a-mysql-database-1gi3"
-        target="_blank">Deploying a Laravel application to Heroku with a MySQL database</a>
-    </li>
-  </ul>
-</body>
-
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://just1and0.medium.com/how-to-setup-database-on-heroku-for-your-laravel-application-6a903c2c75c7" target="_blank">How To Setup Database On Heroku For Your Laravel Application.</a>
+      </li>
+      <li>
+        <a href="https://dev.to/okmarq/deploying-a-laravel-application-to-heroku-with-a-mysql-database-1gi3" target="_blank">Deploying a Laravel application to Heroku with a MySQL database</a>
+      </li>
+    </ul>
+  </body>
 </html>

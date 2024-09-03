@@ -1,64 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>錯誤</h2>
-  <h3>PHP Parse error: syntax error, unexpected token "::"
-    class FN=>class CustomFn</h3>
-
-  <h3>Q:error: failed to push some refs</h3>
-  <p>A1:遠端與本地要連結</p>
-  <pre class="prettyprint">
-    <xmp>
-      heroku git:remote -a [your app name]
-    </xmp>
-  </pre>
-  <p>A2:php版本過舊</p>
-  <pre class="prettyprint">
-    <xmp>
-      //composer.json
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>錯誤</h2>
+    <h3>
+      PHP Parse error: syntax error, unexpected token "::"
+    class FN=>class CustomFn
+    </h3>
+    <h3>Q:error: failed to push some refs</h3>
+    <p>A1:遠端與本地要連結</p>
+    <pre class="prettyprint">
+      <xmp>
+        heroku git:remote -a [your app name]
+      </xmp>
+    </pre>
+    <p>A2:php版本過舊</p>
+    <pre class="prettyprint">
+      <xmp>
+        //composer.json
       {
         "require": {
           "php": "^7|^8"
         }
       }
-    </xmp>
-  </pre>
-  <p>A3:須注意編碼要`UTF-8`</p>
-
-  <h3>Q:access denied for user 'username'...</h3>
-  <p>A: 檢查帳密可能錯誤</p>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://stackoverflow.com/questions/31154124/sqlstatehy000-1045-access-denied-for-user-usernamelocalhost-using-cakep"
-        target="_blank">access denie</a>
-    </li>
-  </ul>
-
-  <h3>Q:A post-autoload-dump script terminated with an errornated with an error..</h3>
-  <p>A: 可能是 PHP 版本問題要7.3以上</p>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://noauto-nolife.com/post/laravel-heroku-deploy-php-version-error/" target="_blank">error</a>
-    </li>
-    <li>
-      <a href="https://www.sejuku.net/plus/question/detail/18197" target="_blank">error</a>
-    </li>
-  </ul>
-
-</body>
-
+      </xmp>
+    </pre>
+    <p>A3:須注意編碼要`UTF-8`</p>
+    <h3>Q:access denied for user 'username'...</h3>
+    <p>A: 檢查帳密可能錯誤</p>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/questions/31154124/sqlstatehy000-1045-access-denied-for-user-usernamelocalhost-using-cakep" target="_blank">access denie</a>
+      </li>
+    </ul>
+    <h3>Q:A post-autoload-dump script terminated with an errornated with an error..</h3>
+    <p>A: 可能是 PHP 版本問題要7.3以上</p>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://noauto-nolife.com/post/laravel-heroku-deploy-php-version-error/" target="_blank">error</a>
+      </li>
+      <li>
+        <a href="https://www.sejuku.net/plus/question/detail/18197" target="_blank">error</a>
+      </li>
+    </ul>
+  </body>
 </html>

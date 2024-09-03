@@ -1,108 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>指令</h2>
-  <pre class="prettyprint">
-    <xmp>
-      移動路徑：   cd c 路徑  到Ｃ碟　　也可拖移資料夾進入git
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>指令</h2>
+    <pre class="prettyprint">
+      <xmp>
+        移動路徑：   cd c 路徑  到Ｃ碟　　也可拖移資料夾進入git
       移動路徑：   cd c: 到Ｃ碟
       移動路徑：   cd /e/資料夾名  到資料夾名位置
       回上一層：   cd ..       PS：是兩個.. 不是一個 .
       展開列表：   ls
       開新資料夾： mkdir 資料夾名稱
       開新檔案：   touch 檔案名稱  範例touch styles.css 新建styles.css檔
-    </xmp>
-  </pre>
-
-  <h2>git視窗</h2>
-  <pre class="prettyprint">
-    <xmp>
-      gitk
-    </xmp>
-  </pre>
-
-  <h2>帳密</h2>
-  <pre class="prettyprint">
-    <xmp>
-      //輸入姓名
+      </xmp>
+    </pre>
+    <h2>git視窗</h2>
+    <pre class="prettyprint">
+      <xmp>
+        gitk
+      </xmp>
+    </pre>
+    <h2>帳密</h2>
+    <pre class="prettyprint">
+      <xmp>
+        //輸入姓名
       git config --global user.name "你的名字"
 
       //輸入email
       git config --global user.email "你的email"
-
-    </xmp>
-  </pre>
-
-  <h2>git md</h2>
-  <h3></h3>
-  <p></p>
-  <pre class="prettyprint">
-    <xmp>
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://docs.github.com/zh/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">git md</a>
-    </li>
-  </ul>
-
-  <h2>git版本</h2>
-  <pre class="prettyprint">
-    <xmp>
-      git --version
-    </xmp>
-  </pre>
-
-  <h2>查詢設定列表</h2>
-  <pre class="prettyprint">
-    <xmp>
-      git config --list
-    </xmp>
-  </pre>
-
-  <h2>當前狀態 status</h2>
-  <pre class="prettyprint">
-    <xmp>
-      git status
-    </xmp>
-  </pre>
-
-  <h2>檔案提交 commit</h2>
-  <pre class="prettyprint">
-    <xmp>
-      //-m 不啟動文字編輯模式
-      git commit -m <title>
-    </xmp>
-  </pre>
-  <h3>vim 的文字編輯模式</h3>
-  <pre class="prettyprint">
-    <xmp>
-      git commit
+      </xmp>
+    </pre>
+    <h2>git md</h2>
+    <h3></h3>
+    <p></p>
+    <pre class="prettyprint">
+      <xmp></xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://docs.github.com/zh/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">git md</a>
+      </li>
+    </ul>
+    <h2>git版本</h2>
+    <pre class="prettyprint">
+      <xmp>
+        git --version
+      </xmp>
+    </pre>
+    <h2>查詢設定列表</h2>
+    <pre class="prettyprint">
+      <xmp>
+        git config --list
+      </xmp>
+    </pre>
+    <h2>當前狀態 status</h2>
+    <pre class="prettyprint">
+      <xmp>
+        git status
+      </xmp>
+    </pre>
+    <h2>檔案提交 commit</h2>
+    <pre class="prettyprint">
+      <xmp>
+        //-m 不啟動文字編輯模式
+      git commit -m
+        <title>
+        </xmp>
+      </pre>
+      <h3>vim 的文字編輯模式</h3>
+      <pre class="prettyprint">
+        <xmp>
+          git commit
 
       //vim 的儲存並離開
       :wq
 
       //vim回到命令模式
       Esc
-    </xmp>
-  </pre>
-
-  <h2>commit差異 diff</h2>
-  <pre class="prettyprint">
-    <xmp>
-      //比對上個存取差異
+        </xmp>
+      </pre>
+      <h2>commit差異 diff</h2>
+      <pre class="prettyprint">
+        <xmp>
+          //比對上個存取差異
       git diff 'commit ID'
 
       //比對上個存取該檔差異
@@ -110,20 +97,20 @@
 
       //查看有add的修改 --cached
       git diff --cached
-    </xmp>
-  </pre>
-
-
-  <h2>commit記錄 log</h2>
-  <pre class="prettyprint">
-    <xmp>
-      //查詢commit記錄
+        </xmp>
+      </pre>
+      <h2>commit記錄 log</h2>
+      <pre class="prettyprint">
+        <xmp>
+          //查詢commit記錄
       git log
 
       //--pretty=raw 顯示 parent 的資訊
       git log --pretty=raw
 
-      //--oneline 顯示 <commit id> 簡化的log
+      //--oneline 顯示
+          <commit id>
+            簡化的log
       git log --oneline
 
       //-g 查看 reflog 的詳細內容
@@ -131,37 +118,35 @@
 
       //查詢commit最後的記錄
       git show
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://www.youtube.com/watch?v=FKXRiAiQFiY" target="_blank">程式與網頁開發者必備技能！Git 和 GitHub 零基礎快速上手，輕鬆掌握版本控制的要訣！</a>
-    </li>
-  </ul>
-
-  <h2>commit切換 checkout</h2>
-  <h3>commit切換後，若內容是你要的，就下git reset，回到那個版本吧。（記得先git checkout master回到原本的地方，再下git reset喔）</h3>
-  <pre class="prettyprint">
-    <xmp>
-      git checkout <commit id>
-    </xmp>
-  </pre>
-
-
-  <h2>檔案還原 reset</h2>
-  <pre class="prettyprint">
-    <xmp>
-      //commit id -> 還原到指定Patch id
-      git reset --hard <commit id>
-
-      //還原全部檔案狀態, HEAD->目前所在的 patch
+          </xmp>
+        </pre>
+        <h4>參考</h4>
+        <ul>
+          <li>
+            <a href="https://www.youtube.com/watch?v=FKXRiAiQFiY" target="_blank">程式與網頁開發者必備技能！Git 和 GitHub 零基礎快速上手，輕鬆掌握版本控制的要訣！</a>
+          </li>
+        </ul>
+        <h2>commit切換 checkout</h2>
+        <h3>commit切換後，若內容是你要的，就下git reset，回到那個版本吧。（記得先git checkout master回到原本的地方，再下git reset喔）</h3>
+        <pre class="prettyprint">
+          <xmp>
+            git checkout
+            <commit id>
+            </xmp>
+          </pre>
+          <h2>檔案還原 reset</h2>
+          <pre class="prettyprint">
+            <xmp>
+              //commit id -> 還原到指定Patch id
+      git reset --hard
+              <commit id>
+                //還原全部檔案狀態, HEAD->目前所在的 patch
       git reset HEAD
 
       //還原指定檔案狀態
-      git reset HEAD <file>
-
-      //還原上一個檔案狀態, HEAD^->上一個所在的 patch
+      git reset HEAD
+                <file>
+                  //還原上一個檔案狀態, HEAD^->上一個所在的 patch
       //HEAD^ -> 還原到上一個
       //HEAD^^ -> 還原到上上一個
       git reset HEAD^
@@ -171,73 +156,70 @@
 
       //上面語法如果刪除錯了可以再用此語法還原
       git reset --hard ORIG_HEAD
-    </xmp>
-  </pre>
-
-  <h2>git reset --hard 是不是先前的版本已經刪除回不去了呢？</h2>
-  <h3>查找HEAD的修改紀錄</h3>
-  <pre class="prettyprint">
-    <xmp>
-      git reflog
-    </xmp>
-  </pre>
-  <h3>找到你要的版本後，一樣使用git reset回到該版本即可</h3>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10239151" target="_blank">Git 版本控制</a>
-    </li>
-  </ul>
-
-  <h2>beanch 分支</h2>
-  <pre class="prettyprint">
-    <xmp>
-      //查看所有的分支
+                </xmp>
+              </pre>
+              <h2>git reset --hard 是不是先前的版本已經刪除回不去了呢？</h2>
+              <h3>查找HEAD的修改紀錄</h3>
+              <pre class="prettyprint">
+                <xmp>
+                  git reflog
+                </xmp>
+              </pre>
+              <h3>找到你要的版本後，一樣使用git reset回到該版本即可</h3>
+              <h4>參考</h4>
+              <ul>
+                <li>
+                  <a href="https://ithelp.ithome.com.tw/articles/10239151" target="_blank">Git 版本控制</a>
+                </li>
+              </ul>
+              <h2>beanch 分支</h2>
+              <pre class="prettyprint">
+                <xmp>
+                  //查看所有的分支
       git branch
 
       //使用 Gik 圖形化介面
       gitk --all
 
       //建立新的分支
-      git branch <new branch name>
-
-      //一般開分支都會繼承主支的內容，只要在指令裡多下--orphanru就可以單獨為一個分支內容
+      git branch
+                  <new branch name>
+                    //一般開分支都會繼承主支的內容，只要在指令裡多下--orphanru就可以單獨為一個分支內容
       git checkout --orphan gh-pages
 
       //切換分支
-      git checkout <branch name>
-
-      //建立新的 branch 並且切換過去
+      git checkout
+                    <branch name>
+                      //建立新的 branch 並且切換過去
       //-b它相當於git branch ,git checkout
-      git checkout -b <new branch name>
-
-      //指定的 patch 上建立 branch
-      git branch -f <new branch name>
-        <old commit id>
-
-      // 刪除分支 -D
-      git branch -D <branch name>
-      git branch -d 分支名稱
+      git checkout -b
+                      <new branch name>
+                        //指定的 patch 上建立 branch
+      git branch -f
+                        <new branch name>
+                          <old commit id>
+                            // 刪除分支 -D
+      git branch -D
+                            <branch name>
+                              git branch -d 分支名稱
 
       //移動 HEAD 的位置
-      git checkout <commit id>
-
-      //合併分支
+      git checkout
+                              <commit id>
+                                //合併分支
       git checkout min
-      git merge <branch name>
-    </xmp>
-  </pre>
-
-
-
-  <h2>遠端 remote</h2>
-  <pre class="prettyprint">
-    <xmp>
-      //新增遠端 連結至github
-      git remote add <short name>
-      <repository URL>
-
-      //显示所有远程仓库
+      git merge
+                                <branch name>
+                                </xmp>
+                              </pre>
+                              <h2>遠端 remote</h2>
+                              <pre class="prettyprint">
+                                <xmp>
+                                  //新增遠端 連結至github
+      git remote add
+                                  <short name>
+                                    <repository URL>
+                                      //显示所有远程仓库
       git remote -v
 
       //显示某个远程仓库的信息
@@ -250,19 +232,21 @@
       refs/heads/main => 推送到 main
 
       //修改remote(rename)
-      git remote rename <short name><new name>
-
-      //刪除remote(rm)
-      git remote rm <short name>
-
-      //上傳分支
+      git remote rename
+                                      <short name>
+                                        <new name>
+                                          //刪除remote(rm)
+      git remote rm
+                                          <short name>
+                                            //上傳分支
       //-u 等同於 --set-upstream，設定 upstream 可以使分支開始追蹤指定的遠端分支
-      git push <reomte name> <branch name>
-
-      //下載專案
-      git clone <repo URL>
-
-      //同步遠端分支
+      git push
+                                            <reomte name>
+                                              <branch name>
+                                                //下載專案
+      git clone
+                                                <repo URL>
+                                                  //同步遠端分支
       //git remote update 等同於 git fetch --all
       git remote update
 
@@ -276,72 +260,70 @@
       //強制更新遠端分支
       //參數 -f 等同於 --force，表示強制的意思
       git push -f
-    </xmp>
-  </pre>
-  <h3>一條支線</h3>
-  <pre class="prettyprint">
-    <xmp>
-      //新增
+                                                </xmp>
+                                              </pre>
+                                              <h3>一條支線</h3>
+                                              <pre class="prettyprint">
+                                                <xmp>
+                                                  //新增
       git add .;git commit -m "customName";git push;
 
       //回上一步
       git reset --hard HEAD^
-    </xmp>
-  </pre>
-  <h3>2條支線</h3>
-  <pre class="prettyprint">
-    <xmp>
-      //建立分支
-      git checkout -b <new_branch_name>
-
-      //修改
+                                                </xmp>
+                                              </pre>
+                                              <h3>2條支線</h3>
+                                              <pre class="prettyprint">
+                                                <xmp>
+                                                  //建立分支
+      git checkout -b
+                                                  <new_branch_name>
+                                                    //修改
       git add .
       git commit -m "bnew_branch_name_upate"
 
       //合併
       git checkout min
-      git merge <new_branch_name>
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://backlog.com/git-tutorial/tw/reference/basic.html" target="_blank">GIT</a>
-    </li>
-    <li>
-      <a href="https://progressbar.tw/posts/3" target="_blank">開始使用 GitHub， 註冊與建立repo</a>
-    </li>
-    <li>
-      <a href="https://www.rs-online.com/designspark/github-nvidia-cn" target="_blank">Github基本使用教學</a>
-    </li>
-    <li>
-      <a href="https://zlargon.gitbooks.io/git-tutorial/content/remote/upstream.html" target="_blank">git</a>
-    </li>
-    <li>
-      <a href="https://zlargon.gitbooks.io/git-tutorial/content/remote/sync.html" target="_blank">同步遠端分支</a>
-    </li>
-    <li>
-      <a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank">常用 Git 命令清单</a>
-    </li>
-  </ul>
-
-  <h2>遠暫存檔案</h2>
-  <pre class="prettyprint">
-    <xmp>
-      git stash - 暫存儲存當前目錄
+      git merge
+                                                    <new_branch_name>
+                                                    </xmp>
+                                                  </pre>
+                                                  <h4>參考</h4>
+                                                  <ul>
+                                                    <li>
+                                                      <a href="https://backlog.com/git-tutorial/tw/reference/basic.html" target="_blank">GIT</a>
+                                                    </li>
+                                                    <li>
+                                                      <a href="https://progressbar.tw/posts/3" target="_blank">開始使用 GitHub， 註冊與建立repo</a>
+                                                    </li>
+                                                    <li>
+                                                      <a href="https://www.rs-online.com/designspark/github-nvidia-cn" target="_blank">Github基本使用教學</a>
+                                                    </li>
+                                                    <li>
+                                                      <a href="https://zlargon.gitbooks.io/git-tutorial/content/remote/upstream.html" target="_blank">git</a>
+                                                    </li>
+                                                    <li>
+                                                      <a href="https://zlargon.gitbooks.io/git-tutorial/content/remote/sync.html" target="_blank">同步遠端分支</a>
+                                                    </li>
+                                                    <li>
+                                                      <a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank">常用 Git 命令清单</a>
+                                                    </li>
+                                                  </ul>
+                                                  <h2>遠暫存檔案</h2>
+                                                  <pre class="prettyprint">
+                                                    <xmp>
+                                                      git stash - 暫存儲存當前目錄
       git stash list - 瀏覽 git stash 列表
       git stash pop - 還原暫存
       git stash drop - 清除最新暫存
       git stash clear - 清除全部暫存
-    </xmp>
-  </pre>
-  
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10220982?sc=rss.iron" target="_blank">git stash </a>
-    </li>
-  </ul>
-</body>
-
-</html>
+                                                    </xmp>
+                                                  </pre>
+                                                  <h4>參考</h4>
+                                                  <ul>
+                                                    <li>
+                                                      <a href="https://ithelp.ithome.com.tw/articles/10220982?sc=rss.iron" target="_blank">git stash</a>
+                                                    </li>
+                                                  </ul>
+                                                </body>
+                                              </html>

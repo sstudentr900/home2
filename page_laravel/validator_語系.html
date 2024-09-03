@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>錯誤訊息語系設定</h2>
-  <ul>
-    <li>config/app.php</li>
-    <li>timezone 改成 Asia/Taipei(台北時間)</li>
-    <li>locale 改成 zh-TW(繁體中文) ,多國語言不改</li>
-  </ul>
-  <pre class="prettyprint">
-    <xmp>
-      return [
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>錯誤訊息語系設定</h2>
+    <ul>
+      <li>config/app.php</li>
+      <li>timezone 改成 Asia/Taipei(台北時間)</li>
+      <li>locale 改成 zh-TW(繁體中文) ,多國語言不改</li>
+    </ul>
+    <pre class="prettyprint">
+      <xmp>
+        return [
         //時區
         'timezone' => 'Asia/Taipei',
         //語系
@@ -28,17 +24,17 @@
         //語系設定失敗時的預設語系
         'fallback_locale' => 'en',
       ];
-    </xmp>
-  </pre>
-
-  <h3>語系檔案設定都放在resources/lang/目錄中</h3>
-  <img src="https://imgur.com/gkHzkKI" alt="">
-
-  <h3>我們把resources/lang/en/validation.php的內容複製到resources/lang/zh-TW/validation.php,
-  然後修改內容如下</h3>
-  <pre class="prettyprint">
-    <xmp>
-      return [
+      </xmp>
+    </pre>
+    <h3>語系檔案設定都放在resources/lang/目錄中</h3>
+    <img src="https://imgur.com/gkHzkKI" alt="">
+    <h3>
+      我們把resources/lang/en/validation.php的內容複製到resources/lang/zh-TW/validation.php,
+  然後修改內容如下
+    </h3>
+    <pre class="prettyprint">
+      <xmp>
+        return [
         'accepted' => '必須接受 :attribute。',
         'active_url' => ':attribute 並非一個有效的網址。',
         'after' => ':attribute 必須要在 :date 之後。',
@@ -152,13 +148,12 @@
         'attributes' => [],
 
       ];
-    </xmp>
-  </pre>
-
-  <h3>欄位名稱修改在resources/lang/zh-TW/validation.php的最後面attributes的地方修改如下:</h3>
-  <pre class="prettyprint">
-    <xmp>
-      return [
+      </xmp>
+    </pre>
+    <h3>欄位名稱修改在resources/lang/zh-TW/validation.php的最後面attributes的地方修改如下:</h3>
+    <pre class="prettyprint">
+      <xmp>
+        return [
           'attributes' => [
               'name' => '暱稱',
               'account' => '帳號',
@@ -166,15 +161,14 @@
               'password_confirm' => '密碼確認',
           ],
       ];
-    </xmp>
-  </pre>
-  <img src="https://imgur.com/JMZDqIE" alt="">
-
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://dotblogs.com.tw/SmallFish/2020/10/05/072229" target="_blank">錯誤訊息語系設定</a>
-    </li>
-  </ul>
-</body>
+      </xmp>
+    </pre>
+    <img src="https://imgur.com/JMZDqIE" alt="">
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://dotblogs.com.tw/SmallFish/2020/10/05/072229" target="_blank">錯誤訊息語系設定</a>
+      </li>
+    </ul>
+  </body>
 </html>

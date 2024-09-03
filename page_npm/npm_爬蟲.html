@@ -1,38 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>npm 爬蟲套件</h2>
-  <p>request & cheerio</p>
-  <p>selenium-webdriver</p>
-  <p>Puppeteer</p>
-  <pre class="prettyprint">
-    <xmp>
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10241791">爬蟲套件</a>
-    </li>
-  </ul>
-  <hr>
-  <h3>npm 爬蟲套件-Puppeteer</h3>
-  <p>Puppeteer</p>
-  <pre class="prettyprint">
-    <xmp>
-      const puppeteer = require('puppeteer');
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>npm 爬蟲套件</h2>
+    <p>request & cheerio</p>
+    <p>selenium-webdriver</p>
+    <p>Puppeteer</p>
+    <pre class="prettyprint">
+      <xmp></xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10241791">爬蟲套件</a>
+      </li>
+    </ul>
+    <hr>
+    <h3>npm 爬蟲套件-Puppeteer</h3>
+    <p>Puppeteer</p>
+    <pre class="prettyprint">
+      <xmp>
+        const puppeteer = require('puppeteer');
       const cheerio = require('cheerio');
       async function getOpenPrice() {
           const browser = await puppeteer.launch();
@@ -50,19 +45,17 @@
       }
 
       getOpenPrice().catch(error => console.error(error));
-
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://www.tpisoftware.com/tpu/articleDetails/3032">Puppeteer</a>
-    </li>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10199826">Puppeteer</a>
-    </li>
-  </ul>
-  <hr>
-</body>
-
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.tpisoftware.com/tpu/articleDetails/3032">Puppeteer</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10199826">Puppeteer</a>
+      </li>
+    </ul>
+    <hr>
+  </body>
 </html>

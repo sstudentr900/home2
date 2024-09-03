@@ -1,64 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>GitHub 上傳</h2>
-  <h3>1.先在本地(終端機)鍵入</h3>
-  <pre class="prettyprint">
-    <xmp>
-      git init
-    </xmp>
-  </pre>
-  <h3>2.新增README.md檔</h3>
-  <pre class="prettyprint">
-    <xmp>
-      echo "# test" >> README.md
-    </xmp>
-  </pre>
-  <h3>3.檔案註冊到索引裡</h3>
-  <pre class="prettyprint">
-    <xmp>
-      git add README.md
-    </xmp>
-  </pre>
-  <h3>4.提交資訊</h3>
-  <pre class="prettyprint">
-    <xmp>
-      git commit -m "first commit"
-    </xmp>
-  </pre>
-  <h3>5.指定remote add origin 遠端儲存庫位置</h3>
-  <pre class="prettyprint">
-    <xmp>
-      git remote add origin https://github.com/sstudentr123/test.git
-    </xmp>
-  </pre>
-  <h3>6.push到GitHub上面 origin 表示遠端，master 表示分支名</h3>
-  <pre class="prettyprint">
-    <xmp>
-      git push -u origin master
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://progressbar.tw/posts/3" target="_blank">開始使用 GitHub， 註冊與建立repo</a>
-    </li>
-    <li>
-      <a href="https://github.com/doggy8088/Learn-Git-in-30-days/blob/master/zh-tw/24.md" target="_blank">使用 GitHub
-        遠端儲存庫</a>
-    </li>
-  </ul>
-</body>
-
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>GitHub 上傳</h2>
+    <h3>1.先在本地(終端機)鍵入</h3>
+    <pre class="prettyprint">
+      <xmp>
+        git init
+      </xmp>
+    </pre>
+    <h3>2.新增README.md檔</h3>
+    <pre class="prettyprint">
+      <xmp>
+        echo "# test" >> README.md
+      </xmp>
+    </pre>
+    <h3>3.檔案註冊到索引裡</h3>
+    <pre class="prettyprint">
+      <xmp>
+        git add README.md
+      </xmp>
+    </pre>
+    <h3>4.提交資訊</h3>
+    <pre class="prettyprint">
+      <xmp>
+        git commit -m "first commit"
+      </xmp>
+    </pre>
+    <h3>5.指定remote add origin 遠端儲存庫位置</h3>
+    <pre class="prettyprint">
+      <xmp>
+        git remote add origin https://github.com/sstudentr123/test.git
+      </xmp>
+    </pre>
+    <h3>6.push到GitHub上面 origin 表示遠端，master 表示分支名</h3>
+    <pre class="prettyprint">
+      <xmp>
+        git push -u origin master
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://progressbar.tw/posts/3" target="_blank">開始使用 GitHub， 註冊與建立repo</a>
+      </li>
+      <li>
+        <a href="https://github.com/doggy8088/Learn-Git-in-30-days/blob/master/zh-tw/24.md" target="_blank">
+          使用 GitHub
+        遠端儲存庫
+        </a>
+      </li>
+    </ul>
+  </body>
 </html>

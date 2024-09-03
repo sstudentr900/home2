@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>img</h2>
-  <h3>建立檔案目錄連結</h3>
-  <p>public目錄下的檔案，可以直接透過瀏覽器存取。 http://localhost/storage/。</p>
-  <p>storage/app/public目錄綁定到public/storage</p>
-  <pre class="prettyprint">
-    <xmp>
-      artisan storage:link
-    </xmp>
-  </pre>
-
-  <h3>取得public目錄下的完整位置</h3>>
-  <pre class="prettyprint">
-    <xmp>
-      public_path('img\balogo.png')
-    </xmp>
-  </pre>
-
-  <h3>產生隨機檔案名稱</h3>>
-  <pre class="prettyprint">
-    <xmp>
-      uniqid()
-    </xmp>
-  </pre>
-
-  <h3>store() 設置檔案存入指定的地方</h3> 
-  <p>config/filesystem.php</p>
-  <pre class="prettyprint">
-    <xmp>
-      'disks' => [
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>img</h2>
+    <h3>建立檔案目錄連結</h3>
+    <p>public目錄下的檔案，可以直接透過瀏覽器存取。 http://localhost/storage/。</p>
+    <p>storage/app/public目錄綁定到public/storage</p>
+    <pre class="prettyprint">
+      <xmp>
+        artisan storage:link
+      </xmp>
+    </pre>
+    <h3>取得public目錄下的完整位置</h3>
+    >
+    <pre class="prettyprint">
+      <xmp>
+        public_path('img\balogo.png')
+      </xmp>
+    </pre>
+    <h3>產生隨機檔案名稱</h3>
+    >
+    <pre class="prettyprint">
+      <xmp>
+        uniqid()
+      </xmp>
+    </pre>
+    <h3>store() 設置檔案存入指定的地方</h3>
+    <p>config/filesystem.php</p>
+    <pre class="prettyprint">
+      <xmp>
+        'disks' => [
       'local' => [
           'driver' => 'local',
           'root' => storage_path('app'),
@@ -54,14 +49,13 @@
       (default is 'local')
       $article->image = $path;
       $article->save();
-    </xmp>
-  </pre>
-
-  <h3>Route</h3>
-  <p>routes/web.php</p>
-  <pre class="prettyprint">
-    <xmp>
-      use Validator;
+      </xmp>
+    </pre>
+    <h3>Route</h3>
+    <p>routes/web.php</p>
+    <pre class="prettyprint">
+      <xmp>
+        use Validator;
       use Illuminate\Http\Request;
       Route::get('/images', function(){
           return view('images');
@@ -88,38 +82,40 @@
         //回傳位於storage/資料夾下的位置
         return redirect(Storage::url($file_path));
       })->name('image');
-    </xmp>
-  </pre>
-
-  <h3>view</h3>
-  <ul>
-    <li>resources/views/images.php</li>
-    <li>form 要寫 enctype="multipart/form-data" 沒寫不能傳檔案</li>
-  </ul>
-  <pre class="prettyprint">
-    <xmp>
-      <form action="{{route('image')}}" method="post" enctype="multipart/form-data">
-        @csrf
+      </xmp>
+    </pre>
+    <h3>view</h3>
+    <ul>
+      <li>resources/views/images.php</li>
+      <li>form 要寫 enctype="multipart/form-data" 沒寫不能傳檔案</li>
+    </ul>
+    <pre class="prettyprint">
+      <xmp>
+        <form action="{{route('image')}}" method="post" enctype="multipart/form-data">
+          @csrf
         @if ($errors->any())
           <div class="alert alert-danger">
             <ul>
               @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+              <li>{{ $error }}</li>
               @endforeach
             </ul>
           </div>
-        @endif
-
-        <input name="file" type="file" accept="image/*" value=""/>
-        <input name="" type="submit" value="上傳"/>
-      </form>
-    </xmp>
-  </pre>
-
-  <h3>自訂 php 圖片上傳</h3>
-  <pre class="prettyprint">
-    <xmp>
-      static function imgAdd($tableImage, $customImgName)
+          @endif
+          <input
+            name="file"
+            type="file"
+            accept="image/*"
+            value=""
+          >
+          <input name="" type="submit" value="上傳">
+        </form>
+      </xmp>
+    </pre>
+    <h3>自訂 php 圖片上傳</h3>
+    <pre class="prettyprint">
+      <xmp>
+        static function imgAdd($tableImage, $customImgName)
       {
         $imgName =  $customImgName . time() . '.jpg';
         $path = base_path().'/public/'.config('app.imgName').'/'.$imgName; //圖片路徑
@@ -163,25 +159,22 @@
 
       //imgDelet
       $cover = CustomFn::imgDelet($data);
-    </xmp>
-  </pre>
-
-  <h3>error</h3>
-  <h2>file_put_contents(/): failed to open stream: Permission denied</h2>
-  <p>清除config緩存=>php artisan optimize:clear</p>
-
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10228413">上傳檔案</a>
-    </li>
-    <li>
-      <a href="https://medium.com/@0510winnie/laravel-note-7-e331c38df902">File Storage</a>
-    </li>
-    <li>
-      <a href="https://www.dotblogs.com.tw/SmallFish/2021/05/07/074216">加入圖片上傳</a>
-    </li>
-  </ul>
-</body>
-
+      </xmp>
+    </pre>
+    <h3>error</h3>
+    <h2>file_put_contents(/): failed to open stream: Permission denied</h2>
+    <p>清除config緩存=>php artisan optimize:clear</p>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10228413">上傳檔案</a>
+      </li>
+      <li>
+        <a href="https://medium.com/@0510winnie/laravel-note-7-e331c38df902">File Storage</a>
+      </li>
+      <li>
+        <a href="https://www.dotblogs.com.tw/SmallFish/2021/05/07/074216">加入圖片上傳</a>
+      </li>
+    </ul>
+  </body>
 </html>

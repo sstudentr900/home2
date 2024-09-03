@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-
-</head>
-
-<body id="program">
-  <h2>SVG繼承顏色(currentColor)</h2>
-  <p>SVG繼承父集(p)的顏色</p>
-  <pre class="prettyprint">
-    <xmp>
-      <p><svg></svg></p>
-    </xmp>
-  </pre>
-  <h3>css樣式</h3>
-  <pre class="prettyprint">
-    <xmp>
-      <style>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>SVG繼承顏色(currentColor)</h2>
+    <p>SVG繼承父集(p)的顏色</p>
+    <pre class="prettyprint">
+      <xmp>
+        <p>
+          <svg></svg>
+        </p>
+      </xmp>
+    </pre>
+    <h3>css樣式</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <style>
         p {
           color: #369;
         }
@@ -31,15 +28,14 @@
         svg {
           fill: currentColor;
         }
-      </style>
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://www.zhangxinxu.com/wordpress/2014/07/svg-sprites-fill-color-currentcolor/">SVG图标颜色文字般继承与填充</a>
-    </li>
-  </ul>
-</body>
-
+        </style>
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.zhangxinxu.com/wordpress/2014/07/svg-sprites-fill-color-currentcolor/">SVG图标颜色文字般继承与填充</a>
+      </li>
+    </ul>
+  </body>
 </html>

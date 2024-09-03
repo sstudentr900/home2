@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <!-- <link rel="stylesheet" href="../css/customPrism.css"> -->
-  <!-- <link rel="stylesheet" href="../css/prism.css"> -->
-  <!-- <script src="../js/prism.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>環境初始化建置</h2>
-
-  <h3>建立專案</h3>
-  <pre class="prettyprint">
-    <xmp>
-      //快速建立package.json
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <!-- <link rel="stylesheet" href="../css/customPrism.css"> -->
+    <!--
+    -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>環境初始化建置</h2>
+    <h3>建立專案</h3>
+    <pre class="prettyprint">
+      <xmp>
+        //快速建立package.json
       npm init -y
-    </xmp>
-  </pre>
-  <p>專案結構</p>
-  <ul>
-    <li>dist(全名稱為distribution，發布版本檔案，是經過自動化編譯及壓縮後版本的位置。)</li>
-    <li>src(全名稱為source，開發階段所用到的檔案，也是原始程式碼的存放位置。)</li>
-    <li>index.html</li>
-    <li>package.json</li>
-  </ul>
-
-
-  <h3>安裝webpack</h3>
-  <pre class="prettyprint">
-    <xmp>
-      npm install webpack webpack-cli --save-dev
-    </xmp>
-  </pre>
-  <p>建立webpack.config.js設定檔</p>
-  <pre class="prettyprint">
-    <xmp>
-      const path = require("path");
+      </xmp>
+    </pre>
+    <p>專案結構</p>
+    <ul>
+      <li>dist(全名稱為distribution，發布版本檔案，是經過自動化編譯及壓縮後版本的位置。)</li>
+      <li>src(全名稱為source，開發階段所用到的檔案，也是原始程式碼的存放位置。)</li>
+      <li>index.html</li>
+      <li>package.json</li>
+    </ul>
+    <h3>安裝webpack</h3>
+    <pre class="prettyprint">
+      <xmp>
+        npm install webpack webpack-cli --save-dev
+      </xmp>
+    </pre>
+    <p>建立webpack.config.js設定檔</p>
+    <pre class="prettyprint">
+      <xmp>
+        const path = require("path");
       module.exports = {
         mode: "development", //開發模式(預設為發布)
         entry: "./src/index.js", //SPA進入點
@@ -49,30 +44,28 @@
           filename: "static/js/[name].[hash].js", //輸出檔名
         },
       };
-    </xmp>
-  </pre>
-  <p>在package.json的scripts建立build指令，用來啟動webpack</p>
-  <pre class="prettyprint">
-    <xmp>
-      "scripts": {
+      </xmp>
+    </pre>
+    <p>在package.json的scripts建立build指令，用來啟動webpack</p>
+    <pre class="prettyprint">
+      <xmp>
+        "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "webpack", //npm run build,執行webpack指令
       },
-    </xmp>
-  </pre>
-
-
-  <h3>安裝babel</h3>
-  <p>babel-ES6以上的語法，會自動轉換成舊版本的Javascript</p>
-  <pre class="prettyprint">
-    <xmp>
-      npm install babel-loader @babel/core @babel/preset-env --save-dev
-    </xmp>
-  </pre>
-  <p>到webpack設定</p>
-  <pre class="prettyprint">
-    <xmp>
-      module.exports = {
+      </xmp>
+    </pre>
+    <h3>安裝babel</h3>
+    <p>babel-ES6以上的語法，會自動轉換成舊版本的Javascript</p>
+    <pre class="prettyprint">
+      <xmp>
+        npm install babel-loader @babel/core @babel/preset-env --save-dev
+      </xmp>
+    </pre>
+    <p>到webpack設定</p>
+    <pre class="prettyprint">
+      <xmp>
+        module.exports = {
         module: {
             rules: [
               {
@@ -88,21 +81,19 @@
             ],
           },
         ...
-    </xmp>
-  </pre>
-
-
-  <h3>安裝scss-loader</h3>
-  <p>sass 轉css</p>
-  <pre class="prettyprint">
-    <xmp>
-      npm install sass-loader node-sass css-loader mini-css-extract-plugin --save-dev
-    </xmp>
-  </pre>
-  <p>到webpack設定</p>
-  <pre class="prettyprint">
-    <xmp>
-      //引入
+      </xmp>
+    </pre>
+    <h3>安裝scss-loader</h3>
+    <p>sass 轉css</p>
+    <pre class="prettyprint">
+      <xmp>
+        npm install sass-loader node-sass css-loader mini-css-extract-plugin --save-dev
+      </xmp>
+    </pre>
+    <p>到webpack設定</p>
+    <pre class="prettyprint">
+      <xmp>
+        //引入
       const MiniCssExtractPlugin = require("mini-css-extract-plugin");
       
       module: {
@@ -118,20 +109,19 @@
           filename: 'static/css/[name].[hash].css', //轉換css檔名(預設為main.css)
         })
       ],
-    </xmp>
-  </pre>
-
-  <h3>圖片資源</h3>
-  <h3>html中引用图片资源</h3>
-  <pre class="prettyprint">
-    <xmp>
-      npm install html-loader -D
-    </xmp>
-  </pre>
-  <p>到webpack設定</p>
-  <pre class="prettyprint">
-    <xmp>
-      //引入
+      </xmp>
+    </pre>
+    <h3>圖片資源</h3>
+    <h3>html中引用图片资源</h3>
+    <pre class="prettyprint">
+      <xmp>
+        npm install html-loader -D
+      </xmp>
+    </pre>
+    <p>到webpack設定</p>
+    <pre class="prettyprint">
+      <xmp>
+        //引入
       module: {
         rules: [
           {
@@ -143,22 +133,19 @@
           },
         ],
       },
-    </xmp>
-  </pre>
-  
-  <h3>css中引用图片资源</h3>
-
-
-  <h3>自動產生 HTML</h3>
-  <pre class="prettyprint">
-    <xmp>
-      npm install --save-dev html-webpack-plugin
-    </xmp>
-  </pre>
-  <p>到webpack.js設定</p>
-  <pre class="prettyprint">
-    <xmp>
-      //引入
+      </xmp>
+    </pre>
+    <h3>css中引用图片资源</h3>
+    <h3>自動產生 HTML</h3>
+    <pre class="prettyprint">
+      <xmp>
+        npm install --save-dev html-webpack-plugin
+      </xmp>
+    </pre>
+    <p>到webpack.js設定</p>
+    <pre class="prettyprint">
+      <xmp>
+        //引入
       const HtmlWebpackPlugin = require('html-webpack-plugin');
 
       // 配置 HTML 模板路徑與生成名稱
@@ -169,71 +156,64 @@
           inject: 'body'                 //js在body 裡面
         })
       ],
-    </xmp>
-  </pre>
-
-
-  <h3>Dev Server 自動化打包</h3>
-  <pre class="prettyprint">
-    <xmp>
-      npm install webpack-dev-server --save-dev
-    </xmp>
-  </pre>
-  <p>到webpack.js設定</p>
-  <pre class="prettyprint">
-    <xmp>
-      devServer: {
+      </xmp>
+    </pre>
+    <h3>Dev Server 自動化打包</h3>
+    <pre class="prettyprint">
+      <xmp>
+        npm install webpack-dev-server --save-dev
+      </xmp>
+    </pre>
+    <p>到webpack.js設定</p>
+    <pre class="prettyprint">
+      <xmp>
+        devServer: {
         static: {
           directory: path.join(__dirname, './'),//文件更改將觸發整個頁面重新加載
         },
       },
-    </xmp>
-  </pre>
-  <p>在package.json加入start指令</p>
-  <pre class="prettyprint">
-    <xmp>
-      "scripts": {
+      </xmp>
+    </pre>
+    <p>在package.json加入start指令</p>
+    <pre class="prettyprint">
+      <xmp>
+        "scripts": {
         "start": "webpack-dev-server --open",
       }
-    </xmp>
-  </pre>
-  <p>執行</p>
-  <pre class="prettyprint">
-    <xmp>
-      npm run start
-    </xmp>
-  </pre>
-
- 
-
-
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10244976" target="_blank">環境初始化建置</a>
-    </li>
-    <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10256238" target="_blank">WebPack安裝與打包教學</a>
-    </li>
-    <li>
-      <a href="https://nicolakacha.coderbridge.io/2020/09/09/webpack/" target="_blank">webpack 打包工具入門</a>
-    </li>
-    <li>
-      <a href="https://awdr74100.github.io/2020-03-23-webpack-htmlwebpackplugin/" target="_blank">Webpack 前端打包工具 </a>
-    </li>
-    <li>
-      <a href="https://blog.csdn.net/qq_45487080/article/details/120471036" target="_blank">Webpack 前端打包工具 </a>
-    </li>
-    <li>
-      <a href="https://stackoverflow.com/questions/67926476/webpack-dev-server-config-contentbase-not-working-in-latest-version" target="_blank">自動化打包</a>
-    </li>
-    <li>
-      <a href="https://webpack.js.org/configuration/dev-server/#devserver" target="_blank">開發服務器</a>
-    </li>
-    <li>
-      <a href="https://blog.csdn.net/tongkongyu/article/details/120750746?ops_request_misc=&request_id=&biz_id=102&utm_term=webpack5%20image&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-1-120750746.142^v63^js_top,201^v3^control,213^v2^t3_control2&spm=1018.2226.3001.4187" target="_blank">使用Webpack5打包各类资源</a>
-    </li>
-  </ul>
-</body>
-
+      </xmp>
+    </pre>
+    <p>執行</p>
+    <pre class="prettyprint">
+      <xmp>
+        npm run start
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10244976" target="_blank">環境初始化建置</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10256238" target="_blank">WebPack安裝與打包教學</a>
+      </li>
+      <li>
+        <a href="https://nicolakacha.coderbridge.io/2020/09/09/webpack/" target="_blank">webpack 打包工具入門</a>
+      </li>
+      <li>
+        <a href="https://awdr74100.github.io/2020-03-23-webpack-htmlwebpackplugin/" target="_blank">Webpack 前端打包工具</a>
+      </li>
+      <li>
+        <a href="https://blog.csdn.net/qq_45487080/article/details/120471036" target="_blank">Webpack 前端打包工具</a>
+      </li>
+      <li>
+        <a href="https://stackoverflow.com/questions/67926476/webpack-dev-server-config-contentbase-not-working-in-latest-version" target="_blank">自動化打包</a>
+      </li>
+      <li>
+        <a href="https://webpack.js.org/configuration/dev-server/#devserver" target="_blank">開發服務器</a>
+      </li>
+      <li>
+        <a href="https://blog.csdn.net/tongkongyu/article/details/120750746?ops_request_misc=&request_id=&biz_id=102&utm_term=webpack5%20image&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-1-120750746.142^v63^js_top,201^v3^control,213^v2^t3_control2&spm=1018.2226.3001.4187" target="_blank">使用Webpack5打包各类资源</a>
+      </li>
+    </ul>
+  </body>
 </html>

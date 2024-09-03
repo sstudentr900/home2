@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>CURL get</h2>
-  <pre class="prettyprint">
-    <xmp>
-      $url = "http://localhost/path.php?get_var=test";
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>CURL get</h2>
+    <pre class="prettyprint">
+      <xmp>
+        $url = "http://localhost/path.php?get_var=test";
       echo file_get_contents($url);
-    </xmp>
-  </pre>
-  <h2>CURL post</h2>
-  <pre class="prettyprint">
-    <xmp>
-      //債務人資訊API POST https://test-km.sly-ha.com.tw/api/getDebtorInfo pid:F231062216,pid:95/03/06
+      </xmp>
+    </pre>
+    <h2>CURL post</h2>
+    <pre class="prettyprint">
+      <xmp>
+        //債務人資訊API POST https://test-km.sly-ha.com.tw/api/getDebtorInfo pid:F231062216,pid:95/03/06
       //連結
       $url = "https://test-km.sly-ha.com.tw/api/getDebtorInfo";
       $ch = curl_init();
@@ -46,17 +42,16 @@
       if($output['result']=='success'){
         return '找不到資料'
       }
-    </xmp>
-  </pre>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="https://www.ltsplus.com/php/php-curl-post-get" target="_blank">PHP 用 CURL 傳送 POST 及 GET 表單</a>
-    </li>
-    <li>
-      <a href="https://expect7.pixnet.net/blog/post/36428081" target="_blank">[程式][PHP] 如何使用PHP CURL，基礎教學。</a>
-    </li>
-  </ul>
-</body>
-
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.ltsplus.com/php/php-curl-post-get" target="_blank">PHP 用 CURL 傳送 POST 及 GET 表單</a>
+      </li>
+      <li>
+        <a href="https://expect7.pixnet.net/blog/post/36428081" target="_blank">[程式][PHP] 如何使用PHP CURL，基礎教學。</a>
+      </li>
+    </ul>
+  </body>
 </html>

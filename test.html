@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/customPrism.css">
-    <link rel="stylesheet" href="../css/prism.css">
-    <script src="../js/prism.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
     <script>
       // var isValid = function(s) {
@@ -48,284 +46,436 @@
   <body id="program">
     <div class="flex justify-center items-center self-stretch px-16 py-2.5 w-full bg-white border-b border-solid border-zinc-200 max-md:px-5 max-md:max-w-full">
       <div class="flex gap-5 justify-between w-full max-w-[1168px] max-md:flex-wrap max-md:max-w-full">
-          <div class="flex gap-5 justify-between max-md:flex-wrap">
-              <div class="flex gap-3 justify-center px-8 py-3 max-md:px-5">
-                  <img loading="lazy" src="~/Content/image/logo_hivebee2.svg" class="shrink-0" />
-              </div>
-              <div class="flex gap-5 my-auto text-xs font-semibold leading-6 text-right uppercase whitespace-nowrap text-slate-600">
-                  <div>About</div>
-                  <div>product</div>
-                  <div>Tutorial</div>
-                  <div>service</div>
-              </div>
+        <div class="flex gap-5 justify-between max-md:flex-wrap">
+          <div class="flex gap-3 justify-center px-8 py-3 max-md:px-5">
+            <img loading="lazy" src="~/Content/image/logo_hivebee2.svg" class="shrink-0">
           </div>
-          <div class="flex gap-5 my-auto font-semibold whitespace-nowrap">
-              <div class="my-auto text-xs leading-6 text-right text-yellow-500 uppercase"> login </div>
-              <div class="justify-center px-8 py-4 text-sm tracking-wide leading-5 text-white capitalize bg-yellow-500 rounded-[100px] max-md:px-5"> REGISTER </div>
+          <div class="flex gap-5 my-auto text-xs font-semibold leading-6 text-right uppercase whitespace-nowrap text-slate-600">
+            <div>About</div>
+            <div>product</div>
+            <div>Tutorial</div>
+            <div>service</div>
           </div>
+        </div>
+        <div class="flex gap-5 my-auto font-semibold whitespace-nowrap">
+          <div class="my-auto text-xs leading-6 text-right text-yellow-500 uppercase"> login</div>
+          <div class="justify-center px-8 py-4 text-sm tracking-wide leading-5 text-white capitalize bg-yellow-500 rounded-[100px] max-md:px-5"> REGISTER</div>
+        </div>
       </div>
     </div>
     <div class="flex justify-center items-center self-stretch flex-col px-16 py-20 w-full bg-slate-100 max-md:px-5 max-md:max-w-full">
-        <div class="mt-16 w-full max-w-[1100px] max-md:mt-10 max-md:max-w-full">
-            <div class="flex gap-12 max-md:flex-col max-md:gap-0">
-                <div class="flex flex-col w-[46%] max-md:ml-0 max-md:w-full">
-                    <div class="flex flex-col font-bold max-md:mt-10 max-md:max-w-full">
-                        <div class="justify-center self-start p-3 text-sm tracking-wider leading-4 text-center uppercase rounded-lg text-indigo-950 bg-gradient-to-r from-yellow-500 to-yellow-100"> HiveBee 嗨嗶創作者互動平台 </div>
-                        <div class="mt-4 text-6xl leading-[66px] text-zinc-800 max-md:max-w-full max-md:text-4xl"> 讓贊助互動 更有趣 </div>
-                        <div class="mt-4 text-xl leading-8 text-zinc-800 max-md:max-w-full">
-                            我們致力於打造獨一無二的活動體驗，讓品牌與受眾之間的互動更加生動有趣。無論是線上還是線下，我們都將為您帶來前所未有的贊助體驗，讓每一次贊助都充滿樂趣與驚喜！<br />
-                        </div>
-                        <div class="flex items-center justify-center self-start mt-10 text-sm leading-5 whitespace-nowrap rounded-[100px] text-yellow-500">
-                            <div class="mr-3">立即試用</div>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1.06663 0.209209C1.34558 -0.0697365 1.79784 -0.0697365 2.07678 0.209209L6.3625 4.49492C6.64144 4.77387 6.64144 5.22613 6.3625 5.50508L2.07678 9.79079C1.79784 10.0697 1.34558 10.0697 1.06663 9.79079C0.787685 9.51184 0.787685 9.05958 1.06663 8.78064L4.84727 5L1.06663 1.21936C0.787685 0.940416 0.787685 0.488155 1.06663 0.209209Z" fill="#eab308" />
-                            </svg>
-    
-                            @*<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/5556ac6140115868984f7612c7e8ae9a0d3a07f933100817bd74e6dafe41b45b?" class="shrink-0 w-7 aspect-square" />*@
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col rounded-3xl w-[54%] bg-gradient-to-r from-yellow-500 to-yellow-100 p-11 max-md:ml-0 min-h-80 max-md:w-full">
-                    @*<img loading="lazy" srcSet="..." class="grow w-full aspect-[1.45] max-md:mt-10 max-md:max-w-full" />*@
-                </div>
+      <div class="mt-16 w-full max-w-[1100px] max-md:mt-10 max-md:max-w-full">
+        <div class="flex gap-12 max-md:flex-col max-md:gap-0">
+          <div class="flex flex-col w-[46%] max-md:ml-0 max-md:w-full">
+            <div class="flex flex-col font-bold max-md:mt-10 max-md:max-w-full">
+              <div class="justify-center self-start p-3 text-sm tracking-wider leading-4 text-center uppercase rounded-lg text-indigo-950 bg-gradient-to-r from-yellow-500 to-yellow-100"> HiveBee 嗨嗶創作者互動平台</div>
+              <div class="mt-4 text-6xl leading-[66px] text-zinc-800 max-md:max-w-full max-md:text-4xl"> 讓贊助互動 更有趣</div>
+              <div class="mt-4 text-xl leading-8 text-zinc-800 max-md:max-w-full">
+                我們致力於打造獨一無二的活動體驗，讓品牌與受眾之間的互動更加生動有趣。無論是線上還是線下，我們都將為您帶來前所未有的贊助體驗，讓每一次贊助都充滿樂趣與驚喜！
+                <br>
+              </div>
+              <div class="flex items-center justify-center self-start mt-10 text-sm leading-5 whitespace-nowrap rounded-[100px] text-yellow-500">
+                <div class="mr-3">立即試用</div>
+                <svg
+                  width="7"
+                  height="10"
+                  viewBox="0 0 7 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M1.06663 0.209209C1.34558 -0.0697365 1.79784 -0.0697365 2.07678 0.209209L6.3625 4.49492C6.64144 4.77387 6.64144 5.22613 6.3625 5.50508L2.07678 9.79079C1.79784 10.0697 1.34558 10.0697 1.06663 9.79079C0.787685 9.51184 0.787685 9.05958 1.06663 8.78064L4.84727 5L1.06663 1.21936C0.787685 0.940416 0.787685 0.488155 1.06663 0.209209Z"
+                    fill="#eab308"
+                  />
+                </svg>
+                @*
+                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/5556ac6140115868984f7612c7e8ae9a0d3a07f933100817bd74e6dafe41b45b?" class="shrink-0 w-7 aspect-square">
+                *@
+              </div>
             </div>
+          </div>
+          <div class="flex flex-col rounded-3xl w-[54%] bg-gradient-to-r from-yellow-500 to-yellow-100 p-11 max-md:ml-0 min-h-80 max-md:w-full">
+            @*
+            <img loading="lazy" srcSet="..." class="grow w-full aspect-[1.45] max-md:mt-10 max-md:max-w-full">
+            *@
+          </div>
         </div>
-        <div class="mt-60 w-full max-w-[1280px] max-md:max-w-full">
-            <div class="px-12 whitespace-nowrap text-center text-yellow-500">
-                <div class="text-5xl font-bold tracking-tighter leading-11 mb-2"> 多元便利的支付方式 </div>
-                <div class="mt-2 text-xl leading-8"> 能滿足粉絲們的各種捐款方式 </div>
-            </div>
-            <div class="flex mt-16 gap-9">
-                <div class="w-1/3 bg-white rounded-3xl min-h-72 p-6 border border-slate-200 border-solid hover:shadow-2xl">
-                    <div class="text-xl leading-8 mb-2"> 點擊綁過的卡片就可以快速付款 </div>
-                    <div class="text-4xl font-bold tracking-tighter leading-9"> 快速綁卡 </div>
-                </div>
-                <div class="w-1/3 bg-white rounded-3xl min-h-72 p-6 border border-slate-200 border-solid hover:shadow-2xl">
-                    <div class="text-xl leading-8 mb-2"> 免去頻繁切換網頁操作 </div>
-                    <div class="text-4xl font-bold tracking-tighter leading-9"> 免跳轉信用卡 </div>
-                </div>
-                <div class="w-1/3 bg-white rounded-3xl min-h-72 p-6 border border-slate-200 border-solid hover:shadow-2xl">
-                    <div class="text-xl leading-8 mb-2"> 手機/臨櫃ATM皆可匯款 </div>
-                    <div class="text-4xl font-bold tracking-tighter leading-9"> ATM </div>
-                </div>
-            </div>
+      </div>
+      <div class="mt-60 w-full max-w-[1280px] max-md:max-w-full">
+        <div class="px-12 whitespace-nowrap text-center text-yellow-500">
+          <div class="text-5xl font-bold tracking-tighter leading-11 mb-2"> 多元便利的支付方式</div>
+          <div class="mt-2 text-xl leading-8"> 能滿足粉絲們的各種捐款方式</div>
         </div>
+        <div class="flex mt-16 gap-9">
+          <div class="w-1/3 bg-white rounded-3xl min-h-72 p-6 border border-slate-200 border-solid hover:shadow-2xl">
+            <div class="text-xl leading-8 mb-2"> 點擊綁過的卡片就可以快速付款</div>
+            <div class="text-4xl font-bold tracking-tighter leading-9"> 快速綁卡</div>
+          </div>
+          <div class="w-1/3 bg-white rounded-3xl min-h-72 p-6 border border-slate-200 border-solid hover:shadow-2xl">
+            <div class="text-xl leading-8 mb-2"> 免去頻繁切換網頁操作</div>
+            <div class="text-4xl font-bold tracking-tighter leading-9"> 免跳轉信用卡</div>
+          </div>
+          <div class="w-1/3 bg-white rounded-3xl min-h-72 p-6 border border-slate-200 border-solid hover:shadow-2xl">
+            <div class="text-xl leading-8 mb-2"> 手機/臨櫃ATM皆可匯款</div>
+            <div class="text-4xl font-bold tracking-tighter leading-9"> ATM</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="flex flex-col self-stretch py-20 w-full bg-yellow-500 max-md:mt-10 max-md:max-w-full">
-        <div class="flex flex-col self-center px-12 mt-2 text-center text-white whitespace-nowrap max-md:px-5 max-md:max-w-full">
-            <div class="text-5xl font-bold tracking-tighter leading-11 mb-2"> 持續推新的互動工具 </div>
-            <div class="self-center mt-2 text-xl leading-8"> 以更有趣的方式與粉絲同樂 </div>
-        </div>
-        <div class="px-5 mt-16 mb-2 w-full max-md:mt-10 max-md:max-w-full">
-            <div class="flex gap-5 max-md:flex-col max-md:gap-0">
-                <div class="flex flex-col w-[35%] max-md:ml-0 max-md:w-full">
-                    <div class="flex grow gap-5 text-white whitespace-nowrap max-md:mt-10">
-                        <div class="shrink-0 bg-white rounded-3xl border border-black border-solid h-[245px] w-[179px]"></div>
-                        <div class="flex flex-col self-start mt-2.5">
-                            <div class="text-xl font-bold tracking-tight leading-9"> 事件互動 </div>
-                            <div class="mt-6 text-lg tracking-normal leading-7"> Event<br /><br />功能介紹文字<br />功能介紹文字<br />功能介紹文字 </div>
-                        </div>
-                    </div>
+      <div class="flex flex-col self-center px-12 mt-2 text-center text-white whitespace-nowrap max-md:px-5 max-md:max-w-full">
+        <div class="text-5xl font-bold tracking-tighter leading-11 mb-2"> 持續推新的互動工具</div>
+        <div class="self-center mt-2 text-xl leading-8"> 以更有趣的方式與粉絲同樂</div>
+      </div>
+      <div class="px-5 mt-16 mb-2 w-full max-md:mt-10 max-md:max-w-full">
+        <div class="flex gap-5 max-md:flex-col max-md:gap-0">
+          <div class="flex flex-col w-[35%] max-md:ml-0 max-md:w-full">
+            <div class="flex grow gap-5 text-white whitespace-nowrap max-md:mt-10">
+              <div class="shrink-0 bg-white rounded-3xl border border-black border-solid h-[245px] w-[179px]"></div>
+              <div class="flex flex-col self-start mt-2.5">
+                <div class="text-xl font-bold tracking-tight leading-9"> 事件互動</div>
+                <div class="mt-6 text-lg tracking-normal leading-7">
+                  Event
+                  <br>
+                  <br>
+                  功能介紹文字
+                  <br>
+                  功能介紹文字
+                  <br>
+                  功能介紹文字
                 </div>
-                <div class="flex flex-col ml-5 w-[38%] max-md:ml-0 max-md:w-full">
-                    <div class="flex grow gap-5 text-white max-md:mt-10">
-                        <div class="shrink-0 bg-white rounded-3xl border border-black border-solid h-[245px] w-[220px]"></div>
-                        <div class="flex flex-col self-start mt-2.5">
-                            <div class="text-xl font-bold tracking-tight leading-9"> 倒數計時 </div>
-                            <div class="mt-6 text-lg tracking-normal leading-7"> Count down<br /><br />功能介紹文字<br />功能介紹文字<br />功能介紹文字 </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col ml-5 w-[27%] max-md:ml-0 max-md:w-full">
-                    <div class="flex grow gap-5 text-white whitespace-nowrap max-md:mt-10">
-                        <div class="shrink-0 bg-white rounded-3xl border border-black border-solid h-[245px] w-[220px]"></div>
-                        <div class="flex flex-col self-start mt-2.5">
-                            <div class="text-xl font-bold tracking-tight leading-9"> 目標設定 </div>
-                            <div class="mt-6 text-lg tracking-normal leading-7"> Target<br /><br />功能介紹文字<br />功能介紹文字<br />功能介紹文字 </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
+          <div class="flex flex-col ml-5 w-[38%] max-md:ml-0 max-md:w-full">
+            <div class="flex grow gap-5 text-white max-md:mt-10">
+              <div class="shrink-0 bg-white rounded-3xl border border-black border-solid h-[245px] w-[220px]"></div>
+              <div class="flex flex-col self-start mt-2.5">
+                <div class="text-xl font-bold tracking-tight leading-9"> 倒數計時</div>
+                <div class="mt-6 text-lg tracking-normal leading-7">
+                  Count down
+                  <br>
+                  <br>
+                  功能介紹文字
+                  <br>
+                  功能介紹文字
+                  <br>
+                  功能介紹文字
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col ml-5 w-[27%] max-md:ml-0 max-md:w-full">
+            <div class="flex grow gap-5 text-white whitespace-nowrap max-md:mt-10">
+              <div class="shrink-0 bg-white rounded-3xl border border-black border-solid h-[245px] w-[220px]"></div>
+              <div class="flex flex-col self-start mt-2.5">
+                <div class="text-xl font-bold tracking-tight leading-9"> 目標設定</div>
+                <div class="mt-6 text-lg tracking-normal leading-7">
+                  Target
+                  <br>
+                  <br>
+                  功能介紹文字
+                  <br>
+                  功能介紹文字
+                  <br>
+                  功能介紹文字
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <div class="flex flex-col px-8 mt-24 text-center whitespace-nowrap max-md:px-5 max-md:mt-10 max-md:max-w-full">
-        <div class="text-5xl font-bold tracking-tighter leading-11 text-zinc-800 mb-2"> 一起Fun的創作者夥伴 </div>
-        <div class="self-center mt-2 text-xl leading-8 text-zinc-800"> Show出更多有趣的內容吧！ </div>
+      <div class="text-5xl font-bold tracking-tighter leading-11 text-zinc-800 mb-2"> 一起Fun的創作者夥伴</div>
+      <div class="self-center mt-2 text-xl leading-8 text-zinc-800"> Show出更多有趣的內容吧！</div>
     </div>
     <div class="flex flex-wrap justify-center max-w-[1186px] w-full mx-auto mt-16">
-        <div class="w-1/5 mt-7">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto" style="box-shadow: 12px 0 rgb(203 213 225);" />
-            <div class="flex items-center justify-center">
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330" />
-                </svg>
-                <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
-            </div>
+      <div class="w-1/5 mt-7">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?"
+          class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto"
+          style="box-shadow: 12px 0 rgb(203 213 225);"
+        >
+        <div class="flex items-center justify-center">
+          <svg
+            width="24"
+            height="16"
+            viewBox="0 0 24 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330"/>
+          </svg>
+          <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
         </div>
-        <div class="w-1/5 mt-7">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto" style="box-shadow: 12px 0 rgb(203 213 225);" />
-            <div class="flex items-center justify-center">
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330" />
-                </svg>
-                <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
-            </div>
+      </div>
+      <div class="w-1/5 mt-7">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?"
+          class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto"
+          style="box-shadow: 12px 0 rgb(203 213 225);"
+        >
+        <div class="flex items-center justify-center">
+          <svg
+            width="24"
+            height="16"
+            viewBox="0 0 24 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330"/>
+          </svg>
+          <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
         </div>
-        <div class="w-1/5 mt-7">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto" style="box-shadow: 12px 0 rgb(203 213 225);" />
-            <div class="flex items-center justify-center">
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330" />
-                </svg>
-                <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
-            </div>
+      </div>
+      <div class="w-1/5 mt-7">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?"
+          class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto"
+          style="box-shadow: 12px 0 rgb(203 213 225);"
+        >
+        <div class="flex items-center justify-center">
+          <svg
+            width="24"
+            height="16"
+            viewBox="0 0 24 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330"/>
+          </svg>
+          <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
         </div>
-        <div class="w-1/5 mt-7">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto" style="box-shadow: 12px 0 rgb(203 213 225);" />
-            <div class="flex items-center justify-center">
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330" />
-                </svg>
-                <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
-            </div>
+      </div>
+      <div class="w-1/5 mt-7">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?"
+          class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto"
+          style="box-shadow: 12px 0 rgb(203 213 225);"
+        >
+        <div class="flex items-center justify-center">
+          <svg
+            width="24"
+            height="16"
+            viewBox="0 0 24 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330"/>
+          </svg>
+          <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
         </div>
-        <div class="w-1/5 mt-7">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto" style="box-shadow: 12px 0 rgb(203 213 225);" />
-            <div class="flex items-center justify-center">
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330" />
-                </svg>
-                <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
-            </div>
+      </div>
+      <div class="w-1/5 mt-7">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?"
+          class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto"
+          style="box-shadow: 12px 0 rgb(203 213 225);"
+        >
+        <div class="flex items-center justify-center">
+          <svg
+            width="24"
+            height="16"
+            viewBox="0 0 24 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330"/>
+          </svg>
+          <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
         </div>
-        <div class="w-1/5 mt-7">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto" style="box-shadow: 12px 0 rgb(203 213 225);" />
-            <div class="flex items-center justify-center">
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330" />
-                </svg>
-                <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
-            </div>
+      </div>
+      <div class="w-1/5 mt-7">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?"
+          class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto"
+          style="box-shadow: 12px 0 rgb(203 213 225);"
+        >
+        <div class="flex items-center justify-center">
+          <svg
+            width="24"
+            height="16"
+            viewBox="0 0 24 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330"/>
+          </svg>
+          <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
         </div>
-        <div class="w-1/5 mt-7">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto" style="box-shadow: 12px 0 rgb(203 213 225);" />
-            <div class="flex items-center justify-center">
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330" />
-                </svg>
-                <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
-            </div>
+      </div>
+      <div class="w-1/5 mt-7">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?"
+          class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto"
+          style="box-shadow: 12px 0 rgb(203 213 225);"
+        >
+        <div class="flex items-center justify-center">
+          <svg
+            width="24"
+            height="16"
+            viewBox="0 0 24 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330"/>
+          </svg>
+          <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
         </div>
-        <div class="w-1/5 mt-7">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto" style="box-shadow: 12px 0 rgb(203 213 225);" />
-            <div class="flex items-center justify-center">
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330" />
-                </svg>
-                <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
-            </div>
+      </div>
+      <div class="w-1/5 mt-7">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?"
+          class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto"
+          style="box-shadow: 12px 0 rgb(203 213 225);"
+        >
+        <div class="flex items-center justify-center">
+          <svg
+            width="24"
+            height="16"
+            viewBox="0 0 24 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330"/>
+          </svg>
+          <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
         </div>
-        <div class="w-1/5 mt-7">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto" style="box-shadow: 12px 0 rgb(203 213 225);" />
-            <div class="flex items-center justify-center">
-                <svg width="24" height="16" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330" />
-                </svg>
-                <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
-            </div>
+      </div>
+      <div class="w-1/5 mt-7">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?"
+          class="bg-black rounded-full border-solid border-4 border-slate-300 mb-4 overflow-hidden w-40 h-40 mx-auto"
+          style="box-shadow: 12px 0 rgb(203 213 225);"
+        >
+        <div class="flex items-center justify-center">
+          <svg
+            width="24"
+            height="16"
+            viewBox="0 0 24 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.6794 2.904C22.5532 2.45385 22.3074 2.04631 21.9681 1.7247C21.6192 1.3932 21.1916 1.15607 20.7256 1.03569C18.9817 0.576046 11.9951 0.576046 11.9951 0.576046C9.08245 0.542908 6.1705 0.68866 3.27572 1.01248C2.80975 1.14175 2.38294 1.38418 2.03327 1.7182C1.6897 2.04878 1.44084 2.45642 1.31084 2.90307C0.998549 4.58542 0.846818 6.29364 0.85769 8.0047C0.846547 9.71422 0.997906 11.4219 1.31084 13.1063C1.43805 13.5511 1.68598 13.9569 2.03049 14.2847C2.37499 14.6125 2.804 14.8493 3.27572 14.9746C5.04281 15.4334 11.9951 15.4334 11.9951 15.4334C14.9115 15.4665 17.8271 15.3208 20.7256 14.9969C21.1916 14.8765 21.6192 14.6394 21.9681 14.3079C22.3116 13.9801 22.5559 13.5725 22.6784 13.1286C22.9989 11.4469 23.1547 9.73798 23.1437 8.02606C23.1678 6.30689 23.0121 4.5899 22.6794 2.90307V2.904ZM9.77393 11.1842V4.82617L15.5869 8.00563L9.77393 11.1842Z" fill="#212330"/>
+          </svg>
+          <p class="ml-2 text-white bg-slate-900 rounded-[100px] py-1 px-3 text-base">NameABCDEFG</p>
         </div>
+      </div>
     </div>
     <div class="flex flex-col px-8 py-10 mx-auto mt-24 max-w-full font-bold bg-white rounded-2xl border border-black border-solid w-[640px] max-md:px-5 max-md:mt-10">
-        <div class="self-center text-3xl tracking-tight leading-10 text-center text-black"> 需要協助？ </div>
-        @*<div class="flex items-start px-5 pb-4 mt-10 border border-indigo-900 border-solid rounded-[48px] max-md:flex-wrap max-md:max-w-full">*@
+      <div class="self-center text-3xl tracking-tight leading-10 text-center text-black"> 需要協助？</div>
+      @*
+      <div class="flex items-start px-5 pb-4 mt-10 border border-indigo-900 border-solid rounded-[48px] max-md:flex-wrap max-md:max-w-full">
+        *@
         <div class="w-full px-5 pb-4 mt-10 border border-indigo-900 border-solid rounded-[48px]">
-            <div class="px-2 text-xs leading-4 text-black whitespace-nowrap bg-white relative inline-block" style="top:-10px;"> 您的大名 </div>
-            <input class="text-base leading-5 text-stone-300 w-full relative" type="text" style="top:-5px;" />
+          <div class="px-2 text-xs leading-4 text-black whitespace-nowrap bg-white relative inline-block" style="top:-10px;"> 您的大名</div>
+          <input class="text-base leading-5 text-stone-300 w-full relative" type="text" style="top:-5px;">
         </div>
-        @*<img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="shrink-0 mt-3 w-6 aspect-square" />*@
-        @*</div>*@
-        <div class="flex gap-2 mt-10 max-md:flex-wrap max-md:max-w-full">
-            <div class="flex flex-col flex-1 justify-center">
-                <div class="w-full px-5 pb-4 border border-indigo-900 border-solid rounded-[48px]">
-                    <div class="px-2 text-xs leading-4 text-black whitespace-nowrap bg-white relative inline-block" style="top:-10px;"> Email </div>
-                    <input class="text-base leading-5 text-stone-300 w-full relative" type="text" style="top:-5px;" />
-                </div>
-                @*<div class="flex flex-col items-start pr-20 pb-4 pl-4 border border-indigo-900 border-solid rounded-[48px] max-md:pr-5">
-                        <div class="justify-center px-1 text-xs leading-4 text-black whitespace-nowrap bg-white"> Email </div>
-                        <input class="mt-3.5 text-base leading-5 text-stone-300" type="text" />
-                    </div>*@
-            </div>
-            <div class="flex flex-col flex-1 justify-center">
-                @*<div class="flex flex-col items-start pr-20 pb-4 pl-4 border border-indigo-900 border-solid rounded-[48px] max-md:pr-5">
-                        <div class="justify-center px-1 text-xs leading-4 text-black whitespace-nowrap bg-white"> 聯絡電話 </div>
-                        <input class="mt-3.5 text-sm leading-5 text-stone-300" type="text" />
-                    </div>*@
-                <div class="w-full px-5 pb-4 border border-indigo-900 border-solid rounded-[48px]">
-                    <div class="px-2 text-xs leading-4 text-black whitespace-nowrap bg-white relative inline-block" style="top:-10px;"> 聯絡電話 </div>
-                    <input class="text-base leading-5 text-stone-300 w-full relative" type="text" style="top:-5px;" />
-                </div>
-            </div>
+        @*
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3670f2fd7f059f580fa604b1afcb145321226cf02851aa4dfdbb2812c291493b?" class="shrink-0 mt-3 w-6 aspect-square">
+        *@
+        @*
+      </div>
+      *@
+      <div class="flex gap-2 mt-10 max-md:flex-wrap max-md:max-w-full">
+        <div class="flex flex-col flex-1 justify-center">
+          <div class="w-full px-5 pb-4 border border-indigo-900 border-solid rounded-[48px]">
+            <div class="px-2 text-xs leading-4 text-black whitespace-nowrap bg-white relative inline-block" style="top:-10px;"> Email</div>
+            <input class="text-base leading-5 text-stone-300 w-full relative" type="text" style="top:-5px;">
+          </div>
+          @*
+          <div class="flex flex-col items-start pr-20 pb-4 pl-4 border border-indigo-900 border-solid rounded-[48px] max-md:pr-5">
+            <div class="justify-center px-1 text-xs leading-4 text-black whitespace-nowrap bg-white"> Email</div>
+            <input class="mt-3.5 text-base leading-5 text-stone-300" type="text">
+          </div>
+          *@
         </div>
-        <div class="w-full px-5 pb-4 border border-indigo-900 border-solid rounded-[48px] mt-10">
-            <div class="px-2 text-xs leading-4 text-black whitespace-nowrap bg-white relative inline-block" style="top:-10px;"> 您的寶貴意見 </div>
-            <input class="text-base leading-5 text-stone-300 w-full relative" type="text" style="top:-5px;" />
+        <div class="flex flex-col flex-1 justify-center">
+          @*
+          <div class="flex flex-col items-start pr-20 pb-4 pl-4 border border-indigo-900 border-solid rounded-[48px] max-md:pr-5">
+            <div class="justify-center px-1 text-xs leading-4 text-black whitespace-nowrap bg-white"> 聯絡電話</div>
+            <input class="mt-3.5 text-sm leading-5 text-stone-300" type="text">
+          </div>
+          *@
+          <div class="w-full px-5 pb-4 border border-indigo-900 border-solid rounded-[48px]">
+            <div class="px-2 text-xs leading-4 text-black whitespace-nowrap bg-white relative inline-block" style="top:-10px;"> 聯絡電話</div>
+            <input class="text-base leading-5 text-stone-300 w-full relative" type="text" style="top:-5px;">
+          </div>
         </div>
-        @*<div class="flex gap-2 justify-between items-start pr-2 pb-3 pl-2.5 mt-10 border border-indigo-900 border-solid rounded-[48px] max-md:flex-wrap max-md:max-w-full">
-                <div class="flex flex-col">
-                    <div class="justify-center px-1 text-xs leading-4 text-black whitespace-nowrap bg-white"> 您的寶貴意見 </div>
-                    <input class="mt-2.5 text-sm leading-5 text-stone-300" type="text" />
-                </div>
-                <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6bdb0b70d07f3e7dc26698136a6a86f9b14a1ee13a36089125cd977ea6186e4b?" class="shrink-0 mt-3 w-6 aspect-square" />
-            </div>*@
-        <div class="justify-center items-center text-center px-8 py-4 mt-36 text-lg tracking-wide leading-5 text-white whitespace-nowrap bg-black rounded-[100px] max-md:px-5 max-md:mt-10 max-md:max-w-full"> 送出 </div>
+      </div>
+      <div class="w-full px-5 pb-4 border border-indigo-900 border-solid rounded-[48px] mt-10">
+        <div class="px-2 text-xs leading-4 text-black whitespace-nowrap bg-white relative inline-block" style="top:-10px;"> 您的寶貴意見</div>
+        <input class="text-base leading-5 text-stone-300 w-full relative" type="text" style="top:-5px;">
+      </div>
+      @*
+      <div class="flex gap-2 justify-between items-start pr-2 pb-3 pl-2.5 mt-10 border border-indigo-900 border-solid rounded-[48px] max-md:flex-wrap max-md:max-w-full">
+        <div class="flex flex-col">
+          <div class="justify-center px-1 text-xs leading-4 text-black whitespace-nowrap bg-white"> 您的寶貴意見</div>
+          <input class="mt-2.5 text-sm leading-5 text-stone-300" type="text">
+        </div>
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6bdb0b70d07f3e7dc26698136a6a86f9b14a1ee13a36089125cd977ea6186e4b?" class="shrink-0 mt-3 w-6 aspect-square">
+      </div>
+      *@
+      <div class="justify-center items-center text-center px-8 py-4 mt-36 text-lg tracking-wide leading-5 text-white whitespace-nowrap bg-black rounded-[100px] max-md:px-5 max-md:mt-10 max-md:max-w-full"> 送出</div>
     </div>
     <div class="flex flex-col items-center self-stretch px-20 py-20 mt-24 w-full bg-yellow-500 max-md:px-5 max-md:mt-10 max-md:max-w-full">
-        <div class="flex gap-4 self-start ml-20 max-md:ml-2.5">
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff39381e0aaed00e3724ad80545a79be6f83cf947ca7845c12f70f6b0b735b16?" class="shrink-0 w-7 aspect-square" />
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/f8b5719ff193939037fad13a6a21bf05d96296d67229b287820ecc55d4928aa3?" class="shrink-0 w-7 aspect-square" />
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/5368af077d595fdaa6bbaab23dd53f1baeb76199d2e3df40a5921354d1c77c3d?" class="shrink-0 w-7 aspect-square" />
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/f01825003183f1bdf5d1dee18391cca6be0c86033f3e3b32b08dc102b40cf779?" class="shrink-0 w-7 aspect-square" />
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7a736171f1ee2ddad89b03be3db28d02d5d33455a97f6196433fbf5293ba1bf9?" class="shrink-0 w-7 aspect-square" />
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3089ecdce1e87e05f6d6a7bf3aece739ed3ba8b3bfbaa153ec5a714e0f94d1e7?" class="shrink-0 w-7 aspect-square" />
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9bd4c3cbdf1b97efde91e4093d7256644a4fed9ceb8c3c3e3d55dc5383c23baf?" class="shrink-0 w-7 aspect-square" />
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/b69dfe8f41f8f83bb78a2a63f10b92c51e2a55885577610f7a3c999f3aa35f0f?" class="shrink-0 w-7 aspect-square" />
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/2105ea8314746e49b99f7fd60aacc4c52276dbbad729964d4a13a01609dbb213?" class="shrink-0 w-7 aspect-square" />
-        </div>
-        <div class="flex gap-5 self-center mt-16 w-full text-sm leading-5 text-white max-w-[1126px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
-            <div>公司資訊</div>
-            <div>客服信箱</div>
-            <div>服務條款</div>
-            <div>隱私聲明</div>
-            <div class="flex-1">Copyright© 2024 HiveBee All Rights Reserved.</div>
-        </div>
+      <div class="flex gap-4 self-start ml-20 max-md:ml-2.5">
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ff39381e0aaed00e3724ad80545a79be6f83cf947ca7845c12f70f6b0b735b16?" class="shrink-0 w-7 aspect-square">
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/f8b5719ff193939037fad13a6a21bf05d96296d67229b287820ecc55d4928aa3?" class="shrink-0 w-7 aspect-square">
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/5368af077d595fdaa6bbaab23dd53f1baeb76199d2e3df40a5921354d1c77c3d?" class="shrink-0 w-7 aspect-square">
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/f01825003183f1bdf5d1dee18391cca6be0c86033f3e3b32b08dc102b40cf779?" class="shrink-0 w-7 aspect-square">
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/7a736171f1ee2ddad89b03be3db28d02d5d33455a97f6196433fbf5293ba1bf9?" class="shrink-0 w-7 aspect-square">
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/3089ecdce1e87e05f6d6a7bf3aece739ed3ba8b3bfbaa153ec5a714e0f94d1e7?" class="shrink-0 w-7 aspect-square">
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/9bd4c3cbdf1b97efde91e4093d7256644a4fed9ceb8c3c3e3d55dc5383c23baf?" class="shrink-0 w-7 aspect-square">
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/b69dfe8f41f8f83bb78a2a63f10b92c51e2a55885577610f7a3c999f3aa35f0f?" class="shrink-0 w-7 aspect-square">
+        <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/2105ea8314746e49b99f7fd60aacc4c52276dbbad729964d4a13a01609dbb213?" class="shrink-0 w-7 aspect-square">
+      </div>
+      <div class="flex gap-5 self-center mt-16 w-full text-sm leading-5 text-white max-w-[1126px] max-md:flex-wrap max-md:mt-10 max-md:max-w-full">
+        <div>公司資訊</div>
+        <div>客服信箱</div>
+        <div>服務條款</div>
+        <div>隱私聲明</div>
+        <div class="flex-1">Copyright© 2024 HiveBee All Rights Reserved.</div>
+      </div>
     </div>
     <div>
-        <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 2</div>
-                <div class="swiper-slide">Slide 3</div>
-                <div class="swiper-slide">Slide 4</div>
-                <div class="swiper-slide">Slide 5</div>
-                <div class="swiper-slide">Slide 6</div>
-                <div class="swiper-slide">Slide 7</div>
-                <div class="swiper-slide">Slide 8</div>
-                <div class="swiper-slide">Slide 9</div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">Slide 1</div>
+          <div class="swiper-slide">Slide 2</div>
+          <div class="swiper-slide">Slide 3</div>
+          <div class="swiper-slide">Slide 4</div>
+          <div class="swiper-slide">Slide 5</div>
+          <div class="swiper-slide">Slide 6</div>
+          <div class="swiper-slide">Slide 7</div>
+          <div class="swiper-slide">Slide 8</div>
+          <div class="swiper-slide">Slide 9</div>
         </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
     </div>
-    
     @section scripts {
-        <script type="module">
+    <script type="module">
             var swiper = new Swiper(".mySwiper", {
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
                 },
             });
-        </script>
+    </script>
     }
   </body>
 </html>

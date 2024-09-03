@@ -1,26 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/customPrism.css">
-  <link rel="stylesheet" href="../css/prism.css">
-  <script src="../js/prism.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-</head>
-
-<body id="program">
-  <h2>validator</h2>
-
-  <h3>1.自訂錯誤訊息</h3>
-  <p>1.controll</p>
-  <pre class="prettyprint">
-    <xmp>
-      public function fn(Request $request) {
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>validator</h2>
+    <h3>1.自訂錯誤訊息</h3>
+    <p>1.controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function fn(Request $request) {
         //接收post 資料
         $input = $request->all();
 
@@ -36,37 +30,37 @@
         $validator = Validator::make($input, $rules);
         if($validator->fails())
         {
-          <!-- 
+        <!-- 
             $validator 
             or
             $validator = 'name' => [
               '帳號重複',
             ]
           -->
-          return redirect('fn')->withErrors($validator)->withInput();
+        return redirect('fn')->withErrors($validator)->withInput();
         }
       }
-    </xmp>
-  </pre>
-  <p>2.blade</p>
-  <pre class="prettyprint">
-    <xmp>
-      <form method="post" action="{{ route('fn') }}">
-        {!! csrf_field() !!}
-        <input type="text" id="name">
-        @error($id)
+      </xmp>
+    </pre>
+    <p>2.blade</p>
+    <pre class="prettyprint">
+      <xmp>
+        <form method="post" action="{{ route('fn') }}">
+          {!! csrf_field() !!}
+          <input type="text" id="name">
+          @error($id)
           <div class="error">{!! $message !!}</div>
-        @enderror
-        <button type='submit'>發送留言</button>
-      </form>
-    </xmp>
-  </pre>
-  <hr>
-  <h3>2.自訂錯誤訊息</h3>
-  <p>1.controll</p>
-  <pre class="prettyprint">
-    <xmp>
-      public function fn(Request $request) {
+          @enderror
+          <button type="submit">發送留言</button>
+        </form>
+      </xmp>
+    </pre>
+    <hr>
+    <h3>2.自訂錯誤訊息</h3>
+    <p>1.controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function fn(Request $request) {
         //接收post 資料
         $input = $request->all();
 
@@ -90,53 +84,53 @@
           return redirect()->back()->with('message', $output); 
         }
       }
-    </xmp>
-  </pre>
-  <p>2.blade</p>
-  <pre class="prettyprint">
-    <xmp>
-      <form method="post" action="{{ route('fn') }}">
-        {!! csrf_field() !!}
-        <input type="text" id="name">
-        <button type='submit'>發送留言</button>
-      </form>
-      @if(session('message'))
+      </xmp>
+    </pre>
+    <p>2.blade</p>
+    <pre class="prettyprint">
+      <xmp>
+        <form method="post" action="{{ route('fn') }}">
+          {!! csrf_field() !!}
+          <input type="text" id="name">
+          <button type="submit">發送留言</button>
+        </form>
+        @if(session('message'))
         <p>{!! session('message') !!}</p>
-      @endif
-    </xmp>
-  </pre>
-  <hr>
-  <h3>內建錯誤訊息</h3>
-  <p>1.controll</p>
-  <pre class="prettyprint">
-    <xmp>
-      public function fn(Request $request) {
+        @endif
+      </xmp>
+    </pre>
+    <hr>
+    <h3>內建錯誤訊息</h3>
+    <p>1.controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function fn(Request $request) {
         $this->validate =[
           'name' => 'required|max:20',
         ];
         $input = $request->validate($this->validate);
       }
-    </xmp>
-  </pre>
-  <p>2.blade</p>
-  <pre class="prettyprint">
-    <xmp>
-      <form method="post" action="{{ route('fn') }}">
-        {!! csrf_field() !!}
-        <input type="text" id="name">
-        @error($id)
+      </xmp>
+    </pre>
+    <p>2.blade</p>
+    <pre class="prettyprint">
+      <xmp>
+        <form method="post" action="{{ route('fn') }}">
+          {!! csrf_field() !!}
+          <input type="text" id="name">
+          @error($id)
           <div class="error">{!! $message !!}</div>
-        @enderror
-        <button type='submit'>發送留言</button>
-      </form>
-    </xmp>
-  </pre>
-  <hr>
-  <h4>參考</h4>
-  <ul>
-    <li>
-      <a href="" target="_blank"></a>
-    </li>
-  </ul>
-</body>
+          @enderror
+          <button type="submit">發送留言</button>
+        </form>
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="" target="_blank"></a>
+      </li>
+    </ul>
+  </body>
 </html>
