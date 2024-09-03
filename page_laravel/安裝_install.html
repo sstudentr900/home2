@@ -10,6 +10,41 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
+    <h2>1.composer安裝</h2>
+    <h2>Laravel安裝</h2>
+    <pre class="prettyprint">
+      <xmp>
+        composer create-project laravel/laravel:^9.0 example-app
+        cd example-app
+        php artisan serve
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://laravel.dev.org.tw/docs/11.x/releases" target="_blank">官網</a>
+      </li>
+    </ul>
+    <h3>安裝錯誤 PHP error: "The zip extension and unzip command are both missing, skipping."</h3>
+    <p>對於 Windows，如果您使用的是 XAMPP 等語言環境開發環境，只需找到 php.ini 檔案（在我的例子中為 C:\xampp\php），打開它並刪除以下行中的分號。</p>
+    <pre class="prettyprint">
+      <xmp>
+        ;extension=zip
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/questions/41274829/php-error-the-zip-extension-and-unzip-command-are-both-missing-skipping" target="_blank">PHP error: "The zip extension and unzip command are both missing, skipping."</a>
+      </li>
+    </ul>
+    <h2>啟動專案serve</h2>
+    <pre class="prettyprint">
+      <xmp>
+        cd example-app
+        php artisan serve
+      </xmp>
+    </pre>
     <h2>Laravel安裝</h2>
     <!-- <p>cmd執行下列命令來安裝Laravel</p>
   <pre class="prettyprint">
