@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../css/customPrism.css"> -->
+    <!--
+    -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h3>安裝錯誤 PHP error: "The zip extension and unzip command are both missing, skipping."</h3>
+    <p>對於 Windows，如果您使用的是 XAMPP 等語言環境開發環境，只需找到 php.ini 檔案（在我的例子中為 C:\xampp\php），打開它並刪除以下行中的分號。</p>
+    <pre class="prettyprint">
+      <xmp>
+        ;extension=zip
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/questions/41274829/php-error-the-zip-extension-and-unzip-command-are-both-missing-skipping" target="_blank">PHP error: "The zip extension and unzip command are both missing, skipping."</a>
+      </li>
+    </ul>
+  </body>
+</html>

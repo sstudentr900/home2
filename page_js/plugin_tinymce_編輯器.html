@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>tinymce5.6編輯器 設定</h2>
+    <pre class="prettyprint">
+      <xmp>
+        //html
+        &lt;textarea id="tinydemo">{{ editorData }}&lt;/textarea>
+
+        //js 
+        tinymce.init({
+            selector: '#tinydemo',
+            min_height: 300,
+            language: 'zh_TW',//語系
+            plugins: 'code print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template  codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists wordcount imagetools textpattern help emoticons autosave autoresize',
+            toolbar: 'undo redo | bold italic underline strikethrough forecolor backcolor lineheight | fontselect fontsizeselect | bullist numlist outdent indent link image | code',//工具栏
+            //toolbar: false, //隐藏工具栏
+            menubar: false, //隐藏菜单栏
+            //image 上傳圖片
+            images_upload_handler: function (blobInfo, succFun, failFun) {
+                const file = blobInfo.blob();//转化为易于理解的file对象
+                console.log('images_upload_handler', file.size,imageMaxSize, file.size > imageMaxSize)
+                if (file.size > imageMaxSize) {
+                    //window.dashboardVue.showAlert('圖片不得大於20MB', false);
+                    failFun('圖片不得大於20MB');
+                } else {
+                    request('/Dashboard/Subscribe/UploadContentImage', { ID: '@(ViewBag.Key ?? ViewBag.NewKey)', File: file }, true).then(json => {
+                        if (!json.Success) {
+                            //window.dashboardVue.showAlert('圖片上傳失敗', false);
+                            failFun('圖片上傳失敗');
+                        } else {
+                            succFun(json.Message);
+                        }
+                    })
+                }
+            }
+        });
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="http://tinymce.ax-z.cn/general/localize-your-language.php" target="_blank">tinymce中文文档</a>
+      </li>
+      <li>
+        <a href="https://www.tiny.cloud/get-tiny/self-hosted/" target="_blank">官網下載</a>
+      </li>
+      <li>
+        <a href="https://www.cnblogs.com/architectforest/p/17513889.html" target="_blank">tinymce:安装中文语言包</a>
+      </li>
+      <li>
+        <a href="https://www.tiny.cloud/get-tiny/language-packages/" target="_blank">官網中文语言包下載</a>
+      </li>
+    </ul>
+  </body>
+</html>

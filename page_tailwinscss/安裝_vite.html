@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>tailwind安裝</h2>
+    <h3>安裝 Tailwind CSS 和它的平行依賴套件 PostCSS 及 Auto Prefixer。</h3>
+    <p></p>
+    <pre class="prettyprint">
+      <xmp>
+        npm install -D tailwindcss postcss autoprefixer
+      </xmp>
+    </pre>
+    <h3>產生 tailwind.config.js和postcss.config.js 設定檔</h3>
+    <p>-p 產生 postcss.config.js 設定檔</p>
+    <pre class="prettyprint">
+      <xmp>
+        npx tailwindcss init -p
+      </xmp>
+    </pre>
+    <h3>tailwind.config</h3>
+    <p>content:設定要編譯的檔案範圍</p>
+    <p>theme:客製化的設定</p>
+    <pre class="prettyprint">
+      <xmp>
+        //postcss.config.js 
+        module.exports = {
+          content: [
+          "./index.html",
+          "./src/**/*.{js,ts,jsx,tsx,vue,css}",
+          ],
+          theme: {
+            extend: {},
+          },
+          plugins: [],
+        }
+      </xmp>
+    </pre>
+    <h3>postcss.config：會放 postcss 插件的設定。</h3>
+    <h3>開一個新的檔案，命名為 index.css。放入以下語法來載入 Tailwind CSS</h3>
+    <pre class="prettyprint">
+      <xmp>
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+      </xmp>
+    </pre>
+    <h3>main.js 引入 Tailwind CSS</h3>
+    <pre class="prettyprint">
+      <xmp>
+        import './index.css'
+      </xmp>
+    </pre>
+    <h3>App.vue 使用</h3>
+    <p></p>
+    <pre class="prettyprint">
+      <xmp>
+        <h1 className="text-3xl font-bold underline bg-sky-700 bg-green-800">
+          Hello world!
+        </h1>
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.tailwindcss.cn/docs/guides/vite" target="_blank">官網</a>
+      </li>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10316208" target="_blank">設定環境</a>
+      </li>
+    </ul>
+    <!-- <h3>編譯打包檔案</h3>
+    <p>設定打包指令到 package.json 中，以下這一行指令加到 script 段落。</p>
+    <pre class="prettyprint">
+      <xmp>
+        'scripts':{
+          //進行編譯
+          "build": "tailwind build ./assets/sass/index.scss -o ./style.css"
+          //存擋後自動編譯
+          "watch": "tailwindcss -i ./src/tailwind.css -o ./dist/style.css --watch"
+        }
+      </xmp>
+    </pre>
+    <h3>執行指令</h3>
+    <p></p>
+    <pre class="prettyprint">
+      <xmp>
+        npm run build
+        npm run watch
+      </xmp>
+    </pre>
+  </body> -->
+  </html>
