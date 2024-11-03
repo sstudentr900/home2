@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <style>
+      *{margin:0;padding:0;font-family:monospace;}
+      .container{  
+        background:#353531;
+        width:100%;
+        max-width:600px;
+        color:#fff;
+        padding:3%;
+        /* max-width:unset; */
+      }
+      .container>div{
+        display:flex;
+        flex-wrap:nowrap;
+        width:100%
+      }
+      .container>div>div{
+        padding: 2vw;
+        font-size:16px
+      }
+      .main{
+        background:#EC4E20;
+        max-width:700px;
+        margin:auto
+      }
+      .sidebar{background:#FF9505}
+      /* 要黏住的區塊 */
+      .sidebar-sticky{
+        position:sticky;
+        top:20px;
+        background:#016FB9;
+        font-size:16px;
+        padding:5%
+      }
+    </style>
+    <div class="container">
+      <div class="row">
+        <div class="col-7 main">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <br>
+          Sed nisi lacus sed viverra tellus in hac habitasse. Ullamcorper morbi tincidunt ornare massa.
+          <br>
+          Ac felis donec et odio pellentesque. Nisi vitae suscipit tellus mauris a diam maecenas sed. Sem viverra aliquet eget sit amet tellus cras adipiscing. Egestas erat imperdiet sed euismod nisi porta.
+          <br>
+          Volutpat lacus laoreet non curabitur gravida arcu ac tortor dignissim. Congue nisi vitae suscipit tellus mauris.
+          <br>
+          Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. Interdum varius sit amet mattis.
+          <br>
+          Tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisi morbi tempus iaculis urna id. Sagittis nisl rhoncus mattis rhoncus urna.
+          <br>
+          Sed vulputate mi sit amet mauris commodo quis imperdiet massa. Felis eget nunc lobortis mattis aliquam.
+          <br>
+          Egestas maecenas pharetra convallis posuere morbi. Orci porta non pulvinar neque laoreet suspendisse interdum consectetur.
+          <br>
+          Quis commodo odio aenean sed adipiscing. Rhoncus dolor purus non enim praesent. Fringilla phasellus faucibus scelerisque eleifend.
+          <br>
+          Nunc mi ipsum faucibus vitae aliquet. Porttitor rhoncus dolor purus non enim praesent.
+          <br>
+          Eu mi bibendum neque egestas congue quisque egestas diam. In ornare quam viverra orci sagittis eu.
+          <br>
+          Semper quis lectus nulla at volutpat diam. Erat velit scelerisque in dictum non consectetur.
+          <br>
+          Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus. At urna condimentum mattis pellentesque id nibh.
+        </div>
+        <div class="col-5 sidebar">
+          <div class="sidebar-sticky">
+            This is the block you want to stick on screen. Remember to set the "position" and "top" property.
+          </div>
+        </div>
+      </div>
+    </div>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://search4labs.com/2653/sticky-sidebar-css/">固定側邊欄</a>
+      </li>
+    </ul>
+  </body>
+</html>

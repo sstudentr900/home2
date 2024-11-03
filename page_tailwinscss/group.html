@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>group</h2>
+    <p>group 目標被點擊(父元素)</p>
+    <p>group-active 父元素被點擊執行該css(子元素)</p>
+    <pre class="prettyprint">
+      <xmp>
+        <div class="flex items-center justify-center h-screen">
+          <div class="group bg-gray-300 p-4 rounded cursor-pointer active:bg-gray-400">
+            <p class="text-black group-active:text-red-500 transition duration-200">當父元素被按下時，我的顏色會改變。</p>
+            <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded transition duration-300 group-active:bg-blue-700">點擊我</button>
+          </div>
+        </div>
+      </xmp>
+    </pre>
+    <!-- <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.hyperui.dev/blog/text-shadow-with-tailwindcss" target="_blank">如何為 Tailwind CSS 添加文字陰影支持</a>
+      </li>
+    </ul> -->
+  </body>
+</html>
