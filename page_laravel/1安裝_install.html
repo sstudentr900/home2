@@ -9,6 +9,12 @@
   </head>
   <body id="program">
     <h2>1.composer安裝</h2>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10190770" target="_blank">composer安裝教學官網</a>
+      </li>
+    </ul>
     <h2>Laravel安裝</h2>
     <pre class="prettyprint">
       <xmp>
@@ -36,6 +42,14 @@
         <a href="https://stackoverflow.com/questions/41274829/php-error-the-zip-extension-and-unzip-command-are-both-missing-skipping" target="_blank">PHP error: "The zip extension and unzip command are both missing, skipping."</a>
       </li>
     </ul>
+    <h2>utf8mb4_0900_ai_ci</h2>
+    <p>增加 DB_COLLATION=utf8mb4_unicode_ci</p>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.youtube.com/watch?v=PgiFGs2NIXk" target="_blank">PHP error: "The zip extension and unzip command are both missing, skipping."</a>
+      </li>
+    </ul>
     <h2>啟動專案serve</h2>
     <pre class="prettyprint">
       <xmp>
@@ -53,5 +67,54 @@
         <a href="https://dotblogs.com.tw/SmallFish/2020/11/26/185608" target="_blank"> 在Linux架設Laravel環境</a>
       </li>
     </ul>
+    <br>
+    <hr>
+    <h2>初识 Laravel 11</h2>
+    <p>目录结构</p>
+    <pre class="prettyprint">
+      <xmp>
+        |---- app/  应用目录
+        |---- bootstrap/ 启动目录
+        |---- config/ 配置目录
+        |---- database/ 数据迁移目录
+        |---- public/ 入口
+        |---- resources/ 资源目录，主要是视图，静态文件
+        |---- routes/ 路由
+        |---- storage/ 存储目录
+        |---- tests/ 测试
+        |---- vendor/ 依赖目录
+        |---- vite.config.js vite 配置
+        |---- artisan
+        |---- composer.json PHP 依赖
+        |---- package.json 前端依赖
+        |---- phpunit.xml
+        |---- README.md
+      </xmp>
+    </pre>
+    <p>app 目录</p>
+    <pre class="prettyprint">
+      <xmp>
+        ├─app 
+        │  ├─Http
+        │  │  └─Controllers
+        │  │          Controller.php
+        │  │         
+        │  ├─Models 
+        │  │      User.php 
+        │  └─Providers 
+        │          AppServiceProvider.php
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://learnku.com/articles/85604" target="_blank">初识 Laravel 11</a>
+      </li>
+      <li>
+        <a href="https://www.ziruchu.com/lessons/laravel11-application-install" target="_blank">环境准备与 Laravel 项目安装</a>
+      </li>
+    </ul>
+    <p></p>
   </body>
 </html>
