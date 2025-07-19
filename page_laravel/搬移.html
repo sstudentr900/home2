@@ -63,11 +63,18 @@
     <h2>no application encryption key has been specified (未指定密鑰)</h2>
     <p>將.env.example 複製一份從新命名.env</p>
     <p>執行命令: php artisan key:generate</p>
-    <pre class="prettyprint">
+    <p>清楚命令: php artisan config:cache</p>
+    <!-- <pre class="prettyprint">
       <xmp>
         php artisan serve
       </xmp>
-    </pre>
+    </pre> -->
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/questions/44839648/no-application-encryption-key-has-been-specified" target="_blank">https://stackoverflow.com/questions/44839648/no-application-encryption-key-has-been-specified</a>
+      </li>
+    </ul>
     <hr>
     <h2>config 語系修改</h2>
     <p>config/app</p>
@@ -100,7 +107,7 @@
       sudo chmod -R 777 storage
     </pre>
     <hr>
-    <h3>藍新</h3>
+    <h2>藍新</h2>
     <p>不驗證Csrf 讓外部可以連進來</p>
     <p>app/Http/Middleware/VerifyCsrfToken</p>
     <pre>
