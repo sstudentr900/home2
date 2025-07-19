@@ -30,12 +30,15 @@
       <meta name="csrf-token" content="{{ csrf_token() }}">
     </xmp>
   </pre>
-
-  <h3>isset</h3>
+  <hr>
+  <h3>印出變數{{}}</h3>
   <pre class="prettyprint">
     <xmp>
       //1.
       {{isset($variable) ? $variable : "Default Value"}}
+
+      //
+      {{$variable ?? 'Default'}}
 
       //2.
       @isset ($variable)
@@ -45,8 +48,8 @@
       @endisset
     </xmp>
   </pre>
-
-  <h3>empty</h3>
+  <hr>
+  <h3>空值 empty</h3>
   <pre class="prettyprint">
     <xmp>
       @empty($variable)
@@ -56,7 +59,7 @@
       @endempty
     </xmp>
   </pre>
-
+  <hr>
   <h3>迴圈</h3>
   <pre class="prettyprint">
     <xmp>
@@ -89,10 +92,11 @@
       @endforeach
     </xmp>
   </pre>
-
+  <hr>
   <h3>判斷式</h3>
   <pre class="prettyprint">
     <xmp>
+      //if
       @if (judge1?)
       // Something when true
       @elseif (judge2?)
@@ -102,7 +106,7 @@
       @endif
     </xmp>
   </pre>
-
+  <hr>
   <h3>不轉譯輸出</h3>
   <pre class="prettyprint">
     <xmp>
@@ -113,7 +117,73 @@
   <h4>參考</h4>
   <ul>
     <li>
-      <a href="https://ithelp.ithome.com.tw/articles/10222061" target="_blank">路由&頁面模板</a>
+      <a href="https://ithelp.ithome.com.tw/articles/10221606" target="_blank">路由&頁面模板</a>
+    </li>
+  </ul>
+  <hr>
+  <h2>頁面模板</h2>
+  <p>@extends 繼承</p>
+  <p>@yield和@section/@show都是允許子頁面替換填入的內容。</p>
+  <pre class="prettyprint">
+    <xmp>
+      //繼承base模板
+      @extends("base") 
+      //title位置
+      @section('title', ABC)
+      //body位置
+      @section('body')
+          123
+      @endsection
+
+
+      //base模板
+      <body>
+        @yield('titile', '預設文字')
+        @section('body')'預設文字'@endsection
+      </body>
+    </xmp>
+  </pre>
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10222554" target="_blank">頁面模板</a>
+    </li>
+  </ul>
+  <hr>
+  <h2>身份验证</h2>
+  <p></p>
+  <pre class="prettyprint">
+    <xmp>
+      //典型方式：
+      @if(auth()->user())
+        // 用户已通过身份验证。
+      @endif
+
+      //auth 写法
+      @auth
+        // 用户已通过身份验证。
+      @endauth
+
+      //@guest 指令：
+      @guest
+        // 用户未通过身份验证。
+      @endguest
+    </xmp>
+  </pre>
+  <h2>include</h2>
+  <p></p>
+  <pre class="prettyprint">
+    <xmp>
+      // 使用 include，旧方法
+      @include("components.post", ["title" => $post->title])
+    </xmp>
+  </pre>
+  <hr>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://www.ziruchu.com/lessons/laravel-view" target="_blank">视图</a>
     </li>
   </ul>
 </body>

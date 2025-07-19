@@ -14,15 +14,18 @@
         use Illuminate\Support\Facades\Log;
       </xmp>
     </pre>
+    <hr>
     <h2>使用</h2>
     <p>level嚴重程度的級別,從低到高為:debug、info、notice、warning、error、critical、alert、emergency.</p>
     <pre class="prettyprint">
       <xmp>
         Log::info("Store New Blog Post: id = $post->id");
-      //取得目前使用過的SQL語法
-      Log::notice(print_r(DB::getQueryLog(), true));
+
+        //取得目前使用過的SQL語法
+        Log::notice(print_r(DB::getQueryLog(), true));
       </xmp>
     </pre>
+    <hr>
     <h2>錯誤訊息顯示</h2>
     <p>config/app.php設定檔的debug選項決定了是否向使用者顯示錯誤資訊</p>
     <pre class="prettyprint">
@@ -30,27 +33,34 @@
         'debug' => (bool) env('APP_DEBUG', true)
       </xmp>
     </pre>
+    <hr>
     <h2>設定Logging</h2>
     <p>config/logging.php</p>
     <pre class="prettyprint">
       <xmp>
         'default' => env('LOG_CHANNEL', 'stack'),
-      //stack 都寫在同一個檔案中
-      //daily 每天不同的Log檔案
+        //stack 都寫在同一個檔案中
+        //daily 每天不同的Log檔案
 
-      'daily' => [
-      'driver' => 'daily',
-      'path' => storage_path('logs/laravel.log'),//存的位置
-      'level' => 'debug', //記錄大於或等於指定嚴重級別的所有級別的錯誤
-      'days' => 14, //預設保留14天份的日誌檔
-      ],
+        'daily' => [
+          'driver' => 'daily',
+          'path' => storage_path('logs/laravel.log'),//存的位置
+          'level' => 'debug', //記錄大於或等於指定嚴重級別的所有級別的錯誤
+          'days' => 14, //預設保留14天份的日誌檔
+        ],
       </xmp>
     </pre>
-    <h2>log位置</h2>
-    <p>storage/logs/laravel.log</p>
-    <img src="https://i.imgur.com/bXfnpQD.png" alt="">
-    <br>
-    <img src="https://i.imgur.com/xEJwA5a.png" alt="">
+    <hr>
+    <h2> SQL 形式</h2>
+    <p></p>
+    <pre class="prettyprint">
+      <xmp>
+        $invoices = Invoice::where('client', 'James pay')->toSql();
+
+        dd($invoices);
+        // select * from `invoices` where `client` = ?
+      </xmp>
+    </pre>
     <h4>參考</h4>
     <ul>
       <li>
@@ -61,6 +71,9 @@
       </li>
       <li>
         <a href="https://ithelp.ithome.com.tw/articles/10253415" target="_blank">Laravel記錄Log</a>
+      </li>
+      <li>
+        <a href="https://www.ziruchu.com/lessons/laravel-log-debug" target="_blank">日志与调式</a>
       </li>
     </ul>
   </body>

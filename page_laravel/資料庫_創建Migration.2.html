@@ -63,7 +63,6 @@
       </xmp>
     </pre>
     <h2>刪除所有資料表</h2>
-    +建置資料表
     <pre class="prettyprint">
       <xmp>
         php artisan migrate:refresh
@@ -79,37 +78,37 @@
     <pre class="prettyprint">
       <xmp>
         use Illuminate\Support\Facades\Schema;
-      use Illuminate\Database\Schema\Blueprint;
-      use Illuminate\Database\Migrations\Migration;
+        use Illuminate\Database\Schema\Blueprint;
+        use Illuminate\Database\Migrations\Migration;
 
-      class CreateBlogPostTable extends Migration
-      {
-        public function up()
+        class CreateBlogPostTable extends Migration
         {
-          Schema::create('blog_post', function (Blueprint $table) {
-            $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_general_ci';
-            $table->increments('id');                            //int(10) 主鍵
-            $table->integer('user_id');                          //int(10)
-            $table->id();                                        //bigint(20) 主鍵 
-            $table->bigIncrements('id');                         //bigint(20) 主鍵
-            $table->unsignedBigInteger('user_id');               //bigint(20) //unsigned 既為非負數，用此類型可以增加資料長度!
-            $table->string('name', 50)->nullable();              //nullable->  允許為空值 ,string->varchar
-            $table->string('account', 50)->unique();             //unique->  不可重複的索引
-            $table->integer('type')->default(0);                 //default-> 預設值是0
-            $table->string("title")->comment('標題');            //comment->  sql 標題 
-            $table->enum('release', array('y', 'n'))->default('y');   //enum-> 選擇
-            $table->mediumText('tinymce');                       //mediumText-> ??
-            $table->char('remember_token', 100);                 //char-> ??
-            $table->timestamps();                                //創建及修改日期
-          });
-        }
+          public function up()
+          {
+            Schema::create('blog_post', function (Blueprint $table) {
+              $table->charset = 'utf8mb4';
+              $table->collation = 'utf8mb4_general_ci';
+              $table->increments('id');                            //int(10) 主鍵
+              $table->integer('user_id');                          //int(10)
+              $table->id();                                        //bigint(20) 主鍵 
+              $table->bigIncrements('id');                         //bigint(20) 主鍵
+              $table->unsignedBigInteger('user_id');               //bigint(20) //unsigned 既為非負數，用此類型可以增加資料長度!
+              $table->string('name', 50)->nullable();              //nullable->  允許為空值 ,string->varchar
+              $table->string('account', 50)->unique();             //unique->  不可重複的索引
+              $table->integer('type')->default(0);                 //default-> 預設值是0
+              $table->string("title")->comment('標題');            //comment->  sql 標題 
+              $table->enum('release', array('y', 'n'))->default('y');   //enum-> 選擇
+              $table->mediumText('tinymce');                       //mediumText-> ??
+              $table->char('remember_token', 100);                 //char-> ??
+              $table->timestamps();                                //創建及修改日期
+            });
+          }
 
-        public function down()
-        {
-            Schema::dropIfExists('blog_post');
+          public function down()
+          {
+              Schema::dropIfExists('blog_post');
+          }
         }
-      }
       </xmp>
     </pre>
     <h2>清空資料表</h2>
@@ -128,12 +127,12 @@
     <pre class="prettyprint">
       <xmp>
         use Illuminate\Support\Facades\Schema;
-      use Illuminate\Database\Schema\Blueprint;
-      use Illuminate\Database\Migrations\Migration;
+        use Illuminate\Database\Schema\Blueprint;
+        use Illuminate\Database\Migrations\Migration;
 
-      Schema::table('users', function (Blueprint $table) {
-          $table->string('name', 50)->change();
-      });
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('name', 50)->change();
+        });
       </xmp>
     </pre>
     <hr>

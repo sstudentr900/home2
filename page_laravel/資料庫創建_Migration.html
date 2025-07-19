@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+ 
+  
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+</head>
+
+<body id="program">
+  <h2>使用Artisan建立資料表</h2>
+  <p>建立資料表</p>
+  <pre class="prettyprint">
+    <xmp>
+      artisan make:migration create_blog_post_table
+    </xmp>
+  </pre>
+  <hr>
+  <h2>建立資料表內容id,name</h2>
+  <p>生成位置 database/migrations</p>
+  <pre class="prettyprint">
+    <xmp>
+      <?php
+        use Illuminate\Database\Migrations\Migration;
+        use Illuminate\Database\Schema\Blueprint;
+        use Illuminate\Support\Facades\Schema;
+
+        return new class extends Migration
+        {
+            public function up(): void
+            {
+                Schema::create('categories', function (Blueprint $table) {
+                    $table->id();
+                    $table->string('name')->comment('分类名');
+                    $table->timestamps();
+                });
+            }
+
+            public function down(): void
+            {
+                Schema::dropIfExists('categories');
+            }
+        };
+    </xmp>
+  </pre>
+  <hr>
+  <h2>命令</h2>
+  <pre class="prettyprint">
+    <xmp>
+      //生成数据表
+      php artisan migrate
+
+      //查看表结构
+      php artisan db:table
+
+      //清除資料庫內的資料
+      artisan migrate:refresh
+
+      //迁移状态
+      php artisan migrate:status
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10223878" target="_blank">建立資料表</a>
+    </li>
+    <li>
+      <a href="https://www.ziruchu.com/lessons/laravel11-application-database" target="_blank">数据库驱动与建表</a>
+    </li>
+    <li>
+      <a href="https://www.ziruchu.com/lessons/laravel-migration" target="_blank">迁移文件</a>
+    </li>
+  </ul>
+  <hr>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/customPrism.css">
+ 
+  
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+</head>
+
+<body id="program">
+  <h2>创建controller</h2>
+  <p></p>
+  <pre class="prettyprint">
+    <xmp>
+      //檔案位置: app/Http/Controllers/Blog/PostController
+      php artisan make:controller Blog/PostController
+
+      //檔案位置: app/Http/Controllers/PostController
+      php artisan make:controller PostController
+    </xmp>
+  </pre>
+  <p>檔案位置 namespace App\Http\Controllers\Blog</p>
+  <pre class="prettyprint">
+    <xmp>
+      <?php
+      namespace App\Http\Controllers\Blog;
+
+      use Illuminate\Http\Request;
+      use App\Http\Controllers\Controller;
+
+      class ExamplePostController extends Controller
+      {
+          //
+      }
+    </xmp>
+  </pre>
+  <p>--resource 這個參數表示他會在內容中幫你生成CRUD Create,Read,edit,update</p>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan make:controller Blog/PostController --resource
+    </xmp>
+  </pre>
+
+  <p>--api 這個參數表示他會在內容中幫你生成restful api</p>
+  <pre class="prettyprint">
+    <xmp>
+      php artisan make:controller Blog/PostController --api
+    </xmp>
+  </pre>
+  <h4>參考</h4>
+  <ul>
+    <li>
+      <a href="https://ithelp.ithome.com.tw/articles/10225876" target="_blank">控制器(Controller)</a>
+    </li>
+    <li>
+      <a href="https://www.ziruchu.com/lessons/laravel11-application-mvc" target="_blank">MVC 开发模式</a>
+    </li>
+  </ul>
+</body>
+</html>
