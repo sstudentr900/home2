@@ -8,149 +8,166 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
-    <h2>路由連結</h2>
-    <p></p>
+    <h2>路由</h2>
+    <h3>修改 Manager 模型</h3>
+    <p>app/Models/Manager.php</p>
+    <p>Authenticatable 必須改這個去繼承</p>
     <pre class="prettyprint">
       <xmp>
-        <a class="nav-link" href="{{ route('home') }}">主页</a>
+        use Illuminate\Foundation\Auth\User as Authenticatable;
+        class Manager extends Authenticatable
+        {
+          //資料表名稱
+          protected $table = 'manager';
+        
+          //主鍵名稱
+          protected $promaryKey = 'id';
+        
+          //可變動欄位
+          protected $fillable = [
+            'cover',
+            'account',
+            'password',
+            'name',
+            'phone',
+            'release',
+          ];
+          protected $hidden = [
+              'password',
+          ];
+        
+          protected $casts = [
+              'password' => 'hashed', // 自動處理密碼雜湊
+          ];
+        
+          // 自定義身份驗證標識欄位
+          public function getAuthIdentifierName()
+          {
+              return 'account'; // 使用 account 進行驗證
+          }
+        }
       </xmp>
     </pre>
-    <h4>參考</h4>
-    <ul>
-      <li>
-        <a href="https://www.ziruchu.com/lessons/laravel11-application-about" target="_blank">添加导航</a>
-      </li>
-    </ul>
     <hr>
-    <h2>路由狀態</h2>
+    <h3>新增 manager 守衛</h3>
+    <p>config/auth</p>
     <pre class="prettyprint">
       <xmp>
-        //狀態
-        artisan route:list
-      </xmp>
-    </pre>
-    <h2>路由方法</h2>
-    <pre class="prettyprint">
-      <xmp>
-        //路由方法
-        Route::get($uri, $callback);
-        Route::post($uri, $callback);
-        Route::put($uri, $callback);
-        Route::patch($uri, $callback);
-        Route::delete($uri, $callback);
-        Route::options($uri, $callback);
+        'guards' => [
+          // 新增 manager 守衛
+          'manager' => [
+            'driver' => 'session',
+            'provider' => 'managers',
+          ],
+        ],
 
-        GET 方法請求展示指定資源。使用 GET 的請求只應用於取得資料。  
-        HEAD 方法請求與 GET 方法相同的回應，但它沒有回應主體（response body）。  
-        POST 方法用於提交指定資源的實體，通常會改變伺服器的狀態或副作用（side effect）。  
-        PUT 方法會取代指定資源所酬載請求（request payload）的所有表現。  
-        DELETE 方法會刪除指定資源.  
-        CONNECT 方法會和指定資源標明的伺服器之間，建立隧道（tunnel）。  
-        OPTIONS 方法描述指定資源的溝通方法（communication option）。  
-        TRACE 方法會與指定資源標明的伺服器之間，執行迴路返回測試（loop-back test）。  
-        PATCH 方法套用指定資源的部份修改。   
+        'providers' => [
+          // 新增 manager 守衛
+          'managers' => [ 
+            'driver' => 'eloquent',
+            'model' => env('AUTH_MODEL', App\Models\Manager::class),
+          ],
+        ],
+
+        'passwords' => [
+          // 新增 manager 守衛
+          'managers' => [
+            'provider' => 'managers',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+          ],
+        ],
       </xmp>
     </pre>
-    <h4>參考</h4>
-    <ul>
-      <li>
-        <a href="https://ithelp.ithome.com.tw/articles/10222061" target="_blank">路由狀態</a>
-      </li>
-    </ul>
     <hr>
-    <h2>路由位置</h2>
-    <p>寫路由位置 routes/web.php</p>
-    <p>訪物位置 resources/views/welcome.blade.php</p>
+    <h3>登入路由</h3>
+    <p>檔案位置 routes/web</p>
     <pre class="prettyprint">
       <xmp>
-        //定义了一个 HTTP GET 请求首頁到welcome
-        Route::get('/', function () {
-          return view('welcome');
-        });
-
-
-        //纯静态寫法
-        Route::view('hello', 'hello');
-
-        //? 可選參數
-        Route::get('/hello/{name?}', function () {
-          ...
-        });
-
-        // 404 回首頁
-        Route::fallback(function () {
-          return redirect()->route('fnhome');
-        });
-
-        //静态傳值["name"=>"World"]
-        Route::view('/hello', 'hello-name', ["name"=>"World"]);
-
-        //傳值
-        Route::get('/hello/{name}', function ($name) {
-          return view("hello-name", [
-              "name" => $name,
+        //登入
+        Route::post('balogin', [BaloginController::class, 'balogin_post'])->name('balogin');
+        Route::middleware('auth.custom')->group(function () {
+          //登入才能進入
+          Route::get('bamanager');
+        })
+      </xmp>
+    </pre>
+    <hr>
+    <h3>登入控制器</h3>
+    <p>app/http/BaloginController</p>
+    <pre class="prettyprint">
+      <xmp>
+        //登入
+        public function balogin_post(Request $request)
+        {
+          //驗證
+          $input = $request->validate([
+            'account' => 'required',
+            'password' => 'required',
           ]);
-        });
 
-
-        //使用Controller
-        use App\Http\Controllers\HomeController;
-        Route::get('/', [HomeController::class, 'index'])->name('home');
-      </xmp>
-    </pre>
-    <h4>參考</h4>
-    <ul>
-      <li>
-        <a href="https://ithelp.ithome.com.tw/articles/10222061" target="_blank">路由</a>
-      </li>
-      <li>
-        <a href="https://www.ziruchu.com/lessons/laravel11-application-mvc" target="_blank">MVC 开发模式</a>
-      </li>
-    </ul>
-    <hr>
-    <h2>高亮你的导航栏</h2>
-    <p></p>
-    <pre class="prettyprint">
-      <xmp>
-        //1.
-        <ul>
-          <li @if(Route::is('home')) class="active" @endif>
-              <a href="/">Home</a>
-          </li>
-          <li @if(Route::is('contact-us')) class="active" @endif>
-              <a href="/contact-us">Contact us</a>
-          </li>
-        </ul>
-
-        //2.
-        <a class="{{ request()->routeIs('fnhome') ? 'text-main' : '' }}"></a>
+          // 使用 manager 守衛進行驗證
+          if (Auth::guard('manager')->attempt($input)) {
+            $request->session()->regenerate();
+            // 驗證成功->bamanager
+            return redirect()->intended('bamanager');
+          } else {
+            // 驗證失敗
+          }
+        }
+        //登出
+        public function basignout(Request $request)
+        {
+          //登出目前的使用者
+          Auth::guard('manager')->logout();
+          //防止舊會話被重用
+          $request->session()->invalidate();
+          //確保登出後的表單提交使用新的 CSRF 令牌
+          $request->session()->regenerateToken();
+          //重新導向回首頁
+          return redirect('/balogin');
+        }
       </xmp>
     </pre>
     <hr>
-    <h2>控制器组</h2>
-    <p></p>
+    <h3>要自行創立中介層去判斷路由驗證</h3>
+    <p>Middleware/AuthMiddleware</p>
     <pre class="prettyprint">
       <xmp>
-        // Before
-        Route::get('users', [UserController::class, 'index']);
-        Route::post('users', [UserController::class, 'store']);
-        Route::get('users/{user}', [UserController::class, 'show']);
-        Route::get('users/{user}/ban', [UserController::class, 'ban']);
-
-        // After
-        Route::controller(UsersController::class)->group(function () {
-          Route::get('users', 'index');
-          Route::post('users', 'store');
-          Route::get('users/{user}', 'show');
-          Route::get('users/{user}/ban', 'ban');
-        });
+        class AuthMiddleware
+        {
+          public function handle(Request $request, Closure $next): Response
+          {
+            if (!Auth::guard('manager')->check()) {
+              // 未登入的使用者重定向到登入頁面
+              return redirect()->route('balogin')->with('error', '請先登入系統');
+            }
+            return $next($request);
+          }
+        }
       </xmp>
     </pre>
-    <h4>參考</h4>
+    <hr>
+    <h3>註冊中介層別名</h3>
+    <p>bootstrap/app.php</p>
+    <pre class="prettyprint">
+      <xmp>
+        use App\Http\Middleware\AuthMiddleware;
+        ...
+        withMiddleware(function (Middleware $middleware) {
+          // 註冊中介層別名
+          $middleware->alias([
+            'auth.custom' => AuthMiddleware::class,
+          ]);
+        })
+      </xmp>
+    </pre>
+    <!-- <h4>參考</h4>
     <ul>
       <li>
-        <a href="https://www.ziruchu.com/lessons/laravel-route" target="_blank">路由</a>
+        <a href="" target="_blank"</a>
       </li>
-    </ul>
+    </ul> -->
   </body>
 </html>
