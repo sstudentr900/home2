@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Eloquent ORM</h2>
+    <p>Eloquent 是 Laravel 提供的一个数据库操作工具</p>
+    <p>Eloquent 允许你定义模型之间的关系，比如一对多、多对多、和一对一关系</p>
+    <h3>一對一</h3>
+    <p>route</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::get('testOne', [FnController::class,'testOne']);
+      </xmp>
+    </pre>
+    <p>migrations 需要在test2新增test1_id</p>
+    <pre class="prettyprint">
+      <xmp>
+        //test1
+      Schema::create('test1', function (Blueprint $table) {
+        $table->increments();
+        $table->string('username');
+        $table->timestamps();
+      });
+      //test2
+      Schema::create('test2', function (Blueprint $table) {
+        $table->increments();
+        $table->string('title', 255);
+        $table->integer('test1_id');
+        $table->timestamps();
+      });
+      </xmp>
+    </pre>
+    <p>model hasOne:去Test2裡的test1_id取得test1的ID</p>
+    <pre class="prettyprint">
+      <xmp>
+        //Test1
+      class Test1 extends Model
+      {
+        protected $table = 'test1';
+        protected $primaryKey = 'id';
+        protected $fillable = [
+          'username'
+        ];
+        public function test2One()
+        {
+          //1對1
+          return $this->hasOne('App\Test2');
+        }
+      }
+      //Test2
+      class Test2 extends Model
+      {
+        protected $table = 'test2';
+        protected $primaryKey = 'id';
+        protected $fillable=[
+        'title'
+        ];
+      }
+      </xmp>
+    </pre>
+    <p>controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function testOne(){
+          //1對1 {}
+          $userData = Test1::find(1)->test2One;
+          return response()->json(['status' => true, 'user_data' => $userData], 200);
+          // {
+          // "status": true,
+          // "user_data": {
+          // "id": 1,
+          // "title": "1",
+          // "created_at": null,
+          // "updated_at": null
+          // }
+          // }
+
+
+          // 1對1 {{}}
+          $userData = Test1::find(1);
+          $userData->test2One;
+          return response()->json(['status' => true, 'user_data' => $userData], 200);
+          // {
+          // "status": true,
+          // "user_data": {
+          // "id": 1,
+          // "username": "1",
+          // "created_at": null,
+          // "updated_at": null,
+          // "test2_one": {
+          // "id": 1,
+          // "title": "1",
+          // "created_at": null,
+          // "updated_at": null
+          // }
+          // }
+          // }
+          }
+      </xmp>
+    </pre>
+    <h3>一對一（逆向）</h3>
+    <p>route</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::get('testOne', [FnController::class,'testOne']);
+      </xmp>
+    </pre>
+    <p>migrations 需要在test2新增test1_id</p>
+    <pre class="prettyprint">
+      <xmp>
+        //test1
+      Schema::create('test1', function (Blueprint $table) {
+        $table->increments();
+        $table->string('username');
+        $table->timestamps();
+      });
+      //test2
+      Schema::create('test2', function (Blueprint $table) {
+        $table->increments();
+        $table->string('title', 255);
+        $table->integer('test1_id');
+        $table->timestamps();
+      });
+      </xmp>
+    </pre>
+    <p>model hasOne:去Test2裡的test1_id取得test1的ID</p>
+    <pre class="prettyprint">
+      <xmp>
+        //Test1
+      class Test1 extends Model
+      {
+        protected $table = 'test1';
+        protected $primaryKey = 'id';
+        protected $fillable = [
+        'username'
+        ];
+
+      }
+
+      //Test2
+      class Test2 extends Model
+      {
+        protected $table = 'test2';
+        protected $primaryKey = 'id';
+        protected $fillable=[
+        'title'
+        ];
+        public function test1To()
+        {
+        //1對1（逆向）
+        return $this->belongsTo('App\Test1');
+        }
+      }
+      </xmp>
+    </pre>
+    <p>controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function testOne(){
+          $userData = Test2::find(1);
+          $userData->test1To;
+          return response()->json(['status' => true, 'user_data' => $userData], 200);
+          {
+          "status": true,
+          "user_data": {
+          "id": 1,
+          "test1_id": 1,
+          "title": "1",
+          "created_at": null,
+          "updated_at": null,
+          "test1": {
+          "id": 1,
+          "username": "1",
+          "created_at": null,
+          "updated_at": null
+          }
+          }
+          }
+          }
+      </xmp>
+    </pre>
+    <h3>一對多</h3>
+    <p>route</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::get('testOne', [FnController::class,'testOne']);
+      </xmp>
+    </pre>
+    <p>migrations 需要在test2新增test1_id</p>
+    <pre class="prettyprint">
+      <xmp>
+        //test1
+      Schema::create('test1', function (Blueprint $table) {
+        $table->increments();
+        $table->string('username');
+        $table->timestamps();
+      });
+
+      //test2
+      Schema::create('test2', function (Blueprint $table) {
+        $table->increments();
+        $table->string('title', 255);
+        $table->integer('test1_id');
+        $table->timestamps();
+      });
+      </xmp>
+    </pre>
+    <p>model hasMany:去Test2裡的test1_id取得全部test1的ID</p>
+    <pre class="prettyprint">
+      <xmp>
+        //Test1
+      class Test1 extends Model
+      {
+        protected $table = 'test1';
+        protected $primaryKey = 'id';
+        protected $fillable = [
+          'username'
+        ];
+        public function test2Many()
+        {
+          //1對1
+          return $this->hasMany('App\Test2');
+        }
+      }
+      //Test2
+      class Test2 extends Model
+      {
+        protected $table = 'test2';
+        protected $primaryKey = 'id';
+        protected $fillable=[
+        'title'
+        ];
+      }
+      </xmp>
+    </pre>
+    <p>controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function testOne(){
+          //1對多 {[{},{}]}
+          $userData = Test1::find(1);
+          $userData->test2Many;
+          //同上
+          $userData = Test1::where('id','1')->with('test2Many')->get();
+          return response()->json(['status' => true, 'user_data' => $userData], 200);
+          // {
+          // "status": true,
+          // "user_data": {
+          // "id": 1,
+          // "username": "1",
+          // "updated_at": null,
+          // "test2_many": [
+          // {
+          // "id": 1,
+          // "title": "1",
+          // "created_at": null,
+          // "updated_at": null
+          // },
+          // {
+          // "id": 2,
+          // "title": "2",
+          // "created_at": null,
+          // "updated_at": null
+          // }
+          // ]
+          // }
+          // }
+        }
+      </xmp>
+    </pre>
+    <h3>多對一</h3>
+    <p>route</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::get('testOne', [FnController::class,'testOne']);
+      </xmp>
+    </pre>
+    <p>migrations</p>
+    <pre class="prettyprint">
+      <xmp>
+        //test1
+      Schema::create('test1', function (Blueprint $table) {
+        $table->increments();
+        $table->string('username');
+        $table->timestamps();
+      });
+
+      //test2
+      Schema::create('test2', function (Blueprint $table) {
+        $table->increments();
+        $table->string('title', 255);
+        $table->integer('test1_id');
+        $table->timestamps();
+      });
+      </xmp>
+    </pre>
+    <p>model</p>
+    <pre class="prettyprint">
+      <xmp>
+        //Test1
+      class Test1 extends Model
+      {
+        protected $table = 'test1';
+        protected $primaryKey = 'id';
+        protected $fillable = [
+        'username'
+        ];
+
+      }
+      //Test2
+      class Test2 extends Model
+      {
+        protected $table = 'test2';
+        protected $primaryKey = 'id';
+        protected $fillable=[
+        'title'
+        ];
+        public function test1()
+        {
+          //（逆向）
+          return $this->belongsTo('App\Test2');
+        }
+      }
+      </xmp>
+    </pre>
+    <p>controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function testOne(){
+      $userData = Test2::where('test1_id','1')->with('test1')->get();
+      return response()->json(['status' => true, 'user_data' => $userData], 200);
+      // {
+      // "status": true,
+      // "user_data": [
+      // {
+      // "id": 1,
+      // "test1_id": 1,
+      // "title": "1",
+      // "sort": "1",
+      // "pub": 1,
+      // "created_at": null,
+      // "updated_at": null,
+      // "test1": {
+      // "id": 1,
+      // "username": "1",
+      // "phone": "0956",
+      // "created_at": null,
+      // "updated_at": null
+      // }
+      // },
+      // {
+      // "id": 2,
+      // "test1_id": 1,
+      // "title": "2",
+      // "sort": "2",
+      // "pub": 2,
+      // "created_at": null,
+      // "updated_at": null,
+      // "test1": {
+      // "id": 1,
+      // "username": "1",
+      // "phone": "0956",
+      // "created_at": null,
+      // "updated_at": null
+      // }
+      // }
+      // ]
+      // }
+
+      }
+      </xmp>
+    </pre>
+    <h3>多對多</h3>
+    <ul>
+      <li>樞紐表(test1_test2)要最後建立哦，否則它無法辨別test1和test2表的關係</li>
+      <li>命名規範為將兩個表格名稱按照字母順序，並在它們之間加上一個底線來分隔</li>
+      <li>樞紐表不適合使用 -m</li>
+    </ul>
+    <p>route</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::get('testOne', [FnController::class,'testOne']);
+      </xmp>
+    </pre>
+    <p>migrations</p>
+    <pre class="prettyprint">
+      <xmp>
+        //test1
+      Schema::create('test1', function (Blueprint $table) {
+        $table->increments();
+        $table->string('username');
+        $table->timestamps();
+      });
+
+      //test2
+      Schema::create('test2', function (Blueprint $table) {
+        $table->increments();
+        $table->string('title', 255);
+        $table->timestamps();
+      });
+
+      //test1_test2 命名規定XX_XX
+      Schema::create('test1_test2', function (Blueprint $table) {
+        $table->increments();
+        $table->integer('test1_id');
+        $table->integer('test2_id');
+        $table->string('days');
+        $table->timestamps();
+      });
+      </xmp>
+    </pre>
+    <p>model</p>
+    <pre class="prettyprint">
+      <xmp>
+        //Test1
+      class Test1 extends Model
+      {
+        protected $table = 'test1';
+        protected $primaryKey = 'id';
+        protected $fillable = [
+          'username'
+        ];
+        public function test2ToMany()
+        {
+          //withPivot 連結test1_test2的days
+          return $this->belongsToMany('App\Test2')->withPivot('days');
+        }
+      }
+
+      //Test2
+      class Test2 extends Model
+      {
+        protected $table = 'test2';
+        protected $primaryKey = 'id';
+        protected $fillable=[
+        'title'
+        ];
+      }
+      </xmp>
+    </pre>
+    <p>controll</p>
+    <pre class="prettyprint">
+      <xmp>
+        public function testOne(){
+        $userData = Test1::with('test2ToMany')->get();
+        return response()->json(['status' => true, 'user_data' => $userData], 200);
+        {
+        "status": true,
+        "user_data": [
+        {
+        "id": 1, //test1
+        "username": "1",
+        "phone": "0956",
+        "created_at": null,
+        "updated_at": null,
+        "test2_to_many": [ //test2
+        { //塞選方式根據test1_test2的test1_id,test2_id
+        "id": 3,
+        "title": "112",
+        "sort": "0",
+        "pub": 1,
+        "created_at": "2022-06-23T06:14:11.000000Z",
+        "updated_at": "2022-06-23T06:14:11.000000Z",
+        "pivot": { //test1_test2
+        "test1_id": 1,
+        "test2_id": 3,
+        "days": "6"
+        }
+      },
+      {
+        "id": 4,
+        "title": "xcxc",
+        "sort": "0",
+        "pub": 1,
+        "created_at": "2022-06-23T06:32:24.000000Z",
+        "updated_at": "2022-06-23T06:32:24.000000Z",
+        "pivot": {
+        "test1_id": 1,
+        "test2_id": 4,
+        "days": "9"
+        }
+      }
+      ]
+      },
+      {
+      "id": 2,
+      "username": "2",
+      "phone": "655",
+      "created_at": null,
+      "updated_at": null,
+      "test2_to_many": [
+      {
+      "id": 1,
+      "title": "1",
+      "sort": "1",
+      "pub": 1,
+      "created_at": null,
+      "updated_at": null,
+      "pivot": {
+      "test1_id": 2,
+      "test2_id": 1,
+      "days": "1"
+      }
+      },
+      {
+      "id": 2,
+      "title": "2",
+      "sort": "2",
+      "pub": 2,
+      "created_at": null,
+      "updated_at": null,
+      "pivot": {
+      "test1_id": 2,
+      "test2_id": 2,
+      "days": "8"
+      }
+      }
+      ]
+      }
+      ]
+      }
+      }
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10224980" target="_blank">Eloquent ORM</a>
+      </li>
+      <li>
+        <a href="https://learnku.com/docs/laravel/11.x/eloquentmd/16702" target="_blank">laravel 11 Eloquent ORM</a>
+      </li>
+    </ul>
+  </body>
+</html>

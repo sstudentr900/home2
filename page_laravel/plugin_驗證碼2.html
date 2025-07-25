@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>laravel 11_安裝驗證碼</h2>
+    <p>composer安裝</p>
+    <pre class="prettyprint">
+      <xmp>
+        composer require mews/captcha
+      </xmp>
+    </pre>
+    <hr>
+    <h2>安裝配置</h2>
+    <p>安裝檔案位置 config/captcha.php</p>
+    <pre class="prettyprint">
+      <xmp>
+        php artisan vendor:publish --provider="Mews\Captcha\CaptchaServiceProvider"
+      </xmp>
+    </pre>
+    <hr>
+    <h2>路由</h2>
+    <pre class="prettyprint">
+      <xmp>
+        use App\Http\Controllers\MyFormController;
+
+        Route::get('/form', [MyFormController::class, 'showForm'])->name('form.show');
+        Route::post('/form', [MyFormController::class, 'submitForm'])->name('form.submit');
+      </xmp>
+    </pre>
+    <hr>
+    <h2>創建 MyFormController 控制器</h2>
+    <pre class="prettyprint">
+      <xmp>
+        php artisan make:controller MyFormController
+      </xmp>
+    </pre>
+    <hr>
+    <h2>控制器內容</h2>
+    <p>app/Http/Controllers/MyFormController.php</p>
+    <pre class="prettyprint">
+      <xmp>
+        namespace App\Http\Controllers;
+        use Illuminate\Http\Request;
+        use Mews\Captcha\Facades\Captcha;
+
+        class MyFormController extends Controller
+        {
+            public function showForm()
+            {
+                return view('form');
+            }
+
+            public function submitForm(Request $request)
+            {
+                $request->validate([
+                    'captcha' => 'required|captcha',
+                ]);
+
+                // Handle successful form submission
+                return back()->with('success', 'Form submitted successfully!');
+            }
+        }
+      </xmp>
+    </pre>
+    <hr>
+    <h2>建立表單視圖</h2>
+    <p>在 resources/views/form.blade.php 建立一個 Blade 視圖檔案</p>
+    <pre class="prettyprint">
+      <xmp>
+        <form action="{{ route('form.submit') }}" method="POST">
+          @csrf
+          <div>
+            <label for="captcha">Captcha</label>
+            {!! captcha_img() !!}
+            <input
+              type="text"
+              name="captcha"
+              id="captcha"
+              required
+            >
+            @error('captcha')
+            <div style="color:red;">{{ $message }}</div>
+            @enderror
+          </div>
+          <button type="submit">Submit</button>
+          @if(session('success'))
+          <div style="color:green;">{{ session('success') }}</div>
+          @endif
+        </form>
+      </xmp>
+    </pre>
+    <hr>
+    <h2>運行 Laravel 開發伺服器</h2>
+    <pre class="prettyprint">
+      <xmp>
+        php artisan serve
+      </xmp>
+    </pre>
+    <hr>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.chirags.in/laravel-11-captcha-configuration/" target="_blank">Laravel 11 Captcha</a>
+      </li>
+    </ul>
+    <h2>captcha 圖片顯示不出來</h2>
+    <p>建立必要的資料表</p>
+    <p>這會建立 cache 和 sessions 兩張表，讓 Laravel 存儲驗證碼資料。</p>
+    <pre class="prettyprint">
+      <xmp>
+        //要執行表
+        php artisan cache:table
+        php artisan session:table
+        //創立表
+        php artisan migrate
+      </xmp>
+    </pre>
+    <hr>
+    <!-- <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="" target="_blank">P</a>
+      </li>
+    </ul> -->
+  </body>
+</html>

@@ -27,11 +27,11 @@
           'password' => 'gmail的應用程式密碼',
           'timeout' => null,
           'auth_mode' => null,
-      ],
-      'from' => [
-          'address' => '寄件人信箱',
-          'name' => '寄件人名稱',
-      ],
+        ],
+        'from' => [
+            'address' => '寄件人信箱',
+            'name' => '寄件人名稱',
+        ],
       </xmp>
     </pre>
     <h2>contriller</h2>
@@ -39,7 +39,7 @@
       <xmp>
         use Mail; 
       // Mail::send('view_url', ['view_id' => view_value ], function($mail) use ('外部資料傳入'){
-      Mail::send('email_password', ['name' => $User['name'],'href' => $href ], function($mail) use ($User){
+      Mail::send('email 路徑', ['name' => $User['name'],'href' => $href ], function($mail) use ($User){
         $mail->from($User['account'], '寄件人');
         $mail->to($User['account']);   //收件人
         $mail->cc('sstudentr900@gmail.com'); //副本,傳給其他人

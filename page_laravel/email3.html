@@ -51,12 +51,12 @@
     <pre class="prettyprint">
       <xmp>
         use Mail; 
-      Mail::send('email_password', ['name' => $User,'href' => $href ], function($mail) use ($User){
-        $mail->from('寄件人mail', '寄件人');
-        $mail->to('收件人mail','收件人'); 
-        $mail->cc('sstudentr900@gmail.com'); //副本,傳給其他人
-        $mail->subject('信箱標題');  
-      });
+        Mail::send('email 路徑', ['name' => $User,'href' => $href ], function($mail) use ($User){
+          $mail->from('寄件人mail', '寄件人');
+          $mail->to('收件人mail','收件人'); 
+          $mail->cc('sstudentr900@gmail.com'); //副本,傳給其他人
+          $mail->subject('信箱標題');  
+        });
       </xmp>
     </pre>
     <h3>.email_register</h3>

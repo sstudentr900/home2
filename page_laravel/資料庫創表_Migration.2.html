@@ -9,10 +9,8 @@
   </head>
   <body id="program">
     <h2>建立表 migration</h2>
-    <ul>
-      <li>檔案位置 database/migration</li>
-      <li>fileName => 檔案名稱</li>
-    </ul>
+    <p>檔案位置 database/migration</p>
+    <p>fileName => 檔案名稱</p>
     <pre class="prettyprint">
       <xmp>
         php artisan make:migration fileName
@@ -24,8 +22,8 @@
         php artisan make:migration fileName --create=tableName
       </xmp>
     </pre>
-    <h2>執行全部的表到phpmyadmin</h2>
-    <p>表位置在database/migrations底下</p>
+    <h2>執行位於 database/migration </h2>
+    <p>全部的表到會到phpmyadmin</p>
     <pre class="prettyprint">
       <xmp>
         php artisan migrate
@@ -47,7 +45,7 @@
     <h2>顯示migrations狀態</h2>
     <pre class="prettyprint">
       <xmp>
-        php artisan migrate：status
+        php artisan migrate:status
       </xmp>
     </pre>
     <h2>回上一步</h2>
@@ -99,6 +97,9 @@
               $table->string("title")->comment('標題');            //comment->  sql 標題 
               $table->enum('release', array('y', 'n'))->default('y');   //enum-> 選擇
               $table->mediumText('tinymce');                       //mediumText-> ??
+              text：最多約 65,535 字節（約 21,845 個中文字符）。
+              longText：最多約 4GB（約 14 億個中文字符）。
+              mediumText 約 16MB，559 萬個中文字符
               $table->char('remember_token', 100);                 //char-> ??
               $table->timestamps();                                //創建及修改日期
             });

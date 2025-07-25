@@ -18,5 +18,20 @@
         <a href="https://tailwindcss.com/docs/installation/framework-guides/laravel/vite" target="_blank">Install Tailwind CSS with Laravel</a>
       </li>
     </ul>
+    <hr>
+    <h2>引用tailwindcss</h2>
+    <p>來源app.css</p>
+    <pre class="prettyprint">
+      <xmp>
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        .img {
+          @apply w-full object-center;
+        }
+
+      </xmp>
+    </pre>
   </body>
 </html>
