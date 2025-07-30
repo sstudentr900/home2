@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>larvel 11 假資料 1對多範例</h2>
+    <h3>創建資料指令: php artisan make:model Flight -mfs</h3>
+    <p>-mfs:創建app/Models/Flights.php和database/migrations/2025_07_28_104615_create_flights_table.php和database/factories/FlightsFactory.php檔和database/seeders/FlightSeeder.php檔</p>
+    <h3>migrations修改</h3>
+    <p>檔案位置:database/migrations/2025_07_28_104615_create_flights_table.php</p>
+    <p>執行migrations指令 : php artisan migrations</p>
+    <pre class="prettyprint">
+      <xmp>
+        <?php
+
+        use Illuminate\Database\Migrations\Migration;
+        use Illuminate\Database\Schema\Blueprint;
+        use Illuminate\Support\Facades\Schema;
+
+        return new class extends Migration
+        {
+            /**
+            * Run the migrations.
+            */
+            public function up(): void
+            {
+                Schema::create('flights', function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->string('name','20')->comment('名稱');
+                    $table->timestamps();
+                });
+
+                //$table->foreignId('flights_id')
+                //作用：定義一個名為 flights_id 的欄位，該欄位是一個無符號整數（unsigned big integer），通常用來作為外鍵，指向另一個資料表的 id 欄位。
+
+                //->constrained()
+                //自動為 flights_id 欄位建立外鍵約束（foreign key constraint），並指定它參考的資料表和欄位。定義外鍵
+
+                //->onDelete('cascade') 
+                //'cascade' 表示級聯刪除。當 users 表中的某個記錄（例如某個使用者的 id）被刪除時，所有與該 flights_id 相關的 posts 記錄也會自動被刪除。
+                Schema::create('posts', function (Blueprint $table) {
+                  $table->increments('id');
+                  $table->unsignedInteger('flights_id'); // 改用 unsignedInteger 確保型別一致
+                  $table->foreign('flights_id')->references('id')->on('flights')->onDelete('cascade');
+                  $table->string('title','20')->comment('標題');
+                  $table->string('content','100')->comment('內容');
+                  $table->timestamps();
+                });
+            }
+
+            /**
+            * Reverse the migrations.
+            */
+            public function down(): void
+            {
+                Schema::dropIfExists('flights');
+            }
+        };
+      </xmp>
+    </pre>
+    <h3>Model修改</h3>
+    <p>檔案位置:app/Models/Flights.php</p>
+    <pre class="prettyprint">
+      <xmp>
+        <?php
+
+        namespace App\Models;
+        
+        use Illuminate\Database\Eloquent\Factories\HasFactory;
+        use Illuminate\Database\Eloquent\Model;
+        
+        class Flights extends Model
+        {
+            /** @use HasFactory<\Database\Factories\FlightFactory> */
+            use HasFactory;
+        
+            //資料表名稱
+            protected $table = 'flights';
+        
+            //主鍵名稱
+            protected $promaryKey = 'id';
+        
+            protected $fillable = [
+              'name',
+            ];
+        
+            //hasMany：Eloquent 提供的一個方法，用來定義「一對多」關聯，表示當前 Model 的記錄可以關聯到多個另一個 Model 的記錄。
+            public function posts()
+            {
+              return $this->hasMany(Post::class, 'flights_id');
+            }
+        }
+      </xmp>
+    </pre>
+    <h4>新增Post Model</h4>
+    <p>檔案位置:app/Models/Post.php</p>
+    <pre class="prettyprint">
+      <xmp>
+        <?php
+
+        namespace App\Models;
+
+        use Illuminate\Database\Eloquent\Factories\HasFactory;
+        use Illuminate\Database\Eloquent\Model;
+
+        class Post extends Model
+        {
+            /** @use HasFactory<\Database\Factories\FlightFactory> */
+            use HasFactory;
+
+            //資料表名稱
+            protected $table = 'posts';
+
+            //主鍵名稱
+            protected $promaryKey = 'id';
+
+            protected $fillable = [
+              'flights_id',
+              'title',
+              'content',
+            ];
+
+
+            //belongsTo 反查
+            public function flight()
+            {
+              return $this->belongsTo(Flight::class, 'flights_id');
+            }
+        }
+
+      </xmp>
+    </pre>
+    <h3>factory工廠修改</h3>
+    <p>FlightsFactory工廠位置 : database/factories/FlightsFactory.php</p>
+    <p>建立亂數名子</p>
+    <pre class="prettyprint">
+      <xmp>
+        <?php
+
+        namespace Database\Factories;
+
+        use Illuminate\Database\Eloquent\Factories\Factory;
+        use App\Models\Post;
+        use App\Models\Flights;
+        class FlightsFactory extends Factory
+        {
+
+            protected $model = Flights::class;
+            public function definition(): array
+            {
+                return [
+                  'name' => $this->faker->firstName(),
+                ];
+            }
+        }
+      </xmp>
+    </pre>
+    <h4>新增PostFactory工廠</h4>
+    <p>PostFactory工廠位置 : database/factories/PostFactory.php</p>
+    <p>建立亂數title和content</p>
+    <pre class="prettyprint">
+      <xmp>
+        <?php
+
+        namespace Database\Factories;
+        
+        use Illuminate\Database\Eloquent\Factories\Factory;
+        use Illuminate\Support\Str;
+        use App\Models\Post;
+        use App\Models\Flights;
+        class PostFactory extends Factory
+        {
+        
+            protected $model = Post::class;
+            public function definition(): array
+            {
+                return [
+                  'flights_id' => null, // 將在 Seeder 中動態設置
+                  'title' => Str::limit($this->faker->sentence(3), 20, ''), // 確保不超過 20 字符
+                  'content' => Str::limit($this->faker->paragraph(), 100, ''), // 確保不超過 100 字符
+                ];
+            }
+        }
+      </xmp>
+    </pre>
+    <h3>seeder修改</h3>
+    <h4>seeder 是去執行 factory</h4>
+    <p>檔案位置: seeders/FlightSeeder.php</p>
+    <p>seeder執行指令: php artisan db:seed --class=FlightSeeder</p>
+    <pre class="prettyprint">
+      <xmp>
+        <?php
+
+        namespace Database\Seeders;
+        
+        use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+        use Illuminate\Database\Seeder;
+        use App\Models\Flights;
+        use App\Models\Post;
+        
+        class FlightSeeder extends Seeder
+        {
+          public function run(): void
+          {
+            // 針對Flights工廠執行10筆創建
+            // Flights::factory()->count(10)->create();
+
+            // 針對Flights工廠執行10筆創建和Post工廠執行2筆
+            Flights::factory()
+              ->count(10)
+              ->create()
+              ->each(function ($flight) {
+                Post::factory()
+                  ->count(2)
+                  ->create([
+                    'flights_id' => $flight->id,
+                  ]);
+              });
+          }
+        }
+      </xmp>
+    </pre>
+    <h3>router</h3>
+    <p>存取1對多資料</p>
+    <pre class="prettyprint">
+      <xmp>
+        use App\Models\Flights;
+        Route::get('/Flights', function () {
+          //取資料
+          $Flights = Flights::with('posts')->get();
+          return compact('Flights');
+        });
+
+        Route::get('/FlightsCreate', function () {
+          //存資料
+          $Flights = Flights::find(71);
+          $Flights->posts()->create([
+            'title' => 'title71',
+            'content' => 'content71',
+          ]);
+        });
+      </xmp>
+    </pre>
+    <hr>
+    <!-- <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://ithelp.ithome.com.tw/articles/10227061" target="_blank">Seeding 埋下資料種子</a>
+      </li>
+    </ul> -->
+  </body>
+</html>

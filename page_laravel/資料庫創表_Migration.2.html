@@ -86,20 +86,30 @@
             Schema::create('blog_post', function (Blueprint $table) {
               $table->charset = 'utf8mb4';
               $table->collation = 'utf8mb4_general_ci';
-              $table->increments('id');                            //int(10) 主鍵
-              $table->integer('user_id');                          //int(10)
-              $table->id();                                        //bigint(20) 主鍵 
-              $table->bigIncrements('id');                         //bigint(20) 主鍵
-              $table->unsignedBigInteger('user_id');               //bigint(20) //unsigned 既為非負數，用此類型可以增加資料長度!
+              --
+              $table->increments('id');                            //int(10) 遞增主鍵 型別：INT（32 位元，範圍 0 到 4,294,967,295）。
+              $table->unsignedInteger('id');                       //外鍵對應increments 型別：INT（32 位元，範圍 0 到 4,294,967,295）。
+              $table->foreign('flights_id')->references('id')->on('flights')->onDelete('cascade');  //外鍵方法適用於unsignedInteger、unsignedBigInteger 或 uuid
+              --
+              $table->integer('user_id');                          //int(10) 不自動遞增 INT（32 位元，範圍 -2,147,483,648 到 2,147,483,647）。
+              --
+              $table->id();                                        //bigint(20) 遞增主鍵 型別：BIGINT（64 位元，範圍 0 到 18,446,744,073,709,551,615）。 Laravel 8+ 預設
+              $table->bigIncrements('id');                         //bigint(20) 遞增主鍵 型別：BIGINT（64 位元，範圍 0 到 18,446,744,073,709,551,615）。
+              $table->unsignedBigInteger('user_id');               //外鍵對應bigIncrements和id 型別：BIGINT（64 位元，範圍 0 到 18,446,744,073,709,551,615）。
+              $table->foreignId('flights_id')->constrained()->onDelete('cascade');  //外鍵對應 型別：BIGINT（64 位元，範圍 0 到 18,446,744,073,709,551,615）。 需搭配 bigIncrements 或 id
+              --
               $table->string('name', 50)->nullable();              //nullable->  允許為空值 ,string->varchar
               $table->string('account', 50)->unique();             //unique->  不可重複的索引
-              $table->integer('type')->default(0);                 //default-> 預設值是0
+              $table->string('type')->default(0);                  //default-> 預設值是0
               $table->string("title")->comment('標題');            //comment->  sql 標題 
+              --
               $table->enum('release', array('y', 'n'))->default('y');   //enum-> 選擇
-              $table->mediumText('tinymce');                       //mediumText-> ??
+              --
+              $table->mediumText('tinymce');                       
               text：最多約 65,535 字節（約 21,845 個中文字符）。
               longText：最多約 4GB（約 14 億個中文字符）。
               mediumText 約 16MB，559 萬個中文字符
+              --
               $table->char('remember_token', 100);                 //char-> ??
               $table->timestamps();                                //創建及修改日期
             });

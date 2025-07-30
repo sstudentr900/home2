@@ -8,40 +8,12 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
-    <h2></h2>
-    <p>自动设置: User::class 指定了模型类，Laravel 会自动使用模型类关联的表（例如，users 表）和主键列（通常是 id）</p>
-    <pre class="prettyprint">
-      <xmp>
-        $table->foreignIdFor(User::class, 'user_id');
-      </xmp>
-    </pre>
-    <p>手动设置: 这种方法需要你手动指定表名和主键列名。</p>
-    <pre class="prettyprint">
-      <xmp>
-        $table->foreignIdFor('user_id')->references('id')->on('user');
-      </xmp>
-    </pre>
-    <br>
-    <h2>foreignId foreignIdFor 外键</h2>
-    <p>foreignId 创建一个普通的外键列，但不会自动设置外键约束</p>
-    <pre class="prettyprint">
-      <xmp>
-        $table->foreignId('order_id')->references('id')->on('orders');
-      </xmp>
-    </pre>
-    <p>foreignIdFor 创建一个外键列，并自动设置与模型相关联的表的外键约束。</p>
-    <p>支持级联操作（如级联删除或更新），这意味着当主表中的某条记录被删除或更新时，相关联的记录在外键表中也会相应地删除或更新。比如，如果用户从 users 表中删除了，orders 表中所有相关的订单记录可以自动被删除（级联删除）。</p>
-    <pre class="prettyprint">
-      <xmp>
-        $table->foreignIdFor(order::class)->references('id')->on('orders');
-      </xmp>
-    </pre>
     <h2>外鍵</h2>
     <pre class="prettyprint">
       <xmp>
         //counters
         Schema::create('counters', function (Blueprint $table) {
-            $table->id();                 //id=>bigint(20)
+            $table->increments();             
             $table->string('title', 255);
             $table->integer('sort')->nullable();
             $table->boolean('pub')->nullable()->default(1);
@@ -50,8 +22,8 @@
 
         //counter_translations
         Schema::create('counter_translations', function (Blueprint $table) {
-            $table->id();                               //id=>bigint(20)
-            $table->unsignedBigInteger('counter_id');   //bigint(20)
+            $table->increments();                       
+            $table->unsignedInteger('counter_id');   //bigint(20)
 
 
             //將counter_id關聯到counters這table的id,須注意外鍵ID格式必須相同
