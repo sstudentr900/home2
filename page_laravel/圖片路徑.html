@@ -8,9 +8,37 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
-    <h2>Vite</h2>
+    <h2>引用 Vite 編譯的圖片</h2>
     <pre class="prettyprint">
-      <xmp></xmp>
+      <xmp>
+        vite.config.js
+        import { defineConfig } from 'vite';
+        import laravel from 'laravel-vite-plugin';
+
+        export default defineConfig({
+            plugins: [
+                laravel({
+                    input: [
+                        'resources/css/app.css',
+                        'resources/js/app.js',
+                        'resources/images/logo.png', // 假設圖片需要透過 Vite 處理
+                    ],
+                    refresh: true,
+                }),
+            ],
+        });
+
+        //bland
+        <img src="{{ Vite::asset('resources/images/logo.png') }}">
+      </xmp>
+    </pre>
+    <h2>引用 public 目錄中的靜態圖片（未經 Vite 處理）</h2>
+    <pre class="prettyprint">
+      <xmp>
+        //public/images/static-logo.png
+
+        <img src="{{ asset('images/static-logo.png') }}">
+      </xmp>
     </pre>
     <h4>參考</h4>
     <ul>
@@ -19,16 +47,44 @@
       </li>
     </ul>
     <hr>
-    <h2>圖片</h2>
+    <h2>背景圖片</h2>
     <pre class="prettyprint">
       <xmp>
-        <img class="w-full object-center" src="{{url('/images/indexcarousel01.png')}}" alt="">
+        <div style="background-image: url( {{ asset('resources/images/custom-bg.png') }} );"></div>
       </xmp>
     </pre>
     <h4>參考</h4>
     <ul>
       <li>
         <a href="https://laracasts.com/discuss/channels/vite/using-background-images-in-tailwind-vite-laravel-environment" target="_blank">背景圖片</a>
+      </li>
+    </ul>
+    <hr>
+    <h2>url() 函數</h2>
+    <p>用途：用於生成應用程式中的動態 URL，例如路由、控制器動作或其他非靜態資源的路徑。</p>
+    <pre class="prettyprint">
+      <xmp>
+        <a href="{{ url('home') }}">Home</a>
+      </xmp>
+    </pre>
+    <!-- <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="" target="_blank">背圖片</a>
+      </li>
+    </ul> -->
+    <hr>
+    <h2>圖片維持顯示比例</h2>
+    <p>圖片一定要加aspect-ratio 這樣高度才會再載入時撐高</p>
+    <pre class="prettyprint">
+      <xmp>
+        <img class="aspect-[359/320]" src="{{url('/images/..')}}" loading="lazy">
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://web.dev/articles/aspect-ratio?hl=zh-tw" target="_blank">aspect-ratio</a>
       </li>
     </ul>
   </body>
