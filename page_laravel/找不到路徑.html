@@ -8,19 +8,27 @@
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   </head>
   <body id="program">
-    <h3>找不到路徑</h3>
-    <p>刪除 bootstrap/cache 中的檔案（如 config.php 或 services.php）會清除快取，可能解決 Windows 和 Linux 之間的路徑兼容性問題（例如反斜線 \ 導致視圖路徑錯誤）。
-      下次執行應用程式時，Laravel 會重新生成這些快取檔案，可能導致首次載入稍慢，但不會影響應用程式功能。</p>
-    <b>bootstrap/cache/config.php</b>
-    <p>儲存所有配置檔案（config/*.php）的編譯版本。
+    <h2>找不到路徑</h2>
+    <p>
+      刪除 bootstrap/cache 中的檔案（如 config.php 或 services.php）會清除快取，可能解決 Windows 和 Linux 之間的路徑兼容性問題（例如反斜線 \ 導致視圖路徑錯誤）。
+      下次執行應用程式時，Laravel 會重新生成這些快取檔案，可能導致首次載入稍慢，但不會影響應用程式功能。
+    </p>
+    <h3>bootstrap/cache/config.php</h3>
+    <p>
+      儲存所有配置檔案（config/*.php）的編譯版本。
       Laravel 會將 config 目錄下的配置合併成單一檔案，加快配置載入速度。
-      如果你在 Windows 上生成快取，config.php 可能包含反斜線 \，導致 Linux 環境無法正確解析路徑。</p>
-    <b>services.php</b>
-    <p>儲存 Composer 自動載入的服務提供者清單。
-      包含專案中使用的服務提供者和相關類的快取，加速自動載入。</p>
-    <b>packages.php（某些情況下）</b>
-    <p>儲存 Laravel 套件的快取資訊。
-      如果你使用了第三方套件，可能會生成此檔案。</p>
+      如果你在 Windows 上生成快取，config.php 可能包含反斜線 \，導致 Linux 環境無法正確解析路徑。
+    </p>
+    <h3>bootstrap/cache/services.php</h3>
+    <p>
+      儲存 Composer 自動載入的服務提供者清單。
+      包含專案中使用的服務提供者和相關類的快取，加速自動載入。
+    </p>
+    <h3>packages.php（某些情況下）</h3>
+    <p>
+      儲存 Laravel 套件的快取資訊。
+      如果你使用了第三方套件，可能會生成此檔案。
+    </p>
     <br>
   </body>
 </html>
