@@ -9,8 +9,49 @@
   </head>
   <body id="program">
     <h2>Tailwind安裝</h2>
+    <p>npm install tailwindcss @tailwindcss/vite</p>
+    <h3>Vite 引用 vite.config.js</h3>
     <pre class="prettyprint">
-      <xmp></xmp>
+      <xmp>
+        import { defineConfig } from 'vite'
+        import tailwindcss from '@tailwindcss/vite'
+        export default defineConfig({
+          plugins: [
+            tailwindcss(),
+            // …
+          ],
+        })
+      </xmp>
+    </pre>
+    <h3>css 引用 ./resources/css/app.css</h3>
+    <pre class="prettyprint">
+      <xmp>
+        @import 'tailwindcss';
+        @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+        @source '../../storage/framework/views/*.php';
+        @source '../**/*.blade.php';
+        @source '../**/*.js';
+      </xmp>
+    </pre>
+    <h3>運行建置過程</h3>
+    <p>npm run dev</p>
+    <h3>html 引用</h3>
+    <pre class="prettyprint">
+      <xmp>
+        <!doctype html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            @vite('resources/css/app.css')
+          </head>
+          <body>
+            <h1 class="text-3xl font-bold underline">
+              Hello world!
+            </h1>
+          </body>
+        </html>
+      </xmp>
     </pre>
     <h4>參考</h4>
     <ul>
@@ -30,7 +71,6 @@
         .img {
           @apply w-full object-center;
         }
-
       </xmp>
     </pre>
   </body>
