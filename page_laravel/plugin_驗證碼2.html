@@ -17,10 +17,32 @@
     </pre>
     <hr>
     <h2>安裝配置</h2>
-    <p>安裝檔案位置 config/captcha.php</p>
     <pre class="prettyprint">
       <xmp>
         php artisan vendor:publish --provider="Mews\Captcha\CaptchaServiceProvider"
+      </xmp>
+    </pre>
+    <hr>
+    <h2>配置檔案位置</h2>
+    <p>config/captcha.php</p>
+    <pre class="prettyprint">
+      <xmp>
+        'default' => [
+          'length'    => 5,        // 驗證碼字符長度
+          'width'     => 120,      // 圖片寬度
+          'height'    => 36,       // 圖片高度
+          'quality'   => 90,       // 圖片質量
+          'math'      => false,    // 是否啟用數學運算驗證碼
+          'expire'    => 60,       // 驗證碼有效時間（秒）
+          'encrypt'   => false,    // 是否加密驗證碼
+          'sensitive' => false,    // 是否大小寫敏感
+          'angle'     => 12,       // 文字傾斜角度
+          'sharpen'   => 10,       // 銳化程度
+          'blur'      => 2,        // 模糊程度
+          'invert'    => false,    // 是否反轉顏色
+          'contrast'  => -5,       // 對比度
+        ],
+        // 可添加其他自訂配置，如 'flat', 'inverse' 等
       </xmp>
     </pre>
     <hr>

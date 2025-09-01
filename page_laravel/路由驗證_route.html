@@ -131,10 +131,18 @@
       </xmp>
     </pre>
     <hr>
-    <h3>要自行創立中介層去判斷路由驗證</h3>
+    <h3>要自行創立中介層 AuthMiddleware</h3>
+    <pre class="prettyprint">
+      <xmp>
+        php artisan make:middleware AuthMiddleware
+      </xmp>
+    </pre>
+    <h3>判斷路由驗證</h3>
     <p>Middleware/AuthMiddleware</p>
     <pre class="prettyprint">
       <xmp>
+        use Illuminate\Support\Facades\Auth;
+        
         class AuthMiddleware
         {
           public function handle(Request $request, Closure $next): Response
