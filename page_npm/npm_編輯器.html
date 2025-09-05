@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <link rel="stylesheet" href="../css/customPrism.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </head>
+  <body id="program">
+    <h2>Summernote使用詳解</h2>
+    <p>html</p>
+    <pre class="prettyprint">
+      <xmp>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <textarea id="tinymce"></textarea>
+      </xmp>
+    </pre>
+    <p>js</p>
+    <pre class="prettyprint">
+      <xmp>
+        import 'summernote/dist/summernote-lite.css';
+        import $ from 'jquery';
+        import 'summernote/dist/summernote-lite';
+        $('#tinymce').summernote({
+          minHeight: 400,//最小高
+          lang: 'zh-TW', // 設定語言為繁體中文
+          toolbar: [
+            ['fontsize', ['fontsize']], //字体大小    
+            ['color', ['color']], //字体颜色
+            ['style', ['bold', 'italic', 'underline']],//样式
+            ['para', ['ul', 'ol', 'paragraph']], //无序列表、有序列表、段落对齐方式
+            ['table',['table']], //插入表格 
+            ['picture',['picture']], //插入图片
+            ['codeview',['codeview']], //查看html代码
+          ],
+          callbacks: {
+            // 上傳圖片
+            onImageUpload: function(files) {
+              console.log('onImageUpload 觸發', files);
+              const formData = new FormData();
+              formData.append('image', files[0]); // 假設一次只上傳一張圖片
+              $.ajax({
+                  url: '/baworks_imgupload', // 後端上傳圖片的 API
+                  method: 'POST',
+                  data: formData,
+                  contentType: false,
+                  processData: false,
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  success: function(response) {
+                      if (response.success) {
+                          // 將後端返回的圖片 URL 插入編輯器
+                          $('#tinymce').summernote('insertImage', response.url, function($image) {
+                            // 為插入的圖片設置 data-image-id
+                            // console.log('image',$image,response.imageId)
+                            $image.attr('image-id', response.imageId); // 假設 response.id 是圖片的 ID
+                          });
+                      } else {
+                          alert('圖片上傳失敗：' + response.message);
+                      }
+                  },
+                  error: function(response) {
+                      // console.log('error',response.responseJSON.message)
+                      alert('圖片上傳失敗:' + response.responseJSON.message);
+                  }
+              });
+            },
+            // 圖片刪除
+            onMediaDelete: function(target) {
+              const imageId = target.attr('image-id');
+              // console.log('onImageRemove',target,imageId)
+              if (imageId) {
+                  $.ajax({
+                      url: '/baworks_imgdelete',
+                      method: 'POST',
+                      data: { imageId: imageId },
+                      headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      },
+                      success: function(response) {
+                          if (response.success) {
+                              console.log('圖片已從伺服器刪除');
+                          } else {
+                              console.error('圖片刪除失敗：' + response.message);
+                          }
+                      },
+                      error: function(xhr) {
+                          console.error('圖片刪除失敗：' + xhr.responseJSON?.message || '伺服器錯誤');
+                      }
+                  });
+              }
+            }
+          }
+        });
+      </xmp>
+    </pre>
+    <p>web</p>
+    <pre class="prettyprint">
+      <xmp>
+        Route::post('baworks_imgupload', [BaworkController::class, 'baworks_imgupload'])->name('baworks_update');
+        Route::post('baworks_imgdelete', [BaworkController::class, 'baworks_imgdelete'])->name('baworks_imgdelete');
+      </xmp>
+    </pre>
+    <p>controller</p>
+    <pre class="prettyprint">
+      <xmp>
+        //圖片上傳
+        public function baworks_imgupload(Request $request)
+        {
+          // 驗證上傳的檔案
+          $request->validate([
+            'image' => [
+              'required',
+              'image',
+              'mimes:jpeg,png,jpg,gif',
+              'max:2048', // 限制檔案大小（2MB）
+            ]],[
+            'image.required' => '請選擇一張圖片進行上傳',
+            'image.image' => '上傳的檔案必須是圖片格式',
+            'image.mimes' => '僅支援 jpeg、png、jpg、gif 格式的圖片',
+            'image.max' => '圖片大小不能超過 2MB',
+          ]);
+      
+          try {
+            // 儲存圖片到 storage/app/public/images
+            $file = $request->file('image');
+            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('images'); // 目標路徑：public/images
+            $file->move($destinationPath, $filename); // 移動檔案到 public/images
+      
+            // 返回圖片 URL 和 ID
+            return response()->json([
+              'success' => true,
+              'url' => asset("images/{$filename}"), // 公開 URL，例如 /images/xxx.jpg
+              'imageId' => $filename, // 使用檔案名作為 ID，實際應用中可存入資料庫
+            ]);
+          } catch (ValidationException $e) {
+            return response()->json([
+              'success' => false,
+              'message' => $e->errors(),
+              // 'errors' => $e->errors(),
+            ], 422);
+          } catch (\Exception $e) {
+            return response()->json([
+              'success' => false,
+              'message' => '圖片上傳失敗：' . $e->getMessage(),
+            ], 500);
+          }
+        }
+        //圖片刪除
+        public function baworks_imgdelete(Request $request)
+        {
+          // 驗證 imageId
+          $request->validate([
+            'imageId' => 'required|string',
+          ]);
+      
+          try {
+            $imageId = $request->input('imageId');
+            $filePath = public_path("images/{$imageId}"); // 檔案路徑：public/images/xxx.jpg
+      
+            // 檢查檔案是否存在並刪除
+            if (file_exists($filePath)) {
+              unlink($filePath); // 刪除檔案
+              return response()->json([
+                'success' => true,
+                'message' => '圖片已刪除',
+              ]);
+            } else {
+              return response()->json([
+                'success' => false,
+                'message' => '圖片不存在',
+              ], 404);
+            }
+          } catch (ValidationException $e) {
+            return response()->json([
+              'success' => false,
+              'message' => '驗證失敗',
+              'errors' => $e->errors(),
+            ], 422);
+          } catch (\Exception $e) {
+            return response()->json([
+              'success' => false,
+              'message' => '圖片刪除失敗：' . $e->getMessage(),
+            ], 500);
+          }
+        }
+      </xmp>
+    </pre>
+    <h4>參考</h4>
+    <ul>
+      <li>
+        <a href="https://www.php.cn/faq/392833.html">Summernote使用詳解</a>
+      </li>
+      <li>
+        <a href="https://summernote.org/examples/">官網</a>
+      </li>
+    </ul>
+    <hr>
+  </body>
+</html>
