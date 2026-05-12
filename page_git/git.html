@@ -12,12 +12,12 @@
     <pre class="prettyprint">
       <xmp>
         移動路徑：   cd c 路徑  到Ｃ碟　　也可拖移資料夾進入git
-      移動路徑：   cd c: 到Ｃ碟
-      移動路徑：   cd /e/資料夾名  到資料夾名位置
-      回上一層：   cd ..       PS：是兩個.. 不是一個 .
-      展開列表：   ls
-      開新資料夾： mkdir 資料夾名稱
-      開新檔案：   touch 檔案名稱  範例touch styles.css 新建styles.css檔
+        移動路徑：   cd c: 到Ｃ碟
+        移動路徑：   cd /e/資料夾名  到資料夾名位置
+        回上一層：   cd ..       PS：是兩個.. 不是一個 .
+        展開列表：   ls
+        開新資料夾： mkdir 資料夾名稱
+        開新檔案：   touch 檔案名稱  範例touch styles.css 新建styles.css檔
       </xmp>
     </pre>
     <h2>git視窗</h2>
@@ -70,7 +70,7 @@
     <pre class="prettyprint">
       <xmp>
         //-m 不啟動文字編輯模式
-      git commit -m
+        git commit -m
         <title>
         </xmp>
       </pre>
@@ -79,11 +79,11 @@
         <xmp>
           git commit
 
-      //vim 的儲存並離開
-      :wq
+          //vim 的儲存並離開
+          :wq
 
-      //vim回到命令模式
-      Esc
+          //vim回到命令模式
+          Esc
         </xmp>
       </pre>
       <h2>commit差異 diff</h2>
@@ -103,21 +103,21 @@
       <pre class="prettyprint">
         <xmp>
           //查詢commit記錄
-      git log
+          git log
 
-      //--pretty=raw 顯示 parent 的資訊
-      git log --pretty=raw
+          //--pretty=raw 顯示 parent 的資訊
+          git log --pretty=raw
 
-      //--oneline 顯示
-          <commit id>
-            簡化的log
-      git log --oneline
+          //--oneline 顯示
+              <commit id>
+                簡化的log
+          git log --oneline
 
-      //-g 查看 reflog 的詳細內容
-      git log -g
+          //-g 查看 reflog 的詳細內容
+          git log -g
 
-      //查詢commit最後的記錄
-      git show
+          //查詢commit最後的記錄
+          git show
           </xmp>
         </pre>
         <h4>參考</h4>
